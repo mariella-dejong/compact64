@@ -77,10 +77,10 @@ contain original Commodore design files.
 
 ## ROMs and firmware
 
-This project does not include and will not distribute the original Commodore
-64 BASIC, KERNAL or character generator ROM images, which are protected by
-copyright. Users who need them are responsible for obtaining them from a
-legitimate source.
+This repository does not include the original Commodore 64 BASIC, KERNAL or
+character generator ROM images, which are protected by copyright. ROM images
+will only be included in this project with permission of the rights holder,
+or when they are replacements that are free of these rights.
 
 ## Trademarks
 
