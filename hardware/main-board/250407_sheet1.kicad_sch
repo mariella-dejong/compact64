@@ -28114,7 +28114,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:INDUCTOR_P15.24mm"
+		(property "Footprint" "Inductor_SMD:L_Changjiang_FXL0420"
 			(at 270.51 252.73 0)
 			(hide yes)
 			(show_name no)
@@ -28138,6 +28138,17 @@
 		)
 		(property "Description" ""
 			(at 270.51 252.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C167204"
+			(at 270.51 252.73 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
