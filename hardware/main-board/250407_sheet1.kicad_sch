@@ -25860,6 +25860,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C3204125"
+			(at 247.65 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "26be6edb-af0c-4d64-958c-7f2b5475c22c")
 		)
@@ -26151,7 +26162,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:KEYBOARD_CON"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x20_P2.54mm_Vertical"
 			(at 34.29 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -26175,6 +26186,17 @@
 		)
 		(property "Description" ""
 			(at 34.29 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C50981"
+			(at 34.29 180.34 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
