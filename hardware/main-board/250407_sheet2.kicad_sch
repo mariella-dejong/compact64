@@ -25991,6 +25991,77 @@
 			)
 		)
 	)
+	(text_box "NOTES (NTSC build; PAL values in brackets)\nBoxed numbers refer to the notes on Commodore schematic\n251138 Rev B.\n\n7. CAS delay: C203 and C204 are not fitted on NTSC boards\n(PAL: C203 = 82 pF with a 7700-001 or 93459PC PLA; C204 =\n82 pF with an MB112A101 PLA). R42 = 82 Ω with a 7700-001\nPLA, or 33 Ω with an 82S100 PLA (6567 rev 8 only)."
+		(exclude_from_sim no)
+		(at 327.66 15.24 0)
+		(size 76.2 17.78)
+		(margins 1.27 1.27 1.27 1.27)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "912b76d8-4807-4173-b7ec-a00378e697fb")
+	)
+	(polyline
+		(pts
+			(xy 80.01 81.28) (xy 82.55 81.28)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "5db55dd4-cb40-4de5-9469-a67f8cb8296a")
+	)
+	(polyline
+		(pts
+			(xy 82.55 81.28) (xy 82.55 83.82)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "74196d51-b2e6-4f39-8afb-3c50ed59d1cf")
+	)
+	(polyline
+		(pts
+			(xy 82.55 83.82) (xy 80.01 83.82)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "084b3a9e-c87c-4020-aafe-6a439a0eca33")
+	)
+	(polyline
+		(pts
+			(xy 80.01 83.82) (xy 80.01 81.28)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "518e4fba-a765-44d9-879f-6837f395ab5c")
+	)
+	(text "7"
+		(exclude_from_sim no)
+		(at 80.6196 83.5152 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "46b7d3d0-5c33-4270-9465-eb67a3381f0d")
+	)
 	(symbol
 		(lib_id "250407_-rescue:R_ARRAY_US_4RES-KU-schematics-library")
 		(at 91.44 49.53 90)
@@ -28066,6 +28137,7 @@
 		)
 		(property "Description" "Commodore 251138 note 7 (NTSC): 82 Ohm with a 7700-001 PLA; 33 Ohm with an 82S100 PLA (suitable only for a 6567 rev 8)."
 			(at 87.63 77.47 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -38731,6 +38803,7 @@
 		)
 		(property "Description" "CAS delay capacitor on the VIC /CAS line. Commodore 251138 note 7: not fitted on NTSC boards (82 pF on PAL boards with a 7700-001 or 93459PC PLA). DNP on this NTSC build; excluded from BOM and CPL."
 			(at 67.31 110.49 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -38897,6 +38970,7 @@
 		)
 		(property "Description" "CAS delay capacitor option. Commodore 251138 note 7: not fitted on NTSC boards (82 pF only on PAL boards with an MB112A101 PLA). DNP on this NTSC build; excluded from BOM and CPL."
 			(at 80.01 76.2 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
