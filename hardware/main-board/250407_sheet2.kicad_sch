@@ -25900,7 +25900,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a40")
-		(property "Reference" "RP1A"
+		(property "Reference" "RP1"
 			(at 90.5256 48.1838 0)
 			(hide yes)
 			(show_name no)
@@ -25983,7 +25983,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP1A")
+					(reference "RP1")
 					(unit 1)
 				)
 			)
@@ -26000,7 +26000,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a46")
-		(property "Reference" "RP1B"
+		(property "Reference" "RP1"
 			(at 90.5256 53.2892 0)
 			(hide yes)
 			(show_name no)
@@ -26083,7 +26083,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP1B")
+					(reference "RP1")
 					(unit 2)
 				)
 			)
@@ -26100,7 +26100,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a4c")
-		(property "Reference" "RP1C"
+		(property "Reference" "RP1"
 			(at 90.5256 50.7492 0)
 			(hide yes)
 			(show_name no)
@@ -26183,7 +26183,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP1C")
+					(reference "RP1")
 					(unit 3)
 				)
 			)
@@ -26200,7 +26200,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a52")
-		(property "Reference" "RP1D"
+		(property "Reference" "RP1"
 			(at 90.5256 45.6692 0)
 			(hide yes)
 			(show_name no)
@@ -26283,7 +26283,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP1D")
+					(reference "RP1")
 					(unit 4)
 				)
 			)
@@ -26498,7 +26498,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a6e")
-		(property "Reference" "RP2D"
+		(property "Reference" "RP2"
 			(at 90.5256 60.9092 0)
 			(hide yes)
 			(show_name no)
@@ -26581,7 +26581,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP2D")
+					(reference "RP2")
 					(unit 4)
 				)
 			)
@@ -26598,7 +26598,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a74")
-		(property "Reference" "RP2C"
+		(property "Reference" "RP2"
 			(at 90.5256 58.3692 0)
 			(hide yes)
 			(show_name no)
@@ -26681,7 +26681,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP2C")
+					(reference "RP2")
 					(unit 3)
 				)
 			)
@@ -26698,7 +26698,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a7a")
-		(property "Reference" "RP2A"
+		(property "Reference" "RP2"
 			(at 90.5256 55.8038 0)
 			(hide yes)
 			(show_name no)
@@ -26781,7 +26781,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP2A")
+					(reference "RP2")
 					(unit 1)
 				)
 			)
@@ -26874,7 +26874,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633a98")
-		(property "Reference" "RP2B"
+		(property "Reference" "RP2"
 			(at 90.5256 63.4492 0)
 			(hide yes)
 			(show_name no)
@@ -26957,7 +26957,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "RP2B")
+					(reference "RP2")
 					(unit 2)
 				)
 			)
@@ -27801,7 +27801,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633b19")
-		(property "Reference" "U8B"
+		(property "Reference" "U8"
 			(at 64.77 29.21 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -27898,7 +27898,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "U8B")
+					(reference "U8")
 					(unit 2)
 				)
 			)
@@ -28346,7 +28346,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633b50")
-		(property "Reference" "U27B"
+		(property "Reference" "U27"
 			(at 35.56 160.02 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -28444,7 +28444,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "U27B")
+					(reference "U27")
 					(unit 2)
 				)
 			)
@@ -28462,7 +28462,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633b5a")
-		(property "Reference" "U27D"
+		(property "Reference" "U27"
 			(at 35.56 210.82 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -28560,7 +28560,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "U27D")
+					(reference "U27")
 					(unit 4)
 				)
 			)
@@ -31059,7 +31059,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633dd9")
-		(property "Reference" "U15A"
+		(property "Reference" "U15"
 			(at 200.66 223.52 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -31162,7 +31162,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "U15A")
+					(reference "U15")
 					(unit 1)
 				)
 			)
@@ -31179,7 +31179,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060633ddf")
-		(property "Reference" "U15B"
+		(property "Reference" "U15"
 			(at 220.98 238.76 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -31282,7 +31282,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "U15B")
+					(reference "U15")
 					(unit 2)
 				)
 			)
@@ -33995,7 +33995,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00000000-0000-0000-0000-000060634169")
-		(property "Reference" "U27C"
+		(property "Reference" "U27"
 			(at 260.35 190.5 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -34093,7 +34093,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "U27C")
+					(reference "U27")
 					(unit 3)
 				)
 			)
