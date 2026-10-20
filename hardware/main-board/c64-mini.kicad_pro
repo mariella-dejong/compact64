@@ -479,7 +479,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "250407_.kicad_pro",
+    "filename": "c64-mini.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -1643,22 +1643,30 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "250407_.kicad_sch",
-        "name": "250407_",
+        "filename": "c64-mini.kicad_sch",
+        "name": "c64-mini",
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "",
+    "used_designators": "RP1C1,RP1D1,U27B1,Y1,Q1-3,Q7-8,JP1,U15B1,RP1B1,CN1-10,VR1-2,RP2D1,SW1,#U101-134,#U136-140,#U142-147,#U150-175,#U177-226,#U229-235,#U237-246,C1-34,C36-54,C56-57,C59-60,C62,C65-68,C70,C74,C82-86,C88-103,C105,C107-108,C200,C203-205,RP1A1,FB1-5,FB7-23,RP2A1,R1-7,R16-17,R19,R26-31,R33-39,R41-45,R50-53,R100,L2,L4-5,M1,#PWR101-160,RP2B1,RP2C1,U1-14,U16-32,RP3,U15A1,U27C1,U27D1,U8B1,CR1-2,CR4-6,CR100-103,E1-2,F1",
     "variants": []
   },
   "sheets": [
     [
       "01e2bfaf-4d9e-453f-884b-2ddc31de1b57",
-      "250407_"
+      "c64-mini"
     ],
     [
-      "00000000-0000-0000-0000-0000604e5f00",
-      "250407_sheet2"
+      "438ac9d3-0cfc-4b1b-990b-000900cb9742",
+      "250407 Design"
+    ],
+    [
+      "6238ec0f-6cec-4554-96a0-848e3b739777",
+      "250407 Sheet 1"
+    ],
+    [
+      "d545d313-c034-4d13-9e4c-300ba484c3d7",
+      "250407 Sheet 2"
     ]
   ],
   "text_variables": {},
