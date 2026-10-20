@@ -2809,7 +2809,7 @@
 			(drill 1.1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "/250407 Design/250407 Sheet 2/+9V_UNREG")
+			(net "+9V_UNREG")
 			(pintype "passive")
 			(uuid "b5344149-a8a7-4978-8a88-d5f0e7603b38")
 		)
@@ -24299,7 +24299,7 @@
 			(drill 1.1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "/250407 Design/250407 Sheet 2/+9V_UNREG")
+			(net "+9V_UNREG")
 			(pinfunction "9V_1")
 			(pintype "input")
 			(uuid "244efe97-39e0-407a-a7ab-9c7197974000")
@@ -33542,7 +33542,7 @@
 				)
 			)
 		)
-		(path "/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7/00000000-0000-0000-0000-000060633a7a")
+		(path "/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7/00000000-0000-0000-0000-000060633a74")
 		(sheetname "/250407 Design/250407 Sheet 2/")
 		(sheetfile "250407_sheet2.kicad_sch")
 		(units
@@ -45192,7 +45192,7 @@
 			(drill 1.1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "/250407 Design/250407 Sheet 2/+9V_UNREG")
+			(net "+9V_UNREG")
 			(pintype "passive")
 			(uuid "69f8b95c-bb05-4256-a672-b00f93242b04")
 		)
@@ -45574,13 +45574,13 @@
 		(descr "TO-220-3, Horizontal, RM 2.54mm, see https://www.vishay.com/docs/66542/to-220-1.pdf")
 		(tags "TO-220-3 Horizontal RM 2.54mm")
 		(property "Reference" "Q3"
-			(at 5.08 -5.715 0)
+			(at 20.58 2.54 270)
 			(layer "F.SilkS")
 			(uuid "f66f9291-24f1-48b3-9e6c-31e263855468")
 			(effects
 				(font
-					(size 1.5 1.5)
-					(thickness 0.25)
+					(size 1 1)
+					(thickness 0.15)
 				)
 			)
 		)
@@ -45603,7 +45603,6 @@
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -45615,7 +45614,6 @@
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -45631,30 +45629,6 @@
 		)
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
-		(fp_poly
-			(pts
-				(xy 22.733 8.6995) (xy 2.7305 8.6995) (xy 2.7305 -3.6195) (xy 22.6695 -3.6195)
-			)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill yes)
-			(layer "F.Cu")
-			(uuid "a3fb69f2-c5e7-4044-ab75-a390677b4304")
-		)
-		(fp_poly
-			(pts
-				(xy 22.733 8.6995) (xy 2.7305 8.6995) (xy 2.7305 -3.6195) (xy 22.6695 -3.6195)
-			)
-			(stroke
-				(width 0.1)
-				(type solid)
-			)
-			(fill yes)
-			(layer "F.Mask")
-			(uuid "73b9d7a2-ba14-46e4-befe-b3ebef03c6ec")
-		)
 		(fp_line
 			(start 2.1 0)
 			(end 4.1 0)
@@ -45889,9 +45863,43 @@
 			(pintype "passive")
 			(uuid "4a25366d-08ca-4201-9830-32077183da35")
 		)
+		(pad "2" smd custom
+			(at 13.06 2.54)
+			(size 1.27 1.27)
+			(layers "F.Cu" "F.Mask")
+			(net "+9V_UNREG")
+			(pinfunction "C_2")
+			(pintype "passive")
+			(thermal_bridge_angle 90)
+			(options
+				(clearance outline)
+				(anchor circle)
+			)
+			(primitives
+				(gr_poly
+					(pts
+						(xy -1.27 -0.4445) (xy -1.255499 -0.517401) (xy -1.214204 -0.579204) (xy -1.152401 -0.620499)
+						(xy -1.0795 -0.635) (xy 1.0795 -0.635) (xy 1.152401 -0.620499) (xy 1.214204 -0.579204) (xy 1.255499 -0.517401)
+						(xy 1.27 -0.4445) (xy 1.27 0.4445) (xy 1.255499 0.517401) (xy 1.214204 0.579204) (xy 1.152401 0.620499)
+						(xy 1.0795 0.635) (xy -1.0795 0.635) (xy -1.152401 0.620499) (xy -1.214204 0.579204) (xy -1.255499 0.517401)
+						(xy -1.27 0.4445)
+					)
+					(width 0)
+					(fill yes)
+				)
+				(gr_poly
+					(pts
+						(xy 9.673 6.1595) (xy -10.3295 6.1595) (xy -10.3295 -6.1595) (xy 9.6095 -6.1595)
+					)
+					(width 0.1)
+					(fill yes)
+				)
+			)
+			(uuid "4c478e33-9e8f-469c-ac85-ccabb56d671e")
+		)
 		(pad "2" thru_hole oval
 			(at 16.66 2.54 270)
-			(size 3.6 3.6)
+			(size 6 6)
 			(drill 3.5)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
