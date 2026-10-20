@@ -34668,7 +34668,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
+		(property "Footprint" "Package_DIP:DIP-40_W15.24mm_Socket"
 			(at 147.32 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -38569,7 +38569,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
+		(property "Footprint" "Package_DIP:DIP-40_W15.24mm_Socket"
 			(at 147.32 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -41164,7 +41164,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
+		(property "Footprint" "Package_DIP:DIP-40_W15.24mm_Socket"
 			(at 147.32 222.25 0)
 			(hide yes)
 			(show_name no)
@@ -42715,7 +42715,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14_SOCKET"
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm_Socket"
 			(at 375.92 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -43865,7 +43865,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14_SOCKET"
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm_Socket"
 			(at 335.28 127 0)
 			(hide yes)
 			(show_name no)
@@ -45414,7 +45414,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14_SOCKET"
+		(property "Footprint" "Package_DIP:DIP-14_W7.62mm_Socket"
 			(at 345.44 127 0)
 			(hide yes)
 			(show_name no)
