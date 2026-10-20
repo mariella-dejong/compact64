@@ -23549,9 +23549,9 @@
 		(uuid "00000000-0000-0000-0000-00006063a04f")
 		(at 240.03 118.745 180)
 		(descr "SMD Solder Jumper, 1x1.5mm, rounded Pads, 0.3mm gap, bridged with 1 copper strip")
-		(tags "solder jumper open")
+		(tags "net tie solder jumper bridged")
 		(property "Reference" "JP1"
-			(at 0 -1.8 0)
+			(at 0 -1.8 180)
 			(layer "F.SilkS")
 			(uuid "c5813f18-1ccf-401a-bc5b-87fda8fd9d69")
 			(effects
@@ -23562,7 +23562,7 @@
 			)
 		)
 		(property "Value" "Jumper_NC_Small"
-			(at 0 1.9 0)
+			(at 0 1.9 180)
 			(layer "F.Fab")
 			(uuid "fc4980ab-ae4e-4795-9e6f-7893938b5160")
 			(effects
@@ -23574,6 +23574,7 @@
 		)
 		(property "Datasheet" ""
 			(at 0 0 180)
+			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "70168eb9-5e2d-4119-8ed5-c39519e3066b")
@@ -23586,6 +23587,7 @@
 		)
 		(property "Description" ""
 			(at 0 0 180)
+			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "4fae8f00-a3f7-4d3e-af7a-e72a734d6c27")
@@ -23600,12 +23602,9 @@
 		(path "/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7/00000000-0000-0000-0000-000060e3dcfb")
 		(sheetname "/250407 Design/250407 Sheet 2/")
 		(sheetfile "250407_sheet2.kicad_sch")
-		(units
-			(unit
-				(name "A")
-				(pins "1" "2")
-			)
-		)
+		(zone_connect 1)
+		(attr exclude_from_pos_files exclude_from_bom allow_soldermask_bridges)
+		(net_tie_pad_groups "1, 2")
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_poly
 			(pts
@@ -23618,6 +23617,17 @@
 			(fill yes)
 			(layer "F.Cu")
 			(uuid "3c08b222-abe3-4416-8511-c0a556f9160a")
+		)
+		(fp_rect
+			(start -0.15 -0.75)
+			(end 0.15 0.75)
+			(stroke
+				(width 0)
+				(type default)
+			)
+			(fill yes)
+			(layer "F.Mask")
+			(uuid "cd0687a3-98da-4954-8050-58f3ec8b7c56")
 		)
 		(fp_line
 			(start 1.4 -0.3)
@@ -23751,6 +23761,7 @@
 			(pinfunction "1_1")
 			(pintype "passive")
 			(zone_connect 2)
+			(thermal_bridge_angle 45)
 			(options
 				(clearance outline)
 				(anchor rect)
@@ -23770,7 +23781,7 @@
 				)
 				(gr_poly
 					(pts
-						(xy 0 -0.75) (xy 0.5 -0.75) (xy 0.5 0.75) (xy 0 0.75)
+						(xy 0.5 0.75) (xy 0 0.75) (xy 0 -0.75) (xy 0.5 -0.75)
 					)
 					(width 0)
 					(fill yes)
@@ -23786,6 +23797,7 @@
 			(pinfunction "2_2")
 			(pintype "passive")
 			(zone_connect 2)
+			(thermal_bridge_angle 45)
 			(options
 				(clearance outline)
 				(anchor rect)
@@ -23805,7 +23817,7 @@
 				)
 				(gr_poly
 					(pts
-						(xy 0 -0.75) (xy -0.5 -0.75) (xy -0.5 0.75) (xy 0 0.75)
+						(xy 0 0.75) (xy -0.5 0.75) (xy -0.5 -0.75) (xy 0 -0.75)
 					)
 					(width 0)
 					(fill yes)
