@@ -39851,7 +39851,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:BRIDGE_RECTIFIER"
+		(property "Footprint" "Diode_THT:Diode_Bridge_Round_D9.0mm"
 			(at 247.65 222.25 0)
 			(hide yes)
 			(show_name no)
@@ -39875,6 +39875,17 @@
 		)
 		(property "Description" ""
 			(at 247.65 222.25 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C3064"
+			(at 247.65 222.25 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
