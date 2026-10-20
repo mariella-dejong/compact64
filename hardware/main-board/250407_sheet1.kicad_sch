@@ -25827,7 +25827,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:FUSE"
+		(property "Footprint" "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open"
 			(at 245.872 238.76 90)
 			(hide yes)
 			(show_name no)
@@ -25849,8 +25849,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fit a 1A slow blow fuse"
 			(at 247.65 238.76 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
