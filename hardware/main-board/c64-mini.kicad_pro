@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.1,
-          "height": 1.8,
-          "width": 1.6
+          "drill": 0.0,
+          "height": 8.76,
+          "width": 2.41
         },
         "silk_line_width": 0.12,
         "silk_text_italic": false,
@@ -1648,7 +1648,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "RP1C,RP1D,U27B,Y1,Q1-3,Q7-8,JP1,U15B,RP1B,CN1-10,VR1-2,RP2D,SW1,#U101-134,#U136-140,#U142-147,#U150-175,#U177-226,#U229-235,#U237-246,C1-34,C36-54,C56-57,C59-60,C62,C65-68,C70,C74,C82-86,C88-103,C105,C107-108,C200,C203-205,RP1A,FB1-5,FB7-23,RP2A,R1-7,R16-17,R19,R26-31,R33-39,R41-45,R50-53,R100,L2,L4-5,M1,#PWR101-160,RP2B,RP2C,U1-14,U16-32,RP3,U15A,U27C,U27D,U8B,CR1-2,CR4-6,CR100-103,E1-2,F1",
+    "used_designators": "#PWR1,H1-12",
     "variants": []
   },
   "sheets": [
