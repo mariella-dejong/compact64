@@ -85,6 +85,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-20 | Fitted round-pin DIP sockets (new `DIP14_SOCKET`-`DIP40_SOCKET` footprints, same pads as the DIP footprints) for the 19 chips LCSC does not sell (U1-U7, U9-U12, U17-U19, U21-U24, U32), with notes on which chip to insert; moved the sheet 2 note block above the title block |
 | 2026-10-20 | Configured the clock circuit for NTSC (Commodore 251138 notes 2, 7 and 8): Y1 14.31818 MHz, C70 16 pF, R52 680 Ohm, R53 910 Ohm; E3 (NTSC link) fitted, E2 (PAL link), C203 and C204 not fitted; added NTSC note blocks (upper right of both sheets) with boxed markers |
 | 2026-10-20 | Added `LCSC Part #` fields to the schematic symbols and PCB footprints of all parts with an exact LCSC match |
 | 2026-10-20 | Restored the original designators of 14 sub-units on sheet 2 (`RP1A`-`RP1D`, `RP2A`-`RP2D`, `U8B`, `U15A`, `U15B`, `U27B`-`U27D`) that were renamed with a `1` suffix during the reorganization |

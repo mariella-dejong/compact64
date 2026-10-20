@@ -24910,10 +24910,10 @@
 			)
 		)
 	)
-	(text_box "NOTES (NTSC build; PAL values in brackets)\nBoxed numbers refer to the notes on Commodore schematic 251138 Rev B; boxed letters are\nnotes for this design.\n\n2. Clock circuit: Y1 = 14.31818 MHz HC-49S (17.734472 MHz). C70 = 16 pF ±5% N2200 (15 pF\nN3300); fitted as C0G because no N2200 part is available, so recheck the colour carrier if\nit drifts while the board warms up. R52 = 680 Ω (330 Ω), R53 = 910 Ω (100 Ω).\n\n8. Dot-clock VCO: C86 = 82 pF ±5% with no R101, for a 6567 rev 8 VIC-II. A 6567 rev 5 or a\nPAL 6569 needs 68 pF plus R101 = 22 kΩ from +Vc to U31 pin 4; R101 has no footprint on the\nPCB.\n\nA. PAL/NTSC jumper: E3 (E1 to E3, jumper_select to GND) selects NTSC and is fitted as a 0 Ω\naxial link. E2 (E1 to E2, jumper_select to +Vc) selects PAL and is not fitted. Never fit\nboth: that shorts +Vc to GND."
+	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev B; lettered notes are for this\ndesign. Boxed markers show where a note applies.\n\n2. Clock circuit: Y1 = 14.31818 MHz HC-49S (17.734472 MHz). C70 = 16 pF ±5% N2200 (15 pF\nN3300); fitted as C0G because no N2200 part is available, so recheck the colour carrier if\nit drifts while the board warms up. R52 = 680 Ω (330 Ω), R53 = 910 Ω (100 Ω).\n\n8. Dot-clock VCO: C86 = 82 pF ±5% with no R101, for a 6567 rev 8 VIC-II. A 6567 rev 5 or a\nPAL 6569 needs 68 pF plus R101 = 22 kΩ from +Vc to U31 pin 4; R101 has no footprint on the\nPCB.\n\nA. PAL/NTSC jumper: E3 (E1 to E3, jumper_select to GND) selects NTSC and is fitted as a 0 Ω\naxial link. E2 (E1 to E2, jumper_select to +Vc) selects PAL and is not fitted. Never fit\nboth: that shorts +Vc to GND.\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU1: MOS 6526 CIA (CIA 1)\nU2: MOS 6526 CIA (CIA 2)\nU7: MOS 6510 CPU\nU32: Motorola MC4044P phase-frequency detector (obsolete; new-old stock only)"
 		(exclude_from_sim no)
 		(at 281.94 15.24 0)
-		(size 121.92 33.02)
+		(size 121.92 48.26)
 		(margins 1.27 1.27 1.27 1.27)
 		(stroke
 			(width 0.254)
@@ -34668,7 +34668,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
 			(at 147.32 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -34690,8 +34690,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6526 CIA (CIA 1: keyboard and joysticks) after assembly; see note B."
 			(at 134.62 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874018"
+			(at 134.62 127 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -38557,7 +38569,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
 			(at 147.32 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -38579,8 +38591,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6510 CPU after assembly; see note B."
 			(at 147.32 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874018"
+			(at 147.32 77.47 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -41140,7 +41164,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
 			(at 147.32 222.25 0)
 			(hide yes)
 			(show_name no)
@@ -41162,8 +41186,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6526 CIA (CIA 2: serial bus, user port and VIC-II bank) after assembly; see note B."
 			(at 134.62 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874018"
+			(at 134.62 193.04 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -42679,7 +42715,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14_SOCKET"
 			(at 375.92 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -42701,8 +42737,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 14-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the Motorola MC4044P phase-frequency detector (obsolete; new-old stock only) after assembly; see note B."
 			(at 375.92 132.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874009"
+			(at 375.92 132.08 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -43817,7 +43865,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14_SOCKET"
 			(at 335.28 127 0)
 			(hide yes)
 			(show_name no)
@@ -43839,8 +43887,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 14-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the Motorola MC4044P phase-frequency detector (obsolete; new-old stock only) after assembly; see note B."
 			(at 335.28 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874009"
+			(at 335.28 127 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -45354,7 +45414,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14_SOCKET"
 			(at 345.44 127 0)
 			(hide yes)
 			(show_name no)
@@ -45376,8 +45436,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 14-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the Motorola MC4044P phase-frequency detector (obsolete; new-old stock only) after assembly; see note B."
 			(at 345.44 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874009"
+			(at 345.44 127 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

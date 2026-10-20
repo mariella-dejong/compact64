@@ -25991,10 +25991,10 @@
 			)
 		)
 	)
-	(text_box "NOTES (NTSC build; PAL values in brackets)\nBoxed numbers refer to the notes on Commodore schematic\n251138 Rev B.\n\n7. CAS delay: C203 and C204 are not fitted on NTSC boards\n(PAL: C203 = 82 pF with a 7700-001 or 93459PC PLA; C204 =\n82 pF with an MB112A101 PLA). R42 = 82 Ω with a 7700-001\nPLA, or 33 Ω with an 82S100 PLA (6567 rev 8 only)."
+	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev\nB; lettered notes are for this design. Boxed markers\nshow where a note applies.\n\n7. CAS delay: C203 and C204 are not fitted on NTSC\nboards (PAL: C203 = 82 pF with a 7700-001 or 93459PC\nPLA; C204 = 82 pF with an MB112A101 PLA). R42 = 82 Ω\nwith a 7700-001 PLA, or 33 Ω with an 82S100 PLA (6567\nrev 8 only).\n\nB. IC sockets: these chips are not sold by LCSC, so the\nboard gets a round-pin DIP socket and the chip is\nbought separately and inserted after assembly.\nU3: BASIC ROM 901226-01 (2364A)\nU4: KERNAL ROM 901227-03 (2364A)\nU5: character ROM 901225-01 (2332A)\nU3-U5 are mask ROMs; a 27xx EPROM needs an adapter\n    because the pinout differs.\nU6: 2114 colour RAM\nU9-U12, U21-U24: 4164 64K x 1 DRAM\nU17: PLA 906114-01 or a compatible replacement (see\n    note 7)\nU18: MOS 6581 SID. An 8580 is not a drop-in replacement\n    (9 V supply, different filter capacitors).\nU19: MOS 6567 rev 8 VIC-II (NTSC). A 6567 rev 5 needs\n    the note 8 changes on sheet 1; a 6569 is PAL; an\n    8562 is not a drop-in replacement."
 		(exclude_from_sim no)
-		(at 327.66 15.24 0)
-		(size 76.2 17.78)
+		(at 330.2 190.5 0)
+		(size 73.66 60.96)
 		(margins 1.27 1.27 1.27 1.27)
 		(stroke
 			(width 0.254)
@@ -27279,7 +27279,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 105.41 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -27301,8 +27301,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 105.41 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 105.41 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29050,7 +29062,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP24"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP24_SOCKET"
 			(at 99.06 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -29072,8 +29084,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 24-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the BASIC ROM 901226-01 (2364A mask ROM) after assembly; see note B."
 			(at 105.41 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874015"
+			(at 105.41 152.4 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29198,7 +29222,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP24"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP24_SOCKET"
 			(at 133.35 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -29220,8 +29244,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 24-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the KERNAL ROM 901227-03 (2364A mask ROM) after assembly; see note B."
 			(at 139.7 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874015"
+			(at 139.7 152.4 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29841,7 +29877,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP24"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP24_SOCKET"
 			(at 173.99 152.4 0)
 			(hide yes)
 			(show_name no)
@@ -29863,8 +29899,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 24-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the character ROM 901225-01 (2332A mask ROM) after assembly; see note B."
 			(at 173.99 152.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874015"
+			(at 173.99 152.4 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -29986,7 +30034,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP28"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP28_SOCKET"
 			(at 107.95 208.28 0)
 			(hide yes)
 			(show_name no)
@@ -30008,8 +30056,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 28-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the PLA 906114-01 or a compatible replacement (CAS timing depends on the PLA type: see note 7) after assembly; see note B."
 			(at 107.95 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874016"
+			(at 107.95 208.28 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -32510,7 +32570,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP40_SOCKET"
 			(at 300.99 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -32532,8 +32592,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6567 rev 8 VIC-II (NTSC) after assembly; see note B."
 			(at 300.99 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874018"
+			(at 300.99 91.44 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -32795,7 +32867,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP18"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP18_SOCKET"
 			(at 266.7 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -32817,8 +32889,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 18-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 2114 1K x 4 static RAM (colour RAM) after assembly; see note B."
 			(at 266.7 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874011"
+			(at 266.7 153.67 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33068,7 +33152,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 118.11 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33090,8 +33174,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 118.11 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 118.11 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33190,7 +33286,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 130.81 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33212,8 +33308,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 130.81 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 130.81 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33312,7 +33420,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 143.51 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33334,8 +33442,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 143.51 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 143.51 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33434,7 +33554,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 156.21 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33456,8 +33576,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 156.21 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 156.21 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33556,7 +33688,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 168.91 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33578,8 +33710,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 168.91 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 168.91 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33678,7 +33822,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 194.31 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33700,8 +33844,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 194.31 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 194.31 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -33800,7 +33956,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP16_SOCKET"
 			(at 181.61 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -33822,8 +33978,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 16-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the 4164 64K x 1 DRAM after assembly; see note B."
 			(at 181.61 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874010"
+			(at 181.61 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -38067,7 +38235,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP28"
+		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP28_SOCKET"
 			(at 339.09 142.24 0)
 			(hide yes)
 			(show_name no)
@@ -38089,8 +38257,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fitted with a 28-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6581 SID after assembly; see note B."
 			(at 339.09 142.24 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2874016"
+			(at 339.09 142.24 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
