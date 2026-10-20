@@ -28602,7 +28602,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2ee570ab-4fd2-4c55-bce2-a79f2be343ef")
-		(property "Reference" "E2"
+		(property "Reference" "E3"
 			(at 284.48 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -28665,7 +28665,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "E2")
+					(reference "E3")
 					(unit 1)
 				)
 			)
@@ -43054,7 +43054,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d8cf0c55-6dd7-43e8-9132-49a36af557b0")
-		(property "Reference" "E1"
+		(property "Reference" "E2"
 			(at 284.48 77.47 0)
 			(hide yes)
 			(show_name no)
@@ -43117,7 +43117,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "E1")
+					(reference "E2")
 					(unit 1)
 				)
 			)
