@@ -53,7 +53,13 @@
           "min_clearance": 0.0
         }
       },
-      "diff_pair_dimensions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
       "drc_exclusions": [],
       "meta": {
         "filename": "board_design_settings.json",
@@ -192,6 +198,7 @@
       ],
       "track_widths": [
         0.0,
+        0.2,
         1.2
       ],
       "tuning_pattern_settings": {
@@ -220,7 +227,12 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -1648,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#U135,#U141,#U501-502,#PWR2,#PWR501,RV1-2,RV501-502,U33,U501,Q4-5,Q501-502,L3,L501,R8-15,R18,R61-62,R501-511,JP2-8,JP501-503,D2,D501,C35,C55,C58,C61,C63-64,C501-506,J1-2",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
