@@ -3308,6 +3308,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C1620307"
+			(at 219.71 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "aad3095e-5aa0-4f33-bbe5-1d2b0532d8e7")
 		)
@@ -3466,6 +3477,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441531"
+			(at 219.71 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "4c5e6d0e-4a49-4dd0-8f6c-419f95842814")
 		)
@@ -3536,6 +3558,17 @@
 		)
 		(property "Description" ""
 			(at 180.34 91.44 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C84410"
+			(at 180.34 91.44 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3624,6 +3657,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441531"
+			(at 240.03 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "5888eb23-a1ac-4d65-999e-815b634bf7e9")
 		)
@@ -3645,9 +3689,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "1c9c09b3-b995-4ce7-8576-a506f8152ea7")
 		(property "Reference" "JP503"
@@ -3780,6 +3824,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C1621608"
+			(at 189.23 53.34 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "8321e380-5990-410e-8206-838f5be426dd")
 		)
@@ -3826,7 +3881,7 @@
 				)
 			)
 		)
-		(property "Footprint" "C64 RF Modulator Replacement:Potentiometer_Bourns_3296W_Vertical"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296W_Vertical"
 			(at 240.03 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -3850,6 +3905,17 @@
 		)
 		(property "Description" ""
 			(at 240.03 62.23 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C57089"
+			(at 240.03 62.23 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3933,6 +3999,17 @@
 		)
 		(property "Description" ""
 			(at 135.89 166.37 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7137072"
+			(at 135.89 166.37 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4096,6 +4173,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441284"
+			(at 100.33 129.54 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "b8eaa907-dfea-4772-b30a-cef42f8c0976")
 		)
@@ -4146,7 +4234,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "C64 RF Modulator Replacement:PinHeader_1x03_P2.54mm_Vertical-NoSilk"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
 			(at 104.14 105.41 90)
 			(hide yes)
 			(show_name no)
@@ -4170,6 +4258,17 @@
 		)
 		(property "Description" ""
 			(at 110.49 123.19 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2932698"
+			(at 110.49 123.19 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4261,6 +4360,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441455"
+			(at 207.01 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "065c979e-e61f-43bc-b9a4-ec22f0822902")
 		)
@@ -4341,6 +4451,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441451"
+			(at 207.01 60.96 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a9e87c55-1f90-47d9-95df-c4867382d847")
 		)
@@ -4411,6 +4532,17 @@
 		)
 		(property "Description" ""
 			(at 100.33 116.84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2441596"
+			(at 100.33 116.84 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4499,6 +4631,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C5348345"
+			(at 124.46 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "0d6c7a67-a6a8-4891-b000-6e4cf508ad3f")
 		)
@@ -4571,6 +4714,17 @@
 		)
 		(property "Description" ""
 			(at 247.65 66.04 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2441443"
+			(at 247.65 66.04 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4739,6 +4893,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C713613"
+			(at 217.17 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "d695ad8e-972b-4206-9842-7cc1ec337040")
 		)
@@ -4822,6 +4987,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C3024480"
+			(at 109.22 161.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "1123b7b8-5636-454b-afda-0570c448bcda")
 		)
@@ -4871,7 +5047,7 @@
 				)
 			)
 		)
-		(property "Footprint" "C64 RF Modulator Replacement:Potentiometer_Bourns_3296W_Vertical"
+		(property "Footprint" "Potentiometer_THT:Potentiometer_Bourns_3296W_Vertical"
 			(at 227.33 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -4895,6 +5071,17 @@
 		)
 		(property "Description" ""
 			(at 227.33 100.33 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C6675045"
+			(at 227.33 100.33 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4984,6 +5171,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441466"
+			(at 212.09 100.33 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "2c25f3ea-1a27-4af3-a195-7624443dc7c4")
 		)
@@ -5064,6 +5262,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C7017074"
+			(at 90.17 166.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "408ad687-efaf-420b-9032-308be8365e72")
 		)
@@ -5085,9 +5294,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "d9e9a726-640c-440c-b3bd-a1b8bce1c54f")
 		(property "Reference" "JP502"
@@ -5222,6 +5431,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C1329738"
+			(at 200.66 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "aa0833ce-c438-471b-8e98-7cf9e31e95dd")
 		)
@@ -5294,6 +5514,17 @@
 		)
 		(property "Description" ""
 			(at 78.74 166.37 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7137072"
+			(at 78.74 166.37 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5385,6 +5616,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C713613"
+			(at 198.12 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "c524f894-2994-4b6f-988c-f5b47637e471")
 		)
@@ -5460,6 +5702,17 @@
 		)
 		(property "Description" ""
 			(at 170.18 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2441284"
+			(at 170.18 60.96 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5546,6 +5799,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C2441531"
+			(at 210.82 113.03 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "3451b831-04d0-422f-8e47-0c19af2e25fb")
 		)
@@ -5616,6 +5880,17 @@
 		)
 		(property "Description" ""
 			(at 228.6 62.23 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2441462"
+			(at 228.6 62.23 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
