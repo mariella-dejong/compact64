@@ -28193,7 +28193,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 76.2 199.39 0)
 			(hide yes)
 			(show_name no)
@@ -28204,7 +28204,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 74.93 194.31 90)
 			(hide yes)
 			(show_name no)
@@ -28228,6 +28228,17 @@
 		)
 		(property "Description" ""
 			(at 74.93 194.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 74.93 194.31 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -36872,7 +36883,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 76.2 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -36883,7 +36894,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 74.93 196.85 90)
 			(hide yes)
 			(show_name no)
@@ -36907,6 +36918,17 @@
 		)
 		(property "Description" ""
 			(at 74.93 196.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 74.93 196.85 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -37273,7 +37295,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 111.76 176.53 0)
 			(hide yes)
 			(show_name no)
@@ -37284,7 +37306,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 102.87 177.8 90)
 			(hide yes)
 			(show_name no)
@@ -37308,6 +37330,17 @@
 		)
 		(property "Description" ""
 			(at 102.87 177.8 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 102.87 177.8 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -47053,7 +47086,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 111.76 179.07 0)
 			(hide yes)
 			(show_name no)
@@ -47064,7 +47097,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 102.87 180.34 90)
 			(hide yes)
 			(show_name no)
@@ -47088,6 +47121,17 @@
 		)
 		(property "Description" ""
 			(at 102.87 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 102.87 180.34 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
