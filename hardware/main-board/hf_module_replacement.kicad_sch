@@ -160,175 +160,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:CP1"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "C"
-				(at 0.635 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "Device_CP1"
-				(at 0.635 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "CP_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "CP1_0_1"
-				(polyline
-					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.778 2.286) (xy -0.762 2.286)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 1.778) (xy -1.27 2.794)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start -2.032 -1.27)
-					(mid 0 -0.5572)
-					(end 2.032 -1.27)
-					(stroke
-						(width 0.508)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "CP1_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 3.302)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:D_Small_ALT"
 			(pin_numbers
 				(hide yes)
@@ -1387,7 +1218,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Regulator_Linear:L78L05_TO92"
+		(symbol "Regulator_Linear:L78L05_SOT89"
 			(pin_names
 				(offset 0.254)
 			)
@@ -1406,8 +1237,8 @@
 					)
 				)
 			)
-			(property "Value" "L78L05_TO92"
-				(at 0 3.175 0)
+			(property "Value" "L78L05_SOT89"
+				(at -0.635 3.175 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -1417,8 +1248,8 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-				(at 0 5.715 0)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
+				(at 0 5.08 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
@@ -1440,7 +1271,7 @@
 					)
 				)
 			)
-			(property "Description" "Positive 100mA 30V Linear Regulator, Fixed Output 5V, TO-92"
+			(property "Description" "Positive 100mA 30V Linear Regulator, Fixed Output 5V, SOT-89"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1462,7 +1293,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "TO?92*"
+			(property "ki_fp_filters" "SOT?89*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1473,10 +1304,10 @@
 					)
 				)
 			)
-			(symbol "L78L05_TO92_0_1"
+			(symbol "L78L05_SOT89_0_1"
 				(rectangle
-					(start -5.08 -5.08)
-					(end 5.08 1.905)
+					(start -5.08 1.905)
+					(end 5.08 -5.08)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -1486,11 +1317,11 @@
 					)
 				)
 			)
-			(symbol "L78L05_TO92_1_1"
+			(symbol "L78L05_SOT89_1_1"
 				(pin power_out line
 					(at 7.62 0 180)
 					(length 2.54)
-					(name "VO"
+					(name "OUT"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1526,7 +1357,7 @@
 				(pin power_in line
 					(at -7.62 0 0)
 					(length 2.54)
-					(name "VI"
+					(name "IN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1544,7 +1375,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_BJT:BC547"
+		(symbol "Transistor_BJT:BC847"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -1565,7 +1396,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "BC547"
+			(property "Value" "BC847"
 				(at 5.08 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1576,7 +1407,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 				(at 5.08 -1.905 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1589,7 +1420,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" "https://www.onsemi.com/pub/Collateral/BC550-D.pdf"
+			(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1601,7 +1432,7 @@
 					(justify left)
 				)
 			)
-			(property "Description" "0.1A Ic, 45V Vce, Small Signal NPN Transistor, TO-92"
+			(property "Description" "0.1A Ic, 45V Vce, NPN Transistor, SOT-23"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1623,7 +1454,7 @@
 					)
 				)
 			)
-			(property "Sim.Pins" "1=C 2=B 3=E"
+			(property "Sim.Pins" "1=B 2=E 3=C"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1634,7 +1465,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "NPN Transistor"
+			(property "ki_keywords" "NPN Small Signal Transistor"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1645,7 +1476,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "TO?92*"
+			(property "ki_fp_filters" "SOT?23*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1656,7 +1487,7 @@
 					)
 				)
 			)
-			(symbol "BC547_0_1"
+			(symbol "BC847_0_1"
 				(polyline
 					(pts
 						(xy -2.54 0) (xy 0.635 0)
@@ -1693,7 +1524,7 @@
 					)
 				)
 			)
-			(symbol "BC547_1_1"
+			(symbol "BC847_1_1"
 				(polyline
 					(pts
 						(xy 0.635 0.635) (xy 2.54 2.54)
@@ -1730,10 +1561,10 @@
 						(type outline)
 					)
 				)
-				(pin passive line
-					(at 2.54 5.08 270)
+				(pin input line
+					(at -5.08 0 0)
 					(length 2.54)
-					(name "C"
+					(name "B"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1748,10 +1579,10 @@
 						)
 					)
 				)
-				(pin input line
-					(at -5.08 0 0)
+				(pin passive line
+					(at 2.54 -5.08 90)
 					(length 2.54)
-					(name "B"
+					(name "E"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1767,9 +1598,9 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 -5.08 90)
+					(at 2.54 5.08 270)
 					(length 2.54)
-					(name "E"
+					(name "C"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2927,7 +2758,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 220.6752 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -2959,7 +2790,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C1620307"
+		(property "LCSC Part #" "C28262"
 			(at 219.71 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -3096,7 +2927,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 217.932 119.38 90)
 			(hide yes)
 			(show_name no)
@@ -3128,7 +2959,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441531"
+		(property "LCSC Part #" "C22808"
 			(at 219.71 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -3175,7 +3006,7 @@
 				)
 			)
 		)
-		(property "Value" "1N4148"
+		(property "Value" "1N4148W"
 			(at 180.34 88.5444 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3185,7 +3016,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Diode_THT:D_DO-35_SOD27_P2.54mm_Vertical_KathodeUp"
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 180.34 91.44 90)
 			(hide yes)
 			(show_name no)
@@ -3217,7 +3048,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C84410"
+		(property "LCSC Part #" "C81598"
 			(at 180.34 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -3276,7 +3107,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 238.252 119.38 90)
 			(hide yes)
 			(show_name no)
@@ -3308,7 +3139,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441531"
+		(property "LCSC Part #" "C22808"
 			(at 240.03 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -3443,7 +3274,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 193.04 52.3748 0)
 			(hide yes)
 			(show_name no)
@@ -3475,7 +3306,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C1621608"
+		(property "LCSC Part #" "C1664"
 			(at 189.23 53.34 90)
 			(hide yes)
 			(show_name no)
@@ -3594,7 +3425,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:CP1")
+		(lib_id "Device:C")
 		(at 135.89 166.37 0)
 		(unit 1)
 		(body_style 1)
@@ -3626,7 +3457,18 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 136.8552 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
 			(at 135.89 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -3637,7 +3479,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Description" "Unpolarized capacitor"
 			(at 135.89 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -3648,17 +3490,7 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 135.89 166.37 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C7137072"
+		(property "LCSC Part #" "C15850"
 			(at 135.89 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -3794,7 +3626,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 205.232 46.99 90)
 			(hide yes)
 			(show_name no)
@@ -3826,7 +3658,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441455"
+		(property "LCSC Part #" "C22978"
 			(at 207.01 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -3885,7 +3717,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 205.232 60.96 90)
 			(hide yes)
 			(show_name no)
@@ -3917,7 +3749,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441451"
+		(property "LCSC Part #" "C23189"
 			(at 207.01 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -3976,7 +3808,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 125.4252 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -4008,7 +3840,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C5348345"
+		(property "LCSC Part #" "C14663"
 			(at 124.46 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -4067,7 +3899,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 245.872 66.04 90)
 			(hide yes)
 			(show_name no)
@@ -4099,7 +3931,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441443"
+		(property "LCSC Part #" "C22962"
 			(at 247.65 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -4156,7 +3988,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 177.8 80.772 90)
 			(hide yes)
 			(show_name no)
@@ -4188,7 +4020,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441596"
+		(property "LCSC Part #" "C23179"
 			(at 177.8 82.55 90)
 			(hide yes)
 			(show_name no)
@@ -4292,7 +4124,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:BC547")
+		(lib_id "Transistor_BJT:BC847")
 		(at 217.17 53.34 0)
 		(unit 1)
 		(body_style 1)
@@ -4313,7 +4145,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BC547"
+		(property "Value" "BC847"
 			(at 222.0214 54.483 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4324,7 +4156,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_HandSolder"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 222.25 55.245 0)
 			(hide yes)
 			(show_name no)
@@ -4337,7 +4169,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "http://www.fairchildsemi.com/ds/BC/BC547.pdf"
+		(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
 			(at 217.17 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -4349,8 +4181,9 @@
 				(justify left)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "0.1A Ic, 45V Vce, NPN Transistor, SOT-23"
 			(at 217.17 53.34 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4359,7 +4192,29 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C713613"
+		(property "Sim.Device" "NPN"
+			(at 217.17 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=B 2=E 3=C"
+			(at 217.17 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2926209"
 			(at 217.17 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -4389,7 +4244,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Regulator_Linear:L78L05_TO92")
+		(lib_id "Regulator_Linear:L78L05_SOT89")
 		(at 109.22 161.29 0)
 		(unit 1)
 		(body_style 1)
@@ -4409,7 +4264,7 @@
 				)
 			)
 		)
-		(property "Value" "78L05"
+		(property "Value" "78L05G"
 			(at 109.22 157.48 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4419,8 +4274,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_HandSolder"
-			(at 109.855 165.1 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-89-3"
+			(at 109.22 156.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4429,10 +4284,9 @@
 					(size 1.27 1.27)
 					(italic yes)
 				)
-				(justify left)
 			)
 		)
-		(property "Datasheet" "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf"
+		(property "Datasheet" "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf"
 			(at 109.22 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -4443,8 +4297,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Positive 100mA 30V Linear Regulator, Fixed Output 5V, SOT-89"
 			(at 109.22 161.29 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4453,7 +4308,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C3024480"
+		(property "LCSC Part #" "C71136"
 			(at 109.22 161.29 0)
 			(hide yes)
 			(show_name no)
@@ -4605,7 +4460,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 212.09 98.552 90)
 			(hide yes)
 			(show_name no)
@@ -4637,7 +4492,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441466"
+		(property "LCSC Part #" "C4275"
 			(at 212.09 100.33 90)
 			(hide yes)
 			(show_name no)
@@ -4685,7 +4540,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.33uF"
+		(property "Value" "470nF"
 			(at 93.091 167.513 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4696,7 +4551,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 91.1352 170.18 0)
 			(hide yes)
 			(show_name no)
@@ -4728,7 +4583,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C7017074"
+		(property "LCSC Part #" "C13967"
 			(at 90.17 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -4924,7 +4779,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:CP1")
+		(lib_id "Device:C")
 		(at 78.74 166.37 0)
 		(unit 1)
 		(body_style 1)
@@ -4956,7 +4811,18 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 79.7052 170.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
 			(at 78.74 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -4967,7 +4833,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Description" "Unpolarized capacitor"
 			(at 78.74 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -4978,17 +4844,7 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 78.74 166.37 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C7137072"
+		(property "LCSC Part #" "C15850"
 			(at 78.74 166.37 0)
 			(hide yes)
 			(show_name no)
@@ -5015,7 +4871,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:BC547")
+		(lib_id "Transistor_BJT:BC847")
 		(at 198.12 91.44 0)
 		(unit 1)
 		(body_style 1)
@@ -5036,7 +4892,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BC547"
+		(property "Value" "BC847"
 			(at 202.9714 92.583 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5047,7 +4903,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_THT:TO-92_HandSolder"
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 203.2 93.345 0)
 			(hide yes)
 			(show_name no)
@@ -5060,7 +4916,7 @@
 				(justify left)
 			)
 		)
-		(property "Datasheet" "http://www.fairchildsemi.com/ds/BC/BC547.pdf"
+		(property "Datasheet" "http://www.infineon.com/dgdl/Infineon-BC847SERIES_BC848SERIES_BC849SERIES_BC850SERIES-DS-v01_01-en.pdf?fileId=db3a304314dca389011541d4630a1657"
 			(at 198.12 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -5072,8 +4928,9 @@
 				(justify left)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "0.1A Ic, 45V Vce, NPN Transistor, SOT-23"
 			(at 198.12 91.44 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5082,7 +4939,29 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C713613"
+		(property "Sim.Device" "NPN"
+			(at 198.12 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=B 2=E 3=C"
+			(at 198.12 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2926209"
 			(at 198.12 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -5144,7 +5023,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 168.402 60.96 90)
 			(hide yes)
 			(show_name no)
@@ -5176,7 +5055,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441284"
+		(property "LCSC Part #" "C21190"
 			(at 170.18 60.96 0)
 			(hide yes)
 			(show_name no)
@@ -5233,7 +5112,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 210.82 111.252 90)
 			(hide yes)
 			(show_name no)
@@ -5265,7 +5144,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441531"
+		(property "LCSC Part #" "C22808"
 			(at 210.82 113.03 90)
 			(hide yes)
 			(show_name no)
@@ -5322,7 +5201,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 228.6 60.452 90)
 			(hide yes)
 			(show_name no)
@@ -5354,7 +5233,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2441462"
+		(property "LCSC Part #" "C27592"
 			(at 228.6 62.23 90)
 			(hide yes)
 			(show_name no)
