@@ -1523,7 +1523,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": 500,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1648,7 +1648,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#U135,#U141,#PWR2,RV1-2,U33,Q4-5,L3,R8-15,R18,R61-62,JP2-8,D2,C35,C55,C58,C61,C63-64,J1-2",
+    "used_designators": "#U135,#U141,#U501-502,#PWR2,#PWR501,RV1-2,RV501-502,U33,U501,Q4-5,Q501-502,L3,L501,R8-15,R18,R61-62,R501-511,JP2-8,JP501-503,D2,D501,C35,C55,C58,C61,C63-64,C501-506,J1-2",
     "variants": []
   },
   "sheets": [
