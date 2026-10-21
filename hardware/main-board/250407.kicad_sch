@@ -7,8 +7,8 @@
 	(lib_symbols)
 	(text_box "The sub pages contain what remains from the original 250407 design copied from <bwack/C64-250407-Replica-KiCad>."
 		(exclude_from_sim no)
-		(at 22.86 26.67 0)
-		(size 86.36 31.75)
+		(at 17.78 16.51 0)
+		(size 87.63 11.43)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -25,8 +25,113 @@
 		)
 		(uuid "0fa640de-c6ef-4b48-a76b-646713de072a")
 	)
+	(wire
+		(pts
+			(xy 74.93 92.71) (xy 81.28 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1a7418df-0070-4bae-a6ff-a80803f47924")
+	)
+	(wire
+		(pts
+			(xy 74.93 85.09) (xy 81.28 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e5e0587-faa8-411b-badf-af1b5d6c65f5")
+	)
+	(wire
+		(pts
+			(xy 74.93 78.74) (xy 81.28 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8f1c1b6d-c832-4e72-97a2-96a6f01293be")
+	)
+	(wire
+		(pts
+			(xy 74.93 88.9) (xy 81.28 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "da4500f5-10c4-46e8-a7ec-52edf17bbdca")
+	)
+	(wire
+		(pts
+			(xy 74.93 74.93) (xy 81.28 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f9524dcd-49a6-4555-9e74-a8aa7d3d278f")
+	)
+	(hierarchical_label "CHROMA_OUT"
+		(shape input)
+		(at 81.28 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1544f39d-0a12-453d-82c9-a00122113c2a")
+	)
+	(hierarchical_label "VIC_II_CHROMA"
+		(shape output)
+		(at 81.28 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1d143f73-3964-4060-89ca-69ff6dbc097b")
+	)
+	(hierarchical_label "COMP_OUT"
+		(shape input)
+		(at 81.28 88.9 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "49c04767-9766-41b4-9b70-fd06c0cc2e9f")
+	)
+	(hierarchical_label "LUMA_OUT"
+		(shape input)
+		(at 81.28 92.71 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bc081752-6503-41b7-8931-77488eb366ff")
+	)
+	(hierarchical_label "VIC_II_LUMA"
+		(shape output)
+		(at 81.28 74.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e77ae5cd-00b9-4f2f-a03e-9f18436b276f")
+	)
 	(sheet
-		(at 24.13 62.23)
+		(at 17.78 34.29)
 		(size 57.15 27.94)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -42,7 +147,7 @@
 		)
 		(uuid "6238ec0f-6cec-4554-96a0-848e3b739777")
 		(property "Sheetname" "250407 Sheet 1"
-			(at 24.13 61.5184 0)
+			(at 17.78 33.5784 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -53,7 +158,7 @@
 			)
 		)
 		(property "Sheetfile" "250407_sheet1.kicad_sch"
-			(at 24.13 90.7546 0)
+			(at 17.78 62.8146 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -72,7 +177,7 @@
 		)
 	)
 	(sheet
-		(at 24.13 97.79)
+		(at 17.78 69.85)
 		(size 57.15 27.94)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -88,7 +193,7 @@
 		)
 		(uuid "d545d313-c034-4d13-9e4c-300ba484c3d7")
 		(property "Sheetname" "250407 Sheet 2"
-			(at 24.13 97.0784 0)
+			(at 17.78 69.1384 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -99,7 +204,7 @@
 			)
 		)
 		(property "Sheetfile" "250407_sheet2.kicad_sch"
-			(at 24.13 126.3146 0)
+			(at 17.78 98.3746 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -107,6 +212,56 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "VIC_II_CHROMA" output
+			(at 74.93 78.74 0)
+			(uuid "5ab1627c-ecae-4b4f-88b2-a8940f8f2dd1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "VIC_II_LUMA" output
+			(at 74.93 74.93 0)
+			(uuid "91ad5c72-ff46-4b68-9d24-6997e9bf4ef4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CHROMA_OUT" input
+			(at 74.93 85.09 0)
+			(uuid "f5cfe374-42e3-42d2-9ae8-a3fe6e9a3ceb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "COMP_OUT" input
+			(at 74.93 88.9 0)
+			(uuid "eba37d99-c53a-4002-9428-cb110707bd75")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LUMA_OUT" input
+			(at 74.93 92.71 0)
+			(uuid "a852df23-cd76-4ed2-a77a-52cf3283b44c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
