@@ -1648,7 +1648,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "J1",
+    "used_designators": "RV1-2,U33,Q4-5,L3,R8-15,R18,R61-62,JP2-8,D2,C35,C55,C58,C61,C63-64,J1-2",
     "variants": []
   },
   "sheets": [
@@ -1667,6 +1667,10 @@
     [
       "d545d313-c034-4d13-9e4c-300ba484c3d7",
       "250407 Sheet 2"
+    ],
+    [
+      "99dc937e-95c0-4b75-9c55-26aa6f5c22ff",
+      "HF Module Replacement"
     ]
   ],
   "text_variables": {},

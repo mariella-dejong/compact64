@@ -1026,7 +1026,7 @@
 		)
 	)
 	(sheet
-		(at 22.86 20.32)
+		(at 166.37 125.73)
 		(size 83.82 38.1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1042,7 +1042,7 @@
 		)
 		(uuid "438ac9d3-0cfc-4b1b-990b-000900cb9742")
 		(property "Sheetname" "250407 Design"
-			(at 22.86 19.6084 0)
+			(at 166.37 125.0184 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1053,7 +1053,7 @@
 			)
 		)
 		(property "Sheetfile" "250407.kicad_sch"
-			(at 22.86 59.0046 0)
+			(at 166.37 164.4146 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1067,6 +1067,52 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
 					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 252.73 125.73)
+		(size 46.99 38.1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "99dc937e-95c0-4b75-9c55-26aa6f5c22ff")
+		(property "Sheetname" "HF Module Replacement"
+			(at 252.73 125.0184 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "hf_module_replacement.kicad_sch"
+			(at 252.73 164.4146 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "5")
 				)
 			)
 		)
