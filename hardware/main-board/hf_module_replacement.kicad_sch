@@ -973,244 +973,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Jumper:Jumper_3_Open"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom no)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "JP"
-				(at -2.54 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Jumper_3_Open"
-				(at 0 2.794 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 -10.16 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Jumper, 3-pole, both open"
-				(at 0 -12.7 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property private "KLC_S5.1" "This is a generic symbol, it has fp-filter, but no default footprint"
-				(at 0 -17.78 0)
-				(show_name yes)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property private "KLC_S3.3" "Graphical-Symbol: thickness is 6mm, fill is background"
-				(at -1.27 -20.32 0)
-				(show_name yes)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "Jumper SPDT"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Jumper* TestPoint*3Pads* TestPoint*Bridge*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Jumper_3_Open_0_0"
-				(circle
-					(center -2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_3_Open_0_1"
-				(arc
-					(start -2.032 1.016)
-					(mid -1.143 1.3235)
-					(end -0.254 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.508) (xy 0 -1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(arc
-					(start 0.254 1.016)
-					(mid 1.143 1.3235)
-					(end 2.032 1.016)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_3_Open_1_1"
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Jumper:SolderJumper_2_Open"
 			(pin_numbers
 				(hide yes)
@@ -2059,17 +1821,6 @@
 		)
 		(uuid "67fc1b40-e0a9-43a3-81e9-9ec037595d52")
 	)
-	(text "656x / 856x Pull Up"
-		(exclude_from_sim no)
-		(at 111.76 111.76 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "80e8896c-5635-43a8-806b-e225dd9c02f9")
-	)
 	(junction
 		(at 170.18 53.34)
 		(diameter 0)
@@ -2089,10 +1840,10 @@
 		(uuid "15c664ae-2112-4fae-a45e-6ae1f0b183df")
 	)
 	(junction
-		(at 186.69 91.44)
+		(at 187.96 91.44)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "1a6bd361-3174-427c-92f6-e69586519292")
+		(uuid "19a59a4e-323f-442a-8627-0325cb558d9c")
 	)
 	(junction
 		(at 252.73 62.23)
@@ -2203,16 +1954,16 @@
 		(uuid "c6ffa0d6-792f-4585-8d65-2b323dd43d07")
 	)
 	(junction
-		(at 91.44 123.19)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d51c902f-3fa9-420f-b594-af91e13044f9")
-	)
-	(junction
 		(at 207.01 71.12)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e80ef691-9477-42e4-9dd5-e83643ae495f")
+	)
+	(junction
+		(at 163.83 82.55)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ecf0c797-91b1-41fa-82f2-ff372d6ab15f")
 	)
 	(junction
 		(at 170.18 71.12)
@@ -2247,16 +1998,6 @@
 			(type default)
 		)
 		(uuid "0252df1d-d9cd-456e-873a-8e81f08dae80")
-	)
-	(wire
-		(pts
-			(xy 91.44 116.84) (xy 96.52 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0491caf6-2dc7-46ac-937c-daaa7b0d7ade")
 	)
 	(wire
 		(pts
@@ -2300,13 +2041,13 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 116.84) (xy 110.49 118.11)
+			(xy 187.96 91.44) (xy 193.04 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "09fda7cb-4f93-4f0d-9937-c63ecef773a6")
+		(uuid "09b56b67-95de-48c7-806d-467d318be55f")
 	)
 	(wire
 		(pts
@@ -2420,16 +2161,6 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 123.19) (xy 91.44 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1f76c6a3-d81d-4585-ac80-7fec34f94b1e")
-	)
-	(wire
-		(pts
 			(xy 231.14 100.33) (xy 240.03 100.33)
 		)
 		(stroke
@@ -2437,6 +2168,16 @@
 			(type default)
 		)
 		(uuid "21c08b7c-cfb1-44a7-b56d-546b635b7e0b")
+	)
+	(wire
+		(pts
+			(xy 163.83 82.55) (xy 163.83 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2273a7fd-702a-42b9-b7c5-4b904b7d5fc2")
 	)
 	(wire
 		(pts
@@ -2510,16 +2251,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 116.84) (xy 110.49 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3548992f-1e11-436f-aaa3-2e4d87948aa1")
-	)
-	(wire
-		(pts
 			(xy 200.66 111.76) (xy 200.66 113.03)
 		)
 		(stroke
@@ -2530,23 +2261,13 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 76.2) (xy 163.83 116.84)
+			(xy 163.83 76.2) (xy 163.83 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "3fa1bfe0-ba72-4cd3-90c0-7383e31dacb1")
-	)
-	(wire
-		(pts
-			(xy 182.88 91.44) (xy 186.69 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "400fd199-c8d8-4f17-8b53-b71600c8ba13")
 	)
 	(wire
 		(pts
@@ -2600,16 +2321,6 @@
 	)
 	(wire
 		(pts
-			(xy 104.14 129.54) (xy 110.49 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4ced9cdf-734a-4b40-ac11-9728996a4bdb")
-	)
-	(wire
-		(pts
 			(xy 219.71 113.03) (xy 219.71 115.57)
 		)
 		(stroke
@@ -2637,16 +2348,6 @@
 			(type default)
 		)
 		(uuid "52e65a96-7f91-4f3b-b1b2-09f3e7d5113b")
-	)
-	(wire
-		(pts
-			(xy 91.44 123.19) (xy 91.44 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "56b8c9d8-0c79-4265-9641-9b597c470488")
 	)
 	(wire
 		(pts
@@ -2730,13 +2431,13 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 91.44) (xy 186.69 99.06)
+			(xy 187.96 82.55) (xy 187.96 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "743d6677-940b-4f34-85dd-ea985a0491be")
+		(uuid "742d8424-0fa2-47e8-a25d-3e08200210c7")
 	)
 	(wire
 		(pts
@@ -2890,6 +2591,16 @@
 	)
 	(wire
 		(pts
+			(xy 163.83 82.55) (xy 173.99 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ad086988-f195-4d17-8245-ce518e56d7e7")
+	)
+	(wire
+		(pts
 			(xy 214.63 113.03) (xy 219.71 113.03)
 		)
 		(stroke
@@ -2920,16 +2631,6 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 123.19) (xy 114.3 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ba209d64-9dc4-4700-a260-81ffd0b2f68a")
-	)
-	(wire
-		(pts
 			(xy 71.12 161.29) (xy 78.74 161.29)
 		)
 		(stroke
@@ -2940,7 +2641,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 91.44) (xy 193.04 91.44)
+			(xy 182.88 91.44) (xy 187.96 91.44)
 		)
 		(stroke
 			(width 0)
@@ -3090,16 +2791,6 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 128.27) (xy 110.49 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f6d892e5-545e-47cd-ab8b-d418f8307272")
-	)
-	(wire
-		(pts
 			(xy 200.66 76.2) (xy 200.66 86.36)
 		)
 		(stroke
@@ -3107,16 +2798,6 @@
 			(type default)
 		)
 		(uuid "f92f3e8d-53e7-4b47-8598-e4e3a0ffc173")
-	)
-	(wire
-		(pts
-			(xy 91.44 129.54) (xy 96.52 129.54)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fa56fbc2-0a5a-48d4-a293-ba09ce036628")
 	)
 	(wire
 		(pts
@@ -3130,13 +2811,13 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 129.54) (xy 91.44 123.19)
+			(xy 181.61 82.55) (xy 187.96 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "fedb340d-dd0b-4939-b583-d8b35466e575")
+		(uuid "feb11dd8-c641-414c-9462-5cd188ef5c3c")
 	)
 	(label "+5V_HF_M_REPL"
 		(at 146.05 161.29 0)
@@ -3147,36 +2828,6 @@
 			(justify left bottom)
 		)
 		(uuid "27bca470-3803-44e5-9730-216dfaa907de")
-	)
-	(label "+5V_HF_M_REPL"
-		(at 86.36 123.19 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "7588a6a7-ea41-49ae-95a8-c18253eed7f4")
-	)
-	(label "R_LUMA_BASE"
-		(at 186.69 99.06 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ade8ce27-a8fb-4bdd-860b-8778fad2ecdf")
-	)
-	(label "R_LUMA_BASE"
-		(at 119.38 123.19 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b5f5a8ec-aea9-4d03-972c-844586397011")
 	)
 	(label "+5V_HF_M_REPL"
 		(at 163.83 116.84 270)
@@ -4112,191 +3763,6 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 100.33 129.54 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "60b974d0-8fa2-4558-91fc-36bb37dffbd8")
-		(property "Reference" "R502"
-			(at 100.33 127 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "1K"
-			(at 100.33 129.54 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 100.33 127.762 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 100.33 129.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 100.33 129.54 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C2441284"
-			(at 100.33 129.54 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b8eaa907-dfea-4772-b30a-cef42f8c0976")
-		)
-		(pin "2"
-			(uuid "b3b7e6d6-8180-42ae-a87b-f4fdd6ad2dd6")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "R502")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Jumper:Jumper_3_Open")
-		(at 110.49 123.19 90)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "61b35ea6-bcfe-4d8a-b011-57523d6120f0")
-		(property "Reference" "JP501"
-			(at 107.315 123.19 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Jumper_3_Open"
-			(at 106.68 114.3 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical"
-			(at 104.14 105.41 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 123.19 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 110.49 123.19 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C2932698"
-			(at 110.49 123.19 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2eaa79c4-8f33-45d9-b1ac-2a43e2438466")
-		)
-		(pin "2"
-			(uuid "d3e83edf-0e49-451c-9bed-3f3d8f3397ed")
-		)
-		(pin "3"
-			(uuid "ebd8cb3e-3c7d-4d79-ba4f-3199342d7e44")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "JP501")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
 		(at 207.01 46.99 0)
 		(unit 1)
 		(body_style 1)
@@ -4472,95 +3938,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R505")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 100.33 116.84 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7fa437b3-0d4d-4cc5-9013-1276d0b21486")
-		(property "Reference" "R501"
-			(at 100.33 114.3 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "470"
-			(at 100.33 116.84 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
-			(at 100.33 115.062 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 100.33 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 100.33 116.84 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C2441596"
-			(at 100.33 116.84 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a0d59225-5bef-40ae-a655-366147c765e3")
-		)
-		(pin "2"
-			(uuid "d06f0962-d093-4737-97d2-f99ea688342d")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "R501")
 					(unit 1)
 				)
 			)
@@ -4743,6 +4120,95 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R511")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 177.8 82.55 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "982727fe-83b9-473c-a615-72846ce2e4b5")
+		(property "Reference" "R512"
+			(at 177.8 80.01 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "470"
+			(at 177.8 82.55 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+			(at 177.8 80.772 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 177.8 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 177.8 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C2441596"
+			(at 177.8 82.55 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4f09dfb9-4f6c-4007-b132-08b2bdd1bdc4")
+		)
+		(pin "2"
+			(uuid "dabaec63-64f9-4809-8304-092b3fca3a44")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "R512")
 					(unit 1)
 				)
 			)
