@@ -12944,6 +12944,17 @@
 		)
 		(uuid "2054c1ee-7df7-4edb-b7c3-7095bdea4be5")
 	)
+	(text "A"
+		(exclude_from_sim no)
+		(at 285.0896 73.3552 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "23713d8b-75ed-40c6-ac11-869d6afc6190")
+	)
 	(text "7.5V"
 		(exclude_from_sim no)
 		(at 216.1794 46.9138 0)
@@ -13430,6 +13441,26 @@
 			(justify left bottom)
 		)
 		(uuid "fea2c24d-f1e1-4929-8fbf-473b1515b6d2")
+	)
+	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev B; lettered notes are for this\ndesign. Boxed markers show where a note applies.\n\n2. Clock circuit: Y1 = 14.31818 MHz HC-49S (17.734472 MHz). C70 = 16 pF ±5% N2200 (15 pF\nN3300); fitted as C0G because no N2200 part is available, so recheck the colour carrier if\nit drifts while the board warms up. R52 = 680 Ω (330 Ω), R53 = 910 Ω (100 Ω).\n\n8. Dot-clock VCO: C86 = 82 pF ±5% with no R101, for a 6567 rev 8 VIC-II. A 6567 rev 5 or a\nPAL 6569 needs 68 pF plus R101 = 22 kΩ from +Vc to U31 pin 4; R101 has no footprint on the\nPCB.\n\nA. PAL/NTSC jumper: E3 (E1 to E3, jumper_select to GND) selects NTSC and is fitted as a 0 Ω\naxial link. E2 (E1 to E2, jumper_select to +Vc) selects PAL and is not fitted. Never fit\nboth: that shorts +Vc to GND.\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU1: MOS 6526 CIA (CIA 1)\nU2: MOS 6526 CIA (CIA 2)\nU7: MOS 6510 CPU\nU32: Motorola MC4044P phase-frequency detector (obsolete; new-old stock only)"
+		(exclude_from_sim no)
+		(at 281.94 15.24 0)
+		(size 121.92 48.26)
+		(margins 1.27 1.27 1.27 1.27)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "97fbec62-57ee-4ac7-aa6c-f67aec0bf703")
 	)
 	(junction
 		(at 63.5 154.94)
@@ -15880,6 +15911,16 @@
 			(type default)
 		)
 		(uuid "1b7fa1e7-fc51-42e1-8014-c88ac252be0e")
+	)
+	(polyline
+		(pts
+			(xy 284.48 71.12) (xy 287.02 71.12)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "1b94f200-78ad-4ccd-af23-fc2505789375")
 	)
 	(wire
 		(pts
@@ -18581,6 +18622,16 @@
 		)
 		(uuid "716755ee-d7b6-4e3f-a805-0c16bd99d853")
 	)
+	(polyline
+		(pts
+			(xy 284.48 73.66) (xy 284.48 71.12)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "717bb257-81ff-4538-a436-032704010b5e")
+	)
 	(wire
 		(pts
 			(xy 66.04 276.86) (xy 63.5 276.86)
@@ -18931,6 +18982,16 @@
 		)
 		(uuid "7d730b47-8680-40b2-8e91-2cb3d26fdaf5")
 	)
+	(polyline
+		(pts
+			(xy 287.02 71.12) (xy 287.02 73.66)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "7de2daef-e0c2-4516-a4f0-96da2013da4d")
+	)
 	(wire
 		(pts
 			(xy 59.69 172.72) (xy 59.69 200.66)
@@ -19220,6 +19281,16 @@
 			(type default)
 		)
 		(uuid "891d2019-a3ca-4410-a4de-c32c883fae4b")
+	)
+	(polyline
+		(pts
+			(xy 287.02 73.66) (xy 284.48 73.66)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "8960d263-67a5-4854-8edf-33bc89833c74")
 	)
 	(wire
 		(pts
@@ -24910,77 +24981,6 @@
 			)
 		)
 	)
-	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev B; lettered notes are for this\ndesign. Boxed markers show where a note applies.\n\n2. Clock circuit: Y1 = 14.31818 MHz HC-49S (17.734472 MHz). C70 = 16 pF ±5% N2200 (15 pF\nN3300); fitted as C0G because no N2200 part is available, so recheck the colour carrier if\nit drifts while the board warms up. R52 = 680 Ω (330 Ω), R53 = 910 Ω (100 Ω).\n\n8. Dot-clock VCO: C86 = 82 pF ±5% with no R101, for a 6567 rev 8 VIC-II. A 6567 rev 5 or a\nPAL 6569 needs 68 pF plus R101 = 22 kΩ from +Vc to U31 pin 4; R101 has no footprint on the\nPCB.\n\nA. PAL/NTSC jumper: E3 (E1 to E3, jumper_select to GND) selects NTSC and is fitted as a 0 Ω\naxial link. E2 (E1 to E2, jumper_select to +Vc) selects PAL and is not fitted. Never fit\nboth: that shorts +Vc to GND.\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU1: MOS 6526 CIA (CIA 1)\nU2: MOS 6526 CIA (CIA 2)\nU7: MOS 6510 CPU\nU32: Motorola MC4044P phase-frequency detector (obsolete; new-old stock only)"
-		(exclude_from_sim no)
-		(at 281.94 15.24 0)
-		(size 121.92 48.26)
-		(margins 1.27 1.27 1.27 1.27)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "97fbec62-57ee-4ac7-aa6c-f67aec0bf703")
-	)
-	(polyline
-		(pts
-			(xy 284.48 71.12) (xy 287.02 71.12)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "1b94f200-78ad-4ccd-af23-fc2505789375")
-	)
-	(polyline
-		(pts
-			(xy 287.02 71.12) (xy 287.02 73.66)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "7de2daef-e0c2-4516-a4f0-96da2013da4d")
-	)
-	(polyline
-		(pts
-			(xy 287.02 73.66) (xy 284.48 73.66)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "8960d263-67a5-4854-8edf-33bc89833c74")
-	)
-	(polyline
-		(pts
-			(xy 284.48 73.66) (xy 284.48 71.12)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "717bb257-81ff-4538-a436-032704010b5e")
-	)
-	(text "A"
-		(exclude_from_sim no)
-		(at 285.0896 73.3552 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "23713d8b-75ed-40c6-ac11-869d6afc6190")
-	)
 	(symbol
 		(lib_id "KU-schematics-library:FERRITE_NARROW")
 		(at 220.98 255.27 270)
@@ -25827,7 +25827,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:FUSE"
+		(property "Footprint" "Fuse:Fuseholder_Cylinder-5x20mm_Schurter_0031_8201_Horizontal_Open"
 			(at 245.872 238.76 90)
 			(hide yes)
 			(show_name no)
@@ -25849,8 +25849,20 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Fit a 1A slow blow fuse"
 			(at 247.65 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C3204125"
+			(at 247.65 238.76 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -26150,7 +26162,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:KEYBOARD_CON"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x20_P2.54mm_Vertical"
 			(at 34.29 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -26174,6 +26186,17 @@
 		)
 		(property "Description" ""
 			(at 34.29 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C50981"
+			(at 34.29 180.34 90)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -28091,7 +28114,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:INDUCTOR_P15.24mm"
+		(property "Footprint" "Inductor_SMD:L_Changjiang_FXL0420"
 			(at 270.51 252.73 0)
 			(hide yes)
 			(show_name no)
@@ -28115,6 +28138,17 @@
 		)
 		(property "Description" ""
 			(at 270.51 252.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C167204"
+			(at 270.51 252.73 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -28159,7 +28193,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 76.2 199.39 0)
 			(hide yes)
 			(show_name no)
@@ -28170,7 +28204,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 74.93 194.31 90)
 			(hide yes)
 			(show_name no)
@@ -28194,6 +28228,17 @@
 		)
 		(property "Description" ""
 			(at 74.93 194.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 74.93 194.31 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -36838,7 +36883,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 76.2 201.93 0)
 			(hide yes)
 			(show_name no)
@@ -36849,7 +36894,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 74.93 196.85 90)
 			(hide yes)
 			(show_name no)
@@ -36873,6 +36918,17 @@
 		)
 		(property "Description" ""
 			(at 74.93 196.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 74.93 196.85 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -37239,7 +37295,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 111.76 176.53 0)
 			(hide yes)
 			(show_name no)
@@ -37250,7 +37306,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 102.87 177.8 90)
 			(hide yes)
 			(show_name no)
@@ -37282,6 +37338,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C81598"
+			(at 102.87 177.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "16099b21-84da-4969-9983-a64e96dd82fa")
 		)
@@ -37303,9 +37370,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "80ba6eb8-ef82-4a27-9c37-c94a27aa8f66")
 		(property "Reference" "CN2"
@@ -39817,7 +39884,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:BRIDGE_RECTIFIER"
+		(property "Footprint" "Diode_THT:Diode_Bridge_Round_D9.0mm"
 			(at 247.65 222.25 0)
 			(hide yes)
 			(show_name no)
@@ -39841,6 +39908,17 @@
 		)
 		(property "Description" ""
 			(at 247.65 222.25 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C3064"
+			(at 247.65 222.25 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -42274,9 +42352,9 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(in_pos_files yes)
+		(in_pos_files no)
 		(dnp no)
 		(uuid "c3ca9512-cd2e-48d6-a16f-819ff305cf07")
 		(property "Reference" "CN3"
@@ -47008,7 +47086,7 @@
 				)
 			)
 		)
-		(property "Value" "D_Small_ALT"
+		(property "Value" "1N4148W"
 			(at 111.76 179.07 0)
 			(hide yes)
 			(show_name no)
@@ -47019,7 +47097,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SOD-123"
 			(at 102.87 180.34 90)
 			(hide yes)
 			(show_name no)
@@ -47043,6 +47121,17 @@
 		)
 		(property "Description" ""
 			(at 102.87 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C81598"
+			(at 102.87 180.34 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

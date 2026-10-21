@@ -10484,6 +10484,17 @@
 		)
 		(uuid "42e2d92f-8cc5-41d8-b55b-1c5aecbb330e")
 	)
+	(text "7"
+		(exclude_from_sim no)
+		(at 80.6196 83.5152 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "46b7d3d0-5c33-4270-9465-eb67a3381f0d")
+	)
 	(text "(E000-"
 		(exclude_from_sim no)
 		(at 133.35 157.48 0)
@@ -10747,6 +10758,26 @@
 			(justify left bottom)
 		)
 		(uuid "f94fc18d-5e2a-4351-a63d-ed73c0b585af")
+	)
+	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev\nB; lettered notes are for this design. Boxed markers\nshow where a note applies.\n\n7. CAS delay: C203 and C204 are not fitted on NTSC\nboards (PAL: C203 = 82 pF with a 7700-001 or 93459PC\nPLA; C204 = 82 pF with an MB112A101 PLA). R42 = 82 Ω\nwith a 7700-001 PLA, or 33 Ω with an 82S100 PLA (6567\nrev 8 only).\n\nB. IC sockets: these chips are not sold by LCSC, so the\nboard gets a round-pin DIP socket and the chip is\nbought separately and inserted after assembly.\nU3: BASIC ROM 901226-01 (2364A)\nU4: KERNAL ROM 901227-03 (2364A)\nU5: character ROM 901225-01 (2332A)\nU3-U5 are mask ROMs; a 27xx EPROM needs an adapter\n    because the pinout differs.\nU6: 2114 colour RAM\nU9-U12, U21-U24: 4164 64K x 1 DRAM\nU17: PLA 906114-01 or a compatible replacement (see\n    note 7)\nU18: MOS 6581 SID. An 8580 is not a drop-in replacement\n    (9 V supply, different filter capacitors).\nU19: MOS 6567 rev 8 VIC-II (NTSC). A 6567 rev 5 needs\n    the note 8 changes on sheet 1; a 6569 is PAL; an\n    8562 is not a drop-in replacement."
+		(exclude_from_sim no)
+		(at 330.2 190.5 0)
+		(size 73.66 60.96)
+		(margins 1.27 1.27 1.27 1.27)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "912b76d8-4807-4173-b7ec-a00378e697fb")
 	)
 	(junction
 		(at 196.85 161.29)
@@ -13375,6 +13406,16 @@
 		)
 		(uuid "079f40a1-55c0-40c3-8ccb-f5244d39da17")
 	)
+	(polyline
+		(pts
+			(xy 82.55 83.82) (xy 80.01 83.82)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "084b3a9e-c87c-4020-aafe-6a439a0eca33")
+	)
 	(bus
 		(pts
 			(xy 85.09 154.94) (xy 85.09 157.48)
@@ -15717,6 +15758,16 @@
 	)
 	(polyline
 		(pts
+			(xy 80.01 83.82) (xy 80.01 81.28)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "518e4fba-a765-44d9-879f-6837f395ab5c")
+	)
+	(polyline
+		(pts
 			(xy 77.47 106.68) (xy 74.93 106.68)
 		)
 		(stroke
@@ -16064,6 +16115,16 @@
 			(type default)
 		)
 		(uuid "5da1d662-6b4e-4ccb-a7cc-55d2e80a7c0c")
+	)
+	(polyline
+		(pts
+			(xy 80.01 81.28) (xy 82.55 81.28)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "5db55dd4-cb40-4de5-9469-a67f8cb8296a")
 	)
 	(wire
 		(pts
@@ -16794,6 +16855,16 @@
 			(type default)
 		)
 		(uuid "73d88c6e-eb31-427f-bc9b-26661af9fc21")
+	)
+	(polyline
+		(pts
+			(xy 82.55 81.28) (xy 82.55 83.82)
+		)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(uuid "74196d51-b2e6-4f39-8afb-3c50ed59d1cf")
 	)
 	(wire
 		(pts
@@ -25990,77 +26061,6 @@
 				)
 			)
 		)
-	)
-	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev\nB; lettered notes are for this design. Boxed markers\nshow where a note applies.\n\n7. CAS delay: C203 and C204 are not fitted on NTSC\nboards (PAL: C203 = 82 pF with a 7700-001 or 93459PC\nPLA; C204 = 82 pF with an MB112A101 PLA). R42 = 82 Ω\nwith a 7700-001 PLA, or 33 Ω with an 82S100 PLA (6567\nrev 8 only).\n\nB. IC sockets: these chips are not sold by LCSC, so the\nboard gets a round-pin DIP socket and the chip is\nbought separately and inserted after assembly.\nU3: BASIC ROM 901226-01 (2364A)\nU4: KERNAL ROM 901227-03 (2364A)\nU5: character ROM 901225-01 (2332A)\nU3-U5 are mask ROMs; a 27xx EPROM needs an adapter\n    because the pinout differs.\nU6: 2114 colour RAM\nU9-U12, U21-U24: 4164 64K x 1 DRAM\nU17: PLA 906114-01 or a compatible replacement (see\n    note 7)\nU18: MOS 6581 SID. An 8580 is not a drop-in replacement\n    (9 V supply, different filter capacitors).\nU19: MOS 6567 rev 8 VIC-II (NTSC). A 6567 rev 5 needs\n    the note 8 changes on sheet 1; a 6569 is PAL; an\n    8562 is not a drop-in replacement."
-		(exclude_from_sim no)
-		(at 330.2 190.5 0)
-		(size 73.66 60.96)
-		(margins 1.27 1.27 1.27 1.27)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "912b76d8-4807-4173-b7ec-a00378e697fb")
-	)
-	(polyline
-		(pts
-			(xy 80.01 81.28) (xy 82.55 81.28)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "5db55dd4-cb40-4de5-9469-a67f8cb8296a")
-	)
-	(polyline
-		(pts
-			(xy 82.55 81.28) (xy 82.55 83.82)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "74196d51-b2e6-4f39-8afb-3c50ed59d1cf")
-	)
-	(polyline
-		(pts
-			(xy 82.55 83.82) (xy 80.01 83.82)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "084b3a9e-c87c-4020-aafe-6a439a0eca33")
-	)
-	(polyline
-		(pts
-			(xy 80.01 83.82) (xy 80.01 81.28)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "518e4fba-a765-44d9-879f-6837f395ab5c")
-	)
-	(text "7"
-		(exclude_from_sim no)
-		(at 80.6196 83.5152 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "46b7d3d0-5c33-4270-9465-eb67a3381f0d")
 	)
 	(symbol
 		(lib_id "250407_-rescue:R_ARRAY_US_4RES-KU-schematics-library")
