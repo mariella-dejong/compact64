@@ -1745,6 +1745,17 @@
 		)
 		(uuid "10163ca8-4c8f-4fba-b468-4865687f1f79")
 	)
+	(text "Derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb\nhttps://github.com/mbarszcz-pcb/c64-rf-modulator-replacement\nCopyright (c) 2020 mbarszcz-pcb. MIT License, see LICENSES/MIT.txt.\nModified for c64-mini, see NOTICE.md and hardware/main-board/README.md."
+		(exclude_from_sim no)
+		(at 12.7 196.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a7593825-da58-4f79-86ec-31ff3a35ba72")
+	)
 	(text "R7 + RV2\nApprox 150Ω"
 		(exclude_from_sim no)
 		(at 243.84 92.71 0)

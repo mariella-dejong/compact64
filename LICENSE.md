@@ -52,6 +52,13 @@ CERN-OHL-S-2.0. Upstream notices are kept as required; see
 [`hardware/main-board/README.md`](hardware/main-board/README.md) for the
 provenance of the design and a record of the modifications made to it.
 
+The HF module replacement circuit on the main board is derived from the
+[C64 RF Modulator Replacement](https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement)
+by mbarszcz-pcb, which is licensed under the [MIT License](LICENSES/MIT.txt).
+The MIT License allows that work to be included in the design under
+CERN-OHL-S-2.0, as long as its copyright and permission notice is kept. The
+notice is reproduced in [NOTICE.md](NOTICE.md).
+
 ## Firmware and software: Apache-2.0
 
 Firmware, software, scripts and other code in this repository will be
@@ -77,7 +84,9 @@ like this:
 
 > Based on c64-mini by Mariella de Jong (<https://github.com/leporidae-ca/c64-mini>),
 > which is derived from the C64 250407 Replica by Bwack
-> (<https://github.com/bwack/C64-250407-Replica-KiCad>).
+> (<https://github.com/bwack/C64-250407-Replica-KiCad>) and includes a circuit
+> derived from the C64 RF Modulator Replacement by mbarszcz-pcb
+> (<https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement>).
 
 and keep the notices in [NOTICE.md](NOTICE.md) with your copy.
 

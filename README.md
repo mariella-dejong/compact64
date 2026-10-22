@@ -78,7 +78,11 @@ Bastler)**, who started the reverse engineering effort. See
 [NOTICE.md](NOTICE.md) for the full list of credits and third-party
 attributions.
 
+The composite and S-Video output circuit that replaces the RF modulator is
+derived from the C64 RF Modulator Replacement by **mbarszcz-pcb**.
+
 - Upstream project: <https://github.com/bwack/C64-250407-Replica-KiCad>
+- RF modulator replacement: <https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement>
 
 ## Licence
 

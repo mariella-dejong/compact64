@@ -45,6 +45,53 @@ Credits from the upstream project:
 - **Gabriele Gorla (GGLABS)** - schematic symbol and ERC fixes (V1.2).
 - **Fred Sauer** - PAL/NTSC jumper fix (V1.3).
 
+## C64 RF Modulator Replacement (HF module replacement)
+
+The HF module replacement circuit, on sheet
+[`hardware/main-board/hf_module_replacement.kicad_sch`](hardware/main-board/hf_module_replacement.kicad_sch)
+of the main board, replaces the original RF modulator with composite and
+S-Video (luma/chroma) outputs. It is derived from the schematic of the
+**C64 RF Modulator Replacement** by mbarszcz-pcb:
+
+- Source: <https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement>
+- Imported version: Rev D, commit `51bd665bfc97fd568f5d5c2ea828fc7b39c6541d`
+  (2021-04-10)
+- Copyright (c) 2020 mbarszcz-pcb
+- Licence: MIT License ([`LICENSES/MIT.txt`](LICENSES/MIT.txt))
+
+Only the schematic was used. The circuit was adapted to the 250407 long
+board, redrawn as a sheet of the main board and laid out on the main board
+itself. The changes are listed in the modification record in
+[`hardware/main-board/README.md`](hardware/main-board/README.md).
+
+Original licence notice, reproduced from the upstream repository:
+
+> MIT License
+>
+> Copyright (c) 2020 mbarszcz-pcb
+>
+> Permission is hereby granted, free of charge, to any person obtaining a copy
+> of this software and associated documentation files (the "Software"), to deal
+> in the Software without restriction, including without limitation the rights
+> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+> copies of the Software, and to permit persons to whom the Software is
+> furnished to do so, subject to the following conditions:
+>
+> The above copyright notice and this permission notice shall be included in all
+> copies or substantial portions of the Software.
+>
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+> SOFTWARE.
+
+Credits from the upstream project: the design is based on the schematics of
+similar designs, **Zero-X/OMS's Modified Commodore RF Modulator Design** and
+**JMP$FCE2's S-Video only design**.
+
 ## 3D models
 
 The main board includes 3D models that are used only for the 3D view in
