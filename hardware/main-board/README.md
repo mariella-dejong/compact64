@@ -1,6 +1,6 @@
 # Main board
 
-KiCad project of the c64-mini main board. Open `250407_.kicad_pro` in KiCad.
+KiCad project of the c64-mini main board. Open `c64-mini.kicad_pro` in KiCad.
 
 The design starts as an unmodified copy of the
 [C64 250407 Replica](https://github.com/bwack/C64-250407-Replica-KiCad) by
@@ -21,6 +21,14 @@ modified design is licensed under the
 as permitted by section 3.4(e) of CERN-OHL v1.2.
 
 Source Location: <https://github.com/leporidae-ca/c64-mini>
+
+The HF module replacement sheet (`hf_module_replacement.kicad_sch`) is
+derived from the
+[C64 RF Modulator Replacement](https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement),
+Copyright (c) 2020 mbarszcz-pcb, licensed under the
+[MIT License](../../LICENSES/MIT.txt). It is included in the design under
+CERN-OHL-S-2.0, and its copyright and permission notice is kept in
+[NOTICE.md](../../NOTICE.md) and on the sheet itself.
 
 The 3D models in `3D-models/` are third-party material under their own
 licences. See [NOTICE.md](../../NOTICE.md) for all attributions, and
@@ -63,6 +71,40 @@ Only the files that make up the KiCad project were imported, unchanged:
   unused generated resistor models. Only models referenced by the PCB were
   kept.
 
+### HF module replacement
+
+The circuit on the `HF Module Replacement` sheet replaces the original RF
+modulator (M1) with composite and S-Video (luma/chroma) outputs on the A/V
+connector. It is based on the schematic of the
+[C64 RF Modulator Replacement](https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement)
+by mbarszcz-pcb.
+
+| Item              | Value                                                                 |
+| ----------------- | --------------------------------------------------------------------- |
+| Upstream          | <https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement>        |
+| Upstream version  | Rev D                                                                 |
+| Upstream commit   | `51bd665bfc97fd568f5d5c2ea828fc7b39c6541d` (2021-04-10)               |
+| Licence           | MIT License                                                           |
+| Imported on       | 2026-10-21                                                            |
+
+Only the schematic (`C64 RF Modulator Replacement.sch`) was used, as the
+basis for the sheet. The upstream PCB, Gerbers, BOM, images and footprint
+library were not imported: the circuit is laid out on the main board itself.
+
+The upstream design is a plug-in board for several C64 board revisions, set
+up with jumpers. On this board it is fixed to the 250407 long board
+configuration:
+
+- Power comes from `+9V_UNREG` through the on-sheet 78L05 regulator. A
+  47 Ohm series resistor (R501) in front of the regulator takes part of the
+  voltage drop, because the circuit draws about 52 mA and the SMD (SOT-89)
+  regulator can dissipate less heat than the TO-92 part upstream uses.
+- The VIC-II luma pull-up is a fixed 470 Ohm resistor for the NMOS
+  6567/6569 VIC-II. Upstream selects 470 Ohm or 1 kOhm with a jumper.
+- The pinout selection jumpers for other board revisions are left out.
+- The RF modulator's audio input is not used. Audio still goes directly to
+  the A/V connector.
+
 ## Known issues inherited from upstream
 
 From the upstream V1.3 change log:
@@ -85,6 +127,13 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-22 | Added an attribution note for the C64 RF Modulator Replacement by mbarszcz-pcb (MIT License) to the `HF Module Replacement` sheet |
+| 2026-10-22 | Added a 47 Ohm, 0.5 W series resistor (R501, 1210) between `+9V_UNREG` and the input of the HF module replacement regulator U501, to take part of the voltage drop off the SOT-89 78L05 |
+| 2026-10-21 | Laid out the HF module replacement on the PCB in the area of the former RF modulator: parts on F.Cu, a `GND_RF` ground zone on both copper layers with stitching vias, and the solder-mask openings of the old modulator can removed |
+| 2026-10-21 | Changed the HF module replacement parts to SMD where possible (0603/0805 resistors and capacitors, C0G for C505 and C506, BC847B in SOT-23, 1N4148W in SOD-123, 78L05 in SOT-89); kept the 3296W trimmers RV501/RV502 and the axial inductor L501 through-hole; added `LCSC Part #` fields to all fitted parts |
+| 2026-10-21 | Replaced the upstream luma pull-up selector (two resistors and a jumper) with a fixed 470 Ohm resistor (R512) for the NMOS 6567 VIC-II |
+| 2026-10-21 | Removed the RF modulator (M1), its G.PAL/I.PAL jumper (JP1) and its supply capacitors (C15, C16). Connected the HF module replacement to `+9V_UNREG`, the VIC-II luma and chroma signals (after FB15 and FB14) and A/V connector CN5 pins 1 (luma), 4 (composite) and 6 (chroma) through hierarchical labels; annotated its parts from 500 |
+| 2026-10-21 | Added the `HF Module Replacement` sheet with a composite and S-Video output circuit derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb (MIT License), fixed to the 250407 long board configuration |
 | 2026-10-20 | Removed 17 footprints from `KU-14194HB-RevB-KiCad.pretty` that the schematic and PCB no longer use (including `DIP18`, `DIP24`, `DIP28` and `DIP40`) |
 | 2026-10-20 | Fitted round-pin DIP sockets for the 19 chips LCSC does not sell (U1-U7, U9-U12, U17-U19, U21-U24, U32) using KiCad's standard `Package_DIP` socket footprints (0.8 mm holes, pads on the original positions), with notes on which chip to insert; moved the labels of U6 and U9-U12 and the reference texts of U21-U24 and U32 clear of the wider socket outlines; moved the sheet 2 note block above the title block |
 | 2026-10-20 | Configured the clock circuit for NTSC (Commodore 251138 notes 2, 7 and 8): Y1 14.31818 MHz, C70 16 pF, R52 680 Ohm, R53 910 Ohm; E3 (NTSC link) fitted, E2 (PAL link), C203 and C204 not fitted; added NTSC note blocks (upper right of both sheets) with boxed markers |

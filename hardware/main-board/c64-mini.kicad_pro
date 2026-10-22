@@ -53,7 +53,13 @@
           "min_clearance": 0.0
         }
       },
-      "diff_pair_dimensions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
       "drc_exclusions": [],
       "meta": {
         "filename": "board_design_settings.json",
@@ -192,6 +198,7 @@
       ],
       "track_widths": [
         0.0,
+        0.2,
         1.2
       ],
       "tuning_pattern_settings": {
@@ -220,7 +227,12 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -1523,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 0,
+    "annotate_start_num": 500,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1648,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "J1",
+    "used_designators": "#FLG501,R501",
     "variants": []
   },
   "sheets": [
@@ -1667,6 +1679,10 @@
     [
       "d545d313-c034-4d13-9e4c-300ba484c3d7",
       "250407 Sheet 2"
+    ],
+    [
+      "99dc937e-95c0-4b75-9c55-26aa6f5c22ff",
+      "HF Module Replacement"
     ]
   ],
   "text_variables": {},

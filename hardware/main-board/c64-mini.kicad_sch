@@ -113,6 +113,56 @@
 			(embedded_fonts no)
 		)
 	)
+	(wire
+		(pts
+			(xy 250.19 151.13) (xy 256.54 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37518548-6827-4387-840d-619d9df26cf5")
+	)
+	(wire
+		(pts
+			(xy 250.19 135.89) (xy 256.54 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3856aab9-f19a-4e73-a92b-72f1c9fb83cd")
+	)
+	(wire
+		(pts
+			(xy 250.19 132.08) (xy 256.54 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3b08b1fb-5bec-4d56-88f6-c2eb84a02089")
+	)
+	(wire
+		(pts
+			(xy 250.19 143.51) (xy 256.54 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "97d93058-ec9b-4aa3-bf80-8cd4008357f8")
+	)
+	(wire
+		(pts
+			(xy 250.19 147.32) (xy 256.54 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba76c038-e306-4aa4-bcbc-2457f9912790")
+	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 49.53 152.4 0)
@@ -1026,7 +1076,7 @@
 		)
 	)
 	(sheet
-		(at 22.86 20.32)
+		(at 166.37 125.73)
 		(size 83.82 38.1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1042,7 +1092,7 @@
 		)
 		(uuid "438ac9d3-0cfc-4b1b-990b-000900cb9742")
 		(property "Sheetname" "250407 Design"
-			(at 22.86 19.6084 0)
+			(at 166.37 125.0184 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1053,7 +1103,7 @@
 			)
 		)
 		(property "Sheetfile" "250407.kicad_sch"
-			(at 22.86 59.0046 0)
+			(at 166.37 164.4146 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1063,10 +1113,156 @@
 				(justify left top)
 			)
 		)
+		(pin "VIC_II_CHROMA" output
+			(at 250.19 132.08 0)
+			(uuid "4fbf9ac7-f310-4354-8dc3-696d1ee399ba")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "VIC_II_LUMA" output
+			(at 250.19 135.89 0)
+			(uuid "31a59046-dc8c-41ee-badb-1c274fe316ae")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CHROMA_OUT" input
+			(at 250.19 143.51 0)
+			(uuid "99d20adb-475d-49ae-8827-b93244f96012")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "COMP_OUT" input
+			(at 250.19 147.32 0)
+			(uuid "ba86df9c-2076-4036-b5b2-a8b306674dbb")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "LUMA_OUT" input
+			(at 250.19 151.13 0)
+			(uuid "c2c83ce9-2153-4591-8a9e-450bd95dac14")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
 					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 256.54 125.73)
+		(size 46.99 38.1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "99dc937e-95c0-4b75-9c55-26aa6f5c22ff")
+		(property "Sheetname" "HF Module Replacement"
+			(at 256.54 125.0184 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "hf_module_replacement.kicad_sch"
+			(at 256.54 164.4146 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "CHROMA_IN" input
+			(at 256.54 132.08 180)
+			(uuid "d47f4fde-e475-4216-a4fc-f0026d10a6f6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CHROMA_OUT" output
+			(at 256.54 143.51 180)
+			(uuid "513d3de5-f33b-43a8-876a-3709321f7474")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "COMPOSITE_OUT" output
+			(at 256.54 147.32 180)
+			(uuid "6347bcf0-1347-4aa0-be24-93f5bd96fb98")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LUMA_IN" input
+			(at 256.54 135.89 180)
+			(uuid "62d95438-8d8f-431c-a107-6319845da728")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LUMA_OUT" output
+			(at 256.54 151.13 180)
+			(uuid "01d7e803-69b0-4d0a-8aa9-f3641306452a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "5")
 				)
 			)
 		)
