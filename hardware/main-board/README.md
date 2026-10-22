@@ -9,6 +9,17 @@ motherboard (PCB KU-14194HB). It will be modified step by step into the
 c64-mini main board; see the [project README](../../README.md) for the
 roadmap.
 
+## Status
+
+The schematic is under active redesign. The PCB layout is not updated along
+with it: it includes the changes up to and including the HF module
+replacement (#8), but not the `Power Supply` sheet (#10) or later changes.
+Because the board will be laid out again from scratch for the smaller form
+factor once the schematic is complete, intermediate schematic changes are
+not carried over to the current layout. Expect the DRC schematic parity
+check to report these differences, and do not use the current PCB files for
+manufacturing.
+
 ## Licence
 
 Copyright Bwack 2025.
@@ -127,6 +138,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-22 | Added a `Power Supply` sheet with a 12 V DC input stage that provides `+12V_In`: DC barrel jack J601 (5.5 x 2.1 mm), resettable fuse F601 (2.5 A hold), reverse polarity protection with two parallel P-channel MOSFETs (Q601, Q602) whose gate is pulled to ground by R601 and clamped by zener diode D601, TVS diode D602 and input capacitors C601 and C602; annotated its parts from 600. Not yet connected to the rest of the design and not yet on the PCB |
 | 2026-10-22 | Added an attribution note for the C64 RF Modulator Replacement by mbarszcz-pcb (MIT License) to the `HF Module Replacement` sheet |
 | 2026-10-22 | Added a 47 Ohm, 0.5 W series resistor (R501, 1210) between `+9V_UNREG` and the input of the HF module replacement regulator U501, to take part of the voltage drop off the SOT-89 78L05 |
 | 2026-10-21 | Laid out the HF module replacement on the PCB in the area of the former RF modulator: parts on F.Cu, a `GND_RF` ground zone on both copper layers with stitching vias, and the solder-mask openings of the old modulator can removed |

@@ -9,9 +9,12 @@ rest of the board is either kept as-is or replaced with present-day parts and
 modern solutions where that makes the machine smaller, easier to build or more
 convenient to use.
 
-> **Status:** early work in progress. The repository currently contains the
-> unmodified replica design that serves as our starting point. Nothing here
-> has been built or tested yet in its modified form.
+> **Status:** work in progress. The schematic is being redesigned step by
+> step, starting from the 250407 replica. The PCB layout is not kept in sync
+> with these changes and reflects an earlier state of the design: the board
+> will be laid out again from scratch for the smaller form factor once the
+> schematic is complete. Do not use the current PCB files for manufacturing.
+> Nothing here has been built or tested yet in its modified form.
 
 ## Goals
 
@@ -40,9 +43,12 @@ The work is tracked in the issue tracker. In broad strokes:
 
 **Phase 2 - Hardware: modernisation**
 
-- Replace the RF modulator with S-Video and audio jack outputs (#8, #9)
-- Power the board from USB-C (#10)
+- Replace the RF modulator with an on-board composite and S-Video circuit
+  (#8), and add S-Video and audio outputs (#24, #9)
+- Power the board from a single 12 V DC input (#10) and generate the supply
+  rails from it (#26)
 - Replace RAM and ROM with a microcontroller-based solution (#11)
+- Replace CIA1 and CIA2 with a microcontroller-based solution (#25)
 - Replace the keyboard connector with a USB keyboard to keyboard-matrix
   bridge (#12)
 
