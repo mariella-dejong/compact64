@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 600,
+    "annotate_start_num": 700,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "R502,R601,#FLG502-503,#FLG601-602,C601-603,D502,D601-602,F601,Q503-504,Q601-602,#PWR502-503,#PWR601-602,J501,J601",
+    "used_designators": "L601,L701,R602-605,R701-704,#PWR603-608,#PWR701-706,C603-610,C701-708,U601,U701",
     "variants": []
   },
   "sheets": [
@@ -1687,6 +1687,10 @@
     [
       "16ed13da-ea6c-41ac-b9d8-03fd2b1c50da",
       "Power Supply"
+    ],
+    [
+      "ef3c1b16-3779-4eca-aba7-4eedb1213c6a",
+      "5V Buck"
     ]
   ],
   "text_variables": {},

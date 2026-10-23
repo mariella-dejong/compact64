@@ -1868,6 +1868,12 @@
 		(uuid "b7bf8a6f-ee7d-43c0-951c-09c41193de05")
 	)
 	(junction
+		(at 88.9 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cfee2c8c-9205-4414-b200-5c5e548d56a3")
+	)
+	(junction
 		(at 38.1 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1921,6 +1927,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 59.69) (xy 100.33 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "38feeceb-579b-4eb3-a2e3-504ec5202182")
+	)
+	(wire
+		(pts
 			(xy 88.9 76.2) (xy 88.9 71.12)
 		)
 		(stroke
@@ -1968,6 +1984,26 @@
 			(type default)
 		)
 		(uuid "5460203e-eda1-4f99-9feb-c1776743f188")
+	)
+	(wire
+		(pts
+			(xy 100.33 69.85) (xy 120.65 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56799b52-b8fd-41ba-9c38-1a7d7ea60fd0")
+	)
+	(wire
+		(pts
+			(xy 100.33 59.69) (xy 88.9 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bd8457f-0992-4d1b-aec8-f3e1c48ebc0d")
 	)
 	(wire
 		(pts
@@ -2179,16 +2215,6 @@
 		)
 		(uuid "403e54db-56b6-4aa1-8524-656501a966ed")
 	)
-	(label "+12V_In"
-		(at 88.9 59.69 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ac4ae76a-950a-484b-af5a-5698f8ef3ce0")
-	)
 	(label "GATE"
 		(at 54.61 83.82 0)
 		(effects
@@ -2198,6 +2224,17 @@
 			(justify left bottom)
 		)
 		(uuid "b5559a26-ba91-4fbd-b3a6-dfc300b5b383")
+	)
+	(hierarchical_label "12V_BRICK"
+		(shape output)
+		(at 100.33 59.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2d96f33e-af10-40a7-8f81-9f652daee2ba")
 	)
 	(symbol
 		(lib_id "Connector:Barrel_Jack_Switch")
@@ -3350,6 +3387,92 @@
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
 					(reference "C602")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 120.65 57.15)
+		(size 41.91 21.59)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "ef3c1b16-3779-4eca-aba7-4eedb1213c6a")
+		(property "Sheetname" "5V Buck"
+			(at 120.65 56.4384 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "5v_buck.kicad_sch"
+			(at 120.65 79.3246 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "5V_OUT" output
+			(at 157.48 57.15 90)
+			(uuid "8ee77615-3043-4f84-8bfb-2952852e8403")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "EN_SYNC" input
+			(at 120.65 62.23 180)
+			(uuid "187f2605-8191-4e6e-b66f-ec3588b3f55f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "PGOOD" output
+			(at 120.65 66.04 180)
+			(uuid "5c7d5847-07e8-4491-82cd-312da90ab7d3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "VIN" input
+			(at 120.65 69.85 180)
+			(uuid "c18733a9-6c6e-4c1e-ad0e-e4c39436c7a2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(page "7")
 				)
 			)
 		)
