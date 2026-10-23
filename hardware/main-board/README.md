@@ -21,9 +21,10 @@ check to report these differences, and do not use the current PCB files for
 manufacturing.
 
 The power supply is being converted step by step to a single 12 V DC input.
-At this stage `+5V` comes from the 5 V buck converter on the `Power Supply`
-sheet (#28), while `CAN+5V`, `+12V` and `+9V_UNREG` still come from the 9 V AC
-of the original power brick. The schematic therefore needs both the 12 V DC
+At this stage `+5V` comes from the 5 V buck converter (#28) and `CAN+5V` from
+a linear regulator (#34), both on the `Power Supply` sheet and fed from the
+12 V DC input, while `+12V` and `+9V_UNREG` still come from the 9 V AC of the
+original power brick. The schematic therefore needs both the 12 V DC
 input and the 9 V AC input, and the power switch SW1 only switches the 9 V AC.
 This intermediate state is not meant to be built.
 
@@ -145,6 +146,9 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-23 | Named the output of the 12 V DC input stage `+12V_IN` with a label on the `Power Supply` sheet and added a PWR_FLAG to it |
+| 2026-10-23 | Removed the original `CAN+5V` regulator VR2 (7805) and its output capacitors C102 and C103 from sheet 1. `CAN+5V` now comes from the `CAN+5V Supply` sheet through hierarchical labels and sheet pins; `+9V_UNREG` still feeds the cassette motor supply, the `+12V` charge pump and the HF module replacement |
+| 2026-10-23 | Added a `CAN+5V Supply` sub-sheet to the `Power Supply` sheet that makes `CAN+5V` from the 12 V DC input with an L78M05 linear regulator (U801, DPAK). Four M7 diodes in series (D801-D804) drop about 3.2 to 3.6 V in front of the regulator to share its heat; C801 decouples the regulator input, C802 and C803 its output. Annotated its parts from 800 |
 | 2026-10-23 | Powered the board's `+5V` from the 5 V buck converter instead of the 5 V of the power brick, and removed the brick's 5 V input filter (L5, C97, C100). SW1 pin 4, the switched 5 V of the brick, is no longer connected, so SW1 only switches the 9 V AC |
 | 2026-10-23 | Replaced the global labels `PHI_COLOR` and `CAN+5V` on the 250407 sheets with hierarchical labels and sheet pins (`COLOR_CLOCK_OUT`, `COLOR_CLOCK_IN`, `COLOR_CLK_OUT` and `CAN+5V`), and brought the colour clock and `CAN+5V` up to the root sheet and into the `Power Supply` sheet (`COLOR_CLK_IN`, `CAN+5V`). The output of the 12 V DC input stage (formerly the local label `+12V_In`) now feeds the 5 V buck converter through its `VIN` sheet pin |
 | 2026-10-23 | Synchronized the 5 V buck converter to the colour clock: U702 (74AHCT1G08) gates `PHI_COLOR` with the converter's PGOOD output (pulled up to `CAN+5V` by R706), U703 (74HC4040) divides it by 32 (447.4 kHz for NTSC), and C710 couples the result into EN/SYNC, which R705 holds at the input voltage; C709 and C711 decouple U702 and U703 |
