@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "L601,L701,R602-605,R701-704,#PWR603-608,#PWR701-706,C603-610,C701-708,U601,U701",
+    "used_designators": "#FLG701,L601,L701,R602-605,R701-706,#PWR603-608,#PWR701-712,C603-610,C701-712,U601,U701-703",
     "variants": []
   },
   "sheets": [
