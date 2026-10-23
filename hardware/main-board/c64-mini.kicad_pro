@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 700,
+    "annotate_start_num": 800,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "C713,#FLG702",
+    "used_designators": "#PWR713,#PWR801,U704,U801,C507-508,C714,C801-803,D701-704,D801-804",
     "variants": []
   },
   "sheets": [
@@ -1691,6 +1691,10 @@
     [
       "ef3c1b16-3779-4eca-aba7-4eedb1213c6a",
       "5V Buck"
+    ],
+    [
+      "ba03cdc5-04b5-4a02-8c33-d5999a50717c",
+      "CAN+5V Supply"
     ]
   ],
   "text_variables": {},
