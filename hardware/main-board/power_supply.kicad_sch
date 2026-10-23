@@ -2036,6 +2036,12 @@
 		(color 0 0 0 0)
 		(uuid "f751657c-a82f-42ce-81eb-ee9f7ce76e39")
 	)
+	(junction
+		(at 100.33 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fcff0cfe-2dfc-4653-9ab8-960208cac0c0")
+	)
 	(no_connect
 		(at 35.56 91.44)
 		(uuid "0e672cbc-27ca-4986-831e-8ba8ba04c841")
@@ -2440,6 +2446,16 @@
 		)
 		(uuid "b5559a26-ba91-4fbd-b3a6-dfc300b5b383")
 	)
+	(label "+12V_IN"
+		(at 104.14 90.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f2d0e10f-0303-47d6-b00f-e8ac0f49f069")
+	)
 	(hierarchical_label "CAN+5V"
 		(shape output)
 		(at 166.37 82.55 0)
@@ -2461,6 +2477,85 @@
 			(justify right)
 		)
 		(uuid "98fc3a49-a797-47c2-ab5d-3d06952f8242")
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 100.33 59.69 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0a9b6fbe-5bcc-4203-893c-d362e5b4dacb")
+		(property "Reference" "#FLG0802"
+			(at 100.33 57.785 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 100.33 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 100.33 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 100.33 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 100.33 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5ca46eea-076e-42e5-8969-db306901a88f")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(reference "#FLG0802")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Connector:Barrel_Jack_Switch")

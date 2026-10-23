@@ -772,7 +772,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "The CAN+5V is a 5V rail that is separate from the main 5V rail that powers most of the logic.\nThis rail is meant to be stable, without all the switching and digital noise from the main 5V rail,\nand powers the VIC-II. Using the same 5V as all the chips could result in visible noise on the screen.\n\nThe CAN+5V also powers the color clock, and from the color clock the signal is derived to synchronize the\nmain +5V buck converter. The buck converter starts on its own oscillator and only locks to the color clock\nonce its input is good, so it does not depend on the CAN+5V to start. CAN+5V is generated from the 12 Volt\ninput, because a linear regulator can't make 5 V from a 5 V rail."
+	(text "The CAN+5V is a 5V rail that is separate from the main 5V rail that powers most of the logic.\nThis rail is meant to be stable, without all the switching and digital noise from the main 5V rail,\nand powers the VIC-II. Using the same 5V as all the chips could result in visible noise on the screen.\n\nThe CAN+5V also powers the color clock, and from the color clock the signal is derived to synchronize the\nmain +5V buck converter. The buck converter starts on its own oscillator and only locks to the color clock\nonce its output is good, so it does not depend on the CAN+5V to start. CAN+5V is generated from the 12 Volt\ninput, because a linear regulator can't make 5 V from a 5 V rail."
 		(exclude_from_sim no)
 		(at 149.86 41.656 0)
 		(effects
