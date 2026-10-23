@@ -1713,6 +1713,12 @@
 		(uuid "0698e412-2342-4a2b-ae6a-e18540d00b14")
 	)
 	(junction
+		(at 207.01 44.45)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0793c8e0-20bc-4e52-a3eb-afad05360dcf")
+	)
+	(junction
 		(at 106.68 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1791,6 +1797,12 @@
 		(uuid "a953feed-2d61-455c-9dc7-632cb2bd4088")
 	)
 	(junction
+		(at 194.31 44.45)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a9d65fa6-f93b-46d9-8c3d-39244bb12017")
+	)
+	(junction
 		(at 133.35 41.91)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1815,16 +1827,16 @@
 		(uuid "cadc62a5-9610-4a9d-9af3-f7a2b29d2149")
 	)
 	(junction
-		(at 194.31 44.45)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cdc8e810-0f4d-424c-a085-715033ebc053")
-	)
-	(junction
 		(at 157.48 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d4362f89-6ac6-4c33-b9c4-d32bb60a3fa2")
+	)
+	(junction
+		(at 194.31 55.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d58ad3a4-3b59-48ee-9147-c1b3e357b3c1")
 	)
 	(junction
 		(at 168.91 44.45)
@@ -1942,6 +1954,16 @@
 	)
 	(wire
 		(pts
+			(xy 194.31 55.88) (xy 207.01 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "18922525-7635-4734-bd9f-61f9662e5c79")
+	)
+	(wire
+		(pts
 			(xy 127 91.44) (xy 100.33 91.44)
 		)
 		(stroke
@@ -2042,6 +2064,16 @@
 	)
 	(wire
 		(pts
+			(xy 207.01 44.45) (xy 194.31 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e4d0fc6-5451-44d5-a32e-093ed4061a7d")
+	)
+	(wire
+		(pts
 			(xy 133.35 39.37) (xy 133.35 41.91)
 		)
 		(stroke
@@ -2089,6 +2121,16 @@
 			(type default)
 		)
 		(uuid "4b9152d2-4a65-48fa-80af-dba27f86554b")
+	)
+	(wire
+		(pts
+			(xy 207.01 44.45) (xy 207.01 48.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c703a27-ed4a-4511-9935-f868c8a1e9a3")
 	)
 	(wire
 		(pts
@@ -2492,7 +2534,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 44.45) (xy 194.31 44.45)
+			(xy 217.17 44.45) (xy 207.01 44.45)
 		)
 		(stroke
 			(width 0)
@@ -2735,7 +2777,7 @@
 	)
 	(hierarchical_label "5V_OUT"
 		(shape output)
-		(at 201.93 44.45 0)
+		(at 217.17 44.45 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4041,6 +4083,99 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da/ef3c1b16-3779-4eca-aba7-4eedb1213c6a"
 					(reference "#FLG0701")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 207.01 52.07 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7919622a-be47-4cd2-982d-3d52b834f3d1")
+		(property "Reference" "C713"
+			(at 210.82 50.7999 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22uF"
+			(at 210.82 53.3399 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
+			(at 207.9752 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 207.01 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 207.01 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C12891"
+			(at 207.01 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0ccdcd15-f9cf-4ea4-85bb-9fe5e99e69be")
+		)
+		(pin "2"
+			(uuid "106a6432-8efa-4771-a9d1-c4ec8dd0e283")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da/ef3c1b16-3779-4eca-aba7-4eedb1213c6a"
+					(reference "C713")
 					(unit 1)
 				)
 			)
