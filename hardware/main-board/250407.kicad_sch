@@ -47,6 +47,26 @@
 	)
 	(wire
 		(pts
+			(xy 59.69 66.04) (xy 59.69 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a8eaa03-ff35-4a63-b956-2b081c0e2961")
+	)
+	(wire
+		(pts
+			(xy 55.88 69.85) (xy 55.88 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a1e1a3d-db3e-4791-a6db-31179f4d1609")
+	)
+	(wire
+		(pts
 			(xy 74.93 78.74) (xy 81.28 78.74)
 		)
 		(stroke
@@ -67,6 +87,16 @@
 	)
 	(wire
 		(pts
+			(xy 55.88 66.04) (xy 59.69 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e34e4717-16d3-4254-8b8b-f72a07ba2920")
+	)
+	(wire
+		(pts
 			(xy 74.93 74.93) (xy 81.28 74.93)
 		)
 		(stroke
@@ -74,6 +104,16 @@
 			(type default)
 		)
 		(uuid "f9524dcd-49a6-4555-9e74-a8aa7d3d278f")
+	)
+	(wire
+		(pts
+			(xy 22.86 62.23) (xy 22.86 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fcd0e8ef-8a24-4c7a-9059-433203257110")
 	)
 	(hierarchical_label "CHROMA_OUT"
 		(shape input)
@@ -108,6 +148,17 @@
 		)
 		(uuid "49c04767-9766-41b4-9b70-fd06c0cc2e9f")
 	)
+	(hierarchical_label "COLOR_CLK_OUT"
+		(shape output)
+		(at 22.86 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b91cb6c5-9dee-4b07-b025-10d333b5710c")
+	)
 	(hierarchical_label "LUMA_OUT"
 		(shape input)
 		(at 81.28 92.71 0)
@@ -118,6 +169,17 @@
 			(justify left)
 		)
 		(uuid "bc081752-6503-41b7-8931-77488eb366ff")
+	)
+	(hierarchical_label "CAN+5V"
+		(shape output)
+		(at 59.69 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dbb71740-4728-4092-8018-66317dc178aa")
 	)
 	(hierarchical_label "VIC_II_LUMA"
 		(shape output)
@@ -166,6 +228,26 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "CAN+5V" output
+			(at 59.69 62.23 270)
+			(uuid "49c3c200-956a-4154-b575-3c3d1e3a2a61")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "COLOR_CLOCK_OUT" output
+			(at 22.86 62.23 270)
+			(uuid "604bcf5b-b600-4ed9-b1ae-c8a23957d57a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
@@ -257,6 +339,26 @@
 		(pin "LUMA_OUT" input
 			(at 74.93 92.71 0)
 			(uuid "a852df23-cd76-4ed2-a77a-52cf3283b44c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CAN+5V" input
+			(at 55.88 69.85 90)
+			(uuid "a6a60563-9fdb-4d64-a741-46e48599c0d3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "COLOR_CLOCK_IN" input
+			(at 22.86 69.85 90)
+			(uuid "d6f00c42-af22-4dcc-99fb-f7223d299bf2")
 			(effects
 				(font
 					(size 1.27 1.27)

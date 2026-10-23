@@ -24481,16 +24481,6 @@
 		)
 		(uuid "ec879039-b1f8-421e-83a0-fe8332493aa7")
 	)
-	(label "PHI_COLOR"
-		(at 283.21 166.37 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ecb82055-34c7-40d5-b7a7-bed5c7c8b783")
-	)
 	(label "VA4"
 		(at 284.48 54.61 0)
 		(effects
@@ -25123,28 +25113,6 @@
 			)
 		)
 	)
-	(global_label "CAN+5V"
-		(shape input)
-		(at 345.44 41.91 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b964cf7d-93b3-4bd8-b292-da465de37eb6")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 345.44 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "~{RESET}"
 		(shape input)
 		(at 25.4 238.76 180)
@@ -25157,28 +25125,6 @@
 		(uuid "bcfa4fc3-40c7-4d08-8a89-be2e77f389d2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 25.4 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "PHI_COLOR"
-		(shape input)
-		(at 311.15 226.06 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c1fabe1b-9d6f-44ca-b06b-692e338f9071")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 311.15 226.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -25298,6 +25244,28 @@
 			(justify right)
 		)
 		(uuid "53d34a14-27bb-4717-b330-05e9eece30ce")
+	)
+	(hierarchical_label "CAN+5V"
+		(shape input)
+		(at 345.44 41.91 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5f499436-fc13-4817-8619-1a6525ffc46a")
+	)
+	(hierarchical_label "COLOR_CLOCK_IN"
+		(shape input)
+		(at 311.15 226.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "75893410-f561-4be8-b370-b9900cde4f06")
 	)
 	(hierarchical_label "CHROMA_OUT"
 		(shape input)
