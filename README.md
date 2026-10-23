@@ -63,6 +63,7 @@ The work is tracked in the issue tracker. In broad strokes:
 | Path                  | Contents                                                        |
 | --------------------- | --------------------------------------------------------------- |
 | `hardware/main-board` | KiCad project of the main board (starts as the 250407 replica)  |
+| `hardware/components` | KiCad symbols and footprints that KiCad's own libraries lack    |
 | `LICENSES/`           | Full texts of all licences used in this repository              |
 | `LICENSE.md`          | Which licence applies to which part of the repository           |
 | `NOTICE.md`           | Credits, third-party attributions and trademark notices         |
