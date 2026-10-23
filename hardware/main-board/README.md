@@ -21,11 +21,67 @@ check to report these differences, and do not use the current PCB files for
 manufacturing.
 
 The power supply is being converted step by step to a single 12 V DC input.
-At this stage `+5V` comes from the 5 V buck converter on the `Power Supply`
-sheet (#28), while `CAN+5V`, `+12V` and `+9V_UNREG` still come from the 9 V AC
-of the original power brick. The schematic therefore needs both the 12 V DC
+At this stage `+5V` comes from the 5 V buck converter (#28) and `CAN+5V` from
+a linear regulator (#34), both on the `Power Supply` sheet and fed from the
+12 V DC input, while `+12V` and `+9V_UNREG` still come from the 9 V AC of the
+original power brick. The schematic therefore needs both the 12 V DC
 input and the 9 V AC input, and the power switch SW1 only switches the 9 V AC.
 This intermediate state is not meant to be built.
+
+## Power supply
+
+The board is being converted to a single 12 V DC input (#10, #26). The rails
+made from it so far are on the `Power Supply` sheet:
+
+| Rail       | Made by                                                     | Rated for | Issue |
+| ---------- | ----------------------------------------------------------- | --------- | ----- |
+| `+12V_IN`  | Input stage: barrel jack, polyfuse, reverse polarity and TVS protection | 2.5 A (polyfuse hold current) | #10   |
+| `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the colour clock | 2 A       | #28   |
+| `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
+
+### `CAN+5V` current budget
+
+`CAN+5V` powers the VIC-II, the dot and colour clock circuit (`+Vc`, through
+L2 and FB19) and the colour clock synchronization of the 5 V buck converter.
+
+| Load                                        | Typical             | Maximum  | Source                                                    |
+| ------------------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
+| VIC-II 6567 (U19), Vcc                      | not specified       | 200 mA   | 6567 preliminary datasheet, 3.3.7: ICC, outputs open      |
+| 74LS629 (U31), VCC and OSC VCC              | 35 mA               | 55 mA    | TI SDLS186                                                |
+| 74LS193 (U30)                               | 19 mA               | 34 mA    | TI SDLS074                                                |
+| MC4044 (U32)                                | 17 mA               | 40 mA    | Motorola MC4344/MC4044 datasheet (85 mW typical)          |
+| 74LS74A (U29)                               | 4 mA                | 8 mA     | TI SDLS119                                                |
+| R16, R53 and R27, Q7 (around the PLL)       | about 3 mA          | about 7 mA | Estimate from the circuit                               |
+| 74AHCT1G08 (U702)                           | about 2.5 mA        | about 3.5 mA | Cpd 18 pF at 14.3 MHz, plus the change in supply current with a 3.4 V input (TI SN74AHCT1G08) |
+| 74HC4040 (U703)                             | about 8.5 mA        | about 8.5 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 (1 nF) at 447 kHz (TI SN74HC4040) |
+| R706 (PGOOD pull-up)                        | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm                                            |
+| **Total**                                   | **about 90 mA plus the VIC-II** | **about 360 mA** |                                       |
+
+The VIC-II datasheet only gives a maximum. Measure the real `CAN+5V` current
+on the first prototype.
+
+Datasheets:
+[6567 VIC-II preliminary](https://archive.org/details/mos_6567_vic_ii_preliminary),
+[SN74LS629](https://www.ti.com/lit/ds/symlink/sn74ls629.pdf),
+[SN74LS193](https://www.ti.com/lit/ds/symlink/sn74ls193.pdf),
+[MC4344/MC4044](https://www.radioradar.net/en/datasheets_search/M/C/4/MC4344_MotorolaSemiconductor.pdf.html),
+[SN74LS74A](https://www.ti.com/lit/ds/symlink/sn74ls74a.pdf),
+[SN74AHCT1G08](https://www.ti.com/lit/ds/symlink/sn74ahct1g08.pdf),
+[SN74HC4040](https://www.ti.com/lit/ds/symlink/sn74hc4040.pdf),
+[L78M](https://www.st.com/resource/en/datasheet/l78m.pdf).
+
+With this budget, the L78M05 (500 mA) runs at up to about 70 % of its rating.
+The four M7 diodes in front of it drop about 3.2 V to 3.6 V and take part of
+the heat:
+
+| Load                       | Each diode | U801 at 12 V in | U801 at 12.6 V in |
+| -------------------------- | ---------- | --------------- | ----------------- |
+| About 200 mA               | about 0.16 W | about 0.75 W  | about 0.9 W       |
+| About 360 mA (worst case)  | about 0.3 W  | about 1.2 W   | about 1.4 W       |
+
+At the lowest input voltage (about 11.2 V after the input stage) the regulator
+still gets the 2 V headroom it needs. U801's tab is ground: connect it to a
+large ground pour on both layers with vias, so it needs no heatsink.
 
 ## Licence
 
@@ -145,6 +201,9 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-23 | Named the output of the 12 V DC input stage `+12V_IN` with a label on the `Power Supply` sheet and added a PWR_FLAG to it |
+| 2026-10-23 | Removed the original `CAN+5V` regulator VR2 (7805) and its output capacitors C102 and C103 from sheet 1. `CAN+5V` now comes from the `CAN+5V Supply` sheet through hierarchical labels and sheet pins; `+9V_UNREG` still feeds the cassette motor supply, the `+12V` charge pump and the HF module replacement |
+| 2026-10-23 | Added a `CAN+5V Supply` sub-sheet to the `Power Supply` sheet that makes `CAN+5V` from the 12 V DC input with an L78M05 linear regulator (U801, DPAK). Four M7 diodes in series (D801-D804) drop about 3.2 to 3.6 V in front of the regulator to share its heat; C801 decouples the regulator input, C802 and C803 its output. Annotated its parts from 800 |
 | 2026-10-23 | Powered the board's `+5V` from the 5 V buck converter instead of the 5 V of the power brick, and removed the brick's 5 V input filter (L5, C97, C100). SW1 pin 4, the switched 5 V of the brick, is no longer connected, so SW1 only switches the 9 V AC |
 | 2026-10-23 | Replaced the global labels `PHI_COLOR` and `CAN+5V` on the 250407 sheets with hierarchical labels and sheet pins (`COLOR_CLOCK_OUT`, `COLOR_CLOCK_IN`, `COLOR_CLK_OUT` and `CAN+5V`), and brought the colour clock and `CAN+5V` up to the root sheet and into the `Power Supply` sheet (`COLOR_CLK_IN`, `CAN+5V`). The output of the 12 V DC input stage (formerly the local label `+12V_In`) now feeds the 5 V buck converter through its `VIN` sheet pin |
 | 2026-10-23 | Synchronized the 5 V buck converter to the colour clock: U702 (74AHCT1G08) gates `PHI_COLOR` with the converter's PGOOD output (pulled up to `CAN+5V` by R706), U703 (74HC4040) divides it by 32 (447.4 kHz for NTSC), and C710 couples the result into EN/SYNC, which R705 holds at the input voltage; C709 and C711 decouple U702 and U703 |

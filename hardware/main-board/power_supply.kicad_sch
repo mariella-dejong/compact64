@@ -2001,6 +2001,12 @@
 		(uuid "a77640ce-d14e-4148-8bb6-5aca21bc1f5c")
 	)
 	(junction
+		(at 100.33 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ad77e02b-ad7f-45e5-b895-769434704344")
+	)
+	(junction
 		(at 52.07 83.82)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2030,13 +2036,19 @@
 		(color 0 0 0 0)
 		(uuid "f751657c-a82f-42ce-81eb-ee9f7ce76e39")
 	)
+	(junction
+		(at 100.33 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fcff0cfe-2dfc-4653-9ab8-960208cac0c0")
+	)
 	(no_connect
 		(at 35.56 91.44)
 		(uuid "0e672cbc-27ca-4986-831e-8ba8ba04c841")
 	)
 	(wire
 		(pts
-			(xy 114.3 74.93) (xy 120.65 74.93)
+			(xy 116.84 74.93) (xy 120.65 74.93)
 		)
 		(stroke
 			(width 0)
@@ -2063,6 +2075,26 @@
 			(type default)
 		)
 		(uuid "0f0afcfa-d108-4f56-96c3-6614ac7ed8e3")
+	)
+	(wire
+		(pts
+			(xy 166.37 90.17) (xy 166.37 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "119557ff-99fe-4812-9829-50d15beafe6a")
+	)
+	(wire
+		(pts
+			(xy 166.37 74.93) (xy 162.56 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b343cf3-a849-4a92-b1d6-85aeb70dbb31")
 	)
 	(wire
 		(pts
@@ -2146,16 +2178,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 52.07) (xy 149.86 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "579818f3-ddbb-4118-9811-fdf69ae15c5e")
-	)
-	(wire
-		(pts
 			(xy 100.33 59.69) (xy 88.9 59.69)
 		)
 		(stroke
@@ -2226,6 +2248,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 90.17) (xy 120.65 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91611dbc-58ce-4052-9b00-83973e9d7075")
+	)
+	(wire
+		(pts
 			(xy 40.64 93.98) (xy 40.64 96.52)
 		)
 		(stroke
@@ -2233,6 +2265,16 @@
 			(type default)
 		)
 		(uuid "924d3aa1-9fd8-4a5a-963e-1cd4f2927639")
+	)
+	(wire
+		(pts
+			(xy 100.33 69.85) (xy 100.33 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9262bfe4-fca0-430a-bf75-7df5b0f1c88b")
 	)
 	(wire
 		(pts
@@ -2316,6 +2358,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 90.17) (xy 166.37 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bafb70b6-1d00-4ebc-98be-bfc873280450")
+	)
+	(wire
+		(pts
 			(xy 77.47 76.2) (xy 88.9 76.2)
 		)
 		(stroke
@@ -2394,20 +2446,30 @@
 		)
 		(uuid "b5559a26-ba91-4fbd-b3a6-dfc300b5b383")
 	)
+	(label "+12V_IN"
+		(at 104.14 90.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f2d0e10f-0303-47d6-b00f-e8ac0f49f069")
+	)
 	(hierarchical_label "CAN+5V"
-		(shape input)
-		(at 149.86 52.07 90)
+		(shape output)
+		(at 166.37 82.55 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "3d46e29d-f5e8-4763-b6eb-35d8d5600082")
+		(uuid "5e6ee128-764a-4754-9102-acf62094f530")
 	)
 	(hierarchical_label "COLOR_CLK_IN"
 		(shape input)
-		(at 114.3 74.93 180)
+		(at 116.84 74.93 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2415,6 +2477,85 @@
 			(justify right)
 		)
 		(uuid "98fc3a49-a797-47c2-ab5d-3d06952f8242")
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 100.33 59.69 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0a9b6fbe-5bcc-4203-893c-d362e5b4dacb")
+		(property "Reference" "#FLG0802"
+			(at 100.33 57.785 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 100.33 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 100.33 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 100.33 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 100.33 59.69 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5ca46eea-076e-42e5-8969-db306901a88f")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(reference "#FLG0802")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Connector:Barrel_Jack_Switch")
@@ -3650,6 +3791,72 @@
 		)
 	)
 	(sheet
+		(at 120.65 85.09)
+		(size 41.91 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "ba03cdc5-04b5-4a02-8c33-d5999a50717c")
+		(property "Sheetname" "CAN+5V Supply"
+			(at 120.65 84.3784 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "5v_can.kicad_sch"
+			(at 120.65 105.9946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "CAN+5V" output
+			(at 162.56 90.17 0)
+			(uuid "18996e0e-a796-4e5f-a4dc-6b2b50f5cdb1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "VIN" input
+			(at 120.65 90.17 180)
+			(uuid "1dab1f04-5efa-48a8-aabc-1761ec3f1fef")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 120.65 57.15)
 		(size 41.91 21.59)
 		(exclude_from_sim no)
@@ -3708,7 +3915,7 @@
 			)
 		)
 		(pin "CAN+5V" input
-			(at 149.86 57.15 90)
+			(at 162.56 74.93 0)
 			(uuid "3f41d72a-d085-4449-bd34-e7e71453bb9f")
 			(effects
 				(font
