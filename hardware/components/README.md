@@ -17,6 +17,12 @@ under `hardware/` can register it the same way.
 | `LM61440AASQRJRRQ1` | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3038666    | Spread spectrum, turned off while synchronized (EN/SYNC) |
 | `LM61440AANRJRR`    | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3188034    | No spread spectrum; derived from `LM61440AASQRJRRQ1`     |
 
+Footprints for parts that use a standard KiCad symbol:
+
+| Footprint             | Symbol     | Part                                | LCSC Part # |
+| --------------------- | ---------- | ----------------------------------- | ----------- |
+| `L_Fangcheng_FCH0650` | `Device:L` | FCH0650-150M (15 µH power inductor) | C20415538   |
+
 ### LM61440
 
 3 V to 36 V, 4 A synchronous step-down converter from Texas Instruments
@@ -51,6 +57,26 @@ footprint for this package. It is drawn from the LM61440 datasheet
 - There is no 3D model.
 
 ![RJR0014A footprint](images/RJR0014A_footprint.png)
+
+### FCH0650 footprint
+
+Molded, shielded power inductor from Fangcheng Electronics
+([datasheet](https://datasheet.lcsc.com/datasheet/pdf/59e676df66a25ab3384f72137df98d14.pdf?productCode=C20415538)).
+The FCH0650-150M (15 µH, 54 mΩ typical, 5.5 A saturation current, 5 A rated
+current) is the inductor of the 5 V buck converter. KiCad has no footprint for
+this package; `Inductor_SMD:L_Changjiang_FXL0650` comes close, but is drawn
+for a smaller body.
+
+- Pads from the land pattern recommendation in the datasheet: two pads of
+  2.0 mm x 3.5 mm, 8.5 mm over the outer edges. The terminals of the part are
+  1.6 mm x 3.0 mm.
+- Body outline on the fabrication layer at the maximum body size of
+  7.5 mm x 6.8 mm, and on the silkscreen 0.11 mm outside it, interrupted next
+  to the pads.
+- Courtyard 0.25 mm around the body and the pads.
+- There is no 3D model.
+
+![FCH0650 footprint](images/FCH0650_footprint.png)
 
 ## Adding parts
 

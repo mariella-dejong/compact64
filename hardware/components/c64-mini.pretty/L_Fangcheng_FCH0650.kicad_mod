@@ -1,0 +1,167 @@
+(footprint "L_Fangcheng_FCH0650"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Inductor, Fangcheng, FCH0650, 7.5x6.8x5.0mm (max), land pattern from the manufacturer's datasheet, https://datasheet.lcsc.com/datasheet/pdf/59e676df66a25ab3384f72137df98d14.pdf?productCode=C20415538")
+	(tags "power shielded molded fangcheng fch0650")
+	(property "Reference" "REF**"
+		(at 0 -4.7 0)
+		(layer "F.SilkS")
+		(uuid "ae86348b-a2b6-4e35-be28-9fa33cd3bdac")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "L_Fangcheng_FCH0650"
+		(at 0 4.7 0)
+		(layer "F.Fab")
+		(uuid "3cf6573e-d398-4232-a6df-d1a864688454")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/59e676df66a25ab3384f72137df98d14.pdf?productCode=C20415538"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3ecdf39b-37b8-4ab6-8bbb-d4cecd74d597")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Inductor, Fangcheng, FCH0650, 7.5x6.8x5.0mm (max), land pattern from the manufacturer's datasheet, https://datasheet.lcsc.com/datasheet/pdf/59e676df66a25ab3384f72137df98d14.pdf?productCode=C20415538"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ff61879d-f111-43cd-88e4-34b46d4f1fe5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -3.86 -3.51)
+		(end -3.86 -2.01)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "78504eff-666f-4d2d-906a-af79b29b963b")
+	)
+	(fp_line
+		(start -3.86 -3.51)
+		(end 3.86 -3.51)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b8d73ab4-3404-461b-9634-f69666c32ca0")
+	)
+	(fp_line
+		(start -3.86 2.01)
+		(end -3.86 3.51)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "45ed2e3a-80f9-4cb9-ad37-486ba66e254a")
+	)
+	(fp_line
+		(start -3.86 3.51)
+		(end 3.86 3.51)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "1a2af96c-17e3-4062-aa10-7818ac9b4338")
+	)
+	(fp_line
+		(start 3.86 -3.51)
+		(end 3.86 -2.01)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "c08e3d53-649b-48a7-8909-ca47f917731f")
+	)
+	(fp_line
+		(start 3.86 2.01)
+		(end 3.86 3.51)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5c591955-f618-4d34-80ce-2875ee5fcde6")
+	)
+	(fp_poly
+		(pts
+			(xy -4 -3.65) (xy 4 -3.65) (xy 4 -2) (xy 4.5 -2) (xy 4.5 2) (xy 4 2) (xy 4 3.65) (xy -4 3.65) (xy -4 2)
+			(xy -4.5 2) (xy -4.5 -2) (xy -4 -2)
+		)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "8ea93058-73b2-43af-ba1f-2086fdc874d9")
+	)
+	(fp_poly
+		(pts
+			(xy -3.75 -3.4) (xy 3.75 -3.4) (xy 3.75 3.4) (xy -3.75 3.4)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "c9fd85d5-2df8-409c-9079-06d52b517846")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "285f2bdc-2722-4e34-aed8-4713b5afbd52")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -3.25 0)
+		(size 2 3.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(uuid "9c121e01-8113-4e2b-b31b-f34a32634349")
+	)
+	(pad "2" smd roundrect
+		(at 3.25 0)
+		(size 2 3.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.125)
+		(uuid "55ae1968-992e-4eed-827e-6b80f3631127")
+	)
+	(embedded_fonts no)
+)
