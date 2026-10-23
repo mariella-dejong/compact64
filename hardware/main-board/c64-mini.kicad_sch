@@ -135,6 +135,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 156.21) (xy 255.27 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "394a0ee8-a14c-4f83-bfdf-3f9da443a0b8")
+	)
+	(wire
+		(pts
 			(xy 250.19 132.08) (xy 256.54 132.08)
 		)
 		(stroke
@@ -142,6 +152,36 @@
 			(type default)
 		)
 		(uuid "3b08b1fb-5bec-4d56-88f6-c2eb84a02089")
+	)
+	(wire
+		(pts
+			(xy 226.06 180.34) (xy 256.54 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4576e412-4d65-459b-bf13-aa49fd56e478")
+	)
+	(wire
+		(pts
+			(xy 226.06 163.83) (xy 226.06 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "526ad66f-b7b3-4a4a-b167-91517535db7d")
+	)
+	(wire
+		(pts
+			(xy 250.19 156.21) (xy 255.27 156.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "62074822-01dd-4064-bf1f-fc9305fbb9d9")
 	)
 	(wire
 		(pts
@@ -162,6 +202,16 @@
 			(type default)
 		)
 		(uuid "ba76c038-e306-4aa4-bcbc-2457f9912790")
+	)
+	(wire
+		(pts
+			(xy 255.27 175.26) (xy 256.54 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf58d760-efc9-4aeb-9e27-c22088974ad6")
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
@@ -1113,6 +1163,26 @@
 				(justify left top)
 			)
 		)
+		(pin "COLOR_CLK_IN" input
+			(at 256.54 175.26 180)
+			(uuid "0f52d3ba-8a05-407e-a257-6654e63c4c33")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CAN+5V" input
+			(at 256.54 180.34 180)
+			(uuid "022ed49f-5fe5-44ab-b554-16dd20f165d9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -1202,6 +1272,26 @@
 		(pin "LUMA_OUT" input
 			(at 250.19 151.13 0)
 			(uuid "c2c83ce9-2153-4591-8a9e-450bd95dac14")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CAN+5V" output
+			(at 226.06 163.83 270)
+			(uuid "cf7e79ae-67fb-48fb-8b80-2ef612711232")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "COLOR_CLK_OUT" output
+			(at 250.19 156.21 0)
+			(uuid "43c442b3-5f70-4c8b-bf84-8e927fbe409f")
 			(effects
 				(font
 					(size 1.27 1.27)

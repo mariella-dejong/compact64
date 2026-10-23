@@ -46,7 +46,7 @@ The work is tracked in the issue tracker. In broad strokes:
 - Replace the RF modulator with an on-board composite and S-Video circuit
   (#8), and add S-Video and audio outputs (#24, #9)
 - Power the board from a single 12 V DC input (#10) and generate the supply
-  rails from it (#26)
+  rails from it (#26), starting with the 5 V buck converter (#28)
 - Replace RAM and ROM with a microcontroller-based solution (#11)
 - Replace CIA1 and CIA2 with a microcontroller-based solution (#25)
 - Replace the keyboard connector with a USB keyboard to keyboard-matrix
