@@ -28,8 +28,6 @@ The pin layout of the symbol follows the symbol in the TI Webench design, so
 a Webench schematic can be copied pin by pin: supply and control pins on the
 left, outputs, bootstrap, feedback and grounds on the right.
 
-![LM61440 symbol](images/LM61440_symbol.png)
-
 ### RJR0014A footprint
 
 TI VQFN-HR package, 14 pins, 4 mm x 3.5 mm body, 0.5 mm pitch. KiCad has no
@@ -49,8 +47,6 @@ footprint for this package. It is drawn from the LM61440 datasheet
   has a pin 1 marker and no body outline. The body outline is on the
   fabrication layer.
 - There is no 3D model.
-
-![RJR0014A footprint](images/RJR0014A_footprint.png)
 
 ## Adding parts
 
