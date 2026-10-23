@@ -1173,7 +1173,7 @@
 				(justify left)
 			)
 		)
-		(pin "CAN+5V" input
+		(pin "CAN+5V" output
 			(at 256.54 180.34 180)
 			(uuid "022ed49f-5fe5-44ab-b554-16dd20f165d9")
 			(effects
@@ -1279,7 +1279,7 @@
 				(justify right)
 			)
 		)
-		(pin "CAN+5V" output
+		(pin "CAN+5V" input
 			(at 226.06 163.83 270)
 			(uuid "cf7e79ae-67fb-48fb-8b80-2ef612711232")
 			(effects

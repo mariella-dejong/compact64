@@ -171,7 +171,7 @@
 		(uuid "bc081752-6503-41b7-8931-77488eb366ff")
 	)
 	(hierarchical_label "CAN+5V"
-		(shape output)
+		(shape input)
 		(at 59.69 66.04 0)
 		(effects
 			(font
@@ -230,7 +230,7 @@
 				(justify left top)
 			)
 		)
-		(pin "CAN+5V" output
+		(pin "CAN+5V" input
 			(at 59.69 62.23 270)
 			(uuid "49c3c200-956a-4154-b575-3c3d1e3a2a61")
 			(effects
