@@ -1,0 +1,148 @@
+(footprint "L_Abracon_AOTA-B201610"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Inductor, Abracon AOTA-B201610 (2016 metric, 0806 inch), polarity marked; pad 1 is the terminal next to the polarity dot; land pattern from the AOTA-B201610S3R3-101-T datasheet (Rev. A, page 4), https://datasheet.lcsc.com/datasheet/pdf/0ca6a1bbc70fd13a89f7695ff7dd8558.pdf?productCode=C42411119")
+	(tags "inductor power molded polarized abracon aota rp2350 rp2354")
+	(property "Reference" "REF**"
+		(at 0 -2.1 0)
+		(layer "F.SilkS")
+		(uuid "6f345763-63d2-4de8-a8ee-bb939f958cd5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "L_Abracon_AOTA-B201610"
+		(at 0 2.1 0)
+		(layer "F.Fab")
+		(uuid "41b8594c-7cc7-424a-a781-f6cc045d5b20")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/0ca6a1bbc70fd13a89f7695ff7dd8558.pdf?productCode=C42411119"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "73acd16b-5b2d-4832-b543-4055e04d8d80")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Inductor, Abracon AOTA-B201610 (2016 metric, 0806 inch), polarity marked; pad 1 is the terminal next to the polarity dot; land pattern from the AOTA-B201610S3R3-101-T datasheet (Rev. A, page 4), https://datasheet.lcsc.com/datasheet/pdf/0ca6a1bbc70fd13a89f7695ff7dd8558.pdf?productCode=C42411119"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e3342cf2-f194-4c3e-aff4-fe3a9be3114d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -0.3 -0.95)
+		(end 0.3 -0.95)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "da5cc1ae-36e1-4fb2-95e4-c8929d787b79")
+	)
+	(fp_line
+		(start -0.3 0.95)
+		(end 0.3 0.95)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b4c03a01-37ca-4317-966a-830baf903b8c")
+	)
+	(fp_circle
+		(center -1 -1.15)
+		(end -0.9 -1.15)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "3c280133-0bc7-4a6e-a5ba-ee9582ee5c1d")
+	)
+	(fp_poly
+		(pts
+			(xy -1.75 -1.41) (xy 1.75 -1.41) (xy 1.75 1.05) (xy -1.75 1.05)
+		)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "3ec48ec9-5d3a-411d-a893-15f7228fef92")
+	)
+	(fp_circle
+		(center -0.55 -0.35)
+		(end -0.35 -0.35)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "6bf8f5c3-5188-4c7d-95c5-c6eefc63b03d")
+	)
+	(fp_poly
+		(pts
+			(xy -1 -0.8) (xy 1 -0.8) (xy 1 0.8) (xy -1 0.8)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "73b7d443-132b-4bb8-8ad2-12f0d01ec300")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "70b849ab-8e4a-447b-be64-b02906634bb4")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.08)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -1 0)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1)
+		(uuid "ff4fb6d2-2a59-43ca-b37b-420434e9f47b")
+	)
+	(pad "2" smd roundrect
+		(at 1 0)
+		(size 1 1.6)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1)
+		(uuid "5001d039-efeb-4c0c-8756-175f41dcf13b")
+	)
+	(embedded_fonts no)
+)
