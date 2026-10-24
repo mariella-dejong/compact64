@@ -4020,7 +4020,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100k"
+		(property "Value" "200k"
 			(at 135.89 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4064,7 +4064,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C25741"
+		(property "LCSC Part #" "C25764"
 			(at 133.35 35.56 0)
 			(hide yes)
 			(show_name no)
