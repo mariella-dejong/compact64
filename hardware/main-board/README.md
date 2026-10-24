@@ -20,15 +20,45 @@ not carried over to the current layout. Expect the DRC schematic parity
 check to report these differences, and do not use the current PCB files for
 manufacturing.
 
-The power supply is being converted step by step to a single 12 V DC input.
-At this stage `+5V` comes from the 5 V buck converter (#28), `CAN+5V` from a
-linear regulator (#34), `+12V` from a charge pump with a linear regulator
-(#36) and the cassette motor supply from a second buck converter (#41), all
-on the `Power Supply` sheet and fed from the 12 V DC input. Only the 9 V AC
-and `+9V_UNREG` still come from the original power brick (#37).
-The schematic therefore needs both the 12 V DC input and the 9 V AC input,
-and the power switch SW1 only switches the 9 V AC.
-This intermediate state is not meant to be built.
+The board now runs from a single 12 V DC input (#10, #26). All supply rails
+are made from it on the `Power Supply` sheet. The original power brick input
+is gone (#37): the power connector CN7, the 9 V AC and `+9V_UNREG`, and the
+power switch SW1, so the board has no power switch.
+
+## Compatibility
+
+These changes make the c64-mini behave differently from an original C64.
+Check them before using software or hardware that depends on them.
+
+### CIA time-of-day clocks do not run
+
+- **Original C64:** both CIAs (U1 and U2) get a 50 Hz or 60 Hz signal on
+  their TOD input (pin 19). It is derived from the 9 V AC of the power brick
+  and buffered by gate A of U27.
+- **c64-mini:** there is no 9 V AC, so both TOD inputs are tied to ground
+  (#37). The time-of-day clocks of both CIAs stand still at the time last
+  written to them, and TOD alarms never trigger.
+- **Not affected:** the CIA timers, and the KERNAL jiffy clock with BASIC's
+  `TI` and `TI$`, which run from timer A of CIA 1.
+- **Affected:** software that reads the time-of-day clock, waits for it to
+  change or sets a TOD alarm. Such programs show a frozen clock, or can hang
+  while they wait. Examples are programs with a real-time clock display and
+  programs that use the TOD clock for timing or to tell 50 Hz from 60 Hz
+  mains.
+- **Possible fix:** a 50 Hz or 60 Hz reference can be added later. Gate A of
+  U27 is still in place with pin 1 on +5V; its input pin 2 (now on ground)
+  and output pin 3 (now unconnected) can take the new reference and drive
+  the TOD inputs again. Replacing the CIAs (#25) can also provide it.
+
+### User port pins 10 and 11 carry no 9 V AC
+
+- **Original C64:** pins 10 and 11 of the user port (CN2) carry the 9 V AC of
+  the power brick, one side through fuse F1.
+- **c64-mini:** both pins are unconnected, and not grounded (#37).
+- **Affected:** devices that take their power from these pins, such as some
+  RS-232 interfaces and EPROM programmers. They need their own supply.
+  Devices that only use the +5 V on pin 2 and the data lines are not
+  affected.
 
 ## Power supply
 
@@ -42,6 +72,12 @@ made from it so far are on the `Power Supply` sheet:
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
 | `+12V`     | Charge pump driven by a UCC27517 (U901), followed by an L78M12 linear regulator (U902) | about 150 mA (limit of the charge pump driver) | #36   |
 | `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
+
+The HF module replacement (U501, a 78L05 behind R501) also runs from the 12 V
+DC input: the `Power Supply` sheet passes it on through its `12V_INPUT` sheet
+pin to the `12V_IN` sheet pin of the `HF Module Replacement` sheet. The
+`5V Buck` sheet's output reaches the root sheet through the `5V_OUT` sheet
+pin, where it connects to the `+5V` power symbol.
 
 The `Color Clock Divider` sheet supplies the clocks for the switching parts.
 U1001 (74AHCT1G08) passes the colour clock (`PHI_COLOR`, 14.31818 MHz for
@@ -318,6 +354,10 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-24 | Removed the 9 V AC input and `+9V_UNREG` from sheet 1: power connector CN7, power switch SW1, fuse F1, choke L4, bridge rectifier CR4 and capacitors C19, C20, C21, C95, C98 and C99. User port pins 10 and 11 (CN2) are no longer connected. The board has no power switch |
+| 2026-10-24 | Removed the 50/60 Hz time-of-day reference (R5, R100, R37, zener diode CR1 and C200) from sheet 1 and tied the TOD inputs of U1 and U2 (pin 19) to ground. Kept gate A of U27, which carries U27's supply pins, with pin 1 on +5V, pin 2 on ground and pin 3 unconnected, and its decoupling capacitor C46 |
+| 2026-10-24 | Fed the HF module replacement from the 12 V DC input instead of `+9V_UNREG`, through a new `12V_INPUT` sheet pin on the `Power Supply` sheet and a `12V_IN` sheet pin on the `HF Module Replacement` sheet; R501 (47 Ohm) is unchanged |
+| 2026-10-24 | Moved the `+5V` input capacitors C91 (100 uF) and C92 (100 nF) from sheet 1 to the `5V Buck` sheet as C714 (100 uF SMD electrolytic, 5 x 5.4 mm) and C709 (100 nF, 0402), and moved the `+5V` power symbol from the `Power Supply` sheet to the root sheet, fed through a new `5V_OUT` sheet pin |
 | 2026-10-24 | Removed the original cassette motor supply from sheet 1: R2, the 7.5 V zener CR2, C18, the Darlington pair Q1 and Q3 and the motor switch Q2 with R3 and R4. `CASS_MOTOR` (U7 pin 24) now leaves sheet 1, and `CASS_POWER` arrives at FB2, through hierarchical labels and sheet pins via `250407 Design`, the root sheet and the `Power Supply` sheet. `+9V_UNREG` now only feeds the HF module replacement |
 | 2026-10-24 | Added a `Cassette Power (6.2v)` sub-sheet to the `Power Supply` sheet that makes the cassette motor supply from the 12 V DC input with a TPS562208 synchronous buck converter (U1101, L1101 4.7 uH, C1101-C1105), set to 6.12 V by R1101 (39k) and R1102 (5.6k). Q1101 (BC847) with R1104 and R1105 switches its enable input from the 6510's P5 like the original Q2; R1103 pulls the enable input up. Annotated its parts from 1100 |
 | 2026-10-24 | Removed the original `+12V` regulator VR1 (7812), its charge pump on the 9 V AC (CR5, CR6, C90) and its input and output capacitors (C88, C89, C57, C59) from sheet 1. `+12V` now comes from the `12V Stabilized Rail` sheet through the `+12V_STABILIZED` sheet pin, which the root sheet connects to the `+12V` power symbol. `+9V_UNREG` still feeds the cassette motor supply and the HF module replacement |
