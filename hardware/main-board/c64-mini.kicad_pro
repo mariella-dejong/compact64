@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#FLG801-802,#PWR713,#PWR801,U704,U801,C507-508,C714,C801-803,D701-704,D801-804",
+    "used_designators": "#PWR911",
     "variants": []
   },
   "sheets": [
@@ -1695,6 +1695,10 @@
     [
       "ba03cdc5-04b5-4a02-8c33-d5999a50717c",
       "CAN+5V Supply"
+    ],
+    [
+      "cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b",
+      "12V Stabilized Rail"
     ]
   ],
   "text_variables": {},
