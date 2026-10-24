@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1200,
+    "annotate_start_num": 1300,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#PWR1207",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
@@ -1711,6 +1711,10 @@
     [
       "80cd6e34-a942-43bf-a1f0-7d2e08f26a9b",
       "3V3 Buck"
+    ],
+    [
+      "83785ced-90f1-439c-a9f5-0f5eaac8b37d",
+      "Supervisor"
     ]
   ],
   "text_variables": {},
