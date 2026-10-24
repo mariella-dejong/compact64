@@ -251,6 +251,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+3V3"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+3V3"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+3V3\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+3V3_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+3V3_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:+5V"
 			(power global)
 			(pin_numbers
@@ -393,7 +532,7 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 194.31) (xy 256.54 194.31)
+			(xy 218.44 201.93) (xy 256.54 201.93)
 		)
 		(stroke
 			(width 0)
@@ -473,6 +612,16 @@
 	)
 	(wire
 		(pts
+			(xy 246.38 193.04) (xy 256.54 193.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51cf7590-0dbd-4cae-9aff-d04f474e8189")
+	)
+	(wire
+		(pts
 			(xy 226.06 163.83) (xy 226.06 180.34)
 		)
 		(stroke
@@ -483,7 +632,7 @@
 	)
 	(wire
 		(pts
-			(xy 218.44 163.83) (xy 218.44 194.31)
+			(xy 218.44 163.83) (xy 218.44 201.93)
 		)
 		(stroke
 			(width 0)
@@ -533,7 +682,7 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 199.39) (xy 213.36 199.39)
+			(xy 256.54 207.01) (xy 213.36 207.01)
 		)
 		(stroke
 			(width 0)
@@ -553,7 +702,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 199.39) (xy 213.36 163.83)
+			(xy 213.36 207.01) (xy 213.36 163.83)
 		)
 		(stroke
 			(width 0)
@@ -1015,6 +1164,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
 					(reference "#PWR0802")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 246.38 193.04 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "546bb0dc-8ea3-4161-a4d0-59ae3ba78ff4")
+		(property "Reference" "#PWR01207"
+			(at 250.19 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 242.57 193.0399 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 246.38 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 246.38 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 246.38 193.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2a41ef9f-6baa-49c9-a682-93d59e66593a")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(reference "#PWR01207")
 					(unit 1)
 				)
 			)
@@ -1700,7 +1928,7 @@
 			)
 		)
 		(pin "CASS_MOTOR" input
-			(at 256.54 194.31 180)
+			(at 256.54 201.93 180)
 			(uuid "b6dc41cf-7b38-4a2b-89ec-b38b835f5380")
 			(effects
 				(font
@@ -1710,7 +1938,7 @@
 			)
 		)
 		(pin "CASS_PWR" output
-			(at 256.54 199.39 180)
+			(at 256.54 207.01 180)
 			(uuid "103f1615-8a3b-4337-88b4-dc93de41fcdd")
 			(effects
 				(font
@@ -1732,6 +1960,16 @@
 		(pin "5V_OUT" output
 			(at 256.54 189.23 180)
 			(uuid "3b2e463c-7fa2-49bf-ab96-de587e83203b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "3V3_OUT" output
+			(at 256.54 193.04 180)
+			(uuid "50458cbf-618c-4e8c-9df3-251891aa3b45")
 			(effects
 				(font
 					(size 1.27 1.27)
