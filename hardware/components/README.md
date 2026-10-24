@@ -23,6 +23,16 @@ Footprints for parts that use a standard KiCad symbol:
 | Footprint             | Symbol     | Part                                | LCSC Part # |
 | --------------------- | ---------- | ----------------------------------- | ----------- |
 | `L_Fangcheng_FCH0650` | `Device:L` | FCH0650-150M (15 µH power inductor) | C20415538   |
+| `L_Abracon_AOTA-B201610` | `Device:L` | AOTA-B201610S3R3-101-T (3.3 µH, polarity marked; RP2350/RP2354 core regulator) | C42411119 |
+| `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | `MCU_RaspberryPi:RP2354B` | RP2354B (also RP2350B) | C39843328 |
+| `USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A_Aligned` | `Connector:USB_C_Receptacle_USB2.0_16P` | HCTL HC-TYPE-C-16P-01A | C2894897 |
+
+Two of these footprints are modified copies of footprints from the KiCad
+library (`QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias` and
+`USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A`), which are licensed under
+[CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with the
+KiCad library exception for designs that use them. The modified files keep
+that licence; their descriptions name the original footprint.
 
 ### LM61440
 
@@ -96,6 +106,60 @@ for a smaller body.
 - There is no 3D model.
 
 ![FCH0650 footprint](images/FCH0650_footprint.png)
+
+### RP2354 microcontroller
+
+The supervisor microcontroller (#46) is an RP2354: an RP2350 with 2 MB of
+flash in the package. KiCad 10 has the symbols `MCU_RaspberryPi:RP2354A`
+(QFN-60) and `MCU_RaspberryPi:RP2354B` (QFN-80) in its standard library, with
+the pin names and numbers of the RP2350 datasheet, so this library adds no
+symbol. Assign the footprint below to use 0.3 mm thermal vias.
+
+### QFN-80 footprint with 0.3 mm thermal vias
+
+`QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` is KiCad's
+`QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias` with the nine thermal
+vias in the exposed pad enlarged from 0.2 mm to 0.3 mm drill (0.5 mm to
+0.6 mm diameter). 0.3 mm is the smallest drill that common PCB fabs make at
+their standard price. All other pads, the paste pattern, the outlines and the
+3D model are unchanged.
+
+![QFN-80 footprint with 0.3 mm thermal vias](images/QFN-80_ThermalVias_0.3mm_footprint.png)
+
+### AOTA-B201610 footprint
+
+The core voltage regulator of the RP2350 and RP2354 needs a 3.3 µH inductor
+that is mounted the right way round: the field of the inductor couples into
+the regulator's control loop (RP2350 datasheet, section 6.3.8.3). Raspberry
+Pi and Abracon made the AOTA-B201610S3R3-101-T for this, with a polarity dot
+on the top and all parts on the reel in the same orientation.
+
+- Pads from the recommended land pattern in the datasheet
+  ([AOTA-B201610S3R3-101-T](https://datasheet.lcsc.com/datasheet/pdf/0ca6a1bbc70fd13a89f7695ff7dd8558.pdf?productCode=C42411119),
+  Rev. A, page 4): two pads of 1.0 mm x 1.6 mm with a 1.0 mm gap.
+- **Pad 1 is the terminal next to the polarity dot.** The silkscreen shows a
+  dot above pad 1, and the fabrication layer shows the body (2.0 mm x 1.6 mm)
+  with the dot as it is printed on the part.
+- **Connection:** pad 1 (dot) goes to the regulator output (`DVDD`, with
+  `VREG_FB`), pad 2 to `VREG_LX`. This matches the reference layout in the
+  RP2350 datasheet (Figure 26), where the orientation indicator sits on the
+  terminal towards the output capacitor. Follow that layout as closely as
+  possible.
+- Use the symbol `Device:L` and keep its pin 1 on the `DVDD` side.
+- There is no 3D model.
+
+![AOTA-B201610 footprint](images/AOTA-B201610_footprint.png)
+
+### Aligned USB-C footprint
+
+`USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A_Aligned` has the same pads as the
+KiCad footprint `USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A`, but everything is
+moved 1.15 mm towards the mating face of the connector. Its origin then
+matches the placement origin that the assembly data for this part (LCSC
+C2894897) uses, so the component position file needs no correction. The 3D
+model reference has a matching offset of -1.15 mm.
+
+![Aligned USB-C footprint](images/USB_C_HCTL_Aligned_footprint.png)
 
 ## Adding parts
 
