@@ -2001,6 +2001,12 @@
 		(uuid "87c91bb0-bf07-45ae-bd0b-d7b72c91bc4d")
 	)
 	(junction
+		(at 100.33 64.77)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8a1a9577-2ea8-458a-9f16-2c6ea5623c8a")
+	)
+	(junction
 		(at 71.12 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2136,7 +2142,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 59.69) (xy 100.33 69.85)
+			(xy 100.33 59.69) (xy 100.33 64.77)
 		)
 		(stroke
 			(width 0)
@@ -2213,6 +2219,16 @@
 			(type default)
 		)
 		(uuid "5460203e-eda1-4f99-9feb-c1776743f188")
+	)
+	(wire
+		(pts
+			(xy 100.33 64.77) (xy 104.14 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5565b0dc-3bc5-44dd-b413-04a364238d6e")
 	)
 	(wire
 		(pts
@@ -2456,6 +2472,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 64.77) (xy 100.33 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5e402b9-a834-4f84-860c-6ff73013f017")
+	)
+	(wire
+		(pts
 			(xy 71.12 59.69) (xy 88.9 59.69)
 		)
 		(stroke
@@ -2614,15 +2640,16 @@
 		)
 		(uuid "b5559a26-ba91-4fbd-b3a6-dfc300b5b383")
 	)
-	(label "+12V_IN"
-		(at 104.14 90.17 0)
+	(hierarchical_label "12V_INPUT"
+		(shape output)
+		(at 104.14 64.77 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify left)
 		)
-		(uuid "f2d0e10f-0303-47d6-b00f-e8ac0f49f069")
+		(uuid "243e3cf2-ecb5-4a8f-bee4-6a15d780793e")
 	)
 	(hierarchical_label "CAN+5V"
 		(shape output)

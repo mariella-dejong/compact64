@@ -274,6 +274,16 @@
 	)
 	(wire
 		(pts
+			(xy 297.18 163.83) (xy 297.18 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d2487ef-1e2d-4790-ac20-f9b64a1e9e04")
+	)
+	(wire
+		(pts
 			(xy 250.19 151.13) (xy 256.54 151.13)
 		)
 		(stroke
@@ -1481,6 +1491,16 @@
 				(justify left)
 			)
 		)
+		(pin "12V_INPUT" output
+			(at 297.18 171.45 90)
+			(uuid "6379c85f-f4ec-4820-89f9-caa7ed082994")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -1706,6 +1726,16 @@
 		(pin "LUMA_OUT" output
 			(at 256.54 151.13 180)
 			(uuid "01d7e803-69b0-4d0a-8aa9-f3641306452a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "12V_IN" input
+			(at 297.18 163.83 270)
+			(uuid "9c28586e-328b-41f8-8aae-0c5449223636")
 			(effects
 				(font
 					(size 1.27 1.27)
