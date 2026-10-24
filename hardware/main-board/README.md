@@ -22,9 +22,10 @@ manufacturing.
 
 The power supply is being converted step by step to a single 12 V DC input.
 At this stage `+5V` comes from the 5 V buck converter (#28), `CAN+5V` from a
-linear regulator (#34) and `+12V` from a charge pump with a linear regulator
-(#36), all on the `Power Supply` sheet and fed from the 12 V DC input. Only
-the 9 V AC and `+9V_UNREG` still come from the original power brick (#37).
+linear regulator (#34), `+12V` from a charge pump with a linear regulator
+(#36) and the cassette motor supply from a second buck converter (#41), all
+on the `Power Supply` sheet and fed from the 12 V DC input. Only the 9 V AC
+and `+9V_UNREG` still come from the original power brick (#37).
 The schematic therefore needs both the 12 V DC input and the 9 V AC input,
 and the power switch SW1 only switches the 9 V AC.
 This intermediate state is not meant to be built.
@@ -40,6 +41,7 @@ made from it so far are on the `Power Supply` sheet:
 | `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the colour clock | 2 A       | #28   |
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
 | `+12V`     | Charge pump driven by a UCC27517 (U901), followed by an L78M12 linear regulator (U902) | about 150 mA (limit of the charge pump driver) | #36   |
+| `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
 
 The `Color Clock Divider` sheet supplies the clocks for the switching parts.
 U1001 (74AHCT1G08) passes the colour clock (`PHI_COLOR`, 14.31818 MHz for
@@ -154,6 +156,49 @@ pump frequency would not help: below 223.7 kHz the capacitors add to the loss.
 U902 dissipates about 0.3 W to 0.35 W and U901 about 0.1 W to 0.16 W. The
 ripple on `VPUMP` is about 55 mV at full load. U902's tab is ground, like
 U801's: connect it to the ground pour, so it needs no heatsink.
+
+### Cassette motor supply
+
+The `Cassette Power (6.2v)` sheet makes the supply of the Datasette motor
+(`CASS_POWER`, through FB2 to pin C of the cassette port CN3) from the 12 V
+DC input. It replaces the original linear circuit (a 7.5 V zener and a
+Darlington pass transistor), which turned everything above about 6.2 V into
+heat in a TO-220 transistor (about 0.9 W at 150 mA from 12 V) and drew about
+8 mA from its input while the motor was off.
+
+- **Converter:** U1101 (TPS562208) with L1101 (4.7 uH), C1101 and C1102 at
+  the input, C1103 as bootstrap capacitor and C1104 and C1105 (22 uF each) at
+  the output, the values TI recommends for this output voltage. R1101 (39k)
+  and R1102 (5.6k) set the output to 6.12 V (6.0 V to 6.24 V with the 2 %
+  reference tolerance), the closest JLC basic resistor pair to the original
+  6.2 V.
+- **Fixed frequency:** the TPS562208 always switches at about 580 kHz, also
+  at the light load of a running motor. The TPS562201 variant skips pulses at
+  light load, which would make its frequency vary. The converter is not
+  synchronized to the colour clock; it only runs while the motor turns.
+- **Motor control, as on the original board:** the 6510 drives Q1101 (BC847)
+  from port bit P5 (`CASS_MOTOR`, U7 pin 24) through R1104 (1k), with R1105
+  (10k) pulling its base low. With P5 high, Q1101 pulls the enable input
+  (`CASS_EN`) low and the converter is off; it then draws about 0.13 mA,
+  mostly through the enable pull-up R1103 (100k). With P5 low, R1103 pulls
+  the enable input up and the converter starts with a 1 ms soft start. During
+  reset, before the KERNAL sets P5, the motor supply is on, like the
+  original.
+- **Protection:** the converter has a cycle-by-cycle current limit (2.4 A to
+  4 A) and thermal shutdown, so a short on the cassette port no longer
+  overloads a transistor.
+
+Commodore gives no motor current. Expect roughly 100 mA to 200 mA while the
+motor runs and several hundred mA at start-up. At 1 A the inductor peak
+current is about 1.6 A, well below L1101's 3.2 A saturation current. In a
+hard short the current limit can exceed that before it trips; a 4 A inductor
+of the same size (such as the FXL0420-4R7-M) fits if that margin is wanted.
+The loss is estimated at about 0.2 W to 0.3 W at 150 mA. Measure the real
+motor current and output voltage with a Datasette on the first prototype.
+
+Datasheets:
+[TPS562208](https://www.ti.com/lit/ds/symlink/tps562208.pdf),
+[SWPA4030S](https://datasheet.lcsc.com/lcsc/1811081011_Sunlord-SWPA4030S4R7MT_C57269.pdf).
 
 ## Licence
 
@@ -273,6 +318,8 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-24 | Removed the original cassette motor supply from sheet 1: R2, the 7.5 V zener CR2, C18, the Darlington pair Q1 and Q3 and the motor switch Q2 with R3 and R4. `CASS_MOTOR` (U7 pin 24) now leaves sheet 1, and `CASS_POWER` arrives at FB2, through hierarchical labels and sheet pins via `250407 Design`, the root sheet and the `Power Supply` sheet. `+9V_UNREG` now only feeds the HF module replacement |
+| 2026-10-24 | Added a `Cassette Power (6.2v)` sub-sheet to the `Power Supply` sheet that makes the cassette motor supply from the 12 V DC input with a TPS562208 synchronous buck converter (U1101, L1101 4.7 uH, C1101-C1105), set to 6.12 V by R1101 (39k) and R1102 (5.6k). Q1101 (BC847) with R1104 and R1105 switches its enable input from the 6510's P5 like the original Q2; R1103 pulls the enable input up. Annotated its parts from 1100 |
 | 2026-10-24 | Removed the original `+12V` regulator VR1 (7812), its charge pump on the 9 V AC (CR5, CR6, C90) and its input and output capacitors (C88, C89, C57, C59) from sheet 1. `+12V` now comes from the `12V Stabilized Rail` sheet through the `+12V_STABILIZED` sheet pin, which the root sheet connects to the `+12V` power symbol. `+9V_UNREG` still feeds the cassette motor supply and the HF module replacement |
 | 2026-10-24 | Added a `12V Stabilized Rail` sub-sheet to the `Power Supply` sheet that makes `+12V` from the 12 V DC input: a charge pump with flying capacitor C903, charged from `+5V` through D901 and lifted by gate driver U901 (UCC27517, supplied through FB901 with C901 and C902), D902 into reservoir C904, pre-charge diode D903 from the 12 V input, and an L78M12 linear regulator (U902, DPAK) with C905 at its input and C906 and C907 at its output. D901-D903 are B5819W Schottky diodes. Annotated its parts from 900 |
 | 2026-10-24 | Moved the colour clock divider from the `5V Buck` sheet to a new `Color Clock Divider` sub-sheet of the `Power Supply` sheet and annotated its parts from 1000: U702, U703, C709 and C711 became U1001, U1002, C1001 and C1002. Q4 (447.4 kHz) reaches the 5 V buck converter through its new `CLOCK_IN` sheet pin, the converter's PGOOD leaves through its `PGOOD` sheet pin, and Q5 (223.7 kHz) clocks the `+12V` charge pump (`PUMP_CLK`) |
