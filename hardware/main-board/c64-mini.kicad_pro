@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "U702-703,U1001-1002,C709-711,C1001-1002,#PWR707,#PWR709-712,#PWR802,#PWR911,#PWR1001-1005",
+    "used_designators": "#FLG902,U702-703,U1001-1002,C709-711,C1001-1002,#PWR707,#PWR709-712,#PWR802,#PWR911,#PWR1001-1005",
     "variants": []
   },
   "sheets": [

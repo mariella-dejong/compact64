@@ -1302,6 +1302,12 @@
 		(uuid "945161cc-4ff3-4b1a-aa16-18010c9beb99")
 	)
 	(junction
+		(at 143.51 50.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "989539ad-2dda-4075-bf36-ea6c4d55166b")
+	)
+	(junction
 		(at 67.31 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1309,7 +1315,7 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 50.8) (xy 149.86 50.8)
+			(xy 134.62 50.8) (xy 143.51 50.8)
 		)
 		(stroke
 			(width 0)
@@ -1366,6 +1372,16 @@
 			(type default)
 		)
 		(uuid "4be113e2-2929-404d-9306-e9d67caf7269")
+	)
+	(wire
+		(pts
+			(xy 143.51 50.8) (xy 149.86 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4d9ad380-aee3-43a2-b218-c9eba6f255cb")
 	)
 	(wire
 		(pts
@@ -2578,6 +2594,84 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da/cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b"
 					(reference "C902")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 143.51 50.8 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(in_pos_files no)
+		(dnp no)
+		(uuid "98a8a997-f38e-4f2e-bc02-6b8049cfdd0b")
+		(property "Reference" "#FLG0902"
+			(at 143.51 48.895 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 143.51 46.355 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 143.51 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 143.51 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 143.51 50.8 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8f7c62d8-7672-409f-9953-09aad76307a3")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da/cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b"
+					(reference "#FLG0902")
 					(unit 1)
 				)
 			)
