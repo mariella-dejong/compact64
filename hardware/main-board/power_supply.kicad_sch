@@ -1959,6 +1959,12 @@
 		(uuid "40cd7f3f-798e-47de-9a48-2cf648654899")
 	)
 	(junction
+		(at 100.33 90.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "11ec5928-c2f1-402e-a69e-8ffbdc09d34f")
+	)
+	(junction
 		(at 62.23 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2108,6 +2114,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 90.17) (xy 100.33 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "270d2155-4b4c-4729-b521-0aa097188e19")
+	)
+	(wire
+		(pts
 			(xy 100.33 59.69) (xy 100.33 69.85)
 		)
 		(stroke
@@ -2115,6 +2131,16 @@
 			(type default)
 		)
 		(uuid "38feeceb-579b-4eb3-a2e3-504ec5202182")
+	)
+	(wire
+		(pts
+			(xy 100.33 115.57) (xy 120.65 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "453b015b-e4fc-4c17-b6ec-fdf96adf747f")
 	)
 	(wire
 		(pts
@@ -2215,6 +2241,16 @@
 			(type default)
 		)
 		(uuid "7329b65a-8de8-421e-9af4-4f9ea7a640e1")
+	)
+	(wire
+		(pts
+			(xy 162.56 120.65) (xy 168.91 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75b21a52-c2b1-4ed9-ac99-56912d6d1e26")
 	)
 	(wire
 		(pts
@@ -2477,6 +2513,17 @@
 			(justify right)
 		)
 		(uuid "98fc3a49-a797-47c2-ab5d-3d06952f8242")
+	)
+	(hierarchical_label "+12V_STABILIZED"
+		(shape output)
+		(at 168.91 120.65 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "aed51f12-a262-4f28-a09e-80929413dfaf")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
@@ -3892,6 +3939,36 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "+12V" output
+			(at 162.56 120.65 0)
+			(uuid "f482cb3a-77d5-4866-9e6f-f92aeebcc892")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PUMP_CLK" input
+			(at 120.65 119.38 180)
+			(uuid "596a52fa-6bbd-4350-8e28-d33a4d38af63")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "VIN" input
+			(at 120.65 115.57 180)
+			(uuid "2201160d-7245-4ef8-bfb0-112e557d98e7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
