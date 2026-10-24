@@ -939,10 +939,6 @@
 		(uuid "410928c1-e0ee-44d2-bd68-a38dfeca371d")
 	)
 	(no_connect
-		(at 165.1 97.79)
-		(uuid "47d885d1-d54e-46bd-9b4c-210e2e7e0644")
-	)
-	(no_connect
 		(at 165.1 85.09)
 		(uuid "6abb0335-5c71-46fb-abbd-82153b733509")
 	)
@@ -983,6 +979,16 @@
 			(type default)
 		)
 		(uuid "17c8beaf-fe34-4593-81a0-d4dfdd6c656f")
+	)
+	(wire
+		(pts
+			(xy 165.1 97.79) (xy 166.37 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1d3475c3-f49b-42de-a512-d05b359a87b3")
 	)
 	(wire
 		(pts
@@ -1116,6 +1122,17 @@
 			(justify right)
 		)
 		(uuid "68dd8779-d405-4aae-8ff4-7caa6a15ce33")
+	)
+	(hierarchical_label "Q5"
+		(shape output)
+		(at 166.37 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d263ef9d-f2e6-4f31-87d0-713c42b8cc1e")
 	)
 	(hierarchical_label "CAN+5V"
 		(shape input)

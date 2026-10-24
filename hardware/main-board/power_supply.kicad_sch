@@ -2120,6 +2120,16 @@
 	)
 	(wire
 		(pts
+			(xy 170.18 115.57) (xy 162.56 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "35aa3259-be9d-4201-9ef9-7fe5de02a9da")
+	)
+	(wire
+		(pts
 			(xy 100.33 59.69) (xy 100.33 69.85)
 		)
 		(stroke
@@ -2237,6 +2247,16 @@
 			(type default)
 		)
 		(uuid "61241da0-6d43-45a2-a0a2-7c76bb48141f")
+	)
+	(wire
+		(pts
+			(xy 182.88 101.6) (xy 170.18 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69690701-cfef-44aa-9e39-e8fef3d16fd4")
 	)
 	(wire
 		(pts
@@ -2427,6 +2447,16 @@
 			(type default)
 		)
 		(uuid "b523f1b2-6b18-4408-a355-16d8193044ba")
+	)
+	(wire
+		(pts
+			(xy 170.18 101.6) (xy 170.18 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b660a65c-df28-4fbf-b2a8-b6fb2e08ea51")
 	)
 	(wire
 		(pts
@@ -3971,6 +4001,16 @@
 				(justify right)
 			)
 		)
+		(pin "Q5" output
+			(at 182.88 101.6 180)
+			(uuid "9433d9fe-e452-48c0-8b11-a3bbbc0f02cd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
@@ -4094,13 +4134,13 @@
 			)
 		)
 		(pin "PUMP_CLK" input
-			(at 120.65 119.38 180)
+			(at 162.56 115.57 0)
 			(uuid "596a52fa-6bbd-4350-8e28-d33a4d38af63")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(pin "VIN" input
