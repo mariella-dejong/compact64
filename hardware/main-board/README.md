@@ -72,6 +72,7 @@ made from it so far are on the `Power Supply` sheet:
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
 | `+12V`     | Charge pump driven by a UCC27517 (U901), followed by an L78M12 linear regulator (U902) | about 150 mA (limit of the charge pump driver) | #36   |
 | `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
+| `+3V3`     | LM61440 synchronous buck converter (U1201), synchronized to the colour clock | 1 A budget (converter rated 4 A) | #44   |
 
 The HF module replacement (U501, a 78L05 behind R501) also runs from the 12 V
 DC input: the `Power Supply` sheet passes it on through its `12V_INPUT` sheet
@@ -81,16 +82,24 @@ pin, where it connects to the `+5V` power symbol.
 
 The `Color Clock Divider` sheet supplies the clocks for the switching parts.
 U1001 (74AHCT1G08) passes the colour clock (`PHI_COLOR`, 14.31818 MHz for
-NTSC) only once the buck converter's PGOOD output is high, and U1002
-(74HC4040) divides it: Q4 (/32, 447.4 kHz) synchronizes the 5 V buck
-converter and Q5 (/64, 223.7 kHz) clocks the `+12V` charge pump. Because
-both are locked to the colour clock, their interference has a fixed relation
-to the video timing. The divider runs from `CAN+5V`.
+NTSC) only once `PGOOD` is high, and U1002 (74HC4040) divides it: Q4 (/32,
+447.4 kHz) synchronizes the 5 V and 3.3 V buck converters and Q5 (/64,
+223.7 kHz) clocks the `+12V` charge pump. Because they are all locked to the
+colour clock, their interference has a fixed relation to the video timing.
+The divider runs from `CAN+5V`.
+
+`PGOOD` combines the open-drain PGOOD outputs of both buck converters (U701
+and U1201) with the pull-ups R706 and R1203 (200k each) on `CAN+5V`: a
+wired-AND. It goes high once both outputs are in regulation, after the 1.5 ms
+to 2.5 ms PGOOD delay. If either rail drops out of regulation, the sync clock
+stops and both converters run unsynchronized at about 400 kHz, set by R701 and
+R1202, until `PGOOD` returns.
 
 ### `CAN+5V` current budget
 
 `CAN+5V` powers the VIC-II, the dot and colour clock circuit (`+Vc`, through
-L2 and FB19) and the colour clock divider.
+L2 and FB19) and the colour clock divider, which also synchronizes both buck
+converters.
 
 | Load                                        | Typical             | Maximum  | Source                                                    |
 | ------------------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
@@ -101,9 +110,9 @@ L2 and FB19) and the colour clock divider.
 | 74LS74A (U29)                               | 4 mA                | 8 mA     | TI SDLS119                                                |
 | R16, R53 and R27, Q7 (around the PLL)       | about 3 mA          | about 7 mA | Estimate from the circuit                               |
 | 74AHCT1G08 (U1001)                          | about 2.5 mA        | about 3.5 mA | Cpd 18 pF at 14.3 MHz, plus the change in supply current with a 3.4 V input (TI SN74AHCT1G08) |
-| 74HC4040 (U1002)                            | about 8.5 mA        | about 8.5 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 (1 nF) at 447 kHz (TI SN74HC4040) |
-| R706 (PGOOD pull-up)                        | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm                                            |
-| **Total**                                   | **about 90 mA plus the VIC-II** | **about 360 mA** |                                       |
+| 74HC4040 (U1002)                            | about 10.7 mA       | about 10.7 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 and C1205 (1 nF each) at 447 kHz (TI SN74HC4040) |
+| R706 and R1203 (PGOOD pull-ups)             | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm (two 200k in parallel)                     |
+| **Total**                                   | **about 92 mA plus the VIC-II** | **about 362 mA** |                                       |
 
 The VIC-II datasheet only gives a maximum. Measure the real `CAN+5V` current
 on the first prototype.
@@ -236,6 +245,41 @@ Datasheets:
 [TPS562208](https://www.ti.com/lit/ds/symlink/tps562208.pdf),
 [SWPA4030S](https://datasheet.lcsc.com/lcsc/1811081011_Sunlord-SWPA4030S4R7MT_C57269.pdf).
 
+### `+3V3`
+
+The `3V3 Buck` sheet makes `+3V3` for the microcontrollers that are planned
+for the board (#11, #25, #12) and for other 3.3 V logic. It is a copy of the
+5 V buck converter with the values changed for 3.3 V:
+
+- **Converter:** U1201 (LM61440), fed from the 12 V DC input, with the same
+  input capacitors (C1201 to C1204), VCC and bootstrap parts and RT resistor
+  (R1202, 33k) as the 5 V buck converter.
+- **Output voltage:** R1204 (51k) and R1205 (22k) set 1.0 V x (1 + 51/22) =
+  3.32 V. TI's 100k/43.2k pair is not available as JLC basic parts. C1208
+  (10 pF) with R1206 (1k) is the feedforward network; TI gives 4.7 pF for a
+  100k top resistor, and 10 pF keeps the same corner frequency with 51k.
+- **Inductor:** L1201 is a 10 uH FCH0650-100M, the same family and footprint
+  as the 5 V buck converter's inductor. At 447 kHz and 12 V in, its ripple
+  current is about 0.54 A, 13 % of the LM61440's 4 A rating, within TI's
+  range (at least 10 %).
+- **Output capacitors:** four 22 uF ceramic capacitors (C1209 to C1212), TI's
+  minimum for 3.3 V at about 400 kHz, plus C1213 (100 nF).
+- **Synchronization:** C1205 couples Q4 of the colour clock divider into
+  EN/SYNC, which R1201 holds at the input voltage, the same way as for the
+  5 V buck converter. U1201's PGOOD joins `PGOOD` (see above).
+
+The budget is 1 A for now: one or two RP2350 microcontrollers and some 3.3 V
+logic, with room to spare. The LM61440 can deliver up to 4 A, but the
+inductor and output capacitors would need to be checked before raising the
+budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
+
+Controlling the start-up order of the rails, for example to keep 5 V signals
+away from the microcontrollers until they are ready, is left to a later
+supervisor microcontroller. The converters' EN pins (R705, R1201) are where it
+can take control.
+
+Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
+
 ## Licence
 
 Copyright Bwack 2025.
@@ -354,6 +398,8 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-24 | Added a `3V3 Buck` sub-sheet to the `Power Supply` sheet that makes `+3V3` from the 12 V DC input with an LM61440 synchronous buck converter (U1201), a copy of the 5 V buck converter changed for 3.3 V: feedback divider R1204 51k and R1205 22k (3.32 V), feedforward C1208 10 pF with R1206 1k, inductor L1201 10 uH (Fangcheng FCH0650-100M) and four 22 uF output capacitors (C1209 to C1212) plus C1213. It is synchronized to Q4 of the colour clock divider through C1205, and `+3V3` reaches the root sheet through the `3V3_OUT` sheet pin. Annotated its parts from 1200 |
+| 2026-10-24 | Combined the PGOOD outputs of the 5 V and 3.3 V buck converters into one `PGOOD` net (wired-AND) that gates the colour clock divider, replacing the divider's `5V_PGOOD` input. Changed the PGOOD pull-up R706 from 100k to 200k; with the new R1203 (200k) on the 3.3 V buck converter the combined pull-up stays 100k |
 | 2026-10-24 | Removed the 9 V AC input and `+9V_UNREG` from sheet 1: power connector CN7, power switch SW1, fuse F1, choke L4, bridge rectifier CR4 and capacitors C19, C20, C21, C95, C98 and C99. User port pins 10 and 11 (CN2) are no longer connected. The board has no power switch |
 | 2026-10-24 | Removed the 50/60 Hz time-of-day reference (R5, R100, R37, zener diode CR1 and C200) from sheet 1 and tied the TOD inputs of U1 and U2 (pin 19) to ground. Kept gate A of U27, which carries U27's supply pins, with pin 1 on +5V, pin 2 on ground and pin 3 unconnected, and its decoupling capacitor C46 |
 | 2026-10-24 | Fed the HF module replacement from the 12 V DC input instead of `+9V_UNREG`, through a new `12V_INPUT` sheet pin on the `Power Supply` sheet and a `12V_IN` sheet pin on the `HF Module Replacement` sheet; R501 (47 Ohm) is unchanged |
