@@ -1799,6 +1799,16 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "The PGOOD outputs of the 5V and 3V3 bucks are open-drain and share\npull-ups R706 and R1203 on CAN+5V, which makes a wired-AND: no\nextra logic is needed to combine them. PGOOD goes high once both \noutputs are in regulation (1.5-2.5 ms PGOOD delay), and only then does\nU1001 pass the colour clock to the divider. If either rail drops out of\nregulation, the sync clock stops and both bucks run unsynchronized at\nabout 400 kHz until PGOOD returns."
+		(exclude_from_sim no)
+		(at 247.65 67.056 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "a4269741-369d-4f97-aafb-9a7d65dbba54")
+	)
 	(text_box "The Power Supply pages describe power rails that are not found in the 250407 sheets, or that have been altered from the 250407 design."
 		(exclude_from_sim no)
 		(at 78.74 16.51 0)
@@ -1860,6 +1870,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "54f6c328-6564-4b89-a22c-4d147856ddfe")
+	)
+	(junction
+		(at 210.82 67.31)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "745d2801-19ad-4ce2-9657-fa23481dbe08")
 	)
 	(junction
 		(at 77.47 76.2)
@@ -2061,7 +2077,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 67.31) (xy 207.01 67.31)
+			(xy 162.56 67.31) (xy 210.82 67.31)
 		)
 		(stroke
 			(width 0)
@@ -2231,7 +2247,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 85.09) (xy 210.82 36.83)
+			(xy 210.82 85.09) (xy 210.82 67.31)
 		)
 		(stroke
 			(width 0)
@@ -2291,13 +2307,13 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 67.31) (xy 207.01 85.09)
+			(xy 210.82 67.31) (xy 210.82 36.83)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "8803f676-e5a4-4fd3-ad96-761a730f4a39")
+		(uuid "88904060-10a3-4264-a051-36568b499742")
 	)
 	(wire
 		(pts
@@ -3979,16 +3995,6 @@
 				(justify left top)
 			)
 		)
-		(pin "5V_PGOOD" input
-			(at 207.01 85.09 90)
-			(uuid "bed19197-e4ed-420b-a8af-914e8b595416")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "CAN+5V" input
 			(at 182.88 90.17 180)
 			(uuid "0fc884cf-dee0-47c1-991a-29b586ca3b07")
@@ -4029,7 +4035,7 @@
 				(justify left)
 			)
 		)
-		(pin "3V3_PGOOD" input
+		(pin "PGOOD" input
 			(at 210.82 85.09 90)
 			(uuid "3556ccc2-18d4-4257-86ca-99ba784f8ce2")
 			(effects
