@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1000,
+    "annotate_start_num": 1200,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#U119-121",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
@@ -1707,6 +1707,10 @@
     [
       "b3d1b280-a3ec-460a-a543-cd099a3857ef",
       "Cassette Power (6.2v)"
+    ],
+    [
+      "80cd6e34-a942-43bf-a1f0-7d2e08f26a9b",
+      "3V3 Buck"
     ]
   ],
   "text_variables": {},

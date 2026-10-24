@@ -1801,8 +1801,8 @@
 	)
 	(text_box "The Power Supply pages describe power rails that are not found in the 250407 sheets, or that have been altered from the 250407 design."
 		(exclude_from_sim no)
-		(at 80.01 24.13 0)
-		(size 121.92 11.43)
+		(at 78.74 16.51 0)
+		(size 121.92 7.62)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -2243,16 +2243,6 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 50.8) (xy 157.48 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "907a667b-cb06-4040-b75d-c5801a936dad")
-	)
-	(wire
-		(pts
 			(xy 100.33 90.17) (xy 120.65 90.17)
 		)
 		(stroke
@@ -2300,6 +2290,16 @@
 			(type default)
 		)
 		(uuid "94171bef-8332-451c-b176-1776996d780f")
+	)
+	(wire
+		(pts
+			(xy 162.56 59.69) (xy 177.8 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c8260a2-ecf3-4e24-a439-eee07a61deb9")
 	)
 	(wire
 		(pts
@@ -2370,16 +2370,6 @@
 			(type default)
 		)
 		(uuid "b523f1b2-6b18-4408-a355-16d8193044ba")
-	)
-	(wire
-		(pts
-			(xy 157.48 50.8) (xy 157.48 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b59397c0-1b39-4691-8286-7ae890a679a4")
 	)
 	(wire
 		(pts
@@ -2535,7 +2525,7 @@
 	)
 	(hierarchical_label "5V_OUT"
 		(shape output)
-		(at 170.18 50.8 0)
+		(at 177.8 59.69 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3919,6 +3909,52 @@
 		)
 	)
 	(sheet
+		(at 120.65 29.21)
+		(size 41.91 21.59)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "80cd6e34-a942-43bf-a1f0-7d2e08f26a9b")
+		(property "Sheetname" "3V3 Buck"
+			(at 120.65 28.4984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "3v3_buck.kicad_sch"
+			(at 120.65 51.3846 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(page "12")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 120.65 138.43)
 		(size 41.91 19.05)
 		(exclude_from_sim no)
@@ -4175,7 +4211,7 @@
 			)
 		)
 		(pin "5V_OUT" output
-			(at 157.48 57.15 90)
+			(at 162.56 59.69 0)
 			(uuid "8ee77615-3043-4f84-8bfb-2952852e8403")
 			(effects
 				(font
