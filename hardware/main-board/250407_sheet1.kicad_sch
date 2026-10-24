@@ -11240,10 +11240,6 @@
 		(uuid "14f5d208-0c15-45d4-b606-b2d71435b65e")
 	)
 	(no_connect
-		(at 147.32 180.34)
-		(uuid "23f45962-88d3-42a1-b03b-eef3f220ae59")
-	)
-	(no_connect
 		(at 102.87 276.86)
 		(uuid "5924b7c2-6ed6-4202-93cd-7bff9026428f")
 	)
@@ -11254,10 +11250,6 @@
 	(no_connect
 		(at 161.29 271.78)
 		(uuid "69b459d1-af48-40e1-b0ed-32e7bf1efbaf")
-	)
-	(no_connect
-		(at 147.32 246.38)
-		(uuid "7d175437-b677-412e-a2d1-147b96ee4ddb")
 	)
 	(no_connect
 		(at 303.53 85.09)
@@ -20966,6 +20958,83 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "#U0113")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 147.32 246.38 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0bb8c292-b829-4d0b-8f8a-11493594bccb")
+		(property "Reference" "#U0119"
+			(at 147.32 246.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 147.32 246.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 147.32 246.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 147.32 246.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 147.32 246.38 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "be106411-aafe-4a5f-aee3-ae35fadf9d9d")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
+					(reference "#U0119")
 					(unit 1)
 				)
 			)
@@ -31819,6 +31888,83 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "#PWR0128")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 147.32 180.34 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a28f48ba-c825-4068-a03b-9a09d12a3c2d")
+		(property "Reference" "#U0120"
+			(at 147.32 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 147.32 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 147.32 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 147.32 180.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 147.32 180.34 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f08257fc-f5dd-45a0-be74-44d263b8c2ec")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
+					(reference "#U0120")
 					(unit 1)
 				)
 			)
