@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 800,
+    "annotate_start_num": 1000,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#FLG801-802,#PWR713,#PWR801,U704,U801,C507-508,C714,C801-803,D701-704,D801-804",
+    "used_designators": "#FLG902,U702-703,U1001-1002,C709-711,C1001-1002,#PWR707,#PWR709-712,#PWR802,#PWR911,#PWR1001-1005",
     "variants": []
   },
   "sheets": [
@@ -1695,6 +1695,14 @@
     [
       "ba03cdc5-04b5-4a02-8c33-d5999a50717c",
       "CAN+5V Supply"
+    ],
+    [
+      "cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b",
+      "12V Stabilized Rail"
+    ],
+    [
+      "7ad083e5-373a-4464-8e28-a33f7d88cde5",
+      "Color Clock Divider"
     ]
   ],
   "text_variables": {},

@@ -21,11 +21,12 @@ check to report these differences, and do not use the current PCB files for
 manufacturing.
 
 The power supply is being converted step by step to a single 12 V DC input.
-At this stage `+5V` comes from the 5 V buck converter (#28) and `CAN+5V` from
-a linear regulator (#34), both on the `Power Supply` sheet and fed from the
-12 V DC input, while `+12V` and `+9V_UNREG` still come from the 9 V AC of the
-original power brick. The schematic therefore needs both the 12 V DC
-input and the 9 V AC input, and the power switch SW1 only switches the 9 V AC.
+At this stage `+5V` comes from the 5 V buck converter (#28), `CAN+5V` from a
+linear regulator (#34) and `+12V` from a charge pump with a linear regulator
+(#36), all on the `Power Supply` sheet and fed from the 12 V DC input. Only
+the 9 V AC and `+9V_UNREG` still come from the original power brick (#37).
+The schematic therefore needs both the 12 V DC input and the 9 V AC input,
+and the power switch SW1 only switches the 9 V AC.
 This intermediate state is not meant to be built.
 
 ## Power supply
@@ -38,11 +39,20 @@ made from it so far are on the `Power Supply` sheet:
 | `+12V_IN`  | Input stage: barrel jack, polyfuse, reverse polarity and TVS protection | 2.5 A (polyfuse hold current) | #10   |
 | `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the colour clock | 2 A       | #28   |
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
+| `+12V`     | Charge pump driven by a UCC27517 (U901), followed by an L78M12 linear regulator (U902) | about 150 mA (limit of the charge pump driver) | #36   |
+
+The `Color Clock Divider` sheet supplies the clocks for the switching parts.
+U1001 (74AHCT1G08) passes the colour clock (`PHI_COLOR`, 14.31818 MHz for
+NTSC) only once the buck converter's PGOOD output is high, and U1002
+(74HC4040) divides it: Q4 (/32, 447.4 kHz) synchronizes the 5 V buck
+converter and Q5 (/64, 223.7 kHz) clocks the `+12V` charge pump. Because
+both are locked to the colour clock, their interference has a fixed relation
+to the video timing. The divider runs from `CAN+5V`.
 
 ### `CAN+5V` current budget
 
 `CAN+5V` powers the VIC-II, the dot and colour clock circuit (`+Vc`, through
-L2 and FB19) and the colour clock synchronization of the 5 V buck converter.
+L2 and FB19) and the colour clock divider.
 
 | Load                                        | Typical             | Maximum  | Source                                                    |
 | ------------------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
@@ -52,8 +62,8 @@ L2 and FB19) and the colour clock synchronization of the 5 V buck converter.
 | MC4044 (U32)                                | 17 mA               | 40 mA    | Motorola MC4344/MC4044 datasheet (85 mW typical)          |
 | 74LS74A (U29)                               | 4 mA                | 8 mA     | TI SDLS119                                                |
 | R16, R53 and R27, Q7 (around the PLL)       | about 3 mA          | about 7 mA | Estimate from the circuit                               |
-| 74AHCT1G08 (U702)                           | about 2.5 mA        | about 3.5 mA | Cpd 18 pF at 14.3 MHz, plus the change in supply current with a 3.4 V input (TI SN74AHCT1G08) |
-| 74HC4040 (U703)                             | about 8.5 mA        | about 8.5 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 (1 nF) at 447 kHz (TI SN74HC4040) |
+| 74AHCT1G08 (U1001)                          | about 2.5 mA        | about 3.5 mA | Cpd 18 pF at 14.3 MHz, plus the change in supply current with a 3.4 V input (TI SN74AHCT1G08) |
+| 74HC4040 (U1002)                            | about 8.5 mA        | about 8.5 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 (1 nF) at 447 kHz (TI SN74HC4040) |
 | R706 (PGOOD pull-up)                        | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm                                            |
 | **Total**                                   | **about 90 mA plus the VIC-II** | **about 360 mA** |                                       |
 
@@ -82,6 +92,68 @@ the heat:
 At the lowest input voltage (about 11.2 V after the input stage) the regulator
 still gets the 2 V headroom it needs. U801's tab is ground: connect it to a
 large ground pour on both layers with vias, so it needs no heatsink.
+
+### `+12V`
+
+`+12V` feeds VDD of the VIC-II (through FB12) and the SID (through FB11), and
+the audio output buffer Q8. The `12V Stabilized Rail` sheet makes it from the
+12 V DC input:
+
+- **Charge pump:** while U901 (UCC27517 gate driver) holds the bottom of the
+  flying capacitor C903 at ground, C903 charges from `+5V` through D901. When
+  U901 lifts it to the 12 V input, D902 passes the charge on to the reservoir
+  capacitor C904 (`VPUMP`, about 15 V). U901 runs from the 12 V input through
+  FB901 (decoupled by C901 and C902) and switches at 223.7 kHz (`PUMP_CLK`).
+- **Regulator:** U902 (L78M12) regulates `VPUMP` to 12 V. C905 decouples its
+  input, C906 and C907 its output.
+- **Pre-charge:** D903 charges `VPUMP` straight from the 12 V input. Before
+  the pump runs, `+12V` therefore already sits at about 10 V, and the first
+  pump cycles do not have to fill an empty reservoir. Once the pump runs, D903
+  is reverse biased.
+
+The pump clock only runs once the buck converter's PGOOD is high, so `+12V`
+reaches 12 V a few ms after `+5V`. Neither the 6567 nor the 6581 datasheet
+specifies a power-up order between VDD and Vcc, and the power-on reset (U20B,
+about 0.5 s) keeps the CPU, the CIAs and the SID in reset well beyond that.
+
+The board supports the 6581 SID only. The 8580 is not supported: it needs
+9 V on VDD instead of 12 V, and the rail has no 9 V option.
+
+#### `+12V` current budget
+
+| Load                         | Typical                        | Maximum      | Source                                                                    |
+| ---------------------------- | ------------------------------ | ------------ | ------------------------------------------------------------------------- |
+| VIC-II 6567 (U19), VDD       | not specified                  | 50 mA        | 6567 preliminary datasheet, 3.3.7: IDD with the dot clock low             |
+| SID 6581 (U18), VDD          | 25 mA                          | 40 mA        | 6581 preliminary datasheet (October 1982), page 8                         |
+| Q8 (audio output buffer)     | about 5.5 mA                   | about 6 mA   | Emitter follower into R38 (1 kOhm) with its emitter at about 5.3 V        |
+| **Total**                    | **about 31 mA plus the VIC-II** | **about 96 mA** |                                                                       |
+
+Datasheets:
+[6567 VIC-II preliminary](https://archive.org/details/mos_6567_vic_ii_preliminary),
+[6581 SID preliminary](https://archive.org/details/mos_6581_sid_preliminary_october_1982),
+[UCC27517](https://www.ti.com/lit/ds/symlink/ucc27517.pdf),
+[L78M](https://www.st.com/resource/en/datasheet/l78m.pdf).
+
+#### `+12V` headroom and dissipation
+
+Most of the pump's loss is in U901's pull-up resistance (5 Ohm typical,
+7.5 Ohm maximum), which carries about twice the load current. Estimates at
+the maximum load of 96 mA:
+
+| Condition                                         | `VPUMP`     | `+12V`                     |
+| ------------------------------------------------- | ----------- | -------------------------- |
+| 12 V input, typical driver resistance             | about 15.0 V | 12.0 V                    |
+| 11.2 V input, maximum driver resistance           | about 13.6 V | about 11.9 V (in dropout) |
+
+The L78M12 is only specified to regulate from 14.5 V input. In the worst-case
+corner it drops out, but its output stays within the 11.4 V to 12.6 V VDD
+range of the VIC-II and the SID. If the prototype shows too little headroom,
+a low-dropout regulator such as the LM2940-12 can take U902's place. A lower
+pump frequency would not help: below 223.7 kHz the capacitors add to the loss.
+
+U902 dissipates about 0.3 W to 0.35 W and U901 about 0.1 W to 0.16 W. The
+ripple on `VPUMP` is about 55 mV at full load. U902's tab is ground, like
+U801's: connect it to the ground pour, so it needs no heatsink.
 
 ## Licence
 
@@ -201,6 +273,9 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-24 | Removed the original `+12V` regulator VR1 (7812), its charge pump on the 9 V AC (CR5, CR6, C90) and its input and output capacitors (C88, C89, C57, C59) from sheet 1. `+12V` now comes from the `12V Stabilized Rail` sheet through the `+12V_STABILIZED` sheet pin, which the root sheet connects to the `+12V` power symbol. `+9V_UNREG` still feeds the cassette motor supply and the HF module replacement |
+| 2026-10-24 | Added a `12V Stabilized Rail` sub-sheet to the `Power Supply` sheet that makes `+12V` from the 12 V DC input: a charge pump with flying capacitor C903, charged from `+5V` through D901 and lifted by gate driver U901 (UCC27517, supplied through FB901 with C901 and C902), D902 into reservoir C904, pre-charge diode D903 from the 12 V input, and an L78M12 linear regulator (U902, DPAK) with C905 at its input and C906 and C907 at its output. D901-D903 are B5819W Schottky diodes. Annotated its parts from 900 |
+| 2026-10-24 | Moved the colour clock divider from the `5V Buck` sheet to a new `Color Clock Divider` sub-sheet of the `Power Supply` sheet and annotated its parts from 1000: U702, U703, C709 and C711 became U1001, U1002, C1001 and C1002. Q4 (447.4 kHz) reaches the 5 V buck converter through its new `CLOCK_IN` sheet pin, the converter's PGOOD leaves through its `PGOOD` sheet pin, and Q5 (223.7 kHz) clocks the `+12V` charge pump (`PUMP_CLK`) |
 | 2026-10-24 | Added a symbol for the UCC27517 gate driver (`UCC27517DBV`, SOT-23-5) to the component library in `hardware/components` |
 | 2026-10-23 | Named the output of the 12 V DC input stage `+12V_IN` with a label on the `Power Supply` sheet and added a PWR_FLAG to it |
 | 2026-10-23 | Removed the original `CAN+5V` regulator VR2 (7805) and its output capacitors C102 and C103 from sheet 1. `CAN+5V` now comes from the `CAN+5V Supply` sheet through hierarchical labels and sheet pins; `+9V_UNREG` still feeds the cassette motor supply, the `+12V` charge pump and the HF module replacement |
