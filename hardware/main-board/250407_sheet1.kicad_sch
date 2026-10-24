@@ -11260,10 +11260,6 @@
 		(uuid "84f3e5fc-6894-4a29-9cde-4a34290be535")
 	)
 	(no_connect
-		(at 171.45 270.51)
-		(uuid "a8ae552d-9005-4515-bf41-3daa7ffd25f7")
-	)
-	(no_connect
 		(at 279.4 115.57)
 		(uuid "e65233cc-cb5a-44d9-ab7e-11a0c41114eb")
 	)
@@ -14935,6 +14931,16 @@
 	)
 	(wire
 		(pts
+			(xy 182.88 270.51) (xy 182.88 271.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "728dec90-ce3c-48a1-9f91-9b4730968d58")
+	)
+	(wire
+		(pts
 			(xy 219.71 74.93) (xy 218.44 74.93)
 		)
 		(stroke
@@ -18132,6 +18138,16 @@
 			(type default)
 		)
 		(uuid "f7211d9c-cdd9-4118-ac82-1bf4e8dffaca")
+	)
+	(wire
+		(pts
+			(xy 171.45 270.51) (xy 182.88 270.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8838e56-44ec-4cbe-b4f6-35e120e4a885")
 	)
 	(wire
 		(pts
@@ -36399,6 +36415,83 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "CN4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 182.88 271.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ea7e8242-028d-4282-8b53-44f96acc60ff")
+		(property "Reference" "#U0121"
+			(at 182.88 271.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 182.88 271.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 182.88 271.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 182.88 271.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 182.88 271.78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "864f1534-03f3-4b19-80e3-8c5bb8b4108c")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
+					(reference "#U0121")
 					(unit 1)
 				)
 			)
