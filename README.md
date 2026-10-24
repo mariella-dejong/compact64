@@ -47,7 +47,7 @@ The work is tracked in the issue tracker. In broad strokes:
   (#8), and add S-Video and audio outputs (#24, #9)
 - Power the board from a single 12 V DC input (#10) and generate the supply
   rails from it (#26), starting with the 5 V buck converter (#28),
-  `CAN+5V` (#34) and `+12V` (#36)
+  `CAN+5V` (#34), `+12V` (#36) and the cassette motor supply (#41)
 - Replace RAM and ROM with a microcontroller-based solution (#11)
 - Replace CIA1 and CIA2 with a microcontroller-based solution (#25)
 - Replace the keyboard connector with a USB keyboard to keyboard-matrix

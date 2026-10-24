@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#FLG902,U702-703,U1001-1002,C709-711,C1001-1002,#PWR707,#PWR709-712,#PWR802,#PWR911,#PWR1001-1005",
+    "used_designators": "#PWR502,FB6",
     "variants": []
   },
   "sheets": [
@@ -1703,6 +1703,10 @@
     [
       "7ad083e5-373a-4464-8e28-a33f7d88cde5",
       "Color Clock Divider"
+    ],
+    [
+      "b3d1b280-a3ec-460a-a543-cd099a3857ef",
+      "Cassette Power (6.2v)"
     ]
   ],
   "text_variables": {},

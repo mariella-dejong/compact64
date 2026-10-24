@@ -2007,6 +2007,12 @@
 		(uuid "a77640ce-d14e-4148-8bb6-5aca21bc1f5c")
 	)
 	(junction
+		(at 100.33 115.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a7824d54-6b81-4136-948e-75c77361d968")
+	)
+	(junction
 		(at 100.33 69.85)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2220,6 +2226,16 @@
 	)
 	(wire
 		(pts
+			(xy 109.22 151.13) (xy 120.65 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "56da0dfe-4678-4580-a953-ceb1e47a4cb8")
+	)
+	(wire
+		(pts
 			(xy 100.33 59.69) (xy 88.9 59.69)
 		)
 		(stroke
@@ -2337,6 +2353,26 @@
 			(type default)
 		)
 		(uuid "8803f676-e5a4-4fd3-ad96-761a730f4a39")
+	)
+	(wire
+		(pts
+			(xy 100.33 142.24) (xy 120.65 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8c7a0d01-a6b8-497e-ab42-da8f75727d44")
+	)
+	(wire
+		(pts
+			(xy 109.22 147.32) (xy 120.65 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8d1fb513-8ecb-45fd-85dc-7c826992a447")
 	)
 	(wire
 		(pts
@@ -2510,6 +2546,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 115.57) (xy 100.33 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cfd28637-5e60-423d-ba58-6d674b3655c1")
+	)
+	(wire
+		(pts
 			(xy 52.07 83.82) (xy 52.07 93.98)
 		)
 		(stroke
@@ -2589,6 +2635,17 @@
 		)
 		(uuid "5e6ee128-764a-4754-9102-acf62094f530")
 	)
+	(hierarchical_label "CASS_PWR"
+		(shape output)
+		(at 109.22 147.32 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a550e4a3-f547-49a0-aeec-db10743ba0b0")
+	)
 	(hierarchical_label "+12V_STABILIZED"
 		(shape output)
 		(at 168.91 120.65 0)
@@ -2610,6 +2667,17 @@
 			(justify right)
 		)
 		(uuid "ee3f8c79-4894-4215-9989-5f39b4c53510")
+	)
+	(hierarchical_label "CASS_MOTOR"
+		(shape input)
+		(at 109.22 151.13 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f199b014-7e26-4107-a7d0-cd9b95d10fd0")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
@@ -4015,6 +4083,82 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
 					(page "10")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 120.65 138.43)
+		(size 41.91 19.05)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "b3d1b280-a3ec-460a-a543-cd099a3857ef")
+		(property "Sheetname" "Cassette Power (6.2v)"
+			(at 120.65 137.7184 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "cassette_power.kicad_sch"
+			(at 120.65 158.0646 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "CASS_MOTOR" input
+			(at 120.65 151.13 180)
+			(uuid "cb3f459b-45f0-4c3a-9005-0e6160742616")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CASS_PWR" output
+			(at 120.65 147.32 180)
+			(uuid "cabb0295-9ae6-4f47-ae90-346c28ed2e21")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "VIN" input
+			(at 120.65 142.24 180)
+			(uuid "ea09a232-95ae-45e4-a011-257fb628669d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(page "11")
 				)
 			)
 		)
