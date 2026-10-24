@@ -254,6 +254,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 194.31) (xy 256.54 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0cfe9e60-1482-4c82-b9b4-c0dc2cfff1d0")
+	)
+	(wire
+		(pts
 			(xy 246.38 185.42) (xy 256.54 185.42)
 		)
 		(stroke
@@ -324,6 +334,16 @@
 	)
 	(wire
 		(pts
+			(xy 218.44 163.83) (xy 218.44 194.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "52c5eca9-7fe3-4a8e-902a-8b48d1821012")
+	)
+	(wire
+		(pts
 			(xy 250.19 156.21) (xy 255.27 156.21)
 		)
 		(stroke
@@ -354,6 +374,16 @@
 	)
 	(wire
 		(pts
+			(xy 256.54 199.39) (xy 213.36 199.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cc7b2445-1ad7-4e09-85dc-b53cf5c7daa4")
+	)
+	(wire
+		(pts
 			(xy 255.27 175.26) (xy 256.54 175.26)
 		)
 		(stroke
@@ -361,6 +391,16 @@
 			(type default)
 		)
 		(uuid "cf58d760-efc9-4aeb-9e27-c22088974ad6")
+	)
+	(wire
+		(pts
+			(xy 213.36 199.39) (xy 213.36 163.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf8f7a29-e062-4a5c-bcfd-7c2ed42cf380")
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
@@ -1421,6 +1461,26 @@
 				(justify left)
 			)
 		)
+		(pin "CASS_MOTOR" input
+			(at 256.54 194.31 180)
+			(uuid "b6dc41cf-7b38-4a2b-89ec-b38b835f5380")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CASS_PWR" output
+			(at 256.54 199.39 180)
+			(uuid "103f1615-8a3b-4337-88b4-dc93de41fcdd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -1535,6 +1595,26 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "CASS_MOTOR" output
+			(at 218.44 163.83 270)
+			(uuid "115cfcc4-41cc-4f52-8315-895a41f3b3be")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "CASS_POWER" input
+			(at 213.36 163.83 270)
+			(uuid "9e19ea27-d973-4466-a221-0045b8e5ada1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances

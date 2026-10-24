@@ -11735,227 +11735,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_BJT:TIP41"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "Q"
-				(at 6.35 1.905 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "TIP41"
-				(at 6.35 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
-				(at 6.35 -1.905 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-						(italic yes)
-					)
-					(justify left)
-				)
-			)
-			(property "Datasheet" "https://www.centralsemi.com/get_document.php?cmp=1&mergetype=pd&mergepath=pd&pdf_id=tip41.PDF"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Description" "6A Ic, 40V Vce, Power NPN Transistor, TO-220"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "power NPN Transistor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "TO?220*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "TIP41_0_1"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy 0.635 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 1.905) (xy 0.635 -1.905)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 1.27 0)
-					(radius 2.8194)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "TIP41_1_1"
-				(polyline
-					(pts
-						(xy 0.635 0.635) (xy 2.54 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.635 -0.635) (xy 2.54 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.778) (xy 1.778 -1.27) (xy 2.286 -2.286) (xy 1.27 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(pin input line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 5.08 270)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 -5.08 90)
-					(length 2.54)
-					(name "E"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:+5V"
 			(power global)
 			(pin_numbers
@@ -12162,17 +11941,6 @@
 			(justify left bottom)
 		)
 		(uuid "23713d8b-75ed-40c6-ac11-869d6afc6190")
-	)
-	(text "7.5V"
-		(exclude_from_sim no)
-		(at 216.1794 46.9138 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2895240a-cc03-4e92-ad0c-31916551a7cf")
 	)
 	(text "RP3\n3.3K"
 		(exclude_from_sim no)
@@ -12693,12 +12461,6 @@
 		(uuid "16f8cb4f-f463-4caa-883d-426021292ed8")
 	)
 	(junction
-		(at 213.36 36.83)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "18e5c622-8b20-4f40-a78f-ae8a4dc8d999")
-	)
-	(junction
 		(at 111.76 261.62)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12855,6 +12617,12 @@
 		(uuid "3a8d4082-fac8-4b3f-b82d-e41384f31d67")
 	)
 	(junction
+		(at 228.6 222.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "3b4d1a7d-ac73-449a-887c-18b92ec87f21")
+	)
+	(junction
 		(at 172.72 270.51)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -12981,12 +12749,6 @@
 		(uuid "6541cc56-3932-47e0-9a5e-33226c8eb19a")
 	)
 	(junction
-		(at 214.63 36.83)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "6710222f-8856-43f4-bab0-65aeb16d2052")
-	)
-	(junction
 		(at 71.12 185.42)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -13015,12 +12777,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "73c34a83-d8c5-414e-9242-f235f0df2c20")
-	)
-	(junction
-		(at 207.01 36.83)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7485785a-7391-4647-bbf4-8da22a84ea9c")
 	)
 	(junction
 		(at 71.12 182.88)
@@ -13245,12 +13001,6 @@
 		(uuid "bafd047f-0a94-429e-917d-fb540dd634c9")
 	)
 	(junction
-		(at 196.85 41.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bc3ee18b-e77c-4de9-b0c4-ee76b7a74a0a")
-	)
-	(junction
 		(at 85.09 259.08)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -13317,12 +13067,6 @@
 		(uuid "d0230775-d411-428e-a64b-8b5db4e39b13")
 	)
 	(junction
-		(at 214.63 26.67)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d245a577-f0c4-4264-b28d-7afa9c00e932")
-	)
-	(junction
 		(at 218.44 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -13375,12 +13119,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e1534b52-8983-416a-adbc-e7b0615d1362")
-	)
-	(junction
-		(at 231.14 31.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e27b6e2a-77e7-4d89-b1d4-bcd106977b7d")
 	)
 	(junction
 		(at 247.65 139.7)
@@ -14442,16 +14180,6 @@
 	)
 	(wire
 		(pts
-			(xy 231.14 31.75) (xy 231.14 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0e37b2da-428c-4357-a566-d91c77c84b43")
-	)
-	(wire
-		(pts
 			(xy 49.53 246.38) (xy 53.34 246.38)
 		)
 		(stroke
@@ -14962,16 +14690,6 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 34.29) (xy 214.63 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d6a3b7e-392c-4f75-8db7-321e767e4a4a")
-	)
-	(wire
-		(pts
 			(xy 298.45 184.15) (xy 293.37 184.15)
 		)
 		(stroke
@@ -15022,6 +14740,16 @@
 	)
 	(wire
 		(pts
+			(xy 238.76 46.99) (xy 236.22 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ea4f6e3-62de-4f0f-ab50-79009acc2de7")
+	)
+	(wire
+		(pts
 			(xy 44.45 193.04) (xy 44.45 190.5)
 		)
 		(stroke
@@ -15032,16 +14760,6 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 41.91) (xy 190.5 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1fc82182-1ada-4b07-b552-376a54bb5b62")
-	)
-	(wire
-		(pts
 			(xy 260.35 83.82) (xy 262.89 83.82)
 		)
 		(stroke
@@ -15049,16 +14767,6 @@
 			(type default)
 		)
 		(uuid "2006f968-c8e0-44b8-b4e0-4137b6abbd11")
-	)
-	(wire
-		(pts
-			(xy 234.95 46.99) (xy 231.14 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2062172d-b801-4b28-953c-8489f77f2c57")
 	)
 	(wire
 		(pts
@@ -15279,16 +14987,6 @@
 			(type default)
 		)
 		(uuid "2953cf1d-75b5-42d4-b424-c7da5cb68715")
-	)
-	(wire
-		(pts
-			(xy 207.01 36.83) (xy 213.36 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "295f2ccd-b26b-4498-964d-977394a64f2f")
 	)
 	(wire
 		(pts
@@ -15699,16 +15397,6 @@
 			(type default)
 		)
 		(uuid "3621ba60-e4de-46e7-848a-d5eeb082cda8")
-	)
-	(wire
-		(pts
-			(xy 254 46.99) (xy 240.03 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "365a654e-07b7-40ae-a57a-d24f033253c4")
 	)
 	(wire
 		(pts
@@ -16372,6 +16060,16 @@
 	)
 	(wire
 		(pts
+			(xy 243.84 46.99) (xy 254 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c01853e-7e32-4330-85b9-efe1ea638042")
+	)
+	(wire
+		(pts
 			(xy 114.3 189.23) (xy 106.68 189.23)
 		)
 		(stroke
@@ -16439,16 +16137,6 @@
 			(type default)
 		)
 		(uuid "4e3ab769-6b23-48a2-bd2e-fccc4b4078b0")
-	)
-	(wire
-		(pts
-			(xy 207.01 36.83) (xy 207.01 34.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e3f5914-d4ae-4ee5-b17e-ab2bc79cae16")
 	)
 	(wire
 		(pts
@@ -16579,16 +16267,6 @@
 			(type default)
 		)
 		(uuid "5266cd78-e2f2-4f90-9d8c-91cd790c2a44")
-	)
-	(wire
-		(pts
-			(xy 207.01 29.21) (xy 207.01 26.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5285c20e-2b50-48e5-93ca-f6a4eb78173a")
 	)
 	(bus
 		(pts
@@ -16842,16 +16520,6 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 49.53) (xy 207.01 46.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5af5e926-f3db-4287-b0e8-8985a5bbccbc")
-	)
-	(wire
-		(pts
 			(xy 121.92 266.7) (xy 121.92 278.13)
 		)
 		(stroke
@@ -17089,16 +16757,6 @@
 			(type default)
 		)
 		(uuid "61b255ac-b006-4745-82a3-825c8351742a")
-	)
-	(wire
-		(pts
-			(xy 214.63 36.83) (xy 213.36 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "61d4a27b-d22e-4a3f-acca-f2f206fbbfba")
 	)
 	(wire
 		(pts
@@ -17502,16 +17160,6 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 41.91) (xy 196.85 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "70ab4145-0418-4dd6-be56-d9f40351adbf")
-	)
-	(wire
-		(pts
 			(xy 289.56 92.71) (xy 289.56 97.79)
 		)
 		(stroke
@@ -17789,16 +17437,6 @@
 			(type default)
 		)
 		(uuid "7bf5450b-2c16-4251-9833-2bb7e65fe186")
-	)
-	(wire
-		(pts
-			(xy 207.01 26.67) (xy 214.63 26.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7c35ae11-3767-48e1-8c58-4d9fdd830abd")
 	)
 	(wire
 		(pts
@@ -19220,16 +18858,6 @@
 		)
 		(uuid "acb7eeed-1b3e-4080-b990-5d16d4361ca9")
 	)
-	(wire
-		(pts
-			(xy 214.63 26.67) (xy 231.14 26.67)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ad2ac7ec-71d8-4b52-8657-6e6359b42c29")
-	)
 	(bus
 		(pts
 			(xy 167.64 82.55) (xy 167.64 85.09)
@@ -19239,16 +18867,6 @@
 			(type default)
 		)
 		(uuid "ad31b6bf-93d3-4dc4-8003-102c065abb2e")
-	)
-	(wire
-		(pts
-			(xy 215.9 36.83) (xy 214.63 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ad75b252-456c-4ab0-b98e-1c3ffe37fa0f")
 	)
 	(wire
 		(pts
@@ -19662,16 +19280,6 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 26.67) (xy 214.63 29.21)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bd87b179-23cf-47f1-82e8-acb80bdc48a9")
-	)
-	(wire
-		(pts
 			(xy 60.96 58.42) (xy 60.96 104.14)
 		)
 		(stroke
@@ -19982,26 +19590,6 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 31.75) (xy 231.14 31.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c79e3134-6f2b-4604-a6b0-e0dab95a896f")
-	)
-	(wire
-		(pts
-			(xy 196.85 41.91) (xy 199.39 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c83bd101-189d-4191-bbd3-6394209428c9")
-	)
-	(wire
-		(pts
 			(xy 160.02 39.37) (xy 172.72 39.37)
 		)
 		(stroke
@@ -20139,6 +19727,16 @@
 			(type default)
 		)
 		(uuid "cd789640-d6d0-4610-89a1-f0b72066042a")
+	)
+	(wire
+		(pts
+			(xy 228.6 222.25) (xy 232.41 222.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cda54f18-c61d-4629-a558-f1d7db8a06bf")
 	)
 	(polyline
 		(pts
@@ -20329,16 +19927,6 @@
 			(type default)
 		)
 		(uuid "d514d16a-3925-4607-a46c-6d0c35a2fb88")
-	)
-	(wire
-		(pts
-			(xy 196.85 41.91) (xy 196.85 43.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d53d44dc-8235-4b01-b114-dac93cd2bb15")
 	)
 	(wire
 		(pts
@@ -20622,7 +20210,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 222.25) (xy 232.41 222.25)
+			(xy 214.63 222.25) (xy 228.6 222.25)
 		)
 		(stroke
 			(width 0)
@@ -20822,16 +20410,6 @@
 	)
 	(wire
 		(pts
-			(xy 187.96 17.78) (xy 187.96 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e8a272b1-c00e-448c-b728-17f93aea8ca5")
-	)
-	(wire
-		(pts
 			(xy 184.15 85.09) (xy 184.15 77.47)
 		)
 		(stroke
@@ -20859,16 +20437,6 @@
 			(type default)
 		)
 		(uuid "e915b2a1-a3e2-43cd-b23d-5c05072c0c85")
-	)
-	(wire
-		(pts
-			(xy 213.36 36.83) (xy 213.36 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e9796848-42a1-4050-9ac1-86c39a6a77e1")
 	)
 	(wire
 		(pts
@@ -21132,16 +20700,6 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 48.26) (xy 196.85 49.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f4cf136d-58dc-40f0-bb40-c660960634c7")
-	)
-	(wire
-		(pts
 			(xy 147.32 246.38) (xy 147.32 260.35)
 		)
 		(stroke
@@ -21209,16 +20767,6 @@
 			(type default)
 		)
 		(uuid "f6c099bf-9309-49a2-90f1-da0e8cd3452b")
-	)
-	(wire
-		(pts
-			(xy 231.14 26.67) (xy 231.14 31.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f715c275-da15-4b11-bb71-417dc970d73b")
 	)
 	(wire
 		(pts
@@ -21977,16 +21525,6 @@
 		)
 		(uuid "37d05952-07ac-4232-8e2c-0580561facd8")
 	)
-	(label "CASS_MOTOR"
-		(at 147.32 17.78 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "390e19d7-5e3a-4708-801f-1b93b895f05b")
-	)
 	(label "R\\~{W}"
 		(at 160.02 170.18 0)
 		(effects
@@ -22239,16 +21777,6 @@
 			(justify left bottom)
 		)
 		(uuid "603c0170-fd11-4664-a707-c044626f44bf")
-	)
-	(label "CASS_PWR"
-		(at 241.3 46.99 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "63a6c0f8-361b-4983-9015-3745d1b0a5a0")
 	)
 	(label "PHI2"
 		(at 161.29 227.33 0)
@@ -23606,6 +23134,28 @@
 		)
 		(uuid "28d27859-9f7b-4b2c-b41b-db2e35f871f1")
 	)
+	(hierarchical_label "CASS_POWER"
+		(shape input)
+		(at 236.22 46.99 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6cb6b097-a875-40e8-a2d2-43544e155667")
+	)
+	(hierarchical_label "CASS_MOTOR"
+		(shape output)
+		(at 187.96 17.78 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cf57e3b6-ca73-4a42-844a-2f74becd7906")
+	)
 	(hierarchical_label "COLOR_CLOCK_OUT"
 		(shape output)
 		(at 243.84 120.65 180)
@@ -24086,100 +23636,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "#U0134")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:2SC1815")
-		(at 204.47 41.91 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "09a0180c-9d4b-475b-9146-498ac9aa6540")
-		(property "Reference" "Q2"
-			(at 209.55 48.26 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2SC1815"
-			(at 209.55 50.8 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:Q_NPN_ECB"
-			(at 209.55 39.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 204.47 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 204.47 41.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C73309"
-			(at 204.47 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "3"
-			(uuid "7c88780a-a3b4-489f-802f-f6d04e283e31")
-		)
-		(pin "1"
-			(uuid "5e49c74d-5a33-4194-b90b-d5f08f97f19e")
-		)
-		(pin "2"
-			(uuid "0b2c6ca2-6983-4c23-9bbc-fdcf96cba342")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "Q2")
 					(unit 1)
 				)
 			)
@@ -25535,97 +24991,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:FERRITE_NARROW")
-		(at 237.49 46.99 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "1abf60ef-b14d-4268-95d2-32433a6c8142")
-		(property "Reference" "FB2"
-			(at 239.3696 45.4914 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "FERRITE_BEAD"
-			(at 238.76 44.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:FERRITE_BEAD_TH_P12.7mm"
-			(at 237.49 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 237.49 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 237.49 46.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C192456"
-			(at 237.49 46.99 180)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ea69dc85-35ee-46e0-9601-adb820ae19ee")
-		)
-		(pin "2"
-			(uuid "c47677fc-c735-4bae-9605-40e5895c7342")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "FB2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 133.35 121.92 0)
 		(unit 1)
@@ -26163,95 +25528,6 @@
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "U8")
 					(unit 5)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 214.63 31.75 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "210296d9-23ff-4b31-a650-eb63ef9c3b5e")
-		(property "Reference" "C18"
-			(at 211.1248 30.5308 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" ".1"
-			(at 211.709 32.5628 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
-			(at 214.63 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 214.63 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 214.63 31.75 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C84772"
-			(at 214.63 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d170834a-49ab-4708-91fe-8103302eb171")
-		)
-		(pin "2"
-			(uuid "7521e420-a4cb-4bf2-961f-cba02685ee3c")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "C18")
-					(unit 1)
 				)
 			)
 		)
@@ -28205,103 +27481,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:TIP41")
-		(at 228.6 41.91 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "37387a8b-3963-4bbb-921b-6b5d89aa2cc9")
-		(property "Reference" "Q3"
-			(at 233.4514 40.7416 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TP29B/2SD880"
-			(at 233.4514 43.053 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:TO-220-3_Horizontal_TabDown_250407"
-			(at 234.95 43.815 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-					(italic yes)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" "https://www.centralsemi.com/get_document.php?cmp=1&mergetype=pd&mergepath=pd&pdf_id=tip41.PDF"
-			(at 228.6 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 228.6 41.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C32064"
-			(at 228.6 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "251892ee-edab-488a-9f96-95f925101e27")
-		)
-		(pin "3"
-			(uuid "e8260b37-9c3d-4209-9faa-19ba2e693d74")
-		)
-		(pin "1"
-			(uuid "eee0d4b4-0f05-4d36-b7b3-b592c8f2492c")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "Q3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "KU-schematics-library:GND_SMALL")
 		(at 274.32 113.03 0)
 		(unit 1)
@@ -29539,97 +28718,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
-		(at 196.85 45.72 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "462c0d81-d0c3-4524-916c-c8bfa637f3f8")
-		(property "Reference" "R3"
-			(at 192.8876 44.9072 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10K"
-			(at 191.77 46.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
-			(at 196.85 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 196.85 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 196.85 45.72 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C57436"
-			(at 196.85 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2a82536d-dc7c-4274-980b-36e6850ec0dc")
-		)
-		(pin "2"
-			(uuid "b6b1b44d-1553-4955-ad04-1b868bb2071b")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 293.37 172.72 0)
 		(unit 1)
@@ -30763,100 +29851,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "R100")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Transistor_BJT:2SC1815")
-		(at 220.98 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5328fd08-211e-4c0a-82f4-a03bf9560e14")
-		(property "Reference" "Q1"
-			(at 219.837 28.2956 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "2SC1815"
-			(at 219.7862 30.3022 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:Q_NPN_ECB"
-			(at 226.06 34.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 220.98 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 220.98 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C73309"
-			(at 220.98 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "82d04f4c-98a5-4464-bcc4-95db66c90d50")
-		)
-		(pin "3"
-			(uuid "041cdb11-d8af-4b49-9c99-fce139385e1c")
-		)
-		(pin "1"
-			(uuid "ba37c24c-cac9-48e2-a8bc-82c238405b86")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "Q1")
 					(unit 1)
 				)
 			)
@@ -33582,82 +32576,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:+9V_UNREG")
-		(at 214.63 26.67 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "712813de-0de8-407f-81c1-d7749b679e90")
-		(property "Reference" "#PWR0127"
-			(at 214.63 30.48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+9V_UNREG"
-			(at 214.63 21.6154 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 214.63 27.94 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 214.63 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 214.63 26.67 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fa954fa4-83c8-4fa7-b8eb-dc744415cea4")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#PWR0127")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:CP_Small")
 		(at 124.46 34.29 0)
 		(unit 1)
@@ -33743,83 +32661,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "C8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 196.85 49.53 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "75e4e105-464c-4bc7-8387-30a185a753f2")
-		(property "Reference" "#U0120"
-			(at 196.85 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 196.85 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 196.85 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 196.85 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 196.85 49.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "6a688348-5477-44b7-8767-857e3c3f6726")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#U0120")
 					(unit 1)
 				)
 			)
@@ -34454,6 +33295,97 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "#U0166")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:FERRITE_NARROW")
+		(at 241.3 46.99 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "7bd844e9-3394-420b-bab3-3a1761bdf0ed")
+		(property "Reference" "FB2"
+			(at 243.205 48.7934 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "FERRITE_BEAD"
+			(at 242.57 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "KU-14194HB-RevB-KiCad:FERRITE_BEAD_TH_P12.7mm"
+			(at 241.3 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 241.3 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 241.3 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C192456"
+			(at 241.3 46.99 180)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "c18802cd-5970-4ce9-876b-74c8a9f5a090")
+		)
+		(pin "1"
+			(uuid "d306d34a-78b6-47a8-a846-0acca4db9443")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
+					(reference "FB2")
 					(unit 1)
 				)
 			)
@@ -36752,97 +35684,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
-		(at 207.01 31.75 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "95f4d518-4902-42b2-8ef3-8473eee8f0ce")
-		(property "Reference" "R2"
-			(at 203.0476 30.9372 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1.5K"
-			(at 201.93 33.02 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
-			(at 207.01 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 207.01 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 207.01 31.75 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C58620"
-			(at 207.01 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "ad668425-5e0b-4560-b0d3-56b28228753b")
-		)
-		(pin "1"
-			(uuid "36285028-cf1d-4495-bcac-b870dfbdde45")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "R2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 218.44 77.47 0)
 		(unit 1)
@@ -37374,97 +36215,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "FB20")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
-		(at 193.04 41.91 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a0e3b013-5c8a-43a9-a39d-586501f9e9a0")
-		(property "Reference" "R4"
-			(at 191.77 38.1 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1K"
-			(at 191.7954 40.1574 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
-			(at 193.04 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 193.04 41.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 193.04 41.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C57435"
-			(at 193.04 41.91 270)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "1c9f0edf-db71-4da3-a0ff-7826322f3279")
-		)
-		(pin "1"
-			(uuid "e91942a5-005e-4a73-a4d0-b9d4b7ed8c2a")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -41180,83 +39930,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 207.01 49.53 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d82302b2-c294-49c3-98c0-308bfcfe97ea")
-		(property "Reference" "#U0121"
-			(at 207.01 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 207.01 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 207.01 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 207.01 49.53 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 207.01 49.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4d80973f-3f1a-4e6d-b1c6-f20a459a54e6")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#U0121")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "250407_-rescue:JUMPER_WIRE-KU-schematics-library")
 		(at 284.48 77.47 0)
 		(unit 1)
@@ -41613,83 +40286,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 213.36 44.45 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "db66cf3b-fcf5-4cfa-9cfd-d10700fa0dad")
-		(property "Reference" "#U0122"
-			(at 213.36 44.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 213.36 44.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 213.36 44.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 213.36 44.45 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 213.36 44.45 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "dfab0012-4a66-40bb-b555-2cbbcbb8e04d")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#U0122")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 276.86 199.39 180)
 		(unit 1)
@@ -41779,97 +40375,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Zener_Small_ALT")
-		(at 213.36 41.91 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "dc8991bb-dba8-4cd4-98d3-166a2f8aae61")
-		(property "Reference" "CR2"
-			(at 214.8078 42.3418 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "IN755"
-			(at 214.9348 44.1452 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:ZENER_12.7mm"
-			(at 213.36 41.91 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 213.36 41.91 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 213.36 41.91 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C258177"
-			(at 213.36 41.91 270)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9ac22ea2-de9b-4404-9c7a-b3b0d1b11d6c")
-		)
-		(pin "2"
-			(uuid "54f16ca3-2fcb-4b25-9dda-220bd977a9ee")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "CR2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 157.48 186.69 270)
 		(unit 1)
@@ -41953,6 +40458,84 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:+9V_UNREG")
+		(at 228.6 222.25 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "dd0a4471-fc5a-491d-9017-3c35e717b335")
+		(property "Reference" "#PWR0502"
+			(at 228.6 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+9V_UNREG"
+			(at 228.6 217.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 228.6 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 227.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 228.6 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b7384dd8-082e-432d-8b60-ecdd96499e2a")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
+					(reference "#PWR0502")
 					(unit 1)
 				)
 			)
