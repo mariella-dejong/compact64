@@ -982,118 +982,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "KU-schematics-library:+9V_UNREG"
-			(power global)
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+9V_UNREG"
-				(at 0.2032 4.2164 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 -1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 -5.08 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "+9V_UNREG_0_1"
-				(circle
-					(center 0 2.54)
-					(radius 0.635)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 1.8796)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+9V_UNREG_1_1"
-				(pin power_in line
-					(at 0 0 0)
-					(length 0)
-					(hide yes)
-					(name "+9V_UNREG"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "KU-schematics-library:GND_SMALL"
 			(power global)
 			(pin_names
@@ -1745,17 +1633,6 @@
 		)
 		(uuid "10163ca8-4c8f-4fba-b468-4865687f1f79")
 	)
-	(text "Derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb\nhttps://github.com/mbarszcz-pcb/c64-rf-modulator-replacement\nCopyright (c) 2020 mbarszcz-pcb. MIT License, see LICENSES/MIT.txt.\nModified for c64-mini, see NOTICE.md and hardware/main-board/README.md."
-		(exclude_from_sim no)
-		(at 12.7 196.85 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a7593825-da58-4f79-86ec-31ff3a35ba72")
-	)
 	(text "R7 + RV2\nApprox 150Ω"
 		(exclude_from_sim no)
 		(at 243.84 92.71 0)
@@ -1777,6 +1654,17 @@
 			(justify left bottom)
 		)
 		(uuid "67fc1b40-e0a9-43a3-81e9-9ec037595d52")
+	)
+	(text "Derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb\nhttps://github.com/mbarszcz-pcb/c64-rf-modulator-replacement\nCopyright (c) 2020 mbarszcz-pcb. MIT License, see LICENSES/MIT.txt.\nModified for c64-mini, see NOTICE.md and hardware/main-board/README.md."
+		(exclude_from_sim no)
+		(at 12.7 196.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a7593825-da58-4f79-86ec-31ff3a35ba72")
 	)
 	(junction
 		(at 170.18 53.34)
@@ -2684,16 +2572,6 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 161.29) (xy 63.5 161.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d753f851-ed92-41b4-ba95-0f8bf0f33598")
-	)
-	(wire
-		(pts
 			(xy 109.22 171.45) (xy 124.46 171.45)
 		)
 		(stroke
@@ -2844,6 +2722,17 @@
 		)
 		(uuid "4313bc2e-6ed8-4e4e-b501-e0c521bf6947")
 	)
+	(hierarchical_label "12V_IN"
+		(shape input)
+		(at 63.5 161.29 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "75d36cb2-8fcd-474b-8696-ccd56d0b4b05")
+	)
 	(hierarchical_label "CHROMA_OUT"
 		(shape output)
 		(at 254 62.23 0)
@@ -2963,84 +2852,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C506")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:+9V_UNREG")
-		(at 58.42 161.29 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0e7ff1a4-a52f-4dd5-8570-85db5b783190")
-		(property "Reference" "#PWR0501"
-			(at 58.42 165.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+9V_UNREG"
-			(at 58.42 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 58.42 162.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 58.42 166.37 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 58.42 161.29 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d61b089c-5801-43e4-be17-51a8be6a8b61")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "#PWR0501")
 					(unit 1)
 				)
 			)
