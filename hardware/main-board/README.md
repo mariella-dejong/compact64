@@ -116,7 +116,8 @@ reaches 12 V a few ms after `+5V`. Neither the 6567 nor the 6581 datasheet
 specifies a power-up order between VDD and Vcc, and the power-on reset (U20B,
 about 0.5 s) keeps the CPU, the CIAs and the SID in reset well beyond that.
 
-The rail is for the 6581 SID. An 8580 needs 9 V on VDD instead.
+The board supports the 6581 SID only. The 8580 is not supported: it needs
+9 V on VDD instead of 12 V, and the rail has no 9 V option.
 
 #### `+12V` current budget
 
