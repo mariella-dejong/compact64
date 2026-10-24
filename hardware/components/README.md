@@ -16,6 +16,7 @@ under `hardware/` can register it the same way.
 | ------------------- | ------------------------------------------ | ----------- | -------------------------------------------------------- |
 | `LM61440AASQRJRRQ1` | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3038666    | Spread spectrum, turned off while synchronized (EN/SYNC) |
 | `LM61440AANRJRR`    | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3188034    | No spread spectrum; derived from `LM61440AASQRJRRQ1`     |
+| `UCC27517DBV`       | `Package_TO_SOT_SMD:SOT-23-5`              | C99395      | Standard KiCad footprint                                 |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -57,6 +58,24 @@ footprint for this package. It is drawn from the LM61440 datasheet
 - There is no 3D model.
 
 ![RJR0014A footprint](images/RJR0014A_footprint.png)
+
+### UCC27517
+
+Single-channel, low-side gate driver from Texas Instruments
+([datasheet](https://www.ti.com/lit/ds/symlink/ucc27517.pdf)) with 4 A peak
+source and sink current and a 4.5 V to 18 V supply. Its input thresholds are
+TTL and CMOS compatible and do not depend on the supply voltage, so a 5 V
+logic signal can switch a 12 V output. The output is held low while VDD is
+below the undervoltage lockout threshold or an input is floating.
+
+KiCad has a symbol for the UCC27511A, but that part has split outputs and a
+different pinout (SOT-23-6). The `UCC27517DBV` symbol is drawn in the same
+style, with the pins from the pin functions table of the datasheet (SLUSAY4D):
+1 VDD, 2 GND, 3 IN+, 4 IN-, 5 OUT. For a noninverting driver, connect IN- to
+GND; for an inverting driver, connect IN+ to VDD. It uses the standard KiCad
+footprint `Package_TO_SOT_SMD:SOT-23-5`.
+
+![UCC27517 symbol](images/UCC27517_symbol.png)
 
 ### FCH0650 footprint
 
