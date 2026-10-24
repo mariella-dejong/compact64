@@ -9755,17 +9755,6 @@
 		)
 		(uuid "1799c1e7-f3b5-49cc-b849-d7e4ad75cab1")
 	)
-	(text "16V"
-		(exclude_from_sim no)
-		(at 277.6474 239.2934 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1e639a01-9d33-4092-9228-51f1fac7f705")
-	)
 	(text "2"
 		(exclude_from_sim no)
 		(at 252.0696 91.1352 0)
@@ -10592,12 +10581,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8dde23b6-5abf-4178-93cb-d7d7b448f942")
-	)
-	(junction
-		(at 280.67 232.41)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8fcfd9a8-c7cf-4a2e-87d3-460ff3c6923a")
 	)
 	(junction
 		(at 44.45 243.84)
@@ -12165,16 +12148,6 @@
 	)
 	(wire
 		(pts
-			(xy 280.67 232.41) (xy 280.67 229.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "18275614-c727-4064-af48-2996b4ba9b02")
-	)
-	(wire
-		(pts
 			(xy 295.91 78.74) (xy 295.91 80.01)
 		)
 		(stroke
@@ -13465,16 +13438,6 @@
 	)
 	(wire
 		(pts
-			(xy 280.67 232.41) (xy 285.75 232.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4849bbab-ca35-45bf-bad6-3a622304f3a7")
-	)
-	(wire
-		(pts
 			(xy 284.48 115.57) (xy 284.48 114.3)
 		)
 		(stroke
@@ -13685,16 +13648,6 @@
 	)
 	(wire
 		(pts
-			(xy 280.67 232.41) (xy 275.59 232.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4f2d2237-6795-4303-a035-672b09cf32b8")
-	)
-	(wire
-		(pts
 			(xy 180.34 234.95) (xy 160.02 234.95)
 		)
 		(stroke
@@ -13752,16 +13705,6 @@
 			(type default)
 		)
 		(uuid "51cfb133-88a5-4bdc-aade-ebd14c54cbde")
-	)
-	(wire
-		(pts
-			(xy 275.59 233.68) (xy 275.59 232.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "52053613-d70c-40b3-bfbb-2baa24e1a2ef")
 	)
 	(wire
 		(pts
@@ -15762,16 +15705,6 @@
 			(type default)
 		)
 		(uuid "9d65b678-c440-4384-94b0-cfcff0cd6c2b")
-	)
-	(wire
-		(pts
-			(xy 285.75 232.41) (xy 285.75 233.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9d7f6a1b-94d6-4973-94dd-c760a2449511")
 	)
 	(wire
 		(pts
@@ -24343,83 +24276,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 275.59 238.76 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3e891602-88b5-491c-8879-045965527639")
-		(property "Reference" "#U0158"
-			(at 275.59 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 275.59 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 275.59 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 275.59 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 275.59 238.76 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ebcfbec8-d2ff-41b2-a6d4-3b7bba2206e5")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#U0158")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 262.89 86.36 0)
 		(unit 1)
@@ -29149,83 +29005,6 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 280.67 229.87 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8230e049-400c-4274-9f56-c263b0b05fbb")
-		(property "Reference" "#PWR0130"
-			(at 280.67 233.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 278.892 225.806 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 280.67 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 280.67 229.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 280.67 229.87 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "88922780-1f65-4dc9-851f-f16514b7d08f")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#PWR0130")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
 		(at 73.66 267.97 0)
 		(unit 1)
 		(body_style 1)
@@ -30857,95 +30636,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "C66")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
-		(at 285.75 236.22 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "96df6bf2-4fcb-4629-a702-76dc5716c373")
-		(property "Reference" "C92"
-			(at 289.5346 235.3056 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" ".1"
-			(at 289.2552 236.9312 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
-			(at 285.75 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 285.75 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 285.75 236.22 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C84772"
-			(at 285.75 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "3ec862da-178e-41cc-85a3-b3404486366e")
-		)
-		(pin "1"
-			(uuid "805b824e-fcdb-4fce-ae65-fcc4018ebf2c")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "C92")
 					(unit 1)
 				)
 			)
@@ -33100,97 +32790,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "#U0140")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:CP_Small")
-		(at 275.59 236.22 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c646d239-b6f4-491b-af3e-6438c4aa8cc3")
-		(property "Reference" "C91"
-			(at 277.5458 234.823 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100uF"
-			(at 277.5458 236.6264 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_ELYT_RADIAL_P5.08mm"
-			(at 275.59 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 275.59 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 275.59 236.22 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C178391"
-			(at 275.59 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c8970a4e-641a-41d0-ae25-6cd0d495d954")
-		)
-		(pin "2"
-			(uuid "fc234aed-d520-417a-9007-5007de5d171b")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "C91")
 					(unit 1)
 				)
 			)
@@ -35980,83 +35579,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
 					(reference "#PWR0101")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 285.75 238.76 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ef140a19-8ead-4a78-a942-2cd1b828d481")
-		(property "Reference" "#U0157"
-			(at 285.75 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 285.75 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 285.75 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 285.75 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 285.75 238.76 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d9fd0d01-e5d1-43c5-beb0-97c2b9d05eb7")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/6238ec0f-6cec-4554-96a0-848e3b739777"
-					(reference "#U0157")
 					(unit 1)
 				)
 			)
