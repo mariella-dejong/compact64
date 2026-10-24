@@ -2025,6 +2025,12 @@
 		(uuid "cfee2c8c-9205-4414-b200-5c5e548d56a3")
 	)
 	(junction
+		(at 166.37 90.17)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d9a504f3-c175-4399-8a08-e98eb4e11261")
+	)
+	(junction
 		(at 38.1 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2051,16 +2057,6 @@
 	(no_connect
 		(at 35.56 91.44)
 		(uuid "0e672cbc-27ca-4986-831e-8ba8ba04c841")
-	)
-	(wire
-		(pts
-			(xy 116.84 74.93) (xy 120.65 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0186dd25-7ddc-43ff-ab9d-2afeb00f9318")
 	)
 	(wire
 		(pts
@@ -2154,6 +2150,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 67.31) (xy 207.01 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "48f028e1-8d98-4bd8-a9d3-256ef350195a")
+	)
+	(wire
+		(pts
 			(xy 38.1 93.98) (xy 40.64 93.98)
 		)
 		(stroke
@@ -2234,6 +2240,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 95.25) (xy 182.88 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6daf55c6-b2ec-4ea7-a1f3-da86f6d2c86d")
+	)
+	(wire
+		(pts
 			(xy 40.64 59.69) (xy 46.99 59.69)
 		)
 		(stroke
@@ -2274,6 +2290,16 @@
 	)
 	(wire
 		(pts
+			(xy 203.2 71.12) (xy 203.2 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "820de267-4040-4bd5-8830-74e0d91869a8")
+	)
+	(wire
+		(pts
 			(xy 38.1 88.9) (xy 40.64 88.9)
 		)
 		(stroke
@@ -2281,6 +2307,16 @@
 			(type default)
 		)
 		(uuid "83652bda-f862-4631-b3e3-200e7afb375e")
+	)
+	(wire
+		(pts
+			(xy 207.01 67.31) (xy 207.01 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8803f676-e5a4-4fd3-ad96-761a730f4a39")
 	)
 	(wire
 		(pts
@@ -2414,6 +2450,16 @@
 	)
 	(wire
 		(pts
+			(xy 162.56 71.12) (xy 203.2 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c2f0e660-0454-46f1-8989-a215f25ca2bc")
+	)
+	(wire
+		(pts
 			(xy 88.9 59.69) (xy 88.9 63.5)
 		)
 		(stroke
@@ -2451,6 +2497,16 @@
 			(type default)
 		)
 		(uuid "de51a6a6-a00d-4472-9e00-96e94de29444")
+	)
+	(wire
+		(pts
+			(xy 166.37 90.17) (xy 182.88 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e641ed5c-825b-4b91-aa96-058ce37b7f49")
 	)
 	(wire
 		(pts
@@ -2503,17 +2559,6 @@
 		)
 		(uuid "5e6ee128-764a-4754-9102-acf62094f530")
 	)
-	(hierarchical_label "COLOR_CLK_IN"
-		(shape input)
-		(at 116.84 74.93 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "98fc3a49-a797-47c2-ab5d-3d06952f8242")
-	)
 	(hierarchical_label "+12V_STABILIZED"
 		(shape output)
 		(at 168.91 120.65 0)
@@ -2524,6 +2569,17 @@
 			(justify left)
 		)
 		(uuid "aed51f12-a262-4f28-a09e-80929413dfaf")
+	)
+	(hierarchical_label "COLOR_CLK_IN"
+		(shape input)
+		(at 180.34 95.25 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ee3f8c79-4894-4215-9989-5f39b4c53510")
 	)
 	(symbol
 		(lib_id "power:PWR_FLAG")
@@ -3838,6 +3894,92 @@
 		)
 	)
 	(sheet
+		(at 182.88 85.09)
+		(size 46.99 20.32)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "7ad083e5-373a-4464-8e28-a33f7d88cde5")
+		(property "Sheetname" "Color Clock Divider"
+			(at 182.88 84.3784 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "color_clock_divider.kicad_sch"
+			(at 182.88 105.9946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "5V_PGOOD" input
+			(at 207.01 85.09 90)
+			(uuid "bed19197-e4ed-420b-a8af-914e8b595416")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CAN+5V" input
+			(at 182.88 90.17 180)
+			(uuid "0fc884cf-dee0-47c1-991a-29b586ca3b07")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "COLOR_CLK_IN" input
+			(at 182.88 95.25 180)
+			(uuid "c844d89d-569f-4a17-8ba4-38c37742efb5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Q4" output
+			(at 203.2 85.09 90)
+			(uuid "d6cc6e53-ccef-4d60-965f-4350808639dc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da"
+					(page "10")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 120.65 85.09)
 		(size 41.91 20.32)
 		(exclude_from_sim no)
@@ -4047,14 +4189,24 @@
 				(justify right)
 			)
 		)
-		(pin "COLOR_CLK_IN" input
-			(at 120.65 74.93 180)
-			(uuid "c5172232-38e3-49f3-a912-90c9c280c90f")
+		(pin "CLOCK_IN" input
+			(at 162.56 71.12 0)
+			(uuid "f1a68b7d-a532-4d83-b347-8bc04bde09cd")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
+			)
+		)
+		(pin "PGOOD" output
+			(at 162.56 67.31 0)
+			(uuid "5e010127-64fd-4bef-8d76-298f88486bfe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
