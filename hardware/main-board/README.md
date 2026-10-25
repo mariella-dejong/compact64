@@ -275,10 +275,80 @@ budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
 
 Controlling the start-up order of the rails, for example to keep 5 V signals
 away from the microcontrollers until they are ready, is left to a later
-supervisor microcontroller. The converters' EN pins (R705, R1201) are where it
-can take control.
+supervisor microcontroller (see below, #46 and #47). The converters' EN pins
+(R705, R1201) are where it can take control.
 
 Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
+
+## Supervisor microcontroller
+
+The `Supervisor` sheet holds a microcontroller (U1301, RP2354B) that will
+decide when the rest of the system may power up (#46). It runs from `+3V3`,
+the one rail that is always on. For now it only has its supply, clock, reset
+and USB; its functions follow in separate issues:
+
+| Function | Hardware | Firmware |
+| -------- | -------- | -------- |
+| Keep all rails except `+3V3` off until it is safe to start | #47 | #48 |
+| Check that the legacy chips are fitted in their sockets | #49 | #50 |
+| Link to the other microcontrollers | #51 | used by #52 and #53 |
+| Check that all ROM images are present | uses #51 | #52 |
+| Check that the other microcontrollers run up-to-date firmware | uses #51 | #53 |
+| Status indicator (LED) | #54 | #55 |
+
+### Circuit
+
+The circuit follows Raspberry Pi's reference design for the RP2350
+([Hardware design with RP2350](https://datasheets.raspberrypi.com/rp2350/hardware-design-with-rp2350.pdf)).
+The RP2354B is an RP2350B with 2 MB of flash in the package, so there is no
+external flash chip.
+
+- **Core regulator:**
+  - L1301 (3.3 uH Abracon AOTA-B201610S3R3-101-T) between `VREG_LX` and the
+    core supply, which is a local net (`+1V1`) on this sheet so that it can
+    never join the core supply of another RP2354.
+  - The inductor's polarity dot (pad 1) is on the core supply side, as in
+    the RP2350 reference layout.
+  - C1303 decouples `VREG_VIN`, C1304 and C1309 (4.7 uF) the output, C1307
+    and C1310 the DVDD pins.
+  - R1307 (33 Ohm) and C1308 (4.7 uF) filter `VREG_AVDD`.
+- **Supplies:** the IOVDD, ADC_AVDD, USB_OTP_VDD and QSPI_IOVDD pins are on
+  `+3V3`, with a 100 nF capacitor each (C1311 to C1321).
+- **Clock:** Y1301 (12 MHz Abracon ABM8-272-T3) with C1301 and C1302 (15 pF)
+  and R1303 (1k) in series with XOUT, as recommended for this crystal.
+- **Reset and boot:** R1308 (200k) pulls RUN up and SW1302 (RESET) pulls it
+  low. SW1301 (BOOTSEL) pulls `QSPI_SS` low through R1309 (1k).
+- **USB:** J1301 is a USB-C receptacle used for data only. VBUS does not
+  power the board.
+  - R1310 and R1311 (27 Ohm) are in series with D+ and D-.
+  - R1301 and R1302 (5.1k) on CC1 and CC2 identify the board as a device.
+  - D1301 to D1305 (H5VL10BH) protect D+, D-, CC1, CC2 and VBUS against ESD.
+  - R1304 (4.7k) and R1305 (6.8k) divide VBUS to about 3.0 V for GPIO13
+    (`VBUS_DET`), so the firmware can detect a connected host; C1305 filters
+    it and C1306 decouples VBUS.
+
+### Programming
+
+The supervisor is programmed through the USB-C connector with the RP2354's
+built-in USB bootloader: hold BOOTSEL, press and release RESET, then release
+BOOTSEL. The board then shows up as a USB drive that accepts a UF2 file. The
+SWD pins (SWCLK, SWDIO) are not brought out.
+
+### Pins
+
+Apart from GPIO13 (`VBUS_DET`), the GPIOs are not assigned yet; the
+follow-up issues assign them. The state of each assigned pin from power-up
+until the firmware runs, and with blank firmware, is to be documented with
+those issues, because the rail control (#47) depends on it.
+
+### Notes
+
+- **Stock:** LCSC lists the RP2354B (C39843328) with no stock at the time of
+  writing; the RP2354A (C41378174, QFN-60) is in stock.
+- **USB-C symbol:** J1301 uses the 14-pin USB 2.0 symbol on a 16-pin
+  footprint, so the SBU pads (A8, B8) stay unconnected.
+- **TVS footprint:** the H5VL10BH comes in a DFN1006-2L package and sits on
+  a 0402 footprint of the same size.
 
 ## Licence
 
@@ -398,6 +468,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-24 | Added a `Supervisor` sheet to the root sheet with an RP2354B microcontroller (U1301) on `+3V3`, following Raspberry Pi's RP2350 reference design: core regulator inductor L1301 with its own local core supply net, 12 MHz crystal Y1301, RESET (SW1302) and BOOTSEL (SW1301) buttons, and a USB-C receptacle (J1301) for programming with ESD protection and VBUS detection on GPIO13. Annotated its parts from 1300 |
 | 2026-10-24 | Added an `RP2354B` symbol for the supervisor microcontroller to the component library in `hardware/components`, with the pin layout from the author's earlier RP2354 designs, the 0.3 mm thermal via QFN-80 footprint and LCSC part C39843328 |
 | 2026-10-24 | Added three footprints for the RP2354 supervisor microcontroller to the component library in `hardware/components`: `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` (KiCad's QFN-80 with 0.3 mm thermal vias), `L_Abracon_AOTA-B201610` (polarity-marked core regulator inductor) and `USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A_Aligned` (KiCad's footprint with the origin moved 1.15 mm) |
 | 2026-10-24 | Added a `3V3 Buck` sub-sheet to the `Power Supply` sheet that makes `+3V3` from the 12 V DC input with an LM61440 synchronous buck converter (U1201), a copy of the 5 V buck converter changed for 3.3 V: feedback divider R1204 51k and R1205 22k (3.32 V), feedforward C1208 10 pF with R1206 1k, inductor L1201 10 uH (Fangcheng FCH0650-100M) and four 22 uF output capacitors (C1209 to C1212) plus C1213. It is synchronized to Q4 of the colour clock divider through C1205, and `+3V3` reaches the root sheet through the `3V3_OUT` sheet pin. Annotated its parts from 1200 |

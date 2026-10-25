@@ -2122,6 +2122,52 @@
 		)
 	)
 	(sheet
+		(at 166.37 82.55)
+		(size 83.82 35.56)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "83785ced-90f1-439c-a9f5-0f5eaac8b37d")
+		(property "Sheetname" "Supervisor"
+			(at 166.37 81.8384 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "supervisor.kicad_sch"
+			(at 166.37 118.6946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "13")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 256.54 125.73)
 		(size 46.99 38.1)
 		(exclude_from_sim no)
