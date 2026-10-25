@@ -49,6 +49,8 @@ The work is tracked in the issue tracker. In broad strokes:
   rails from it (#26), starting with the 5 V buck converter (#28),
   `CAN+5V` (#34), `+12V` (#36), the cassette motor supply (#41) and
   `+3V3` (#44), and remove the 9 V AC input (#37)
+- Add a supervisor microcontroller that only lets the system power up when
+  it is safe to do so (#46)
 - Replace RAM and ROM with a microcontroller-based solution (#11)
 - Replace CIA1 and CIA2 with a microcontroller-based solution (#25)
 - Replace the keyboard connector with a USB keyboard to keyboard-matrix
