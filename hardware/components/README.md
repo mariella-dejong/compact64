@@ -17,6 +17,7 @@ under `hardware/` can register it the same way.
 | `LM61440AASQRJRRQ1` | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3038666    | Spread spectrum, turned off while synchronized (EN/SYNC) |
 | `LM61440AANRJRR`    | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3188034    | No spread spectrum; derived from `LM61440AASQRJRRQ1`     |
 | `UCC27517DBV`       | `Package_TO_SOT_SMD:SOT-23-5`              | C99395      | Standard KiCad footprint                                 |
+| `RP2354B`           | `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | C39843328 | Supervisor microcontroller; pin layout differs from KiCad's stock symbol |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -24,7 +25,7 @@ Footprints for parts that use a standard KiCad symbol:
 | --------------------- | ---------- | ----------------------------------- | ----------- |
 | `L_Fangcheng_FCH0650` | `Device:L` | FCH0650-150M (15 µH power inductor) | C20415538   |
 | `L_Abracon_AOTA-B201610` | `Device:L` | AOTA-B201610S3R3-101-T (3.3 µH, polarity marked; RP2350/RP2354 core regulator) | C42411119 |
-| `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | `MCU_RaspberryPi:RP2354B` | RP2354B (also RP2350B) | C39843328 |
+| `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | `RP2354B` (this library) | RP2354B (also RP2350B) | C39843328 |
 | `USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A_Aligned` | `Connector:USB_C_Receptacle_USB2.0_16P` | HCTL HC-TYPE-C-16P-01A | C2894897 |
 
 Two of these footprints are modified copies of footprints from the KiCad
@@ -109,11 +110,29 @@ for a smaller body.
 
 ### RP2354 microcontroller
 
-The supervisor microcontroller (#46) is an RP2354: an RP2350 with 2 MB of
-flash in the package. KiCad 10 has the symbols `MCU_RaspberryPi:RP2354A`
-(QFN-60) and `MCU_RaspberryPi:RP2354B` (QFN-80) in its standard library, with
-the pin names and numbers of the RP2350 datasheet, so this library adds no
-symbol. Assign the footprint below to use 0.3 mm thermal vias.
+The supervisor microcontroller (#46) is an RP2354B: an RP2350B with 2 MB of
+flash in the package, in QFN-80
+([datasheet](https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf)).
+
+KiCad 10 has `MCU_RaspberryPi:RP2354B` in its standard library, but this
+library has its own `RP2354B` symbol with a different pin layout, carried
+over from the author's earlier RP2354 designs:
+
+- **Top:** the supplies (DVDD, QSPI_IOVDD, IOVDD, USB_OTP_VDD, ADC_AVDD).
+- **Left:** the core regulator, QSPI, crystal, RUN and SWD pins.
+- **Right:** USB and GPIO0 to GPIO47 in order.
+- **Bottom:** GND (the exposed pad, pin 81).
+
+Its pin names and numbers match the RP2350 datasheet and KiCad's stock
+symbol. The only differences are the spelling of a few names: `SWD` for
+SWDIO, `QSPI_SS` without the active-low bar, and `GPIO40_ADC0` for
+`GPIO40/ADC0`. Power pins are power inputs and `VREG_LX` is a power output,
+so ERC checks the supplies. Because the core supply (DVDD, `VREG_FB`) is fed
+through the inductor, which is passive, that net needs a PWR_FLAG.
+
+The symbol uses the footprint below, with 0.3 mm thermal vias.
+
+![RP2354B symbol](images/RP2354B_symbol.png)
 
 ### QFN-80 footprint with 0.3 mm thermal vias
 
