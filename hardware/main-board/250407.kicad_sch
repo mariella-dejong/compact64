@@ -67,6 +67,16 @@
 	)
 	(wire
 		(pts
+			(xy 57.15 97.79) (xy 57.15 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "896ed5c2-a6c6-453e-a976-6865718b52ce")
+	)
+	(wire
+		(pts
 			(xy 55.88 69.85) (xy 55.88 66.04)
 		)
 		(stroke
@@ -84,6 +94,16 @@
 			(type default)
 		)
 		(uuid "8f1c1b6d-c832-4e72-97a2-96a6f01293be")
+	)
+	(wire
+		(pts
+			(xy 60.96 97.79) (xy 60.96 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "974151b5-0377-4b4e-ac1d-124fec6a070b")
 	)
 	(wire
 		(pts
@@ -167,6 +187,28 @@
 			(justify left)
 		)
 		(uuid "49c04767-9766-41b4-9b70-fd06c0cc2e9f")
+	)
+	(hierarchical_label "AUDIO_IN"
+		(shape input)
+		(at 60.96 104.14 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "80aed273-858f-4e1e-8be9-51fd764a99be")
+	)
+	(hierarchical_label "AUDIO_OUT"
+		(shape output)
+		(at 57.15 104.14 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8e05c7e1-6241-4d99-b399-3aa8d8b27c2a")
 	)
 	(hierarchical_label "CASS_POWER"
 		(shape input)
@@ -426,6 +468,26 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "AUDIO_IN" input
+			(at 60.96 97.79 270)
+			(uuid "e782307d-c917-4eab-83fc-bf35ebdc2b97")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AUDIO_OUT" output
+			(at 57.15 97.79 270)
+			(uuid "f5989b69-ecf5-4c51-a6e0-dfadb8b36929")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances

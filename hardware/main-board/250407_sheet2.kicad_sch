@@ -21861,16 +21861,6 @@
 		)
 		(uuid "271e2d41-1505-4914-9ab9-bbb8e17f3005")
 	)
-	(label "AUDIO_IN"
-		(at 384.81 172.72 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "279080d0-66a0-48ef-a478-99088e35985a")
-	)
 	(label "D3"
 		(at 175.26 125.73 90)
 		(effects
@@ -23861,16 +23851,6 @@
 		)
 		(uuid "ba49511c-e00a-4f70-a85a-959798066f14")
 	)
-	(label "AUDIO_OUT"
-		(at 392.43 147.32 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "bb33d7de-ff86-4181-83ec-616fc47e6a52")
-	)
 	(label "~{ROML}"
 		(at 118.11 205.74 0)
 		(effects
@@ -25299,6 +25279,28 @@
 			(justify right)
 		)
 		(uuid "c015ce2e-94e2-4d79-a0f3-07dafc9d220f")
+	)
+	(hierarchical_label "AUDIO_OUT"
+		(shape output)
+		(at 393.7 147.32 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cdaa0e4e-6686-4937-9523-38723ef544fa")
+	)
+	(hierarchical_label "AUDIO_IN"
+		(shape input)
+		(at 388.62 172.72 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "edafa7d1-bf9c-4402-ac80-377f012db572")
 	)
 	(symbol
 		(lib_id "250407_-rescue:R_ARRAY_US_4RES-KU-schematics-library")
