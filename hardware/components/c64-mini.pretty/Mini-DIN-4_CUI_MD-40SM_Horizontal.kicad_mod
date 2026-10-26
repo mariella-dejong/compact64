@@ -1,0 +1,233 @@
+(footprint "Mini-DIN-4_CUI_MD-40SM_Horizontal"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "Mini-DIN-4 socket, right angle, through hole, shielded, CUI (Same Sky) MD-40SM, mating face on the board edge, recommended PCB layout for date codes after 03/03/2022 from the MD-SM datasheet (rev. 1.09, page 2), https://www.sameskydevices.com/product/resource/md-sm.pdf")
+	(tags "mini-DIN DIN 4 pin S-Video THT horizontal shielded CUI MD-40SM")
+	(property "Reference" "REF**"
+		(at -3.4 -5.8 0)
+		(layer "F.SilkS")
+		(uuid "e1e094d9-e29c-4c1e-9fd5-9c54d4c4ad31")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Mini-DIN-4_CUI_MD-40SM_Horizontal"
+		(at -3.4 10 0)
+		(layer "F.Fab")
+		(uuid "c9950259-c71d-4ed5-b19a-f4883d3e2bf5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.sameskydevices.com/product/resource/md-sm.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "44c385e4-d1eb-4cab-9d6f-d7f1b44f12f3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Mini-DIN-4 socket, right angle, through hole, shielded, CUI (Same Sky) MD-40SM, mating face on the board edge, recommended PCB layout for date codes after 03/03/2022 from the MD-SM datasheet (rev. 1.09, page 2), https://www.sameskydevices.com/product/resource/md-sm.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "fdb600e6-b29b-41de-9ffc-b44724783d98")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_line
+		(start -10.51 -4.21)
+		(end -10.51 1.2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "14b5676f-17fe-4443-b601-194745f8e046")
+	)
+	(fp_line
+		(start -10.51 -4.21)
+		(end 3.71 -4.21)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "b011f87d-7ff3-4b74-aa15-41402c004a18")
+	)
+	(fp_line
+		(start -10.51 4.8)
+		(end -10.51 8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "be346cb3-3c1d-4edc-a12b-784ce6126ce7")
+	)
+	(fp_line
+		(start 3.71 -4.21)
+		(end 3.71 1.2)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "90b4f830-c7ee-4e45-bf06-8e4e201591ff")
+	)
+	(fp_line
+		(start 3.71 4.8)
+		(end 3.71 8)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "5e1f0068-aadf-4d0d-a4a0-3b64b8d04c21")
+	)
+	(fp_poly
+		(pts
+			(xy 1.1 0) (xy 1.9 -0.5) (xy 1.9 0.5)
+		)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "763d0c16-96b7-4323-8a6d-283b3c875881")
+	)
+	(fp_line
+		(start -12.4 8.5)
+		(end 5.6 8.5)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "Dwgs.User")
+		(uuid "96d5a64c-a667-4cd2-a8ba-895e882dccf3")
+	)
+	(fp_poly
+		(pts
+			(xy -11.45 -5) (xy 4.65 -5) (xy 4.65 9) (xy -11.45 9)
+		)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "e6f3bb80-53b5-4623-b8b0-8fe59dee9f77")
+	)
+	(fp_poly
+		(pts
+			(xy -10.4 -4.1) (xy 2.6 -4.1) (xy 3.6 -3.1) (xy 3.6 8.5) (xy -10.4 8.5)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "ff84340e-d173-47b1-b6cd-0cbc9246fbc1")
+	)
+	(fp_text user "Board edge"
+		(at -12.9 8.5 0)
+		(layer "Dwgs.User")
+		(uuid "f88bef54-39c8-49f1-9a9f-3c07a3f87d8b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify right)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at -3.4 -1.25 0)
+		(layer "F.Fab")
+		(uuid "71408aaf-dc84-43c1-8fcc-faafb5a6fa09")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole roundrect
+		(at 0 0)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(roundrect_rratio 0.25)
+		(uuid "f9582700-7ec0-407b-92ed-dc5f0f450993")
+	)
+	(pad "2" thru_hole circle
+		(at -6.8 0)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7676ba07-e38a-4018-bea2-35aba311bfce")
+	)
+	(pad "3" thru_hole circle
+		(at 0 -2.5)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "1ed20bde-89d8-49c1-9d73-2551e9bf6a64")
+	)
+	(pad "4" thru_hole circle
+		(at -6.8 -2.5)
+		(size 1.6 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "0faad974-a7e2-4e03-a4d9-e6d5626a11a7")
+	)
+	(pad "SH" thru_hole oval
+		(at -10.15 3)
+		(size 1.6 3)
+		(drill oval 1 2.4)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "3b47d74b-1680-441e-9113-4f5f09989b0f")
+	)
+	(pad "SH" thru_hole oval
+		(at -3.4 3.8)
+		(size 3 1.5)
+		(drill oval 2.3 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "97f6f8da-ec20-4a78-b0fc-2cf449855d51")
+	)
+	(pad "SH" thru_hole oval
+		(at 3.35 3)
+		(size 1.6 3)
+		(drill oval 1 2.4)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "a89dc1a0-94ad-4a34-aec1-9b614bb4d9bb")
+	)
+	(embedded_fonts no)
+)
