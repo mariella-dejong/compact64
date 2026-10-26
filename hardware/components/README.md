@@ -18,6 +18,7 @@ under `hardware/` can register it the same way.
 | `LM61440AANRJRR`    | `Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A` | C3188034    | No spread spectrum; derived from `LM61440AASQRJRRQ1`     |
 | `UCC27517DBV`       | `Package_TO_SOT_SMD:SOT-23-5`              | C99395      | Standard KiCad footprint                                 |
 | `RP2354B`           | `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | C39843328 | Supervisor microcontroller; pin layout differs from KiCad's stock symbol |
+| `MD-40SM`           | `Mini-DIN-4_CUI_MD-40SM_Horizontal`        | C6224745    | S-Video socket; stock `Connector:Mini-DIN-4` plus a shield pin |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -34,6 +35,8 @@ library (`QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias` and
 [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with the
 KiCad library exception for designs that use them. The modified files keep
 that licence; their descriptions name the original footprint.
+The `MD-40SM` symbol is likewise a modified copy of KiCad's
+`Connector:Mini-DIN-4` symbol and keeps the same licence.
 
 ### LM61440
 
@@ -179,6 +182,45 @@ C2894897) uses, so the component position file needs no correction. The 3D
 model reference has a matching offset of -1.15 mm.
 
 ![Aligned USB-C footprint](images/USB_C_HCTL_Aligned_footprint.png)
+
+### MD-40SM mini-DIN socket
+
+The CUI (now Same Sky) MD-40SM is a right-angle, through-hole 4-pin mini-DIN
+socket with a metal shield, used as the S-Video connector
+([MD-SM datasheet](https://www.sameskydevices.com/product/resource/md-sm.pdf),
+rev. 1.09). KiCad has no footprint for it.
+
+**Symbol:** `MD-40SM` is KiCad's `Connector:Mini-DIN-4` with a shield pin
+added. The stock symbol only has the four contacts, so the shield could not
+be connected. Pins 1 to 4 are numbered as in the datasheet and drawn as seen
+from the front of the socket (1 bottom right, 2 bottom left, 3 top right, 4
+top left). `SH` is the shield and the earth terminal; connect it to ground.
+
+![MD-40SM symbol](images/MD-40SM_symbol.png)
+
+**Footprint:** `Mini-DIN-4_CUI_MD-40SM_Horizontal`, from the recommended PCB
+layout for **date codes after 3 March 2022** (datasheet page 2). The layout
+for older parts is different (6.5 mm pin pitch, plastic pegs instead of
+shield legs) and does not fit this footprint. The origin is pad 1.
+
+- Contacts: 6.8 mm apart, pins 1 and 2 8.5 mm from the board edge, pins 3
+  and 4 11.0 mm from the board edge. The datasheet asks for 0.9 mm holes
+  (+0.1/-0); the footprint uses 1.0 mm holes with 1.6 mm pads.
+- Earth terminal (`SH`): a 2.2 mm x 0.7 mm slot (+0.1/-0) in the datasheet,
+  4.7 mm from the board edge; the footprint uses a 2.3 mm x 0.8 mm plated
+  slot.
+- Shield legs (`SH`): 13.5 mm apart, 5.5 mm from the board edge. The
+  datasheet does not give the slot size; the legs are about 0.55 mm x 2.0 mm
+  in the drawing, and the front view puts them slightly further apart than
+  13.5 mm. The footprint uses 1.0 mm x 2.4 mm plated slots, which leave room
+  for both.
+- The mating face sits on the board edge, which is marked on the `Dwgs.User`
+  layer.
+- Fabrication layer: the housing (14 mm x 12.6 mm). Courtyard 0.5 mm around
+  the housing, the latch on its back and the pads.
+- There is no 3D model.
+
+![MD-40SM footprint](images/MD-40SM_footprint.png)
 
 ## Adding parts
 
