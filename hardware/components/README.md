@@ -19,6 +19,7 @@ under `hardware/` can register it the same way.
 | `UCC27517DBV`       | `Package_TO_SOT_SMD:SOT-23-5`              | C99395      | Standard KiCad footprint                                 |
 | `RP2354B`           | `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | C39843328 | Supervisor microcontroller; pin layout differs from KiCad's stock symbol |
 | `MD-40SM`           | `Mini-DIN-4_CUI_MD-40SM_Horizontal`        | C6224745    | S-Video socket; stock `Connector:Mini-DIN-4` plus a shield pin |
+| `CAX-AV-314-RWY-PHP` | `Jack_RCA_x3_CAX_AV-314-RWY_Horizontal` | C55072367 | Triple RCA jack (red, white, yellow); one unit per jack |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -221,6 +222,49 @@ shield legs) and does not fit this footprint. The origin is pad 1.
 - There is no 3D model.
 
 ![MD-40SM footprint](images/MD-40SM_footprint.png)
+
+### Triple RCA jack
+
+The CAX-AV-314-RWY-PHP is a horizontal, through-hole block of three RCA
+(cinch) jacks with red, white and yellow inserts
+([drawing](https://datasheet.lcsc.com/datasheet/pdf/144f434e9a18d89afabc6990ecca74fc.pdf?productCode=C55072367),
+Rev. A). KiCad has no footprint for it.
+
+**Symbol:** `CAX-AV-314-RWY-PHP` has one unit per jack, drawn like
+`Connector:Conn_Coaxial`, so each jack can be placed next to its own circuit.
+The pin numbers follow the schematic in the drawing:
+
+| Unit | Jack   | Centre contact | Shield |
+| ---- | ------ | -------------- | ------ |
+| A    | Red    | 1              | 2      |
+| B    | White  | 3              | 4      |
+| C    | Yellow | 5              | 6      |
+
+Seen from the front, the jacks are red, white and yellow from left to right.
+All pins are passive.
+
+![CAX-AV-314-RWY-PHP symbol](images/CAX-AV-314-RWY-PHP_symbol.png)
+
+**Footprint:** `Jack_RCA_x3_CAX_AV-314-RWY_Horizontal`, from the PCB layout
+(top view) in the drawing. The origin is pad 1.
+
+- The jacks are 14 mm apart. The pins of each jack are 3.75 mm to the left of
+  its axis.
+- The centre contacts (1, 3, 5) are in the back row, 12.8 mm from the board
+  edge, with 1.5 mm holes (2.5 mm pads). The shields (2, 4, 6) are in the
+  front row, 5.5 mm from the board edge, with 1.8 mm holes (3.0 mm pads).
+- The two plastic locating tabs go into non-plated slots of 2 mm x 3 mm,
+  38.3 mm apart and 8.7 mm from the board edge. The drawing shows them as
+  rectangles; KiCad slots have round ends.
+- The front of the housing sits on the board edge, which is marked on the
+  `Dwgs.User` layer. The front view of the drawing has a 1.6 mm step below
+  the seating plane at the front, which fits over the edge of a 1.6 mm board.
+  The sockets stick out 8 mm past the edge.
+- Fabrication layer: the housing (41 mm wide) and the sockets. Courtyard
+  0.5 mm around the housing, the pads and the sockets.
+- There is no 3D model.
+
+![CAX AV-314 footprint](images/CAX_AV-314_footprint.png)
 
 ## Adding parts
 
