@@ -60,6 +60,18 @@ Check them before using software or hardware that depends on them.
   Devices that only use the +5 V on pin 2 and the data lines are not
   affected.
 
+### No 8-pin DIN A/V connector
+
+- **Original C64:** the A/V connector (CN5) is an 8-pin DIN socket with luma
+  (pin 1), ground (pin 2), audio out (pin 3), composite video (pin 4), audio
+  in (pin 5) and chroma (pin 6).
+- **c64-mini:** CN5 is removed (#24). The same signals are on a 4-pin
+  mini-DIN S-Video socket (J501) and three RCA jacks (J502), see
+  [Audio and video connectors](#audio-and-video-connectors).
+- **Affected:** C64 A/V cables with a DIN plug, such as DIN to RCA, DIN to
+  S-Video and DIN to SCART cables. Use standard S-Video and RCA cables
+  instead.
+
 ## Power supply
 
 The board is being converted to a single 12 V DC input (#10, #26). The rails
@@ -76,7 +88,8 @@ made from it so far are on the `Power Supply` sheet:
 
 The HF module replacement (U501, a 78L05 behind R501) also runs from the 12 V
 DC input: the `Power Supply` sheet passes it on through its `12V_INPUT` sheet
-pin to the `12V_IN` sheet pin of the `HF Module Replacement` sheet. The
+pin to the `12V_IN` sheet pin of the `HF Module Replacement and AV connectors`
+sheet. The
 `5V Buck` sheet's output reaches the root sheet through the `5V_OUT` sheet
 pin, where it connects to the `+5V` power symbol.
 
@@ -350,6 +363,40 @@ those issues, because the rail control (#47) depends on it.
 - **TVS footprint:** the H5VL10BH comes in a DFN1006-2L package and sits on
   a 0402 footprint of the same size.
 
+## Audio and video connectors
+
+The audio and video connectors are on the `HF Module Replacement and AV
+connectors` sheet, next to the video output circuit that drives them (#24).
+They replace the original 8-pin DIN A/V connector CN5.
+
+| Connector | Contact               | Signal                                         |
+| --------- | --------------------- | ---------------------------------------------- |
+| J501      | Pin 1, pin 2          | Ground (luma and chroma)                       |
+| J501      | Pin 3                 | Luma (`LUMA_OUT`)                              |
+| J501      | Pin 4                 | Chroma (`CHROMA_OUT`)                          |
+| J501      | Shield (`SH`)         | Ground                                         |
+| J502      | Red jack (pin 1)      | Audio in to the SID `EXT IN` (`AUDIO_IN`)      |
+| J502      | White jack (pin 3)    | Audio out from the SID buffer Q8 (`AUDIO_OUT`) |
+| J502      | Yellow jack (pin 5)   | Composite video (`COMP_OUT`)                   |
+| J502      | Shells (pins 2, 4, 6) | Ground                                         |
+
+- **J501:** CUI (Same Sky) MD-40SM 4-pin mini-DIN socket with the standard
+  S-Video pinout.
+- **J502:** CAX-AV-314-RWY-PHP block of three RCA jacks. The SID is mono, so
+  one jack is the audio output and the spare one is the audio input that
+  CN5 pin 5 used to carry.
+- **Audio input protection:** the red jack is the only input on these
+  connectors. A bidirectional 5 V TVS diode (D502, SMF5.0CA) to ground at the
+  jack and a 150 Ohm series resistor (R513) in front of the coupling
+  capacitor C12 protect the SID against ESD. There is no DC on the jack side
+  of C12, so a line-level signal stays well below the 5 V standoff voltage
+  of D502.
+- **Sheet pins:** `AUDIO_IN` and `AUDIO_OUT` come from `250407 Sheet 2`
+  through the `250407 Design` sheet. `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT`
+  now stay on the `HF Module Replacement and AV connectors` sheet.
+- **Signal levels:** the video output circuit is unchanged from the HF module
+  replacement (#8), see [HF module replacement](#hf-module-replacement).
+
 ## Licence
 
 Copyright Bwack 2025.
@@ -414,9 +461,10 @@ Only the files that make up the KiCad project were imported, unchanged:
 
 ### HF module replacement
 
-The circuit on the `HF Module Replacement` sheet replaces the original RF
-modulator (M1) with composite and S-Video (luma/chroma) outputs on the A/V
-connector. It is based on the schematic of the
+The circuit on the `HF Module Replacement and AV connectors` sheet replaces
+the original RF modulator (M1) with composite and S-Video (luma/chroma)
+outputs, which go to the S-Video socket and the RCA jacks on the same sheet
+(see [Audio and video connectors](#audio-and-video-connectors)). It is based on the schematic of the
 [C64 RF Modulator Replacement](https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement)
 by mbarszcz-pcb.
 
@@ -443,8 +491,8 @@ configuration:
 - The VIC-II luma pull-up is a fixed 470 Ohm resistor for the NMOS
   6567/6569 VIC-II. Upstream selects 470 Ohm or 1 kOhm with a jumper.
 - The pinout selection jumpers for other board revisions are left out.
-- The RF modulator's audio input is not used. Audio still goes directly to
-  the A/V connector.
+- The RF modulator's audio input is not used. Audio goes directly to the
+  RCA jacks.
 
 ## Known issues inherited from upstream
 
@@ -468,6 +516,8 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-27 | Removed the 8-pin DIN A/V connector CN5 from `250407 Sheet 2`, with the `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` hierarchical labels and sheet pins that led to it. Composite, luma, chroma and audio are now on J501 and J502 |
+| 2026-10-26 | Renamed the `HF Module Replacement` sheet to `HF Module Replacement and AV connectors` and added the audio and video connectors to it: S-Video socket J501 (MD-40SM) on `LUMA_OUT` and `CHROMA_OUT`, and triple RCA jack J502 (CAX-AV-314-RWY-PHP) with audio in on the red jack, audio out on the white jack and composite video on the yellow jack. Replaced the `AUDIO_IN` and `AUDIO_OUT` labels on `250407 Sheet 2` with hierarchical labels and passed them through the `250407 Design` sheet to the new sheet. Added TVS diode D502 (SMF5.0CA) and series resistor R513 (150 Ohm) to the audio input |
 | 2026-10-26 | Added the S-Video connector, CUI (Same Sky) MD-40SM (LCSC C6224745), to the component library in `hardware/components`: the symbol `MD-40SM` (KiCad's `Connector:Mini-DIN-4` with a shield pin) and the footprint `Mini-DIN-4_CUI_MD-40SM_Horizontal` |
 | 2026-10-26 | Added a triple RCA jack, CAX-AV-314-RWY-PHP (LCSC C55072367), to the component library in `hardware/components`: the symbol `CAX-AV-314-RWY-PHP` with one unit per jack and the footprint `Jack_RCA_x3_CAX_AV-314-RWY_Horizontal` |
 | 2026-10-24 | Added a `Supervisor` sheet to the root sheet with an RP2354B microcontroller (U1301) on `+3V3`, following Raspberry Pi's RP2350 reference design: core regulator inductor L1301 with its own local core supply net, 12 MHz crystal Y1301, RESET (SW1302) and BOOTSEL (SW1301) buttons, and a USB-C receptacle (J1301) for programming with ESD protection and VBUS detection on GPIO13. Annotated its parts from 1300 |
