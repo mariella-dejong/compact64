@@ -552,6 +552,16 @@
 	)
 	(wire
 		(pts
+			(xy 250.19 110.49) (xy 311.15 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24cb2190-5683-4110-959b-c1ebd8029021")
+	)
+	(wire
+		(pts
 			(xy 297.18 163.83) (xy 297.18 171.45)
 		)
 		(stroke
@@ -612,6 +622,16 @@
 	)
 	(wire
 		(pts
+			(xy 311.15 190.5) (xy 303.53 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "458661fe-2384-4c86-b410-42171d7002b3")
+	)
+	(wire
+		(pts
 			(xy 246.38 193.04) (xy 256.54 193.04)
 		)
 		(stroke
@@ -649,6 +669,16 @@
 			(type default)
 		)
 		(uuid "62074822-01dd-4064-bf1f-fc9305fbb9d9")
+	)
+	(wire
+		(pts
+			(xy 311.15 110.49) (xy 311.15 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7938c2b2-2c9b-4108-bd79-87f1ec848412")
 	)
 	(wire
 		(pts
@@ -1937,16 +1967,6 @@
 				(justify left)
 			)
 		)
-		(pin "12V_INPUT" output
-			(at 297.18 171.45 90)
-			(uuid "6379c85f-f4ec-4820-89f9-caa7ed082994")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "5V_OUT" output
 			(at 256.54 189.23 180)
 			(uuid "3b2e463c-7fa2-49bf-ab96-de587e83203b")
@@ -1965,6 +1985,26 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+		(pin "POWER_ON" input
+			(at 303.53 190.5 0)
+			(uuid "1b67af96-2e6a-4cb0-8601-014aa02922fa")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "12V_IN_SW" output
+			(at 297.18 171.45 90)
+			(uuid "24c87d49-79b8-4d93-94ec-b366f125bd91")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -2139,6 +2179,16 @@
 				(justify left top)
 			)
 		)
+		(pin "PREFLIGHT_OK" output
+			(at 250.19 110.49 0)
+			(uuid "4847b13e-f088-4e9e-b81f-f2ffda3365d1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -2205,16 +2255,6 @@
 				(justify left)
 			)
 		)
-		(pin "12V_IN" input
-			(at 297.18 163.83 270)
-			(uuid "9c28586e-328b-41f8-8aae-0c5449223636")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "AUDIO_IN" output
 			(at 256.54 151.13 180)
 			(uuid "fea819af-8df8-48a0-9090-066dfc89dffc")
@@ -2228,6 +2268,16 @@
 		(pin "AUDIO_OUT" input
 			(at 256.54 154.94 180)
 			(uuid "9573207d-be50-4be5-8e49-09ccd815bd12")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "12V_IN_SW" input
+			(at 297.18 163.83 270)
+			(uuid "728fffb9-0be3-4265-9b2d-7c0b4cb5f4e3")
 			(effects
 				(font
 					(size 1.27 1.27)
