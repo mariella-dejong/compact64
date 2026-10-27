@@ -10027,6 +10027,12 @@
 		(uuid "912b76d8-4807-4173-b7ec-a00378e697fb")
 	)
 	(junction
+		(at 127 190.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "01b97987-6073-462b-99f9-91121f0120ce")
+	)
+	(junction
 		(at 196.85 161.29)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -16709,6 +16715,16 @@
 	)
 	(wire
 		(pts
+			(xy 127 190.5) (xy 142.24 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "849cef6a-d67f-4d0f-9a82-b016d7554963")
+	)
+	(wire
+		(pts
 			(xy 33.02 180.34) (xy 25.4 180.34)
 		)
 		(stroke
@@ -21077,16 +21093,6 @@
 		)
 		(uuid "08371e1e-639d-419d-850d-4325e313bf2d")
 	)
-	(label "~{BASIC}"
-		(at 118.11 193.04 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "08720cb0-04d0-43ac-bda9-9720080b494a")
-	)
 	(label "PHI2"
 		(at 204.47 182.88 0)
 		(effects
@@ -21187,16 +21193,6 @@
 		)
 		(uuid "110ea767-7328-4ec8-b9d4-48bd86e26a12")
 	)
-	(label "GR\\~{W}"
-		(at 118.11 200.66 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1138cab0-7d90-4032-b23c-f9cc6a1af08e")
-	)
 	(label "MA0"
 		(at 185.42 64.77 0)
 		(effects
@@ -21206,16 +21202,6 @@
 			(justify left bottom)
 		)
 		(uuid "14668403-c45d-44ac-9c8b-e49e001e2836")
-	)
-	(label "R\\~{W}"
-		(at 87.63 218.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "14c947ae-8401-48fc-b23c-c796d728d12d")
 	)
 	(label "D6"
 		(at 167.64 125.73 90)
@@ -21397,16 +21383,6 @@
 		)
 		(uuid "1db58238-55ce-4745-a07e-c2c5ab2c8ef3")
 	)
-	(label "~{CASRAM}'"
-		(at 90.17 72.39 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "1e905b89-3933-42dd-be92-99fa3e664bcc")
-	)
 	(label "MA6"
 		(at 95.25 49.53 0)
 		(effects
@@ -21536,16 +21512,6 @@
 			(justify left bottom)
 		)
 		(uuid "2577583d-7120-487f-ac51-0b5d484b5569")
-	)
-	(label "~{CASRAM}"
-		(at 118.11 190.5 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "25b92e8e-85dd-481b-9de0-44730ff59a70")
 	)
 	(label "A3"
 		(at 127 260.35 90)
@@ -22307,16 +22273,6 @@
 		)
 		(uuid "5dd6d875-c352-414e-9e46-e34144926ab6")
 	)
-	(label "R\\~{W}"
-		(at 26.67 218.44 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5e767158-d35f-43e4-877a-d92ece842545")
-	)
 	(label "A14"
 		(at 45.72 55.88 0)
 		(effects
@@ -22516,16 +22472,6 @@
 			(justify left bottom)
 		)
 		(uuid "6eb29171-2c1f-42d8-9ff8-73e86d4907fd")
-	)
-	(label "~{KERNAL}"
-		(at 118.11 195.58 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6ee4d4d6-69b5-4e20-901a-70650718a74d")
 	)
 	(label "A9"
 		(at 156.21 144.78 0)
@@ -23276,16 +23222,6 @@
 			(justify left bottom)
 		)
 		(uuid "a3b41f14-24d3-4ef8-89e6-8bd9d26c6877")
-	)
-	(label "~{CHAROM}"
-		(at 118.11 198.12 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a5b2af57-7c7f-4aa0-b737-b543ea8e4975")
 	)
 	(label "R\\~{W}"
 		(at 45.72 260.35 90)
@@ -24287,16 +24223,6 @@
 		)
 		(uuid "f25c2ae8-e8e4-4077-8cd9-52dd7d705004")
 	)
-	(label "~{CASRAM}"
-		(at 87.63 107.95 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f2f9590b-3097-4772-b200-2a45a0ccb618")
-	)
 	(label "~{HIRAM}"
 		(at 87.63 195.58 0)
 		(effects
@@ -24477,28 +24403,6 @@
 		)
 		(uuid "fe5c5109-67c9-4fdd-abad-f84c0e1b1c52")
 	)
-	(global_label "D[0..7]"
-		(shape bidirectional)
-		(at 25.4 116.84 180)
-		(effects
-			(font
-				(size 1.6002 1.6002)
-			)
-			(justify right)
-		)
-		(uuid "0066c67f-6e5d-4aab-aa97-890e025e6846")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 25.4 116.84 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "~{VA14}"
 		(shape input)
 		(at 25.4 200.66 180)
@@ -24587,28 +24491,6 @@
 			)
 		)
 	)
-	(global_label "A[0..15]"
-		(shape input)
-		(at 25.4 137.16 180)
-		(effects
-			(font
-				(size 1.6002 1.6002)
-			)
-			(justify right)
-		)
-		(uuid "56112a58-619f-441d-a95f-d178bbaccf3a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 25.4 137.16 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "~{CIA2}"
 		(shape output)
 		(at 242.57 228.6 0)
@@ -24687,28 +24569,6 @@
 		(uuid "7f9a664b-6bbc-465d-aa3c-130af1456a01")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 242.57 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "R\\~{W}"
-		(shape input)
-		(at 25.4 218.44 180)
-		(effects
-			(font
-				(size 1.6002 1.6002)
-			)
-			(justify right)
-		)
-		(uuid "837d7aaa-6eca-4e3d-b5ca-7308b0a5e9a5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 25.4 218.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -24939,6 +24799,17 @@
 			)
 		)
 	)
+	(hierarchical_label "GR{slash}~{W}"
+		(shape output)
+		(at 267.97 200.66 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3d224c5f-d607-4927-8f4a-77c3437fe680")
+	)
 	(hierarchical_label "VIC_II_LUMA"
 		(shape output)
 		(at 323.85 81.28 0)
@@ -24949,6 +24820,17 @@
 			(justify left)
 		)
 		(uuid "537f7b37-9478-47b8-ad4f-e3a18816f663")
+	)
+	(hierarchical_label "~{KERNAL}"
+		(shape output)
+		(at 139.7 195.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "53d3bc5c-65a1-42ca-b2dc-eeed03d5308c")
 	)
 	(hierarchical_label "CAN+5V"
 		(shape input)
@@ -24972,6 +24854,39 @@
 		)
 		(uuid "75893410-f561-4be8-b370-b9900cde4f06")
 	)
+	(hierarchical_label "~{BASIC}"
+		(shape output)
+		(at 129.54 193.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "80e21ebf-abef-4885-8316-9794bdc7b0ea")
+	)
+	(hierarchical_label "R{slash}~{W}"
+		(shape input)
+		(at 25.4 218.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8410a3b0-2d8c-474e-aa79-ab0b582cf016")
+	)
+	(hierarchical_label "D[0..7]"
+		(shape bidirectional)
+		(at 25.4 116.84 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "85276b51-9635-4d48-9282-df58604701c8")
+	)
 	(hierarchical_label "VIC_II_CHROMA"
 		(shape output)
 		(at 323.85 83.82 0)
@@ -24994,6 +24909,39 @@
 		)
 		(uuid "cdaa0e4e-6686-4937-9523-38723ef544fa")
 	)
+	(hierarchical_label "~{CASRAM}"
+		(shape output)
+		(at 142.24 190.5 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d2ab3a14-5e72-4b64-898a-5264f3a8de7b")
+	)
+	(hierarchical_label "A[0..15]"
+		(shape bidirectional)
+		(at 25.4 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e0c8cd1d-a93b-4efb-8319-f6f49de85968")
+	)
+	(hierarchical_label "~{COLORAM}"
+		(shape output)
+		(at 265.43 176.53 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e2b7bed3-072c-4255-9622-038fb8f2d424")
+	)
 	(hierarchical_label "AUDIO_IN"
 		(shape input)
 		(at 388.62 172.72 0)
@@ -25004,6 +24952,17 @@
 			(justify left)
 		)
 		(uuid "edafa7d1-bf9c-4402-ac80-377f012db572")
+	)
+	(hierarchical_label "~{CHAROM}"
+		(shape output)
+		(at 173.99 198.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "eeedf82e-70e1-4284-a190-f49346248ff1")
 	)
 	(symbol
 		(lib_id "250407_-rescue:R_ARRAY_US_4RES-KU-schematics-library")
