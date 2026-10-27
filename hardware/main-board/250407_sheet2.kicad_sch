@@ -3727,230 +3727,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "250407_-rescue:AV_CONN-KU-schematics-library"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "CN"
-				(at 1.27 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 2.9972 2.9972)
-					)
-				)
-			)
-			(property "Value" "AV_CONN-KU-schematics-library"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "AV_CONN-KU-schematics-library_0_1"
-				(rectangle
-					(start 0 16.51)
-					(end 2.54 -87.63)
-					(stroke
-						(width 0.3048)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "AV_CONN-KU-schematics-library_1_1"
-				(pin output line
-					(at -2.54 11.43 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 -85.09 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 -54.61 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 13.97 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 -80.01 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 8.89 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 0 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at -2.54 -2.54 0)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "250407_-rescue:EXPANSION_PORT-KU-schematics-library"
 			(pin_names
 				(offset 1.016)
@@ -9843,18 +9619,6 @@
 		)
 		(uuid "10facd43-aafa-4421-b18d-53ad00762025")
 	)
-	(text "AUDIO/VIDEO (8 PIN FEMALE DIN)"
-		(exclude_from_sim no)
-		(at 403.86 162.56 90)
-		(effects
-			(font
-				(size 2.0066 2.0066)
-				(italic yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "1907bb29-1310-4494-a00d-d32420ba8cd9")
-	)
 	(text "25V"
 		(exclude_from_sim no)
 		(at 340.36 62.23 0)
@@ -10863,16 +10627,8 @@
 		(uuid "fc73abaf-b66c-456a-8374-7ed4a12170b4")
 	)
 	(no_connect
-		(at 394.97 92.71)
-		(uuid "00dd2706-7b3a-4d01-a8b4-76e1d2b48de5")
-	)
-	(no_connect
 		(at 29.21 250.19)
 		(uuid "4d39ed9b-85c8-4f49-b35e-29d6cfcf838e")
-	)
-	(no_connect
-		(at 394.97 95.25)
-		(uuid "b03746c5-5546-41a8-92ae-6b2c9fc38d6f")
 	)
 	(no_connect
 		(at 116.84 210.82)
@@ -16083,7 +15839,7 @@
 	)
 	(wire
 		(pts
-			(xy 383.54 172.72) (xy 394.97 172.72)
+			(xy 383.54 172.72) (xy 388.62 172.72)
 		)
 		(stroke
 			(width 0)
@@ -17623,16 +17379,6 @@
 	)
 	(wire
 		(pts
-			(xy 392.43 177.8) (xy 392.43 180.34)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99f1ce97-1a75-4f61-bbb1-8e0d5c47d5fd")
-	)
-	(wire
-		(pts
 			(xy 283.21 54.61) (xy 288.29 54.61)
 		)
 		(stroke
@@ -18773,16 +18519,6 @@
 	)
 	(wire
 		(pts
-			(xy 394.97 177.8) (xy 392.43 177.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ba60756e-f1af-4cca-aac2-9735ca835e74")
-	)
-	(wire
-		(pts
 			(xy 116.84 200.66) (xy 267.97 200.66)
 		)
 		(stroke
@@ -19523,7 +19259,7 @@
 	)
 	(wire
 		(pts
-			(xy 388.62 147.32) (xy 394.97 147.32)
+			(xy 388.62 147.32) (xy 391.16 147.32)
 		)
 		(stroke
 			(width 0)
@@ -25214,17 +24950,6 @@
 		)
 		(uuid "537f7b37-9478-47b8-ad4f-e3a18816f663")
 	)
-	(hierarchical_label "LUMA_OUT"
-		(shape input)
-		(at 394.97 81.28 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "53d34a14-27bb-4717-b330-05e9eece30ce")
-	)
 	(hierarchical_label "CAN+5V"
 		(shape input)
 		(at 345.44 41.91 0)
@@ -25247,17 +24972,6 @@
 		)
 		(uuid "75893410-f561-4be8-b370-b9900cde4f06")
 	)
-	(hierarchical_label "CHROMA_OUT"
-		(shape input)
-		(at 394.97 83.82 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9d0936bb-6b9b-46db-ae26-e82b5706202f")
-	)
 	(hierarchical_label "VIC_II_CHROMA"
 		(shape output)
 		(at 323.85 83.82 0)
@@ -25269,20 +24983,9 @@
 		)
 		(uuid "af0f7ec9-9c49-4c49-afb0-215565ebe32f")
 	)
-	(hierarchical_label "COMP_OUT"
-		(shape input)
-		(at 394.97 78.74 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c015ce2e-94e2-4d79-a0f3-07dafc9d220f")
-	)
 	(hierarchical_label "AUDIO_OUT"
 		(shape output)
-		(at 393.7 147.32 90)
+		(at 391.16 147.32 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -25293,7 +24996,7 @@
 	)
 	(hierarchical_label "AUDIO_IN"
 		(shape input)
-		(at 388.62 172.72 90)
+		(at 388.62 172.72 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -37433,104 +37136,6 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:AV_CONN-KU-schematics-library")
-		(at 397.51 92.71 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "00000000-0000-0000-0000-0000606343a4")
-		(property "Reference" "CN5"
-			(at 402.59 107.95 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 2.0066 2.0066)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "AV_CONN"
-			(at 397.51 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:AV_CON_DIN8"
-			(at 397.51 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 397.51 92.71 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 397.51 92.71 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "4"
-			(uuid "bb587d3e-e118-43f9-adf7-bbf894e11836")
-		)
-		(pin "8"
-			(uuid "85694231-5271-4c24-badf-d010ebf0a170")
-		)
-		(pin "5"
-			(uuid "3915a514-e795-446c-ba40-2d6a2b44aeb7")
-		)
-		(pin "7"
-			(uuid "7d704cd1-e19d-4f0d-83ab-8adc61c6d4b8")
-		)
-		(pin "1"
-			(uuid "144662f3-5960-47ad-b07e-900aeb3b6aa7")
-		)
-		(pin "6"
-			(uuid "da6f08c5-7401-4555-9f58-7de606f9f8b1")
-		)
-		(pin "3"
-			(uuid "bf9a5786-6cfb-46aa-9cbe-bfe242182551")
-		)
-		(pin "2"
-			(uuid "2340f896-c9ff-4b94-a806-94cd3b86769c")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "CN5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:CP_Small")
 		(at 381 172.72 90)
 		(unit 1)
@@ -42378,83 +41983,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
 					(reference "#U0234")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 392.43 180.34 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "00000000-0000-0000-0000-0000636d3848")
-		(property "Reference" "#U0235"
-			(at 392.43 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 392.43 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 392.43 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 392.43 180.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 392.43 180.34 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e832f0af-cbd1-4f20-adac-9940ceea66e3")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742/d545d313-c034-4d13-9e4c-300ba484c3d7"
-					(reference "#U0235")
 					(unit 1)
 				)
 			)

@@ -3664,6 +3664,36 @@
 		)
 		(uuid "27bca470-3803-44e5-9730-216dfaa907de")
 	)
+	(label "LUMA_OUT"
+		(at 255.27 100.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5ebb17c0-f08e-4257-99ba-12a98f79d1fe")
+	)
+	(label "CHROMA_OUT"
+		(at 257.81 78.74 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8b45f19a-d9d3-43fd-a31e-1738e34488af")
+	)
+	(label "COMP_OUT"
+		(at 242.57 113.03 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cc1ebcb7-d43c-404c-bcc8-2019fc440ba7")
+	)
 	(label "+5V_HF_M_REPL"
 		(at 163.83 116.84 270)
 		(effects
@@ -3696,17 +3726,6 @@
 		)
 		(uuid "75d36cb2-8fcd-474b-8696-ccd56d0b4b05")
 	)
-	(hierarchical_label "COMPOSITE_OUT"
-		(shape output)
-		(at 250.19 113.03 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "87a9d8dd-bae2-4fb5-8dd0-e6d5cc4e3238")
-	)
 	(hierarchical_label "LUMA_IN"
 		(shape input)
 		(at 158.75 91.44 180)
@@ -3728,28 +3747,6 @@
 			(justify right)
 		)
 		(uuid "a368a148-c340-4df7-86f1-c3b561b87c1d")
-	)
-	(hierarchical_label "LUMA_OUT"
-		(shape output)
-		(at 278.13 100.33 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "a76d65ff-813a-4787-a036-36d0df252561")
-	)
-	(hierarchical_label "CHROMA_OUT"
-		(shape output)
-		(at 257.81 62.23 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c6723a32-b96c-4aa8-ad9d-deec72471ef5")
 	)
 	(hierarchical_label "AUDIO_IN"
 		(shape output)

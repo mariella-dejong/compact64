@@ -27,26 +27,6 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 92.71) (xy 81.28 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1a7418df-0070-4bae-a6ff-a80803f47924")
-	)
-	(wire
-		(pts
-			(xy 74.93 85.09) (xy 81.28 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e5e0587-faa8-411b-badf-af1b5d6c65f5")
-	)
-	(wire
-		(pts
 			(xy 74.93 43.18) (xy 81.28 43.18)
 		)
 		(stroke
@@ -107,16 +87,6 @@
 	)
 	(wire
 		(pts
-			(xy 74.93 88.9) (xy 81.28 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "da4500f5-10c4-46e8-a7ec-52edf17bbdca")
-	)
-	(wire
-		(pts
 			(xy 55.88 66.04) (xy 59.69 66.04)
 		)
 		(stroke
@@ -155,17 +125,6 @@
 		)
 		(uuid "fcd0e8ef-8a24-4c7a-9059-433203257110")
 	)
-	(hierarchical_label "CHROMA_OUT"
-		(shape input)
-		(at 81.28 85.09 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1544f39d-0a12-453d-82c9-a00122113c2a")
-	)
 	(hierarchical_label "VIC_II_CHROMA"
 		(shape output)
 		(at 81.28 78.74 0)
@@ -176,17 +135,6 @@
 			(justify left)
 		)
 		(uuid "1d143f73-3964-4060-89ca-69ff6dbc097b")
-	)
-	(hierarchical_label "COMP_OUT"
-		(shape input)
-		(at 81.28 88.9 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "49c04767-9766-41b4-9b70-fd06c0cc2e9f")
 	)
 	(hierarchical_label "AUDIO_IN"
 		(shape input)
@@ -231,17 +179,6 @@
 			(justify left)
 		)
 		(uuid "b91cb6c5-9dee-4b07-b025-10d333b5710c")
-	)
-	(hierarchical_label "LUMA_OUT"
-		(shape input)
-		(at 81.28 92.71 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "bc081752-6503-41b7-8931-77488eb366ff")
 	)
 	(hierarchical_label "CAN+5V"
 		(shape input)
@@ -413,36 +350,6 @@
 		(pin "VIC_II_LUMA" output
 			(at 74.93 74.93 0)
 			(uuid "91ad5c72-ff46-4b68-9d24-6997e9bf4ef4")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CHROMA_OUT" input
-			(at 74.93 85.09 0)
-			(uuid "f5cfe374-42e3-42d2-9ae8-a3fe6e9a3ceb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "COMP_OUT" input
-			(at 74.93 88.9 0)
-			(uuid "eba37d99-c53a-4002-9428-cb110707bd75")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "LUMA_OUT" input
-			(at 74.93 92.71 0)
-			(uuid "a852df23-cd76-4ed2-a77a-52cf3283b44c")
 			(effects
 				(font
 					(size 1.27 1.27)

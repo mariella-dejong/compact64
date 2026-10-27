@@ -562,16 +562,6 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 146.05) (xy 256.54 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "37518548-6827-4387-840d-619d9df26cf5")
-	)
-	(wire
-		(pts
 			(xy 250.19 133.35) (xy 256.54 133.35)
 		)
 		(stroke
@@ -662,16 +652,6 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 138.43) (xy 256.54 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "97d93058-ec9b-4aa3-bf80-8cd4008357f8")
-	)
-	(wire
-		(pts
 			(xy 250.19 154.94) (xy 256.54 154.94)
 		)
 		(stroke
@@ -679,16 +659,6 @@
 			(type default)
 		)
 		(uuid "a333ad2a-8727-4389-82a7-6544d398a66b")
-	)
-	(wire
-		(pts
-			(xy 250.19 142.24) (xy 256.54 142.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ba76c038-e306-4aa4-bcbc-2457f9912790")
 	)
 	(wire
 		(pts
@@ -2063,36 +2033,6 @@
 				(justify right)
 			)
 		)
-		(pin "CHROMA_OUT" input
-			(at 250.19 138.43 0)
-			(uuid "99d20adb-475d-49ae-8827-b93244f96012")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "COMP_OUT" input
-			(at 250.19 142.24 0)
-			(uuid "ba86df9c-2076-4036-b5b2-a8b306674dbb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "LUMA_OUT" input
-			(at 250.19 146.05 0)
-			(uuid "c2c83ce9-2153-4591-8a9e-450bd95dac14")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "CAN+5V" input
 			(at 226.06 163.83 270)
 			(uuid "cf7e79ae-67fb-48fb-8b80-2ef612711232")
@@ -2255,39 +2195,9 @@
 				(justify left)
 			)
 		)
-		(pin "CHROMA_OUT" output
-			(at 256.54 138.43 180)
-			(uuid "513d3de5-f33b-43a8-876a-3709321f7474")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "COMPOSITE_OUT" output
-			(at 256.54 142.24 180)
-			(uuid "6347bcf0-1347-4aa0-be24-93f5bd96fb98")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "LUMA_IN" input
 			(at 256.54 133.35 180)
 			(uuid "62d95438-8d8f-431c-a107-6319845da728")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "LUMA_OUT" output
-			(at 256.54 146.05 180)
-			(uuid "01d7e803-69b0-4d0a-8aa9-f3641306452a")
 			(effects
 				(font
 					(size 1.27 1.27)
