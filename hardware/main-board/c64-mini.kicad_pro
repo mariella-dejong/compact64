@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "",
+    "used_designators": "D1306,R513,J1303-1304,#U505-509",
     "variants": []
   },
   "sheets": [
@@ -1682,7 +1682,7 @@
     ],
     [
       "99dc937e-95c0-4b75-9c55-26aa6f5c22ff",
-      "HF Module Replacement"
+      "HF Module Replacement and AV connectors"
     ],
     [
       "16ed13da-ea6c-41ac-b9d8-03fd2b1c50da",

@@ -562,17 +562,7 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 151.13) (xy 256.54 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "37518548-6827-4387-840d-619d9df26cf5")
-	)
-	(wire
-		(pts
-			(xy 250.19 135.89) (xy 256.54 135.89)
+			(xy 250.19 133.35) (xy 256.54 133.35)
 		)
 		(stroke
 			(width 0)
@@ -582,7 +572,7 @@
 	)
 	(wire
 		(pts
-			(xy 255.27 156.21) (xy 255.27 175.26)
+			(xy 255.27 161.29) (xy 255.27 175.26)
 		)
 		(stroke
 			(width 0)
@@ -592,13 +582,23 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 132.08) (xy 256.54 132.08)
+			(xy 250.19 129.54) (xy 256.54 129.54)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "3b08b1fb-5bec-4d56-88f6-c2eb84a02089")
+	)
+	(wire
+		(pts
+			(xy 250.19 151.13) (xy 256.54 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4230ac6a-a302-4dc5-a693-0f9eb58b2dba")
 	)
 	(wire
 		(pts
@@ -642,7 +642,7 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 156.21) (xy 255.27 156.21)
+			(xy 250.19 161.29) (xy 255.27 161.29)
 		)
 		(stroke
 			(width 0)
@@ -652,23 +652,13 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 143.51) (xy 256.54 143.51)
+			(xy 250.19 154.94) (xy 256.54 154.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "97d93058-ec9b-4aa3-bf80-8cd4008357f8")
-	)
-	(wire
-		(pts
-			(xy 250.19 147.32) (xy 256.54 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ba76c038-e306-4aa4-bcbc-2457f9912790")
+		(uuid "a333ad2a-8727-4389-82a7-6544d398a66b")
 	)
 	(wire
 		(pts
@@ -2024,7 +2014,7 @@
 			)
 		)
 		(pin "VIC_II_CHROMA" output
-			(at 250.19 132.08 0)
+			(at 250.19 129.54 0)
 			(uuid "4fbf9ac7-f310-4354-8dc3-696d1ee399ba")
 			(effects
 				(font
@@ -2034,38 +2024,8 @@
 			)
 		)
 		(pin "VIC_II_LUMA" output
-			(at 250.19 135.89 0)
+			(at 250.19 133.35 0)
 			(uuid "31a59046-dc8c-41ee-badb-1c274fe316ae")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CHROMA_OUT" input
-			(at 250.19 143.51 0)
-			(uuid "99d20adb-475d-49ae-8827-b93244f96012")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "COMP_OUT" input
-			(at 250.19 147.32 0)
-			(uuid "ba86df9c-2076-4036-b5b2-a8b306674dbb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "LUMA_OUT" input
-			(at 250.19 151.13 0)
-			(uuid "c2c83ce9-2153-4591-8a9e-450bd95dac14")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2084,7 +2044,7 @@
 			)
 		)
 		(pin "COLOR_CLK_OUT" output
-			(at 250.19 156.21 0)
+			(at 250.19 161.29 0)
 			(uuid "43c442b3-5f70-4c8b-bf84-8e927fbe409f")
 			(effects
 				(font
@@ -2111,6 +2071,26 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+		(pin "AUDIO_IN" input
+			(at 250.19 151.13 0)
+			(uuid "1ff8ad4b-511a-463c-aab7-26ec07af0997")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "AUDIO_OUT" output
+			(at 250.19 154.94 0)
+			(uuid "90ad6497-3e6d-409f-a13f-ac20a55e76bd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -2183,7 +2163,7 @@
 			(color 0 0 0 0)
 		)
 		(uuid "99dc937e-95c0-4b75-9c55-26aa6f5c22ff")
-		(property "Sheetname" "HF Module Replacement"
+		(property "Sheetname" "HF Module Replacement and AV connectors"
 			(at 256.54 125.0184 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2206,7 +2186,7 @@
 			)
 		)
 		(pin "CHROMA_IN" input
-			(at 256.54 132.08 180)
+			(at 256.54 129.54 180)
 			(uuid "d47f4fde-e475-4216-a4fc-f0026d10a6f6")
 			(effects
 				(font
@@ -2215,39 +2195,9 @@
 				(justify left)
 			)
 		)
-		(pin "CHROMA_OUT" output
-			(at 256.54 143.51 180)
-			(uuid "513d3de5-f33b-43a8-876a-3709321f7474")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "COMPOSITE_OUT" output
-			(at 256.54 147.32 180)
-			(uuid "6347bcf0-1347-4aa0-be24-93f5bd96fb98")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "LUMA_IN" input
-			(at 256.54 135.89 180)
+			(at 256.54 133.35 180)
 			(uuid "62d95438-8d8f-431c-a107-6319845da728")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "LUMA_OUT" output
-			(at 256.54 151.13 180)
-			(uuid "01d7e803-69b0-4d0a-8aa9-f3641306452a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2258,6 +2208,26 @@
 		(pin "12V_IN" input
 			(at 297.18 163.83 270)
 			(uuid "9c28586e-328b-41f8-8aae-0c5449223636")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AUDIO_IN" output
+			(at 256.54 151.13 180)
+			(uuid "fea819af-8df8-48a0-9090-066dfc89dffc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "AUDIO_OUT" input
+			(at 256.54 154.94 180)
+			(uuid "9573207d-be50-4be5-8e49-09ccd815bd12")
 			(effects
 				(font
 					(size 1.27 1.27)
