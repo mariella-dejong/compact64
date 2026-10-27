@@ -80,17 +80,17 @@ made from it so far are on the `Power Supply` sheet:
 | Rail       | Made by                                                     | Rated for | Issue |
 | ---------- | ----------------------------------------------------------- | --------- | ----- |
 | `+12V_IN`  | Input stage: barrel jack, polyfuse, reverse polarity and TVS protection | 2.5 A (polyfuse hold current) | #10   |
+| `12V_IN_SW` | Input switch (Q604, Q605), turned on by the supervisor; feeds every rail below except `+3V3` | 2.5 A | #47   |
 | `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the colour clock | 2 A       | #28   |
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
 | `+12V`     | Charge pump driven by a UCC27517 (U901), followed by an L78M12 linear regulator (U902) | about 150 mA (limit of the charge pump driver) | #36   |
 | `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
 | `+3V3`     | LM61440 synchronous buck converter (U1201), synchronized to the colour clock | 1 A budget (converter rated 4 A) | #44   |
 
-The HF module replacement (U501, a 78L05 behind R501) also runs from the 12 V
-DC input: the `Power Supply` sheet passes it on through its `12V_INPUT` sheet
-pin to the `12V_IN` sheet pin of the `HF Module Replacement and AV connectors`
-sheet. The
-`5V Buck` sheet's output reaches the root sheet through the `5V_OUT` sheet
+The HF module replacement (U501, a 78L05 behind R501) also runs from the
+switched 12 V input: the `Power Supply` sheet passes `12V_IN_SW` on through a
+sheet pin of the same name to the `HF Module Replacement and AV connectors`
+sheet. The `5V Buck` sheet's output reaches the root sheet through the `5V_OUT` sheet
 pin, where it connects to the `+5V` power symbol.
 
 The `Color Clock Divider` sheet supplies the clocks for the switching parts.
@@ -107,6 +107,82 @@ wired-AND. It goes high once both outputs are in regulation, after the 1.5 ms
 to 2.5 ms PGOOD delay. If either rail drops out of regulation, the sync clock
 stops and both converters run unsynchronized at about 400 kHz, set by R701 and
 R1202, until `PGOOD` returns.
+
+### Input switch
+
+The supervisor (U1301) decides when the system may start (#47). It does this
+with one switch in the 12 V input: every rail except `+3V3` runs from the
+switched input `12V_IN_SW`, so a single signal turns them all on or off.
+`+3V3` stays on the unswitched `12V_IN`, because it powers the supervisor.
+
+| Net         | Connected                                                                 |
+| ----------- | ------------------------------------------------------------------------- |
+| `12V_IN`    | Input stage, 3V3 buck converter U1201 with its EN pull-up R1201, the input switch |
+| `12V_IN_SW` | 5V buck converter U701 with R705, cassette buck converter U1101 with R1103, `CAN+5V` (D801 to U801), `+12V` (FB901 to the charge pump, and the pre-charge diode D903), HF module replacement (R501) |
+
+**Circuit:**
+
+- Q604 and Q605 (AO3401A, P-channel) in parallel, sources on `12V_IN`,
+  drains on `12V_IN_SW`. Two in parallel halve the on-resistance to about
+  28 mOhm, so they dissipate about 0.17 W at 2.5 A.
+- R605 (100k) pulls their gates to the source, so they are off by default.
+- Q603 (AO3400A, N-channel) pulls the gates down through R604 (100k). R604
+  and R605 form a divider, so the gates go to about half the input voltage
+  instead of to ground: about -6 V gate-source at 12 V, and about -10.75 V
+  at the 21.5 V clamping voltage of D602, within the AO3401A's +/-12 V
+  limit.
+- Q603's gate is driven by `POWER_ON` through R602 (10k), with R603 (200k)
+  to ground.
+- C603 (47 nF) between the gates and `12V_IN` does two things. It keeps
+  the gates at the source voltage when the adapter is plugged in, so the
+  MOSFETs' gate-drain capacitance cannot turn them on briefly. And it slows
+  down switching: the gates move with a time constant of about 2.4 ms when
+  turning on and about 4.8 ms when turning off, which limits the inrush
+  current into the input capacitors of the rails to well under 1 A.
+- A PWR_FLAG on `12V_IN_SW` tells ERC that the MOSFETs drive this net.
+
+**Operation** (12 V input):
+
+| State | `POWER_ON` | Q603 gate | Q604/Q605 gate | Q604/Q605 gate-source | `12V_IN_SW` |
+| ----- | ---------- | --------- | -------------- | --------------------- | ----------- |
+| Off   | 0 V or not driven | 0 V | 12 V | 0 V | off |
+| On    | 3.3 V      | 3.14 V    | 6 V            | -6 V                  | about 12 V  |
+
+Q603 is fully on at 3.14 V (threshold at most 1.45 V); Q604 and Q605 are
+fully on at -6 V (threshold at most -1.3 V). Q603 draws 60 uA through R604
+and R605, and `POWER_ON` supplies 16 uA.
+
+**Fail-safe default:** the rails stay off unless the supervisor's firmware
+drives `POWER_ON` high.
+
+- **Supervisor unpowered:** R603 holds Q603's gate at ground.
+- **Supervisor in reset or booting:** RP2350 GPIOs come out of reset with
+  the output disabled and the internal pull-down on. The boot ROM does not
+  use GPIO2, whether it boots from flash or starts the USB bootloader.
+- **Blank firmware:** the USB bootloader leaves GPIO2 alone, so the rails
+  stay off. A board without supervisor firmware does not start.
+- **Reset while running:** pressing RESET or a watchdog reset returns GPIO2
+  to its reset state, which turns the rails off.
+
+**Back-feeding:** while `12V_IN_SW` is off, only `+3V3` and the supervisor
+are powered.
+
+- `PGOOD` is pulled up to `CAN+5V`, which is off, so it does not feed the
+  unpowered divider U1001.
+- The sync clock reaches U1201's EN/SYNC through C1205, which blocks the DC
+  on that pin from the unpowered divider U1002.
+- D903 pre-charges `VPUMP` from `12V_IN_SW`, so `+12V` stays off as well.
+- The supervisor has no connections to the legacy chips yet. Later issues
+  that add them must keep these signals from feeding unpowered chips.
+
+**Side effects:**
+
+- With the rails off, `PGOOD` is low and `+3V3` runs unsynchronized at about
+  400 kHz. It locks to the colour clock once the other rails are up.
+- The cassette motor supply U1101 is on the switched input, so it stays off
+  until the supervisor starts the system. After that the 6510 controls it
+  through P5, as before.
+- All rails start together; there is no start-up order between them.
 
 ### `CAN+5V` current budget
 
@@ -286,10 +362,8 @@ logic, with room to spare. The LM61440 can deliver up to 4 A, but the
 inductor and output capacitors would need to be checked before raising the
 budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
 
-Controlling the start-up order of the rails, for example to keep 5 V signals
-away from the microcontrollers until they are ready, is left to a later
-supervisor microcontroller (see below, #46 and #47). The converters' EN pins
-(R705, R1201) are where it can take control.
+`+3V3` is the only rail that is always on. The supervisor (see below)
+switches the 12 V input of all other rails, see [Input switch](#input-switch).
 
 Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
 
@@ -297,8 +371,9 @@ Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
 
 The `Supervisor` sheet holds a microcontroller (U1301, RP2354B) that will
 decide when the rest of the system may power up (#46). It runs from `+3V3`,
-the one rail that is always on. For now it only has its supply, clock, reset
-and USB; its functions follow in separate issues:
+the one rail that is always on. Besides its supply, clock, reset and USB it
+switches the other rails on and off (#47); its other functions follow in
+separate issues:
 
 | Function | Hardware | Firmware |
 | -------- | -------- | -------- |
@@ -349,10 +424,15 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 
 ### Pins
 
-Apart from GPIO13 (`VBUS_DET`), the GPIOs are not assigned yet; the
-follow-up issues assign them. The state of each assigned pin from power-up
-until the firmware runs, and with blank firmware, is to be documented with
-those issues, because the rail control (#47) depends on it.
+| GPIO | Pin | Net | Direction | Function |
+| ---- | --- | --- | --------- | -------- |
+| GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
+| GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
+
+The other GPIOs are not assigned yet; the follow-up issues assign them. The
+state of each assigned pin from power-up until the firmware runs, and with
+blank firmware, is to be documented with those issues, because they must
+not feed unpowered parts while the rails are off.
 
 ### Notes
 
@@ -516,6 +596,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-27 | Added an input switch to the `Power Supply` sheet: P-channel MOSFETs Q604 and Q605 (AO3401A) in parallel between `12V_IN` and the new switched net `12V_IN_SW`, driven by N-channel MOSFET Q603 (AO3400A) through R602 to R605 and C603, with a PWR_FLAG on `12V_IN_SW`. Moved the 5 V buck converter, the cassette buck converter, `CAN+5V`, the `+12V` charge pump with D903 and the HF module replacement to `12V_IN_SW`; the 3.3 V buck converter stays on `12V_IN`. Replaced the `12V_INPUT` sheet pin of the `Power Supply` sheet with `12V_IN_SW` and renamed the `12V_IN` sheet pin of the `HF Module Replacement and AV connectors` sheet to `12V_IN_SW`. Connected GPIO2 of the supervisor (U1301) to the switch through a new `PREFLIGHT_OK` sheet pin on the `Supervisor` sheet and a `POWER_ON` sheet pin on the `Power Supply` sheet |
 | 2026-10-27 | Removed the 8-pin DIN A/V connector CN5 from `250407 Sheet 2`, with the `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` hierarchical labels and sheet pins that led to it. Composite, luma, chroma and audio are now on J501 and J502 |
 | 2026-10-26 | Renamed the `HF Module Replacement` sheet to `HF Module Replacement and AV connectors` and added the audio and video connectors to it: S-Video socket J501 (MD-40SM) on `LUMA_OUT` and `CHROMA_OUT`, and triple RCA jack J502 (CAX-AV-314-RWY-PHP) with audio in on the red jack, audio out on the white jack and composite video on the yellow jack. Replaced the `AUDIO_IN` and `AUDIO_OUT` labels on `250407 Sheet 2` with hierarchical labels and passed them through the `250407 Design` sheet to the new sheet. Added TVS diode D502 (SMF5.0CA) and series resistor R513 (150 Ohm) to the audio input |
 | 2026-10-26 | Added the S-Video connector, CUI (Same Sky) MD-40SM (LCSC C6224745), to the component library in `hardware/components`: the symbol `MD-40SM` (KiCad's `Connector:Mini-DIN-4` with a shield pin) and the footprint `Mini-DIN-4_CUI_MD-40SM_Horizontal` |

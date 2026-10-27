@@ -3715,7 +3715,7 @@
 		)
 		(uuid "38986906-c292-4b74-a125-b8a63284dba6")
 	)
-	(hierarchical_label "12V_IN"
+	(hierarchical_label "12V_IN_SW"
 		(shape input)
 		(at 63.5 161.29 180)
 		(effects

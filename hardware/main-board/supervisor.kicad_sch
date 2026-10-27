@@ -4245,10 +4245,6 @@
 		(uuid "8f1a7a02-478b-4a2b-8541-672774cae05b")
 	)
 	(no_connect
-		(at 255.27 113.03)
-		(uuid "9037275f-2c82-40ca-b357-6ef87785f029")
-	)
-	(no_connect
 		(at 255.27 135.89)
 		(uuid "92301fd9-b2a4-4f7d-ad96-4555a6c32b88")
 	)
@@ -4775,6 +4771,16 @@
 			(type default)
 		)
 		(uuid "4def94eb-c8ae-4617-bb85-7d041febf251")
+	)
+	(wire
+		(pts
+			(xy 255.27 113.03) (xy 261.62 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50861b9c-70c8-40e1-8ad3-dff1d2d612d9")
 	)
 	(wire
 		(pts
@@ -6155,6 +6161,17 @@
 			(justify right bottom)
 		)
 		(uuid "fc6affff-87a1-4952-a38c-6b5748608047")
+	)
+	(hierarchical_label "PREFLIGHT_OK"
+		(shape output)
+		(at 261.62 113.03 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e2ba2564-7b6b-4fdd-996a-2b532785675b")
 	)
 	(symbol
 		(lib_id "power:Earth")
