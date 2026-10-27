@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1400,
+    "annotate_start_num": 1300,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "SW1303-1304,SW1401-1402,L1302,L1401,J1302,#FLG1303-1305,#FLG1401-1402,D1306-1310,C1322-1342,C1401-1419,R604-605,R1306,R1312-1320,R1401-1404,Y1302,Y1401,#PWR603-604,#PWR1312,#PWR1321,#PWR1325-1344,#PWR1401-1412,U1302,U1401,Q605,Q1301",
+    "used_designators": "SW1303-1304,SW1401-1402,L1302,L1401,J1302,#FLG1303-1305,#FLG1401-1402,D1306-1310,C1322-1342,C1401-1419,R2,R210-211,R214,R604-606,R1306,R1312-1320,R1401-1406,Y1302,Y1401,#PWR603-604,#PWR1312,#PWR1321,#PWR1325-1344,#PWR1401-1413,U1302,U1401,Q605,Q1301",
     "variants": []
   },
   "sheets": [
