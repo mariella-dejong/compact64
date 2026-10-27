@@ -2142,6 +2142,52 @@
 		)
 	)
 	(sheet
+		(at 120.65 82.55)
+		(size 43.18 35.56)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "79987ffb-bc0c-45a0-96fa-cfa9ee80bf34")
+		(property "Sheetname" "RAM and ROM replacement"
+			(at 120.65 81.8384 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ram_rom_replacement.kicad_sch"
+			(at 120.65 118.6946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "14")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 166.37 82.55)
 		(size 83.82 35.56)
 		(exclude_from_sim no)

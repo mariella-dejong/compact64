@@ -1715,6 +1715,10 @@
     [
       "83785ced-90f1-439c-a9f5-0f5eaac8b37d",
       "Supervisor"
+    ],
+    [
+      "79987ffb-bc0c-45a0-96fa-cfa9ee80bf34",
+      "RAM and ROM replacement"
     ]
   ],
   "text_variables": {},
