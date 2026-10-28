@@ -2777,6 +2777,26 @@
 		)
 		(uuid "febc7bd0-b315-4401-b4e2-98450a4702c4")
 	)
+	(text_box "Memory mapping:\n\nBASIC ROM (A000..BFFF) A0..A12 with ~{BASIC} low\nCHAR ROM (D000.DFFF) A0..A11 with ~{CHAROM} low\nKERNAL ROM (E000..FFFF) A0..A12 with ~{KERNAL} low"
+		(exclude_from_sim no)
+		(at 234.95 93.98 0)
+		(size 95.25 53.34)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "40945b22-7d43-4802-9774-212649463b66")
+	)
 	(junction
 		(at 240.03 53.34)
 		(diameter 0)
