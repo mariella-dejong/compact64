@@ -72,6 +72,25 @@ Check them before using software or hardware that depends on them.
   S-Video and DIN to SCART cables. Use standard S-Video and RCA cables
   instead.
 
+### RAM and ROM are served by a microcontroller
+
+- **Original C64:** eight 4164 DRAMs, the BASIC, KERNAL and character ROMs,
+  and a 2114 colour RAM.
+- **c64-mini:** a microcontroller (U1401) serves all of them from its own
+  memory (#11), see [RAM and ROM replacement](#ram-and-rom-replacement). It
+  loads the ROM images from an EEPROM. The ROM images are not part of this
+  project.
+- **Affected:**
+  - The board does not start without the controller's firmware and ROM
+    images.
+  - ROM upgrades that replace a chip, such as a replacement KERNAL chip,
+    cannot be fitted. Write a different image to the EEPROM instead.
+  - The RAM contents at power-up are set by the firmware, not by the DRAMs'
+    power-up pattern. The same goes for other details of DRAM behaviour,
+    such as what ends up in RAM when the 6510 writes to $00 or $01.
+- **Not affected:** bank switching, cartridges and the VIC-II bank
+  selection. The PLA still decodes them as before.
+
 ## Power supply
 
 The board is being converted to a single 12 V DC input (#10, #26). The rails
@@ -164,8 +183,8 @@ drives `POWER_ON` high.
 - **Reset while running:** pressing RESET or a watchdog reset returns GPIO2
   to its reset state, which turns the rails off.
 
-**Back-feeding:** while `12V_IN_SW` is off, only `+3V3` and the supervisor
-are powered.
+**Back-feeding:** while `12V_IN_SW` is off, only `+3V3`, the supervisor and
+the RAM and ROM controller (U1401 to U1403) are powered.
 
 - `PGOOD` is pulled up to `CAN+5V`, which is off, so it does not feed the
   unpowered divider U1001.
@@ -174,6 +193,9 @@ are powered.
 - D903 pre-charges `VPUMP` from `12V_IN_SW`, so `+12V` stays off as well.
 - The supervisor has no connections to the legacy chips yet. Later issues
   that add them must keep these signals from feeding unpowered chips.
+- The RAM and ROM controller connects to the C64 buses. It keeps all its bus
+  pins as inputs while the rails are off, see
+  [Power and back-feeding](#power-and-back-feeding).
 
 **Side effects:**
 
@@ -372,8 +394,10 @@ Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
 The `Supervisor` sheet holds a microcontroller (U1301, RP2354B) that will
 decide when the rest of the system may power up (#46). It runs from `+3V3`,
 the one rail that is always on. Besides its supply, clock, reset and USB it
-switches the other rails on and off (#47); its other functions follow in
-separate issues:
+switches the other rails on and off (#47), and it can program, reset and talk
+to the RAM and ROM controller (#11, see
+[RAM and ROM replacement](#ram-and-rom-replacement)); its other functions
+follow in separate issues:
 
 | Function | Hardware | Firmware |
 | -------- | -------- | -------- |
@@ -428,6 +452,19 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | ---- | --- | --- | --------- | -------- |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
+| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401) |
+| GPIO41 | 52 | `SCL` | Output | I2C0 clock to the RAM and ROM controller (U1401) |
+| GPIO45 | 56 | `RUN` | Output | High lets the RAM and ROM controller run; low or not driven holds it in reset |
+| GPIO46 | 57 | `SWCLK` | Output | SWD clock of the RAM and ROM controller |
+| GPIO47 | 58 | `SWDAT` | Bidirectional | SWD data of the RAM and ROM controller |
+
+- **I2C:** R1306 and R1312 (4.7k) pull `SDA` and `SCL` up to `+3V3`.
+- **State before the firmware runs:** all five pins come out of reset with
+  the output disabled and the internal pull-down on. `RUN` therefore stays
+  low and the RAM and ROM controller stays in reset, see
+  [Programming and start-up](#programming-and-start-up).
+- **Back-feeding:** these pins only connect to the RAM and ROM controller,
+  which is also on `+3V3`.
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -442,6 +479,191 @@ not feed unpowered parts while the rails are off.
   footprint, so the SBU pads (A8, B8) stay unconnected.
 - **TVS footprint:** the H5VL10BH comes in a DFN1006-2L package and sits on
   a 0402 footprint of the same size.
+
+## RAM and ROM replacement
+
+The `RAM and ROM replacement` sheet holds a microcontroller (U1401, RP2354B)
+that takes the place of all memory chips of the original board (#11). It
+keeps the RAM, the ROM images and the colour RAM in its own SRAM and answers
+the bus cycles of the 6510 and the VIC-II.
+
+| Removed       | Original part             | Now                              |
+| ------------- | ------------------------- | -------------------------------- |
+| U9 to U12, U21 to U24 | 4164 64K x 1 DRAM | 64 KB RAM in U1401             |
+| U3            | 2364 BASIC ROM            | BASIC ROM image in U1401         |
+| U4            | 2364 KERNAL ROM           | KERNAL ROM image in U1401        |
+| U5            | 2332 character ROM        | Character ROM image in U1401     |
+| U6            | 2114 1K x 4 static RAM    | Colour RAM in U1401              |
+
+Their support parts went with them: the decoupling capacitors C4 to C7,
+C25 to C28 and C40 to C43, the 10 uF capacitor C14, the 33 Ohm resistor
+arrays RP1 and RP2 between the multiplexed address bus and the DRAMs, the
+`~CASRAM` series resistor R42 and the unfitted C204.
+
+The address decoding stays as it was:
+
+- The PLA (U17) still decodes every access, so bank switching through the
+  6510's port at $01, cartridges (`~GAME`, `~EXROM`) and the VIC-II bank
+  selected by CIA 2 work as before. The controller only answers the chip
+  selects the PLA gives it, and does not need to track any of these.
+- The address multiplexers U13, U14 and U25 and the latch U26 stay. The
+  VIC-II's register select, the PLA's decoding of VIC-II cycles and the low
+  address byte in VIC-II cycles all depend on them.
+- U16 (4066) still connects the colour data lines to D0 to D3 in 6510
+  cycles.
+
+### Circuit
+
+The circuit is the same as the supervisor's (see [Circuit](#circuit)),
+following Raspberry Pi's RP2350 reference design:
+
+- **Core regulator:** L1401 (3.3 uH) with its own local core supply net
+  (`+1V1`) and C1404, C1405, C1407 and C1408. R1402 (33 Ohm) and C1406
+  (4.7 uF) filter `VREG_AVDD`; C1403 (4.7 uF) decouples the regulator input.
+- **Supplies:** the IOVDD and other 3.3 V supply pins are on `+3V3`, with
+  100 nF capacitors C1409 to C1419.
+- **Clock:** Y1401 (12 MHz ABM8-272-T3) with C1401 and C1402 (15 pF) and
+  R1401 (1k) in series with XOUT.
+- **Flash:** the 2 MB flash in the RP2354B holds the firmware. The QSPI pins
+  are unconnected; the internal pull-up on `QSPI_SS` makes it boot from
+  flash.
+- **No buttons and no USB:** the supervisor resets and programs it, see
+  [Programming and start-up](#programming-and-start-up).
+
+### Pins
+
+| GPIO | Pin | Net | Function |
+| ---- | --- | --- | -------- |
+| GPIO0 to GPIO7 | 77 to 80, 1 to 4 | `D0` to `D7` | Data bus |
+| GPIO8 to GPIO23 | 6 to 9, 11 to 14, 16 to 23 | `A0` to `A15` | Address bus |
+| GPIO24 | 25 | `~CASRAM` | RAM select from the PLA, includes `~CAS` |
+| GPIO25 | 26 | `~BASIC` | BASIC ROM select from the PLA |
+| GPIO26 | 27 | `~KERNAL` | KERNAL ROM select from the PLA |
+| GPIO27 | 28 | `~CHAROM` | Character ROM select from the PLA |
+| GPIO28 | 36 | `~COLORAM` | Colour RAM select from U27 |
+| GPIO29 | 37 | `R/~W` | 6510 read/write |
+| GPIO30 | 38 | `GR/~W` (sheet pin `COLORR/~W`) | Colour RAM write strobe from the PLA |
+| GPIO31 | 39 | `VA4` | Multiplexed address: A4, then A12 |
+| GPIO32 | 40 | `VA5` | Multiplexed address: A5, then A13 |
+| GPIO33 | 42 | `~VA14` | VIC-II bank, inverted A14 (CIA 2 PA0) |
+| GPIO34 | 43 | `~VA15` | VIC-II bank, inverted A15 (CIA 2 PA1) |
+| GPIO35 | 44 | `AEC` | High: 6510 cycle; low: VIC-II cycle |
+| GPIO36 to GPIO39 | 45 to 48 | `COLOR_D0` to `COLOR_D3` | Colour RAM data |
+| GPIO40 | 49 | `SDA` | I2C0 data, link to the supervisor |
+| GPIO41 | 52 | `SCL` | I2C0 clock, link to the supervisor |
+| GPIO42 | 53 | `EEPROM_SDA` | I2C1 data to the EEPROM |
+| GPIO43 | 54 | `EEPROM_SCL` | I2C1 clock to the EEPROM |
+| GPIO46 | 57 | `PHI2` through U1402 | 6510 clock |
+| GPIO47 | 58 | `~CAS` through U1402 | Column address strobe from the VIC-II |
+
+GPIO44 and GPIO45 (pins 55, 56) are not used.
+
+### Level shifting
+
+GPIO0 to GPIO39 are 5 V tolerant while the RP2354B's IOVDD is powered, so
+the 5 V bus signals connect directly. GPIO40 to GPIO47 can also be ADC
+inputs and are not 5 V tolerant. The two 5 V signals on those pins, `~CAS`
+and `PHI2`, go through U1402 (74LVC2G17, dual Schmitt-trigger buffer) on
+`+3V3` with C1420 (100 nF). Its inputs accept 5 V at a 3.3 V supply, and it
+adds about 4 pF to `~CAS` and a few nanoseconds of delay.
+
+In the other direction, the controller drives the data lines with 3.3 V.
+That is above the 2.0 V input high level of the NMOS and TTL chips on the
+bus.
+
+5 V on the GPIOs is only allowed while `+3V3` is up. The input switch
+ensures this: `+3V3` is always on, and all other rails are switched (see
+[Input switch](#input-switch)).
+
+### Addressing
+
+| Cycle | `AEC` | A0 to A7 | A8 to A11 | A12, A13 | A14, A15 |
+| ----- | ----- | -------- | --------- | -------- | -------- |
+| 6510 | High | `A0` to `A7` | `A8` to `A11` | `A12`, `A13` | `A14`, `A15` |
+| VIC-II | Low | `A0` to `A7` from latch U26 | `A8` to `A11` from the VIC-II | `VA4`, `VA5` while `~CAS` is low | `~VA14`, `~VA15`, inverted |
+
+In VIC-II cycles, `A12` to `A15` read high through the pull-ups RP4.
+
+| Memory | Address | Select | Notes |
+| ------ | ------- | ------ | ----- |
+| RAM | A0 to A15 | `~CASRAM` | Read when `R/~W` is high, write when low |
+| BASIC ROM ($A000 to $BFFF) | A0 to A12 | `~BASIC` | |
+| KERNAL ROM ($E000 to $FFFF) | A0 to A12 | `~KERNAL` | |
+| Character ROM | A0 to A11 | `~CHAROM` | 6510 at $D000 to $DFFF, VIC-II at $1000 to $1FFF in banks 0 and 2 |
+| Colour RAM | A0 to A9 | `~COLORAM` | Written with `GR/~W`; data on `COLOR_D0` to `COLOR_D3` |
+
+The PLA does not select RAM during the VIC-II's refresh cycles, so they need
+no handling.
+
+### ROM images
+
+U1403 (AT24C256C, 32 KB) stores the ROM images. It is on I2C1 (GPIO42,
+GPIO43) with R1407 and R1408 (4.7k) as pull-ups and C1421 (100 nF). Its
+address pins are high (I2C address 0x57) and its write protect pin is low.
+One set of ROM images (BASIC 8 KB, KERNAL 8 KB, character ROM 4 KB) takes
+20 KB.
+
+The original Commodore ROM images are not part of this project, see
+[NOTICE.md](../../NOTICE.md#roms-and-firmware). They are to be supplied by
+the user or replaced by images that are free of these rights.
+
+### Programming and start-up
+
+The supervisor (U1301) programs and controls the controller:
+
+- **Reset:** the supervisor's GPIO45 drives `RUN` through R1404 (1k). R1403
+  (10k) pulls `RUN` to ground, so the controller stays in reset until the
+  supervisor drives it high (about 3.0 V). With the supervisor in reset,
+  `RUN` stays below 0.6 V.
+- **Programming:** the supervisor's GPIO46 and GPIO47 drive SWCLK and SWDIO
+  through R1405 and R1406 (33 Ohm). The supervisor writes the firmware to
+  the controller's flash over SWD; this also works on a blank chip.
+- **Link:** both microcontrollers share I2C0 on GPIO40 and GPIO41.
+
+Intended start-up order, for the firmware: the supervisor releases `RUN`
+while the other rails are still off; the controller loads the ROM images
+from the EEPROM (which is on `+3V3`) and reports over I2C that it is ready;
+only then does the supervisor turn on the other rails. The 6510 then starts
+with its memory already in place.
+
+### Power and back-feeding
+
+U1401 to U1403 are on `+3V3`, which is always on, so they are powered while
+the C64 chips are not.
+
+- In reset, all bus pins of U1401 are inputs with the internal pull-down on,
+  so they do not feed the unpowered chips.
+- Once it runs, the firmware must keep all bus pins as inputs until the
+  rails are up, and turn the pull-downs off then (see below).
+- U1402's inputs tolerate signals from unpowered chips; its outputs only go
+  to U1401.
+
+### Timing
+
+The controller has to answer each access as fast as the original chips. The
+tightest deadline is for RAM: the data must be on the bus about 135 ns
+after `~CASRAM` falls, the CAS access time of a 200 ns 4164 DRAM. This is an
+estimate, not a measured value. ROM and colour RAM accesses leave more time.
+
+These timing requirements are for the firmware:
+
+- Run the bus loop from SRAM, not from flash, on a core of its own with
+  interrupts off.
+- In 6510 cycles the full address is valid before `~CASRAM` falls, so the
+  lookup can start early. In VIC-II cycles only A12 and A13 arrive late; the
+  four possible bytes can be read beforehand, and one picked when
+  `~CASRAM` falls.
+- Stop driving the data lines as soon as the select goes high.
+- Latch write data late in the cycle, not when `~CASRAM` falls: the 6510
+  can take up to about 200 ns into `PHI2` to put the data on the bus. Latch
+  colour RAM writes on the rising edge of `GR/~W`.
+- In 6510 cycles, U16 connects `COLOR_D0` to `COLOR_D3` to D0 to D3. When
+  the 6510 reads colour RAM, drive only the colour data lines, never D0 to
+  D3 as well.
+- Turn off the internal pull-downs of the bus pins (RP2350 erratum E9), and
+  set the data lines to 12 mA drive strength.
+- The RP2350 is rated for 150 MHz. Overclock it only if measurements show
+  that this is not fast enough.
 
 ## Audio and video connectors
 
@@ -596,6 +818,13 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-28 | Added the LCSC part number C99395 to the embedded UCC27517DBV library symbol on the `12V Stabilized Rail` sheet. U901 already had it; no change to the circuit |
+| 2026-10-28 | Added `PHI2` and `~CAS` inputs to the RAM and ROM controller: U1402 (74LVC2G17) with C1420 on `+3V3` buffers `~CAS` to GPIO47 and `PHI2` to GPIO46, which are not 5 V tolerant. Passed `~CAS` and `PHI2` to the `RAM and ROM replacement` sheet through new sheet pins |
+| 2026-10-28 | Added EEPROM U1403 (AT24C256C) with pull-ups R1407 and R1408 (4.7k) and C1421 to the `RAM and ROM replacement` sheet, on I2C1 of U1401 (GPIO42, GPIO43), to store the ROM images |
+| 2026-10-28 | Removed the eight 4164 DRAMs (U9 to U12, U21 to U24) from `250407 Sheet 2` with their decoupling capacitors C25 to C28 and C40 to C43, the 10 uF capacitor C14, the resistor arrays RP1 and RP2 with the `MA0` to `MA7` nets, the series resistor R42 and C204. Connected `VA4`, `VA5`, `~VA14`, `~VA15`, `AEC` and `~CASRAM` to U1401 through new hierarchical labels and sheet pins on `250407 Sheet 2`, `250407 Design` and the root sheet |
+| 2026-10-27 | Removed the colour RAM U6 (2114) and its decoupling capacitor C7 from `250407 Sheet 2` and connected `~COLORAM`, `GR/~W` and `COLOR_D0` to `COLOR_D3` to U1401 through new hierarchical labels and sheet pins |
+| 2026-10-27 | Removed the BASIC ROM U3 (2364), the KERNAL ROM U4 (2364) and the character ROM U5 (2332) with their decoupling capacitors C4 to C6 from `250407 Sheet 2`, and connected `~BASIC`, `~KERNAL`, `~CHAROM`, `R/~W`, the address bus `A[0..15]` and the data bus `D[0..7]` to U1401 through new hierarchical labels and sheet pins on `250407 Sheet 2`, `250407 Design` and the root sheet. Replaced the global labels `A[0..15]`, `D[0..7]`, `PHI2`, `~VA14` and `~VA15` between `250407 Sheet 1` and `250407 Sheet 2` with hierarchical labels and sheet pins on the `250407 Design` sheet. Added a memory map note to the `RAM and ROM replacement` sheet |
+| 2026-10-27 | Added a `RAM and ROM replacement` sheet to the root sheet with an RP2354B microcontroller (U1401) on `+3V3`, following Raspberry Pi's RP2350 reference design: core regulator inductor L1401 with its own local core supply net, 12 MHz crystal Y1401, and no buttons or USB. Connected it to the supervisor (U1301): GPIO45 to `RUN` through R1404 (1k) with R1403 (10k) to ground, GPIO46 and GPIO47 to SWCLK and SWDIO through R1405 and R1406 (33 Ohm), and I2C0 (GPIO40, GPIO41) between both with pull-ups R1306 and R1312 (4.7k) on the `Supervisor` sheet. Annotated its parts from 1400 |
 | 2026-10-27 | Added an input switch to the `Power Supply` sheet: P-channel MOSFETs Q604 and Q605 (AO3401A) in parallel between `12V_IN` and the new switched net `12V_IN_SW`, driven by N-channel MOSFET Q603 (AO3400A) through R602 to R605 and C603, with a PWR_FLAG on `12V_IN_SW`. Moved the 5 V buck converter, the cassette buck converter, `CAN+5V`, the `+12V` charge pump with D903 and the HF module replacement to `12V_IN_SW`; the 3.3 V buck converter stays on `12V_IN`. Replaced the `12V_INPUT` sheet pin of the `Power Supply` sheet with `12V_IN_SW` and renamed the `12V_IN` sheet pin of the `HF Module Replacement and AV connectors` sheet to `12V_IN_SW`. Connected GPIO2 of the supervisor (U1301) to the switch through a new `PREFLIGHT_OK` sheet pin on the `Supervisor` sheet and a `POWER_ON` sheet pin on the `Power Supply` sheet |
 | 2026-10-27 | Removed the 8-pin DIN A/V connector CN5 from `250407 Sheet 2`, with the `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` hierarchical labels and sheet pins that led to it. Composite, luma, chroma and audio are now on J501 and J502 |
 | 2026-10-26 | Renamed the `HF Module Replacement` sheet to `HF Module Replacement and AV connectors` and added the audio and video connectors to it: S-Video socket J501 (MD-40SM) on `LUMA_OUT` and `CHROMA_OUT`, and triple RCA jack J502 (CAX-AV-314-RWY-PHP) with audio in on the red jack, audio out on the white jack and composite video on the yellow jack. Replaced the `AUDIO_IN` and `AUDIO_OUT` labels on `250407 Sheet 2` with hierarchical labels and passed them through the `250407 Design` sheet to the new sheet. Added TVS diode D502 (SMF5.0CA) and series resistor R513 (150 Ohm) to the audio input |

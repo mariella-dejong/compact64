@@ -2483,6 +2483,17 @@
 				)
 			)
 		)
+		(property "LCSC Part #" "C99395"
+			(at 91.44 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "6112bf5e-0309-4c66-b403-d783330d2d1f")
 		)
