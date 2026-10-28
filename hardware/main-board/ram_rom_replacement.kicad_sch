@@ -3205,6 +3205,12 @@
 		(uuid "98d72544-32cd-4c78-8e14-71f16f949bca")
 	)
 	(junction
+		(at 190.5 232.41)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9d051d9c-2ff6-4c3a-bfc0-13e513920579")
+	)
+	(junction
 		(at 158.75 62.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6530,6 +6536,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:Earth")
+		(at 190.5 240.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "29b33e56-b991-40f7-a7ed-18e911c2a2f1")
+		(property "Reference" "#PWR01416"
+			(at 190.5 246.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 190.5 245.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 190.5 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 190.5 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "eb4443c8-955b-4940-8e24-97e8d32fc09a")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "#PWR01416")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 190.5 228.6 0)
 		(unit 1)
@@ -7653,6 +7738,97 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 190.5 236.22 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5cf90cb3-bd57-4180-925c-82e6d29c0c5c")
+		(property "Reference" "C1420"
+			(at 187.579 237.3884 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 187.579 235.077 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 189.5348 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 236.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 190.5 236.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C1525"
+			(at 190.5 236.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5d91d5a9-b430-4f35-bb2c-66d5b28b806b")
+		)
+		(pin "2"
+			(uuid "9a257015-25af-4f3e-8b68-0756ef753ee6")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "C1420")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 115.57 160.02 90)
 		(unit 1)
@@ -8311,7 +8487,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
 			(at 200.66 229.87 0)
 			(hide yes)
 			(show_name no)
@@ -8336,6 +8512,17 @@
 		)
 		(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
 			(at 200.66 227.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7836"
+			(at 200.66 227.33 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
