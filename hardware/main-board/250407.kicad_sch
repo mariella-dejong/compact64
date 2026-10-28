@@ -93,6 +93,16 @@
 	)
 	(wire
 		(pts
+			(xy 40.64 62.23) (xy 40.64 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "547e68f9-7d5d-4933-b2f7-a52e664f5745")
+	)
+	(wire
+		(pts
 			(xy 48.26 97.79) (xy 48.26 102.87)
 		)
 		(stroke
@@ -592,6 +602,17 @@
 		)
 		(uuid "c937a446-e1ba-447e-ae24-68a4e203dbdc")
 	)
+	(hierarchical_label "PHI2"
+		(shape output)
+		(at 40.64 67.945 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "cda586aa-38b0-45ac-9188-10b8ee07353b")
+	)
 	(hierarchical_label "COLOR_D1"
 		(shape bidirectional)
 		(at 72.39 104.14 270)
@@ -779,6 +800,16 @@
 		(pin "~{VA15}" output
 			(at 74.93 62.23 270)
 			(uuid "8098517f-5d01-4080-ad7a-eac427a4005b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "PHI2" output
+			(at 40.64 62.23 270)
+			(uuid "60330501-bb9f-4289-83d6-6fa011f27e6d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1075,6 +1106,16 @@
 		(pin "~{VA15}" input
 			(at 74.93 69.85 90)
 			(uuid "33ab94af-a813-4f86-9c49-dc687e113ece")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PHI2" input
+			(at 40.64 69.85 90)
+			(uuid "9ebc2ed6-baef-4abf-a532-00f0bf08ed55")
 			(effects
 				(font
 					(size 1.27 1.27)

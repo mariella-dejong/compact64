@@ -5,58 +5,33 @@
 	(uuid "7fa898a6-1cd0-4cfe-a65b-58a179d801ca")
 	(paper "A3")
 	(lib_symbols
-		(symbol "74xGxx:74LVC1G17"
+		(symbol "74xGxx:74LVC2G17"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
-				(at 0 3.81 0)
+				(at -1.27 7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Value" "74LVC1G17"
-				(at 0 -3.81 0)
+			(property "Value" "74LVC2G17"
+				(at 2.54 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
 			(property "Footprint" ""
-				(at -2.54 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
-				(at 0 -6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -67,7 +42,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "Single Gate Buff Schmitt LVC CMOS"
+			(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -78,7 +53,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "SOT?23* SOT?553* Texas?R-PDSO-G5?DCK* Texas?R-PDSO-N5?DRL* Texas?X2SON*0.8x0.8mm*P0.48mm*"
+			(property "Description" "Dual Buffer, Schmitt Triggered, Low-Voltage CMOS"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -89,7 +64,29 @@
 					)
 				)
 			)
-			(symbol "74LVC1G17_0_1"
+			(property "ki_keywords" "Dual Buffer Schmitt LVC CMOS"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SG-* SOT*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "74LVC2G17_1_1"
 				(polyline
 					(pts
 						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
@@ -104,7 +101,7 @@
 				)
 				(polyline
 					(pts
-						(xy -3.81 -1.27) (xy -2.54 -1.27) (xy -2.54 1.27) (xy -1.27 1.27)
+						(xy -3.81 1.27) (xy -2.54 1.27) (xy -2.54 -1.27) (xy 0 -1.27)
 					)
 					(stroke
 						(width 0.254)
@@ -116,7 +113,7 @@
 				)
 				(polyline
 					(pts
-						(xy -2.54 -1.27) (xy -1.27 -1.27) (xy -1.27 1.27) (xy 0 1.27)
+						(xy -2.54 1.27) (xy -1.27 1.27) (xy -1.27 -1.27)
 					)
 					(stroke
 						(width 0.254)
@@ -126,13 +123,10 @@
 						(type background)
 					)
 				)
-			)
-			(symbol "74LVC1G17_1_1"
-				(pin no_connect line
-					(at -7.62 5.08 180)
-					(length 5.08)
-					(hide yes)
-					(name "NC"
+				(pin input line
+					(at -15.24 0 0)
+					(length 7.62)
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -147,9 +141,9 @@
 						)
 					)
 				)
-				(pin input line
-					(at -12.7 0 0)
-					(length 5.08)
+				(pin output line
+					(at 12.7 0 180)
+					(length 7.62)
 					(name ""
 						(effects
 							(font
@@ -157,7 +151,7 @@
 							)
 						)
 					)
-					(number "2"
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -165,10 +159,48 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -5.08 -10.16 90)
-					(length 5.08)
-					(name "GND"
+			)
+			(symbol "74LVC2G17_2_1"
+				(polyline
+					(pts
+						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 1.27) (xy -2.54 1.27) (xy -2.54 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 1.27) (xy -1.27 1.27) (xy -1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin input line
+					(at -15.24 0 0)
+					(length 7.62)
+					(name ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -184,8 +216,8 @@
 					)
 				)
 				(pin output line
-					(at 10.16 0 180)
-					(length 5.08)
+					(at 12.7 0 180)
+					(length 7.62)
 					(name ""
 						(effects
 							(font
@@ -201,8 +233,41 @@
 						)
 					)
 				)
+			)
+			(symbol "74LVC2G17_3_0"
+				(rectangle
+					(start -5.08 -5.08)
+					(end 5.08 5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "74LVC2G17_3_1"
 				(pin power_in line
-					(at -5.08 10.16 270)
+					(at 0 -10.16 90)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 10.16 270)
 					(length 5.08)
 					(name "VCC"
 						(effects
@@ -3226,7 +3291,7 @@
 	)
 	(text "The analog-backed ports (GPIO40..GPIO47) are not 5V-tolerant.\nThis is why we are using a level shifter for these pins when\nthe input is 5V."
 		(exclude_from_sim no)
-		(at 203.708 247.142 0)
+		(at 212.598 239.014 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3274,6 +3339,12 @@
 			(justify left top)
 		)
 		(uuid "40945b22-7d43-4802-9774-212649463b66")
+	)
+	(junction
+		(at 258.445 233.045)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "000eafae-3c80-40dd-ba2c-296cbd4f2689")
 	)
 	(junction
 		(at 240.03 53.34)
@@ -3498,12 +3569,6 @@
 		(uuid "98d72544-32cd-4c78-8e14-71f16f949bca")
 	)
 	(junction
-		(at 190.5 232.41)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9d051d9c-2ff6-4c3a-bfc0-13e513920579")
-	)
-	(junction
 		(at 158.75 62.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3616,10 +3681,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ff48ce55-2aa3-40a7-88d5-7916460a676a")
-	)
-	(no_connect
-		(at 189.23 212.09)
-		(uuid "09b157a7-395b-4c12-8d2e-556130ca93a1")
 	)
 	(no_connect
 		(at 120.65 113.03)
@@ -3876,6 +3937,16 @@
 			(type default)
 		)
 		(uuid "ee0c52a8-81d4-4221-a024-89e4851594ac")
+	)
+	(wire
+		(pts
+			(xy 258.445 233.045) (xy 267.335 233.045)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "012bf4dd-1e1b-40b8-a2ee-bf497cccb0fb")
 	)
 	(wire
 		(pts
@@ -4279,6 +4350,16 @@
 	)
 	(wire
 		(pts
+			(xy 191.135 222.885) (xy 217.17 222.885)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36e29db7-e866-4d98-b434-852402f23632")
+	)
+	(wire
+		(pts
 			(xy 205.74 50.8) (xy 205.74 53.34)
 		)
 		(stroke
@@ -4356,16 +4437,6 @@
 			(type default)
 		)
 		(uuid "3f14924e-f190-4e8f-a1f0-6bff43ded9e3")
-	)
-	(wire
-		(pts
-			(xy 213.36 232.41) (xy 213.36 233.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "41d67c53-e892-45dc-aa5d-29c43ffba8fc")
 	)
 	(wire
 		(pts
@@ -4459,16 +4530,6 @@
 	)
 	(wire
 		(pts
-			(xy 200.66 214.63) (xy 200.66 217.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4a3fa225-4a38-4802-a178-5ca1fc11c209")
-	)
-	(wire
-		(pts
 			(xy 73.66 85.09) (xy 73.66 83.82)
 		)
 		(stroke
@@ -4506,16 +4567,6 @@
 			(type default)
 		)
 		(uuid "504b8702-f7fc-41c9-a2f2-2f02be6d07ee")
-	)
-	(wire
-		(pts
-			(xy 200.66 240.03) (xy 208.28 240.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "50ed8431-226c-4253-ba1b-01646afb3e06")
 	)
 	(wire
 		(pts
@@ -4649,6 +4700,16 @@
 	)
 	(wire
 		(pts
+			(xy 189.23 214.63) (xy 191.135 214.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6374ea0c-d76c-4936-b164-36aec43661a4")
+	)
+	(wire
+		(pts
 			(xy 217.17 43.18) (xy 217.17 41.91)
 		)
 		(stroke
@@ -4686,16 +4747,6 @@
 			(type default)
 		)
 		(uuid "68c09551-be1e-4cb5-a2d6-a2e9ce6bcc2d")
-	)
-	(wire
-		(pts
-			(xy 189.23 214.63) (xy 200.66 214.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "697ae34f-a328-48fc-882d-266c23384399")
 	)
 	(wire
 		(pts
@@ -4889,6 +4940,16 @@
 	)
 	(wire
 		(pts
+			(xy 258.445 233.045) (xy 258.445 234.315)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fc4efb3-25ab-477c-981b-5f757da73ded")
+	)
+	(wire
+		(pts
 			(xy 120.65 133.35) (xy 106.68 133.35)
 		)
 		(stroke
@@ -4906,6 +4967,16 @@
 			(type default)
 		)
 		(uuid "8047d945-b3ae-407b-850c-2d02e96c56b5")
+	)
+	(wire
+		(pts
+			(xy 189.23 212.09) (xy 217.17 212.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "842c3096-bd7a-4750-beed-cd7ab6ec4a8d")
 	)
 	(wire
 		(pts
@@ -5056,6 +5127,16 @@
 			(type default)
 		)
 		(uuid "97f0a1bf-5c5a-4735-9f64-b668ed49feae")
+	)
+	(wire
+		(pts
+			(xy 191.135 214.63) (xy 191.135 222.885)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "984c429f-e72f-4688-b3ee-ecf5e9a4feef")
 	)
 	(wire
 		(pts
@@ -5349,16 +5430,6 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 232.41) (xy 213.36 232.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c01996bc-97c0-4ba3-853f-59dc9c5f0d8b")
-	)
-	(wire
-		(pts
 			(xy 189.23 140.97) (xy 195.58 140.97)
 		)
 		(stroke
@@ -5519,7 +5590,7 @@
 	)
 	(wire
 		(pts
-			(xy 190.5 228.6) (xy 190.5 232.41)
+			(xy 258.445 230.505) (xy 258.445 233.045)
 		)
 		(stroke
 			(width 0)
@@ -5646,6 +5717,16 @@
 			(type default)
 		)
 		(uuid "eea837c1-3532-4ce0-8438-8f8c660f734e")
+	)
+	(wire
+		(pts
+			(xy 217.17 212.09) (xy 217.17 209.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "efd27ea2-aece-48ef-9d5c-904fa29e9f52")
 	)
 	(wire
 		(pts
@@ -6127,6 +6208,17 @@
 		)
 		(uuid "ff37e950-c12f-4556-874f-246c8359e2cc")
 	)
+	(hierarchical_label "PHI2"
+		(shape input)
+		(at 245.11 209.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "03b958e9-31b1-4526-807c-24646196165e")
+	)
 	(hierarchical_label "COLOR_D0"
 		(shape bidirectional)
 		(at 189.23 184.15 0)
@@ -6195,7 +6287,7 @@
 	)
 	(hierarchical_label "~{CAS}"
 		(shape input)
-		(at 208.28 240.03 0)
+		(at 245.11 222.885 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6478,6 +6570,111 @@
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
 					(reference "C1409")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "74xGxx:74LVC2G17")
+		(at 267.335 243.205 0)
+		(unit 3)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "19ed3bf2-2007-4186-81e5-26a03f6e4b51")
+		(property "Reference" "U1402"
+			(at 274.32 241.9349 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "74LVC2G17"
+			(at 274.32 244.4749 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+			(at 267.335 243.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+			(at 267.335 243.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Dual Buffer, Schmitt Triggered, Low-Voltage CMOS"
+			(at 267.335 243.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C10429"
+			(at 267.335 243.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "4fde9b47-a9d0-43b5-bced-8b917ab13eea")
+		)
+		(pin "3"
+			(uuid "e6cc4618-941d-46c4-9d5d-0aa61244e712")
+		)
+		(pin "6"
+			(uuid "a478a13b-69cc-4abf-b61b-6a632684f05c")
+		)
+		(pin "5"
+			(uuid "1c2e5c48-415c-4ee5-951d-ca26ec9c0b1d")
+		)
+		(pin "1"
+			(uuid "7ae3d13f-195d-4e49-8694-fe22bbd140cb")
+		)
+		(pin "4"
+			(uuid "6ef331a1-0e0f-4c0b-805a-746bc5aeed6a")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "U1402")
+					(unit 3)
 				)
 			)
 		)
@@ -7088,7 +7285,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 190.5 240.03 0)
+		(at 258.445 241.935 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7099,7 +7296,7 @@
 		(fields_autoplaced yes)
 		(uuid "29b33e56-b991-40f7-a7ed-18e911c2a2f1")
 		(property "Reference" "#PWR01416"
-			(at 190.5 246.38 0)
+			(at 258.445 248.285 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7110,7 +7307,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 190.5 245.11 0)
+			(at 258.445 247.015 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7121,7 +7318,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 190.5 240.03 0)
+			(at 258.445 241.935 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7132,7 +7329,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 190.5 240.03 0)
+			(at 258.445 241.935 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7143,7 +7340,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 190.5 240.03 0)
+			(at 258.445 241.935 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7167,7 +7364,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 190.5 228.6 0)
+		(at 258.445 230.505 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7177,7 +7374,7 @@
 		(dnp no)
 		(uuid "2b3f923e-f91d-4afb-a440-694056808610")
 		(property "Reference" "#PWR01414"
-			(at 190.5 232.41 0)
+			(at 258.445 234.315 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7188,7 +7385,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 190.119 224.155 0)
+			(at 258.064 226.06 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7198,7 +7395,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 190.5 228.6 0)
+			(at 258.445 230.505 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7209,7 +7406,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 190.5 228.6 0)
+			(at 258.445 230.505 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7220,7 +7417,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 190.5 228.6 0)
+			(at 258.445 230.505 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8366,7 +8563,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 190.5 236.22 180)
+		(at 258.445 238.125 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8376,7 +8573,7 @@
 		(dnp no)
 		(uuid "5cf90cb3-bd57-4180-925c-82e6d29c0c5c")
 		(property "Reference" "C1420"
-			(at 187.579 237.3884 0)
+			(at 255.524 239.2934 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8387,7 +8584,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 187.579 235.077 0)
+			(at 255.524 236.982 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8398,7 +8595,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 189.5348 232.41 0)
+			(at 257.4798 234.315 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8409,7 +8606,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 190.5 236.22 0)
+			(at 258.445 238.125 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8420,7 +8617,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 190.5 236.22 0)
+			(at 258.445 238.125 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8430,7 +8627,7 @@
 			)
 		)
 		(property "LCSC Part #" "C1525"
-			(at 190.5 236.22 0)
+			(at 258.445 238.125 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9267,6 +9464,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:Earth")
+		(at 267.335 253.365 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9715a033-b4b2-4284-9565-d38a02f81546")
+		(property "Reference" "#PWR01415"
+			(at 267.335 259.715 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 267.335 258.445 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 267.335 253.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 267.335 253.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 267.335 253.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f6284946-a506-4936-897c-a6c5c0302fac")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "#PWR01415")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 62.23 88.9 0)
 		(unit 1)
@@ -9359,8 +9635,8 @@
 		)
 	)
 	(symbol
-		(lib_id "74xGxx:74LVC1G17")
-		(at 200.66 227.33 90)
+		(lib_id "74xGxx:74LVC2G17")
+		(at 229.87 222.885 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9368,10 +9644,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "a0c8ce36-6d82-44c2-981d-b8dde5e2743d")
 		(property "Reference" "U1402"
-			(at 213.36 226.9646 90)
+			(at 228.981 229.235 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9380,8 +9655,8 @@
 				)
 			)
 		)
-		(property "Value" "74LVC1G17"
-			(at 213.36 229.5046 90)
+		(property "Value" "74LVC2G17"
+			(at 228.981 231.775 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9390,8 +9665,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-			(at 200.66 229.87 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+			(at 229.87 222.885 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9401,20 +9676,8 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
-			(at 207.01 227.33 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
-			(at 200.66 227.33 0)
+		(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+			(at 229.87 222.885 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9424,8 +9687,19 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C7836"
-			(at 200.66 227.33 90)
+		(property "Description" "Dual Buffer, Schmitt Triggered, Low-Voltage CMOS"
+			(at 229.87 222.885 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C10429"
+			(at 229.87 222.885 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9449,6 +9723,9 @@
 		)
 		(pin "3"
 			(uuid "d55431ac-61af-4f7e-b775-9176c2f40af4")
+		)
+		(pin "6"
+			(uuid "65160e87-fc30-42b8-a430-b319576132ae")
 		)
 		(instances
 			(project "c64-mini"
@@ -9870,85 +10147,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
 					(reference "C1402")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:Earth")
-		(at 213.36 233.68 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "afcbdc59-392e-43e6-af97-4860ee5685da")
-		(property "Reference" "#PWR01415"
-			(at 213.36 240.03 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 213.36 238.76 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 213.36 233.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 213.36 233.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 213.36 233.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ee853e20-9294-4cc5-b6ff-375985ec5c22")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
-					(reference "#PWR01415")
 					(unit 1)
 				)
 			)
@@ -11069,6 +11267,109 @@
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
 					(reference "C1405")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "74xGxx:74LVC2G17")
+		(at 229.87 209.55 180)
+		(unit 2)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f62da7e6-47ec-4747-a10d-05e7ae986154")
+		(property "Reference" "U1402"
+			(at 231.14 198.755 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LVC2G17"
+			(at 231.14 201.295 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+			(at 229.87 209.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+			(at 229.87 209.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Dual Buffer, Schmitt Triggered, Low-Voltage CMOS"
+			(at 229.87 209.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C10429"
+			(at 229.87 209.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "ec34d933-c059-41f3-af0b-3512affdb4da")
+		)
+		(pin "5"
+			(uuid "ffbe2061-cd24-4582-9ad3-da225f4cf88f")
+		)
+		(pin "6"
+			(uuid "df3d915d-07ee-4702-826f-92bf3320a39d")
+		)
+		(pin "2"
+			(uuid "515426c0-acbc-4cd8-b515-d9928863b4ce")
+		)
+		(pin "4"
+			(uuid "3a1f74a0-9c8d-4566-a692-56fa3a920fca")
+		)
+		(pin "1"
+			(uuid "577247bf-951b-46e7-9c49-1f29432a2be3")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "U1402")
+					(unit 2)
 				)
 			)
 		)

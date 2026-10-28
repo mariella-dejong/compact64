@@ -20018,28 +20018,6 @@
 			)
 		)
 	)
-	(global_label "PHI2"
-		(shape output)
-		(at 187.96 107.95 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "5e2d9585-bdfb-473e-a997-e91dff34a7f5")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 187.96 107.95 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "POTY"
 		(shape output)
 		(at 109.22 41.91 0)
@@ -20303,6 +20281,17 @@
 			(justify left)
 		)
 		(uuid "41720440-b859-46e8-8e6c-7688a716ca1f")
+	)
+	(hierarchical_label "PHI2"
+		(shape output)
+		(at 187.96 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "55c06921-b972-4a4c-9cbf-51a19befd83e")
 	)
 	(hierarchical_label "~{VA14}"
 		(shape output)
