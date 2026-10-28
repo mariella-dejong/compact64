@@ -3370,7 +3370,7 @@
 		)
 		(uuid "febc7bd0-b315-4401-b4e2-98450a4702c4")
 	)
-	(text_box "Memory mapping\n\nROM:\n\nBASIC ROM (A000..BFFF) A0..A12 with ~{BASIC} low\nCHAR ROM (D000.DFFF) A0..A11 with ~{CHAROM} low\nKERNAL ROM (E000..FFFF) A0..A12 with ~{KERNAL} low\n\nRAM:\n\nCOLOR RAM (Mapped in multiple ways) - A0..A9 with ~{COLORAM} low. Uses {COLORR/~{W}} for R/W access"
+	(text_box "Memory mapping\n\nROM:\n\nBASIC ROM (A000..BFFF) A0..A12 with ~{BASIC} low\nCHAR ROM (D000.DFFF) A0..A11 with ~{CHAROM} low\nKERNAL ROM (E000..FFFF) A0..A12 with ~{KERNAL} low\n\nRAM:\n\nCOLOR RAM (Mapped in multiple ways) - A0..A9 with ~{COLORAM} low. Uses {COLORR/~{W}} for R/W access\nGeneral RAM - A0..A15 for CPU access. A0..A11, VA4..VA5, VA14..VA15 when accessed from the VIC."
 		(exclude_from_sim no)
 		(at 234.95 93.98 0)
 		(size 95.25 53.34)
