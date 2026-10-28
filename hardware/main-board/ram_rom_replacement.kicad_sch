@@ -2777,7 +2777,7 @@
 		)
 		(uuid "febc7bd0-b315-4401-b4e2-98450a4702c4")
 	)
-	(text_box "Memory mapping:\n\nBASIC ROM (A000..BFFF) A0..A12 with ~{BASIC} low\nCHAR ROM (D000.DFFF) A0..A11 with ~{CHAROM} low\nKERNAL ROM (E000..FFFF) A0..A12 with ~{KERNAL} low"
+	(text_box "Memory mapping\n\nROM:\n\nBASIC ROM (A000..BFFF) A0..A12 with ~{BASIC} low\nCHAR ROM (D000.DFFF) A0..A11 with ~{CHAROM} low\nKERNAL ROM (E000..FFFF) A0..A12 with ~{KERNAL} low\n\nRAM:\n\nCOLOR RAM (Mapped in multiple ways) - A0..A9 with ~{COLORAM} low. Uses {COLORR/~{W}} for R/W access"
 		(exclude_from_sim no)
 		(at 234.95 93.98 0)
 		(size 95.25 53.34)
@@ -3102,16 +3102,8 @@
 		(uuid "1f20813f-c99b-4565-9b7e-39eb5e0eae6c")
 	)
 	(no_connect
-		(at 189.23 186.69)
-		(uuid "2b7d3ac6-b8ff-4a65-8d55-e6b8299581d5")
-	)
-	(no_connect
 		(at 189.23 179.07)
 		(uuid "2e70719d-7604-40e4-a619-b0cf39c713da")
-	)
-	(no_connect
-		(at 189.23 184.15)
-		(uuid "584047d0-d282-4fe5-a6e5-2d683460c690")
 	)
 	(no_connect
 		(at 189.23 176.53)
@@ -3124,10 +3116,6 @@
 	(no_connect
 		(at 120.65 104.14)
 		(uuid "8cf59943-b5d3-4416-be69-59603aa86d98")
-	)
-	(no_connect
-		(at 189.23 191.77)
-		(uuid "925719e5-c190-4c3c-8650-9167d615ab5c")
 	)
 	(no_connect
 		(at 189.23 171.45)
@@ -3164,10 +3152,6 @@
 	(no_connect
 		(at 189.23 82.55)
 		(uuid "c7096426-40d3-4ad8-8547-dedec647aa36")
-	)
-	(no_connect
-		(at 189.23 189.23)
-		(uuid "d8ec3dca-23a4-4ab9-95e6-fd4ddf34b88a")
 	)
 	(no_connect
 		(at 189.23 214.63)
@@ -5323,6 +5307,17 @@
 		)
 		(uuid "ff37e950-c12f-4556-874f-246c8359e2cc")
 	)
+	(hierarchical_label "COLOR_D0"
+		(shape bidirectional)
+		(at 189.23 184.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "05373cd6-63d3-423f-9e3f-e2d26be221e5")
+	)
 	(hierarchical_label "R{slash}~{W}"
 		(shape input)
 		(at 189.23 166.37 0)
@@ -5433,6 +5428,28 @@
 		)
 		(uuid "a2eca7a9-03f6-4be1-8a6f-37e607316f17")
 	)
+	(hierarchical_label "COLOR_D1"
+		(shape bidirectional)
+		(at 189.23 186.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a953e569-1ae7-468c-a30d-24cedffb7cbf")
+	)
+	(hierarchical_label "COLOR_D2"
+		(shape bidirectional)
+		(at 189.23 189.23 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "aab4d280-4bcc-4e1e-8bf3-d3482ab856c9")
+	)
 	(hierarchical_label "RUN"
 		(shape input)
 		(at 82.55 146.05 180)
@@ -5443,6 +5460,17 @@
 			(justify right)
 		)
 		(uuid "bcc337e9-88a1-4bd9-b341-b4ae3600c23e")
+	)
+	(hierarchical_label "COLOR_D3"
+		(shape bidirectional)
+		(at 189.23 191.77 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bcfd8dfd-c3d4-4daf-b71c-b036fd1f4d66")
 	)
 	(hierarchical_label "SWCLK"
 		(shape input)
