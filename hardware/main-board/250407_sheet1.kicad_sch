@@ -11867,16 +11867,6 @@
 	)
 	(wire
 		(pts
-			(xy 182.88 236.22) (xy 181.61 236.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "032e2803-e604-4838-93ec-8c30dfa2fb87")
-	)
-	(wire
-		(pts
 			(xy 34.29 137.16) (xy 71.12 137.16)
 		)
 		(stroke
@@ -11964,16 +11954,6 @@
 			(type default)
 		)
 		(uuid "0654d577-d06d-4b32-8025-4901f199229a")
-	)
-	(wire
-		(pts
-			(xy 180.34 232.41) (xy 180.34 234.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "07101cb0-d9cd-49fb-8414-11c6d8aecf5a")
 	)
 	(bus
 		(pts
@@ -13087,7 +13067,7 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 237.49) (xy 160.02 237.49)
+			(xy 160.02 237.49) (xy 182.88 237.49)
 		)
 		(stroke
 			(width 0)
@@ -13244,16 +13224,6 @@
 			(type default)
 		)
 		(uuid "3315bd24-c13b-453a-9639-eb5b4bf43f25")
-	)
-	(wire
-		(pts
-			(xy 182.88 232.41) (xy 180.34 232.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "334378f6-ced9-429b-995b-741128d4fe96")
 	)
 	(wire
 		(pts
@@ -14037,7 +14007,7 @@
 	)
 	(wire
 		(pts
-			(xy 180.34 234.95) (xy 160.02 234.95)
+			(xy 160.02 234.95) (xy 182.88 234.95)
 		)
 		(stroke
 			(width 0)
@@ -17297,16 +17267,6 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 236.22) (xy 181.61 237.49)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cfd03352-50b3-43b0-808a-fde876da0c78")
-	)
-	(wire
-		(pts
 			(xy 50.8 63.5) (xy 48.26 63.5)
 		)
 		(stroke
@@ -20014,50 +19974,6 @@
 			)
 		)
 	)
-	(global_label "~{VA15}"
-		(shape output)
-		(at 182.88 236.22 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "218ac06e-1991-444f-b3ec-35c8d5f326d1")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.88 236.22 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
-	(global_label "~{VA14}"
-		(shape output)
-		(at 182.88 232.41 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "30ef78d9-7e23-4352-b8f7-307ba7c99d05")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.88 232.41 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "PHI0"
 		(shape output)
 		(at 243.84 139.7 180)
@@ -20388,6 +20304,17 @@
 		)
 		(uuid "41720440-b859-46e8-8e6c-7688a716ca1f")
 	)
+	(hierarchical_label "~{VA14}"
+		(shape output)
+		(at 182.88 234.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5fc4d108-2fac-4adf-838a-6e0da54b4d53")
+	)
 	(hierarchical_label "D[0..7]"
 		(shape bidirectional)
 		(at 182.88 213.36 0)
@@ -20409,6 +20336,17 @@
 			(justify right)
 		)
 		(uuid "6cb6b097-a875-40e8-a2d2-43544e155667")
+	)
+	(hierarchical_label "~{VA15}"
+		(shape output)
+		(at 182.88 237.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8c60f016-2f38-42e7-9121-d9f51eded654")
 	)
 	(hierarchical_label "CASS_MOTOR"
 		(shape output)

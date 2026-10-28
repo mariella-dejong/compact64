@@ -9328,6 +9328,15 @@
 		(uuid "4f59a78c-9080-4079-bb2e-306b53b36c09")
 	)
 	(bus_entry
+		(at 222.25 62.23)
+		(size 2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "508e168b-87cb-4282-8f44-8d85e7b758a3")
+	)
+	(bus_entry
 		(at 213.36 236.22)
 		(size 2.54 -2.54)
 		(stroke
@@ -9659,6 +9668,15 @@
 			(type default)
 		)
 		(uuid "8c1506aa-7385-43a8-a194-e39d8915dd29")
+	)
+	(bus_entry
+		(at 222.25 58.42)
+		(size 2.54 2.54)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ed83f75-f367-47d9-89e6-502f57360799")
 	)
 	(bus_entry
 		(at 43.18 71.12)
@@ -10819,6 +10837,16 @@
 			(type default)
 		)
 		(uuid "1ab6deb9-6fa4-4ea2-97d9-040d8bcc1a28")
+	)
+	(wire
+		(pts
+			(xy 217.17 62.23) (xy 222.25 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1acf246d-3453-4eb4-a4b0-432c4a28d7ef")
 	)
 	(wire
 		(pts
@@ -13069,6 +13097,16 @@
 			(type default)
 		)
 		(uuid "77543796-e812-4a43-bd8d-c7373b8a26f2")
+	)
+	(wire
+		(pts
+			(xy 217.17 58.42) (xy 222.25 58.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "776f2bac-659d-43a9-953d-836bab4497fc")
 	)
 	(wire
 		(pts
@@ -17730,6 +17768,16 @@
 		)
 		(uuid "4be407a9-5b07-493f-81d7-a78c4350411e")
 	)
+	(label "VA[0..7]"
+		(at 254 67.31 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4c310301-9d88-45d9-aaa8-fbb7bfb6bdbf")
+	)
 	(label "R\\~{W}"
 		(at 134.62 74.93 0)
 		(effects
@@ -19660,28 +19708,6 @@
 		)
 		(uuid "fe5c5109-67c9-4fdd-abad-f84c0e1b1c52")
 	)
-	(global_label "~{VA14}"
-		(shape input)
-		(at 25.4 200.66 180)
-		(effects
-			(font
-				(size 1.6002 1.6002)
-			)
-			(justify right)
-		)
-		(uuid "0a85a42c-f186-443b-9553-f8a172e94fda")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 25.4 200.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "PHI2"
 		(shape input)
 		(at 25.4 228.6 180)
@@ -20034,28 +20060,6 @@
 			)
 		)
 	)
-	(global_label "~{VA15}"
-		(shape input)
-		(at 304.8 24.13 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "fbf6d15c-5885-4342-a7c9-049332377f93")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 304.8 24.13 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(hierarchical_label "COLOR_D3"
 		(shape bidirectional)
 		(at 275.59 93.98 90)
@@ -20077,6 +20081,17 @@
 			(justify left)
 		)
 		(uuid "3d224c5f-d607-4927-8f4a-77c3437fe680")
+	)
+	(hierarchical_label "~{CAS}"
+		(shape output)
+		(at 273.05 62.23 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3dcc8dbb-0065-4545-b9c2-18cf28d3771c")
 	)
 	(hierarchical_label "VIC_II_LUMA"
 		(shape output)
@@ -20110,6 +20125,17 @@
 			(justify left)
 		)
 		(uuid "5f499436-fc13-4817-8619-1a6525ffc46a")
+	)
+	(hierarchical_label "AEC"
+		(shape output)
+		(at 232.41 72.39 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "652b3214-7f8c-4677-91ee-c59c43c54820")
 	)
 	(hierarchical_label "COLOR_CLOCK_IN"
 		(shape input)
@@ -20155,6 +20181,28 @@
 		)
 		(uuid "85276b51-9635-4d48-9282-df58604701c8")
 	)
+	(hierarchical_label "VA4"
+		(shape output)
+		(at 217.17 58.42 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "92db5e5d-a6e3-4dcd-82d6-24f8bc216a7e")
+	)
+	(hierarchical_label "~{VA14}"
+		(shape input)
+		(at 25.4 200.66 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9840183e-7a50-4800-b292-8ab9271cc0be")
+	)
 	(hierarchical_label "COLOR_D2"
 		(shape bidirectional)
 		(at 278.13 91.44 90)
@@ -20166,6 +20214,17 @@
 		)
 		(uuid "9c16672e-638d-4b0e-b02f-81c890880ab1")
 	)
+	(hierarchical_label "~{VA15}"
+		(shape input)
+		(at 304.8 24.13 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ae3699c2-eec0-4cbe-8047-810374413650")
+	)
 	(hierarchical_label "VIC_II_CHROMA"
 		(shape output)
 		(at 323.85 83.82 0)
@@ -20176,6 +20235,17 @@
 			(justify left)
 		)
 		(uuid "af0f7ec9-9c49-4c49-afb0-215565ebe32f")
+	)
+	(hierarchical_label "VA5"
+		(shape output)
+		(at 217.17 62.23 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bdb0637f-280a-47ab-86bf-5289d09de6d4")
 	)
 	(hierarchical_label "COLOR_D0"
 		(shape bidirectional)

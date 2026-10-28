@@ -5,6 +5,223 @@
 	(uuid "7fa898a6-1cd0-4cfe-a65b-58a179d801ca")
 	(paper "A3")
 	(lib_symbols
+		(symbol "74xGxx:74LVC1G17"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "74LVC1G17"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at -2.54 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "Single Gate Buff Schmitt LVC CMOS"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23* SOT?553* Texas?R-PDSO-G5?DCK* Texas?R-PDSO-N5?DRL* Texas?X2SON*0.8x0.8mm*P0.48mm*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "74LVC1G17_0_1"
+				(polyline
+					(pts
+						(xy -7.62 6.35) (xy -7.62 -6.35) (xy 5.08 0) (xy -7.62 6.35)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -3.81 -1.27) (xy -2.54 -1.27) (xy -2.54 1.27) (xy -1.27 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.54 -1.27) (xy -1.27 -1.27) (xy -1.27 1.27) (xy 0 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "74LVC1G17_1_1"
+				(pin no_connect line
+					(at -7.62 5.08 180)
+					(length 5.08)
+					(hide yes)
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -12.7 0 0)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -5.08 -10.16 90)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 0 180)
+					(length 5.08)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -5.08 10.16 270)
+					(length 5.08)
+					(name "VCC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:C"
 			(pin_numbers
 				(hide yes)
@@ -2766,6 +2983,16 @@
 		)
 		(uuid "cce757ac-b705-4c2d-893a-09dbea77004f")
 	)
+	(text "The analog-backed ports (GPIO40..GPIO47) are not 5V-tolerant.\nThis is why we are using a level shifter for these pins when\nthe input is 5V."
+		(exclude_from_sim no)
+		(at 203.708 247.142 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "364f09a7-7906-47c4-9741-1ffa8bfea00c")
+	)
 	(text "12MHz Crystal"
 		(exclude_from_sim no)
 		(at 48.26 198.12 0)
@@ -3102,14 +3329,6 @@
 		(uuid "1f20813f-c99b-4565-9b7e-39eb5e0eae6c")
 	)
 	(no_connect
-		(at 189.23 179.07)
-		(uuid "2e70719d-7604-40e4-a619-b0cf39c713da")
-	)
-	(no_connect
-		(at 189.23 176.53)
-		(uuid "6189eb98-9ff7-48ad-a508-9a564bcff4e7")
-	)
-	(no_connect
 		(at 120.65 107.95)
 		(uuid "68dcb754-c35b-405b-b374-9496d83b73d0")
 	)
@@ -3118,20 +3337,8 @@
 		(uuid "8cf59943-b5d3-4416-be69-59603aa86d98")
 	)
 	(no_connect
-		(at 189.23 171.45)
-		(uuid "94e65e7d-b60e-4a5f-8f6c-67ff4679d102")
-	)
-	(no_connect
-		(at 189.23 173.99)
-		(uuid "97b08bea-fbbf-496f-a400-2ccd4c16d0f8")
-	)
-	(no_connect
 		(at 120.65 115.57)
 		(uuid "99ba09fe-b334-4bc3-92a9-bb75bed1c8bb")
-	)
-	(no_connect
-		(at 189.23 181.61)
-		(uuid "a6aefc90-fa20-4734-ba4c-a1468138aeae")
 	)
 	(no_connect
 		(at 189.23 207.01)
@@ -3152,10 +3359,6 @@
 	(no_connect
 		(at 189.23 82.55)
 		(uuid "c7096426-40d3-4ad8-8547-dedec647aa36")
-	)
-	(no_connect
-		(at 189.23 214.63)
-		(uuid "f227d257-725a-4fdb-8e36-f295e6e3ae6a")
 	)
 	(no_connect
 		(at 189.23 209.55)
@@ -3799,6 +4002,16 @@
 	)
 	(wire
 		(pts
+			(xy 213.36 232.41) (xy 213.36 233.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41d67c53-e892-45dc-aa5d-29c43ffba8fc")
+	)
+	(wire
+		(pts
 			(xy 173.99 62.23) (xy 173.99 74.93)
 		)
 		(stroke
@@ -3889,6 +4102,16 @@
 	)
 	(wire
 		(pts
+			(xy 200.66 214.63) (xy 200.66 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a3fa225-4a38-4802-a178-5ca1fc11c209")
+	)
+	(wire
+		(pts
 			(xy 73.66 85.09) (xy 73.66 83.82)
 		)
 		(stroke
@@ -3926,6 +4149,16 @@
 			(type default)
 		)
 		(uuid "504b8702-f7fc-41c9-a2f2-2f02be6d07ee")
+	)
+	(wire
+		(pts
+			(xy 200.66 240.03) (xy 208.28 240.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50ed8431-226c-4253-ba1b-01646afb3e06")
 	)
 	(wire
 		(pts
@@ -4076,6 +4309,16 @@
 			(type default)
 		)
 		(uuid "68c09551-be1e-4cb5-a2d6-a2e9ce6bcc2d")
+	)
+	(wire
+		(pts
+			(xy 189.23 214.63) (xy 200.66 214.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "697ae34f-a328-48fc-882d-266c23384399")
 	)
 	(wire
 		(pts
@@ -4619,6 +4862,16 @@
 	)
 	(wire
 		(pts
+			(xy 210.82 232.41) (xy 213.36 232.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c01996bc-97c0-4ba3-853f-59dc9c5f0d8b")
+	)
+	(wire
+		(pts
 			(xy 189.23 140.97) (xy 195.58 140.97)
 		)
 		(stroke
@@ -4766,6 +5019,16 @@
 			(type default)
 		)
 		(uuid "d20bcec5-9b67-4948-8e3b-236359c8b9e9")
+	)
+	(wire
+		(pts
+			(xy 190.5 228.6) (xy 190.5 232.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d284eb6f-8c3e-43d3-8338-48d4e81e0d93")
 	)
 	(wire
 		(pts
@@ -5329,6 +5592,17 @@
 		)
 		(uuid "0a698fac-bc0c-4e3e-a014-1c59b5134091")
 	)
+	(hierarchical_label "~{VA15}"
+		(shape input)
+		(at 189.23 179.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "166fc672-2239-4949-9988-9dedc5504f1e")
+	)
 	(hierarchical_label "D[0..7]"
 		(shape bidirectional)
 		(at 203.2 88.9 0)
@@ -5361,6 +5635,17 @@
 			(justify left)
 		)
 		(uuid "2ef9e6ec-6386-4406-b1df-98be10577df5")
+	)
+	(hierarchical_label "~{CAS}"
+		(shape input)
+		(at 208.28 240.03 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "406de2b1-918b-45c6-a4f9-b72dd46490f8")
 	)
 	(hierarchical_label "~{KERNAL}"
 		(shape input)
@@ -5494,6 +5779,39 @@
 		)
 		(uuid "cb7f363e-0a85-4575-ba17-0955afcb6d00")
 	)
+	(hierarchical_label "VA4"
+		(shape input)
+		(at 189.23 171.45 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "da9a9319-d1df-4c48-9efd-73402ceb9dad")
+	)
+	(hierarchical_label "~{VA14}"
+		(shape input)
+		(at 189.23 176.53 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "df018f52-87e6-4e90-b551-1b7da3d06cda")
+	)
+	(hierarchical_label "VA5"
+		(shape input)
+		(at 189.23 173.99 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e1c12082-cec1-42d0-bcb9-5821823d828f")
+	)
 	(hierarchical_label "A[0..15]"
 		(shape input)
 		(at 203.2 109.22 0)
@@ -5504,6 +5822,17 @@
 			(justify left)
 		)
 		(uuid "ed984f30-bd0b-46ea-8e33-8d0507f50fa7")
+	)
+	(hierarchical_label "AEC"
+		(shape input)
+		(at 189.23 181.61 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f1b1165c-7c8d-4709-a03e-4bf43d70e6d8")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -6195,6 +6524,82 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
 					(reference "C1408")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 190.5 228.6 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2b3f923e-f91d-4afb-a440-694056808610")
+		(property "Reference" "#PWR01414"
+			(at 190.5 232.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 190.119 224.155 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 190.5 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 190.5 228.6 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 190.5 228.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "1da53c35-1f33-4464-a509-00094c8a4888")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "#PWR01414")
 					(unit 1)
 				)
 			)
@@ -7875,6 +8280,96 @@
 		)
 	)
 	(symbol
+		(lib_id "74xGxx:74LVC1G17")
+		(at 200.66 227.33 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a0c8ce36-6d82-44c2-981d-b8dde5e2743d")
+		(property "Reference" "U1402"
+			(at 213.36 226.9646 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "74LVC1G17"
+			(at 213.36 229.5046 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 200.66 229.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf"
+			(at 207.01 227.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "Single Schmitt Buffer Gate, Low-Voltage CMOS"
+			(at 200.66 227.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "5"
+			(uuid "2975c8c2-dfab-46b4-a666-e4cc06c4de7f")
+		)
+		(pin "1"
+			(uuid "4f4e3c40-7965-4a33-9fd2-b2f7522d70ae")
+		)
+		(pin "2"
+			(uuid "142d4ac6-3df8-486e-9999-81bde6c3e87f")
+		)
+		(pin "4"
+			(uuid "1c6c34bc-47b5-4787-84fe-03b899f84dd8")
+		)
+		(pin "3"
+			(uuid "d55431ac-61af-4f7e-b775-9176c2f40af4")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "U1402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 173.99 40.64 0)
 		(unit 1)
@@ -8285,6 +8780,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
 					(reference "C1402")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
+		(at 213.36 233.68 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "afcbdc59-392e-43e6-af97-4860ee5685da")
+		(property "Reference" "#PWR01415"
+			(at 213.36 240.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 213.36 238.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 213.36 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 213.36 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 213.36 233.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ee853e20-9294-4cc5-b6ff-375985ec5c22")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/79987ffb-bc0c-45a0-96fa-cfa9ee80bf34"
+					(reference "#PWR01415")
 					(unit 1)
 				)
 			)
