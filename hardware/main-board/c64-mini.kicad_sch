@@ -3414,6 +3414,52 @@
 		)
 	)
 	(sheet
+		(at 121.285 41.91)
+		(size 41.91 34.925)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "974b070f-b363-4f95-b525-4a1dadc7ad48")
+		(property "Sheetname" "CIA1, Keyboard and Joysticks"
+			(at 121.285 41.1984 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "cia1.kicad_sch"
+			(at 121.285 77.4196 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "15")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 256.54 125.73)
 		(size 46.99 38.1)
 		(exclude_from_sim no)
