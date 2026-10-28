@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1400,
+    "annotate_start_num": 1500,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "",
+    "used_designators": "U1404-1406,U1501,R1409-1416,R1501-1506,L1402,L1501,C1422-1442,C1501-1519,Y1402,Y1501,#PWR1015,#PWR1017,#PWR1405-1406,#PWR1408,#PWR1419-1430,#PWR1501-1510,#FLG1403-1404,#FLG1501-1502",
     "variants": []
   },
   "sheets": [
