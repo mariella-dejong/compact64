@@ -213,6 +213,16 @@
 	)
 	(wire
 		(pts
+			(xy 27.94 97.79) (xy 27.94 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8840b258-7405-4685-ae01-3e8ffdc7b95a")
+	)
+	(wire
+		(pts
 			(xy 57.15 97.79) (xy 57.15 104.14)
 		)
 		(stroke
@@ -612,6 +622,17 @@
 			(justify left)
 		)
 		(uuid "59ace4d3-23ca-4064-90bc-6ffce66b303a")
+	)
+	(hierarchical_label "~{CIA1}"
+		(shape output)
+		(at 27.94 104.14 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "606ca4de-c7c8-4f8f-b985-dfd963fd8c51")
 	)
 	(hierarchical_label "R{slash}~{W}"
 		(shape output)
@@ -1394,6 +1415,16 @@
 		(pin "~{LP}" input
 			(at 33.655 97.79 270)
 			(uuid "f2f9ca60-816a-41c5-b286-cf983140abc2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "~{CIA1}" output
+			(at 27.94 97.79 270)
+			(uuid "a357befe-8af2-422b-a0d7-3cd4bdda5ddc")
 			(effects
 				(font
 					(size 1.27 1.27)

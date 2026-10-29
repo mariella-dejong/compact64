@@ -16116,28 +16116,6 @@
 			)
 		)
 	)
-	(global_label "~{CIA1}"
-		(shape output)
-		(at 242.57 220.98 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7f9a664b-6bbc-465d-aa3c-130af1456a01")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 242.57 220.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-	)
 	(global_label "POTY"
 		(shape input)
 		(at 369.57 170.18 0)
@@ -16632,6 +16610,17 @@
 			(justify left)
 		)
 		(uuid "eeedf82e-70e1-4284-a190-f49346248ff1")
+	)
+	(hierarchical_label "~{CIA1}"
+		(shape output)
+		(at 242.57 220.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "fd693629-ebbc-4c8a-8d8d-1319b529e49d")
 	)
 	(symbol
 		(lib_id "250407_-rescue:74LS257-KU-schematics-library")

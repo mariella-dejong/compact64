@@ -4825,20 +4825,12 @@
 		(uuid "392eae79-e127-4048-8949-85e4c6957214")
 	)
 	(no_connect
-		(at 189.23 156.21)
-		(uuid "45188d9a-d8d0-4fb2-9690-9a8f77c7ffe7")
-	)
-	(no_connect
 		(at 189.23 199.39)
 		(uuid "5b0ea7e7-8962-4f0b-a8cc-bfe184905dd1")
 	)
 	(no_connect
 		(at 189.23 146.05)
 		(uuid "5e352d47-abc6-4d48-8222-8621f7abb9cd")
-	)
-	(no_connect
-		(at 189.23 153.67)
-		(uuid "6a122836-6f9d-4aeb-a74a-0f22bf928360")
 	)
 	(no_connect
 		(at 120.65 110.49)
@@ -4899,10 +4891,6 @@
 	(no_connect
 		(at 189.23 140.97)
 		(uuid "eac88b52-9b29-4440-a6a6-cca51f095607")
-	)
-	(no_connect
-		(at 189.23 151.13)
-		(uuid "ecd2aa0c-f52f-4a86-a523-c3d9fd5e60aa")
 	)
 	(no_connect
 		(at 189.23 207.01)
@@ -7732,6 +7720,17 @@
 		)
 		(uuid "4da84cb9-bdf1-44cd-be31-ab6d5eb8b940")
 	)
+	(hierarchical_label "PHI2"
+		(shape input)
+		(at 189.23 151.13 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "55cd396e-9566-489b-8982-70f4afed55ec")
+	)
 	(hierarchical_label "POTBY"
 		(shape output)
 		(at 314.96 163.83 180)
@@ -7742,6 +7741,17 @@
 			(justify right)
 		)
 		(uuid "574239c3-657b-4218-a06f-fe912e1ae3f2")
+	)
+	(hierarchical_label "R{slash}{W}"
+		(shape input)
+		(at 189.23 153.67 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5d9e266e-f148-4130-9700-ca1323cc1ee1")
 	)
 	(hierarchical_label "PA6"
 		(shape output)
@@ -7808,6 +7818,17 @@
 			(justify left)
 		)
 		(uuid "8e96b205-da6d-45f2-8381-c4319997e3d2")
+	)
+	(hierarchical_label "~{SELECT}"
+		(shape input)
+		(at 189.23 156.21 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b96ee7e9-767f-4514-a60d-60a469afe6ba")
 	)
 	(hierarchical_label "PA7"
 		(shape output)
