@@ -43,6 +43,16 @@
 	)
 	(wire
 		(pts
+			(xy 33.655 97.79) (xy 33.655 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0666b9b9-053c-45cf-9a76-22ef5c921911")
+	)
+	(wire
+		(pts
 			(xy 45.72 97.79) (xy 45.72 102.87)
 		)
 		(stroke
@@ -83,6 +93,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 57.15) (xy 105.41 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2964b3e2-c333-4a6e-bbd7-b4c6fc9a6f9b")
+	)
+	(wire
+		(pts
 			(xy 101.6 74.93) (xy 105.41 74.93)
 		)
 		(stroke
@@ -93,6 +113,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 52.07) (xy 105.41 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5291dec1-9538-41c9-9d78-18ff5cff0420")
+	)
+	(wire
+		(pts
 			(xy 40.64 62.23) (xy 40.64 69.85)
 		)
 		(stroke
@@ -100,6 +130,16 @@
 			(type default)
 		)
 		(uuid "547e68f9-7d5d-4933-b2f7-a52e664f5745")
+	)
+	(wire
+		(pts
+			(xy 105.41 54.61) (xy 101.6 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5cec3359-5c22-409a-ba69-d5c21f811ad2")
 	)
 	(wire
 		(pts
@@ -250,6 +290,16 @@
 			(type default)
 		)
 		(uuid "c79276d6-cf51-442c-878b-320abfd87bf2")
+	)
+	(wire
+		(pts
+			(xy 101.6 59.69) (xy 105.41 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d46922d7-93f2-48e6-adcf-fc4dd8f5d2de")
 	)
 	(wire
 		(pts
@@ -448,6 +498,17 @@
 		)
 		(uuid "523568c2-b08a-4db3-9646-35ab24207339")
 	)
+	(hierarchical_label "~{LP}"
+		(shape input)
+		(at 33.655 104.14 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "589dfc9e-cc06-41e3-a0c8-a9ab40b74c32")
+	)
 	(hierarchical_label "COLOR_D0"
 		(shape bidirectional)
 		(at 68.58 104.14 270)
@@ -503,6 +564,28 @@
 		)
 		(uuid "7a613522-b01b-4a98-8ef1-3a964bee05f1")
 	)
+	(hierarchical_label "POTBY"
+		(shape input)
+		(at 105.41 52.07 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "807ea0ef-e3a1-442e-a9ad-f545fd31e61d")
+	)
+	(hierarchical_label "POTAY"
+		(shape input)
+		(at 105.41 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "80951db8-de80-46c2-9e6a-42798e5f2b12")
+	)
 	(hierarchical_label "AUDIO_IN"
 		(shape input)
 		(at 60.96 104.14 270)
@@ -513,6 +596,17 @@
 			(justify right)
 		)
 		(uuid "80aed273-858f-4e1e-8be9-51fd764a99be")
+	)
+	(hierarchical_label "POTBX"
+		(shape input)
+		(at 105.41 54.61 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "81fd2a6e-0865-40e0-86eb-48cb3ac3e05f")
 	)
 	(hierarchical_label "AUDIO_OUT"
 		(shape output)
@@ -679,6 +773,17 @@
 		)
 		(uuid "f5d72209-876a-4590-88de-faaf018a71c0")
 	)
+	(hierarchical_label "POTAX"
+		(shape input)
+		(at 105.41 59.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f797e48d-8d84-4b51-abd1-fd0fee615d57")
+	)
 	(sheet
 		(at 17.78 34.29)
 		(size 83.82 27.94)
@@ -815,6 +920,46 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+		(pin "POTAX" input
+			(at 101.6 59.69 0)
+			(uuid "535e01ea-22b4-4eba-bcd9-5446823ddbe8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTAY" input
+			(at 101.6 57.15 0)
+			(uuid "e7dbfc2f-423e-440a-8409-05d4576e922b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTBX" input
+			(at 101.6 54.61 0)
+			(uuid "330e2ae0-bf80-45e5-9e55-f5987b85201e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTBY" input
+			(at 101.6 52.07 0)
+			(uuid "9ac104e9-8f73-4e60-8eb3-81589d072f99")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -1121,6 +1266,16 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "~{LP}" input
+			(at 33.655 97.79 270)
+			(uuid "f2f9ca60-816a-41c5-b286-cf983140abc2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances

@@ -556,6 +556,16 @@
 	)
 	(wire
 		(pts
+			(xy 159.385 41.91) (xy 159.385 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07524aac-8de3-47c2-894a-2549b370b830")
+	)
+	(wire
+		(pts
 			(xy 218.44 201.93) (xy 256.54 201.93)
 		)
 		(stroke
@@ -563,6 +573,16 @@
 			(type default)
 		)
 		(uuid "0cfe9e60-1482-4c82-b9b4-c0dc2cfff1d0")
+	)
+	(wire
+		(pts
+			(xy 206.375 125.73) (xy 206.375 40.005)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0da3e64f-42f0-45eb-9455-073661a73348")
 	)
 	(wire
 		(pts
@@ -646,7 +666,17 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 110.49) (xy 311.15 110.49)
+			(xy 206.375 40.005) (xy 156.21 40.005)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2289cc63-9843-487e-876d-69e5120620ad")
+	)
+	(wire
+		(pts
+			(xy 198.12 110.49) (xy 311.15 110.49)
 		)
 		(stroke
 			(width 0)
@@ -743,6 +773,16 @@
 			(type default)
 		)
 		(uuid "2d2487ef-1e2d-4790-ac20-f9b64a1e9e04")
+	)
+	(wire
+		(pts
+			(xy 156.21 40.005) (xy 156.21 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2e9f20d8-7f15-4660-9855-3602290303d1")
 	)
 	(bus
 		(pts
@@ -986,6 +1026,16 @@
 	)
 	(wire
 		(pts
+			(xy 212.725 125.73) (xy 212.725 38.735)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a51b4e7-f4c6-49ef-9130-e74d7e042b91")
+	)
+	(wire
+		(pts
 			(xy 187.325 82.55) (xy 187.325 58.42)
 		)
 		(stroke
@@ -1076,6 +1126,16 @@
 	)
 	(wire
 		(pts
+			(xy 153.035 39.37) (xy 153.035 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "863e0ab4-6df0-43ee-ba4b-dcb34172b721")
+	)
+	(wire
+		(pts
 			(xy 118.11 167.64) (xy 182.88 167.64)
 		)
 		(stroke
@@ -1133,6 +1193,16 @@
 			(type default)
 		)
 		(uuid "8db101fc-6ae6-481d-bdc0-1a9d0f57dcc4")
+	)
+	(wire
+		(pts
+			(xy 149.86 38.735) (xy 149.86 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8fc9857c-dbd1-464f-92fc-2e741ffa99f0")
 	)
 	(wire
 		(pts
@@ -1296,6 +1366,16 @@
 	)
 	(wire
 		(pts
+			(xy 159.385 40.64) (xy 203.2 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b12c227f-da1f-4b79-b3f0-25f1836a252b")
+	)
+	(wire
+		(pts
 			(xy 163.83 90.17) (xy 171.45 90.17)
 		)
 		(stroke
@@ -1306,6 +1386,16 @@
 	)
 	(wire
 		(pts
+			(xy 146.685 41.91) (xy 146.685 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b79af903-0c92-41f1-9f8e-ddb8bf6fce4e")
+	)
+	(wire
+		(pts
 			(xy 205.74 177.8) (xy 205.74 163.83)
 		)
 		(stroke
@@ -1313,6 +1403,16 @@
 			(type default)
 		)
 		(uuid "b974fa39-302c-4003-ab33-d245829bd40f")
+	)
+	(wire
+		(pts
+			(xy 215.9 38.1) (xy 215.9 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb850fda-ba9a-47fa-8eb9-d4186233971f")
 	)
 	(wire
 		(pts
@@ -1376,6 +1476,16 @@
 	)
 	(wire
 		(pts
+			(xy 146.685 38.1) (xy 215.9 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c794346b-88b4-4b8f-aa9a-26bd426cb869")
+	)
+	(wire
+		(pts
 			(xy 151.13 138.43) (xy 166.37 138.43)
 		)
 		(stroke
@@ -1426,6 +1536,16 @@
 	)
 	(wire
 		(pts
+			(xy 209.55 39.37) (xy 209.55 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d29c3b93-dbc1-4e74-a468-0e7bada965bc")
+	)
+	(wire
+		(pts
 			(xy 114.3 171.45) (xy 114.3 104.14)
 		)
 		(stroke
@@ -1433,6 +1553,16 @@
 			(type default)
 		)
 		(uuid "da6860c8-1912-4fcd-9cb5-1199b124874c")
+	)
+	(wire
+		(pts
+			(xy 212.725 38.735) (xy 149.86 38.735)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dba5ce2c-058a-47da-bdcc-d8f229c96c98")
 	)
 	(wire
 		(pts
@@ -1463,6 +1593,16 @@
 			(type default)
 		)
 		(uuid "dfa2d260-d6db-4f0f-8d80-710712711f83")
+	)
+	(wire
+		(pts
+			(xy 203.2 40.64) (xy 203.2 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dfd81e93-a6d4-44fc-9414-f372a24f570a")
 	)
 	(wire
 		(pts
@@ -1603,6 +1743,16 @@
 			(type default)
 		)
 		(uuid "fe380e15-a8a2-4680-9e39-d3cb9ee75453")
+	)
+	(wire
+		(pts
+			(xy 153.035 39.37) (xy 209.55 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fec776ea-bd84-424d-8cb7-1dac9a66363e")
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
@@ -3207,6 +3357,56 @@
 				(justify left)
 			)
 		)
+		(pin "POTAX" input
+			(at 203.2 125.73 90)
+			(uuid "8b497d6d-f880-4ac0-94ad-3c9527aa3fbe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTAY" input
+			(at 206.375 125.73 90)
+			(uuid "05644a2d-c65c-4eae-8f31-2b10aa8f981a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTBX" input
+			(at 209.55 125.73 90)
+			(uuid "5524bd36-bd62-42f5-bb44-f1efc498cede")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTBY" input
+			(at 212.725 125.73 90)
+			(uuid "0e8ec8d5-fe3d-4897-a52e-e789e902845e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{LP}" input
+			(at 215.9 125.73 90)
+			(uuid "b98610d9-beb4-4e6f-9666-13f0732066e7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -3513,7 +3713,7 @@
 	)
 	(sheet
 		(at 171.45 82.55)
-		(size 78.74 35.56)
+		(size 26.67 35.56)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -3550,7 +3750,7 @@
 			)
 		)
 		(pin "PREFLIGHT_OK" output
-			(at 250.19 110.49 0)
+			(at 198.12 110.49 0)
 			(uuid "4847b13e-f088-4e9e-b81f-f2ffda3365d1")
 			(effects
 				(font
@@ -3748,6 +3948,56 @@
 		(pin "SWDAT" bidirectional
 			(at 163.195 58.42 0)
 			(uuid "531b1845-4506-495d-bf0c-4702efb68422")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTAX" output
+			(at 159.385 41.91 90)
+			(uuid "6b571268-ffce-4714-8c15-428f3f9951d6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTAY" output
+			(at 156.21 41.91 90)
+			(uuid "c8ab0479-ee92-45ef-8d20-23efa3320e93")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTBX" output
+			(at 153.035 41.91 90)
+			(uuid "4cd27b34-57d1-4b40-b368-06728d723b18")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "POTBY" output
+			(at 149.86 41.91 90)
+			(uuid "c6b693a7-1860-4cfe-bb11-70b9c5b4017a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{LP}" output
+			(at 146.685 41.91 90)
+			(uuid "2b831fca-82c9-4a9d-9d9a-26c6ee8069d9")
 			(effects
 				(font
 					(size 1.27 1.27)

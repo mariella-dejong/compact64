@@ -4491,7 +4491,7 @@
 		(uuid "29c08232-bdfe-4f7c-8720-fafd4606daf1")
 	)
 	(junction
-		(at 236.855 113.665)
+		(at 330.2 57.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2ff0ca9f-4bba-4110-8fc0-fb5cd880e0b0")
@@ -4599,19 +4599,19 @@
 		(uuid "683bd833-eb5f-4fa7-92d2-317ca301be9c")
 	)
 	(junction
-		(at 278.13 141.605)
+		(at 371.475 85.09)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ab4275c-44fb-43d6-873d-e29801eef89f")
 	)
 	(junction
-		(at 215.265 121.285)
+		(at 308.61 64.77)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6fcad25d-c007-47b0-94fb-82b2dfc26ca8")
 	)
 	(junction
-		(at 299.085 141.605)
+		(at 392.43 85.09)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "704dbf4c-b743-4532-bf0d-8289d8a2865b")
@@ -4635,7 +4635,7 @@
 		(uuid "7e708c00-72c5-4245-8a62-089570859ddc")
 	)
 	(junction
-		(at 226.695 113.665)
+		(at 320.04 57.15)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8092894a-bf53-46b2-91d4-2a2a44eb5b6e")
@@ -4671,7 +4671,7 @@
 		(uuid "8ecdc84b-470a-4277-a1fa-7382075098cf")
 	)
 	(junction
-		(at 280.035 149.225)
+		(at 373.38 92.71)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "99d374fa-9957-4a0d-9d29-da184df374c4")
@@ -4689,13 +4689,13 @@
 		(uuid "9dce682a-b60b-41d6-ab8c-44ddf98d1097")
 	)
 	(junction
-		(at 283.845 146.685)
+		(at 377.19 90.17)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "aadff464-3e98-4349-b906-e02c98ad3c8c")
 	)
 	(junction
-		(at 264.795 156.845)
+		(at 358.14 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ac3331aa-a282-4a67-b32c-71423e6bd2a1")
@@ -4719,7 +4719,7 @@
 		(uuid "b2318ace-e659-4cd0-9820-07f3d2e796a0")
 	)
 	(junction
-		(at 233.045 133.35)
+		(at 326.39 76.835)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b4f84eab-9dc2-4ed8-ada6-3a59f24a783f")
@@ -4803,7 +4803,7 @@
 		(uuid "fb55f84f-4c01-41d5-8324-05086b4ae32a")
 	)
 	(junction
-		(at 278.13 128.27)
+		(at 371.475 71.755)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fce1c86d-52e9-4fc9-a450-fd5e3e6a8cbe")
@@ -5230,7 +5230,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.855 128.27) (xy 238.125 128.27)
+			(xy 330.2 71.755) (xy 331.47 71.755)
 		)
 		(stroke
 			(width 0)
@@ -5280,7 +5280,7 @@
 	)
 	(wire
 		(pts
-			(xy 258.445 128.27) (xy 278.13 128.27)
+			(xy 351.79 71.755) (xy 371.475 71.755)
 		)
 		(stroke
 			(width 0)
@@ -5290,7 +5290,7 @@
 	)
 	(wire
 		(pts
-			(xy 264.795 156.845) (xy 267.335 156.845)
+			(xy 358.14 100.33) (xy 360.68 100.33)
 		)
 		(stroke
 			(width 0)
@@ -5420,7 +5420,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.155 133.35) (xy 233.045 133.35)
+			(xy 317.5 76.835) (xy 326.39 76.835)
 		)
 		(stroke
 			(width 0)
@@ -5460,7 +5460,7 @@
 	)
 	(wire
 		(pts
-			(xy 299.085 135.89) (xy 299.085 141.605)
+			(xy 392.43 79.375) (xy 392.43 85.09)
 		)
 		(stroke
 			(width 0)
@@ -5790,7 +5790,7 @@
 	)
 	(wire
 		(pts
-			(xy 299.085 141.605) (xy 299.085 142.24)
+			(xy 392.43 85.09) (xy 392.43 85.725)
 		)
 		(stroke
 			(width 0)
@@ -5870,7 +5870,7 @@
 	)
 	(wire
 		(pts
-			(xy 258.445 133.35) (xy 260.35 133.35)
+			(xy 351.79 76.835) (xy 353.695 76.835)
 		)
 		(stroke
 			(width 0)
@@ -5960,7 +5960,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.955 146.685) (xy 283.845 146.685)
+			(xy 368.3 90.17) (xy 377.19 90.17)
 		)
 		(stroke
 			(width 0)
@@ -6000,7 +6000,7 @@
 	)
 	(wire
 		(pts
-			(xy 215.265 113.665) (xy 226.695 113.665)
+			(xy 308.61 57.15) (xy 320.04 57.15)
 		)
 		(stroke
 			(width 0)
@@ -6020,7 +6020,7 @@
 	)
 	(wire
 		(pts
-			(xy 260.35 120.015) (xy 260.35 133.35)
+			(xy 353.695 63.5) (xy 353.695 76.835)
 		)
 		(stroke
 			(width 0)
@@ -6080,7 +6080,7 @@
 	)
 	(wire
 		(pts
-			(xy 278.13 141.605) (xy 274.955 141.605)
+			(xy 371.475 85.09) (xy 368.3 85.09)
 		)
 		(stroke
 			(width 0)
@@ -6090,7 +6090,7 @@
 	)
 	(wire
 		(pts
-			(xy 283.845 150.495) (xy 283.845 146.685)
+			(xy 377.19 93.98) (xy 377.19 90.17)
 		)
 		(stroke
 			(width 0)
@@ -6160,7 +6160,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.855 113.665) (xy 236.855 107.95)
+			(xy 330.2 57.15) (xy 330.2 51.435)
 		)
 		(stroke
 			(width 0)
@@ -6380,7 +6380,7 @@
 	)
 	(wire
 		(pts
-			(xy 215.265 121.285) (xy 226.695 121.285)
+			(xy 308.61 64.77) (xy 320.04 64.77)
 		)
 		(stroke
 			(width 0)
@@ -6440,7 +6440,7 @@
 	)
 	(wire
 		(pts
-			(xy 283.845 146.685) (xy 294.64 146.685)
+			(xy 377.19 90.17) (xy 387.985 90.17)
 		)
 		(stroke
 			(width 0)
@@ -6530,7 +6530,7 @@
 	)
 	(wire
 		(pts
-			(xy 280.035 149.225) (xy 280.035 155.575)
+			(xy 373.38 92.71) (xy 373.38 99.06)
 		)
 		(stroke
 			(width 0)
@@ -6560,7 +6560,7 @@
 	)
 	(wire
 		(pts
-			(xy 233.045 133.35) (xy 238.125 133.35)
+			(xy 326.39 76.835) (xy 331.47 76.835)
 		)
 		(stroke
 			(width 0)
@@ -6850,7 +6850,7 @@
 	)
 	(wire
 		(pts
-			(xy 299.085 128.27) (xy 278.13 128.27)
+			(xy 392.43 71.755) (xy 371.475 71.755)
 		)
 		(stroke
 			(width 0)
@@ -7020,6 +7020,16 @@
 	)
 	(wire
 		(pts
+			(xy 373.38 107.95) (xy 373.38 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e047372c-b823-45de-9092-ba51d546ff3e")
+	)
+	(wire
+		(pts
 			(xy 97.79 39.37) (xy 109.22 39.37)
 		)
 		(stroke
@@ -7040,7 +7050,7 @@
 	)
 	(wire
 		(pts
-			(xy 278.13 128.27) (xy 278.13 141.605)
+			(xy 371.475 71.755) (xy 371.475 85.09)
 		)
 		(stroke
 			(width 0)
@@ -7100,7 +7110,7 @@
 	)
 	(wire
 		(pts
-			(xy 280.035 149.225) (xy 294.64 149.225)
+			(xy 373.38 92.71) (xy 387.985 92.71)
 		)
 		(stroke
 			(width 0)
@@ -7110,7 +7120,7 @@
 	)
 	(wire
 		(pts
-			(xy 274.955 149.225) (xy 280.035 149.225)
+			(xy 368.3 92.71) (xy 373.38 92.71)
 		)
 		(stroke
 			(width 0)
@@ -7130,7 +7140,7 @@
 	)
 	(wire
 		(pts
-			(xy 297.18 141.605) (xy 299.085 141.605)
+			(xy 390.525 85.09) (xy 392.43 85.09)
 		)
 		(stroke
 			(width 0)
@@ -7150,7 +7160,7 @@
 	)
 	(wire
 		(pts
-			(xy 278.13 141.605) (xy 289.56 141.605)
+			(xy 371.475 85.09) (xy 382.905 85.09)
 		)
 		(stroke
 			(width 0)
@@ -7170,7 +7180,7 @@
 	)
 	(wire
 		(pts
-			(xy 248.285 138.43) (xy 248.285 137.795)
+			(xy 341.63 81.915) (xy 341.63 81.28)
 		)
 		(stroke
 			(width 0)
@@ -7210,7 +7220,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.855 128.27) (xy 236.855 113.665)
+			(xy 330.2 71.755) (xy 330.2 57.15)
 		)
 		(stroke
 			(width 0)
@@ -7260,7 +7270,7 @@
 	)
 	(wire
 		(pts
-			(xy 226.695 113.665) (xy 236.855 113.665)
+			(xy 320.04 57.15) (xy 330.2 57.15)
 		)
 		(stroke
 			(width 0)
@@ -7469,7 +7479,7 @@
 		(uuid "650a9999-f816-4f78-a5e4-7cb56418a23a")
 	)
 	(label "USB_D-"
-		(at 294.64 149.225 180)
+		(at 387.985 92.71 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7489,7 +7499,7 @@
 		(uuid "77a1360f-d078-416a-9f33-79dd30de8c22")
 	)
 	(label "USB_EN"
-		(at 224.155 133.35 0)
+		(at 317.5 76.835 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7539,7 +7549,7 @@
 		(uuid "988cfd99-0886-46df-a470-4ccee4857248")
 	)
 	(label "USB_FLT"
-		(at 260.35 127 90)
+		(at 353.695 70.485 90)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7549,7 +7559,7 @@
 		(uuid "a563a5cb-2ac8-4415-8a80-4cc8802ecde2")
 	)
 	(label "USB_D+"
-		(at 294.64 146.685 180)
+		(at 387.985 90.17 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7629,7 +7639,7 @@
 		(uuid "da59af95-f558-45f3-ab88-944fb777fc96")
 	)
 	(label "VBUS"
-		(at 261.62 128.27 0)
+		(at 354.965 71.755 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7802,7 +7812,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 215.265 121.285 0)
+		(at 308.61 64.77 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7813,7 +7823,7 @@
 		(fields_autoplaced yes)
 		(uuid "02efa58a-9f27-4cef-a3fd-eda588b03652")
 		(property "Reference" "#PWR01519"
-			(at 215.265 127.635 0)
+			(at 308.61 71.12 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7824,7 +7834,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 215.265 126.365 0)
+			(at 308.61 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7835,7 +7845,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 215.265 121.285 0)
+			(at 308.61 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7846,7 +7856,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 215.265 121.285 0)
+			(at 308.61 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7857,7 +7867,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 215.265 121.285 0)
+			(at 308.61 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7957,7 +7967,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 280.035 163.195 0)
+		(at 373.38 107.95 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7968,7 +7978,7 @@
 		(fields_autoplaced yes)
 		(uuid "0a577999-9ea3-420a-ab4c-e93920ebfc73")
 		(property "Reference" "#PWR01518"
-			(at 280.035 169.545 0)
+			(at 373.38 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7979,7 +7989,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 280.035 168.275 0)
+			(at 373.38 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7990,7 +8000,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 280.035 163.195 0)
+			(at 373.38 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8001,7 +8011,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 280.035 163.195 0)
+			(at 373.38 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8012,7 +8022,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 280.035 163.195 0)
+			(at 373.38 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8126,7 +8136,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 248.285 137.795 0)
+		(at 341.63 81.28 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8137,7 +8147,7 @@
 		(fields_autoplaced yes)
 		(uuid "0df922fa-977c-465b-b1d7-4e7f134e8935")
 		(property "Reference" "#PWR01513"
-			(at 248.285 144.145 0)
+			(at 341.63 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8148,7 +8158,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 248.285 142.875 0)
+			(at 341.63 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8159,7 +8169,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 248.285 137.795 0)
+			(at 341.63 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8170,7 +8180,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.285 137.795 0)
+			(at 341.63 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8181,7 +8191,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 248.285 137.795 0)
+			(at 341.63 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8472,7 +8482,7 @@
 	)
 	(symbol
 		(lib_id "Power_Management:TPS2051CDBV")
-		(at 248.285 130.81 0)
+		(at 341.63 74.295 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8483,7 +8493,7 @@
 		(fields_autoplaced yes)
 		(uuid "1b9c58d1-1a2a-4e37-8ca4-066946346ae5")
 		(property "Reference" "U1502"
-			(at 248.285 121.285 0)
+			(at 341.63 64.77 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8493,7 +8503,7 @@
 			)
 		)
 		(property "Value" "TPS2051CDBV"
-			(at 248.285 123.825 0)
+			(at 341.63 67.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8503,7 +8513,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
-			(at 249.555 138.43 0)
+			(at 342.9 81.915 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8515,7 +8525,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps2051c.pdf"
-			(at 249.555 140.97 0)
+			(at 342.9 84.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8527,7 +8537,7 @@
 			)
 		)
 		(property "Description" "0.5A Current limited power switch, single channel, output discharge, reverse blocking, SOT-23-5"
-			(at 248.285 130.81 0)
+			(at 341.63 74.295 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8538,7 +8548,7 @@
 			)
 		)
 		(property "LCSC Part #" "C129581"
-			(at 248.285 130.81 0)
+			(at 341.63 74.295 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8665,7 +8675,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 236.855 107.95 0)
+		(at 330.2 51.435 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8676,7 +8686,7 @@
 		(fields_autoplaced yes)
 		(uuid "23e301b9-3911-4e92-bd40-7ea9efb55bfc")
 		(property "Reference" "#PWR01511"
-			(at 236.855 111.76 0)
+			(at 330.2 55.245 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8687,7 +8697,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 236.855 103.505 0)
+			(at 330.2 46.99 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8697,7 +8707,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 236.855 107.95 0)
+			(at 330.2 51.435 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8708,7 +8718,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 236.855 107.95 0)
+			(at 330.2 51.435 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8719,7 +8729,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 236.855 107.95 0)
+			(at 330.2 51.435 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8833,7 +8843,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized")
-		(at 299.085 132.08 0)
+		(at 392.43 75.565 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8844,7 +8854,7 @@
 		(fields_autoplaced yes)
 		(uuid "2e27af64-07cb-402e-b78f-976cbd3abfa1")
 		(property "Reference" "C1520"
-			(at 302.26 129.9209 0)
+			(at 395.605 73.4059 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8855,7 +8865,7 @@
 			)
 		)
 		(property "Value" "150uF"
-			(at 302.26 132.4609 0)
+			(at 395.605 75.9459 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8866,7 +8876,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7"
-			(at 300.0502 135.89 0)
+			(at 393.3952 79.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8877,7 +8887,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 299.085 132.08 0)
+			(at 392.43 75.565 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8888,7 +8898,7 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
-			(at 299.085 132.08 0)
+			(at 392.43 75.565 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8899,7 +8909,7 @@
 			)
 		)
 		(property "LCSC Part #" "C413656"
-			(at 299.085 132.08 0)
+			(at 392.43 75.565 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8926,7 +8936,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 215.265 117.475 0)
+		(at 308.61 60.96 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8936,7 +8946,7 @@
 		(dnp no)
 		(uuid "2f2a893f-46f4-41fd-8c2e-03b4a2f1d554")
 		(property "Reference" "C1521"
-			(at 218.186 116.3066 0)
+			(at 311.531 59.7916 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8947,7 +8957,7 @@
 			)
 		)
 		(property "Value" "100n"
-			(at 218.186 118.618 0)
+			(at 311.531 62.103 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8958,7 +8968,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 216.2302 121.285 0)
+			(at 309.5752 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8969,7 +8979,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 215.265 117.475 0)
+			(at 308.61 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8980,7 +8990,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 215.265 117.475 0)
+			(at 308.61 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8990,7 +9000,7 @@
 			)
 		)
 		(property "LCSC Part #" "C1525"
-			(at 215.265 117.475 0)
+			(at 308.61 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9109,7 +9119,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 283.845 154.305 90)
+		(at 377.19 97.79 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9120,7 +9130,7 @@
 		(fields_autoplaced yes)
 		(uuid "391e4951-54ad-4b67-8d5b-73c10af4cf80")
 		(property "Reference" "D1502"
-			(at 287.02 153.0349 90)
+			(at 380.365 96.5199 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9131,7 +9141,7 @@
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 287.02 155.5749 90)
+			(at 380.365 99.0599 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9142,7 +9152,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 283.845 154.305 0)
+			(at 377.19 97.79 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9153,7 +9163,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 283.845 154.305 0)
+			(at 377.19 97.79 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9164,7 +9174,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 283.845 154.305 0)
+			(at 377.19 97.79 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9175,7 +9185,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 283.845 154.305 0)
+			(at 377.19 97.79 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9544,7 +9554,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 299.085 142.24 0)
+		(at 392.43 85.725 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9555,7 +9565,7 @@
 		(fields_autoplaced yes)
 		(uuid "4fa35c6c-56a8-4d44-9374-2983274bfec1")
 		(property "Reference" "#PWR01516"
-			(at 299.085 148.59 0)
+			(at 392.43 92.075 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9566,7 +9576,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 299.085 147.32 0)
+			(at 392.43 90.805 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9577,7 +9587,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 299.085 142.24 0)
+			(at 392.43 85.725 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9588,7 +9598,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 299.085 142.24 0)
+			(at 392.43 85.725 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9599,7 +9609,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 299.085 142.24 0)
+			(at 392.43 85.725 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10474,7 +10484,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 280.035 159.385 90)
+		(at 373.38 102.87 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10484,7 +10494,7 @@
 		(dnp no)
 		(uuid "65c93122-dc85-413d-b850-ac377ea4965d")
 		(property "Reference" "D1501"
-			(at 268.478 157.48 90)
+			(at 361.823 100.965 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10495,7 +10505,7 @@
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 268.478 160.02 90)
+			(at 361.823 103.505 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10506,7 +10516,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 280.035 159.385 0)
+			(at 373.38 102.87 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10517,7 +10527,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 280.035 159.385 0)
+			(at 373.38 102.87 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10528,7 +10538,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 280.035 159.385 0)
+			(at 373.38 102.87 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10539,7 +10549,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 280.035 159.385 0)
+			(at 373.38 102.87 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11020,7 +11030,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 226.695 117.475 0)
+		(at 320.04 60.96 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11030,7 +11040,7 @@
 		(dnp no)
 		(uuid "717d2ef4-5041-459e-9a93-1e6763681f87")
 		(property "Reference" "C1522"
-			(at 229.616 116.3066 0)
+			(at 322.961 59.7916 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11041,7 +11051,7 @@
 			)
 		)
 		(property "Value" "4.7u"
-			(at 229.616 118.618 0)
+			(at 322.961 62.103 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11052,7 +11062,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 227.6602 121.285 0)
+			(at 321.0052 64.77 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11063,7 +11073,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 226.695 117.475 0)
+			(at 320.04 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11074,7 +11084,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 226.695 117.475 0)
+			(at 320.04 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11084,7 +11094,7 @@
 			)
 		)
 		(property "LCSC Part #" "C19666"
-			(at 226.695 117.475 0)
+			(at 320.04 60.96 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11111,7 +11121,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 283.845 158.115 0)
+		(at 377.19 101.6 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11122,7 +11132,7 @@
 		(fields_autoplaced yes)
 		(uuid "71dd6152-f320-4aa6-b09d-508f88bff079")
 		(property "Reference" "#PWR01517"
-			(at 283.845 164.465 0)
+			(at 377.19 107.95 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11133,7 +11143,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 283.845 163.195 0)
+			(at 377.19 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11144,7 +11154,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 283.845 158.115 0)
+			(at 377.19 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11155,7 +11165,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 283.845 158.115 0)
+			(at 377.19 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11166,7 +11176,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 283.845 158.115 0)
+			(at 377.19 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11975,7 +11985,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 260.35 116.205 0)
+		(at 353.695 59.69 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11985,7 +11995,7 @@
 		(dnp no)
 		(uuid "95b629f2-6b88-4337-8210-13f88b25231b")
 		(property "Reference" "R1510"
-			(at 251.841 115.824 0)
+			(at 345.186 59.309 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11996,7 +12006,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 251.841 118.364 0)
+			(at 345.186 61.849 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12007,7 +12017,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 258.572 116.205 90)
+			(at 351.917 59.69 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12018,7 +12028,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 260.35 116.205 0)
+			(at 353.695 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12029,7 +12039,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 260.35 116.205 0)
+			(at 353.695 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12040,7 +12050,7 @@
 			)
 		)
 		(property "LCSC Part #" "C25744"
-			(at 260.35 116.205 0)
+			(at 353.695 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12340,7 +12350,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 233.045 140.97 0)
+		(at 326.39 84.455 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12351,7 +12361,7 @@
 		(fields_autoplaced yes)
 		(uuid "acd8e22b-1e5a-4b77-b9be-4dbb13706d23")
 		(property "Reference" "#PWR01514"
-			(at 233.045 147.32 0)
+			(at 326.39 90.805 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12362,7 +12372,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 233.045 146.05 0)
+			(at 326.39 89.535 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12373,7 +12383,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 233.045 140.97 0)
+			(at 326.39 84.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12384,7 +12394,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 233.045 140.97 0)
+			(at 326.39 84.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12395,7 +12405,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 233.045 140.97 0)
+			(at 326.39 84.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12600,7 +12610,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 293.37 141.605 0)
+		(at 386.715 85.09 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12611,7 +12621,7 @@
 		(fields_autoplaced yes)
 		(uuid "b9026cb3-d480-4d57-b588-a5583104df17")
 		(property "Reference" "D1503"
-			(at 293.37 135.89 0)
+			(at 386.715 79.375 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12621,7 +12631,7 @@
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 293.37 138.43 0)
+			(at 386.715 81.915 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12631,7 +12641,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 293.37 141.605 0)
+			(at 386.715 85.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12642,7 +12652,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 293.37 141.605 0)
+			(at 386.715 85.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12653,7 +12663,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 293.37 141.605 0)
+			(at 386.715 85.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12664,7 +12674,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 293.37 141.605 0)
+			(at 386.715 85.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12770,7 +12780,7 @@
 	)
 	(symbol
 		(lib_id "Connector:USB_A")
-		(at 267.335 146.685 0)
+		(at 360.68 90.17 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12781,7 +12791,7 @@
 		(fields_autoplaced yes)
 		(uuid "bec699a3-bc5a-413b-ae62-87987a7c57d6")
 		(property "Reference" "J1501"
-			(at 267.335 134.62 0)
+			(at 360.68 78.105 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12791,7 +12801,7 @@
 			)
 		)
 		(property "Value" "USB_A"
-			(at 267.335 137.16 0)
+			(at 360.68 80.645 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12801,7 +12811,7 @@
 			)
 		)
 		(property "Footprint" "Connector_USB:USB_A_Connfly_DS1095"
-			(at 271.145 147.955 0)
+			(at 364.49 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12812,7 +12822,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 271.145 147.955 0)
+			(at 364.49 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12823,7 +12833,7 @@
 			)
 		)
 		(property "Description" "USB Type A connector"
-			(at 267.335 146.685 0)
+			(at 360.68 90.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12834,7 +12844,7 @@
 			)
 		)
 		(property "LCSC Part #" "C19944603"
-			(at 267.335 146.685 0)
+			(at 360.68 90.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13392,7 +13402,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 233.045 137.16 0)
+		(at 326.39 80.645 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13402,7 +13412,7 @@
 		(dnp no)
 		(uuid "e6ae7108-5339-4ce5-89e6-5d8520e2a820")
 		(property "Reference" "R1509"
-			(at 224.536 136.779 0)
+			(at 317.881 80.264 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13413,7 +13423,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 224.536 139.319 0)
+			(at 317.881 82.804 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13424,7 +13434,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 231.267 137.16 90)
+			(at 324.612 80.645 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13435,7 +13445,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 233.045 137.16 0)
+			(at 326.39 80.645 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13446,7 +13456,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 233.045 137.16 0)
+			(at 326.39 80.645 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13457,7 +13467,7 @@
 			)
 		)
 		(property "LCSC Part #" "C25744"
-			(at 233.045 137.16 0)
+			(at 326.39 80.645 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13562,7 +13572,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 260.35 112.395 0)
+		(at 353.695 55.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13572,7 +13582,7 @@
 		(dnp no)
 		(uuid "efc32411-8b22-43a0-984c-a1d361ee387f")
 		(property "Reference" "#PWR01515"
-			(at 260.35 116.205 0)
+			(at 353.695 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13583,7 +13593,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 259.969 107.95 0)
+			(at 353.314 51.435 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13593,7 +13603,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 260.35 112.395 0)
+			(at 353.695 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13604,7 +13614,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 260.35 112.395 0)
+			(at 353.695 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13615,7 +13625,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 260.35 112.395 0)
+			(at 353.695 55.88 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13638,7 +13648,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 264.795 156.845 0)
+		(at 358.14 100.33 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13649,7 +13659,7 @@
 		(fields_autoplaced yes)
 		(uuid "efd23fbd-5367-4bb4-ab87-1a94ed5a144c")
 		(property "Reference" "#PWR01512"
-			(at 264.795 163.195 0)
+			(at 358.14 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13660,7 +13670,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 264.795 161.925 0)
+			(at 358.14 105.41 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13671,7 +13681,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 264.795 156.845 0)
+			(at 358.14 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13682,7 +13692,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 264.795 156.845 0)
+			(at 358.14 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13693,7 +13703,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 264.795 156.845 0)
+			(at 358.14 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)

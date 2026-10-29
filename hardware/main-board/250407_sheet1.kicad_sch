@@ -12107,16 +12107,6 @@
 	)
 	(wire
 		(pts
-			(xy 55.88 58.42) (xy 55.88 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0d2d5f30-7e0d-4220-b56e-1485b81a24b1")
-	)
-	(wire
-		(pts
 			(xy 257.81 120.65) (xy 257.81 118.11)
 		)
 		(stroke
@@ -15967,16 +15957,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 76.2) (xy 55.88 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9ad8fa7e-d823-489f-8ab8-3dfd31d9537e")
-	)
-	(wire
-		(pts
 			(xy 280.67 77.47) (xy 278.13 77.47)
 		)
 		(stroke
@@ -16857,16 +16837,6 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 58.42) (xy 60.96 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bde39c06-58d9-4e5a-8388-e01a53daa4ec")
-	)
-	(wire
-		(pts
 			(xy 278.13 184.15) (xy 275.59 184.15)
 		)
 		(stroke
@@ -16924,16 +16894,6 @@
 			(type default)
 		)
 		(uuid "c079914a-314e-4316-b119-3252bd774d73")
-	)
-	(wire
-		(pts
-			(xy 63.5 58.42) (xy 63.5 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c129b75c-acdb-4eaa-b8c2-dc3ffe9c0769")
 	)
 	(wire
 		(pts
@@ -17927,16 +17887,6 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 58.42) (xy 58.42 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ee37032b-c925-4d03-9e0b-a7e5f8055850")
-	)
-	(wire
-		(pts
 			(xy 44.45 198.12) (xy 44.45 203.2)
 		)
 		(stroke
@@ -18698,17 +18648,6 @@
 		)
 		(uuid "215e7b32-a7fc-42dd-b97d-7461cc6a728f")
 	)
-	(label "POTBX"
-		(at 55.88 74.93 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "245fdc0a-ec8a-4208-8718-93de2f53ee0f")
-	)
 	(label "PB7"
 		(at 34.29 238.76 0)
 		(effects
@@ -18962,17 +18901,6 @@
 			(justify left bottom)
 		)
 		(uuid "4ba96da7-ab1b-4d2a-a194-b88d30a9ea3c")
-	)
-	(label "POTBY"
-		(at 58.42 74.93 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "4de18369-fcb1-4b1e-8258-53aced849018")
 	)
 	(label "A15"
 		(at 161.29 46.99 0)
@@ -19265,17 +19193,6 @@
 			(justify left bottom)
 		)
 		(uuid "8005efcd-cde1-4005-85a5-54ba3c73ad22")
-	)
-	(label "POTAX"
-		(at 60.96 74.93 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "8024b4e7-cf27-4212-a2c1-f43620e3750f")
 	)
 	(label "+Vc"
 		(at 245.11 74.93 0)
@@ -19712,17 +19629,6 @@
 			(justify left bottom)
 		)
 		(uuid "d5f9b6d7-08c4-498c-8b9d-6dada229e49e")
-	)
-	(label "POTAY"
-		(at 63.5 74.93 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(italic yes)
-			)
-			(justify left bottom)
-		)
-		(uuid "d6433071-9eeb-4f1d-bbe6-1257099b224f")
 	)
 	(label "PA2"
 		(at 34.29 218.44 0)
@@ -20271,6 +20177,17 @@
 		)
 		(uuid "28d27859-9f7b-4b2c-b41b-db2e35f871f1")
 	)
+	(hierarchical_label "POTAY"
+		(shape input)
+		(at 63.5 58.42 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3a270bab-bcce-4268-aaac-e7b6b2697cef")
+	)
 	(hierarchical_label "R{slash}~{W}"
 		(shape output)
 		(at 194.31 229.87 0)
@@ -20281,6 +20198,17 @@
 			(justify left)
 		)
 		(uuid "41720440-b859-46e8-8e6c-7688a716ca1f")
+	)
+	(hierarchical_label "POTAX"
+		(shape input)
+		(at 60.96 58.42 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "533f4f84-f815-45b9-b646-559972048779")
 	)
 	(hierarchical_label "PHI2"
 		(shape output)
@@ -20336,6 +20264,28 @@
 			(justify left)
 		)
 		(uuid "8c60f016-2f38-42e7-9121-d9f51eded654")
+	)
+	(hierarchical_label "POTBY"
+		(shape input)
+		(at 58.42 58.42 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9ef50aab-16ef-4169-88a8-6736ac69624a")
+	)
+	(hierarchical_label "POTBX"
+		(shape input)
+		(at 55.88 58.42 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c86e828e-16ea-4a21-bcfc-b8d17fefad91")
 	)
 	(hierarchical_label "CASS_MOTOR"
 		(shape output)
