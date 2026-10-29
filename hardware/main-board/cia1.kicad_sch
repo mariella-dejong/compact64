@@ -5,7 +5,7 @@
 	(uuid "f3aeb0eb-4e8e-49ff-bd5f-ce9a12b0d706")
 	(paper "A3")
 	(lib_symbols
-		(symbol "Connector:DE9_Pins"
+		(symbol "Connector:DE9_Pins_MountingHoles"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -16,7 +16,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "J"
-				(at 0 13.97 0)
+				(at 0 16.51 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -25,8 +25,8 @@
 					)
 				)
 			)
-			(property "Value" "DE9_Pins"
-				(at 0 -14.605 0)
+			(property "Value" "DE9_Pins_MountingHoles"
+				(at 0 14.605 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -57,7 +57,7 @@
 					)
 				)
 			)
-			(property "Description" "9-pin D-SUB connector, pins (male)"
+			(property "Description" "9-pin D-SUB connector, pins (male), Mounting Hole"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -90,7 +90,7 @@
 					)
 				)
 			)
-			(symbol "DE9_Pins_0_1"
+			(symbol "DE9_Pins_MountingHoles_0_1"
 				(polyline
 					(pts
 						(xy -3.81 10.16) (xy -2.54 10.16)
@@ -311,7 +311,7 @@
 					)
 				)
 			)
-			(symbol "DE9_Pins_1_1"
+			(symbol "DE9_Pins_MountingHoles_1_1"
 				(pin passive line
 					(at -7.62 -10.16 0)
 					(length 3.81)
@@ -467,6 +467,24 @@
 						)
 					)
 					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -15.24 90)
+					(length 3.81)
+					(name "PAD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "SH"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -4419,7 +4437,7 @@
 	)
 	(text "JOYSTICK A"
 		(exclude_from_sim no)
-		(at 331.47 224.79 0)
+		(at 331.216 228.6 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11375,6 +11393,85 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
+		(at 330.835 189.23 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4cd12a8c-5c05-4c79-9710-e7307a346227")
+		(property "Reference" "#PWR01526"
+			(at 330.835 195.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 330.835 194.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 330.835 189.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 330.835 189.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 330.835 189.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f42d5b78-6ccd-4933-a61e-fa95ad1ad6a5")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "#PWR01526")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
 		(at 392.43 85.725 0)
 		(unit 1)
 		(body_style 1)
@@ -13477,7 +13574,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:DE9_Pins")
+		(lib_id "Connector:DE9_Pins_MountingHoles")
 		(at 330.835 173.99 0)
 		(unit 1)
 		(body_style 1)
@@ -13489,7 +13586,7 @@
 		(fields_autoplaced yes)
 		(uuid "7f0370d9-6ef8-42fd-99cd-7c4017256389")
 		(property "Reference" "J1502"
-			(at 335.915 172.7199 0)
+			(at 336.55 172.7199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13500,7 +13597,7 @@
 			)
 		)
 		(property "Value" "DE9_Pins"
-			(at 335.915 175.2599 0)
+			(at 336.55 175.2599 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13510,7 +13607,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_Dsub:DSUB-9_Pins_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
+		(property "Footprint" ""
 			(at 330.835 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -13532,18 +13629,7 @@
 				)
 			)
 		)
-		(property "Description" "9-pin D-SUB connector, pins (male)"
-			(at 330.835 173.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C75750"
+		(property "Description" "9-pin D-SUB connector, pins (male), Mounting Hole"
 			(at 330.835 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -13580,6 +13666,9 @@
 		)
 		(pin "8"
 			(uuid "90fdc77a-99e3-45ed-8f5e-1e89fdd2c2f2")
+		)
+		(pin "SH"
+			(uuid "157a62e7-1cb0-4118-a067-d51daa010d9e")
 		)
 		(instances
 			(project "c64-mini"
@@ -14361,6 +14450,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "U1501")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
+		(at 330.835 224.155 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "91abcb47-c2f1-4a43-8f7f-fb13673024b4")
+		(property "Reference" "#PWR01525"
+			(at 330.835 230.505 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 330.835 229.235 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 330.835 224.155 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 330.835 224.155 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 330.835 224.155 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "aa2b9ce0-3b01-42e0-aaa7-f9c6935ef170")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "#PWR01525")
 					(unit 1)
 				)
 			)
@@ -16228,7 +16396,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:DE9_Pins")
+		(lib_id "Connector:DE9_Pins_MountingHoles")
 		(at 330.835 208.915 0)
 		(unit 1)
 		(body_style 1)
@@ -16240,7 +16408,7 @@
 		(fields_autoplaced yes)
 		(uuid "c93d80d2-235c-4307-8f0b-570732e1b9ad")
 		(property "Reference" "J1503"
-			(at 335.915 207.6449 0)
+			(at 336.55 207.6449 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16251,7 +16419,7 @@
 			)
 		)
 		(property "Value" "DE9_Pins"
-			(at 335.915 210.1849 0)
+			(at 336.55 210.1849 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -16261,7 +16429,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_Dsub:DSUB-9_Pins_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
+		(property "Footprint" ""
 			(at 330.835 208.915 0)
 			(hide yes)
 			(show_name no)
@@ -16283,18 +16451,7 @@
 				)
 			)
 		)
-		(property "Description" "9-pin D-SUB connector, pins (male)"
-			(at 330.835 208.915 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C75750"
+		(property "Description" "9-pin D-SUB connector, pins (male), Mounting Hole"
 			(at 330.835 208.915 0)
 			(hide yes)
 			(show_name no)
@@ -16331,6 +16488,9 @@
 		)
 		(pin "8"
 			(uuid "823d1213-0e45-4d98-8cb4-7528c65c56df")
+		)
+		(pin "SH"
+			(uuid "98cc8528-70b6-4f19-b7f5-69917b524b92")
 		)
 		(instances
 			(project "c64-mini"
