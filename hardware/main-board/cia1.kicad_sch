@@ -11400,7 +11400,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Dsub:DSUB-9_Pins_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
 			(at 330.835 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -11423,6 +11423,17 @@
 			)
 		)
 		(property "Description" "9-pin D-SUB connector, pins (male)"
+			(at 330.835 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C75750"
 			(at 330.835 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -13238,7 +13249,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Dsub:DSUB-9_Pins_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
 			(at 330.835 208.915 0)
 			(hide yes)
 			(show_name no)
@@ -13261,6 +13272,17 @@
 			)
 		)
 		(property "Description" "9-pin D-SUB connector, pins (male)"
+			(at 330.835 208.915 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C75750"
 			(at 330.835 208.915 0)
 			(hide yes)
 			(show_name no)
