@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "D1504-1513,#PWR1523-1526,R1511-1530",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
@@ -1723,6 +1723,10 @@
     [
       "974b070f-b363-4f95-b525-4a1dadc7ad48",
       "CIA1, Keyboard and Joysticks"
+    ],
+    [
+      "f383b81a-d266-4e63-afb3-fac087a0b3bb",
+      "CIA2, Serial Port and User Port"
     ]
   ],
   "text_variables": {},
