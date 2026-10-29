@@ -4821,10 +4821,6 @@
 		(uuid "207a3866-d523-4270-8469-87fce1c4e2a9")
 	)
 	(no_connect
-		(at 189.23 161.29)
-		(uuid "29d19252-42e6-4920-803c-096de9404725")
-	)
-	(no_connect
 		(at 189.23 128.27)
 		(uuid "392eae79-e127-4048-8949-85e4c6957214")
 	)
@@ -4843,10 +4839,6 @@
 	(no_connect
 		(at 189.23 146.05)
 		(uuid "5e352d47-abc6-4d48-8222-8621f7abb9cd")
-	)
-	(no_connect
-		(at 189.23 163.83)
-		(uuid "616c1176-8d34-4f66-bea5-15b5c1c03c4d")
 	)
 	(no_connect
 		(at 189.23 153.67)
@@ -7755,6 +7747,17 @@
 		)
 		(uuid "574239c3-657b-4218-a06f-fe912e1ae3f2")
 	)
+	(hierarchical_label "KBD_COL6"
+		(shape output)
+		(at 189.23 161.29 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "623ea8dc-5906-42a2-b8c3-62ade292d328")
+	)
 	(hierarchical_label "POTBX"
 		(shape output)
 		(at 314.96 166.37 180)
@@ -7798,6 +7801,17 @@
 			(justify left)
 		)
 		(uuid "8e96b205-da6d-45f2-8381-c4319997e3d2")
+	)
+	(hierarchical_label "KBD_COL7"
+		(shape output)
+		(at 189.23 163.83 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d61988d2-aff1-4dcf-93f2-a13caaf10793")
 	)
 	(hierarchical_label "POTAX"
 		(shape output)

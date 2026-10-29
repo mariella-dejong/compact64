@@ -10688,6 +10688,12 @@
 		(uuid "3584d16b-fcfd-45f5-9c78-c94adcb83cc3")
 	)
 	(junction
+		(at 50.8 71.12)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "36807f71-7db1-482e-8b30-386d39e2f41c")
+	)
+	(junction
 		(at 73.66 276.86)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -10848,6 +10854,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7b2ec532-7bd8-4ad9-8f05-6b808177e72c")
+	)
+	(junction
+		(at 53.34 67.945)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7ccc8a61-3687-4c56-945f-509a8982be5d")
 	)
 	(junction
 		(at 186.69 72.39)
@@ -12207,6 +12219,16 @@
 	)
 	(wire
 		(pts
+			(xy 50.8 71.12) (xy 50.8 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0efad964-9e8a-46a6-a6db-95eaeea39330")
+	)
+	(wire
+		(pts
 			(xy 160.02 102.87) (xy 162.56 102.87)
 		)
 		(stroke
@@ -12447,7 +12469,7 @@
 	)
 	(wire
 		(pts
-			(xy 50.8 63.5) (xy 50.8 147.32)
+			(xy 50.8 63.5) (xy 50.8 71.12)
 		)
 		(stroke
 			(width 0)
@@ -16097,7 +16119,7 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 60.96) (xy 53.34 144.78)
+			(xy 53.34 60.96) (xy 53.34 67.945)
 		)
 		(stroke
 			(width 0)
@@ -16444,6 +16466,16 @@
 			(type default)
 		)
 		(uuid "abf406c2-78b2-45a9-a7df-fc0a047151cb")
+	)
+	(wire
+		(pts
+			(xy 50.8 71.12) (xy 66.675 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac64fc85-a7d4-4501-9727-498951b3f69b")
 	)
 	(wire
 		(pts
@@ -16844,6 +16876,16 @@
 			(type default)
 		)
 		(uuid "be241d1c-053b-48d4-b383-5ef5d7b9a39c")
+	)
+	(wire
+		(pts
+			(xy 53.34 67.945) (xy 53.34 144.78)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bec42cd0-ac84-4acf-8eec-452d1268aab9")
 	)
 	(wire
 		(pts
@@ -17704,6 +17746,16 @@
 			(type default)
 		)
 		(uuid "e3e75f9b-2936-4c61-b62a-7865aa884049")
+	)
+	(wire
+		(pts
+			(xy 53.34 67.945) (xy 66.675 67.945)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e45cc31b-1c15-4ed7-af85-9c001616ca71")
 	)
 	(wire
 		(pts
@@ -20254,6 +20306,17 @@
 		)
 		(uuid "6cb6b097-a875-40e8-a2d2-43544e155667")
 	)
+	(hierarchical_label "KBD_COL7"
+		(shape input)
+		(at 66.675 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6ec98399-72c1-4e5d-92f3-7a2334187ae2")
+	)
 	(hierarchical_label "~{VA15}"
 		(shape output)
 		(at 182.88 237.49 0)
@@ -20319,6 +20382,17 @@
 			(justify right)
 		)
 		(uuid "eb63faa0-1a1b-48b2-8b14-ffb1b9d8c7d3")
+	)
+	(hierarchical_label "KBD_COL6"
+		(shape input)
+		(at 66.675 67.945 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ede75eab-9d62-46f7-bd44-156797718bc0")
 	)
 	(symbol
 		(lib_id "KU-schematics-library:FERRITE_NARROW")
