@@ -14846,16 +14846,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 172.72) (xy 59.69 172.72)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9a3708b1-a887-4318-882e-75f8e3ef0055")
-	)
-	(wire
-		(pts
 			(xy 280.67 77.47) (xy 278.13 77.47)
 		)
 		(stroke
@@ -16003,16 +15993,6 @@
 			(type default)
 		)
 		(uuid "d0549411-b9a0-4772-8ec2-d542b0662c27")
-	)
-	(wire
-		(pts
-			(xy 134.62 175.26) (xy 62.23 175.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d12375ce-3468-4051-b7ec-7c6fe8296e07")
 	)
 	(wire
 		(pts
@@ -18512,6 +18492,17 @@
 		)
 		(uuid "41720440-b859-46e8-8e6c-7688a716ca1f")
 	)
+	(hierarchical_label "CIA1_CNT"
+		(shape input)
+		(at 59.69 172.72 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "526102e5-6a7e-46dc-8b71-008a9dd59867")
+	)
 	(hierarchical_label "POTAX"
 		(shape input)
 		(at 60.96 58.42 270)
@@ -18577,6 +18568,17 @@
 			(justify left)
 		)
 		(uuid "6ec98399-72c1-4e5d-92f3-7a2334187ae2")
+	)
+	(hierarchical_label "CIA1_SP"
+		(shape input)
+		(at 62.23 175.26 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7b8a46c8-7d27-4694-bea0-0523b85b86a6")
 	)
 	(hierarchical_label "~{RESTORE_NMI}"
 		(shape input)

@@ -4809,10 +4809,6 @@
 		(uuid "fce1c86d-52e9-4fc9-a450-fd5e3e6a8cbe")
 	)
 	(no_connect
-		(at 189.23 123.19)
-		(uuid "0ad404ea-5c0d-4845-9267-3c194ff2ad4b")
-	)
-	(no_connect
 		(at 189.23 128.27)
 		(uuid "392eae79-e127-4048-8949-85e4c6957214")
 	)
@@ -4863,10 +4859,6 @@
 	(no_connect
 		(at 189.23 125.73)
 		(uuid "d123b2a5-8567-4f43-aa74-7d6d4815ad10")
-	)
-	(no_connect
-		(at 189.23 120.65)
-		(uuid "df803ca9-a534-491c-bf0f-a23b2772d632")
 	)
 	(no_connect
 		(at 120.65 101.6)
@@ -7807,6 +7799,17 @@
 		)
 		(uuid "76a7a75a-e6b4-4411-b59d-f9ac7d8d6fef")
 	)
+	(hierarchical_label "SP"
+		(shape output)
+		(at 189.23 123.19 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8655c8b1-8a76-4322-9f14-7b98e724f937")
+	)
 	(hierarchical_label "~{RESTORE_NMI}"
 		(shape output)
 		(at 189.23 158.75 0)
@@ -7828,6 +7831,17 @@
 			(justify left)
 		)
 		(uuid "8e96b205-da6d-45f2-8381-c4319997e3d2")
+	)
+	(hierarchical_label "CNT"
+		(shape output)
+		(at 189.23 120.65 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ad45709a-ef1e-4c3d-bbfb-3672e8dd4378")
 	)
 	(hierarchical_label "~{SELECT}"
 		(shape input)
