@@ -4829,10 +4829,6 @@
 		(uuid "45188d9a-d8d0-4fb2-9690-9a8f77c7ffe7")
 	)
 	(no_connect
-		(at 189.23 158.75)
-		(uuid "4985f068-e9d9-4881-94af-4dec3a80ba84")
-	)
-	(no_connect
 		(at 189.23 199.39)
 		(uuid "5b0ea7e7-8962-4f0b-a8cc-bfe184905dd1")
 	)
@@ -7790,6 +7786,17 @@
 			(justify right)
 		)
 		(uuid "76a7a75a-e6b4-4411-b59d-f9ac7d8d6fef")
+	)
+	(hierarchical_label "~{RESTORE_NMI}"
+		(shape output)
+		(at 189.23 158.75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8b99114e-90c3-43a9-88dc-af58d698edd6")
 	)
 	(hierarchical_label "SDA"
 		(shape bidirectional)

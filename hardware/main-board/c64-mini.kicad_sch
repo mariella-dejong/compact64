@@ -616,6 +616,26 @@
 	)
 	(wire
 		(pts
+			(xy 135.89 36.195) (xy 135.89 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1432d73a-4d1e-4cf1-b0c0-44955e0750b2")
+	)
+	(wire
+		(pts
+			(xy 226.695 125.73) (xy 226.695 36.195)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1499a1bb-e0a8-4fa4-a91a-11ffd91a8ad5")
+	)
+	(wire
+		(pts
 			(xy 198.12 163.83) (xy 198.12 173.99)
 		)
 		(stroke
@@ -1073,6 +1093,16 @@
 			(type default)
 		)
 		(uuid "6df0b51e-d6eb-453f-aded-e41bb5ac1556")
+	)
+	(wire
+		(pts
+			(xy 226.695 36.195) (xy 135.89 36.195)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e7a6dc5-707c-4eb7-a391-fc57c1c57038")
 	)
 	(wire
 		(pts
@@ -3487,6 +3517,16 @@
 				(justify right)
 			)
 		)
+		(pin "~{RESTORE_NMI}" input
+			(at 226.695 125.73 90)
+			(uuid "c263aaa3-eb6c-48f2-a55e-190fa4d2cbf5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -4098,6 +4138,16 @@
 		(pin "KBD_COL7" output
 			(at 139.065 41.91 90)
 			(uuid "ad5127a8-8962-4e46-ad89-e0267c2085d6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{RESTORE_NMI}" output
+			(at 135.89 41.91 90)
+			(uuid "5434cd1f-2492-4ad6-b3ec-00fe06a7834c")
 			(effects
 				(font
 					(size 1.27 1.27)

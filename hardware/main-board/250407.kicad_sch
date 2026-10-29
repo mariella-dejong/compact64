@@ -163,6 +163,16 @@
 	)
 	(wire
 		(pts
+			(xy 74.295 29.21) (xy 74.295 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "658b15eb-7398-4445-9e7c-7a4901598316")
+	)
+	(wire
+		(pts
 			(xy 48.26 97.79) (xy 48.26 102.87)
 		)
 		(stroke
@@ -300,6 +310,16 @@
 			(type default)
 		)
 		(uuid "ba6f3e29-6b35-4b51-8c3d-a5448de7721e")
+	)
+	(wire
+		(pts
+			(xy 105.41 29.21) (xy 74.295 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "be77336b-e865-4300-b6d5-67acad15a68d")
 	)
 	(wire
 		(pts
@@ -846,6 +866,17 @@
 		)
 		(uuid "f797e48d-8d84-4b51-abd1-fd0fee615d57")
 	)
+	(hierarchical_label "~{RESTORE_NMI}"
+		(shape input)
+		(at 105.41 29.21 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "fe031926-4703-4906-8a7f-7c56a3ee9d6c")
+	)
 	(sheet
 		(at 17.78 34.29)
 		(size 83.82 27.94)
@@ -1037,6 +1068,16 @@
 		(pin "KBD_COL7" input
 			(at 78.105 34.29 90)
 			(uuid "0b3dd7ec-5724-4891-8980-50e4ab33f5ee")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{RESTORE_NMI}" input
+			(at 74.295 34.29 90)
+			(uuid "ec24a6c2-be7a-4de2-9c83-d85728945358")
 			(effects
 				(font
 					(size 1.27 1.27)

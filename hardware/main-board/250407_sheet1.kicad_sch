@@ -19197,6 +19197,17 @@
 		)
 		(uuid "6ec98399-72c1-4e5d-92f3-7a2334187ae2")
 	)
+	(hierarchical_label "~{RESTORE_NMI}"
+		(shape input)
+		(at 57.15 276.86 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "89a25852-9ba6-4573-bd32-1e6f1453e03f")
+	)
 	(hierarchical_label "~{VA15}"
 		(shape output)
 		(at 182.88 237.49 0)
