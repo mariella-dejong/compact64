@@ -7392,16 +7392,6 @@
 	)
 	(wire
 		(pts
-			(xy 360.045 226.06) (xy 368.3 226.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cc6c2b5c-de37-4aec-b9cf-5169089882d9")
-	)
-	(wire
-		(pts
 			(xy 132.08 59.69) (xy 129.54 59.69)
 		)
 		(stroke
@@ -7882,6 +7872,16 @@
 	)
 	(wire
 		(pts
+			(xy 356.87 226.06) (xy 368.3 226.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f21c2d07-72ec-459a-a5e4-c0e2d2543f71")
+	)
+	(wire
+		(pts
 			(xy 217.17 50.8) (xy 205.74 50.8)
 		)
 		(stroke
@@ -8049,6 +8049,16 @@
 			(justify right bottom)
 		)
 		(uuid "015f1577-5fac-4b88-9280-0d0074e66bf7")
+	)
+	(label "JOYBTNA"
+		(at 309.88 216.535 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "09d413f4-0cfa-46cb-a51d-4a9a55d8fac9")
 	)
 	(label "XOUT"
 		(at 90.17 213.36 180)
@@ -8360,6 +8370,16 @@
 		)
 		(uuid "a4756110-a7e4-4653-81ec-6b38363521d5")
 	)
+	(label "JOYBTNA"
+		(at 356.87 226.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a51dfd0e-2dff-4d28-b31d-be8c99e2587c")
+	)
 	(label "USB_FLT"
 		(at 353.695 70.485 90)
 		(effects
@@ -8609,18 +8629,7 @@
 		)
 		(uuid "574239c3-657b-4218-a06f-fe912e1ae3f2")
 	)
-	(hierarchical_label "~{LP}"
-		(shape output)
-		(at 360.045 226.06 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "5d3ebb1e-a73b-4a44-b29a-3b950d95682c")
-	)
-	(hierarchical_label "R{slash}{W}"
+	(hierarchical_label "R{slash}~{W}"
 		(shape input)
 		(at 189.23 153.67 0)
 		(effects
@@ -8676,7 +8685,7 @@
 		(uuid "757b0f45-bc35-4be3-8a1c-55a10ae6cbd2")
 	)
 	(hierarchical_label "~{LP}"
-		(shape output)
+		(shape bidirectional)
 		(at 282.575 216.535 180)
 		(effects
 			(font
@@ -8687,7 +8696,7 @@
 		(uuid "76a7a75a-e6b4-4411-b59d-f9ac7d8d6fef")
 	)
 	(hierarchical_label "SP"
-		(shape output)
+		(shape bidirectional)
 		(at 189.23 123.19 0)
 		(effects
 			(font
@@ -8720,7 +8729,7 @@
 		(uuid "8e96b205-da6d-45f2-8381-c4319997e3d2")
 	)
 	(hierarchical_label "CNT"
-		(shape output)
+		(shape bidirectional)
 		(at 189.23 120.65 0)
 		(effects
 			(font
@@ -13834,7 +13843,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Dsub:DSUB-9_Pins_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
 			(at 330.835 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -13857,6 +13866,17 @@
 			)
 		)
 		(property "Description" "9-pin D-SUB connector, pins (male), Mounting Hole"
+			(at 330.835 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C75750"
 			(at 330.835 173.99 0)
 			(hide yes)
 			(show_name no)
@@ -16380,7 +16400,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_Dsub:DSUB-9_Pins_Horizontal_P2.77x2.84mm_EdgePinOffset7.70mm_Housed_MountingHolesOffset9.12mm"
 			(at 330.835 208.915 0)
 			(hide yes)
 			(show_name no)
@@ -16403,6 +16423,17 @@
 			)
 		)
 		(property "Description" "9-pin D-SUB connector, pins (male), Mounting Hole"
+			(at 330.835 208.915 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C75750"
 			(at 330.835 208.915 0)
 			(hide yes)
 			(show_name no)

@@ -3709,7 +3709,7 @@
 				(justify right)
 			)
 		)
-		(pin "~{LP}" input
+		(pin "~{LP}" bidirectional
 			(at 215.9 125.73 90)
 			(uuid "b98610d9-beb4-4e6f-9666-13f0732066e7")
 			(effects
@@ -3789,7 +3789,7 @@
 				(justify left)
 			)
 		)
-		(pin "CIA1_CNT" input
+		(pin "CIA1_CNT" bidirectional
 			(at 243.84 125.73 90)
 			(uuid "71746ffc-681d-4efe-b1ed-3d1b9520e7dd")
 			(effects
@@ -3799,7 +3799,7 @@
 				(justify right)
 			)
 		)
-		(pin "CIA1_SP" input
+		(pin "CIA1_SP" bidirectional
 			(at 247.015 125.73 90)
 			(uuid "c05cf737-5df5-4bf4-be43-2f683aeb96e9")
 			(effects
@@ -4397,7 +4397,7 @@
 				(justify right)
 			)
 		)
-		(pin "~{LP}" output
+		(pin "~{LP}" bidirectional
 			(at 145.415 41.91 90)
 			(uuid "2b831fca-82c9-4a9d-9d9a-26c6ee8069d9")
 			(effects
@@ -4447,7 +4447,7 @@
 				(justify left)
 			)
 		)
-		(pin "R{slash}{W}" input
+		(pin "R{slash}~{W}" input
 			(at 121.285 54.61 180)
 			(uuid "c09d8a70-2b16-4888-a23a-fc482ad1a0ed")
 			(effects
@@ -4497,7 +4497,7 @@
 				(justify left)
 			)
 		)
-		(pin "CNT" output
+		(pin "CNT" bidirectional
 			(at 163.83 47.625 0)
 			(uuid "115ec86d-6ffe-4f63-bbee-29efd1ee4441")
 			(effects
@@ -4507,7 +4507,7 @@
 				(justify right)
 			)
 		)
-		(pin "SP" output
+		(pin "SP" bidirectional
 			(at 163.83 45.085 0)
 			(uuid "88f3e3b4-4b4b-477b-ae1a-4dbf8c392b3b")
 			(effects

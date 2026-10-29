@@ -16921,7 +16921,7 @@
 		(uuid "41720440-b859-46e8-8e6c-7688a716ca1f")
 	)
 	(hierarchical_label "CIA1_CNT"
-		(shape input)
+		(shape bidirectional)
 		(at 59.69 172.72 90)
 		(effects
 			(font
@@ -16998,7 +16998,7 @@
 		(uuid "6ec98399-72c1-4e5d-92f3-7a2334187ae2")
 	)
 	(hierarchical_label "CIA1_SP"
-		(shape input)
+		(shape bidirectional)
 		(at 62.23 175.26 90)
 		(effects
 			(font

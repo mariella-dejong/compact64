@@ -626,7 +626,7 @@
 		(uuid "1d4bb8b4-e3a8-4ac8-a429-c95a51dd5b90")
 	)
 	(hierarchical_label "CIA1_SP"
-		(shape input)
+		(shape bidirectional)
 		(at 106.045 25.4 0)
 		(effects
 			(font
@@ -692,7 +692,7 @@
 		(uuid "523568c2-b08a-4db3-9646-35ab24207339")
 	)
 	(hierarchical_label "~{LP}"
-		(shape input)
+		(shape bidirectional)
 		(at 34.29 107.95 270)
 		(effects
 			(font
@@ -824,7 +824,7 @@
 		(uuid "8e05c7e1-6241-4d99-b399-3aa8d8b27c2a")
 	)
 	(hierarchical_label "CIA1_CNT"
-		(shape input)
+		(shape bidirectional)
 		(at 106.045 27.305 0)
 		(effects
 			(font
@@ -1281,7 +1281,7 @@
 				(justify right)
 			)
 		)
-		(pin "CIA1_CNT" input
+		(pin "CIA1_CNT" bidirectional
 			(at 63.5 38.1 90)
 			(uuid "8e8f74fe-b22b-49aa-8094-4a7d3d09df25")
 			(effects
@@ -1291,7 +1291,7 @@
 				(justify right)
 			)
 		)
-		(pin "CIA1_SP" input
+		(pin "CIA1_SP" bidirectional
 			(at 60.325 38.1 90)
 			(uuid "d1fc6277-433c-440e-9805-de4f4ba2a84a")
 			(effects
@@ -1607,7 +1607,7 @@
 				(justify right)
 			)
 		)
-		(pin "~{LP}" input
+		(pin "~{LP}" bidirectional
 			(at 34.29 101.6 270)
 			(uuid "f2f9ca60-816a-41c5-b286-cf983140abc2")
 			(effects

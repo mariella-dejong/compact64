@@ -16480,7 +16480,7 @@
 		(uuid "9c16672e-638d-4b0e-b02f-81c890880ab1")
 	)
 	(hierarchical_label "~{LP}"
-		(shape input)
+		(shape bidirectional)
 		(at 304.8 27.94 0)
 		(effects
 			(font
