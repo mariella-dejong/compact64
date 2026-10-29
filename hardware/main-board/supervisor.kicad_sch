@@ -4169,10 +4169,6 @@
 		(uuid "31f53681-f8cf-41e6-9199-bc9755fc0cae")
 	)
 	(no_connect
-		(at 255.27 217.17)
-		(uuid "324699f9-1002-49e5-99fd-56aa19c549e9")
-	)
-	(no_connect
 		(at 255.27 128.27)
 		(uuid "37e05cf0-4d8b-4a51-be80-650cdc859494")
 	)
@@ -4289,10 +4285,6 @@
 		(uuid "cda420f7-38ac-4f51-8ab9-64315896a2a1")
 	)
 	(no_connect
-		(at 255.27 222.25)
-		(uuid "ce43c58a-83af-416c-9945-6056af723799")
-	)
-	(no_connect
 		(at 255.27 148.59)
 		(uuid "e6238d2c-5b14-4adc-aaae-7a7c32819e47")
 	)
@@ -4311,10 +4303,6 @@
 	(no_connect
 		(at 255.27 110.49)
 		(uuid "f54f56ee-58f2-49e0-9638-ec3fd95e4725")
-	)
-	(no_connect
-		(at 255.27 219.71)
-		(uuid "f887a7ff-1e8c-4be6-b543-9ee17f1f6247")
 	)
 	(no_connect
 		(at 255.27 189.23)
@@ -6204,6 +6192,17 @@
 		)
 		(uuid "fc6affff-87a1-4952-a38c-6b5748608047")
 	)
+	(hierarchical_label "GPIO43"
+		(shape bidirectional)
+		(at 255.27 219.71 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "567540e8-1b55-4979-a8bb-1efb1978584c")
+	)
 	(hierarchical_label "GPIO45"
 		(shape tri_state)
 		(at 255.27 224.79 0)
@@ -6258,6 +6257,28 @@
 			(justify left)
 		)
 		(uuid "b9654f8d-e7f5-4c90-b38e-c674743d571e")
+	)
+	(hierarchical_label "GPIO44"
+		(shape bidirectional)
+		(at 255.27 222.25 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c01d810b-4fac-408c-b0d9-c6366ddf5d95")
+	)
+	(hierarchical_label "GPIO42"
+		(shape bidirectional)
+		(at 255.27 217.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dcacc14c-d9e1-4265-a3a9-a5f8e42ae0ca")
 	)
 	(hierarchical_label "PREFLIGHT_OK"
 		(shape output)

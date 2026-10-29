@@ -35,20 +35,23 @@ Check them before using software or hardware that depends on them.
 - **Original C64:** both CIAs (U1 and U2) get a 50 Hz or 60 Hz signal on
   their TOD input (pin 19). It is derived from the 9 V AC of the power brick
   and buffered by gate A of U27.
-- **c64-mini:** there is no 9 V AC, so both TOD inputs are tied to ground
-  (#37). The time-of-day clocks of both CIAs stand still at the time last
-  written to them, and TOD alarms never trigger.
+- **c64-mini:** there is no 9 V AC, so the TOD input of CIA 2 is tied to
+  ground (#37). Its time-of-day clock stands still at the time last written
+  to it, and its TOD alarm never triggers. CIA 1 is replaced by a
+  microcontroller (#25) that makes the 50 Hz or 60 Hz reference from its
+  own crystal, so the time-of-day clock of CIA 1 runs (see
+  [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks)).
 - **Not affected:** the CIA timers, and the KERNAL jiffy clock with BASIC's
   `TI` and `TI$`, which run from timer A of CIA 1.
-- **Affected:** software that reads the time-of-day clock, waits for it to
-  change or sets a TOD alarm. Such programs show a frozen clock, or can hang
-  while they wait. Examples are programs with a real-time clock display and
-  programs that use the TOD clock for timing or to tell 50 Hz from 60 Hz
-  mains.
-- **Possible fix:** a 50 Hz or 60 Hz reference can be added later. Gate A of
-  U27 is still in place with pin 1 on +5V; its input pin 2 (now on ground)
-  and output pin 3 (now unconnected) can take the new reference and drive
-  the TOD inputs again. Replacing the CIAs (#25) can also provide it.
+- **Affected:** software that reads the time-of-day clock of CIA 2, waits
+  for it to change or sets a TOD alarm on it. Such programs show a frozen
+  clock, or can hang while they wait. Most programs use the TOD clock of
+  CIA 1, which is not affected.
+- **Possible fix:** replacing CIA 2 with a microcontroller (#68) can provide
+  the reference the same way as for CIA 1. Gate A of U27 is still in place
+  with pin 1 on +5V; its input pin 2 (now on ground) and output pin 3 (now
+  unconnected) can also take a new reference and drive the TOD input of
+  CIA 2 again.
 
 ### User port pins 10 and 11 carry no 9 V AC
 
@@ -90,6 +93,32 @@ Check them before using software or hardware that depends on them.
     such as what ends up in RAM when the 6510 writes to $00 or $01.
 - **Not affected:** bank switching, cartridges and the VIC-II bank
   selection. The PLA still decodes them as before.
+
+### CIA 1 is emulated by a microcontroller, and the keyboard is USB
+
+- **Original C64:** a 6526 CIA (U1) at $DC00 scans the keyboard matrix on
+  connector CN1 and reads the two control ports (CN8, CN9).
+- **c64-mini:** a microcontroller (U1501) takes the place of CIA 1 (#25),
+  see [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks). The
+  keyboard is a USB keyboard on a USB-A socket (J1501), and the firmware
+  presents it to the 6510 as the C64 keyboard matrix. RESTORE is a key on
+  the USB keyboard chosen by the firmware. The control ports are new DE-9
+  sockets (J1502, J1503) with the original pinout.
+- **Affected:**
+  - The board does not start without the controller's firmware.
+  - An original C64 keyboard, or anything else made for the 20-pin keyboard
+    connector, cannot be connected.
+  - How closely the 6526 is matched (timers, interrupts, the serial shift
+    register, keyboard ghosting) depends on the firmware. Programs that rely
+    on exact CIA timing or on unusual keyboard matrix tricks need firmware
+    that reproduces them.
+  - The digital control port lines now have 10k pull-ups to +5V and a
+    100 Ohm series resistor, instead of the 6526's internal pull-ups. The
+    levels stay the same: a line idles at 5 V and a pressed switch pulls it
+    to about 0.05 V.
+- **Not affected:** paddles and the POT lines (U28 is unchanged), the light
+  pen input of the VIC-II, cassette read and the serial bus SRQ on `~FLAG`,
+  and `CNT` and `SP` on the user port.
 
 ## Power supply
 
@@ -379,8 +408,8 @@ for the board (#11, #25, #12) and for other 3.3 V logic. It is a copy of the
   EN/SYNC, which R1201 holds at the input voltage, the same way as for the
   5 V buck converter. U1201's PGOOD joins `PGOOD` (see above).
 
-The budget is 1 A for now: one or two RP2350 microcontrollers and some 3.3 V
-logic, with room to spare. The LM61440 can deliver up to 4 A, but the
+The budget is 1 A for now: the three RP2354 microcontrollers (supervisor,
+RAM and ROM, CIA 1) and some 3.3 V logic, with room to spare. The LM61440 can deliver up to 4 A, but the
 inductor and output capacitors would need to be checked before raising the
 budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
 
@@ -396,8 +425,9 @@ decide when the rest of the system may power up (#46). It runs from `+3V3`,
 the one rail that is always on. Besides its supply, clock, reset and USB it
 switches the other rails on and off (#47), and it can program, reset and talk
 to the RAM and ROM controller (#11, see
-[RAM and ROM replacement](#ram-and-rom-replacement)); its other functions
-follow in separate issues:
+[RAM and ROM replacement](#ram-and-rom-replacement)) and the CIA 1 controller
+(#25, see [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks)); its
+other functions follow in separate issues:
 
 | Function | Hardware | Firmware |
 | -------- | -------- | -------- |
@@ -452,19 +482,22 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | ---- | --- | --- | --------- | -------- |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
-| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401) |
-| GPIO41 | 52 | `SCL` | Output | I2C0 clock to the RAM and ROM controller (U1401) |
+| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401) and the CIA 1 controller (U1501) |
+| GPIO41 | 52 | `SCL` | Output | I2C0 clock to U1401 and U1501 |
+| GPIO42 | 53 | `SWCLK` | Output | SWD clock of the CIA 1 controller |
+| GPIO43 | 54 | `SWDAT` | Bidirectional | SWD data of the CIA 1 controller |
+| GPIO44 | 55 | `RUN` | Output | High lets the CIA 1 controller run; low or not driven holds it in reset |
 | GPIO45 | 56 | `RUN` | Output | High lets the RAM and ROM controller run; low or not driven holds it in reset |
 | GPIO46 | 57 | `SWCLK` | Output | SWD clock of the RAM and ROM controller |
 | GPIO47 | 58 | `SWDAT` | Bidirectional | SWD data of the RAM and ROM controller |
 
 - **I2C:** R1306 and R1312 (4.7k) pull `SDA` and `SCL` up to `+3V3`.
-- **State before the firmware runs:** all five pins come out of reset with
-  the output disabled and the internal pull-down on. `RUN` therefore stays
-  low and the RAM and ROM controller stays in reset, see
+- **State before the firmware runs:** all eight pins come out of reset with
+  the output disabled and the internal pull-down on. Both `RUN` lines
+  therefore stay low and both controllers stay in reset, see
   [Programming and start-up](#programming-and-start-up).
-- **Back-feeding:** these pins only connect to the RAM and ROM controller,
-  which is also on `+3V3`.
+- **Back-feeding:** these pins only connect to the RAM and ROM controller
+  and the CIA 1 controller, which are also on `+3V3`.
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -665,6 +698,237 @@ These timing requirements are for the firmware:
 - The RP2350 is rated for 150 MHz. Overclock it only if measurements show
   that this is not fast enough.
 
+## CIA 1, keyboard and joysticks
+
+The `CIA1, Keyboard and Joysticks` sheet holds a microcontroller (U1501,
+RP2354B) that takes the place of CIA 1 (#25), with a USB-A socket for the
+keyboard and the two control ports. CIA 2 stays for now (#68).
+
+| Removed | Original part | Now |
+| ------- | ------------- | --- |
+| U1 | 6526 CIA 1 | U1501 |
+| C2 | Decoupling capacitor of U1 | C1509 to C1519 at U1501 |
+| CN1 | 20-pin keyboard connector | USB keyboard on J1501 |
+| CN9 | Control port 1 (port B) | J1503 |
+| CN8 | Control port 2 (port A) | J1502 |
+| FB18 | Ferrite bead in the +5V of both control ports | FB1501 |
+
+These parts of the original circuit stay on `250407 Sheet 1`:
+
+- **Chip select:** U15 (74LS139) still decodes `~CIA1` for $DC00 to $DCFF.
+- **Paddles:** U28 (4066) still switches the POT lines of control port 1 or 2
+  to the SID. The controller drives its control inputs, the former keyboard
+  columns `COL6` and `COL7`, now `CIA1_PA6` and `CIA1_PA7`. R301 and R302
+  (10k) pull them up to +5V, because the 4066 needs at least 3.5 V there.
+- **RESTORE:** R41, C38, the one-shot U20A (556) and U8 (7406) still turn a
+  falling edge on the former `~RESTORE` net, now `~RESTORE_NMI`, into a
+  pulse on `~NMI`. The controller makes the edge instead of the RESTORE key.
+- **Pull-ups:** RP3 (3k3) on `CASS_RD`, `CNT1` and `SP1`, and RP4 (3k3) on
+  `~IRQ`.
+
+### Circuit
+
+The circuit is the same as the supervisor's (see [Circuit](#circuit)),
+following Raspberry Pi's RP2350 reference design:
+
+- **Core regulator:** L1501 (3.3 uH) with its own local core supply net
+  (`+1V1`) and C1504, C1505, C1507 and C1508. R1503 (33 Ohm) and C1506
+  (4.7 uF) filter `VREG_AVDD`; C1503 (4.7 uF) decouples the regulator input.
+- **Supplies:** the IOVDD and other 3.3 V supply pins are on `+3V3`, with
+  100 nF capacitors C1509 to C1519.
+- **Clock:** Y1501 (12 MHz ABM8-272-T3) with C1501 and C1502 (15 pF) and
+  R1501 (1k) in series with XOUT.
+- **Flash:** the 2 MB flash in the RP2354B holds the firmware. The QSPI pins
+  are unconnected.
+- **No buttons:** the supervisor resets and programs it, see
+  [Programming and start-up](#programming-and-start-up-1).
+
+### Pins
+
+| GPIO | Pin | Net | 6526 pin | Function |
+| ---- | --- | --- | -------- | -------- |
+| GPIO0 to GPIO7 | 77 to 80, 1 to 4 | `D0` to `D7` | D0 to D7 | Data bus |
+| GPIO8 to GPIO11 | 6 to 9 | `A0` to `A3` | RS0 to RS3 | Register select |
+| GPIO12 | 11 | `CNT1` (sheet pin `CNT`) | CNT | User port pin 4 |
+| GPIO13 | 12 | `SP1` (sheet pin `SP`) | SP | User port pin 5 |
+| GPIO21 | 21 | `~RESET` | ~RES | Reset input |
+| GPIO22 | 22 | `~IRQ` | ~IRQ | Interrupt to the 6510, open drain |
+| GPIO23 | 23 | `CASS_RD` (sheet pin `~FLAG`) | ~FLAG | Cassette read and serial bus SRQ |
+| GPIO24 | 25 | `PHI2` | PH2 | 6510 clock |
+| GPIO25 | 26 | `R/~W` | R/~W | 6510 read/write |
+| GPIO26 | 27 | `~CIA1` (sheet pin `~SELECT`) | ~CS | Chip select from U15 |
+| GPIO27 | 28 | `~RESTORE_NMI` | | RESTORE, through U20A to `~NMI` |
+| GPIO28 | 36 | `CIA1_PA6` | PA6 | Paddle select for control port 1 (U28) |
+| GPIO29 | 37 | `CIA1_PA7` | PA7 | Paddle select for control port 2 (U28) |
+| GPIO30 | 38 | to `JOYB3` | PA3 | Control port 2, right |
+| GPIO31 | 39 | to `JOYB2` | PA2 | Control port 2, left |
+| GPIO32 | 40 | to `JOYB1` | PA1 | Control port 2, down |
+| GPIO33 | 42 | to `JOYBTNB` | PA4 | Control port 2, fire |
+| GPIO34 | 43 | to `JOYB0` | PA0 | Control port 2, up |
+| GPIO35 | 44 | to `JOYA3` | PB3 | Control port 1, right |
+| GPIO36 | 45 | to `JOYA2` | PB2 | Control port 1, left |
+| GPIO37 | 46 | to `JOYA1` | PB1 | Control port 1, down |
+| GPIO38 | 47 | `~LP`, to `JOYBTNA` | PB4 | Control port 1, fire, and the VIC-II light pen input |
+| GPIO39 | 48 | to `JOYA0` | PB0 | Control port 1, up |
+| GPIO40 | 49 | `SDA` | | I2C0 data, link to the supervisor |
+| GPIO41 | 52 | `SCL` | | I2C0 clock, link to the supervisor |
+| GPIO46 | 57 | `USB_EN` | | Keyboard port power on |
+| GPIO47 | 58 | `USB_FLT` | | Keyboard port overcurrent |
+| USB_DP, USB_DM | 67, 66 | `USB_D+`, `USB_D-` through 27 Ohm | | USB keyboard |
+
+GPIO14 to GPIO20 and GPIO42 to GPIO45 are not used. The joystick lines are
+not in bit order on the GPIOs, so the firmware has to map them to port bits.
+`~PC` and the TOD input of the 6526 have no counterpart: `~PC` was not
+connected, and the controller makes the TOD reference itself.
+
+PB5 to PB7 and PA5 only went to the keyboard connector. They exist only in
+the firmware now, as part of the keyboard matrix. PB6 and PB7 as timer
+outputs therefore have no pin either; on the original board they only
+reached the keyboard connector as well.
+
+### Control ports
+
+J1502 (control port 2) and J1503 (control port 1) are 9-pin male D-sub
+sockets (CONNFLY DS1037-09MNAKT74-0CC) with the original pinout. Their
+shells are on ground.
+
+- **Digital lines:** each of the ten joystick lines goes from the connector
+  through a TVS diode to ground (H5VL10BH), a 100 Ohm series resistor and a
+  10k pull-up to +5V at the GPIO:
+
+  | Line | Connector pin | TVS | Series | Pull-up | GPIO |
+  | ---- | ------------- | --- | ------ | ------- | ---- |
+  | `JOYA0` | J1503 pin 1 | D1509 | R1530 | R1520 | GPIO39 |
+  | `JOYA1` | J1503 pin 2 | D1510 | R1528 | R1518 | GPIO37 |
+  | `JOYA2` | J1503 pin 3 | D1511 | R1527 | R1517 | GPIO36 |
+  | `JOYA3` | J1503 pin 4 | D1512 | R1526 | R1516 | GPIO35 |
+  | `JOYBTNA` | J1503 pin 6 | D1513 | R1529 | R1519 | GPIO38 (`~LP`) |
+  | `JOYB0` | J1502 pin 1 | D1504 | R1525 | R1515 | GPIO34 |
+  | `JOYB1` | J1502 pin 2 | D1505 | R1523 | R1513 | GPIO32 |
+  | `JOYB2` | J1502 pin 3 | D1506 | R1522 | R1512 | GPIO31 |
+  | `JOYB3` | J1502 pin 4 | D1507 | R1521 | R1511 | GPIO30 |
+  | `JOYBTNB` | J1502 pin 6 | D1508 | R1524 | R1514 | GPIO33 |
+
+  The pull-ups replace the 6526's internal pull-ups, so the lines idle at
+  5 V as before. A pressed switch pulls the GPIO to about 0.05 V. The series
+  resistors and TVS diodes protect the controller against ESD and against
+  devices that drive a line while the board is off.
+- **Light pen:** `~LP` connects GPIO38 and the VIC-II's light pen input
+  (pin 9) behind R1529. The fire button of control port 1 still triggers
+  the VIC-II's light pen latch directly, as on the original board.
+- **POT lines:** pins 5 and 9 go to U28 as before, without extra protection.
+- **Supply:** pin 7 of both ports gets +5V through FB1501 (100 Ohm at
+  100 MHz, 800 mA), which replaces the through-hole ferrite bead FB18.
+
+### Keyboard port
+
+J1501 is a USB-A socket (CONNFLY DS1095-WNR0). The controller's USB port
+runs as a host at full or low speed, which covers USB keyboards.
+
+- **Data:** R1507 and R1508 (27 Ohm) are in series with D+ and D-, and D1501
+  and D1502 (H5VL10BH) protect them against ESD. The host pull-downs on D+
+  and D- are inside the RP2354.
+- **VBUS:** U1502 (TPS2051C) switches `+5V` to `VBUS`. It is rated for
+  0.5 A and limits the current to 0.67 to 1.01 A, so a short in the
+  keyboard or cable does not pull down `+5V`. C1521 (100 nF) and C1522
+  (4.7 uF) decouple its input. C1520 (150 uF) is the bulk capacitor that
+  USB requires on a host port (at least 120 uF). D1503 protects `VBUS`
+  against ESD.
+- **Enable:** GPIO46 drives `USB_EN`. R1509 (10k) pulls it low, so the port
+  stays off until the firmware turns it on. The firmware can also turn it
+  off and on again to restart a keyboard that hangs.
+- **Fault:** `USB_FLT` (open drain, active low) goes to GPIO47 with R1510
+  (10k) as pull-up to `+3V3`, so the firmware can report an overcurrent.
+- `VBUS` is only powered while `+5V` is on, see
+  [Input switch](#input-switch).
+
+### Level shifting
+
+All 5 V signals are on GPIO0 to GPIO39, which are 5 V tolerant while
+`+3V3` is up. GPIO40 to GPIO47 only carry 3.3 V signals (I2C, `USB_EN`,
+`USB_FLT`).
+
+Towards the board, only the data lines are driven high, with 3.3 V. That is
+above the 2.0 V input high level of the 6510 and the other NMOS and TTL
+chips on the bus, as for the RAM and ROM controller. All other outputs are
+open drain against pull-ups to +5V, as on the 6526:
+
+| Signal | Pull-up | Why |
+| ------ | ------- | --- |
+| `~IRQ` | RP4 (3k3) | Shared with the VIC-II and the expansion port |
+| `CNT1`, `SP1` | RP3 (3k3) | User port lines, also driven from outside |
+| `CIA1_PA6`, `CIA1_PA7` | R301, R302 (10k) | U28 (4066) needs at least 3.5 V to switch on |
+| `~RESTORE_NMI` | R41 (1M) | Only the falling edge matters |
+| Joystick lines and `~LP` | R1511 to R1520 (10k) | Switches and devices pull them to ground |
+
+The firmware must never drive these lines high: a pressed switch or another
+device on the line would short the output.
+
+### Programming and start-up
+
+The supervisor (U1301) programs and controls the controller, the same way
+as the RAM and ROM controller:
+
+- **Reset:** the supervisor's GPIO44 drives `RUN` through R1502 (1k). R1504
+  (10k) pulls `RUN` to ground, so the controller stays in reset until the
+  supervisor drives it high.
+- **Programming:** the supervisor's GPIO42 and GPIO43 drive SWCLK and SWDIO
+  through R1505 and R1506 (33 Ohm).
+- **Link:** the supervisor and both controllers share I2C0 on GPIO40 and
+  GPIO41, so the two controllers need different I2C addresses.
+
+The KERNAL needs CIA 1 to start: timer A drives the jiffy clock and the
+keyboard scan. The supervisor therefore turns on the other rails only after
+both controllers have reported over I2C that they are ready.
+
+### Power and back-feeding
+
+U1501 and U1502 are on `+3V3` and `+5V`; U1501 is powered while the C64
+chips are not.
+
+- In reset, all pins of U1501 are inputs with the internal pull-down on, so
+  they do not feed the unpowered chips. `USB_EN` stays low and the keyboard
+  port stays off.
+- Once it runs, the firmware must keep all pins that lead to the C64 as
+  inputs until the rails are up, and must not turn on the internal pull-ups
+  of those pins: they would feed the unpowered `+5V` rail through the 10k
+  pull-ups.
+
+### Firmware
+
+The firmware is not part of this issue. These requirements follow from the
+circuit:
+
+- **Bus:** answer only while `~CIA1` is low and `PHI2` is high. Drive the
+  data lines only for a read, and release them as soon as `PHI2` falls,
+  because the VIC-II and the RAM and ROM controller use the bus while
+  `PHI2` is low. Latch write data at the falling edge of `PHI2`; the 6510
+  holds it only briefly after the edge, so bypass the PIO input
+  synchronizers or sample just before the edge.
+- **6526 model:** step a cycle-exact model of the 6526 once per `PHI2`
+  cycle. The timers count every cycle, also the ones the VIC-II takes from
+  the 6510. Every bus cycle the controller sees is one a real 6526 would
+  see, including the 6510's dummy reads, so read side effects such as the
+  clearing of the interrupt flags come out right. Which revision to match
+  (6526 or 6526A) is an open question of #25.
+- **Ports:** compute what $DC00 and $DC01 return from the data and data
+  direction registers, the USB keyboard and the levels on the joystick
+  lines, including the ghosting of the keyboard matrix. Pull a joystick
+  line low whenever the matching port bit is an output set to low, because
+  the original port drove the connector pins directly. Shift Lock acts as a
+  latched left Shift.
+- **Light pen:** whenever port B bit 4 is low, from a key in the matrix or
+  from an output, pull `~LP` low as well, so that the VIC-II's light pen
+  latch reacts as on the original board.
+- **RESTORE:** pull `~RESTORE_NMI` low for a few microseconds and release
+  it. The circuit behind it makes one `~NMI` pulse per press.
+- **Time of day:** count 50 Hz or 60 Hz from the crystal, as selected by bit
+  7 of CRA.
+- **Pins:** turn off the internal pull-downs of the bus pins (RP2350
+  erratum E9). The bus pins are in the PIO window from GPIO0 and the
+  joystick lines in the window from GPIO16, so they need separate PIO
+  programs or the processor's own GPIO access.
+
 ## Audio and video connectors
 
 The audio and video connectors are on the `HF Module Replacement and AV
@@ -818,6 +1082,11 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-29 | Removed CIA 1 (U1, 6526) and its decoupling capacitor C2 from `250407 Sheet 1`. Connected its signals to U1501 through new hierarchical labels and sheet pins on `250407 Sheet 1`, `250407 Design` and the root sheet: `~CIA1` (sheet pin `~SELECT`), `~CIA1_FLAG` (`CASS_RD`), `~CIA1_IRQ` (`~IRQ`), `CIA1_CNT` (`CNT1`), `CIA1_SP` (`SP1`), `~RESET`, `CIA1_PA6` and `CIA1_PA7`. `R/~W`, `PHI2`, `A[0..15]` and `D[0..7]` reach the new sheet from the existing sheet pins on the root sheet. Replaced the global labels `~CIA1` and `BTNA\~LP` between `250407 Sheet 1` and `250407 Sheet 2` with hierarchical labels (`~LP`) |
+| 2026-10-29 | Removed the keyboard connector CN1, the control ports CN8 and CN9 and their ferrite bead FB18 from `250407 Sheet 1`. Renamed the keyboard columns `COL6` and `COL7`, which also select the paddle port on U28, to `CIA1_PA6` and `CIA1_PA7` and added pull-ups R301 and R302 (10k) to +5V. Renamed `~RESTORE` to `~RESTORE_NMI` and connected it to U1501 GPIO27, so the controller triggers the RESTORE one-shot U20A. Brought `POTAX`, `POTAY`, `POTBX` and `POTBY` from U28 and `~LP` from the VIC-II out to the new control ports through hierarchical labels and sheet pins |
+| 2026-10-29 | Added control ports J1502 (port 2) and J1503 (port 1) to the `CIA1, Keyboard and Joysticks` sheet: 9-pin male D-sub sockets (CONNFLY DS1037-09MNAKT74-0CC, `DE9_Pins_MountingHoles` with the shells on ground), +5V on pin 7 through FB1501 (100 Ohm at 100 MHz), POT lines to U28. Each of the ten digital lines has a TVS diode at the connector (D1504 to D1513, H5VL10BH), a 100 Ohm series resistor (R1521 to R1530) and a 10k pull-up to +5V at the GPIO (R1511 to R1520). The fire line of port 1 goes through R1529 to `~LP` (GPIO38 and the VIC-II light pen input) |
+| 2026-10-28 | Added a USB-A keyboard socket J1501 (CONNFLY DS1095-WNR0) to the `CIA1, Keyboard and Joysticks` sheet on the USB port of U1501, with series resistors R1507 and R1508 (27 Ohm) and TVS diodes D1501 to D1503 (H5VL10BH) on D+, D- and `VBUS`. `VBUS` comes from `+5V` through current-limited power switch U1502 (TPS2051C) with C1521 and C1522 at its input and C1520 (150 uF) at its output; U1501 controls it with `USB_EN` (GPIO46, R1509 10k pull-down) and reads `USB_FLT` (GPIO47, R1510 10k pull-up) |
+| 2026-10-28 | Added a `CIA1, Keyboard and Joysticks` sheet to the root sheet with an RP2354B microcontroller (U1501) on `+3V3`, following Raspberry Pi's RP2350 reference design: core regulator inductor L1501 with its own local core supply net, 12 MHz crystal Y1501, and no buttons. Connected it to the supervisor (U1301): GPIO44 to `RUN` through R1502 (1k) with R1504 (10k) to ground, GPIO42 and GPIO43 to SWCLK and SWDIO through R1505 and R1506 (33 Ohm), through new sheet pins on the `Supervisor` sheet, and I2C0 (GPIO40, GPIO41) shared with U1401. Annotated its parts from 1500 |
 | 2026-10-28 | Added the LCSC part number C99395 to the embedded UCC27517DBV library symbol on the `12V Stabilized Rail` sheet. U901 already had it; no change to the circuit |
 | 2026-10-28 | Added `PHI2` and `~CAS` inputs to the RAM and ROM controller: U1402 (74LVC2G17) with C1420 on `+3V3` buffers `~CAS` to GPIO47 and `PHI2` to GPIO46, which are not 5 V tolerant. Passed `~CAS` and `PHI2` to the `RAM and ROM replacement` sheet through new sheet pins |
 | 2026-10-28 | Added EEPROM U1403 (AT24C256C) with pull-ups R1407 and R1408 (4.7k) and C1421 to the `RAM and ROM replacement` sheet, on I2C1 of U1401 (GPIO42, GPIO43), to store the ROM images |
