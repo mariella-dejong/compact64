@@ -4473,46 +4473,16 @@
 		(uuid "05e19131-b472-40dd-b815-1484b9da9eb6")
 	)
 	(junction
-		(at 271.78 166.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "06360ab8-6442-4c49-8461-0182c5db476f")
-	)
-	(junction
 		(at 156.21 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "064728b1-166a-4af6-acdf-7799f85238f7")
 	)
 	(junction
-		(at 265.43 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "06cd80d4-d373-4879-afbe-42f1a95dc57d")
-	)
-	(junction
-		(at 227.33 181.61)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0a88f3e4-0365-4ccf-a845-516faa770cc8")
-	)
-	(junction
-		(at 251.46 173.99)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0b96b83f-47f4-47fb-90e7-44e3a6cf6697")
-	)
-	(junction
 		(at 217.17 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "14c2bc45-d1ac-42a8-b5fb-8798375f80d7")
-	)
-	(junction
-		(at 220.345 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "15ea0862-8514-4a28-8851-fb70fd3d6b94")
 	)
 	(junction
 		(at 109.22 49.53)
@@ -4533,22 +4503,16 @@
 		(uuid "1e8e1d61-3808-4cee-aedb-d651e5e6322a")
 	)
 	(junction
-		(at 259.08 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "21910110-dbc2-4351-a7d3-b0f2871df076")
-	)
-	(junction
-		(at 271.78 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "24ad936f-e38b-4ed4-90ae-6a91fdf5acd5")
-	)
-	(junction
 		(at 109.22 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "27b64eba-7c22-40c2-9945-4ab4cf2015b7")
+	)
+	(junction
+		(at 375.92 206.375)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "27df1712-8c78-423e-ab7a-23181bc64e78")
 	)
 	(junction
 		(at 148.59 59.69)
@@ -4561,12 +4525,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2c2a90e5-698a-4282-8571-bfb631598983")
-	)
-	(junction
-		(at 251.46 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2c6f3feb-8faa-4b27-a43d-ec211824f1f8")
 	)
 	(junction
 		(at 330.2 57.15)
@@ -4585,12 +4543,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "36f1a817-8634-4d41-89e2-7fcdddabd023")
-	)
-	(junction
-		(at 220.345 184.15)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "3acd62eb-a376-4f1f-9ae6-c3e76fb533a6")
 	)
 	(junction
 		(at 274.32 39.37)
@@ -4629,18 +4581,6 @@
 		(uuid "49e2dbb8-883e-4168-8bd5-7e91e6ca1fef")
 	)
 	(junction
-		(at 234.95 179.07)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4c1b5b0f-f0a4-4f4c-b43b-ecf55a38f1f3")
-	)
-	(junction
-		(at 205.74 189.23)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4ca93cc2-8e5f-4888-bcb6-2b5ae15b6e3b")
-	)
-	(junction
 		(at 255.905 157.48)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4663,6 +4603,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "543457cc-540b-4adf-8769-8718e99b17bc")
+	)
+	(junction
+		(at 375.92 201.295)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "547de66c-ef72-4906-8179-19dcfc7c2980")
 	)
 	(junction
 		(at 151.13 59.69)
@@ -4767,6 +4713,12 @@
 		(uuid "7678080d-cb7c-46d0-9255-65a52c32c9e8")
 	)
 	(junction
+		(at 375.92 216.535)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "792a0c53-e3a2-4772-b834-74e8aa59de0e")
+	)
+	(junction
 		(at 217.17 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4815,16 +4767,22 @@
 		(uuid "8d99d62f-6478-4f96-9f4c-f15a053ae8b6")
 	)
 	(junction
+		(at 375.92 191.135)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8e1dfd5c-8f2b-443c-832e-ddc687c3caf0")
+	)
+	(junction
+		(at 375.92 211.455)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8e52a605-f57f-444f-afad-ed8b11e02ad5")
+	)
+	(junction
 		(at 240.03 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8ecdc84b-470a-4277-a1fa-7382075098cf")
-	)
-	(junction
-		(at 234.95 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9701aa9e-51bb-4d32-aa0b-97adcadf4f5e")
 	)
 	(junction
 		(at 373.38 92.71)
@@ -4839,16 +4797,16 @@
 		(uuid "9cacc05c-f0c4-4d02-a287-56c0bd543ee9")
 	)
 	(junction
+		(at 375.92 220.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9ccd219b-0f54-4885-9935-7de96a3164a1")
+	)
+	(junction
 		(at 205.74 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9dce682a-b60b-41d6-ab8c-44ddf98d1097")
-	)
-	(junction
-		(at 227.33 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a05f8141-8216-4dd0-a0a4-96e08137f770")
 	)
 	(junction
 		(at 248.92 181.61)
@@ -4869,6 +4827,12 @@
 		(uuid "aadff464-3e98-4349-b906-e02c98ad3c8c")
 	)
 	(junction
+		(at 375.92 196.215)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ac14c13c-757f-4eaf-9ab5-5a4db1d5299c")
+	)
+	(junction
 		(at 358.14 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4887,22 +4851,10 @@
 		(uuid "b0b1a96e-f9b9-48a9-b652-382f51eeda32")
 	)
 	(junction
-		(at 243.84 176.53)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b0f71b87-ee0a-42ec-9596-6e411499fd56")
-	)
-	(junction
 		(at 274.32 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b2318ace-e659-4cd0-9820-07f3d2e796a0")
-	)
-	(junction
-		(at 213.36 186.69)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b26928f1-2b16-45f2-b795-ec5f7ba0fc21")
 	)
 	(junction
 		(at 326.39 76.835)
@@ -4927,6 +4879,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bbc7518e-0c53-43db-a1cd-c46428b66cfc")
+	)
+	(junction
+		(at 375.92 186.055)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c299712d-47ac-4355-8a8d-6cf27c932818")
 	)
 	(junction
 		(at 241.935 157.48)
@@ -4965,18 +4923,6 @@
 		(uuid "cc256acb-d44e-4aee-b8f7-04e79e889c9d")
 	)
 	(junction
-		(at 243.84 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d0044337-a34d-460b-acf9-8134b317829f")
-	)
-	(junction
-		(at 265.43 168.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d6f5c590-accc-4a9f-beff-a0934633f39c")
-	)
-	(junction
 		(at 285.75 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5007,6 +4953,12 @@
 		(uuid "db781df6-ffc3-4537-98c9-fc3de2f2a809")
 	)
 	(junction
+		(at 375.92 226.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e18f90ab-1eff-41cc-a2a3-93c0d5886bf7")
+	)
+	(junction
 		(at 97.79 49.53)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5019,22 +4971,10 @@
 		(uuid "efc8ddb1-f373-450f-8402-4bc4e3fb1eaa")
 	)
 	(junction
-		(at 213.36 199.39)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f4ad0162-9dab-460e-9c17-64eef69409e1")
-	)
-	(junction
 		(at 240.03 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f7084b28-9bd1-44af-a59c-3a6d3b444373")
-	)
-	(junction
-		(at 259.08 171.45)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fa41bf37-78ff-4c55-9d8f-b28815abc5d7")
 	)
 	(junction
 		(at 129.54 59.69)
@@ -5232,16 +5172,6 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 168.91) (xy 283.21 168.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0090d674-d697-4124-a84b-af7bbbf4fe62")
-	)
-	(wire
-		(pts
 			(xy 323.215 171.45) (xy 320.675 171.45)
 		)
 		(stroke
@@ -5262,7 +5192,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 179.07) (xy 241.935 179.07)
+			(xy 189.23 179.07) (xy 241.935 179.07)
 		)
 		(stroke
 			(width 0)
@@ -5382,16 +5312,6 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 179.07) (xy 234.95 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0fcf0d64-1339-45b0-81dd-e2091ed9bb3b")
-	)
-	(wire
-		(pts
 			(xy 189.23 100.33) (xy 195.58 100.33)
 		)
 		(stroke
@@ -5402,17 +5322,7 @@
 	)
 	(wire
 		(pts
-			(xy 251.46 199.39) (xy 259.08 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "111b3f6b-6ad8-465e-b0a5-70743fb43333")
-	)
-	(wire
-		(pts
-			(xy 262.89 186.69) (xy 213.36 186.69)
+			(xy 189.23 186.69) (xy 262.89 186.69)
 		)
 		(stroke
 			(width 0)
@@ -5582,7 +5492,7 @@
 	)
 	(wire
 		(pts
-			(xy 213.995 168.91) (xy 265.43 168.91)
+			(xy 213.995 168.91) (xy 283.21 168.91)
 		)
 		(stroke
 			(width 0)
@@ -5692,16 +5602,6 @@
 	)
 	(wire
 		(pts
-			(xy 227.33 181.61) (xy 227.33 191.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2a37702b-9882-4719-98c2-858cc3530f7b")
-	)
-	(wire
-		(pts
 			(xy 39.37 213.36) (xy 36.83 213.36)
 		)
 		(stroke
@@ -5709,36 +5609,6 @@
 			(type default)
 		)
 		(uuid "2aef4d52-4c4f-4a24-9c55-5b5bb8c54afd")
-	)
-	(wire
-		(pts
-			(xy 220.345 184.15) (xy 189.23 184.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2d5f754e-6d6f-4964-9201-08dad7bb770b")
-	)
-	(wire
-		(pts
-			(xy 213.36 186.69) (xy 189.23 186.69)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2d76b4ba-63c0-46ef-a496-076eb066808e")
-	)
-	(wire
-		(pts
-			(xy 243.84 176.53) (xy 243.84 191.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2df01184-c4b4-4a32-acbd-f76344befec0")
 	)
 	(wire
 		(pts
@@ -5762,6 +5632,16 @@
 	)
 	(wire
 		(pts
+			(xy 375.92 211.455) (xy 375.92 216.535)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "30598b06-f2a3-4deb-8373-22a3cf312b52")
+	)
+	(wire
+		(pts
 			(xy 194.31 39.37) (xy 205.74 39.37)
 		)
 		(stroke
@@ -5782,6 +5662,16 @@
 	)
 	(wire
 		(pts
+			(xy 356.87 211.455) (xy 368.3 211.455)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "328930fc-5de0-4dc6-bcf2-f36763896cad")
+	)
+	(wire
+		(pts
 			(xy 142.24 59.69) (xy 148.59 59.69)
 		)
 		(stroke
@@ -5789,16 +5679,6 @@
 			(type default)
 		)
 		(uuid "32b978cf-b435-404c-99ea-77add7941ae3")
-	)
-	(wire
-		(pts
-			(xy 251.46 173.99) (xy 275.59 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "333db987-5a6e-42f1-bd72-06120bbf619d")
 	)
 	(wire
 		(pts
@@ -5832,7 +5712,7 @@
 	)
 	(wire
 		(pts
-			(xy 227.965 173.99) (xy 251.46 173.99)
+			(xy 227.965 173.99) (xy 275.59 173.99)
 		)
 		(stroke
 			(width 0)
@@ -5849,6 +5729,16 @@
 			(type default)
 		)
 		(uuid "35cbc56d-e316-4271-a113-2068e08fc47d")
+	)
+	(wire
+		(pts
+			(xy 356.87 196.215) (xy 368.3 196.215)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "36674a04-1b9f-4ed5-853f-45d0d588a909")
 	)
 	(wire
 		(pts
@@ -5869,6 +5759,16 @@
 			(type default)
 		)
 		(uuid "36838b16-2e7f-4725-902a-f4e1721075ce")
+	)
+	(wire
+		(pts
+			(xy 356.87 186.055) (xy 368.3 186.055)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37d17a7a-c14e-457a-8ca9-d59c9be51827")
 	)
 	(wire
 		(pts
@@ -5952,6 +5852,16 @@
 	)
 	(wire
 		(pts
+			(xy 356.87 191.135) (xy 368.3 191.135)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3e9d333f-0692-4c97-9b79-5d579521ebef")
+	)
+	(wire
+		(pts
 			(xy 262.89 186.69) (xy 287.655 186.69)
 		)
 		(stroke
@@ -6022,13 +5932,23 @@
 	)
 	(wire
 		(pts
-			(xy 259.08 171.45) (xy 295.91 171.45)
+			(xy 375.92 206.375) (xy 375.92 211.455)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "44f30288-56c1-4e89-a937-41d480459533")
+		(uuid "42ffa46d-0a7a-46fc-bcc9-4b27aec6132f")
+	)
+	(wire
+		(pts
+			(xy 375.92 201.295) (xy 375.92 206.375)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4468d83f-ecb8-4429-9b17-e24c8abcaf86")
 	)
 	(wire
 		(pts
@@ -6042,7 +5962,7 @@
 	)
 	(wire
 		(pts
-			(xy 255.905 184.15) (xy 220.345 184.15)
+			(xy 189.23 184.15) (xy 255.905 184.15)
 		)
 		(stroke
 			(width 0)
@@ -6119,16 +6039,6 @@
 			(type default)
 		)
 		(uuid "4bb1d455-5c4a-4e03-92ed-acaf23b41477")
-	)
-	(wire
-		(pts
-			(xy 220.345 199.39) (xy 227.33 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4c643666-3868-4076-95ad-9d3172f28f8d")
 	)
 	(wire
 		(pts
@@ -6382,13 +6292,23 @@
 	)
 	(wire
 		(pts
-			(xy 205.74 189.23) (xy 269.875 189.23)
+			(xy 189.23 189.23) (xy 269.875 189.23)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "671dc1a1-2c67-4e2e-a22c-0b5dc33e23f5")
+	)
+	(wire
+		(pts
+			(xy 356.87 180.975) (xy 368.3 180.975)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "69e87cf6-562e-45e4-b7d4-e9152e47d7bb")
 	)
 	(wire
 		(pts
@@ -6432,6 +6352,16 @@
 	)
 	(wire
 		(pts
+			(xy 375.92 186.055) (xy 375.92 191.135)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6ed6f62f-7ea9-46e0-ad1d-df6b2eef779f")
+	)
+	(wire
+		(pts
 			(xy 295.91 179.07) (xy 295.91 171.45)
 		)
 		(stroke
@@ -6449,16 +6379,6 @@
 			(type default)
 		)
 		(uuid "6ffb151c-6143-4c60-9f7b-1d4e994c8f3a")
-	)
-	(wire
-		(pts
-			(xy 189.23 181.61) (xy 227.33 181.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6ffcd0b1-10ee-4347-b247-64d60e2892cb")
 	)
 	(wire
 		(pts
@@ -6509,16 +6429,6 @@
 			(type default)
 		)
 		(uuid "73fec5fb-8a00-49f0-b5fb-a38b636b17a5")
-	)
-	(wire
-		(pts
-			(xy 205.74 199.39) (xy 213.36 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "74145d41-8d82-4a0c-9516-1b7f55ec66f8")
 	)
 	(wire
 		(pts
@@ -6652,7 +6562,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 176.53) (xy 243.84 176.53)
+			(xy 234.95 176.53) (xy 293.37 176.53)
 		)
 		(stroke
 			(width 0)
@@ -6712,6 +6622,16 @@
 	)
 	(wire
 		(pts
+			(xy 356.87 201.295) (xy 368.3 201.295)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8712f418-e8e6-4e4c-a838-3f7eea589a90")
+	)
+	(wire
+		(pts
 			(xy 269.875 157.48) (xy 290.195 157.48)
 		)
 		(stroke
@@ -6729,16 +6649,6 @@
 			(type default)
 		)
 		(uuid "89b0df45-abf9-4682-9d82-570449fdb63f")
-	)
-	(wire
-		(pts
-			(xy 205.74 189.23) (xy 205.74 191.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "89fcef08-28ec-41ea-8ba1-57a521502ba0")
 	)
 	(wire
 		(pts
@@ -6812,16 +6722,6 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 189.23) (xy 205.74 189.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "93b6427e-444e-497b-8b27-f3379400e50c")
-	)
-	(wire
-		(pts
 			(xy 234.95 157.48) (xy 241.935 157.48)
 		)
 		(stroke
@@ -6872,23 +6772,13 @@
 	)
 	(wire
 		(pts
-			(xy 206.375 166.37) (xy 271.78 166.37)
+			(xy 206.375 166.37) (xy 290.83 166.37)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "9701d501-4c73-464e-b90c-db9ee9515338")
-	)
-	(wire
-		(pts
-			(xy 213.36 199.39) (xy 220.345 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "97f317c4-1c61-4fa0-9cf8-e6c873b887e0")
 	)
 	(wire
 		(pts
@@ -6959,26 +6849,6 @@
 			(type default)
 		)
 		(uuid "9d0f4bb5-7fe1-4080-b1c2-fbf4946d7b46")
-	)
-	(wire
-		(pts
-			(xy 271.78 166.37) (xy 290.83 166.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9e0d561b-bc23-4d04-86f1-4637605d14b5")
-	)
-	(wire
-		(pts
-			(xy 265.43 199.39) (xy 271.78 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f59240e-ef00-4632-8594-0306d84169f5")
 	)
 	(wire
 		(pts
@@ -7082,16 +6952,6 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 176.53) (xy 293.37 176.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a6bc6e3b-bc4c-4f55-a1a1-a11346fc7e10")
-	)
-	(wire
-		(pts
 			(xy 318.77 176.53) (xy 318.77 211.455)
 		)
 		(stroke
@@ -7162,13 +7022,13 @@
 	)
 	(wire
 		(pts
-			(xy 251.46 173.99) (xy 251.46 191.77)
+			(xy 356.87 220.98) (xy 368.3 220.98)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ab72d3d1-eadb-4444-93f7-3088fa84d04b")
+		(uuid "a8f927cf-a883-4a19-9f2b-f1c96861845c")
 	)
 	(wire
 		(pts
@@ -7252,16 +7112,6 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 166.37) (xy 271.78 191.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b62f6a2f-962b-46e3-9c7f-ca233f3b5854")
-	)
-	(wire
-		(pts
 			(xy 326.39 76.835) (xy 331.47 76.835)
 		)
 		(stroke
@@ -7269,16 +7119,6 @@
 			(type default)
 		)
 		(uuid "b6438f43-41d8-4c0e-81b2-334e3db8f337")
-	)
-	(wire
-		(pts
-			(xy 234.95 199.39) (xy 243.84 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b777043b-6382-4bad-8857-007b10eb0457")
 	)
 	(wire
 		(pts
@@ -7309,6 +7149,16 @@
 			(type default)
 		)
 		(uuid "b9d8aeea-b887-4259-9dd9-9992781e85c5")
+	)
+	(wire
+		(pts
+			(xy 375.92 216.535) (xy 375.92 220.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bae71a2c-0ee5-43f9-ac5d-9e4fc9f9a037")
 	)
 	(wire
 		(pts
@@ -7369,6 +7219,16 @@
 			(type default)
 		)
 		(uuid "be7da890-b814-4c23-a742-3bc7ca61f518")
+	)
+	(wire
+		(pts
+			(xy 375.92 180.975) (xy 375.92 186.055)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bf468421-07f4-41cd-a9d8-de91350bb6ff")
 	)
 	(wire
 		(pts
@@ -7532,13 +7392,13 @@
 	)
 	(wire
 		(pts
-			(xy 259.08 199.39) (xy 265.43 199.39)
+			(xy 360.045 226.06) (xy 368.3 226.06)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "cc2ff483-f386-4620-9639-1326b9418a62")
+		(uuid "cc6c2b5c-de37-4aec-b9cf-5169089882d9")
 	)
 	(wire
 		(pts
@@ -7622,13 +7482,13 @@
 	)
 	(wire
 		(pts
-			(xy 259.08 191.77) (xy 259.08 171.45)
+			(xy 375.92 196.215) (xy 375.92 201.295)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d40a427a-d807-4e20-b0a5-3616ed3ce0df")
+		(uuid "d2fa77b7-8ed2-469d-a669-ce418656e913")
 	)
 	(wire
 		(pts
@@ -7699,16 +7559,6 @@
 			(type default)
 		)
 		(uuid "d949eca1-da6d-4e61-a858-69f448065660")
-	)
-	(wire
-		(pts
-			(xy 220.345 184.15) (xy 220.345 191.77)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d9af668a-eed7-488d-933d-14bc3b14aa16")
 	)
 	(wire
 		(pts
@@ -7812,16 +7662,6 @@
 	)
 	(wire
 		(pts
-			(xy 265.43 191.77) (xy 265.43 168.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e12b9081-9c3a-4a64-8f5a-6d77a4989a9b")
-	)
-	(wire
-		(pts
 			(xy 36.83 213.36) (xy 36.83 215.9)
 		)
 		(stroke
@@ -7882,17 +7722,7 @@
 	)
 	(wire
 		(pts
-			(xy 234.95 191.77) (xy 234.95 179.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e6e073d8-2f42-442f-9cdd-74338c648e0c")
-	)
-	(wire
-		(pts
-			(xy 227.33 181.61) (xy 248.92 181.61)
+			(xy 189.23 181.61) (xy 248.92 181.61)
 		)
 		(stroke
 			(width 0)
@@ -7922,6 +7752,16 @@
 	)
 	(wire
 		(pts
+			(xy 375.92 226.06) (xy 375.92 229.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ea81c9b5-17a3-4ab5-85a9-78d1b5e61e84")
+	)
+	(wire
+		(pts
 			(xy 100.33 73.66) (xy 100.33 86.36)
 		)
 		(stroke
@@ -7932,17 +7772,7 @@
 	)
 	(wire
 		(pts
-			(xy 243.84 199.39) (xy 251.46 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "eaaf9951-cbb8-490a-b03f-7a055c8d3916")
-	)
-	(wire
-		(pts
-			(xy 220.98 171.45) (xy 259.08 171.45)
+			(xy 220.98 171.45) (xy 295.91 171.45)
 		)
 		(stroke
 			(width 0)
@@ -8012,13 +7842,13 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 186.69) (xy 213.36 191.77)
+			(xy 356.87 206.375) (xy 368.3 206.375)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f0b949bd-e95e-476b-af8f-9bc23c2efc0b")
+		(uuid "f07305ca-13a0-426e-a126-3e1f2783697e")
 	)
 	(wire
 		(pts
@@ -8092,6 +7922,16 @@
 	)
 	(wire
 		(pts
+			(xy 375.92 191.135) (xy 375.92 196.215)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f550def2-726c-4dc0-a490-70bbe98bdd57")
+	)
+	(wire
+		(pts
 			(xy 153.67 59.69) (xy 156.21 59.69)
 		)
 		(stroke
@@ -8142,6 +7982,16 @@
 	)
 	(wire
 		(pts
+			(xy 375.92 220.98) (xy 375.92 226.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "faa6d914-852c-4e06-a29f-ecf9156394d6")
+	)
+	(wire
+		(pts
 			(xy 189.23 90.17) (xy 195.58 90.17)
 		)
 		(stroke
@@ -8149,16 +7999,6 @@
 			(type default)
 		)
 		(uuid "fac09876-5d2a-4527-904b-606257112a89")
-	)
-	(wire
-		(pts
-			(xy 227.33 199.39) (xy 234.95 199.39)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "facad781-a823-42f8-b0c8-33a49d4546b0")
 	)
 	(wire
 		(pts
@@ -8179,6 +8019,16 @@
 			(type default)
 		)
 		(uuid "fbb8dfc8-9cd0-4771-b6df-9121fbe448c2")
+	)
+	(wire
+		(pts
+			(xy 356.87 216.535) (xy 368.3 216.535)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fd70462e-b73f-4746-abea-79e85f0e1bb0")
 	)
 	(wire
 		(pts
@@ -8219,6 +8069,16 @@
 			(justify right bottom)
 		)
 		(uuid "121e0a41-12ef-4e72-88b3-020d6ae41e34")
+	)
+	(label "JOYB2"
+		(at 356.87 191.135 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "13be2239-1bb0-4ce3-bd6d-29fe974c3122")
 	)
 	(label "VREG_LX"
 		(at 106.68 91.44 0)
@@ -8289,6 +8149,16 @@
 			(justify right bottom)
 		)
 		(uuid "3b027817-dbd2-4a12-8079-e92c393588ba")
+	)
+	(label "JOYA2"
+		(at 356.87 216.535 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3c60b00b-7039-4e70-82db-67da30fa85bf")
 	)
 	(label "JOYA1"
 		(at 309.88 213.995 0)
@@ -8400,6 +8270,16 @@
 		)
 		(uuid "7c989cba-c69f-4634-be23-803c5d152357")
 	)
+	(label "JOYB0"
+		(at 356.87 180.975 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7eef0304-7eb2-4933-b566-6fa82177d28e")
+	)
 	(label "USB_FLT"
 		(at 189.23 212.09 0)
 		(effects
@@ -8430,6 +8310,16 @@
 		)
 		(uuid "8b1a3738-0b57-4bda-8b75-3a04aa70c6e5")
 	)
+	(label "JOYA1"
+		(at 356.87 211.455 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8ebe9e67-9214-4c2e-a0c0-a8115eb9e263")
+	)
 	(label "JOYB3"
 		(at 300.99 168.91 0)
 		(effects
@@ -8440,6 +8330,36 @@
 		)
 		(uuid "988cfd99-0886-46df-a470-4ccee4857248")
 	)
+	(label "JOYB3"
+		(at 356.87 196.215 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9e2960c8-cddb-4c47-8000-207bcce72738")
+	)
+	(label "JOYA0"
+		(at 356.87 206.375 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a043b9d2-40ba-4c37-8216-02ad74c58b40")
+	)
+	(label "JOYB1"
+		(at 356.87 186.055 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a4756110-a7e4-4653-81ec-6b38363521d5")
+	)
 	(label "USB_FLT"
 		(at 353.695 70.485 90)
 		(effects
@@ -8449,6 +8369,16 @@
 			(justify left bottom)
 		)
 		(uuid "a563a5cb-2ac8-4415-8a80-4cc8802ecde2")
+	)
+	(label "JOYA3"
+		(at 356.87 220.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a8819c2e-d55c-4347-bd7b-6b80de7bf6de")
 	)
 	(label "USB_D+"
 		(at 387.985 90.17 180)
@@ -8529,6 +8459,16 @@
 			(justify left bottom)
 		)
 		(uuid "da59af95-f558-45f3-ab88-944fb777fc96")
+	)
+	(label "JOYBTNB"
+		(at 356.87 201.295 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "dfb88532-ca3a-4256-9c20-4dc0e67347a9")
 	)
 	(label "VBUS"
 		(at 354.965 71.755 0)
@@ -8668,6 +8608,17 @@
 			(justify right)
 		)
 		(uuid "574239c3-657b-4218-a06f-fe912e1ae3f2")
+	)
+	(hierarchical_label "~{LP}"
+		(shape output)
+		(at 360.045 226.06 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "5d3ebb1e-a73b-4a44-b29a-3b950d95682c")
 	)
 	(hierarchical_label "R{slash}{W}"
 		(shape input)
@@ -9080,6 +9031,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1516")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 216.535 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "06386a4f-85d2-4445-9641-1083c759ec3a")
+		(property "Reference" "D1511"
+			(at 386.334 214.376 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 216.916 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 216.535 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 216.535 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 216.535 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 216.535 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6aa62201-c87c-4c5c-9c41-13f0003a538c")
+		)
+		(pin "2"
+			(uuid "2caad12b-c5fb-4d5c-bd6d-cebb8ed353fa")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1511")
 					(unit 1)
 				)
 			)
@@ -9962,98 +10005,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 205.74 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "230d8bc6-ec1f-47aa-a8bd-1233d37288eb")
-		(property "Reference" "D1504"
-			(at 198.12 199.517 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 198.12 202.057 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 205.74 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 205.74 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 205.74 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 205.74 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "904fe83b-03c9-49eb-bf13-96e290e48f7e")
-		)
-		(pin "2"
-			(uuid "3f7ee6b2-0c8e-482e-b66e-49ca5a3c5a1f")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1504")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 330.2 51.435 0)
 		(unit 1)
@@ -10133,7 +10084,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 271.78 195.58 90)
+		(at 372.11 211.455 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10141,31 +10092,31 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "25bb333c-b262-4ac3-b453-6f6cae536917")
-		(property "Reference" "D1513"
-			(at 274.574 194.818 90)
+		(uuid "23f78984-d4b7-4d34-ba34-e3e6e72d017e")
+		(property "Reference" "D1510"
+			(at 386.334 209.296 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 274.574 197.358 90)
+			(at 389.89 211.836 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 271.78 195.58 0)
+			(at 372.11 211.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10176,7 +10127,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 271.78 195.58 0)
+			(at 372.11 211.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10187,7 +10138,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 271.78 195.58 0)
+			(at 372.11 211.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10198,7 +10149,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 271.78 195.58 0)
+			(at 372.11 211.455 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10209,15 +10160,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "eb18fb96-e369-434b-8dca-b65b32779c8a")
+			(uuid "5593ab89-9a09-4e0d-a344-74296ae0dfd4")
 		)
 		(pin "2"
-			(uuid "b3023c1b-1f42-4e4b-9b9d-56573104f76b")
+			(uuid "fea4f556-64bd-4aed-b7f2-33208863a311")
 		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1513")
+					(reference "D1510")
 					(unit 1)
 				)
 			)
@@ -10310,6 +10261,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1511")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 226.06 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "29ded80b-f122-403b-9e20-fe33f33f1a02")
+		(property "Reference" "D1513"
+			(at 386.334 223.901 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 226.441 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "236ebd13-9f10-4d3d-b3e4-a090467a443a")
+		)
+		(pin "2"
+			(uuid "d748c60f-25c2-4c1a-acf8-4782af1ba31c")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1513")
 					(unit 1)
 				)
 			)
@@ -11050,6 +11093,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 220.98 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "408c38ea-ad72-4e8a-92d4-9b1f2de4c3b5")
+		(property "Reference" "D1512"
+			(at 386.334 218.821 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 221.361 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 220.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0e6c06a-ba1e-4e07-9123-35c12d57d0c7")
+		)
+		(pin "2"
+			(uuid "4f6661da-fbe6-4f1f-a397-a34138b28eab")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1512")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:Earth")
 		(at 320.675 190.5 0)
 		(unit 1)
@@ -11215,98 +11350,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "C1519")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_TVS")
-		(at 259.08 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "46e4e6d9-535a-4d72-9c44-704a428c0188")
-		(property "Reference" "D1511"
-			(at 252.476 207.01 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 252.476 209.55 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 259.08 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 259.08 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 259.08 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 259.08 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "17662ae0-00e3-4302-9968-b24ffca09903")
-		)
-		(pin "2"
-			(uuid "0c997507-c0e6-43e2-991d-9c1b1d3ee17b")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1511")
 					(unit 1)
 				)
 			)
@@ -12858,6 +12901,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 186.055 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6875b070-191e-49de-b822-603c22751b06")
+		(property "Reference" "D1505"
+			(at 386.334 183.896 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 186.436 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 186.055 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 186.055 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 186.055 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 186.055 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "66365d45-cbfa-417e-9c6a-3bbef2e1f8b1")
+		)
+		(pin "2"
+			(uuid "6f2fcd83-a0ee-42dc-88b6-d1e11b03f26c")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1505")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 294.64 166.37 90)
 		(unit 1)
@@ -12943,6 +13078,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1521")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 180.975 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6c1e380f-76b1-45ba-84af-48ae860e0e94")
+		(property "Reference" "D1504"
+			(at 386.334 178.816 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 181.356 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 180.975 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 180.975 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 180.975 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 180.975 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8b250287-0d9c-4bd1-b075-4f93d82f16d7")
+		)
+		(pin "2"
+			(uuid "60558f97-04f3-4cea-b5e4-c13cbde83637")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1504")
 					(unit 1)
 				)
 			)
@@ -13483,7 +13710,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 234.95 195.58 90)
+		(at 372.11 191.135 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13491,31 +13718,31 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "7b5940c2-1e76-423f-be6a-f7cbad0d95c0")
-		(property "Reference" "D1508"
-			(at 230.632 202.057 90)
+		(uuid "7b852ce5-58a2-4110-858c-7fce9537d947")
+		(property "Reference" "D1506"
+			(at 386.334 188.976 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 230.632 204.597 90)
+			(at 389.89 191.516 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 234.95 195.58 0)
+			(at 372.11 191.135 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13526,7 +13753,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 234.95 195.58 0)
+			(at 372.11 191.135 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13537,7 +13764,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 234.95 195.58 0)
+			(at 372.11 191.135 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13548,7 +13775,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 234.95 195.58 0)
+			(at 372.11 191.135 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13559,15 +13786,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "78c9e510-8572-4a47-b2d0-bf5f22236cee")
+			(uuid "610c2b63-50d5-42ca-9945-0b1bad634b7c")
 		)
 		(pin "2"
-			(uuid "3d40602c-699b-4788-8b4e-40edc3e77f89")
+			(uuid "d0abc05c-5249-44c0-8f39-3d525fef6387")
 		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1508")
+					(reference "D1506")
 					(unit 1)
 				)
 			)
@@ -13772,98 +13999,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 243.84 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "861d7929-a99f-482c-84b5-be3483ca85a2")
-		(property "Reference" "D1509"
-			(at 237.998 207.01 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 237.998 209.55 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 243.84 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 243.84 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 243.84 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 243.84 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0a1e1a65-8779-44d2-b1d7-c7c7bdc7b91d")
-		)
-		(pin "2"
-			(uuid "c21b7fe7-9166-43da-a44e-d9018ce39dee")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1509")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:Earth")
 		(at 320.04 224.155 0)
 		(unit 1)
@@ -14028,98 +14163,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "C1509")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_TVS")
-		(at 251.46 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "8b31f04b-4006-4eeb-a499-6429fea09a60")
-		(property "Reference" "D1510"
-			(at 247.142 202.057 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 247.142 204.597 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 251.46 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 251.46 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 251.46 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 251.46 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9269bfd1-2ff7-4d43-a517-315f8f919c46")
-		)
-		(pin "2"
-			(uuid "86076cfc-8e9f-4bb5-92a8-cdce81b3423f")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1510")
 					(unit 1)
 				)
 			)
@@ -14810,6 +14853,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 201.295 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "98abc3ca-9235-4b39-8a4e-c52a1591909c")
+		(property "Reference" "D1508"
+			(at 386.334 199.136 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 201.676 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 201.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 201.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 201.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 201.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "dd638d62-fcb5-466e-bdf1-485ed840792f")
+		)
+		(pin "2"
+			(uuid "c5580275-c9c9-4e05-b9d5-d3e088d0cc28")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1508")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 274.32 44.45 0)
 		(unit 1)
@@ -14895,98 +15030,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "C1517")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_TVS")
-		(at 227.33 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a0e98edc-0493-4357-9808-6ed2b915d08b")
-		(property "Reference" "D1507"
-			(at 222.504 205.867 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 222.504 208.407 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 227.33 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 227.33 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 227.33 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 227.33 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0d23f5e2-c107-4391-a95b-f4c77cc5b31e")
-		)
-		(pin "2"
-			(uuid "dff201f9-4e26-4b0d-b9f1-82efba15d422")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1507")
 					(unit 1)
 				)
 			)
@@ -15598,98 +15641,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1508")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_TVS")
-		(at 265.43 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "b6bce31d-389f-4288-adcc-e35233b52348")
-		(property "Reference" "D1512"
-			(at 261.112 202.057 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 261.112 204.597 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 265.43 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 265.43 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 265.43 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 265.43 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "cf146be2-cbac-4750-a9e1-26fef5d2ee08")
-		)
-		(pin "2"
-			(uuid "78610e68-3662-41f6-a05a-6f1519a80fd1")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1512")
 					(unit 1)
 				)
 			)
@@ -16503,7 +16454,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 213.36 195.58 90)
+		(at 372.11 206.375 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -16511,31 +16462,31 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "cb52a4de-0919-401a-83ba-a04540d9a372")
-		(property "Reference" "D1505"
-			(at 207.264 203.962 90)
+		(uuid "cb3984a2-d356-4970-be6a-b4bffab02233")
+		(property "Reference" "D1509"
+			(at 386.334 204.216 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 207.264 206.502 90)
+			(at 389.89 206.756 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 213.36 195.58 0)
+			(at 372.11 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16546,7 +16497,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 213.36 195.58 0)
+			(at 372.11 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16557,7 +16508,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 213.36 195.58 0)
+			(at 372.11 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16568,7 +16519,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 213.36 195.58 0)
+			(at 372.11 206.375 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16579,15 +16530,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "42a75ff9-3915-4c46-912a-a59d4fa83165")
+			(uuid "257b3885-43af-4269-9a89-a39b7a215fcc")
 		)
 		(pin "2"
-			(uuid "fc105b96-17af-424f-b4ab-b808e2565c15")
+			(uuid "09b55982-675a-4ac1-8a77-952bc317167d")
 		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1505")
+					(reference "D1509")
 					(unit 1)
 				)
 			)
@@ -16679,6 +16630,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "C1502")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
+		(at 375.92 229.87 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cdfbbc68-128e-4b31-a8a4-0cb225957a3d")
+		(property "Reference" "#PWR01524"
+			(at 375.92 236.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 375.92 234.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 375.92 229.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 375.92 229.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 375.92 229.87 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "55a020ac-fbf7-4d09-bc95-b1c3e54bccbb")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "#PWR01524")
 					(unit 1)
 				)
 			)
@@ -16862,6 +16892,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1522")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 372.11 196.215 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d7f7193d-dd72-4a78-9ba2-116099dd1400")
+		(property "Reference" "D1507"
+			(at 386.334 194.056 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 389.89 196.596 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 372.11 196.215 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 372.11 196.215 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 372.11 196.215 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 372.11 196.215 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8861e38c-47ed-4793-9a0b-dabafd78fa95")
+		)
+		(pin "2"
+			(uuid "93bed6d9-4e83-4415-8968-55d6057d98ad")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "D1507")
 					(unit 1)
 				)
 			)
@@ -17312,98 +17434,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 220.345 195.58 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e8593911-f8f3-4998-998f-273e3ca38c1e")
-		(property "Reference" "D1506"
-			(at 214.884 201.422 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 214.884 203.962 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 220.345 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 220.345 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 220.345 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 220.345 195.58 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a859b74f-364e-4b3e-9259-1fb806158fff")
-		)
-		(pin "2"
-			(uuid "6b0a7807-6e3b-471e-b4f2-8a73d3fcde31")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1506")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 227.965 161.29 0)
 		(unit 1)
@@ -17644,85 +17674,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "#PWR01515")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:Earth")
-		(at 271.78 199.39 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "efcd8fd1-4e1b-4e6b-8f58-e265796504e6")
-		(property "Reference" "#PWR01524"
-			(at 271.78 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 271.78 204.47 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 271.78 199.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 271.78 199.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 271.78 199.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5487cf83-f3ca-49fb-b22a-011537e995f3")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "#PWR01524")
 					(unit 1)
 				)
 			)
