@@ -4813,24 +4813,12 @@
 		(uuid "0ad404ea-5c0d-4845-9267-3c194ff2ad4b")
 	)
 	(no_connect
-		(at 189.23 143.51)
-		(uuid "15a2ec3b-557f-47bf-8a86-3e0d05ddf0e3")
-	)
-	(no_connect
-		(at 189.23 148.59)
-		(uuid "207a3866-d523-4270-8469-87fce1c4e2a9")
-	)
-	(no_connect
 		(at 189.23 128.27)
 		(uuid "392eae79-e127-4048-8949-85e4c6957214")
 	)
 	(no_connect
 		(at 189.23 199.39)
 		(uuid "5b0ea7e7-8962-4f0b-a8cc-bfe184905dd1")
-	)
-	(no_connect
-		(at 189.23 146.05)
-		(uuid "5e352d47-abc6-4d48-8222-8621f7abb9cd")
 	)
 	(no_connect
 		(at 120.65 110.49)
@@ -7720,6 +7708,17 @@
 		)
 		(uuid "4da84cb9-bdf1-44cd-be31-ab6d5eb8b940")
 	)
+	(hierarchical_label "~{RESET}"
+		(shape input)
+		(at 189.23 143.51 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "535a4ab0-70bd-493d-abb0-99f37b948769")
+	)
 	(hierarchical_label "PHI2"
 		(shape input)
 		(at 189.23 151.13 0)
@@ -7763,6 +7762,17 @@
 			(justify left)
 		)
 		(uuid "623ea8dc-5906-42a2-b8c3-62ade292d328")
+	)
+	(hierarchical_label "~{FLAG}"
+		(shape output)
+		(at 189.23 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6535327a-3398-4bd0-b838-d2fbd1af3f66")
 	)
 	(hierarchical_label "POTBX"
 		(shape output)
@@ -7829,6 +7839,17 @@
 			(justify left)
 		)
 		(uuid "b96ee7e9-767f-4514-a60d-60a469afe6ba")
+	)
+	(hierarchical_label "~{IRQ}"
+		(shape output)
+		(at 189.23 146.05 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bd43f362-ad87-4d8a-be20-abc9079c682d")
 	)
 	(hierarchical_label "PA7"
 		(shape output)

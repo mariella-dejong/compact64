@@ -7,8 +7,8 @@
 	(lib_symbols)
 	(text_box "The sub pages contain what remains from the original 250407 design copied from <bwack/C64-250407-Replica-KiCad>."
 		(exclude_from_sim no)
-		(at 17.78 16.51 0)
-		(size 87.63 11.43)
+		(at 17.145 15.875 0)
+		(size 87.63 7.62)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -103,6 +103,16 @@
 	)
 	(wire
 		(pts
+			(xy 101.6 37.465) (xy 105.41 37.465)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "279080d8-116f-4d69-bb24-175c80c38566")
+	)
+	(wire
+		(pts
 			(xy 101.6 57.15) (xy 105.41 57.15)
 		)
 		(stroke
@@ -130,6 +140,16 @@
 			(type default)
 		)
 		(uuid "4740c8a0-79fe-41f5-ad6a-8b3bba693f1e")
+	)
+	(wire
+		(pts
+			(xy 71.12 27.305) (xy 71.12 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c966f19-0931-4789-922d-2eeb73a73914")
 	)
 	(wire
 		(pts
@@ -190,6 +210,16 @@
 			(type default)
 		)
 		(uuid "6e41415d-9887-4d5a-9c11-d3b9c79123e4")
+	)
+	(wire
+		(pts
+			(xy 105.41 27.305) (xy 71.12 27.305)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "758731c7-722a-411f-88e2-1c6c558e7ee0")
 	)
 	(wire
 		(pts
@@ -290,6 +320,16 @@
 			(type default)
 		)
 		(uuid "a199184e-3875-4188-9353-e7aef338ffe7")
+	)
+	(wire
+		(pts
+			(xy 67.31 25.4) (xy 67.31 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2170949-bf2c-4344-85c5-8b9142428c25")
 	)
 	(wire
 		(pts
@@ -460,6 +500,16 @@
 			(type default)
 		)
 		(uuid "f59be87d-99f6-4528-933d-57b9ab3673e9")
+	)
+	(wire
+		(pts
+			(xy 105.41 25.4) (xy 67.31 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f5bb7c4e-28fb-4609-8cf7-755b001848c0")
 	)
 	(wire
 		(pts
@@ -722,6 +772,17 @@
 		)
 		(uuid "8e05c7e1-6241-4d99-b399-3aa8d8b27c2a")
 	)
+	(hierarchical_label "~{CIA1_FLAG}"
+		(shape input)
+		(at 105.41 27.305 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9aae7fe9-8bfc-4e5d-8e45-89227cd91923")
+	)
 	(hierarchical_label "~{KERNAL}"
 		(shape output)
 		(at 105.41 74.93 0)
@@ -787,6 +848,17 @@
 			(justify right)
 		)
 		(uuid "ba81c15c-6671-471d-b111-afe4a305a886")
+	)
+	(hierarchical_label "~{CIA1_IRQ}"
+		(shape input)
+		(at 105.41 25.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bd570ec9-51ea-45b1-bcb4-4cd3293c0285")
 	)
 	(hierarchical_label "AEC"
 		(shape output)
@@ -886,6 +958,17 @@
 			(justify left)
 		)
 		(uuid "f797e48d-8d84-4b51-abd1-fd0fee615d57")
+	)
+	(hierarchical_label "~{RESET}"
+		(shape output)
+		(at 105.41 37.465 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f983e780-448e-4468-8240-b841a30cb40f")
 	)
 	(hierarchical_label "~{RESTORE_NMI}"
 		(shape input)
@@ -1099,6 +1182,36 @@
 		(pin "~{RESTORE_NMI}" input
 			(at 74.295 34.29 90)
 			(uuid "ec24a6c2-be7a-4de2-9c83-d85728945358")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{CIA1_FLAG}" input
+			(at 71.12 34.29 90)
+			(uuid "f1dce590-e0b9-47da-8f40-aa603c0810e4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{CIA1_IRQ}" input
+			(at 67.31 34.29 90)
+			(uuid "ee28f337-e198-4909-95ed-9ceae9f7ae4b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{RESET}" output
+			(at 101.6 37.465 0)
+			(uuid "d8f280ee-6d8c-4e07-808a-bee151e12f06")
 			(effects
 				(font
 					(size 1.27 1.27)

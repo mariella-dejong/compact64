@@ -588,6 +588,16 @@
 	)
 	(wire
 		(pts
+			(xy 240.665 125.095) (xy 240.665 33.655)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d1345e4-43f5-49da-a7c2-5f0de0a73e67")
+	)
+	(wire
+		(pts
 			(xy 206.375 125.73) (xy 206.375 40.005)
 		)
 		(stroke
@@ -848,7 +858,7 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 133.35) (xy 256.54 133.35)
+			(xy 250.19 147.955) (xy 256.54 147.955)
 		)
 		(stroke
 			(width 0)
@@ -878,7 +888,7 @@
 	)
 	(wire
 		(pts
-			(xy 250.19 129.54) (xy 256.54 129.54)
+			(xy 250.19 144.145) (xy 256.54 144.145)
 		)
 		(stroke
 			(width 0)
@@ -1208,6 +1218,26 @@
 	)
 	(wire
 		(pts
+			(xy 235.585 34.29) (xy 235.585 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a37f4ff-5a8b-49c0-8cfc-921be75223d4")
+	)
+	(wire
+		(pts
+			(xy 128.905 34.29) (xy 235.585 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8059a07b-8903-44dd-90fb-557decae9ab8")
+	)
+	(wire
+		(pts
 			(xy 106.68 86.36) (xy 120.65 86.36)
 		)
 		(stroke
@@ -1308,6 +1338,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.155 50.8) (xy 97.155 159.385)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8df86495-0de8-442b-b70b-0bf48c24eb28")
+	)
+	(wire
+		(pts
 			(xy 149.86 38.735) (xy 149.86 41.91)
 		)
 		(stroke
@@ -1355,6 +1395,16 @@
 			(type default)
 		)
 		(uuid "952af87e-e9bf-4528-b220-a252fe302fd4")
+	)
+	(wire
+		(pts
+			(xy 128.905 41.91) (xy 128.905 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95cba0f2-a933-457d-a54c-8f9bd1fbec6f")
 	)
 	(wire
 		(pts
@@ -1505,6 +1555,16 @@
 			(type default)
 		)
 		(uuid "b79af903-0c92-41f1-9f8e-ddb8bf6fce4e")
+	)
+	(wire
+		(pts
+			(xy 121.285 50.8) (xy 97.155 50.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b91b4d02-5976-4d77-82bf-b3bc0cc7c7a5")
 	)
 	(wire
 		(pts
@@ -1678,6 +1738,16 @@
 	)
 	(wire
 		(pts
+			(xy 240.665 33.655) (xy 124.46 33.655)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4a795b6-0a0c-46fb-8892-9f6127b0a319")
+	)
+	(wire
+		(pts
 			(xy 114.3 171.45) (xy 114.3 104.14)
 		)
 		(stroke
@@ -1788,6 +1858,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.155 159.385) (xy 166.37 159.385)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4d1e60a-fe5b-4a43-bd52-488f1276e23e")
+	)
+	(wire
+		(pts
 			(xy 231.775 34.925) (xy 131.445 34.925)
 		)
 		(stroke
@@ -1835,6 +1915,16 @@
 			(type default)
 		)
 		(uuid "ead14715-5f2c-4cf4-99bf-c0768c185669")
+	)
+	(wire
+		(pts
+			(xy 124.46 33.655) (xy 124.46 41.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec2fb98d-e603-45b5-8d80-85ad52aa7b06")
 	)
 	(wire
 		(pts
@@ -3260,7 +3350,7 @@
 			)
 		)
 		(pin "VIC_II_CHROMA" output
-			(at 250.19 129.54 0)
+			(at 250.19 144.145 0)
 			(uuid "4fbf9ac7-f310-4354-8dc3-696d1ee399ba")
 			(effects
 				(font
@@ -3270,7 +3360,7 @@
 			)
 		)
 		(pin "VIC_II_LUMA" output
-			(at 250.19 133.35 0)
+			(at 250.19 147.955 0)
 			(uuid "31a59046-dc8c-41ee-badb-1c274fe316ae")
 			(effects
 				(font
@@ -3627,6 +3717,36 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "~{CIA1_FLAG}" input
+			(at 235.585 125.73 90)
+			(uuid "a5fd6d2d-3c41-4e17-bca8-a7dff0adb447")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{CIA1_IRQ}" input
+			(at 240.03 125.73 90)
+			(uuid "303a0ae8-3177-4fdb-bca7-7911f8a670cd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{RESET}" output
+			(at 166.37 159.385 180)
+			(uuid "fb450cb1-85f0-4616-b8c0-beaeb4137fb4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
@@ -4287,6 +4407,36 @@
 				(justify right)
 			)
 		)
+		(pin "~{FLAG}" output
+			(at 128.27 41.91 90)
+			(uuid "df06af06-1d6c-4897-9e11-0619b226118a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{IRQ}" output
+			(at 124.46 41.91 90)
+			(uuid "d13f22c1-a05e-48bb-9c9c-1bc05f2bdca1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{RESET}" input
+			(at 121.285 50.8 180)
+			(uuid "b6c6d7f1-a690-4e75-acbc-d143113350ce")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -4334,7 +4484,7 @@
 			)
 		)
 		(pin "CHROMA_IN" input
-			(at 256.54 129.54 180)
+			(at 256.54 144.145 180)
 			(uuid "d47f4fde-e475-4216-a4fc-f0026d10a6f6")
 			(effects
 				(font
@@ -4344,7 +4494,7 @@
 			)
 		)
 		(pin "LUMA_IN" input
-			(at 256.54 133.35 180)
+			(at 256.54 147.955 180)
 			(uuid "62d95438-8d8f-431c-a107-6319845da728")
 			(effects
 				(font
