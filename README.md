@@ -52,9 +52,9 @@ The work is tracked in the issue tracker. In broad strokes:
 - Add a supervisor microcontroller that only lets the system power up when
   it is safe to do so (#46)
 - Replace RAM and ROM with a microcontroller-based solution (#11)
-- Replace CIA1 and CIA2 with a microcontroller-based solution (#25)
+- Replace CIA1 (#25) and CIA2 (#68) with a microcontroller-based solution
 - Replace the keyboard connector with a USB keyboard to keyboard-matrix
-  bridge (#12)
+  bridge (#12); the USB keyboard port is on the CIA1 controller (#25)
 
 **Phase 3 - Firmware and software**
 
