@@ -597,6 +597,12 @@
 		(uuid "f700b013-ae05-4c5c-97f0-9f446135b123")
 	)
 	(junction
+		(at 59.69 97.155)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fbf91ead-1e53-4b70-9be5-439d7acba619")
+	)
+	(junction
 		(at 76.2 207.645)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -727,6 +733,16 @@
 			(type default)
 		)
 		(uuid "12fe02ef-d19e-4505-bb47-ac2b9c152c87")
+	)
+	(wire
+		(pts
+			(xy 86.36 43.815) (xy 86.36 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13a23979-ab4e-470e-8ee0-6940b1b06d21")
 	)
 	(wire
 		(pts
@@ -1017,6 +1033,16 @@
 			(type default)
 		)
 		(uuid "3b4d98b6-15b7-4277-99b8-ef5fb2814c41")
+	)
+	(wire
+		(pts
+			(xy 65.405 86.36) (xy 65.405 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ea454f1-786d-4a2f-a15a-62112a9bc450")
 	)
 	(wire
 		(pts
@@ -1580,7 +1606,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 104.775) (xy 59.69 97.155)
+			(xy 59.69 86.36) (xy 59.69 97.155)
 		)
 		(stroke
 			(width 0)
@@ -1627,6 +1653,16 @@
 			(type default)
 		)
 		(uuid "9ba3161d-e0c3-464e-a6d4-b3f9d75e3613")
+	)
+	(wire
+		(pts
+			(xy 201.295 43.815) (xy 86.36 43.815)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9bf548c1-2c01-44be-90ec-67d911ffa472")
 	)
 	(wire
 		(pts
@@ -1870,6 +1906,16 @@
 	)
 	(wire
 		(pts
+			(xy 201.295 202.565) (xy 201.295 43.815)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bcd29fc6-ecb2-48c0-89f9-c83883ac4e53")
+	)
+	(wire
+		(pts
 			(xy 115.57 121.285) (xy 95.25 121.285)
 		)
 		(stroke
@@ -2040,6 +2086,16 @@
 	)
 	(wire
 		(pts
+			(xy 199.39 202.565) (xy 201.295 202.565)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cef0ae9c-0784-4932-aea1-65bd1d404890")
+	)
+	(wire
+		(pts
 			(xy 204.47 238.125) (xy 213.995 238.125)
 		)
 		(stroke
@@ -2087,6 +2143,16 @@
 			(type default)
 		)
 		(uuid "d4a795b6-0a0c-46fb-8892-9f6127b0a319")
+	)
+	(wire
+		(pts
+			(xy 59.69 86.36) (xy 65.405 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d8b8b05e-cccc-45dd-92ed-c83bcf370598")
 	)
 	(wire
 		(pts
@@ -2397,6 +2463,16 @@
 			(type default)
 		)
 		(uuid "f8c4a652-7240-4387-a26b-6d12d8d37fec")
+	)
+	(wire
+		(pts
+			(xy 59.69 97.155) (xy 59.69 104.775)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f97290ea-221e-46f7-ae61-b6d0110d6cfc")
 	)
 	(bus
 		(pts
@@ -4231,6 +4307,16 @@
 				(justify right)
 			)
 		)
+		(pin "ATN" input
+			(at 199.39 202.565 0)
+			(uuid "9aca6c94-3414-4f5d-b2ca-318bc437beda")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -5241,7 +5327,7 @@
 				(justify left)
 			)
 		)
-		(pin "~{RESET}" input
+		(pin "~{RESET}" bidirectional
 			(at 53.34 57.15 180)
 			(uuid "92dae01c-3810-44bd-9642-43779005bb7f")
 			(effects
@@ -5259,6 +5345,26 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+		(pin "~{SERIAL_SRQIN}" bidirectional
+			(at 65.405 82.55 270)
+			(uuid "71f456d9-fcc1-4ee5-8627-191a0e008c90")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ATN" output
+			(at 86.36 46.99 90)
+			(uuid "209042dd-e9a2-498e-b25a-46e1fddaf642")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
