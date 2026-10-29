@@ -3497,7 +3497,7 @@
 				(justify right)
 			)
 		)
-		(pin "KBD_COL6" input
+		(pin "CIA1_PA6" input
 			(at 219.71 125.73 90)
 			(uuid "b01e0ad9-2d20-4529-8161-3cfa2736ef77")
 			(effects
@@ -3507,7 +3507,7 @@
 				(justify right)
 			)
 		)
-		(pin "KBD_COL7" input
+		(pin "CIA1_PA7" input
 			(at 222.885 125.73 90)
 			(uuid "06ade34e-b120-4a68-b51d-23ecaed203c0")
 			(effects
@@ -4125,7 +4125,7 @@
 				(justify right)
 			)
 		)
-		(pin "KBD_COL6" output
+		(pin "PA6" output
 			(at 142.24 41.91 90)
 			(uuid "abb78c73-d3c3-4561-b01e-f0e21f8e1d39")
 			(effects
@@ -4135,7 +4135,7 @@
 				(justify right)
 			)
 		)
-		(pin "KBD_COL7" output
+		(pin "PA7" output
 			(at 139.065 41.91 90)
 			(uuid "ad5127a8-8962-4e46-ad89-e0267c2085d6")
 			(effects

@@ -7743,7 +7743,7 @@
 		)
 		(uuid "574239c3-657b-4218-a06f-fe912e1ae3f2")
 	)
-	(hierarchical_label "KBD_COL6"
+	(hierarchical_label "PA6"
 		(shape output)
 		(at 189.23 161.29 0)
 		(effects
@@ -7809,7 +7809,7 @@
 		)
 		(uuid "8e96b205-da6d-45f2-8381-c4319997e3d2")
 	)
-	(hierarchical_label "KBD_COL7"
+	(hierarchical_label "PA7"
 		(shape output)
 		(at 189.23 163.83 0)
 		(effects

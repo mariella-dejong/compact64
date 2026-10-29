@@ -514,7 +514,7 @@
 		)
 		(uuid "1d143f73-3964-4060-89ca-69ff6dbc097b")
 	)
-	(hierarchical_label "KBD_COL7"
+	(hierarchical_label "CIA1_PA6"
 		(shape input)
 		(at 105.41 33.02 0)
 		(effects
@@ -536,7 +536,7 @@
 		)
 		(uuid "20fb9e50-ee8b-4928-a061-2c56be71ec99")
 	)
-	(hierarchical_label "KBD_COL6"
+	(hierarchical_label "CIA1_PA7"
 		(shape input)
 		(at 105.41 31.115 0)
 		(effects
@@ -1055,7 +1055,7 @@
 				(justify right)
 			)
 		)
-		(pin "KBD_COL6" input
+		(pin "CIA1_PA6" input
 			(at 81.28 34.29 90)
 			(uuid "1231f5c2-a4ba-4ac3-a37b-93a953137039")
 			(effects
@@ -1065,7 +1065,7 @@
 				(justify right)
 			)
 		)
-		(pin "KBD_COL7" input
+		(pin "CIA1_PA7" input
 			(at 78.105 34.29 90)
 			(uuid "0b3dd7ec-5724-4891-8980-50e4ab33f5ee")
 			(effects

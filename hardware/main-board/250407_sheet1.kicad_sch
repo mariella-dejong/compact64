@@ -18515,7 +18515,7 @@
 		)
 		(uuid "6cb6b097-a875-40e8-a2d2-43544e155667")
 	)
-	(hierarchical_label "KBD_COL7"
+	(hierarchical_label "CIA1_PA7"
 		(shape input)
 		(at 66.675 71.12 0)
 		(effects
@@ -18603,7 +18603,7 @@
 		)
 		(uuid "eb63faa0-1a1b-48b2-8b14-ffb1b9d8c7d3")
 	)
-	(hierarchical_label "KBD_COL6"
+	(hierarchical_label "CIA1_PA6"
 		(shape input)
 		(at 66.675 67.945 0)
 		(effects
