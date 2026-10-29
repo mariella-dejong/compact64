@@ -16106,16 +16106,6 @@
 		)
 		(uuid "67b47f1c-70e7-4076-bdf5-5337a422640c")
 	)
-	(label "COL6"
-		(at 53.34 74.93 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6b3d262a-7aa3-4bb7-9bf0-8cac512bef04")
-	)
 	(label "PB4"
 		(at 34.29 231.14 0)
 		(effects
@@ -16568,16 +16558,6 @@
 			(justify left bottom)
 		)
 		(uuid "f3fa1369-a86d-48dc-a8dc-0a0efacb2afa")
-	)
-	(label "COL7"
-		(at 50.8 74.93 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f483776d-032e-493c-87b9-9dcb3a857359")
 	)
 	(label "A14"
 		(at 161.29 49.53 0)

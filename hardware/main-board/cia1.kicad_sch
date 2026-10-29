@@ -4419,7 +4419,7 @@
 	)
 	(text "JOYSTICK A"
 		(exclude_from_sim no)
-		(at 331.724 224.536 0)
+		(at 331.47 224.79 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4429,7 +4429,7 @@
 	)
 	(text "JOYSTICK B"
 		(exclude_from_sim no)
-		(at 332.105 159.004 0)
+		(at 332.105 158.75 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -8674,7 +8674,7 @@
 		(uuid "623ea8dc-5906-42a2-b8c3-62ade292d328")
 	)
 	(hierarchical_label "~{FLAG}"
-		(shape output)
+		(shape input)
 		(at 189.23 148.59 0)
 		(effects
 			(font

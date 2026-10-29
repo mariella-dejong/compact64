@@ -4467,7 +4467,7 @@
 				(justify right)
 			)
 		)
-		(pin "~{FLAG}" output
+		(pin "~{FLAG}" input
 			(at 128.27 41.91 90)
 			(uuid "df06af06-1d6c-4897-9e11-0619b226118a")
 			(effects
