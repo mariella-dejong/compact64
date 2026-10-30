@@ -5727,145 +5727,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+12V"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+12V"
-				(at 0 3.556 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+12V\""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "+12V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+12V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:+5V"
 			(power global)
 			(pin_numbers
@@ -6165,17 +6026,6 @@
 		)
 		(uuid "67fc1b40-e0a9-43a3-81e9-9ec037595d52")
 	)
-	(text "7"
-		(exclude_from_sim no)
-		(at 99.06 178.435 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "98095d4a-842e-4381-9faa-55a0d46dc310")
-	)
 	(text "Derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb\nhttps://github.com/mbarszcz-pcb/c64-rf-modulator-replacement\nCopyright (c) 2020 mbarszcz-pcb. MIT License, see LICENSES/MIT.txt.\nModified for c64-mini, see NOTICE.md and hardware/main-board/README.md."
 		(exclude_from_sim no)
 		(at 306.705 186.69 0)
@@ -6234,12 +6084,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2796b8da-5bb4-4b2d-8a8c-e20569c3dd8b")
-	)
-	(junction
-		(at 86.995 177.165)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2e994f44-fbe7-4729-82c4-5b6a2a903a9b")
 	)
 	(junction
 		(at 363.855 51.435)
@@ -7429,16 +7273,6 @@
 		)
 		(uuid "147e97b8-c5d2-474b-bd03-f02570531c9d")
 	)
-	(polyline
-		(pts
-			(xy 98.425 178.435) (xy 100.965 178.435)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "14a21be7-cae4-4975-b34e-4d8bdfc1a159")
-	)
 	(wire
 		(pts
 			(xy 330.835 100.965) (xy 330.835 102.235)
@@ -7518,16 +7352,6 @@
 			(type default)
 		)
 		(uuid "1b7494c4-013f-4d01-aa53-7aeef7653fad")
-	)
-	(polyline
-		(pts
-			(xy 100.965 175.895) (xy 98.425 175.895)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "1bb0763b-4762-44ca-a048-fc4c4627b246")
 	)
 	(wire
 		(pts
@@ -7869,16 +7693,6 @@
 		)
 		(uuid "39148865-88bc-4132-964d-3bf650a32c6d")
 	)
-	(polyline
-		(pts
-			(xy 98.425 175.895) (xy 98.425 178.435)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "3ab4abcc-2564-4a12-8215-c351c6297b1e")
-	)
 	(bus
 		(pts
 			(xy 102.87 219.71) (xy 105.41 219.71)
@@ -7938,16 +7752,6 @@
 			(type default)
 		)
 		(uuid "3e7f4c8c-de2a-4f40-aa50-ae756ab465b7")
-	)
-	(wire
-		(pts
-			(xy 86.995 174.625) (xy 86.995 177.165)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3e8845e0-6cdb-4c23-903e-98fdde290168")
 	)
 	(wire
 		(pts
@@ -9149,16 +8953,6 @@
 		)
 		(uuid "966b78c6-5d63-494e-9069-1be641e2ff62")
 	)
-	(polyline
-		(pts
-			(xy 100.965 178.435) (xy 100.965 175.895)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "974ea89d-902b-48d9-8f1b-426671c4b522")
-	)
 	(wire
 		(pts
 			(xy 194.31 221.615) (xy 189.23 221.615)
@@ -10301,16 +10095,6 @@
 	)
 	(wire
 		(pts
-			(xy 90.805 177.165) (xy 86.995 177.165)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ebcd1c16-5409-4a39-aa26-02a7910724f3")
-	)
-	(wire
-		(pts
 			(xy 151.13 208.915) (xy 151.765 208.28)
 		)
 		(stroke
@@ -10391,7 +10175,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.995 177.165) (xy 86.995 191.135)
+			(xy 86.995 174.625) (xy 86.995 191.135)
 		)
 		(stroke
 			(width 0)
@@ -11386,6 +11170,17 @@
 			(justify right)
 		)
 		(uuid "3f9bf44a-be23-47fd-9cec-b4ca667a793b")
+	)
+	(hierarchical_label "CAN+5V"
+		(shape input)
+		(at 249.555 133.985 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4833b1cc-9250-4360-8ad3-9d43ec8793bf")
 	)
 	(hierarchical_label "D[0..7]"
 		(shape bidirectional)
@@ -15612,7 +15407,7 @@
 				)
 			)
 		)
-		(property "Value" "VIC"
+		(property "Value" "8562 VIC"
 			(at 208.28 187.325 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16088,7 +15883,7 @@
 				)
 			)
 		)
-		(property "Value" "470"
+		(property "Value" "1k"
 			(at 288.925 71.755 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16130,7 +15925,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C23179"
+		(property "LCSC Part #" "C21190"
 			(at 288.925 71.755 90)
 			(hide yes)
 			(show_name no)
@@ -18665,96 +18460,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C_Small")
-		(at 90.805 179.705 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files no)
-		(dnp yes)
-		(uuid "e5d2c1b2-d2f7-4d0e-b333-81fd325508aa")
-		(property "Reference" "C514"
-			(at 93.4974 177.6476 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "82pF"
-			(at 95.885 175.895 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAPACITOR_RADIAL_P13.97_L9.9_D3.6"
-			(at 90.805 179.705 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 90.805 179.705 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "CAS delay capacitor on the VIC /CAS line. Commodore 251138 note 7: not fitted on NTSC boards (82 pF on PAL boards with a 7700-001 or 93459PC PLA). DNP on this NTSC build; excluded from BOM and CPL."
-			(at 90.805 179.705 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C2208824"
-			(at 90.805 179.705 180)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "29337f00-a2a9-4aaa-ad46-9108e8a6c0d4")
-		)
-		(pin "2"
-			(uuid "4977ef2e-5f63-49dc-8bac-a5a5959c4ea8")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "C514")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:L")
 		(at 311.785 97.155 0)
 		(unit 1)
@@ -18840,83 +18545,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "L501")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+12V")
-		(at 249.555 133.985 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f020307b-69a2-42d3-81d6-e409deb02e8b")
-		(property "Reference" "#PWR0159"
-			(at 245.745 133.985 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+12V"
-			(at 252.095 133.985 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 249.555 133.985 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 249.555 133.985 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 249.555 133.985 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1e733a97-a773-4bf9-bb0e-aa1934d80568")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "#PWR0159")
 					(unit 1)
 				)
 			)
@@ -19206,83 +18834,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "Q501")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 90.805 182.245 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f6b16608-699b-4c60-8427-0220bcfd3f3c")
-		(property "Reference" "#U0244"
-			(at 90.805 182.245 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 90.805 182.245 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 90.805 182.245 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 90.805 182.245 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 90.805 182.245 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "e60ed2b1-8c69-475d-9956-97f4e5777eed")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "#U0244")
 					(unit 1)
 				)
 			)
