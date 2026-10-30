@@ -768,12 +768,6 @@
 		(uuid "6992ee4c-f338-421d-9f9a-6cbd36bdfd52")
 	)
 	(junction
-		(at 149.225 62.23)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "87a4b364-5842-4796-b442-d22ba7949bbb")
-	)
-	(junction
 		(at 80.645 62.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -837,7 +831,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.225 62.23) (xy 154.305 62.23)
+			(xy 141.605 62.23) (xy 154.305 62.23)
 		)
 		(stroke
 			(width 0)
@@ -855,17 +849,7 @@
 		)
 		(uuid "9cc061a3-5d95-442d-9495-80307f2e3658")
 	)
-	(wire
-		(pts
-			(xy 141.605 62.23) (xy 149.225 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ec669615-f2ff-4ff6-a3c1-5d230bfa050d")
-	)
-	(label "VPUMP"
+	(label "9V_IN"
 		(at 98.425 62.23 0)
 		(effects
 			(font
@@ -1402,84 +1386,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da/cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b"
 					(reference "#FLG0902")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 149.225 62.23 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(in_pos_files no)
-		(dnp no)
-		(uuid "a076be30-d937-47e2-9e0e-f3ee68f159ae")
-		(property "Reference" "#FLG0903"
-			(at 149.225 60.325 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 149.225 57.785 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 149.225 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 149.225 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 149.225 62.23 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "18a04214-517e-4f26-82c6-5dac568e998e")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/16ed13da-ea6c-41ac-b9d8-03fd2b1c50da/cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b"
-					(reference "#FLG0903")
 					(unit 1)
 				)
 			)
