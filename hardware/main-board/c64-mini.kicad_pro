@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "RP5,#U127,J1601,U9,U1601-1602,R32,R37,R40,R1531-1532,R1601-1612,L1601,D1514,D1602-1603,C1601-1620,FB18,FB24-25,FB1502,FB1602-1603,CR104-107,Y1601,#PWR106,#PWR113,#PWR1601-1626,#FLG1601-1602",
+    "used_designators": "#PWR1614,#PWR1627,R1313,R1615-1624,CN5",
     "variants": []
   },
   "sheets": [
