@@ -5508,12 +5508,6 @@
 		(uuid "5fc7d22f-94eb-495c-b197-63ad2b01786a")
 	)
 	(junction
-		(at 360.045 34.925)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "61d2084e-459e-41c2-a74f-c7f92ebad98e")
-	)
-	(junction
 		(at 216.535 112.395)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5562,12 +5556,6 @@
 		(uuid "a2e9884e-b8f6-4177-9ff6-ddb7ac8ce86f")
 	)
 	(junction
-		(at 381.635 69.215)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a72c8b32-ef67-47ea-87fe-5a73cad15537")
-	)
-	(junction
 		(at 57.15 72.39)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5602,12 +5590,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c2dcdadc-e26a-4433-97b8-843762dfac0b")
-	)
-	(junction
-		(at 381.635 51.435)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c414aa40-c6c6-4c6e-9230-8f90006e47e0")
 	)
 	(junction
 		(at 200.66 43.18)
@@ -5668,12 +5650,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d288d6bb-5044-4e9a-b2ee-4e33db3e3828")
-	)
-	(junction
-		(at 375.285 46.355)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d43c8ca4-dfda-4e4e-a222-7b233a7fcde6")
 	)
 	(junction
 		(at 189.23 54.61)
@@ -5748,10 +5724,10 @@
 		(uuid "f9141687-a969-48e9-b618-d2c8967a3391")
 	)
 	(junction
-		(at 346.075 46.355)
+		(at 360.045 58.42)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "fec85b75-c0bd-4cad-a491-4ab9fe431077")
+		(uuid "fe78bbff-738b-45b3-bc06-fcc26eb6c1a6")
 	)
 	(no_connect
 		(at 281.305 135.89)
@@ -6355,16 +6331,6 @@
 	)
 	(wire
 		(pts
-			(xy 348.615 34.925) (xy 346.075 34.925)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "142da771-6b78-493e-b67c-ecd83fb05cce")
-	)
-	(wire
-		(pts
 			(xy 184.15 96.52) (xy 190.5 96.52)
 		)
 		(stroke
@@ -6425,16 +6391,6 @@
 	)
 	(wire
 		(pts
-			(xy 346.075 46.355) (xy 329.565 46.355)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1d2c4320-1494-48aa-9e68-220d75db04d0")
-	)
-	(wire
-		(pts
 			(xy 252.73 137.16) (xy 255.905 137.16)
 		)
 		(stroke
@@ -6452,16 +6408,6 @@
 			(type default)
 		)
 		(uuid "1f33721f-e881-4bb2-87c9-6871ca89ffe0")
-	)
-	(wire
-		(pts
-			(xy 375.285 46.355) (xy 375.285 61.595)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "210baff4-59a0-46fb-9018-d861131b7773")
 	)
 	(wire
 		(pts
@@ -7025,16 +6971,6 @@
 	)
 	(wire
 		(pts
-			(xy 367.665 51.435) (xy 381.635 51.435)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4b38e881-5b65-4aae-b3e1-2948431663f3")
-	)
-	(wire
-		(pts
 			(xy 248.92 125.73) (xy 252.73 125.73)
 		)
 		(stroke
@@ -7195,7 +7131,7 @@
 	)
 	(wire
 		(pts
-			(xy 367.665 46.355) (xy 375.285 46.355)
+			(xy 367.665 46.355) (xy 377.19 46.355)
 		)
 		(stroke
 			(width 0)
@@ -7225,7 +7161,7 @@
 	)
 	(wire
 		(pts
-			(xy 381.635 51.435) (xy 385.445 51.435)
+			(xy 367.665 51.435) (xy 385.445 51.435)
 		)
 		(stroke
 			(width 0)
@@ -7242,16 +7178,6 @@
 			(type default)
 		)
 		(uuid "5c9882d1-99de-4bb6-bdd9-aacda12bb1ce")
-	)
-	(wire
-		(pts
-			(xy 375.285 69.215) (xy 381.635 69.215)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5cc97474-a120-4d6c-b734-d0f02f7575e5")
 	)
 	(wire
 		(pts
@@ -7585,16 +7511,6 @@
 	)
 	(wire
 		(pts
-			(xy 346.075 34.925) (xy 346.075 46.355)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "79039318-0999-4d6e-b34a-f0014a895826")
-	)
-	(wire
-		(pts
 			(xy 184.15 187.96) (xy 194.31 187.96)
 		)
 		(stroke
@@ -7652,16 +7568,6 @@
 			(type default)
 		)
 		(uuid "84302ac9-9066-41e1-96a0-2863b9c7cdfb")
-	)
-	(wire
-		(pts
-			(xy 381.635 52.705) (xy 381.635 51.435)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "86220818-8418-47f6-9a72-9ed493e0fe59")
 	)
 	(wire
 		(pts
@@ -7742,16 +7648,6 @@
 			(type default)
 		)
 		(uuid "8e2289f4-ca50-4285-b02a-ea630e88364c")
-	)
-	(wire
-		(pts
-			(xy 381.635 69.215) (xy 381.635 60.325)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8fa60af1-c28c-45ba-86ca-afde7f829712")
 	)
 	(wire
 		(pts
@@ -8155,16 +8051,6 @@
 	)
 	(wire
 		(pts
-			(xy 356.235 34.925) (xy 360.045 34.925)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b087d1a9-65d4-4664-ab13-d65ece1c6808")
-	)
-	(wire
-		(pts
 			(xy 113.03 87.63) (xy 115.57 87.63)
 		)
 		(stroke
@@ -8222,16 +8108,6 @@
 			(type default)
 		)
 		(uuid "b5b4b07b-cfed-4a09-a303-267fbbbd2dc3")
-	)
-	(wire
-		(pts
-			(xy 375.285 46.355) (xy 377.19 46.355)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b5c76ef8-aa8e-4b89-87bb-7b8bf149ccde")
 	)
 	(wire
 		(pts
@@ -8835,7 +8711,7 @@
 	)
 	(wire
 		(pts
-			(xy 352.425 46.355) (xy 346.075 46.355)
+			(xy 329.565 46.355) (xy 352.425 46.355)
 		)
 		(stroke
 			(width 0)
@@ -9073,6 +8949,16 @@
 		)
 		(uuid "01f5c8f8-a161-4660-8289-5b54b72d5fed")
 	)
+	(label "SC_DATA"
+		(at 310.515 31.115 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "03016420-aaa0-4a3f-8ac6-3357f469666e")
+	)
 	(label "UC_PB6"
 		(at 381 118.11 0)
 		(effects
@@ -9172,6 +9058,16 @@
 			(justify right bottom)
 		)
 		(uuid "1f24d016-706f-48dd-a198-13af52eb80be")
+	)
+	(label "SC_DATA"
+		(at 369.57 51.435 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "20a61e07-5ee9-4613-a0e9-702e52e59e4d")
 	)
 	(label "+1V1"
 		(at 73.66 85.09 0)
@@ -9302,6 +9198,16 @@
 			(justify left bottom)
 		)
 		(uuid "53535eeb-b9df-40d7-99fa-e45b8b9928df")
+	)
+	(label "SC_CLK"
+		(at 335.915 31.115 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5a271c4d-b7f2-46e6-9055-8679e78ff2ec")
 	)
 	(label "~{FLAG}"
 		(at 300.99 123.19 0)
@@ -9522,6 +9428,16 @@
 			(justify left bottom)
 		)
 		(uuid "8a3f2cb8-cdc0-4206-9ff5-7b69eb74a8bb")
+	)
+	(label "SC_ATN"
+		(at 335.915 26.035 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "8b4a740c-5bb8-45e7-ae8d-2cac58a57119")
 	)
 	(label "UC_PB5"
 		(at 281.94 115.57 0)
@@ -9783,6 +9699,16 @@
 		)
 		(uuid "ca5d9da5-178e-44d6-9220-eff7eb5aad10")
 	)
+	(label "SC_ATN"
+		(at 361.315 34.925 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cb87121a-a56e-4dff-95a6-6f36533e6c30")
+	)
 	(label "UC_PB0"
 		(at 356.235 87.63 180)
 		(effects
@@ -9852,6 +9778,16 @@
 			(justify left bottom)
 		)
 		(uuid "d71c0e81-1636-4159-bd84-be350d8108da")
+	)
+	(label "SC_CLK"
+		(at 369.57 46.355 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ddf3658d-1af9-4317-b59f-75ddcb3bb837")
 	)
 	(label "XOUT"
 		(at 85.09 217.17 180)
@@ -9992,6 +9928,17 @@
 			(justify left bottom)
 		)
 		(uuid "ff033688-4553-4d3a-89cc-129067fedd9c")
+	)
+	(hierarchical_label "~{SERIAL_SRQIN}"
+		(shape bidirectional)
+		(at 310.515 26.035 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1b5d9ee2-0152-4838-9734-bdd2530085e8")
 	)
 	(hierarchical_label "~{VA15}"
 		(shape output)
@@ -11288,7 +11235,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1a0d9c6f-7f68-46e6-b1d0-d862eb02ca08")
-		(property "Reference" "D1604"
+		(property "Reference" "D1601"
 			(at 369.062 197.104 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11363,7 +11310,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
-					(reference "D1604")
+					(reference "D1601")
 					(unit 1)
 				)
 			)
@@ -13844,6 +13791,85 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
+		(at 360.045 66.04 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5e44a303-344e-4d8b-9383-e96ae48b2cda")
+		(property "Reference" "#PWR01640"
+			(at 360.045 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 360.045 71.12 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 360.045 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 360.045 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 360.045 66.04 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cea0163e-c579-48d4-8484-4fd6c9003f87")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
+					(reference "#PWR01640")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
 		(at 46.99 212.09 0)
 		(unit 1)
 		(body_style 1)
@@ -14651,98 +14677,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 375.285 65.405 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "706c2552-3294-4b87-888c-28ebd6a30646")
-		(property "Reference" "D1602"
-			(at 365.125 64.008 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 363.601 66.04 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 375.285 65.405 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 375.285 65.405 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 375.285 65.405 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 375.285 65.405 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0c1c0b64-7356-43a7-aa10-cd6de9f86652")
-		)
-		(pin "2"
-			(uuid "19660a54-de28-4fad-9f2d-3d33d85238de")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
-					(reference "D1602")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 38.1 207.01 270)
 		(unit 1)
@@ -15193,85 +15127,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
 					(reference "#PWR01622")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:Earth")
-		(at 381.635 69.215 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "775d6662-1a06-481c-933a-06c5820407cf")
-		(property "Reference" "#PWR01613"
-			(at 381.635 75.565 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 381.635 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 381.635 69.215 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 381.635 69.215 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 381.635 69.215 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "47e1ffd3-e04f-4ee5-b560-33e4ad89a61e")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
-					(reference "#PWR01613")
 					(unit 1)
 				)
 			)
@@ -17432,98 +17287,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 352.425 34.925 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a21307af-2da0-4b5d-ab80-c1b9592af0eb")
-		(property "Reference" "D1601"
-			(at 349.377 37.719 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 347.853 39.751 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 352.425 34.925 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 352.425 34.925 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 352.425 34.925 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 352.425 34.925 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "efed9c93-afbc-4fa5-9927-bfef2fd232e3")
-		)
-		(pin "2"
-			(uuid "996f558b-e703-40ea-a834-de31978a9398")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
-					(reference "D1601")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 329.565 165.735 270)
 		(unit 1)
@@ -18988,98 +18751,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 381.635 56.515 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "bce9b25f-5f1d-4c0f-a8bf-122af6546078")
-		(property "Reference" "D1603"
-			(at 389.128 52.578 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 390.652 50.546 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 381.635 56.515 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 381.635 56.515 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 381.635 56.515 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 381.635 56.515 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "4ceedc44-69be-4422-91da-3577c635ff62")
-		)
-		(pin "2"
-			(uuid "67219b93-2f36-4448-be4e-286c5d8fe9d3")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
-					(reference "D1603")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 280.67 48.26 0)
 		(unit 1)
@@ -19337,6 +19008,124 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
 					(reference "#PWR01618")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Power_Protection:TPD4E05U06DQA")
+		(at 323.215 28.575 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c2a63bce-f807-48c6-a390-fea04adb8781")
+		(property "Reference" "U1607"
+			(at 323.215 15.875 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TPD4E05U06DQA"
+			(at 323.215 18.415 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SON:USON-10_2.5x1.0mm_P0.5mm"
+			(at 325.12 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf"
+			(at 325.12 42.545 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "4-Channel ESD Protection for Super-Speed USB 3.0 Interface, USON-10"
+			(at 323.215 28.575 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C138714"
+			(at 323.215 28.575 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "10"
+			(uuid "7f364474-b9e8-4990-a591-9b7269cdc60a")
+		)
+		(pin "7"
+			(uuid "b44a7558-942d-471e-8ed7-9ee069d41071")
+		)
+		(pin "6"
+			(uuid "3b52401b-e394-4435-b7a1-b0885ce50968")
+		)
+		(pin "9"
+			(uuid "2f71f0b0-89cf-4d2b-9c7d-48d71d9fca49")
+		)
+		(pin "2"
+			(uuid "680023b1-10ad-44f9-96ee-70fa304b07d5")
+		)
+		(pin "1"
+			(uuid "2c991baa-0cc3-4116-b4a9-67129f085cc0")
+		)
+		(pin "5"
+			(uuid "bf4808b7-1dd4-4993-8813-301b0424df3d")
+		)
+		(pin "4"
+			(uuid "794abba7-185a-46f5-82c2-eff227a6567c")
+		)
+		(pin "3"
+			(uuid "e2d1a361-6866-4b39-8953-f69e4c9fa794")
+		)
+		(pin "8"
+			(uuid "8af8a51e-e4ef-4f91-9468-295ac9629e3c")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
+					(reference "U1607")
 					(unit 1)
 				)
 			)
@@ -20492,6 +20281,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:D_TVS")
+		(at 360.045 62.23 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e66c624d-8ccb-473b-a241-72b5f5bc105b")
+		(property "Reference" "D1602"
+			(at 349.885 60.833 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 348.361 62.865 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 360.045 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 360.045 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 360.045 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 360.045 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c07cc128-587f-4f26-a804-2e02ff0ffef2")
+		)
+		(pin "2"
+			(uuid "1c19ac54-c615-4b15-85dd-686856306bb1")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
+					(reference "D1602")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 194.31 146.05 0)
 		(unit 1)
@@ -20838,6 +20719,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
 					(reference "R1622")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
+		(at 323.215 41.275 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f28290b1-f9df-491b-9c2c-d1b6b84d477d")
+		(property "Reference" "#PWR01639"
+			(at 323.215 47.625 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 323.215 46.355 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 323.215 41.275 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 323.215 41.275 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 323.215 41.275 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "95d2292f-879b-4e03-8bec-03fa353ff723")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/f383b81a-d266-4e63-afb3-fac087a0b3bb"
+					(reference "#PWR01639")
 					(unit 1)
 				)
 			)
