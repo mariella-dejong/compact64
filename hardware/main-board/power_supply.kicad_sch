@@ -2438,16 +2438,6 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 115.57) (xy 162.56 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "35aa3259-be9d-4201-9ef9-7fe5de02a9da")
-	)
-	(wire
-		(pts
 			(xy 91.44 158.75) (xy 99.06 158.75)
 		)
 		(stroke
@@ -2655,16 +2645,6 @@
 			(type default)
 		)
 		(uuid "62d78152-7538-40b5-bd37-9bb67f95d5cc")
-	)
-	(wire
-		(pts
-			(xy 182.88 101.6) (xy 170.18 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "69690701-cfef-44aa-9e39-e8fef3d16fd4")
 	)
 	(wire
 		(pts
@@ -2985,16 +2965,6 @@
 			(type default)
 		)
 		(uuid "b523f1b2-6b18-4408-a355-16d8193044ba")
-	)
-	(wire
-		(pts
-			(xy 170.18 101.6) (xy 170.18 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b660a65c-df28-4fbf-b2a8-b6fb2e08ea51")
 	)
 	(wire
 		(pts
@@ -5677,16 +5647,6 @@
 				(justify right)
 			)
 		)
-		(pin "Q5" output
-			(at 182.88 101.6 180)
-			(uuid "9433d9fe-e452-48c0-8b11-a3bbbc0f02cd")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "PGOOD" input
 			(at 210.82 85.09 90)
 			(uuid "3556ccc2-18d4-4257-86ca-99ba784f8ce2")
@@ -5984,16 +5944,6 @@
 		(pin "+9V" output
 			(at 162.56 120.65 0)
 			(uuid "f482cb3a-77d5-4866-9e6f-f92aeebcc892")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "PUMP_CLK" input
-			(at 162.56 115.57 0)
-			(uuid "596a52fa-6bbd-4350-8e28-d33a4d38af63")
 			(effects
 				(font
 					(size 1.27 1.27)
