@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1600,
+    "annotate_start_num": 1700,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "",
+    "used_designators": "R8-9,R40,R1701-1703,U21,U1701,Q9,Q1701,C14-16,C18,C35,C40,C55,C57-59,C61,C63,C95,C206,C1701-1714,#U235-236,#U244,#U246-255,#U1701-1713,FB18,FB24-25,FB1701-1703,#PWR161-163,#PWR1701-1703",
     "variants": []
   },
   "sheets": [
@@ -1727,6 +1727,10 @@
     [
       "f383b81a-d266-4e63-afb3-fac087a0b3bb",
       "CIA2, Serial Port and User Port"
+    ],
+    [
+      "445f1d0b-059c-41c2-ab63-8bf80c392f35",
+      "SID and internal audio output"
     ]
   ],
   "text_variables": {},

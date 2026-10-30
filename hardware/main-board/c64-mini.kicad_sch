@@ -4228,6 +4228,52 @@
 		)
 	)
 	(sheet
+		(at 193.04 140.335)
+		(size 38.1 29.21)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "445f1d0b-059c-41c2-ab63-8bf80c392f35")
+		(property "Sheetname" "SID and internal audio output"
+			(at 193.04 139.6234 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "sid.kicad_sch"
+			(at 193.04 170.1296 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "17")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 52.07 145.415)
 		(size 43.18 35.56)
 		(exclude_from_sim no)
