@@ -69,6 +69,16 @@
 	)
 	(wire
 		(pts
+			(xy 165.735 96.52) (xy 172.085 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0762bfc9-040c-46cb-a87e-52b7c271b719")
+	)
+	(wire
+		(pts
 			(xy 81.28 144.145) (xy 81.28 149.86)
 		)
 		(stroke
@@ -539,7 +549,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.735 93.345) (xy 173.355 93.345)
+			(xy 165.735 93.345) (xy 172.085 93.345)
 		)
 		(stroke
 			(width 0)
@@ -878,6 +888,17 @@
 			(justify left)
 		)
 		(uuid "81fd2a6e-0865-40e0-86eb-48cb3ac3e05f")
+	)
+	(hierarchical_label "~{SID}"
+		(shape output)
+		(at 172.085 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "89f89549-044f-4ec0-86fd-59603f8664f3")
 	)
 	(hierarchical_label "AUDIO_OUT"
 		(shape output)
@@ -1656,6 +1677,16 @@
 		(pin "~{CIA2}" output
 			(at 165.735 93.345 0)
 			(uuid "f6e00d23-ab8a-4eec-af18-064e1aa460dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{SID}" output
+			(at 165.735 96.52 0)
+			(uuid "084b1660-2c50-4952-92e8-93789967b8ee")
 			(effects
 				(font
 					(size 1.27 1.27)
