@@ -5501,7 +5501,7 @@
 				(justify right)
 			)
 		)
-		(pin "CIA2_SP" bidirectional
+		(pin "CIA1_SP" bidirectional
 			(at 95.25 67.945 0)
 			(uuid "01652ba9-fc7a-4d4b-ae7d-4bc61a67617d")
 			(effects
