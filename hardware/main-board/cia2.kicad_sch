@@ -8397,6 +8397,17 @@
 		)
 		(uuid "6dec3619-f9ac-4e91-8b18-a872b1f78078")
 	)
+	(hierarchical_label "CIA2_SP"
+		(shape bidirectional)
+		(at 281.305 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7793e890-7c79-45dc-b7f5-a594ab3a6782")
+	)
 	(hierarchical_label "~{RESET}"
 		(shape bidirectional)
 		(at 363.22 58.42 0)
@@ -8451,6 +8462,17 @@
 			(justify right)
 		)
 		(uuid "a9c7a3b3-b897-4f57-a9bb-55ceaf31b2e6")
+	)
+	(hierarchical_label "CIA1_CNT"
+		(shape bidirectional)
+		(at 281.305 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "afa818d2-7142-4478-93ec-d690682d05b5")
 	)
 	(hierarchical_label "SDA"
 		(shape bidirectional)
