@@ -30,34 +30,30 @@ power switch SW1, so the board has no power switch.
 These changes make the c64-mini behave differently from an original C64.
 Check them before using software or hardware that depends on them.
 
-### CIA time-of-day clocks do not run
+### CIA time-of-day clocks run from a crystal
 
 - **Original C64:** both CIAs (U1 and U2) get a 50 Hz or 60 Hz signal on
   their TOD input (pin 19). It is derived from the 9 V AC of the power brick
-  and buffered by gate A of U27.
-- **c64-mini:** there is no 9 V AC, so the TOD input of CIA 2 is tied to
-  ground (#37). Its time-of-day clock stands still at the time last written
-  to it, and its TOD alarm never triggers. CIA 1 is replaced by a
-  microcontroller (#25) that makes the 50 Hz or 60 Hz reference from its
-  own crystal, so the time-of-day clock of CIA 1 runs (see
-  [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks)).
-- **Not affected:** the CIA timers, and the KERNAL jiffy clock with BASIC's
-  `TI` and `TI$`, which run from timer A of CIA 1.
-- **Affected:** software that reads the time-of-day clock of CIA 2, waits
-  for it to change or sets a TOD alarm on it. Such programs show a frozen
-  clock, or can hang while they wait. Most programs use the TOD clock of
-  CIA 1, which is not affected.
-- **Possible fix:** replacing CIA 2 with a microcontroller (#68) can provide
-  the reference the same way as for CIA 1. Gate A of U27 is still in place
-  with pin 1 on +5V; its input pin 2 (now on ground) and output pin 3 (now
-  unconnected) can also take a new reference and drive the TOD input of
-  CIA 2 again.
+  and buffered by gate A of U27, so the clocks follow the mains frequency.
+- **c64-mini:** there is no 9 V AC (#37). Both CIAs are replaced by
+  microcontrollers (#25, #68) that make the 50 Hz or 60 Hz reference from
+  their own crystal, as selected by bit 7 of CRA (see
+  [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks) and
+  [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port)).
+  Gate A of U27 is still in place for U27's supply pins, with pin 1 on +5V,
+  pin 2 on ground and pin 3 unconnected.
+- **Not affected:** software that uses the time-of-day clocks, the TOD
+  alarms or the CIA timers, provided the firmware implements them.
+- **Affected:** only software that expects the TOD clocks to follow the
+  mains frequency exactly. The crystal reference is more stable than the
+  mains, so a TOD clock can drift a little differently from an original C64.
 
 ### User port pins 10 and 11 carry no 9 V AC
 
 - **Original C64:** pins 10 and 11 of the user port (CN2) carry the 9 V AC of
   the power brick, one side through fuse F1.
-- **c64-mini:** both pins are unconnected, and not grounded (#37).
+- **c64-mini:** both pins are unconnected, and not grounded (#37). The user
+  port is now J1602 on the `CIA2, Serial Port and User Port` sheet (#68).
 - **Affected:** devices that take their power from these pins, such as some
   RS-232 interfaces and EPROM programmers. They need their own supply.
   Devices that only use the +5 V on pin 2 and the data lines are not
@@ -119,6 +115,34 @@ Check them before using software or hardware that depends on them.
 - **Not affected:** paddles and the POT lines (U28 is unchanged), the light
   pen input of the VIC-II, cassette read and the serial bus SRQ on `~FLAG`,
   and `CNT` and `SP` on the user port.
+
+### CIA 2 is emulated by a microcontroller
+
+- **Original C64:** a 6526 CIA (U2) at $DD00 selects the VIC-II bank, drives
+  and reads the serial bus through U8 (7406), and serves the user port
+  (CN2).
+- **c64-mini:** a microcontroller (U1601) takes the place of CIA 2 (#68), see
+  [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port). The
+  serial port (J1601) and the user port (J1602) keep their original pinout.
+- **Affected:**
+  - The board does not start without the controller's firmware.
+  - How closely the 6526 is matched (timers, NMI timing, the serial shift
+    register, `~PC` and `~FLAG`) depends on the firmware. Fast loaders,
+    RS-232 on the user port and demos that switch the VIC-II bank at exact
+    cycles need firmware that reproduces the 6526 cycle by cycle.
+  - The serial bus driver U1602 (SN74LVC06A) sinks up to 24 mA, the original
+    7406 up to 40 mA. Every device on the bus adds its own pull-up of about
+    1k (5 mA). The C64 and three such devices stay within the rating; more
+    devices with 1k pull-ups may pull the low level up too far.
+  - The user port lines have 4.7k pull-ups to +5V, a 100 Ohm series
+    resistor and a TVS diode instead of the 6526's internal pull-ups. A line
+    still idles at 5 V. An output that is set high is released to the
+    pull-up instead of being driven, so its rising edge is a little slower
+    (about 0.5 us with 100 pF of cable).
+- **Not affected:** the VIC-II bank selection after reset (bank 0, also
+  before the firmware runs), the serial bus pinout, the user port pinout
+  except pins 10 and 11 (see above), and `CNT` and `SP` of CIA 1 on the user
+  port.
 
 ## Power supply
 
@@ -388,7 +412,7 @@ Datasheets:
 ### `+3V3`
 
 The `3V3 Buck` sheet makes `+3V3` for the microcontrollers that are planned
-for the board (#11, #25, #12) and for other 3.3 V logic. It is a copy of the
+for the board (#11, #25, #68, #12) and for other 3.3 V logic. It is a copy of the
 5 V buck converter with the values changed for 3.3 V:
 
 - **Converter:** U1201 (LM61440), fed from the 12 V DC input, with the same
@@ -408,8 +432,8 @@ for the board (#11, #25, #12) and for other 3.3 V logic. It is a copy of the
   EN/SYNC, which R1201 holds at the input voltage, the same way as for the
   5 V buck converter. U1201's PGOOD joins `PGOOD` (see above).
 
-The budget is 1 A for now: the three RP2354 microcontrollers (supervisor,
-RAM and ROM, CIA 1) and some 3.3 V logic, with room to spare. The LM61440 can deliver up to 4 A, but the
+The budget is 1 A for now: the four RP2354 microcontrollers (supervisor,
+RAM and ROM, CIA 1, CIA 2) and some 3.3 V logic, with room to spare. The LM61440 can deliver up to 4 A, but the
 inductor and output capacitors would need to be checked before raising the
 budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
 
@@ -425,8 +449,10 @@ decide when the rest of the system may power up (#46). It runs from `+3V3`,
 the one rail that is always on. Besides its supply, clock, reset and USB it
 switches the other rails on and off (#47), and it can program, reset and talk
 to the RAM and ROM controller (#11, see
-[RAM and ROM replacement](#ram-and-rom-replacement)) and the CIA 1 controller
-(#25, see [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks)); its
+[RAM and ROM replacement](#ram-and-rom-replacement)), the CIA 1 controller
+(#25, see [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks)) and
+the CIA 2 controller (#68, see
+[CIA 2, serial port and user port](#cia-2-serial-port-and-user-port)); its
 other functions follow in separate issues:
 
 | Function | Hardware | Firmware |
@@ -482,8 +508,11 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | ---- | --- | --- | --------- | -------- |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
-| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401) and the CIA 1 controller (U1501) |
-| GPIO41 | 52 | `SCL` | Output | I2C0 clock to U1401 and U1501 |
+| GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
+| GPIO29 | 37 | `SWDAT` | Bidirectional | SWD data of the CIA 2 controller |
+| GPIO30 | 38 | `RUN` | Output | High lets the CIA 2 controller run; low or not driven holds it in reset |
+| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401) and the CIA 1 and CIA 2 controllers (U1501, U1601) |
+| GPIO41 | 52 | `SCL` | Output | I2C0 clock to U1401, U1501 and U1601 |
 | GPIO42 | 53 | `SWCLK` | Output | SWD clock of the CIA 1 controller |
 | GPIO43 | 54 | `SWDAT` | Bidirectional | SWD data of the CIA 1 controller |
 | GPIO44 | 55 | `RUN` | Output | High lets the CIA 1 controller run; low or not driven holds it in reset |
@@ -492,12 +521,12 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO47 | 58 | `SWDAT` | Bidirectional | SWD data of the RAM and ROM controller |
 
 - **I2C:** R1306 and R1312 (4.7k) pull `SDA` and `SCL` up to `+3V3`.
-- **State before the firmware runs:** all eight pins come out of reset with
-  the output disabled and the internal pull-down on. Both `RUN` lines
-  therefore stay low and both controllers stay in reset, see
+- **State before the firmware runs:** all eleven pins come out of reset with
+  the output disabled and the internal pull-down on. All three `RUN` lines
+  therefore stay low and the three controllers stay in reset, see
   [Programming and start-up](#programming-and-start-up).
 - **Back-feeding:** these pins only connect to the RAM and ROM controller
-  and the CIA 1 controller, which are also on `+3V3`.
+  and the CIA 1 and CIA 2 controllers, which are also on `+3V3`.
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -702,7 +731,8 @@ These timing requirements are for the firmware:
 
 The `CIA1, Keyboard and Joysticks` sheet holds a microcontroller (U1501,
 RP2354B) that takes the place of CIA 1 (#25), with a USB-A socket for the
-keyboard and the two control ports. CIA 2 stays for now (#68).
+keyboard and the two control ports. CIA 2 is replaced the same way (#68),
+see [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port).
 
 | Removed | Original part | Now |
 | ------- | ------------- | --- |
@@ -723,8 +753,9 @@ These parts of the original circuit stay on `250407 Sheet 1`:
 - **RESTORE:** R41, C38, the one-shot U20A (556) and U8 (7406) still turn a
   falling edge on the former `~RESTORE` net, now `~RESTORE_NMI`, into a
   pulse on `~NMI`. The controller makes the edge instead of the RESTORE key.
-- **Pull-ups:** RP3 (3k3) on `CASS_RD`, `CNT1` and `SP1`, and RP4 (3k3) on
-  `~IRQ`.
+- **Pull-ups:** RP4 (3k3) on `~IRQ`. RP3, which pulled up `CASS_RD`, `CNT1`
+  and `SP1`, went with CIA 2 (#68); R1534, R1532 and R1531 (4.7k) on this
+  sheet take its place, and R1533 (4.7k) also pulls up `~IRQ`.
 
 ### Circuit
 
@@ -749,8 +780,8 @@ following Raspberry Pi's RP2350 reference design:
 | ---- | --- | --- | -------- | -------- |
 | GPIO0 to GPIO7 | 77 to 80, 1 to 4 | `D0` to `D7` | D0 to D7 | Data bus |
 | GPIO8 to GPIO11 | 6 to 9 | `A0` to `A3` | RS0 to RS3 | Register select |
-| GPIO12 | 11 | `CNT1` (sheet pin `CNT`) | CNT | User port pin 4 |
-| GPIO13 | 12 | `SP1` (sheet pin `SP`) | SP | User port pin 5 |
+| GPIO12 | 11 | `CNT1` (sheet pin `CNT`) | CNT | User port pin 4, on the CIA 2 sheet |
+| GPIO13 | 12 | `SP1` (sheet pin `SP`) | SP | User port pin 5, on the CIA 2 sheet |
 | GPIO21 | 21 | `~RESET` | ~RES | Reset input |
 | GPIO22 | 22 | `~IRQ` | ~IRQ | Interrupt to the 6510, open drain |
 | GPIO23 | 23 | `CASS_RD` (sheet pin `~FLAG`) | ~FLAG | Cassette read and serial bus SRQ |
@@ -855,8 +886,9 @@ open drain against pull-ups to +5V, as on the 6526:
 
 | Signal | Pull-up | Why |
 | ------ | ------- | --- |
-| `~IRQ` | RP4 (3k3) | Shared with the VIC-II and the expansion port |
-| `CNT1`, `SP1` | RP3 (3k3) | User port lines, also driven from outside |
+| `~IRQ` | RP4 (3k3), R1533 (4.7k) | Shared with the VIC-II and the expansion port |
+| `CASS_RD` | R1534 (4.7k) | Cassette read and serial bus SRQ, driven from outside |
+| `CNT1`, `SP1` | R1532, R1531 (4.7k) | User port lines, also driven from outside |
 | `CIA1_PA6`, `CIA1_PA7` | R301, R302 (10k) | U28 (4066) needs at least 3.5 V to switch on |
 | `~RESTORE_NMI` | R41 (1M) | Only the falling edge matters |
 | Joystick lines and `~LP` | R1511 to R1520 (10k) | Switches and devices pull them to ground |
@@ -879,7 +911,7 @@ as the RAM and ROM controller:
 
 The KERNAL needs CIA 1 to start: timer A drives the jiffy clock and the
 keyboard scan. The supervisor therefore turns on the other rails only after
-both controllers have reported over I2C that they are ready.
+all controllers have reported over I2C that they are ready.
 
 ### Power and back-feeding
 
@@ -928,6 +960,216 @@ circuit:
   erratum E9). The bus pins are in the PIO window from GPIO0 and the
   joystick lines in the window from GPIO16, so they need separate PIO
   programs or the processor's own GPIO access.
+
+## CIA 2, serial port and user port
+
+The `CIA2, Serial Port and User Port` sheet holds a microcontroller (U1601,
+RP2354B) that takes the place of CIA 2 (#68), with the serial port and the
+user port.
+
+| Removed | Original part | Now |
+| ------- | ------------- | --- |
+| U2 | 6526 CIA 2 | U1601 |
+| C3 | Decoupling capacitor of U2 | C1609 to C1619 at U1601 |
+| U8 gates A, E and F | 7406 drivers for ATN, CLK and DATA | U1602 (SN74LVC06A) |
+| CN4 | Serial port | J1601 |
+| FB7, FB8, FB9 | Ferrite beads in ATN, DATA and CLK | FB1601, FB1603, FB1602 |
+| R28, R29, R30 | 1k pull-ups on ATN, DATA and CLK | R1608, R1607, R1609 |
+| CR100 to CR103 | Clamp diodes on CLK and DATA | U1607 (TVS array) |
+| CN2 | User port | J1602 |
+| C96 | 0.1 uF on +5V beside the user port | C1621 |
+| RP3 | 3k3 pull-ups on `~FLAG2`, `~NMI`, `CASS_RD`, `CNT1`, `SP1`, `CNT2` and `SP2` | R1628, R1627, R1534, R1532, R1531, R1623 and R1624 (4.7k) |
+
+These parts of the original circuit stay on the `250407` sheets:
+
+- **Chip select:** U15 (74LS139) still decodes `~CIA2` for $DD00 to $DDFF.
+- **VIC-II bank:** U14 (74LS258), the PLA (U17) and U1401 still take
+  `~VA14` and `~VA15`.
+- **U8:** gates B, C and D (the AEC inverter, RESTORE and the power-on reset)
+  are still in use. Gates A, E and F are no longer placed in the schematic,
+  so their inputs (pins 1, 11 and 13) are left open on the chip; their
+  outputs are unconnected.
+
+### Circuit
+
+The circuit is the same as for CIA 1 (see [Circuit](#circuit-2)): core
+regulator L1601 with its own local core supply net (`+1V1`), C1603 to C1608,
+R1603 and C1606 for `VREG_AVDD`, 100 nF capacitors C1609 to C1619 on the
+3.3 V supply pins, 12 MHz crystal Y1601 with C1601, C1602 and R1601, the
+firmware in the internal flash, and no buttons or USB.
+
+### Pins
+
+| GPIO | Pin | Net | 6526 pin | Function |
+| ---- | --- | --- | -------- | -------- |
+| GPIO0 to GPIO7 | 77 to 80, 1 to 4 | `D0` to `D7` | D0 to D7 | Data bus |
+| GPIO8 to GPIO11 | 6 to 9 | `A0` to `A3` | RS0 to RS3 | Register select |
+| GPIO12 | 11 | `CNT` | CNT | User port pin 6 |
+| GPIO13 | 12 | `SP` | SP | User port pin 7 |
+| GPIO14 | 13 | `~PC` | ~PC | User port pin 8 |
+| GPIO15 | 14 | `PA2` | PA2 | User port pin M |
+| GPIO16 | 16 | `~VA14` | PA0 | VIC-II bank select |
+| GPIO17 | 17 | `~VA15` | PA1 | VIC-II bank select |
+| GPIO21 | 21 | `~RESET` | ~RES | Reset input |
+| GPIO22 | 22 | `~NMI` (sheet pin `~IRQ`) | ~IRQ | Interrupt to the 6510's NMI, open drain |
+| GPIO23 | 23 | `~FLAG` | ~FLAG | User port pin B |
+| GPIO24 | 25 | `PHI2` | PH2 | 6510 clock |
+| GPIO25 | 26 | `R/~W` | R/~W | 6510 read/write |
+| GPIO26 | 27 | `~CIA2` (sheet pin `~SELECT`) | ~CS | Chip select from U15 |
+| GPIO27 | 28 | `PB0` | PB0 | User port pin C |
+| GPIO28 to GPIO32 | 36 to 40 | `PB1` to `PB5` | PB1 to PB5 | User port pins D, E, F, H and J |
+| GPIO33, GPIO34 | 42, 43 | `PB6`, `PB7` | PB6, PB7 | User port pins K and L |
+| GPIO35 | 44 | `DATA` through R1613 | PA7 | Serial bus DATA in |
+| GPIO36 | 45 | `DATA_OUT` | PA5 | Serial bus DATA out, through U1602 |
+| GPIO37 | 46 | `CLK` through R1614 | PA6 | Serial bus CLK in |
+| GPIO38 | 47 | `CLK_OUT` | PA4 | Serial bus CLK out, through U1602 |
+| GPIO39 | 48 | `ATN_OUT` | PA3 | Serial bus ATN out, through U1602 |
+| GPIO40 | 49 | `SDA` | | I2C0 data, link to the supervisor |
+| GPIO41 | 52 | `SCL` | | I2C0 clock, link to the supervisor |
+
+GPIO18 to GPIO20, GPIO42 to GPIO47 and the USB port are not used. PB0 to PB7
+are on eight consecutive GPIOs, so one PIO program can read and drive the
+whole port, for example for parallel cables to disk drives.
+
+### Serial port
+
+J1601 is the 6-pin DIN socket of the original board (same part and
+footprint as CN4) with the original pinout:
+
+| Pin | Signal | TVS | Then |
+| --- | ------ | --- | ---- |
+| 1 | SRQ (`CASS_RD`) | U1607 | `~FLAG` of CIA 1 (U1501 GPIO23), pull-up R1534 on the CIA 1 sheet |
+| 2 | Ground | | |
+| 3 | ATN | U1607 | FB1601, then the ATN node |
+| 4 | CLK | U1607 | FB1602, then the CLK node |
+| 5 | DATA | U1607 | FB1603, then the DATA node |
+| 6 | `~RESET` | D1602 | The shared reset line |
+
+Each of ATN, CLK and DATA has a node with a 1k pull-up to +5V (R1608, R1609,
+R1607) and an output of U1602 (SN74LVC06A), an inverting open-drain buffer:
+
+- **Why a buffer:** every device on the serial bus has its own pull-up of
+  about 1k, so a line that is pulled low sinks about 5 mA per device. That
+  is more than an RP2350 pin can sink once two drives are connected. U1602
+  sinks 24 mA at 0.55 V. It runs from `+3V3`, its outputs tolerate 5.5 V,
+  and it does not feed `+5V` while the rail is off.
+- **Polarity:** a high GPIO pulls the bus line low, the same as the 7406 on
+  the original board.
+- **State before the firmware runs:** R1610 to R1612 (10k) pull the buffer
+  inputs low, so all three lines are released while U1601 is in reset, not
+  programmed or being programmed.
+- **Reading:** GPIO37 and GPIO35 read CLK and DATA through R1614 and R1613
+  (100 Ohm), which limit the current into the pins. ATN is not read back, as
+  on the original board.
+- **Pull-ups:** the 1k pull-ups are the value of the original board and of
+  the drives. Higher values would slow down the rising edges, which fast
+  loaders depend on.
+- **Unused gates:** gates D, E and F of U1602 have their inputs (pins 9, 11
+  and 13) on ground and their outputs (pins 8, 10 and 12) unconnected.
+
+### User port
+
+J1602 is the user port edge connector with the original pinout. Pins 1, 12,
+A and N are ground, pin 2 is +5V with C1621, and pins 10 and 11 are not
+connected (#37). Every signal line has a TVS diode at the connector, then a
+100 Ohm series resistor, then a 4.7k pull-up to +5V at the GPIO. The TVS
+arrays are TPD4E05U06DQAR (four channels each):
+
+| Pin | Signal | TVS | Series | Pull-up | Goes to |
+| --- | ------ | --- | ------ | ------- | ------- |
+| 3 | `~RESET` | D1601 | | R36 | The shared reset line |
+| 4 | `CNT1` | U1604 | R1631 | R1532 | U1501 GPIO12 (CIA 1) |
+| 5 | `SP1` | U1604 | R1632 | R1531 | U1501 GPIO13 (CIA 1) |
+| 6 | `CNT2` | U1604 | R1633 | R1623 | GPIO12 |
+| 7 | `SP2` | U1604 | R1634 | R1624 | GPIO13 |
+| 8 | `~PC2` | U1605 | R1635 | R1625 | GPIO14 |
+| 9 | ATN | U1605 | | R1608 | The serial bus ATN node |
+| B | `~FLAG2` | U1605 | R1645 | R1628 | GPIO23 |
+| C to F | PB0 to PB3 | U1606 | R1637 to R1640 | R1615 to R1618 | GPIO27 to GPIO30 |
+| H to L | PB4 to PB7 | U1603 | R1641 to R1644 | R1619 to R1622 | GPIO31 to GPIO34 |
+| M | PA2 | U1605 | R1636 | R1626 | GPIO15 |
+
+The nets between the connector and the series resistors start with `UC_`,
+those between the serial port and the ferrite beads with `SC_`. `CNT1` and
+`SP1` reach the CIA 1 sheet through the `CIA1_CNT` and `CIA1_SP` sheet pins.
+
+### Level shifting
+
+As for CIA 1, all 5 V signals are on GPIO0 to GPIO39, which are 5 V tolerant
+while `+3V3` is up, and only the data lines are driven high, with 3.3 V. All
+other outputs are open drain against pull-ups to +5V:
+
+| Signal | Pull-up | Why |
+| ------ | ------- | --- |
+| `~NMI` | R1627 (4.7k) | Shared with RESTORE (U8) and the expansion port |
+| `~VA14`, `~VA15` | R1629, R1630 (4.7k) | Select VIC-II bank 0 until the firmware runs, as a 6526 does after reset |
+| ATN, CLK, DATA | R1608, R1609, R1607 (1k) | Serial bus, driven through U1602 |
+| User port lines | R1615 to R1626, R1628 (4.7k) | Devices on the user port drive them too |
+
+The firmware must never drive these lines high. `~VA14` and `~VA15` only go
+to inputs (U14, the PLA and U1401), but are open drain as well, so that they
+do not drive 3.3 V against the 5 V pull-ups. Their rising edge takes about
+0.1 us, short compared with a bus cycle of about 1 us.
+
+### Programming and start-up
+
+The supervisor (U1301) programs and controls the controller, the same way
+as the other two controllers:
+
+- **Reset:** the supervisor's GPIO30 drives `RUN` through R1602 (1k). R1604
+  (10k) pulls `RUN` to ground, so the controller stays in reset until the
+  supervisor drives it high.
+- **Programming:** the supervisor's GPIO28 and GPIO29 drive SWCLK and SWDIO
+  through R1605 and R1606 (33 Ohm).
+- **Link:** I2C0 on GPIO40 and GPIO41, shared with U1401 and U1501, so it
+  needs its own I2C address.
+
+### Power and back-feeding
+
+U1601 and U1602 are on `+3V3` and are powered while the C64 chips are not.
+The same rules apply as for CIA 1 (see
+[Power and back-feeding](#power-and-back-feeding-1)): keep all pins that
+lead to the C64 as inputs until the rails are up, and never turn on their
+internal pull-ups. The pull-downs R1610 to R1612 keep the serial bus
+released in that time.
+
+A drive that is switched on while the c64-mini is unpowered pulls its bus
+lines to 5 V through its own pull-ups. U1602's outputs and the 100 Ohm
+resistors in front of GPIO35 and GPIO37 limit what reaches U1601 then.
+
+### Firmware
+
+The firmware is not part of this issue. These requirements follow from the
+circuit, in addition to the bus and 6526 model requirements of CIA 1 (see
+[Firmware](#firmware)), with `~CIA2` as chip select:
+
+- **Interrupt:** the 6526's interrupt output drives `~NMI`, which the 6510
+  triggers on the falling edge. Pull `~NMI` low when an enabled interrupt
+  occurs and release it when the interrupt control register is read, at the
+  same cycle as a 6526.
+- **VIC-II bank:** pull `~VA14` (PA0) and `~VA15` (PA1) low when the port bit
+  is an output set to low, and release them otherwise. Apply writes at the
+  falling edge of `PHI2`, so that bank switches in the middle of a line
+  happen at the same cycle as on the original board.
+- **Serial bus outputs:** on the original board, a PA3, PA4 or PA5 pin that
+  is high, either as an output set to high or as an input held high by the
+  6526's internal pull-up, pulls ATN, CLK or DATA low through the 7406. Set
+  GPIO39, GPIO38 or GPIO36 high in exactly these cases. After reset all
+  three port bits are inputs, so ATN, CLK and DATA are held low until the
+  KERNAL sets the data direction register.
+- **Serial bus inputs:** PA6 and PA7 read CLK and DATA without inversion. If
+  software makes PA6 or PA7 an output set to low, the original port pulled
+  the bus line low directly; do the same through GPIO38 or GPIO36.
+- **User port:** pull PB0 to PB7 and PA2 low when the port bit is an output
+  set to low, and release them otherwise. PB6 and PB7 carry the timer
+  outputs when bit 1 of CRA or CRB is set. Pull `~PC` low for one cycle
+  after each read or write of port B. A falling edge on `~FLAG` sets bit 4
+  of the interrupt control register.
+- **Time of day:** count 50 Hz or 60 Hz from the crystal, as selected by bit
+  7 of CRA.
+- **Pins:** turn off the internal pull-downs of the bus pins (RP2350
+  erratum E9). The bus pins are in the PIO window from GPIO0; port B and the
+  serial bus pins are in the window from GPIO16.
 
 ## Audio and video connectors
 
@@ -1082,6 +1324,10 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-30 | Removed CIA 2 (U2, 6526) and its decoupling capacitor C3, the serial port CN4 with FB7 to FB9, the pull-ups R28 to R30 and the clamp diodes CR100 to CR103, the user port CN2 with C96, the resistor array RP3, and gates A, E and F of U8 (the serial bus drivers) from `250407 Sheet 1`. Removed the hierarchical labels `CIA1_CNT`, `CIA1_SP`, `~VA14` and `~VA15` from `250407 Sheet 1` and `CIA1_CNT` and `CIA1_SP` from `250407 Design`, with their sheet pins. Added `~NMI` as a hierarchical label and sheet pin on `250407 Sheet 1`, `250407 Design` and the root sheet. Replaced the global label `~CIA2` between `250407 Sheet 1` and `250407 Sheet 2` with a hierarchical label on `250407 Sheet 2` and a sheet pin on `250407 Design` and the root sheet. Added pull-ups R1531 (`SP1`), R1532 (`CNT1`), R1533 (`~IRQ`) and R1534 (`CASS_RD`), 4.7k to +5V, to the `CIA1, Keyboard and Joysticks` sheet in place of RP3, and connected its `CNT` and `SP` sheet pins to the new `CIA1_CNT` and `CIA1_SP` sheet pins of the `CIA2, Serial Port and User Port` sheet |
+| 2026-10-30 | Added the user port J1602 (original pinout, pins 10 and 11 not connected) to the `CIA2, Serial Port and User Port` sheet. Every signal line has a TVS at the connector (TPD4E05U06DQAR arrays U1603 to U1606, H5VL10BH D1601 for `~RESET`), a 100 Ohm series resistor (R1631 to R1645) and a 4.7k pull-up to +5V (R1615 to R1626, R1628) at the GPIO, except ATN and `~RESET`, which have no series resistor. PB0 to PB7 go to GPIO27 to GPIO34, `CNT`, `SP`, `~PC`, `PA2` and `~FLAG` to GPIO12 to GPIO15 and GPIO23, `CNT1` and `SP1` to U1501, and pin 9 to the serial bus ATN node. C1621 decouples +5V. Added R1627 (4.7k) on `~NMI`, and R1629 and R1630 (4.7k) on `~VA14` and `~VA15`, which go to GPIO16 and GPIO17 |
+| 2026-10-30 | Added the serial port J1601 (6-pin DIN, the part of CN4) to the `CIA2, Serial Port and User Port` sheet with TVS array U1607 (TPD4E05U06DQAR) on SRQ, ATN, CLK and DATA, H5VL10BH D1602 on `~RESET`, ferrite beads FB1601 to FB1603 (100 Ohm at 100 MHz) and 1k pull-ups R1607 to R1609 to +5V. U1602 (SN74LVC06A on `+3V3`, C1620) drives ATN, CLK and DATA from GPIO39, GPIO38 and GPIO36, with pull-downs R1610 to R1612 (10k) on its inputs and its unused gates tied to ground; GPIO37 and GPIO35 read CLK and DATA through R1614 and R1613 (100 Ohm). SRQ joins `CASS_RD` through the new `~SERIAL_SRQIN` sheet pin |
+| 2026-10-29 | Added a `CIA2, Serial Port and User Port` sheet to the root sheet with an RP2354B microcontroller (U1601) on `+3V3`, following Raspberry Pi's RP2350 reference design: core regulator inductor L1601 with its own local core supply net, 12 MHz crystal Y1601, and no buttons or USB. Connected it to the bus (`D[0..7]`, `A[0..15]`, `PHI2`, `R/~W`, `~RESET`, `~CIA2` as `~SELECT`, `~NMI` as `~IRQ`) through new sheet pins, and to the supervisor (U1301): GPIO30 to `RUN` through R1602 (1k) with R1604 (10k) to ground, GPIO28 and GPIO29 to SWCLK and SWDIO through R1605 and R1606 (33 Ohm), through new sheet pins on the `Supervisor` sheet, and I2C0 (GPIO40, GPIO41) shared with U1401 and U1501. Annotated its parts from 1600 |
 | 2026-10-29 | Removed CIA 1 (U1, 6526) and its decoupling capacitor C2 from `250407 Sheet 1`. Connected its signals to U1501 through new hierarchical labels and sheet pins on `250407 Sheet 1`, `250407 Design` and the root sheet: `~CIA1` (sheet pin `~SELECT`), `~CIA1_FLAG` (`CASS_RD`), `~CIA1_IRQ` (`~IRQ`), `CIA1_CNT` (`CNT1`), `CIA1_SP` (`SP1`), `~RESET`, `CIA1_PA6` and `CIA1_PA7`. `R/~W`, `PHI2`, `A[0..15]` and `D[0..7]` reach the new sheet from the existing sheet pins on the root sheet. Replaced the global labels `~CIA1` and `BTNA\~LP` between `250407 Sheet 1` and `250407 Sheet 2` with hierarchical labels (`~LP`) |
 | 2026-10-29 | Removed the keyboard connector CN1, the control ports CN8 and CN9 and their ferrite bead FB18 from `250407 Sheet 1`. Renamed the keyboard columns `COL6` and `COL7`, which also select the paddle port on U28, to `CIA1_PA6` and `CIA1_PA7` and added pull-ups R301 and R302 (10k) to +5V. Renamed `~RESTORE` to `~RESTORE_NMI` and connected it to U1501 GPIO27, so the controller triggers the RESTORE one-shot U20A. Brought `POTAX`, `POTAY`, `POTBX` and `POTBY` from U28 and `~LP` from the VIC-II out to the new control ports through hierarchical labels and sheet pins |
 | 2026-10-29 | Added control ports J1502 (port 2) and J1503 (port 1) to the `CIA1, Keyboard and Joysticks` sheet: 9-pin male D-sub sockets (CONNFLY DS1037-09MNAKT74-0CC, `DE9_Pins_MountingHoles` with the shells on ground), +5V on pin 7 through FB1501 (100 Ohm at 100 MHz), POT lines to U28. Each of the ten digital lines has a TVS diode at the connector (D1504 to D1513, H5VL10BH), a 100 Ohm series resistor (R1521 to R1530) and a 10k pull-up to +5V at the GPIO (R1511 to R1520). The fire line of port 1 goes through R1529 to `~LP` (GPIO38 and the VIC-II light pen input) |
