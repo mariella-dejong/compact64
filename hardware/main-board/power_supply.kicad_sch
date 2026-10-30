@@ -3341,7 +3341,7 @@
 		)
 		(uuid "a550e4a3-f547-49a0-aeec-db10743ba0b0")
 	)
-	(hierarchical_label "+12V_STABILIZED"
+	(hierarchical_label "+9V_STABILIZED"
 		(shape output)
 		(at 168.91 120.65 0)
 		(effects
@@ -5959,7 +5959,7 @@
 			(color 0 0 0 0)
 		)
 		(uuid "cfdb987c-1ef7-4c1d-a26b-ff08e18edc2b")
-		(property "Sheetname" "12V Stabilized Rail"
+		(property "Sheetname" "9V Stabilized Rail"
 			(at 120.65 111.0484 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5970,7 +5970,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "12v_stabilized.kicad_sch"
+		(property "Sheetfile" "9v_stabilized.kicad_sch"
 			(at 120.65 131.3946 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5981,7 +5981,7 @@
 				(justify left top)
 			)
 		)
-		(pin "+12V" output
+		(pin "+9V" output
 			(at 162.56 120.65 0)
 			(uuid "f482cb3a-77d5-4866-9e6f-f92aeebcc892")
 			(effects
