@@ -6308,12 +6308,6 @@
 		(uuid "b9015e85-0919-4f1c-93a5-e79146dca986")
 	)
 	(junction
-		(at 140.97 240.665)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "ba4a9e14-2a7f-46c4-a482-223b565f7952")
-	)
-	(junction
 		(at 318.135 28.575)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8965,16 +8959,6 @@
 	)
 	(wire
 		(pts
-			(xy 140.97 245.11) (xy 140.97 240.665)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9829fa59-a6c7-4f2f-bb8e-55392309a11a")
-	)
-	(wire
-		(pts
 			(xy 107.95 237.49) (xy 138.43 237.49)
 		)
 		(stroke
@@ -9375,7 +9359,7 @@
 	)
 	(wire
 		(pts
-			(xy 140.97 198.755) (xy 140.97 240.665)
+			(xy 140.97 198.755) (xy 140.97 245.11)
 		)
 		(stroke
 			(width 0)
@@ -10222,16 +10206,6 @@
 			(type default)
 		)
 		(uuid "fbc97ed0-af3e-490b-9382-8f32abe53aec")
-	)
-	(wire
-		(pts
-			(xy 133.35 240.665) (xy 140.97 240.665)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fc5a3289-7c90-438c-bb77-cab79682b526")
 	)
 	(wire
 		(pts
@@ -11254,17 +11228,6 @@
 			(justify right)
 		)
 		(uuid "5d1d42fe-6e19-4d57-be46-bd5730f49d9c")
-	)
-	(hierarchical_label "~{RAS}"
-		(shape bidirectional)
-		(at 133.35 240.665 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "605d6323-586d-463b-9ac5-1780283c00bd")
 	)
 	(hierarchical_label "COLOR_D0"
 		(shape bidirectional)
