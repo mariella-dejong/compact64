@@ -25,6 +25,12 @@ are made from it on the `Power Supply` sheet. The original power brick input
 is gone (#37): the power connector CN7, the 9 V AC and `+9V_UNREG`, and the
 power switch SW1, so the board has no power switch.
 
+The SID is now an 8580 on a 9 V supply (#73), which replaced the `+12V` rail.
+The VIC-II is still the 6567, whose pin 13 (VDD, through FB12 with C53, C94
+and C54) stays on the `+12V` net, and nothing supplies that net any more. The
+schematic therefore has no working VIC-II until it moves to the 8562 on 5 V
+(#74).
+
 ## Compatibility
 
 These changes make the c64-mini behave differently from an original C64.
@@ -112,7 +118,8 @@ Check them before using software or hardware that depends on them.
     100 Ohm series resistor, instead of the 6526's internal pull-ups. The
     levels stay the same: a line idles at 5 V and a pressed switch pulls it
     to about 0.05 V.
-- **Not affected:** paddles and the POT lines (U28 is unchanged), the light
+- **Not affected:** paddles and the POT lines (the 4066 that switches them,
+  now U1702, works as before), the light
   pen input of the VIC-II, cassette read and the serial bus SRQ on `~FLAG`,
   and `CNT` and `SP` on the user port.
 
@@ -144,6 +151,27 @@ Check them before using software or hardware that depends on them.
   except pins 10 and 11 (see above), and `CNT` and `SP` of CIA 1 on the user
   port.
 
+### The SID is an 8580
+
+- **Original C64:** the 250407 board has a 6581 SID (U18) with 12 V on VDD
+  and 470 pF filter capacitors.
+- **c64-mini:** the SID socket (U1701) takes the 8580 of the later C64
+  boards, with 9 V on VDD and 22 nF filter capacitors (#73), see
+  [SID and audio output](#sid-and-audio-output).
+- **Affected:**
+  - Music sounds different. The 8580's filter is cleaner and more linear,
+    it has less background noise and its combined waveforms differ. Music
+    written for the 6581, which is most classic SID music, can sound
+    noticeably different, especially where it uses the filter.
+  - Samples played by writing the volume register ($D418) are almost silent
+    on an 8580. A resistor from EXT IN to ground can bring them back; the
+    board does not have one.
+  - A 6581 must not be fitted: it would get 9 V instead of 12 V on VDD and
+    the wrong filter capacitors.
+- **Not affected:** the SID's registers, the paddles and the audio
+  connectors. Modern SID replacements usually accept 9 V on VDD; check the
+  specific product.
+
 ## Power supply
 
 The board is being converted to a single 12 V DC input (#10, #26). The rails
@@ -155,7 +183,7 @@ made from it so far are on the `Power Supply` sheet:
 | `12V_IN_SW` | Input switch (Q604, Q605), turned on by the supervisor; feeds every rail below except `+3V3` | 2.5 A | #47   |
 | `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the colour clock | 2 A       | #28   |
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
-| `+12V`     | Charge pump driven by a UCC27517 (U901), followed by an L78M12 linear regulator (U902) | about 150 mA (limit of the charge pump driver) | #36   |
+| `+9V`      | CJ78M09 linear regulator (U902) from the switched 12 V input | 500 mA (regulator) | #36, #73 |
 | `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
 | `+3V3`     | LM61440 synchronous buck converter (U1201), synchronized to the colour clock | 1 A budget (converter rated 4 A) | #44   |
 
@@ -168,9 +196,10 @@ pin, where it connects to the `+5V` power symbol.
 The `Color Clock Divider` sheet supplies the clocks for the switching parts.
 U1001 (74AHCT1G08) passes the colour clock (`PHI_COLOR`, 14.31818 MHz for
 NTSC) only once `PGOOD` is high, and U1002 (74HC4040) divides it: Q4 (/32,
-447.4 kHz) synchronizes the 5 V and 3.3 V buck converters and Q5 (/64,
-223.7 kHz) clocks the `+12V` charge pump. Because they are all locked to the
-colour clock, their interference has a fixed relation to the video timing.
+447.4 kHz) synchronizes the 5 V and 3.3 V buck converters. Q5 (/64) used to
+clock the `+12V` charge pump and is no longer used (#73). Because they are
+all locked to the colour clock, their interference has a fixed relation to
+the video timing.
 The divider runs from `CAN+5V`.
 
 `PGOOD` combines the open-drain PGOOD outputs of both buck converters (U701
@@ -190,7 +219,7 @@ switched input `12V_IN_SW`, so a single signal turns them all on or off.
 | Net         | Connected                                                                 |
 | ----------- | ------------------------------------------------------------------------- |
 | `12V_IN`    | Input stage, 3V3 buck converter U1201 with its EN pull-up R1201, the input switch |
-| `12V_IN_SW` | 5V buck converter U701 with R705, cassette buck converter U1101 with R1103, `CAN+5V` (D801 to U801), `+12V` (FB901 to the charge pump, and the pre-charge diode D903), HF module replacement (R501) |
+| `12V_IN_SW` | 5V buck converter U701 with R705, cassette buck converter U1101 with R1103, `CAN+5V` (D801 to U801), `+9V` (FB901 to U902), HF module replacement (R501) |
 
 **Circuit:**
 
@@ -243,7 +272,7 @@ the RAM and ROM controller (U1401 to U1403) are powered.
   unpowered divider U1001.
 - The sync clock reaches U1201's EN/SYNC through C1205, which blocks the DC
   on that pin from the unpowered divider U1002.
-- D903 pre-charges `VPUMP` from `12V_IN_SW`, so `+12V` stays off as well.
+- U902 runs from `12V_IN_SW`, so `+9V` stays off as well.
 - The supervisor has no connections to the legacy chips yet. Later issues
   that add them must keep these signals from feeding unpowered chips.
 - The RAM and ROM controller connects to the C64 buses. It keeps all its bus
@@ -304,67 +333,55 @@ At the lowest input voltage (about 11.2 V after the input stage) the regulator
 still gets the 2 V headroom it needs. U801's tab is ground: connect it to a
 large ground pour on both layers with vias, so it needs no heatsink.
 
-### `+12V`
+### `+9V`
 
-`+12V` feeds VDD of the VIC-II (through FB12) and the SID (through FB11), and
-the audio output buffer Q8. The `12V Stabilized Rail` sheet makes it from the
-12 V DC input:
+`+9V` feeds VDD of the SID (U1701, through FB1701) and the collector of the
+audio output buffer Q1701, see [SID and audio output](#sid-and-audio-output).
+The `9V Stabilized Rail` sheet makes it from the switched 12 V input (#73),
+and the `+9V_STABILIZED` sheet pin brings it to the `+9V` power symbol on the
+root sheet:
 
-- **Charge pump:** while U901 (UCC27517 gate driver) holds the bottom of the
-  flying capacitor C903 at ground, C903 charges from `+5V` through D901. When
-  U901 lifts it to the 12 V input, D902 passes the charge on to the reservoir
-  capacitor C904 (`VPUMP`, about 15 V). U901 runs from the 12 V input through
-  FB901 (decoupled by C901 and C902) and switches at 223.7 kHz (`PUMP_CLK`).
-- **Regulator:** U902 (L78M12) regulates `VPUMP` to 12 V. C905 decouples its
-  input, C906 and C907 its output.
-- **Pre-charge:** D903 charges `VPUMP` straight from the 12 V input. Before
-  the pump runs, `+12V` therefore already sits at about 10 V, and the first
-  pump cycles do not have to fill an empty reservoir. Once the pump runs, D903
-  is reverse biased.
+- **Input:** FB901 (100 Ohm at 100 MHz) from `12V_IN_SW` to `9V_IN`, with
+  C904 (22 uF 25 V X5R, still about 10 uF at 12 V) and C905 (1 uF).
+- **Regulator:** U902 (CJ78M09, 9 V, 500 mA, TO-252). The 78xx needs at
+  least 0.33 uF at its input and 0.1 uF at its output, and is stable with
+  ceramic capacitors.
+- **Output:** C906 (100 nF) and C907 (10 uF 25 V X5R, about 5 uF at 9 V).
+  On the SID sheet, C1707 and C1710 add 100 nF and 22 uF.
 
-The pump clock only runs once the buck converter's PGOOD is high, so `+12V`
-reaches 12 V a few ms after `+5V`. Neither the 6567 nor the 6581 datasheet
-specifies a power-up order between VDD and Vcc, and the power-on reset (U20B,
-about 0.5 s) keeps the CPU, the CIAs and the SID in reset well beyond that.
+It replaces the `+12V` rail of #36, which needed a charge pump (U901 and
+D901 to D903) because a 12 V regulator cannot run from a 12 V input. A 9 V
+regulator can, so the charge pump and its clock (`PUMP_CLK`, Q5 of the colour
+clock divider) are gone. The `+12V` net still exists for VDD of the 6567
+VIC-II (FB12, C53, C94), but has no source until #74 moves the VIC-II to 5 V.
 
-The board supports the 6581 SID only. The 8580 is not supported: it needs
-9 V on VDD instead of 12 V, and the rail has no 9 V option.
+#### `+9V` current budget
 
-#### `+12V` current budget
+| Load                         | Typical               | Maximum       | Source                                                          |
+| ---------------------------- | --------------------- | ------------- | --------------------------------------------------------------- |
+| SID 8580 (U1701), VDD        | below 25 mA           | below 40 mA   | 6581 figures (preliminary datasheet, October 1982, page 8) used as an upper bound; the 8580 draws less |
+| Q1701 (audio output buffer)  | about 4 mA            | about 5 mA    | Emitter follower into R1703 (1 kOhm), estimate                  |
+| **Total**                    | **below 30 mA**       | **below 45 mA** |                                                               |
 
-| Load                         | Typical                        | Maximum      | Source                                                                    |
-| ---------------------------- | ------------------------------ | ------------ | ------------------------------------------------------------------------- |
-| VIC-II 6567 (U19), VDD       | not specified                  | 50 mA        | 6567 preliminary datasheet, 3.3.7: IDD with the dot clock low             |
-| SID 6581 (U18), VDD          | 25 mA                          | 40 mA        | 6581 preliminary datasheet (October 1982), page 8                         |
-| Q8 (audio output buffer)     | about 5.5 mA                   | about 6 mA   | Emitter follower into R38 (1 kOhm) with its emitter at about 5.3 V        |
-| **Total**                    | **about 31 mA plus the VIC-II** | **about 96 mA** |                                                                       |
+U902 also draws about 5 mA of quiescent current from its input.
+
+#### `+9V` headroom and dissipation
+
+- **Headroom:** the CJ78M09 is specified with 2 V dropout at 350 mA, and
+  needs less at about 45 mA. The lowest input after the input stage (about
+  11.2 V) still leaves 2.2 V.
+- **Dissipation:** about 3 V x 45 mA plus 12 V x 5 mA, so below 0.2 W. A
+  TO-252 with a small copper pad (about 90 to 100 C/W) warms up by less than
+  20 C. U902's tab is ground: connect it to the ground pour.
+- **Ripple:** `12V_IN_SW` also carries the input ripple of the buck converters
+  at about 447 kHz, which a 78xx filters poorly. FB901 with C904 and C905
+  attenuates it. Listen for a whine in the audio on the prototype; if there
+  is one, a larger ferrite bead or a few Ohm in series in front of C904
+  helps.
 
 Datasheets:
-[6567 VIC-II preliminary](https://archive.org/details/mos_6567_vic_ii_preliminary),
 [6581 SID preliminary](https://archive.org/details/mos_6581_sid_preliminary_october_1982),
-[UCC27517](https://www.ti.com/lit/ds/symlink/ucc27517.pdf),
 [L78M](https://www.st.com/resource/en/datasheet/l78m.pdf).
-
-#### `+12V` headroom and dissipation
-
-Most of the pump's loss is in U901's pull-up resistance (5 Ohm typical,
-7.5 Ohm maximum), which carries about twice the load current. Estimates at
-the maximum load of 96 mA:
-
-| Condition                                         | `VPUMP`     | `+12V`                     |
-| ------------------------------------------------- | ----------- | -------------------------- |
-| 12 V input, typical driver resistance             | about 15.0 V | 12.0 V                    |
-| 11.2 V input, maximum driver resistance           | about 13.6 V | about 11.9 V (in dropout) |
-
-The L78M12 is only specified to regulate from 14.5 V input. In the worst-case
-corner it drops out, but its output stays within the 11.4 V to 12.6 V VDD
-range of the VIC-II and the SID. If the prototype shows too little headroom,
-a low-dropout regulator such as the LM2940-12 can take U902's place. A lower
-pump frequency would not help: below 223.7 kHz the capacitors add to the loss.
-
-U902 dissipates about 0.3 W to 0.35 W and U901 about 0.1 W to 0.16 W. The
-ripple on `VPUMP` is about 55 mV at full load. U902's tab is ground, like
-U801's: connect it to the ground pour, so it needs no heatsink.
 
 ### Cassette motor supply
 
@@ -746,10 +763,12 @@ see [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port).
 These parts of the original circuit stay on `250407 Sheet 1`:
 
 - **Chip select:** U15 (74LS139) still decodes `~CIA1` for $DC00 to $DCFF.
-- **Paddles:** U28 (4066) still switches the POT lines of control port 1 or 2
-  to the SID. The controller drives its control inputs, the former keyboard
-  columns `COL6` and `COL7`, now `CIA1_PA6` and `CIA1_PA7`. R301 and R302
-  (10k) pull them up to +5V, because the 4066 needs at least 3.5 V there.
+- **Paddles:** a 4066 still switches the POT lines of control port 1 or 2
+  to the SID. It moved to the SID sheet as U1702 (#73), see
+  [SID and audio output](#sid-and-audio-output). The controller drives its
+  control inputs, the former keyboard columns `COL6` and `COL7`, now
+  `CIA1_PA6` and `CIA1_PA7`. R1704 and R1705 (10k) pull them up to +5V,
+  because the 4066 needs at least 3.5 V there.
 - **RESTORE:** R41, C38, the one-shot U20A (556) and U8 (7406) still turn a
   falling edge on the former `~RESTORE` net, now `~RESTORE_NMI`, into a
   pulse on `~NMI`. The controller makes the edge instead of the RESTORE key.
@@ -789,8 +808,8 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO25 | 26 | `R/~W` | R/~W | 6510 read/write |
 | GPIO26 | 27 | `~CIA1` (sheet pin `~SELECT`) | ~CS | Chip select from U15 |
 | GPIO27 | 28 | `~RESTORE_NMI` | | RESTORE, through U20A to `~NMI` |
-| GPIO28 | 36 | `CIA1_PA6` | PA6 | Paddle select for control port 1 (U28) |
-| GPIO29 | 37 | `CIA1_PA7` | PA7 | Paddle select for control port 2 (U28) |
+| GPIO28 | 36 | `CIA1_PA6` | PA6 | Paddle select for control port 1 (U1702) |
+| GPIO29 | 37 | `CIA1_PA7` | PA7 | Paddle select for control port 2 (U1702) |
 | GPIO30 | 38 | to `JOYB3` | PA3 | Control port 2, right |
 | GPIO31 | 39 | to `JOYB2` | PA2 | Control port 2, left |
 | GPIO32 | 40 | to `JOYB1` | PA1 | Control port 2, down |
@@ -847,7 +866,8 @@ shells are on ground.
 - **Light pen:** `~LP` connects GPIO38 and the VIC-II's light pen input
   (pin 9) behind R1529. The fire button of control port 1 still triggers
   the VIC-II's light pen latch directly, as on the original board.
-- **POT lines:** pins 5 and 9 go to U28 as before, without extra protection.
+- **POT lines:** pins 5 and 9 go to the 4066 (U1702 on the SID sheet) as
+  before, without extra protection.
 - **Supply:** pin 7 of both ports gets +5V through FB1501 (100 Ohm at
   100 MHz, 800 mA), which replaces the through-hole ferrite bead FB18.
 
@@ -889,7 +909,7 @@ open drain against pull-ups to +5V, as on the 6526:
 | `~IRQ` | RP4 (3k3), R1533 (4.7k) | Shared with the VIC-II and the expansion port |
 | `CASS_RD` | R1534 (4.7k) | Cassette read and serial bus SRQ, driven from outside |
 | `CNT1`, `SP1` | R1532, R1531 (4.7k) | User port lines, also driven from outside |
-| `CIA1_PA6`, `CIA1_PA7` | R301, R302 (10k) | U28 (4066) needs at least 3.5 V to switch on |
+| `CIA1_PA6`, `CIA1_PA7` | R1704, R1705 (10k) on the SID sheet | U1702 (4066) needs at least 3.5 V to switch on |
 | `~RESTORE_NMI` | R41 (1M) | Only the falling edge matters |
 | Joystick lines and `~LP` | R1511 to R1520 (10k) | Switches and devices pull them to ground |
 
@@ -1171,6 +1191,91 @@ circuit, in addition to the bus and 6526 model requirements of CIA 1 (see
   erratum E9). The bus pins are in the PIO window from GPIO0; port B and the
   serial bus pins are in the window from GPIO16.
 
+## SID and audio output
+
+The `SID and internal audio output` sheet holds the SID, its audio output
+stage and the paddle switch (#73). It replaces the SID circuit of
+`250407 Sheet 2` and the 4066 of `250407 Sheet 1`, with the SID changed from
+the 6581 to the 8580 and the other parts changed to SMD.
+
+| Removed | Original part | Now |
+| ------- | ------------- | --- |
+| U18 | 6581 SID | U1701 (8580) |
+| C10, C11 | 470 pF filter capacitors | C1704, C1705 (22 nF C0G) |
+| FB11, C51 | VDD filter (`+12V`) | FB1701, C1701 (`+9V`) |
+| FB10, C50 | VCC filter | FB1702, C1702 |
+| C52, C62 | `+12V` decoupling | C1707, C1710 (`+9V`) |
+| C49, C34 | `+5V` decoupling | C1708, C1711 |
+| R6 | Load on AUDIO | R1701 |
+| FB13, R7, C37 | Feed to the audio buffer | FB1703, R1702, C1709 |
+| Q8, R38, C205 | Audio buffer (2SC1815) | Q1701 (MMBT3904), R1703, C1712 |
+| C12, C13 | Audio coupling capacitors | C1713, C1714 |
+| C48, C93 | POTX and POTY timing capacitors | C1703, C1706 |
+| U28, C47 | Paddle switch 4066 and its decoupling capacitor | U1702 (CD4066B), C1715 |
+| R301, R302 | Pull-ups on `CIA1_PA6`, `CIA1_PA7` | R1704, R1705 |
+
+U15 (74LS139) on `250407 Sheet 2` still decodes `~SID` for $D400 to $D7FF; it
+reaches U1701 through the `~SELECT` sheet pin.
+
+### Circuit
+
+- **SID:** U1701, an 8580 in a DIP-28 socket, on the bus through `D[0..7]`,
+  `A[0..15]` (A0 to A4), `R/~W`, `PHI2`, `~RESET` and `~SELECT`.
+- **Supplies:** VDD (pin 28) from `+9V` through FB1701 with C1701, VCC
+  (pin 25) from `+5V` through FB1702 with C1702. C1707 (100 nF) and C1710
+  (22 uF) decouple `+9V` on this sheet, C1708 (100 nF) and C1711 (10 uF)
+  `+5V`. See [`+9V`](#9v) for the regulator.
+- **Filter capacitors:** C1704 and C1705, 22 nF C0G (the 8580 value). C0G
+  keeps the filter's cutoff frequency independent of the signal voltage and
+  temperature; X7R would distort and drift.
+- **Audio output:** AUDIO (pin 27) has R1701 (1k) to ground as its load. FB1703
+  and R1702 (10k) feed the emitter follower Q1701 (MMBT3904, collector on
+  `+9V`), with C1709 (1 nF) forming a low-pass filter at about 16 kHz with
+  R1702. R1703 (1k) is the emitter resistor and C1712 (220 pF) shunts RF to
+  ground. C1714 (22 uF) blocks the DC level of the emitter, so `AUDIO_OUT`
+  carries only the audio. With a 10k amplifier input, the low-frequency limit
+  is below 2 Hz.
+- **Audio input:** C1713 (22 uF) couples `AUDIO_IN` from the red RCA jack to
+  EXT IN (pin 26), so the SID's internal bias on that pin is not disturbed.
+  There is no resistor from EXT IN to ground, so samples played through the
+  volume register stay quiet, see [The SID is an 8580](#the-sid-is-an-8580).
+- **Paddles:** U1702 (CD4066B) connects the POT lines of control port 1
+  (`POTAX`, `POTAY`, from J1503) or control port 2 (`POTBX`, `POTBY`, from
+  J1502) to POTX and POTY (pins 24 and 23). `CIA1_PA6` and `CIA1_PA7` from the
+  CIA 1 controller select the port, with R1704 and R1705 (10k) as pull-ups to
+  +5V, because the 4066B needs at least 3.5 V on its control inputs. C1703 and
+  C1706 (1.8 nF C0G) are the timing capacitors the SID measures; C0G keeps the
+  paddle readings stable. C1715 decouples U1702.
+
+### Parts
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| C1701, C1707 | 100 nF 50 V X7R | C307331 | 0402 |
+| C1702, C1708, C1715 | 100 nF 16 V X7R | C1525 | 0402 |
+| C1703, C1706 | 1.8 nF 50 V C0G | C385028 | 0402 |
+| C1704, C1705 | 22 nF 50 V C0G | C77069 | 0805 |
+| C1709 | 1 nF 50 V C0G | C76947 | 0402 |
+| C1710, C1713, C1714 | 22 uF 25 V X5R | C45783 | 0805 |
+| C1711 | 10 uF 25 V X5R | C96446 | 0603 |
+| C1712 | 220 pF 50 V X7R | C1530 | 0402 |
+| R1701, R1703 | 1k 1 % | C11702 | 0402 |
+| R1702, R1704, R1705 | 10k 1 % | C25744 | 0402 |
+| FB1701 to FB1703 | 600 Ohm at 100 MHz, 200 mA | C1002 | 0603 |
+| Q1701 | MMBT3904 | C20526 | SOT-23 |
+| U1702 | CD4066BM96 | C54755 | SOIC-14 |
+| U1701 | 8580 in a DIP-28 socket | C2874016 (socket) | DIP-28 |
+
+- **Voltage ratings:** the capacitors on `+9V` are rated 25 V or 50 V, so
+  they keep most of their capacitance at 9 V. The 22 uF coupling capacitors
+  still give about 10 uF at the DC level of a few volts they see.
+- **Ceramic coupling capacitors:** C1713 and C1714 replace electrolytic
+  capacitors. With 22 uF only a few percent of the signal appears across
+  them, even at 50 Hz, so the voltage dependence of X5R adds far less
+  distortion than the SID itself has.
+- **R1701:** carries a few volts DC, about 20 to 25 mW, within the 62.5 mW
+  of an 0402 resistor.
+
 ## Audio and video connectors
 
 The audio and video connectors are on the `HF Module Replacement and AV
@@ -1184,7 +1289,7 @@ They replace the original 8-pin DIN A/V connector CN5.
 | J501      | Pin 4                 | Chroma (`CHROMA_OUT`)                          |
 | J501      | Shield (`SH`)         | Ground                                         |
 | J502      | Red jack (pin 1)      | Audio in to the SID `EXT IN` (`AUDIO_IN`)      |
-| J502      | White jack (pin 3)    | Audio out from the SID buffer Q8 (`AUDIO_OUT`) |
+| J502      | White jack (pin 3)    | Audio out from the SID buffer Q1701 (`AUDIO_OUT`) |
 | J502      | Yellow jack (pin 5)   | Composite video (`COMP_OUT`)                   |
 | J502      | Shells (pins 2, 4, 6) | Ground                                         |
 
@@ -1196,12 +1301,13 @@ They replace the original 8-pin DIN A/V connector CN5.
 - **Audio input protection:** the red jack is the only input on these
   connectors. A bidirectional 5 V TVS diode (D502, SMF5.0CA) to ground at the
   jack and a 150 Ohm series resistor (R513) in front of the coupling
-  capacitor C12 protect the SID against ESD. There is no DC on the jack side
-  of C12, so a line-level signal stays well below the 5 V standoff voltage
+  capacitor C1713 protect the SID against ESD. There is no DC on the jack side
+  of C1713, so a line-level signal stays well below the 5 V standoff voltage
   of D502.
-- **Sheet pins:** `AUDIO_IN` and `AUDIO_OUT` come from `250407 Sheet 2`
-  through the `250407 Design` sheet. `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT`
-  now stay on the `HF Module Replacement and AV connectors` sheet.
+- **Sheet pins:** `AUDIO_IN` and `AUDIO_OUT` connect to the
+  `SID and internal audio output` sheet through the root sheet (#73).
+  `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` stay on the `HF Module Replacement
+  and AV connectors` sheet.
 - **Signal levels:** the video output circuit is unchanged from the HF module
   replacement (#8), see [HF module replacement](#hf-module-replacement).
 
@@ -1324,6 +1430,10 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-30 | Removed the SID circuit from `250407 Sheet 2`: U18 (6581), C10, C11, C12, C13, C34, C37, C48, C49, C50, C51, C52, C62, C93, C205, R6, R7, R38, Q8, FB10, FB11 and FB13, and the paddle switch U28 with C47, R301 and R302 from `250407 Sheet 1`. Removed the global labels `POTX` and `POTY` between both sheets, and the hierarchical labels and sheet pins `POTAX`, `POTAY`, `POTBX`, `POTBY`, `CIA1_PA6`, `CIA1_PA7`, `AUDIO_IN` and `AUDIO_OUT` on the `250407` sheets, `250407 Design` and the root sheet. Added `~SID` as a hierarchical label on `250407 Sheet 2` and as a sheet pin on `250407 Design` and the root sheet |
+| 2026-10-30 | Changed the SID on the `SID and internal audio output` sheet from the 6581 to the 8580 (U1701): VDD and the collector of the audio buffer on `+9V`, filter capacitors C1704 and C1705 22 nF C0G (C77069). Changed its other parts to SMD: C1701, C1702, C1707, C1708 and C1715 100 nF (C307331 on `+9V`, C1525 on `+5V`), C1703 and C1706 1.8 nF C0G, C1709 1 nF C0G, C1712 220 pF, the electrolytic capacitors C1710, C1713 and C1714 to 22 uF and C1711 to 10 uF ceramic, R1701 to R1703 to 0402, FB1701 to FB1703 to 600 Ohm 0603 ferrite beads (`Device:FerriteBead_Small`), Q1701 to an MMBT3904 (SOT-23) and U1702 to a CD4066BM96 (SOIC-14) |
+| 2026-10-30 | Replaced the `12V Stabilized Rail` sub-sheet of the `Power Supply` sheet with a `9V Stabilized Rail` sub-sheet: removed the charge pump (U901, D901 to D903, C901 to C903) and its clock input `PUMP_CLK`, changed U902 from an L78M12 to a CJ78M09 (C9071) fed from `12V_IN_SW` through FB901, with C904 (22 uF) and C905 (1 uF) at its input on the net `9V_IN` (formerly `VPUMP`) and C906 and C907 at its output. Replaced the `+12V_STABILIZED` sheet pin with `+9V_STABILIZED` and the root sheet's `+12V` power symbol with `+9V`. Removed the `Q5` sheet pin of the `Color Clock Divider` sheet; U1002 pin 2 is now unconnected. The `+12V` net (VIC-II VDD through FB12, C53, C94) has no source until #74 |
+| 2026-10-30 | Added a `SID and internal audio output` sheet to the root sheet with copies of the SID circuit (U1701, C1701 to C1714, R1701 to R1703, FB1701 to FB1703, Q1701) and of the paddle switch (U1702, C1715, R1704, R1705), connected through new sheet pins `D[0..7]`, `A[0..15]`, `R/~W`, `PHI2`, `~RESET`, `~SELECT`, `POTAX`, `POTAY`, `POTBX`, `POTBY`, `CIA1_PA6`, `CIA1_PA7`, `AUDIO_IN` and `AUDIO_OUT`. Annotated its parts from 1700 |
 | 2026-10-30 | Changed the LCSC part number of the expansion port CN6 on `250407 Sheet 2` from C5173305 (WingTAT ED44BGFBK, vertical) to C5173343 (WingTAT ER44BGFBK, right angle), so that cartridges plug in parallel to the board as on the original C64. Both are 2 x 22 card-edge slots at 2.54 mm pitch for 1.57 mm cards and fit the existing `EXPANSION_PORT` footprint; the PCB footprint's LCSC field is not updated, as for the other schematic changes |
 | 2026-10-30 | Removed CIA 2 (U2, 6526) and its decoupling capacitor C3, the serial port CN4 with FB7 to FB9, the pull-ups R28 to R30 and the clamp diodes CR100 to CR103, the user port CN2 with C96, the resistor array RP3, and gates A, E and F of U8 (the serial bus drivers) from `250407 Sheet 1`. Removed the hierarchical labels `CIA1_CNT`, `CIA1_SP`, `~VA14` and `~VA15` from `250407 Sheet 1` and `CIA1_CNT` and `CIA1_SP` from `250407 Design`, with their sheet pins. Added `~NMI` as a hierarchical label and sheet pin on `250407 Sheet 1`, `250407 Design` and the root sheet. Replaced the global label `~CIA2` between `250407 Sheet 1` and `250407 Sheet 2` with a hierarchical label on `250407 Sheet 2` and a sheet pin on `250407 Design` and the root sheet. Added pull-ups R1531 (`SP1`), R1532 (`CNT1`), R1533 (`~IRQ`) and R1534 (`CASS_RD`), 4.7k to +5V, to the `CIA1, Keyboard and Joysticks` sheet in place of RP3, and connected its `CNT` and `SP` sheet pins to the new `CIA1_CNT` and `CIA1_SP` sheet pins of the `CIA2, Serial Port and User Port` sheet |
 | 2026-10-30 | Added the user port J1602 (original pinout, pins 10 and 11 not connected) to the `CIA2, Serial Port and User Port` sheet. Every signal line has a TVS at the connector (TPD4E05U06DQAR arrays U1603 to U1606, H5VL10BH D1601 for `~RESET`), a 100 Ohm series resistor (R1631 to R1645) and a 4.7k pull-up to +5V (R1615 to R1626, R1628) at the GPIO, except ATN and `~RESET`, which have no series resistor. PB0 to PB7 go to GPIO27 to GPIO34, `CNT`, `SP`, `~PC`, `PA2` and `~FLAG` to GPIO12 to GPIO15 and GPIO23, `CNT1` and `SP1` to U1501, and pin 9 to the serial bus ATN node. C1621 decouples +5V. Added R1627 (4.7k) on `~NMI`, and R1629 and R1630 (4.7k) on `~VA14` and `~VA15`, which go to GPIO16 and GPIO17 |
