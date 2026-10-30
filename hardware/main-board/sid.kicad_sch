@@ -349,148 +349,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "250407_-rescue:FERRITE_BEAD-KU-schematics-library"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "FB"
-				(at -1.27 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "FERRITE_BEAD-KU-schematics-library"
-				(at 0 -1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 1.27 0.635 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "FERRITE_BEAD-KU-schematics-library_0_1"
-				(rectangle
-					(start -2.54 0.889)
-					(end 2.54 -0.762)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -5.08 0)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 5.08 0)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "FERRITE_BEAD-KU-schematics-library_1_1"
-				(pin input line
-					(at -5.08 0 0)
-					(length 0)
-					(hide yes)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 5.08 0 180)
-					(length 0)
-					(hide yes)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "250407_-rescue:SID-KU-schematics-library"
 			(pin_names
 				(offset 1.016)
@@ -1074,173 +932,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:CP_Small"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "C"
-				(at 0.254 1.778 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "Device_CP_Small"
-				(at 0.254 -2.032 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "CP_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "CP_Small_0_1"
-				(rectangle
-					(start -1.524 0.6858)
-					(end 1.524 0.3048)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.524 -0.3048)
-					(end 1.524 -0.6858)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 1.524) (xy -0.762 1.524)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 1.27) (xy -1.016 1.778)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "CP_Small_1_1"
-				(pin passive line
-					(at 0 2.54 270)
-					(length 1.8542)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 1.8542)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:C_Small"
 			(pin_numbers
 				(hide yes)
@@ -1379,6 +1070,173 @@
 				(pin passive line
 					(at 0 -2.54 90)
 					(length 2.032)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "Device:FerriteBead_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "FB"
+				(at 1.905 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "FerriteBead_Small"
+				(at 1.905 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at -1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Ferrite bead, small symbol"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "L ferrite bead inductor filter"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "Inductor_* L_* *Ferrite*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "FerriteBead_Small_0_1"
+				(polyline
+					(pts
+						(xy -1.8288 0.2794) (xy -1.1176 1.4986) (xy 1.8288 -0.2032) (xy 1.1176 -1.4224) (xy -1.8288 0.2794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.889) (xy 0 1.2954)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -1.27) (xy 0 -0.7874)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "FerriteBead_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 1.27)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 1.27)
 					(name ""
 						(effects
 							(font
@@ -1537,6 +1395,147 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:R_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.016 1.016)
+					)
+				)
+			)
+			(property "Value" "R_Small"
+				(at 1.778 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Resistor, small symbol"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "R resistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_Small_0_1"
+				(rectangle
+					(start -0.762 1.778)
+					(end 0.762 -1.778)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 0.762)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 0.762)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "KU-schematics-library:GND_SMALL"
 			(power global)
 			(pin_names
@@ -1661,150 +1660,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "KU-schematics-library:R_US_CUSTOM"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "R"
-				(at -2.54 1.27 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "R_US_CUSTOM"
-				(at 3.81 -7.62 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "R_US_CUSTOM_0_1"
-				(polyline
-					(pts
-						(xy 0 -2.54) (xy 0 -2.159)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "R_US_CUSTOM_1_1"
-				(polyline
-					(pts
-						(xy 0 2.032) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.032) (xy 0.635 1.651) (xy -0.635 1.016) (xy 0.635 0.381) (xy -0.635 -0.254) (xy 0.635 -0.889)
-						(xy -0.635 -1.524) (xy 0 -1.905) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at 0 2.54 270)
-					(length 0)
-					(hide yes)
-					(name ""
-						(effects
-							(font
-								(size 0.9906 0.9906)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 0.9906 0.9906)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 90)
-					(length 0)
-					(hide yes)
-					(name ""
-						(effects
-							(font
-								(size 0.9906 0.9906)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 0.9906 0.9906)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "Transistor_BJT:2SC1815"
+		(symbol "Transistor_BJT:MMBT3904"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -1825,7 +1681,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "2SC1815"
+			(property "Value" "MMBT3904"
 				(at 5.08 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1836,7 +1692,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 				(at 5.08 -1.905 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1849,7 +1705,7 @@
 					(justify left)
 				)
 			)
-			(property "Datasheet" "https://media.digikey.com/pdf/Data%20Sheets/Toshiba%20PDFs/2SC1815.pdf"
+			(property "Datasheet" "https://www.onsemi.com/pdf/datasheet/pzt3904-d.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1861,7 +1717,7 @@
 					(justify left)
 				)
 			)
-			(property "Description" "0.15A Ic, 50V Vce, Low Noise Audio NPN Transistor, TO-92"
+			(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1872,7 +1728,7 @@
 					)
 				)
 			)
-			(property "ki_keywords" "Low Noise Audio NPN Transistor"
+			(property "Sim.Device" "NPN"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1883,7 +1739,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "TO?92*"
+			(property "Sim.Pins" "1=B 2=E 3=C"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1894,7 +1750,29 @@
 					)
 				)
 			)
-			(symbol "2SC1815_0_1"
+			(property "ki_keywords" "NPN Transistor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "MMBT3904_0_1"
 				(polyline
 					(pts
 						(xy -2.54 0) (xy 0.635 0)
@@ -1931,7 +1809,7 @@
 					)
 				)
 			)
-			(symbol "2SC1815_1_1"
+			(symbol "MMBT3904_1_1"
 				(polyline
 					(pts
 						(xy 0.635 0.635) (xy 2.54 2.54)
@@ -1968,10 +1846,10 @@
 						(type outline)
 					)
 				)
-				(pin passive line
-					(at 2.54 -5.08 90)
+				(pin input line
+					(at -5.08 0 0)
 					(length 2.54)
-					(name "E"
+					(name "B"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1987,9 +1865,9 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 5.08 270)
+					(at 2.54 -5.08 90)
 					(length 2.54)
-					(name "C"
+					(name "E"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2004,10 +1882,10 @@
 						)
 					)
 				)
-				(pin input line
-					(at -5.08 0 0)
+				(pin passive line
+					(at 2.54 5.08 270)
 					(length 2.54)
-					(name "B"
+					(name "C"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2304,50 +2182,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "25V"
-		(exclude_from_sim no)
-		(at 170.6626 71.5518 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "36b1acb3-f84a-413b-b987-edaf960b5231")
-	)
-	(text "25V"
-		(exclude_from_sim no)
-		(at 174.625 119.38 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "42cfca1f-58ca-42e7-80cc-73fe8e7062bf")
-	)
-	(text "25V"
-		(exclude_from_sim no)
-		(at 179.5018 94.0308 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e304e912-b8ca-4854-b0ef-edd48e9f08f4")
-	)
-	(text "25V"
-		(exclude_from_sim no)
-		(at 169.545 63.1952 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "e9571a9a-71fd-41b5-b263-d55842b77c12")
-	)
 	(junction
 		(at 149.225 137.16)
 		(diameter 0)
@@ -2383,12 +2217,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2184ad0e-20ed-4fbe-acab-aae5ff4e64ea")
-	)
-	(junction
-		(at 168.275 55.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "236544d7-8a21-49c6-81b4-be6edc692757")
 	)
 	(junction
 		(at 155.575 109.22)
@@ -2427,28 +2255,22 @@
 		(uuid "70edb70d-c0d3-4a11-a7f6-e00c79f99432")
 	)
 	(junction
-		(at 141.605 140.97)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "7637e253-f57e-459c-b0c1-cac602558084")
-	)
-	(junction
 		(at 139.065 170.18)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7bd1cfbd-07ea-4472-bfaa-69ebdca56978")
 	)
 	(junction
-		(at 146.685 55.88)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "90cc4a7e-c214-48d6-8536-ee01c1b549d2")
-	)
-	(junction
 		(at 159.385 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "93e9aa3a-0c85-4ec8-aae4-eb33d358a0cf")
+		(uuid "a3dfe815-a42c-4ed0-a7e7-1676e17227d2")
+	)
+	(junction
+		(at 141.605 129.54)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a771197f-05ad-4641-8514-038276979dfa")
 	)
 	(junction
 		(at 141.605 160.02)
@@ -2461,6 +2283,18 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e4832760-5f31-495b-b1c2-c095f4e2a52c")
+	)
+	(junction
+		(at 146.685 55.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f447a59a-23c6-43fb-8227-b1082eef0332")
+	)
+	(junction
+		(at 168.275 55.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fae3012f-14bf-482e-973e-44331c2b772d")
 	)
 	(bus_entry
 		(at 112.395 58.42)
@@ -2621,7 +2455,7 @@
 	)
 	(wire
 		(pts
-			(xy 146.685 81.28) (xy 147.955 81.28)
+			(xy 146.685 81.28) (xy 150.495 81.28)
 		)
 		(stroke
 			(width 0)
@@ -2681,6 +2515,16 @@
 	)
 	(wire
 		(pts
+			(xy 141.605 129.54) (xy 141.605 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22f86326-21e9-48c1-a015-d5e559488ff3")
+	)
+	(wire
+		(pts
 			(xy 144.145 137.16) (xy 149.225 137.16)
 		)
 		(stroke
@@ -2718,16 +2562,6 @@
 			(type default)
 		)
 		(uuid "36de9887-43cb-46c7-a85f-f40bbab99bc1")
-	)
-	(wire
-		(pts
-			(xy 159.385 55.88) (xy 158.115 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3ae4922b-f843-477c-b291-daeaee912874")
 	)
 	(wire
 		(pts
@@ -2851,6 +2685,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 55.88) (xy 159.385 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5bc9cbf0-06b8-4543-815f-ccb9b1c0e6c7")
+	)
+	(wire
+		(pts
 			(xy 139.065 170.18) (xy 154.94 170.18)
 		)
 		(stroke
@@ -2878,16 +2722,6 @@
 			(type default)
 		)
 		(uuid "621bc9c7-d9f6-474e-98d2-d349ac18f827")
-	)
-	(wire
-		(pts
-			(xy 141.605 142.24) (xy 141.605 140.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6225cd3b-840e-4aca-ab8b-7b76fc9ddddd")
 	)
 	(wire
 		(pts
@@ -2931,7 +2765,7 @@
 	)
 	(wire
 		(pts
-			(xy 141.605 140.97) (xy 137.795 140.97)
+			(xy 141.605 129.54) (xy 135.89 129.54)
 		)
 		(stroke
 			(width 0)
@@ -3061,6 +2895,16 @@
 	)
 	(wire
 		(pts
+			(xy 155.575 66.04) (xy 159.385 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8993ddc3-fbc9-4942-a24f-b6b4e1050fa2")
+	)
+	(wire
+		(pts
 			(xy 139.065 170.18) (xy 139.065 175.26)
 		)
 		(stroke
@@ -3091,7 +2935,7 @@
 	)
 	(wire
 		(pts
-			(xy 146.685 66.04) (xy 147.955 66.04)
+			(xy 146.685 66.04) (xy 150.495 66.04)
 		)
 		(stroke
 			(width 0)
@@ -3181,6 +3025,26 @@
 	)
 	(wire
 		(pts
+			(xy 168.275 55.88) (xy 175.895 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a5c8e0b5-3312-47d9-9be9-56c4a3f3526d")
+	)
+	(wire
+		(pts
+			(xy 155.575 81.28) (xy 158.115 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a6326b7b-9859-4e1d-b119-77dcd52a3700")
+	)
+	(wire
+		(pts
 			(xy 139.065 157.48) (xy 139.065 160.02)
 		)
 		(stroke
@@ -3231,7 +3095,7 @@
 	)
 	(wire
 		(pts
-			(xy 146.685 55.88) (xy 147.955 55.88)
+			(xy 146.685 55.88) (xy 151.13 55.88)
 		)
 		(stroke
 			(width 0)
@@ -3381,16 +3245,6 @@
 	)
 	(wire
 		(pts
-			(xy 159.385 66.04) (xy 158.115 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cea277d9-1f6b-4805-9d60-483461652e10")
-	)
-	(wire
-		(pts
 			(xy 151.765 142.24) (xy 151.765 140.97)
 		)
 		(stroke
@@ -3468,6 +3322,16 @@
 			(type default)
 		)
 		(uuid "de2a230b-48a9-4f6e-a109-278ea7fe6773")
+	)
+	(wire
+		(pts
+			(xy 141.605 128.905) (xy 141.605 129.54)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e346f24d-7a87-4387-ae5a-00a35c652db0")
 	)
 	(wire
 		(pts
@@ -3588,16 +3452,6 @@
 			(type default)
 		)
 		(uuid "fcbf5ba3-ee9b-47c8-ab25-8be79765f5cf")
-	)
-	(wire
-		(pts
-			(xy 168.275 55.88) (xy 175.895 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fd9a057a-9900-4fd1-b3c9-182882d43b8b")
 	)
 	(label "D3"
 		(at 116.205 66.04 0)
@@ -3915,7 +3769,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 141.605 140.97 0)
+		(at 141.605 128.905 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -3925,7 +3779,7 @@
 		(dnp no)
 		(uuid "09271224-b3dd-4b24-8e0c-6fa536a934f4")
 		(property "Reference" "#PWR0110"
-			(at 141.605 144.78 0)
+			(at 141.605 132.715 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3936,7 +3790,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 139.6492 137.0076 0)
+			(at 139.6492 124.9426 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3947,7 +3801,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 141.605 140.97 0)
+			(at 141.605 128.905 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3958,7 +3812,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 141.605 140.97 0)
+			(at 141.605 128.905 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3969,7 +3823,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 141.605 140.97 0)
+			(at 141.605 128.905 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3992,7 +3846,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 135.255 140.97 270)
+		(at 135.89 132.08 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4002,7 +3856,7 @@
 		(dnp no)
 		(uuid "23052b26-9b54-4410-86ba-bf5106f4b94a")
 		(property "Reference" "C1715"
-			(at 136.9314 137.0584 90)
+			(at 129.794 131.064 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4011,8 +3865,8 @@
 				)
 			)
 		)
-		(property "Value" ".1"
-			(at 137.6934 138.8364 90)
+		(property "Value" "100nF"
+			(at 130.556 132.842 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4021,8 +3875,8 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
-			(at 135.255 140.97 0)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 135.89 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4033,7 +3887,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 135.255 140.97 0)
+			(at 135.89 132.08 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4044,7 +3898,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 135.255 140.97 0)
+			(at 135.89 132.08 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4053,8 +3907,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C84772"
-			(at 135.255 140.97 270)
+		(property "LCSC Part #" "C1525"
+			(at 135.89 132.08 270)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4157,8 +4011,8 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:FERRITE_BEAD-KU-schematics-library")
-		(at 153.035 66.04 0)
+		(lib_id "Device:FerriteBead_Small")
+		(at 153.035 66.04 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4168,7 +4022,7 @@
 		(dnp no)
 		(uuid "2a6152ef-aeb6-483f-8047-9bc7a81088ea")
 		(property "Reference" "FB1702"
-			(at 153.035 63.5 0)
+			(at 153.162 63.246 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4177,8 +4031,8 @@
 				)
 			)
 		)
-		(property "Value" "FERRITE_BEAD"
-			(at 153.035 67.31 0)
+		(property "Value" "600R@100MHz"
+			(at 154.305 66.04 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4188,8 +4042,8 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:FERRITE_BEAD_TH_P12.7mm"
-			(at 154.305 65.405 0)
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
+			(at 153.035 67.818 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4210,8 +4064,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Ferrite bead, small symbol"
 			(at 153.035 66.04 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4220,8 +4075,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C192456"
-			(at 153.035 66.04 0)
+		(property "LCSC Part #" "C1002"
+			(at 153.035 66.04 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4501,7 +4356,7 @@
 		(dnp no)
 		(uuid "3d80e86e-2e8a-415e-a3b4-bcdfb36ec08b")
 		(property "Reference" "C1707"
-			(at 163.3728 58.3946 0)
+			(at 161.29 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4510,8 +4365,8 @@
 				)
 			)
 		)
-		(property "Value" ".1"
-			(at 163.322 60.2488 0)
+		(property "Value" "100nF"
+			(at 161.2392 53.9242 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4520,7 +4375,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 159.385 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -4552,7 +4407,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C84772"
+		(property "LCSC Part #" "C307331"
 			(at 159.385 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -4732,7 +4587,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:CP_Small")
+		(lib_id "Device:C_Small")
 		(at 168.275 68.58 0)
 		(unit 1)
 		(body_style 1)
@@ -4743,7 +4598,7 @@
 		(dnp no)
 		(uuid "4bd17426-f604-4dc0-b4b5-93cba3aec05e")
 		(property "Reference" "C1711"
-			(at 170.3578 67.3608 0)
+			(at 170.434 67.818 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4754,7 +4609,7 @@
 			)
 		)
 		(property "Value" "10uF"
-			(at 170.4848 68.9102 0)
+			(at 170.561 69.3674 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4764,7 +4619,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_ELYT_RADIAL_P5.08mm_SMALL_RING"
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 168.275 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -4786,8 +4641,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 168.275 68.58 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -4796,7 +4652,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2803550"
+		(property "LCSC Part #" "C96446"
 			(at 168.275 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -4901,7 +4757,7 @@
 	)
 	(symbol
 		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 132.715 140.97 270)
+		(at 135.89 134.62 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -4911,7 +4767,7 @@
 		(dnp no)
 		(uuid "4f7c2d17-f77f-4316-a21d-8f9145496a89")
 		(property "Reference" "#U0185"
-			(at 132.715 140.97 0)
+			(at 135.89 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4922,7 +4778,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 132.715 140.97 0)
+			(at 135.89 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4933,7 +4789,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 132.715 140.97 0)
+			(at 135.89 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4944,7 +4800,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 132.715 140.97 0)
+			(at 135.89 134.62 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4955,7 +4811,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 132.715 140.97 0)
+			(at 135.89 134.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5131,8 +4987,8 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:FERRITE_BEAD-KU-schematics-library")
-		(at 153.035 55.88 0)
+		(lib_id "Device:FerriteBead_Small")
+		(at 153.67 55.88 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5142,7 +4998,7 @@
 		(dnp no)
 		(uuid "5adafb5d-7380-4df0-82e7-42f4b448f955")
 		(property "Reference" "FB1701"
-			(at 153.035 53.34 0)
+			(at 154.178 52.832 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5151,8 +5007,8 @@
 				)
 			)
 		)
-		(property "Value" "FERRITE_BEAD"
-			(at 153.035 57.15 0)
+		(property "Value" "600R@100MHz"
+			(at 154.94 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5162,8 +5018,8 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:FERRITE_BEAD_TH_P12.7mm"
-			(at 154.305 55.245 0)
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
+			(at 153.67 57.658 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5174,7 +5030,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 153.035 55.88 0)
+			(at 153.67 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5184,8 +5040,9 @@
 				)
 			)
 		)
-		(property "Description" ""
-			(at 153.035 55.88 0)
+		(property "Description" "Ferrite bead, small symbol"
+			(at 153.67 55.88 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5194,8 +5051,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C192456"
-			(at 153.035 55.88 0)
+		(property "LCSC Part #" "C1002"
+			(at 153.67 55.88 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5221,7 +5078,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
+		(lib_id "Device:R_Small")
 		(at 146.685 85.09 180)
 		(unit 1)
 		(body_style 1)
@@ -5232,7 +5089,7 @@
 		(dnp no)
 		(uuid "7d361080-8100-4e0f-81fe-3a6dd5906fc7")
 		(property "Reference" "R1701"
-			(at 150.495 83.82 0)
+			(at 153.8986 85.0138 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5242,8 +5099,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1K"
-			(at 150.5204 85.6742 0)
+		(property "Value" "1k"
+			(at 149.86 86.868 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5253,7 +5110,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 146.685 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -5275,8 +5132,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small symbol"
 			(at 146.685 85.09 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5285,8 +5143,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C57435"
-			(at 146.685 85.09 180)
+		(property "LCSC Part #" "C11702"
+			(at 146.685 85.09 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5342,7 +5200,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 155.575 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -5374,7 +5232,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C1624070"
+		(property "LCSC Part #" "C385028"
 			(at 155.575 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -5431,7 +5289,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 168.275 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -5463,7 +5321,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C94714"
+		(property "LCSC Part #" "C1530"
 			(at 168.275 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -5735,7 +5593,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:2SC1815")
+		(lib_id "Transistor_BJT:MMBT3904")
 		(at 169.545 81.28 0)
 		(unit 1)
 		(body_style 1)
@@ -5756,7 +5614,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "2SC1815"
+		(property "Value" "MMBT3904"
 			(at 174.625 82.55 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5767,8 +5625,21 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:Q_NPN_ECB"
-			(at 174.625 78.74 0)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 174.625 83.185 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.onsemi.com/pdf/datasheet/pzt3904-d.pdf"
+			(at 169.545 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5776,9 +5647,10 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, SOT-23"
 			(at 169.545 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -5789,8 +5661,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Sim.Device" "NPN"
 			(at 169.545 81.28 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5799,7 +5672,18 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C73309"
+		(property "Sim.Pins" "1=B 2=E 3=C"
+			(at 169.545 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C20526"
 			(at 169.545 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -5829,7 +5713,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:CP_Small")
+		(lib_id "Device:C_Small")
 		(at 174.625 111.76 90)
 		(unit 1)
 		(body_style 1)
@@ -5850,7 +5734,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
+		(property "Value" "22uF"
 			(at 178.689 116.586 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5861,7 +5745,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_ELYT_RADIAL_P5.08mm_SMALL_RING"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 174.625 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -5883,8 +5767,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 174.625 111.76 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5893,7 +5778,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2803550"
+		(property "LCSC Part #" "C45783"
 			(at 174.625 111.76 90)
 			(hide yes)
 			(show_name no)
@@ -5950,7 +5835,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 147.955 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -5982,7 +5867,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C1624070"
+		(property "LCSC Part #" "C385028"
 			(at 147.955 115.57 0)
 			(hide yes)
 			(show_name no)
@@ -6009,7 +5894,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
+		(lib_id "Device:R_Small")
 		(at 160.655 81.28 270)
 		(unit 1)
 		(body_style 1)
@@ -6030,7 +5915,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10K"
+		(property "Value" "10k"
 			(at 158.8516 79.0956 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6041,7 +5926,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 160.655 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -6063,8 +5948,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small symbol"
 			(at 160.655 81.28 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6073,8 +5959,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C57436"
-			(at 160.655 81.28 270)
+		(property "LCSC Part #" "C25744"
+			(at 160.655 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6421,8 +6307,8 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:FERRITE_BEAD-KU-schematics-library")
-		(at 153.035 81.28 0)
+		(lib_id "Device:FerriteBead_Small")
+		(at 153.035 81.28 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6432,7 +6318,7 @@
 		(dnp no)
 		(uuid "b64341ec-492f-49cf-bad3-7672833911e8")
 		(property "Reference" "FB1703"
-			(at 153.035 78.74 0)
+			(at 152.654 78.486 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6441,8 +6327,8 @@
 				)
 			)
 		)
-		(property "Value" "FERRITE_BEAD"
-			(at 153.035 82.55 0)
+		(property "Value" "600R@100MHz"
+			(at 154.305 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6452,8 +6338,8 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:FERRITE_BEAD_TH_P12.7mm"
-			(at 154.305 80.645 0)
+		(property "Footprint" "Inductor_SMD:L_0603_1608Metric"
+			(at 153.035 83.058 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6474,8 +6360,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Ferrite bead, small symbol"
 			(at 153.035 81.28 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6484,8 +6371,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C192456"
-			(at 153.035 81.28 0)
+		(property "LCSC Part #" "C1002"
+			(at 153.035 81.28 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6511,7 +6398,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:CP_Small")
+		(lib_id "Device:C_Small")
 		(at 179.705 86.36 90)
 		(unit 1)
 		(body_style 1)
@@ -6532,7 +6419,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF"
+		(property "Value" "22uF"
 			(at 183.769 91.186 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6543,7 +6430,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_ELYT_RADIAL_P5.08mm_SMALL_RING"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 179.705 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -6565,8 +6452,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 179.705 86.36 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6575,7 +6463,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2803550"
+		(property "LCSC Part #" "C45783"
 			(at 179.705 86.36 90)
 			(hide yes)
 			(show_name no)
@@ -6613,7 +6501,7 @@
 		(dnp no)
 		(uuid "bb54e02c-ccd0-4b8a-9c76-c059c3ea68d5")
 		(property "Reference" "C1708"
-			(at 163.3728 68.5546 0)
+			(at 163.068 62.992 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6622,8 +6510,8 @@
 				)
 			)
 		)
-		(property "Value" ".1"
-			(at 163.322 70.4088 0)
+		(property "Value" "100nF"
+			(at 163.0172 64.8462 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6632,7 +6520,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 159.385 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -6664,7 +6552,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C84772"
+		(property "LCSC Part #" "C1525"
 			(at 159.385 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -6691,7 +6579,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
+		(lib_id "Device:R_Small")
 		(at 172.085 90.17 180)
 		(unit 1)
 		(body_style 1)
@@ -6702,7 +6590,7 @@
 		(dnp no)
 		(uuid "c1268968-a5a8-4b52-ba00-27e0cd04488a")
 		(property "Reference" "R1703"
-			(at 177.165 88.9 0)
+			(at 175.9966 93.1418 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6713,7 +6601,7 @@
 			)
 		)
 		(property "Value" "1K"
-			(at 175.9204 90.7542 0)
+			(at 174.752 94.996 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6723,7 +6611,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 172.085 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -6745,8 +6633,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor, small symbol"
 			(at 172.085 90.17 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6755,8 +6644,8 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C57435"
-			(at 172.085 90.17 180)
+		(property "LCSC Part #" "C11702"
+			(at 172.085 90.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6870,7 +6759,7 @@
 		(dnp no)
 		(uuid "c83f16d6-edb6-4cb1-a25e-2739b8ac647e")
 		(property "Reference" "C1709"
-			(at 160.782 83.82 0)
+			(at 159.512 83.82 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6879,8 +6768,8 @@
 				)
 			)
 		)
-		(property "Value" "1000pF"
-			(at 159.385 86.36 0)
+		(property "Value" "1nF"
+			(at 158.115 86.36 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6889,7 +6778,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 164.465 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -6921,7 +6810,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C192448"
+		(property "LCSC Part #" "C76947"
 			(at 164.465 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -7038,7 +6927,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:CP_Small")
+		(lib_id "Device:C_Small")
 		(at 168.275 58.42 0)
 		(unit 1)
 		(body_style 1)
@@ -7049,28 +6938,28 @@
 		(dnp no)
 		(uuid "e2b66766-1d1e-4d50-a412-945829206542")
 		(property "Reference" "C1710"
-			(at 170.6626 58.42 0)
+			(at 175.514 56.896 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Value" "10uF"
-			(at 170.3578 60.2996 0)
+		(property "Value" "22uF"
+			(at 175.26 58.674 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_ELYT_RADIAL_P5.08mm_SMALL_RING"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 168.275 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -7092,8 +6981,9 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 168.275 58.42 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7102,7 +6992,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C2803550"
+		(property "LCSC Part #" "C45783"
 			(at 168.275 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -7240,7 +7130,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4066_U28"
+		(property "Value" "CD4066BM96"
 			(at 140.335 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -7251,7 +7141,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14"
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 142.875 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -7283,7 +7173,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C5203"
+		(property "LCSC Part #" "C54755"
 			(at 142.875 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -7357,7 +7247,7 @@
 		(dnp no)
 		(uuid "f0ad3868-dbbb-4bcb-9367-ffc8ad37048b")
 		(property "Reference" "C1702"
-			(at 150.9014 68.5546 0)
+			(at 151.13 70.358 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7366,8 +7256,8 @@
 				)
 			)
 		)
-		(property "Value" ".1"
-			(at 150.7744 70.6374 0)
+		(property "Value" "100nF"
+			(at 151.003 72.4408 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7376,7 +7266,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 146.685 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7408,7 +7298,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C84772"
+		(property "LCSC Part #" "C1525"
 			(at 146.685 68.58 0)
 			(hide yes)
 			(show_name no)
@@ -7446,7 +7336,7 @@
 		(dnp no)
 		(uuid "f11dd364-a6f6-435d-a782-fbf7b63d2d95")
 		(property "Reference" "C1701"
-			(at 150.9014 58.3946 0)
+			(at 147.066 51.308 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7455,8 +7345,8 @@
 				)
 			)
 		)
-		(property "Value" ".1"
-			(at 150.7744 60.4774 0)
+		(property "Value" "100nF"
+			(at 146.939 53.3908 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7465,7 +7355,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 146.685 58.42 0)
 			(hide yes)
 			(show_name no)
@@ -7497,7 +7387,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C84772"
+		(property "LCSC Part #" "C307331"
 			(at 146.685 58.42 0)
 			(hide yes)
 			(show_name no)
