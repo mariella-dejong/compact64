@@ -49,16 +49,6 @@
 	)
 	(wire
 		(pts
-			(xy 120.015 34.925) (xy 120.015 33.655)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "03525176-efc4-49ba-ad5d-b9e30ae56cd4")
-	)
-	(wire
-		(pts
 			(xy 69.215 144.145) (xy 69.215 151.13)
 		)
 		(stroke
@@ -66,6 +56,16 @@
 			(type default)
 		)
 		(uuid "0666b9b9-053c-45cf-9a76-22ef5c921911")
+	)
+	(wire
+		(pts
+			(xy 165.735 96.52) (xy 172.085 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0762bfc9-040c-46cb-a87e-52b7c271b719")
 	)
 	(wire
 		(pts
@@ -119,26 +119,6 @@
 	)
 	(wire
 		(pts
-			(xy 165.735 57.785) (xy 169.545 57.785)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2964b3e2-c333-4a6e-bbd7-b4c6fc9a6f9b")
-	)
-	(wire
-		(pts
-			(xy 120.015 33.655) (xy 169.545 33.655)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3360e2b3-2471-4e21-b948-7058251ee24b")
-	)
-	(wire
-		(pts
 			(xy 105.41 66.675) (xy 108.585 66.675)
 		)
 		(stroke
@@ -169,16 +149,6 @@
 	)
 	(wire
 		(pts
-			(xy 165.735 52.705) (xy 169.545 52.705)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5291dec1-9538-41c9-9d78-18ff5cff0420")
-	)
-	(wire
-		(pts
 			(xy 74.295 62.865) (xy 74.295 88.9)
 		)
 		(stroke
@@ -186,16 +156,6 @@
 			(type default)
 		)
 		(uuid "547e68f9-7d5d-4933-b2f7-a52e664f5745")
-	)
-	(wire
-		(pts
-			(xy 169.545 55.245) (xy 165.735 55.245)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5cec3359-5c22-409a-ba69-d5c21f811ad2")
 	)
 	(wire
 		(pts
@@ -269,16 +229,6 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 144.145) (xy 92.71 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "896ed5c2-a6c6-453e-a976-6865718b52ce")
-	)
-	(wire
-		(pts
 			(xy 78.105 88.9) (xy 78.105 81.915)
 		)
 		(stroke
@@ -316,16 +266,6 @@
 			(type default)
 		)
 		(uuid "94f6dd29-a9d4-44bb-9648-7874666c02a4")
-	)
-	(wire
-		(pts
-			(xy 96.52 144.145) (xy 96.52 151.13)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "974151b5-0377-4b4e-ac1d-124fec6a070b")
 	)
 	(wire
 		(pts
@@ -376,16 +316,6 @@
 			(type default)
 		)
 		(uuid "a2f12dff-3cf8-46f2-8c1d-b4ac6882e66d")
-	)
-	(wire
-		(pts
-			(xy 116.84 31.75) (xy 169.545 31.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a4190f3d-9800-4819-b45b-182c2d453e21")
 	)
 	(wire
 		(pts
@@ -459,16 +389,6 @@
 	)
 	(wire
 		(pts
-			(xy 165.735 60.325) (xy 169.545 60.325)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d46922d7-93f2-48e6-adcf-fc4dd8f5d2de")
-	)
-	(wire
-		(pts
 			(xy 95.885 62.865) (xy 95.885 88.9)
 		)
 		(stroke
@@ -539,7 +459,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.735 93.345) (xy 173.355 93.345)
+			(xy 165.735 93.345) (xy 172.085 93.345)
 		)
 		(stroke
 			(width 0)
@@ -556,16 +476,6 @@
 			(type default)
 		)
 		(uuid "ead3c8bc-08e8-4023-941f-4fe9bcaf7752")
-	)
-	(wire
-		(pts
-			(xy 116.84 31.75) (xy 116.84 34.925)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ecb20c2b-ad89-4e5b-ad54-fb953368e7b3")
 	)
 	(wire
 		(pts
@@ -681,17 +591,6 @@
 		)
 		(uuid "1d143f73-3964-4060-89ca-69ff6dbc097b")
 	)
-	(hierarchical_label "CIA1_PA6"
-		(shape input)
-		(at 169.545 33.655 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "1d4bb8b4-e3a8-4ac8-a429-c95a51dd5b90")
-	)
 	(hierarchical_label "GR{slash}~{W}"
 		(shape output)
 		(at 164.465 81.915 0)
@@ -702,17 +601,6 @@
 			(justify left)
 		)
 		(uuid "20fb9e50-ee8b-4928-a061-2c56be71ec99")
-	)
-	(hierarchical_label "CIA1_PA7"
-		(shape input)
-		(at 169.545 31.75 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "26707951-5c69-48fd-8a92-6bad5a08070d")
 	)
 	(hierarchical_label "~{NMI}"
 		(shape input)
@@ -835,60 +723,16 @@
 		)
 		(uuid "7a613522-b01b-4a98-8ef1-3a964bee05f1")
 	)
-	(hierarchical_label "POTBY"
-		(shape input)
-		(at 169.545 52.705 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "807ea0ef-e3a1-442e-a9ad-f545fd31e61d")
-	)
-	(hierarchical_label "POTAY"
-		(shape input)
-		(at 169.545 57.785 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "80951db8-de80-46c2-9e6a-42798e5f2b12")
-	)
-	(hierarchical_label "AUDIO_IN"
-		(shape input)
-		(at 96.52 151.13 270)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "80aed273-858f-4e1e-8be9-51fd764a99be")
-	)
-	(hierarchical_label "POTBX"
-		(shape input)
-		(at 169.545 55.245 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "81fd2a6e-0865-40e0-86eb-48cb3ac3e05f")
-	)
-	(hierarchical_label "AUDIO_OUT"
+	(hierarchical_label "~{SID}"
 		(shape output)
-		(at 92.71 151.13 270)
+		(at 172.085 96.52 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
-		(uuid "8e05c7e1-6241-4d99-b399-3aa8d8b27c2a")
+		(uuid "89f89549-044f-4ec0-86fd-59603f8664f3")
 	)
 	(hierarchical_label "~{CIA1_FLAG}"
 		(shape input)
@@ -1066,17 +910,6 @@
 		)
 		(uuid "f5d72209-876a-4590-88de-faaf018a71c0")
 	)
-	(hierarchical_label "POTAX"
-		(shape input)
-		(at 169.545 60.325 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "f797e48d-8d84-4b51-abd1-fd0fee615d57")
-	)
 	(hierarchical_label "~{RESET}"
 		(shape output)
 		(at 169.545 38.1 0)
@@ -1217,66 +1050,6 @@
 				(justify left)
 			)
 		)
-		(pin "POTAX" input
-			(at 165.735 60.325 0)
-			(uuid "535e01ea-22b4-4eba-bcd9-5446823ddbe8")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "POTAY" input
-			(at 165.735 57.785 0)
-			(uuid "e7dbfc2f-423e-440a-8409-05d4576e922b")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "POTBX" input
-			(at 165.735 55.245 0)
-			(uuid "330e2ae0-bf80-45e5-9e55-f5987b85201e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "POTBY" input
-			(at 165.735 52.705 0)
-			(uuid "9ac104e9-8f73-4e60-8eb3-81589d072f99")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CIA1_PA6" input
-			(at 120.015 34.925 90)
-			(uuid "1231f5c2-a4ba-4ac3-a37b-93a953137039")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "CIA1_PA7" input
-			(at 116.84 34.925 90)
-			(uuid "0b3dd7ec-5724-4891-8980-50e4ab33f5ee")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "~{RESTORE_NMI}" input
 			(at 113.03 34.925 90)
 			(uuid "ec24a6c2-be7a-4de2-9c83-d85728945358")
@@ -1406,26 +1179,6 @@
 		(pin "COLOR_CLOCK_IN" input
 			(at 56.515 97.79 180)
 			(uuid "d6f00c42-af22-4dcc-99fb-f7223d299bf2")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "AUDIO_IN" input
-			(at 96.52 144.145 270)
-			(uuid "e782307d-c917-4eab-83fc-bf35ebdc2b97")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "AUDIO_OUT" output
-			(at 92.71 144.145 270)
-			(uuid "f5989b69-ecf5-4c51-a6e0-dfadb8b36929")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1656,6 +1409,16 @@
 		(pin "~{CIA2}" output
 			(at 165.735 93.345 0)
 			(uuid "f6e00d23-ab8a-4eec-af18-064e1aa460dd")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{SID}" output
+			(at 165.735 96.52 0)
+			(uuid "084b1660-2c50-4952-92e8-93789967b8ee")
 			(effects
 				(font
 					(size 1.27 1.27)
