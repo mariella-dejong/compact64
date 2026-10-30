@@ -4560,7 +4560,7 @@
 				)
 			)
 		)
-		(property "Value" "470pF"
+		(property "Value" "22nF"
 			(at 154.2542 94.7928 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4570,7 +4570,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 149.225 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -4602,7 +4602,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C263196"
+		(property "LCSC Part #" "C77069"
 			(at 149.225 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -7288,7 +7288,7 @@
 				)
 			)
 		)
-		(property "Value" "470pF"
+		(property "Value" "22nF"
 			(at 154.2034 102.2858 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7298,7 +7298,7 @@
 				)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:CAP_P5.08mm"
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 149.225 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -7330,7 +7330,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C263196"
+		(property "LCSC Part #" "C77069"
 			(at 149.225 101.6 0)
 			(hide yes)
 			(show_name no)
