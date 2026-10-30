@@ -9669,6 +9669,16 @@
 		)
 		(uuid "ad8e9aad-b812-49e1-b264-a1eedea14e1b")
 	)
+	(label "ATN"
+		(at 377.825 34.925 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "aebf55b1-2966-4238-8381-93c1d5710224")
+	)
 	(label "PA2"
 		(at 300.355 100.33 0)
 		(effects
@@ -10106,17 +10116,6 @@
 			(justify left)
 		)
 		(uuid "59926f35-e525-440a-a657-91a46b5e3f97")
-	)
-	(hierarchical_label "ATN"
-		(shape output)
-		(at 377.825 34.925 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "6dec3619-f9ac-4e91-8b18-a872b1f78078")
 	)
 	(hierarchical_label "CIA1_SP"
 		(shape bidirectional)
@@ -11582,7 +11581,7 @@
 				)
 			)
 		)
-		(property "Value" "7406"
+		(property "Value" "SN74LVC06ADR"
 			(at 209.55 255.1998 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11592,7 +11591,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 197.485 259.08 0)
 			(hide yes)
 			(show_name no)
@@ -11615,6 +11614,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 197.485 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7658"
 			(at 197.485 259.08 0)
 			(hide yes)
 			(show_name no)
@@ -12402,7 +12412,7 @@
 				)
 			)
 		)
-		(property "Value" "7406"
+		(property "Value" "SN74LVC06ADR"
 			(at 284.48 255.8348 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12412,7 +12422,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 273.05 259.715 0)
 			(hide yes)
 			(show_name no)
@@ -12435,6 +12445,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 273.05 259.715 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7658"
 			(at 273.05 259.715 0)
 			(hide yes)
 			(show_name no)
@@ -13283,7 +13304,7 @@
 				)
 			)
 		)
-		(property "Value" "7406"
+		(property "Value" "SN74LVC06ADR"
 			(at 305.435 213.9248 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13293,7 +13314,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 294.005 217.805 0)
 			(hide yes)
 			(show_name no)
@@ -13316,6 +13337,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 294.005 217.805 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7658"
 			(at 294.005 217.805 0)
 			(hide yes)
 			(show_name no)
@@ -18269,7 +18301,7 @@
 				)
 			)
 		)
-		(property "Value" "7406"
+		(property "Value" "SN74LVC06ADR"
 			(at 248.92 255.1998 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -18279,7 +18311,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 237.49 259.08 0)
 			(hide yes)
 			(show_name no)
@@ -18302,6 +18334,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 237.49 259.08 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7658"
 			(at 237.49 259.08 0)
 			(hide yes)
 			(show_name no)
@@ -19411,7 +19454,7 @@
 				)
 			)
 		)
-		(property "Value" "7406"
+		(property "Value" "SN74LVC06ADR"
 			(at 259.715 214.5598 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19421,7 +19464,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 247.65 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -19444,6 +19487,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 247.65 218.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7658"
 			(at 247.65 218.44 0)
 			(hide yes)
 			(show_name no)
@@ -19526,7 +19580,7 @@
 				)
 			)
 		)
-		(property "Value" "7406"
+		(property "Value" "SN74LVC06ADR"
 			(at 197.866 227.838 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -19536,7 +19590,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm"
 			(at 212.09 219.71 0)
 			(hide yes)
 			(show_name no)
@@ -19559,6 +19613,17 @@
 			)
 		)
 		(property "Description" ""
+			(at 212.09 219.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C7658"
 			(at 212.09 219.71 0)
 			(hide yes)
 			(show_name no)
