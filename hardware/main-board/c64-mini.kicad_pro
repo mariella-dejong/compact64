@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1700,
+    "annotate_start_num": 500,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#FLG903,#FLG1701-1703,R8-9,R40,R303-304,R1701-1705,U21,U33,U1701-1702,Q9,Q1701,C14-16,C18,C35,C40,C55,C57-59,C61,C63,C95,C206,C1701-1715,#U185-186,#U235-236,#U244,#U246-255,#U1701-1715,FB18,FB24-25,FB901,FB1701-1703,#PWR110,#PWR130,#PWR161-163,#PWR1701-1706",
+    "used_designators": "R32,R502,U9,U18,U21-22,U28,U502-508,C34-36,C47,C55,C57,C61,C95,C102,C204,C507-518,#U175,#U187-190,#U211,#U213,#U218,#U225-232,#U244,FB13,FB18,FB24-26,FB501-505,#PWR135-137,#PWR155,#PWR158-160",
     "variants": []
   },
   "sheets": [
@@ -1682,7 +1682,7 @@
     ],
     [
       "99dc937e-95c0-4b75-9c55-26aa6f5c22ff",
-      "HF Module Replacement and AV connectors"
+      "VIC-II, HF Module Replacement and AV out"
     ],
     [
       "16ed13da-ea6c-41ac-b9d8-03fd2b1c50da",

@@ -5467,7 +5467,7 @@
 			(color 0 0 0 0)
 		)
 		(uuid "99dc937e-95c0-4b75-9c55-26aa6f5c22ff")
-		(property "Sheetname" "HF Module Replacement and AV connectors"
+		(property "Sheetname" "VIC-II, HF Module Replacement and AV out"
 			(at 213.995 187.8834 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5478,7 +5478,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "hf_module_replacement.kicad_sch"
+		(property "Sheetfile" "vic_ii_hf_av_out.kicad_sch"
 			(at 213.995 227.2796 0)
 			(show_name no)
 			(do_not_autoplace no)
