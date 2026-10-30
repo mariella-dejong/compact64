@@ -7053,6 +7053,18 @@
 		(uuid "73139000-2bee-4320-8d13-0c4b99f89ce2")
 	)
 	(junction
+		(at 58.42 38.735)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "74a1fac8-6844-481d-bfae-628badc1e5a2")
+	)
+	(junction
+		(at 260.35 210.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7c8fbbd1-d47e-4b45-99b5-c010b9bfd913")
+	)
+	(junction
 		(at 232.41 153.67)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8274,7 +8286,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 31.75) (xy 58.42 45.72)
+			(xy 58.42 31.75) (xy 58.42 38.735)
 		)
 		(stroke
 			(width 0)
@@ -8714,6 +8726,16 @@
 	)
 	(wire
 		(pts
+			(xy 260.35 210.82) (xy 288.29 210.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "250f4762-5cf8-4437-8fa5-c3984262ccc2")
+	)
+	(wire
+		(pts
 			(xy 196.85 153.67) (xy 199.39 153.67)
 		)
 		(stroke
@@ -8754,7 +8776,7 @@
 	)
 	(wire
 		(pts
-			(xy 215.9 210.82) (xy 288.29 210.82)
+			(xy 215.9 210.82) (xy 260.35 210.82)
 		)
 		(stroke
 			(width 0)
@@ -9404,6 +9426,16 @@
 	)
 	(wire
 		(pts
+			(xy 52.705 38.735) (xy 58.42 38.735)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4dbea7fa-273b-40cf-8cfa-75a5c07bdf4a")
+	)
+	(wire
+		(pts
 			(xy 288.29 142.24) (xy 283.21 142.24)
 		)
 		(stroke
@@ -9854,6 +9886,16 @@
 	)
 	(wire
 		(pts
+			(xy 260.35 217.17) (xy 260.35 210.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "676ddab3-f67e-4b20-8448-c1735ba11842")
+	)
+	(wire
+		(pts
 			(xy 31.75 260.35) (xy 25.4 260.35)
 		)
 		(stroke
@@ -9911,6 +9953,16 @@
 			(type default)
 		)
 		(uuid "6dd55aeb-af3c-48ac-b07a-1115d024f9a8")
+	)
+	(wire
+		(pts
+			(xy 264.795 217.17) (xy 260.35 217.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6e757c06-8290-43a8-87ab-e8cec6b59ee9")
 	)
 	(wire
 		(pts
@@ -11121,6 +11173,16 @@
 			(type default)
 		)
 		(uuid "aed6ea04-5b8b-4efd-a6d5-d46f27a1a8fa")
+	)
+	(wire
+		(pts
+			(xy 58.42 38.735) (xy 58.42 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af34830a-5ab6-4359-b23c-c90d60ad84fb")
 	)
 	(bus
 		(pts
@@ -14262,6 +14324,17 @@
 			)
 		)
 	)
+	(hierarchical_label "~{VIC}"
+		(shape output)
+		(at 264.795 217.17 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0c3d7b4c-4270-4f54-b00a-8515d40f45ae")
+	)
 	(hierarchical_label "~{SID}"
 		(shape output)
 		(at 242.57 213.36 0)
@@ -14283,6 +14356,17 @@
 			(justify right)
 		)
 		(uuid "2ed2cb86-7748-45cc-87dd-22c7236cdd19")
+	)
+	(hierarchical_label "BA"
+		(shape input)
+		(at 81.28 209.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "370ba937-1e3b-45a1-b612-0a96e7d5607f")
 	)
 	(hierarchical_label "COLOR_D3"
 		(shape bidirectional)
@@ -14360,6 +14444,28 @@
 			(justify right)
 		)
 		(uuid "652b3214-7f8c-4677-91ee-c59c43c54820")
+	)
+	(hierarchical_label "~{AEC}"
+		(shape input)
+		(at 52.705 38.735 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6abcc32e-7944-4840-af34-b28c30277daf")
+	)
+	(hierarchical_label "~{RAS}"
+		(shape output)
+		(at 234.95 161.29 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "72401fec-0d92-4c74-a914-0bb782fe7777")
 	)
 	(hierarchical_label "COLOR_CLOCK_IN"
 		(shape input)

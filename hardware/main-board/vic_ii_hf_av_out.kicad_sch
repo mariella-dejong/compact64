@@ -10433,6 +10433,16 @@
 		)
 		(uuid "315d1a76-a4b8-4b51-97fd-fb9679faf739")
 	)
+	(label "CHROMA"
+		(at 229.87 163.195 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3397e8dc-b980-4bf5-aa61-f9eed397af63")
+	)
 	(label "VA4"
 		(at 92.71 228.6 90)
 		(effects
@@ -10763,6 +10773,16 @@
 		)
 		(uuid "9b274d8b-7e77-4a8f-b71f-88f6f23468ee")
 	)
+	(label "CHROMA"
+		(at 269.875 42.545 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "9c80835c-2a5d-40cf-8dba-e1dd0d7abfd7")
+	)
 	(label "A6"
 		(at 69.215 127.635 0)
 		(effects
@@ -11003,6 +11023,16 @@
 		)
 		(uuid "ddf854dd-42c6-4116-893c-b771103983aa")
 	)
+	(label "SYNC_LUMA"
+		(at 229.87 160.655 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e016a803-6599-47df-8679-2fb555f4d3f4")
+	)
 	(label "VA6"
 		(at 134.62 123.825 0)
 		(effects
@@ -11082,6 +11112,16 @@
 			(justify left bottom)
 		)
 		(uuid "f9d2ddaa-ae5f-48b2-bd87-c1a1e03025d8")
+	)
+	(label "SYNC_LUMA"
+		(at 269.875 80.645 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "fb812873-5f2c-4407-93f0-d9581e6163bf")
 	)
 	(hierarchical_label "COLOR_D3"
 		(shape bidirectional)
@@ -11259,17 +11299,6 @@
 		)
 		(uuid "75d36cb2-8fcd-474b-8696-ccd56d0b4b05")
 	)
-	(hierarchical_label "VIC_II_CHROMA"
-		(shape output)
-		(at 229.87 163.195 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "78fff5c3-31a3-4638-b35f-0db05d6088fe")
-	)
 	(hierarchical_label "COLOR_CLOCK_IN"
 		(shape input)
 		(at 179.705 231.14 180)
@@ -11280,28 +11309,6 @@
 			(justify right)
 		)
 		(uuid "90ac810e-e01e-49c8-a21b-616ab8ebc109")
-	)
-	(hierarchical_label "LUMA_IN"
-		(shape input)
-		(at 269.875 80.645 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "9aa44f60-d434-4a37-8f22-5507b2eb476b")
-	)
-	(hierarchical_label "CHROMA_IN"
-		(shape input)
-		(at 269.875 42.545 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "a368a148-c340-4df7-86f1-c3b561b87c1d")
 	)
 	(hierarchical_label "~{VA14}"
 		(shape input)
@@ -11335,17 +11342,6 @@
 			(justify left)
 		)
 		(uuid "bf88f595-0a66-4449-a0b4-b5226fd4980e")
-	)
-	(hierarchical_label "VIC_II_LUMA"
-		(shape output)
-		(at 229.87 160.655 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c15fc7ff-5dc2-495d-952c-2f0f3e05cd0d")
 	)
 	(hierarchical_label "~{CAS}"
 		(shape output)
