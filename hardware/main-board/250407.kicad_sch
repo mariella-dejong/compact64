@@ -149,6 +149,16 @@
 	)
 	(wire
 		(pts
+			(xy 105.41 66.675) (xy 108.585 66.675)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a5e4ed9-f42b-48ff-9083-b432a2a367f3")
+	)
+	(wire
+		(pts
 			(xy 165.735 121.92) (xy 170.815 121.92)
 		)
 		(stroke
@@ -429,6 +439,16 @@
 	)
 	(wire
 		(pts
+			(xy 105.41 64.135) (xy 111.125 64.135)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a2f12dff-3cf8-46f2-8c1d-b4ac6882e66d")
+	)
+	(wire
+		(pts
 			(xy 116.84 31.75) (xy 169.545 31.75)
 		)
 		(stroke
@@ -459,13 +479,13 @@
 	)
 	(wire
 		(pts
-			(xy 108.585 62.865) (xy 108.585 88.9)
+			(xy 111.125 64.135) (xy 111.125 88.9)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ba6f3e29-6b35-4b51-8c3d-a5448de7721e")
+		(uuid "b57c2fa2-f38f-4355-9a0a-5ef3b2b1d069")
 	)
 	(wire
 		(pts
@@ -526,16 +546,6 @@
 			(type default)
 		)
 		(uuid "c751267e-8963-4b15-b57b-4e656c960529")
-	)
-	(wire
-		(pts
-			(xy 111.125 62.865) (xy 111.125 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c79276d6-cf51-442c-878b-320abfd87bf2")
 	)
 	(wire
 		(pts
@@ -666,6 +676,16 @@
 			(type default)
 		)
 		(uuid "eeaa2d05-4c92-4ec8-b4d9-73ab18a4dfb8")
+	)
+	(wire
+		(pts
+			(xy 108.585 88.9) (xy 108.585 66.675)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f0848107-292d-4691-873f-d2439011bd8f")
 	)
 	(wire
 		(pts
@@ -838,8 +858,8 @@
 		(uuid "3b661b7d-966e-46ab-b3ea-02492c426354")
 	)
 	(hierarchical_label "~{VA15}"
-		(shape output)
-		(at 108.585 81.915 180)
+		(shape input)
+		(at 105.41 66.675 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -860,13 +880,13 @@
 		(uuid "453e01e9-0f9b-4102-9ae8-30665cd4ada3")
 	)
 	(hierarchical_label "~{VA14}"
-		(shape output)
-		(at 111.125 81.915 0)
+		(shape input)
+		(at 105.41 64.135 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "523568c2-b08a-4db3-9646-35ab24207339")
 	)
@@ -1356,26 +1376,6 @@
 		(pin "R{slash}~{W}" output
 			(at 116.205 62.865 270)
 			(uuid "a6709ea3-8da4-4a03-ba12-acce8b87a943")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "~{VA14}" output
-			(at 111.125 62.865 270)
-			(uuid "546c52b7-454c-44d1-b9d4-1ac6486ecfdf")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "~{VA15}" output
-			(at 108.585 62.865 270)
-			(uuid "8098517f-5d01-4080-ad7a-eac427a4005b")
 			(effects
 				(font
 					(size 1.27 1.27)
