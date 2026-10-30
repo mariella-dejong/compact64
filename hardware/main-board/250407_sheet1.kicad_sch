@@ -6937,6 +6937,12 @@
 		(uuid "114d402e-198c-40e6-9a25-85cdc67b7ad8")
 	)
 	(junction
+		(at 63.5 41.91)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "129ba30b-319c-4fc0-a123-3c7485f8a2a4")
+	)
+	(junction
 		(at 274.32 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7123,12 +7129,6 @@
 		(uuid "86632020-a1b6-4cf0-a1eb-2331348b8f87")
 	)
 	(junction
-		(at 63.5 41.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "89f7f34e-fb83-403f-9dc3-7b2f513f11c3")
-	)
-	(junction
 		(at 48.26 63.5)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -7151,6 +7151,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "8dde23b6-5abf-4178-93cb-d7d7b448f942")
+	)
+	(junction
+		(at 60.96 38.1)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "91d7d9c9-8cf0-43b3-995c-843e703dc102")
 	)
 	(junction
 		(at 53.34 60.96)
@@ -7337,12 +7343,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f6fab5f7-d991-488f-b9ce-eb08dd2c4340")
-	)
-	(junction
-		(at 60.96 38.1)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f8444657-7dcb-40d5-b687-44029e95452a")
 	)
 	(junction
 		(at 359.41 127)
@@ -8396,7 +8396,7 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 38.1) (xy 109.22 38.1)
+			(xy 60.96 38.1) (xy 80.01 38.1)
 		)
 		(stroke
 			(width 0)
@@ -8796,7 +8796,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 41.91) (xy 109.22 41.91)
+			(xy 63.5 41.91) (xy 80.01 41.91)
 		)
 		(stroke
 			(width 0)
@@ -12136,7 +12136,7 @@
 	)
 	(global_label "POTX"
 		(shape output)
-		(at 109.22 38.1 0)
+		(at 80.01 38.1 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12145,7 +12145,7 @@
 		)
 		(uuid "00594940-7d1d-4072-9a00-f2d9f50c11b8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 109.22 38.1 0)
+			(at 80.01 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12224,7 +12224,7 @@
 	)
 	(global_label "POTY"
 		(shape output)
-		(at 109.22 41.91 0)
+		(at 80.01 41.91 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -12233,7 +12233,7 @@
 		)
 		(uuid "661a9d8e-1f85-4936-b14d-fa9cbe68fff1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 109.22 41.91 0)
+			(at 80.01 41.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
