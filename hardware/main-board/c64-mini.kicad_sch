@@ -573,6 +573,12 @@
 		(uuid "480de5a3-3983-43de-9198-7dc24286865e")
 	)
 	(junction
+		(at 164.465 177.165)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4840db50-a3d6-4386-b7d7-b519743d7498")
+	)
+	(junction
 		(at 50.8 121.285)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2990,6 +2996,16 @@
 	)
 	(wire
 		(pts
+			(xy 164.465 177.165) (xy 164.465 188.595)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cff6d076-4af4-4ade-9ae7-682e2784d09a")
+	)
+	(wire
+		(pts
 			(xy 163.83 151.13) (xy 163.83 102.87)
 		)
 		(stroke
@@ -5350,6 +5366,16 @@
 		(pin "PHI0_IN" input
 			(at 199.39 215.265 0)
 			(uuid "9eb78802-7161-472b-9d5b-a02cbd75ae67")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "DOT_CLOCK_IN" input
+			(at 164.465 188.595 90)
+			(uuid "5db5d499-9a28-41b2-a3e3-b253515961ce")
 			(effects
 				(font
 					(size 1.27 1.27)

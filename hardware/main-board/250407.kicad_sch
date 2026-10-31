@@ -10932,16 +10932,6 @@
 		)
 		(uuid "a337d9a7-a435-424c-b6a4-75249145c831")
 	)
-	(label "DOT_CLOCK"
-		(at 285.115 257.81 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "a36d9eab-8a39-408c-a490-aad2ffa13dac")
-	)
 	(label "D5"
 		(at 78.105 259.08 90)
 		(effects
