@@ -660,7 +660,7 @@ other functions follow in separate issues:
 | Check that the other microcontrollers run up-to-date firmware | uses #51 | #53 |
 | Status indicator (LED) | #54 | #55 |
 | Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
-| Reset the C64 without switching the rails off (soft reset) | #70 | #70 |
+| Reset the C64 without switching the rails off (soft reset) | #70 | #88 |
 
 ### Circuit
 
@@ -781,9 +781,9 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
   serial bus and a cartridge, as with a reset button on the user port. The
   RAM and ROM controller (U1401) does not see `~RESET`, so the RAM contents
   survive a soft reset, as on the original C64.
-- **Firmware (#70):** GPIO0 is a push-pull output, high for reset. GPIO1 is
+- **Firmware (#88):** GPIO0 is a push-pull output, high for reset. GPIO1 is
   an input with the internal pull-up and pull-down off. The pulse length and
-  what triggers a soft reset are defined in #70.
+  what triggers a soft reset are defined in #88.
 
 | Ref | Part | LCSC | Package |
 | --- | ---- | ---- | ------- |
