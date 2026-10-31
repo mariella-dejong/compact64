@@ -1746,6 +1746,321 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Transistor_FET:AO3400A"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "Q"
+				(at 5.08 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "AO3400A"
+				(at 5.08 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 5.08 -1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+				)
+			)
+			(property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf"
+				(at 5.08 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Description" "30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "N-Channel MOSFET"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "SOT?23*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "AO3400A_0_1"
+				(polyline
+					(pts
+						(xy 0.254 1.905) (xy 0.254 -1.905)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.254 0) (xy -2.54 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 2.286) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 0.508) (xy 0.762 -0.508)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.27) (xy 0.762 -2.286)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.762 -1.778) (xy 3.302 -1.778) (xy 3.302 1.778) (xy 0.762 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.016 0) (xy 2.032 0.381) (xy 2.032 -0.381) (xy 1.016 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 1.651 0)
+					(radius 2.794)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 2.54) (xy 2.54 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.54 1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 2.54 -1.778)
+					(radius 0.254)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.54) (xy 2.54 0) (xy 0.762 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.921 0.381) (xy 3.683 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.302 0.381) (xy 2.921 -0.254) (xy 3.683 -0.254) (xy 3.302 0.381)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "AO3400A_1_1"
+				(pin input line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 -5.08 90)
+					(length 2.54)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 2.54 5.08 270)
+					(length 2.54)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "c64-mini:RP2354B"
 			(pin_names
 				(offset 1.016)
@@ -3827,6 +4142,12 @@
 		(uuid "13c6d098-b15e-41ea-84ed-4de837d7e3c6")
 	)
 	(junction
+		(at 274.32 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1ff43f77-8000-4008-bb0b-c9aeb1f84a78")
+	)
+	(junction
 		(at 102.87 231.14)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4053,6 +4374,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bb999d5f-b697-4ecc-a032-7557e7c11de3")
+	)
+	(junction
+		(at 301.625 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c3d6e45e-b7b1-462d-bb10-bd100d7a57cb")
 	)
 	(junction
 		(at 227.33 77.47)
@@ -4285,10 +4612,6 @@
 		(uuid "f2e71d08-0711-4b92-ad71-dca2a2930da7")
 	)
 	(no_connect
-		(at 255.27 110.49)
-		(uuid "f54f56ee-58f2-49e0-9638-ec3fd95e4725")
-	)
-	(no_connect
 		(at 255.27 189.23)
 		(uuid "fab2d815-609f-4bee-b4cd-57f28515b9f2")
 	)
@@ -4368,6 +4691,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 110.49) (xy 280.67 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f70be64-5694-411f-a7da-eeb203ba5a7f")
+	)
+	(wire
+		(pts
 			(xy 224.79 90.17) (xy 224.79 77.47)
 		)
 		(stroke
@@ -4378,6 +4711,16 @@
 	)
 	(wire
 		(pts
+			(xy 280.67 110.49) (xy 280.67 118.745)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1066bd1c-94c7-4b58-a2f8-c8331cbe0d2a")
+	)
+	(wire
+		(pts
 			(xy 306.07 57.15) (xy 317.5 57.15)
 		)
 		(stroke
@@ -4385,6 +4728,16 @@
 			(type default)
 		)
 		(uuid "11445d10-89fb-424e-9ded-b4dba7e38574")
+	)
+	(wire
+		(pts
+			(xy 301.625 118.745) (xy 301.625 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13491737-ff45-4edf-907b-3ccdff43df5e")
 	)
 	(wire
 		(pts
@@ -4618,6 +4971,16 @@
 	)
 	(wire
 		(pts
+			(xy 274.32 91.44) (xy 281.305 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2e0899ab-7589-48e4-80a9-4705977b695c")
+	)
+	(wire
+		(pts
 			(xy 351.79 57.15) (xy 363.22 57.15)
 		)
 		(stroke
@@ -4768,6 +5131,16 @@
 	)
 	(wire
 		(pts
+			(xy 285.115 102.87) (xy 301.625 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "515d3f97-63ca-40f0-9a37-8b98cb50d55d")
+	)
+	(wire
+		(pts
 			(xy 306.07 58.42) (xy 306.07 57.15)
 		)
 		(stroke
@@ -4788,6 +5161,16 @@
 	)
 	(wire
 		(pts
+			(xy 271.145 107.95) (xy 274.32 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5614430c-4cf5-497f-ac52-31dcbb4d656f")
+	)
+	(wire
+		(pts
 			(xy 260.35 68.58) (xy 248.92 68.58)
 		)
 		(stroke
@@ -4805,6 +5188,16 @@
 			(type default)
 		)
 		(uuid "58c56742-6fcd-4600-b7c9-080d08360bac")
+	)
+	(wire
+		(pts
+			(xy 280.67 118.745) (xy 286.385 118.745)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "58e72155-7374-409e-a399-8589e5bfa3d0")
 	)
 	(wire
 		(pts
@@ -5098,6 +5491,16 @@
 	)
 	(wire
 		(pts
+			(xy 274.32 107.95) (xy 277.495 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8549ce19-74d5-456e-9b80-baf96e0ecbbb")
+	)
+	(wire
+		(pts
 			(xy 186.69 148.59) (xy 172.72 148.59)
 		)
 		(stroke
@@ -5188,6 +5591,16 @@
 	)
 	(wire
 		(pts
+			(xy 281.305 91.44) (xy 281.305 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8e869180-d1de-4bfd-9336-ec9d04194399")
+	)
+	(wire
+		(pts
 			(xy 166.37 86.36) (xy 173.99 86.36)
 		)
 		(stroke
@@ -5205,6 +5618,16 @@
 			(type default)
 		)
 		(uuid "8f6c656f-5920-4e83-8dd3-32f2ec04034e")
+	)
+	(wire
+		(pts
+			(xy 274.32 100.33) (xy 274.32 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90834fa5-c0ba-4391-88d9-9ba7bc340128")
 	)
 	(wire
 		(pts
@@ -5255,6 +5678,16 @@
 			(type default)
 		)
 		(uuid "971ffe01-19d5-43da-a7dd-26ba74bebd42")
+	)
+	(wire
+		(pts
+			(xy 255.27 107.95) (xy 263.525 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9883b7cd-738d-4209-bb33-c7fa266134c5")
 	)
 	(wire
 		(pts
@@ -5335,6 +5768,26 @@
 			(type default)
 		)
 		(uuid "a5fd8d59-bc15-4be2-b7ea-c2de61a4bc12")
+	)
+	(wire
+		(pts
+			(xy 294.005 118.745) (xy 301.625 118.745)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7255ed5-21cf-4d29-b8b6-b4194bfe2a29")
+	)
+	(wire
+		(pts
+			(xy 301.625 102.87) (xy 304.8 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7516ea0-54d9-4299-81fe-5870e1140def")
 	)
 	(wire
 		(pts
@@ -6187,17 +6640,6 @@
 		)
 		(uuid "03785068-7898-4742-9a6a-49b3c63da6a2")
 	)
-	(hierarchical_label "~{RESET}"
-		(shape bidirectional)
-		(at 255.27 107.95 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "081606cc-57de-43c7-a931-b5747109fe15")
-	)
 	(hierarchical_label "GPIO29"
 		(shape bidirectional)
 		(at 255.27 181.61 0)
@@ -6208,6 +6650,17 @@
 			(justify left)
 		)
 		(uuid "3e6a5f87-9322-41bb-85d2-9a80ac2a80b6")
+	)
+	(hierarchical_label "~{RESET}"
+		(shape bidirectional)
+		(at 304.8 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5453815a-798b-4252-97eb-23b4e3ac2c99")
 	)
 	(hierarchical_label "GPIO43"
 		(shape bidirectional)
@@ -7232,6 +7685,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:Earth")
+		(at 281.305 92.71 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2150c293-feb5-413d-a788-9e138913cb2a")
+		(property "Reference" "#PWR01327"
+			(at 281.305 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 281.305 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 281.305 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 281.305 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 281.305 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e198acd4-e5b3-46e7-b7a5-5cf19564293a")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "#PWR01327")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 273.05 201.93 0)
 		(unit 1)
@@ -7381,6 +7913,105 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
 					(reference "#PWR01315")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Transistor_FET:AO3400A")
+		(at 282.575 107.95 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "26fd40c9-e394-4d67-b3ba-c31defee1372")
+		(property "Reference" "Q1301"
+			(at 288.925 106.6799 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "AO3400A"
+			(at 288.925 109.2199 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 287.655 109.855 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf"
+			(at 287.655 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23"
+			(at 282.575 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C20917"
+			(at 282.575 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "3"
+			(uuid "ae199071-636d-47bc-8c4d-644a628bb8b3")
+		)
+		(pin "1"
+			(uuid "e2c09d1a-b87b-462e-a9cd-4867c99b2372")
+		)
+		(pin "2"
+			(uuid "fc7d4756-f050-4d91-8c7c-587d72395c27")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "Q1301")
 					(unit 1)
 				)
 			)
@@ -7886,6 +8517,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
 					(reference "R1303")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
+		(at 285.115 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3a848ba8-5bf7-46af-b51c-c3189809baeb")
+		(property "Reference" "#PWR01328"
+			(at 285.115 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 285.115 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 285.115 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 285.115 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 285.115 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2769c29a-8494-4c3b-a6d8-83c3286ad0d2")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "#PWR01328")
 					(unit 1)
 				)
 			)
@@ -10156,6 +10866,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 290.195 118.745 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a6c78272-de9d-44e1-a975-f1a2416f23f0")
+		(property "Reference" "R1315"
+			(at 293.243 121.539 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 292.227 123.571 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 290.195 116.967 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 290.195 118.745 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 290.195 118.745 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C25900"
+			(at 290.195 118.745 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d9eb060e-3169-4d61-afec-e16ffcdc4a8c")
+		)
+		(pin "2"
+			(uuid "780f35c6-1171-4dc4-8c42-f4ebb5830c3f")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "R1315")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:D_TVS")
 		(at 115.57 55.88 270)
 		(unit 1)
@@ -10556,6 +11358,99 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
 					(reference "C1309")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 274.32 104.14 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b0e46cf6-1591-4b91-842e-23512ae7e185")
+		(property "Reference" "R1314"
+			(at 276.86 102.8699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 276.86 105.4099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 276.098 104.14 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 274.32 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 274.32 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C25900"
+			(at 274.32 104.14 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "0b4e36f7-a47d-4e05-8d48-7706d66deb51")
+		)
+		(pin "1"
+			(uuid "b0351fa6-3598-409c-8626-2441e7d055b9")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "R1314")
 					(unit 1)
 				)
 			)
@@ -10990,6 +11885,96 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
 					(reference "C1319")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 267.335 107.95 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "be4c65f7-ec93-478e-80a8-7110f44c4896")
+		(property "Reference" "R1313"
+			(at 266.954 103.124 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 266.954 105.664 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 267.335 109.728 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 267.335 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 267.335 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C11702"
+			(at 267.335 107.95 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "2663a157-95a8-4ebb-8dd6-2a1b8803e1e3")
+		)
+		(pin "1"
+			(uuid "e8f8eea9-7249-4803-8774-94a0bf2b252c")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "R1313")
 					(unit 1)
 				)
 			)
