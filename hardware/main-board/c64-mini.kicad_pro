@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "U507",
+    "used_designators": "R1313-1315,C514,C1802-1804,#PWR127,#PWR131,#PWR1312,#PWR1321,#PWR1327-1336,Y501,U507,U1003,U1803",
     "variants": []
   },
   "sheets": [
@@ -1731,6 +1731,10 @@
     [
       "445f1d0b-059c-41c2-ab63-8bf80c392f35",
       "SID and internal audio output"
+    ],
+    [
+      "2d4d5648-3158-408d-9c1b-fd5f35b79d14",
+      "System Clocks"
     ]
   ],
   "text_variables": {},
