@@ -4628,6 +4628,52 @@
 		)
 	)
 	(sheet
+		(at 131.445 146.05)
+		(size 30.48 24.765)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "2d4d5648-3158-408d-9c1b-fd5f35b79d14")
+		(property "Sheetname" "System Clocks"
+			(at 131.445 145.3384 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "clocks.kicad_sch"
+			(at 131.445 171.3996 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "18")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 97.79 188.595)
 		(size 101.6 38.1)
 		(exclude_from_sim no)
