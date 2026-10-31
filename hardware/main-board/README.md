@@ -315,8 +315,10 @@ the RAM and ROM controller (U1401 to U1403) are powered.
   74AHCT inputs of U1201 to U1203 tolerate 3.3 V while `CAN+5V` is off, see
   [System clocks](#system-clocks).
 - U902 runs from `12V_IN_SW`, so `+9V` stays off as well.
-- The supervisor has no connections to the legacy chips yet. Later issues
-  that add them must keep these signals from feeding unpowered chips.
+- The supervisor's only connection to the legacy chips is `~RESET` (#70).
+  GPIO0 only ever pulls it low or leaves it alone, so it never feeds the
+  unpowered chips, see [Soft reset](#soft-reset). Later issues that add more
+  connections must keep them from feeding unpowered chips as well.
 - The RAM and ROM controller connects to the C64 buses. It keeps all its bus
   pins as inputs while the rails are off, see
   [Power and back-feeding](#power-and-back-feeding).
@@ -658,6 +660,7 @@ other functions follow in separate issues:
 | Check that the other microcontrollers run up-to-date firmware | uses #51 | #53 |
 | Status indicator (LED) | #54 | #55 |
 | Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
+| Reset the C64 without switching the rails off (soft reset) | #70 | #70 |
 
 ### Circuit
 
@@ -701,6 +704,7 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 
 | GPIO | Pin | Net | Direction | Function |
 | ---- | --- | --- | --------- | -------- |
+| GPIO0 | 77 | `~RESET` | Open drain (in firmware) | Pulls the shared reset line low for a soft reset, and reads it, see [Soft reset](#soft-reset) |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
@@ -716,18 +720,59 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO47 | 58 | `SWDAT` | Bidirectional | SWD data of the RAM and ROM controller |
 
 - **I2C:** R1306 and R1312 (4.7k) pull `SDA` and `SCL` up to `+3V3`.
-- **State before the firmware runs:** all eleven pins come out of reset with
-  the output disabled and the internal pull-down on. All three `RUN` lines
-  therefore stay low and the three controllers stay in reset, see
-  [Programming and start-up](#programming-and-start-up).
+- **State before the firmware runs:** all assigned pins come out of reset
+  with the output disabled and the internal pull-down on. All three `RUN`
+  lines therefore stay low and the three controllers stay in reset, see
+  [Programming and start-up](#programming-and-start-up). GPIO0 does not
+  pull `~RESET` low: R36 (1k to `+5V`) easily overrides the internal
+  pull-down.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
   the CIA 1 and CIA 2 controllers and the clock synthesizer, which are all
-  on `+3V3`.
+  on `+3V3`, except GPIO0 on `~RESET`, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
 blank firmware, is to be documented with those issues, because they must
 not feed unpowered parts while the rails are off.
+
+### Soft reset
+
+The supervisor can reset the C64 without switching the rails off (#70), by
+pulling the shared `~RESET` line low. Until now the only way to restart the
+system was the power-on reset, so the supervisor would have had to cycle the
+rails.
+
+- **Circuit:** GPIO0 (pin 77) connects directly to `~RESET` through the
+  `~RESET` sheet pin of the `Supervisor` sheet. There are no extra parts.
+- **The line:** `~RESET` is wired-OR. R36 (1k) pulls it up to `+5V`, and
+  gate D of U8 (7406, open collector) pulls it low for the power-on reset.
+  Devices on the user port, the serial bus and the expansion port can pull
+  it low as well. It goes to the 6510, the CIA 1 and CIA 2 controllers, the
+  SID, the user port, the serial bus and the expansion port.
+- **Open drain in firmware:** the RP2350 has no open-drain outputs. The
+  firmware keeps the pin's output value at low and only switches its output
+  driver: on pulls `~RESET` low, off releases it. It must never drive the
+  pin high: the line is shared with open-collector drivers, and a high
+  output against one of them pulling low would be a short circuit.
+- **Levels:** GPIO0 is one of the 5 V tolerant pins (GPIO0 to GPIO39), which
+  holds while IOVDD is powered. The supervisor runs from `+3V3`, which is
+  always on, so this is always the case when `+5V` is up.
+- **Load:** pulling the line low sinks about 5 mA through R36, plus the
+  current of any pull-ups in devices on the user port, serial bus or
+  expansion port. Set the pin to 12 mA drive strength. If a setup needs more,
+  an open-drain buffer (for example a 74LVC1G07) can take over.
+- **Fail-safe:** in reset and with blank firmware, GPIO0 is an input with
+  the internal pull-down on, which R36 easily overrides, so the
+  supervisor never holds the system in reset. With `+5V` off, it is an
+  input or pulls low, so it does not feed the unpowered chips.
+- **Reading:** as an input, GPIO0 reads the line, so the firmware can also
+  see resets from other sources.
+- **What is reset:** everything on `~RESET`, including disk drives on the
+  serial bus and a cartridge, as with a reset button on the user port. The
+  RAM and ROM controller (U1401) does not see `~RESET`, so the RAM contents
+  survive a soft reset, as on the original C64.
+- **Firmware (#70):** the pulse length and what triggers a soft reset are
+  defined there.
 
 ### Notes
 
@@ -1614,7 +1659,7 @@ Bastler).
 | Group | Parts |
 | ----- | ----- |
 | CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15, `~GAME`, `~EXROM` and `~DMA`) |
-| Reset and RESTORE | U20 (556) with C23, C24, C38, C105, R33 to R35, R41 and R50; gates of U8 (7406) for `~RESET` and `~NMI`; R36 |
+| Reset and RESTORE | U20 (556) with C23, C24, C38, C105, R33 to R35, R41 and R50; gates of U8 (7406) for `~RESET` and `~NMI`; R36. The supervisor can also pull `~RESET` low (#70) |
 | Bus arbitration | U27 (7408) for `RDY`, `CAEC` and `~COLORAM`; gate B of U8 with R31 for `~AEC`; R51 on `R/~W` |
 | Address decoding | U17 (PLA), U15 (74LS139) |
 | Cassette port | CN3 with FB1 to FB3, C1 and R1 |
@@ -1754,6 +1799,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-31 | Connected GPIO0 (pin 77) of the supervisor (U1301) to `~RESET` for a soft reset of the C64 (#70): replaced its no-connect flag on the `Supervisor` sheet with the hierarchical label `~{RESET}`, and wired the new `~{RESET}` sheet pin to the shared reset line on the root sheet |
 | 2026-10-31 | Merged the note blocks of the former `250407 Sheet 1` and `250407 Sheet 2` into one note B on `250407 Design` (sockets for U7, U17, U504 and U1701), without the obsolete note 7 and its marker, and added the title block of the C64 250407 PCB Replica with its credits to `250407 Design` |
 | 2026-10-31 | Reconnected the expansion port: pin C gets `~RESET` through FB4 again, and pin 6 gets the dot clock (`DOT_CLK` from the `System Clocks` sheet) through the new `DOT_CLOCK_IN` sheet pin of `250407 Design`. #76 had left both unconnected. Changed the `~RESET` sheet pin of `250407 Design` to bidirectional |
 | 2026-10-31 | Merged `250407 Sheet 1` and `250407 Sheet 2` into the `250407 Design` sheet (`250407.kicad_sch`), which is now a single flat sheet, and removed `250407_sheet1.kicad_sch` and `250407_sheet2.kicad_sch`. All 43 parts keep their references and values. Replaced the global labels between the two sheets (`CAEC`, `RDY`, `~IRQ`, `~NMI`, `~LORAM`, `~HIRAM`, `~CHAREN`, `R/~W`, `DOT_CLOCK`, `~{RESET}`) with local connections. In the project settings, set the ERC connection grid to 25 mil and the pin-to-pin check to error |
