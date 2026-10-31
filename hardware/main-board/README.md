@@ -35,7 +35,9 @@ synchronized the buck converters.
 
 What is left of the original 250407 circuit is now on one flat sheet,
 `250407 Design` (#84), see
-[Remaining original circuit](#remaining-original-circuit).
+[Remaining original circuit](#remaining-original-circuit). Its power-on
+reset timer is gone: the supervisor now resets the system at start-up
+(#89), see [Soft reset](#soft-reset).
 
 ## Compatibility
 
@@ -739,9 +741,9 @@ not feed unpowered parts while the rails are off.
 ### Soft reset
 
 The supervisor can reset the C64 without switching the rails off (#70), by
-pulling the shared `~RESET` line low. Until now the only way to restart the
-system was the power-on reset, so the supervisor would have had to cycle the
-rails.
+pulling the shared `~RESET` line low. The same circuit also makes the
+power-on reset (#89), which used to come from a timer on the original
+board.
 
 ```
 GPIO0 ── R1313 1k ──┬── Q1301 gate (AO3400A)    drain: ~RESET, source: GND
@@ -749,9 +751,9 @@ GPIO0 ── R1313 1k ──┬── Q1301 gate (AO3400A)    drain: ~RESET, sou
 GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
 ```
 
-- **The line:** `~RESET` is wired-OR. R36 (1k) pulls it up to `+5V`, and
-  gate D of U8 (7406, open collector) pulls it low for the power-on reset.
-  Devices on the user port, the serial bus and the expansion port can pull
+- **The line:** `~RESET` is wired-OR. R201 (1k, on the `250407 Design`
+  sheet) pulls it up to `+5V`. Q1301 is the only driver on the board;
+  devices on the user port, the serial bus and the expansion port can pull
   it low as well. It goes to the 6510, the CIA 1 and CIA 2 controllers, the
   SID, the user port, the serial bus and the expansion port.
 - **Driver:** Q1301 (AO3400A, N-channel) is an open-drain driver, the same
@@ -771,9 +773,20 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
   powered, which is always the case because the supervisor runs from
   `+3V3`. R1315 limits the current to about 1 mA if GPIO1 were driven by
   mistake.
+- **Power-on reset (#89):** the original board reset the system with a
+  timer when `+5V` came up: half B of U20 (556) with R50 and C105 as the
+  trigger and R34 and C24 for a pulse of about 0.5 s, driving `~RESET`
+  through gate D of U8. These parts are gone. The supervisor switches the
+  rails on itself (#47), so its firmware is always running when `+5V` comes
+  up. It drives GPIO0 high before `POWER_ON`, so that `~RESET` is already
+  low while `+5V` rises (Q1301's gate drive comes from `+3V3`), and releases
+  it once the rails are up, the clocks run and the other controllers are
+  ready, after a minimum time for disk drives and cartridges (#88, #48). It
+  can also reset the system if `PGOOD` drops, which the timer could not.
 - **Fail-safe:** in reset and with blank firmware, GPIO0 is an input with the
   internal pull-down on, and R1314 holds the gate low, so Q1301 is off and
-  the supervisor never holds the system in reset.
+  the supervisor never holds the system in reset. In both cases the rails
+  stay off as well, so the missing hardware power-on reset does no harm.
 - **Back-feeding:** with `+5V` off, Q1301 can only sink current (its body
   diode is reverse biased), and GPIO1 is an input behind R1315, so nothing
   feeds the unpowered chips.
@@ -782,8 +795,9 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
   RAM and ROM controller (U1401) does not see `~RESET`, so the RAM contents
   survive a soft reset, as on the original C64.
 - **Firmware (#88):** GPIO0 is a push-pull output, high for reset. GPIO1 is
-  an input with the internal pull-up and pull-down off. The pulse length and
-  what triggers a soft reset are defined in #88.
+  an input with the internal pull-up and pull-down off. The power-on reset
+  sequence, the pulse length and what triggers a soft reset are defined in
+  #88.
 
 | Ref | Part | LCSC | Package |
 | --- | ---- | ---- | ------- |
@@ -1250,10 +1264,10 @@ These parts of the original circuit stay on the `250407 Design` sheet:
 - **Chip select:** U15 (74LS139) still decodes `~CIA2` for $DD00 to $DDFF.
 - **VIC-II bank:** U502 (74F258), the PLA (U17) and U1401 still take
   `~VA14` and `~VA15`.
-- **U8:** gates B, C and D (the AEC inverter, RESTORE and the power-on reset)
-  are still in use. Gates A, E and F are no longer placed in the schematic,
-  so their inputs (pins 1, 11 and 13) are left open on the chip; their
-  outputs are unconnected.
+- **U8:** gates B and C (the AEC inverter and RESTORE) are still in use.
+  Gates A, E and F, and since #89 gate D (the old power-on reset), are no
+  longer placed in the schematic, so their inputs (pins 1, 9, 11 and 13) are
+  left open on the chip; their outputs are unconnected.
 
 ### Circuit
 
@@ -1342,7 +1356,7 @@ arrays are TPD4E05U06DQAR (four channels each):
 
 | Pin | Signal | TVS | Series | Pull-up | Goes to |
 | --- | ------ | --- | ------ | ------- | ------- |
-| 3 | `~RESET` | D1601 | | R36 | The shared reset line |
+| 3 | `~RESET` | D1601 | | R201 | The shared reset line |
 | 4 | `CNT1` | U1604 | R1631 | R1532 | U1501 GPIO12 (CIA 1) |
 | 5 | `SP1` | U1604 | R1632 | R1531 | U1501 GPIO13 (CIA 1) |
 | 6 | `CNT2` | U1604 | R1633 | R1623 | GPIO12 |
@@ -1676,7 +1690,7 @@ Bastler).
 | Group | Parts |
 | ----- | ----- |
 | CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15, `~GAME`, `~EXROM` and `~DMA`) |
-| Reset and RESTORE | U20 (556) with C23, C24, C38, C105, R33 to R35, R41 and R50; gates of U8 (7406) for `~RESET` and `~NMI`; R36. The supervisor can also pull `~RESET` low through Q1301 (#70) |
+| Reset and RESTORE | U20 (556): half A is the RESTORE one-shot with C23, C38, R33, R35 and R41, half B is unused and tied off (#89); gate C of U8 (7406) for `~NMI`; R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
 | Bus arbitration | U27 (7408) for `RDY`, `CAEC` and `~COLORAM`; gate B of U8 with R31 for `~AEC`; R51 on `R/~W` |
 | Address decoding | U17 (PLA), U15 (74LS139) |
 | Cassette port | CN3 with FB1 to FB3, C1 and R1 |
@@ -1816,6 +1830,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-31 | Removed the power-on reset timer from `250407 Design` (#89): half B of U20 (556) no longer has a function, gate D of U8 (7406) is no longer placed, and R34, C24, R50 and C105 are gone; the supervisor now makes the power-on reset through Q1301. Tied off half B of U20: RST B (pin 10) and THR B (pin 12) to ground, TRIG B (pin 8) to `+5V`, OUT B, DIS B and CV B open; VCC and GND of U20 stay on unit B. Replaced the through-hole pull-up R36 (1k) on `~RESET` with R201 (1k 0402, C11702) |
 | 2026-10-31 | Added a soft reset of the C64 to the `Supervisor` sheet (#70): GPIO0 (pin 77) drives the N-channel MOSFET Q1301 (AO3400A, C20917) through R1313 (1k, C11702), with R1314 (4.7k, C25900) from gate to ground, and Q1301 pulls `~RESET` low; GPIO1 (pin 78) reads `~RESET` through R1315 (4.7k). Added the hierarchical label `~{RESET}` to the sheet and wired the new `~{RESET}` sheet pin to the shared reset line on the root sheet |
 | 2026-10-31 | Merged the note blocks of the former `250407 Sheet 1` and `250407 Sheet 2` into one note B on `250407 Design` (sockets for U7, U17, U504 and U1701), without the obsolete note 7 and its marker, and added the title block of the C64 250407 PCB Replica with its credits to `250407 Design` |
 | 2026-10-31 | Reconnected the expansion port: pin C gets `~RESET` through FB4 again, and pin 6 gets the dot clock (`DOT_CLK` from the `System Clocks` sheet) through the new `DOT_CLOCK_IN` sheet pin of `250407 Design`. #76 had left both unconnected. Changed the `~RESET` sheet pin of `250407 Design` to bidirectional |
