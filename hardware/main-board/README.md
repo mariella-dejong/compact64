@@ -28,6 +28,11 @@ power switch SW1, so the board has no power switch.
 The SID is now an 8580 on a 9 V supply (#73), and the VIC-II an 8562 on 5 V
 (#74), so the board no longer needs 12 V anywhere and the `+12V` rail is gone.
 
+The VIC-II's colour and dot clocks now come from a clock synthesizer on the
+`System Clocks` sheet (#76). It replaces the PLL of the original board, whose
+MC4044 can no longer be bought, and the colour clock divider that
+synchronized the buck converters.
+
 ## Compatibility
 
 These changes make the c64-mini behave differently from an original C64.
@@ -185,6 +190,26 @@ Check them before using software or hardware that depends on them.
   same as the 6567R8), the registers, sprites, raster interrupts and the
   light pen.
 
+### The video clocks come from a clock synthesizer
+
+- **Original C64:** a PLL on the 250407 board (Y1, U29 to U32) makes the
+  colour clock from a 14.31818 MHz crystal and locks the dot clock to it.
+  PAL or NTSC is set with the crystal, some component values and a jumper.
+- **c64-mini:** an MS5351M clock synthesizer (Y1202) makes both clocks from
+  one PLL and a 25 MHz crystal (#76), see [System clocks](#system-clocks).
+  The supervisor programs it over I2C, so PAL or NTSC becomes a firmware
+  setting; a PAL board still needs a PAL VIC-II.
+- **Affected:**
+  - Without supervisor firmware the VIC-II gets no clocks. The board already
+    needs firmware for RAM, ROM and both CIAs.
+  - For now, the expansion port gets neither the dot clock (CN6 pin 6) nor
+    the reset through FB4 (CN6 pin C). Both connections went with the PLL's
+    labels on `250407 Sheet 1` and are restored in a later change.
+    Cartridges that need either signal do not work until then.
+- **Not affected:** the video timing and the 4/7 ratio between the dot clock
+  and the colour clock, which the synthesizer makes exactly. The colour
+  carrier is as accurate as the 25 MHz crystal (10 ppm).
+
 ## Power supply
 
 The board is being converted to a single 12 V DC input (#10, #26). The rails
@@ -194,11 +219,11 @@ made from it so far are on the `Power Supply` sheet:
 | ---------- | ----------------------------------------------------------- | --------- | ----- |
 | `+12V_IN`  | Input stage: barrel jack, polyfuse, reverse polarity and TVS protection | 2.5 A (polyfuse hold current) | #10   |
 | `12V_IN_SW` | Input switch (Q604, Q605), turned on by the supervisor; feeds every rail below except `+3V3` | 2.5 A | #47   |
-| `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the colour clock | 2 A       | #28   |
+| `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the clock synthesizer | 2 A       | #28   |
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
 | `+9V`      | CJ78M09 linear regulator (U902) from the switched 12 V input | 500 mA (regulator) | #36, #73 |
 | `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
-| `+3V3`     | LM61440 synchronous buck converter (U1201), synchronized to the colour clock | 1 A budget (converter rated 4 A) | #44   |
+| `+3V3`     | LM61440 synchronous buck converter (U1001), synchronized to the clock synthesizer | 1 A budget (converter rated 4 A) | #44   |
 
 The HF module replacement (U501, a 78L05 behind R501) also runs from the
 switched 12 V input: the `Power Supply` sheet passes `12V_IN_SW` on through a
@@ -206,21 +231,21 @@ sheet pin of the same name to the `VIC-II, HF Module Replacement and AV out`
 sheet. The `5V Buck` sheet's output reaches the root sheet through the `5V_OUT` sheet
 pin, where it connects to the `+5V` power symbol.
 
-The `Color Clock Divider` sheet supplies the clocks for the switching parts.
-U1001 (74AHCT1G08) passes the colour clock (`PHI_COLOR`, 14.31818 MHz for
-NTSC) only once `PGOOD` is high, and U1002 (74HC4040) divides it: Q4 (/32,
-447.4 kHz) synchronizes the 5 V and 3.3 V buck converters. Q5 (/64) used to
-clock the `+12V` charge pump and is no longer used (#73). Because they are
-all locked to the colour clock, their interference has a fixed relation to
-the video timing.
-The divider runs from `CAN+5V`.
+The `System Clocks` sheet supplies the sync clock for the switching parts,
+see [System clocks](#system-clocks). U1201 (74AHCT1G08) passes output CLK2
+of the clock synthesizer, about 445 kHz, only once `PGOOD` is high. It
+reaches the 5 V and 3.3 V buck converters through the `SYNC_CLK_IN` sheet pin
+of the `Power Supply` sheet. CLK2 comes from the same PLL as the colour and
+dot clocks, so the converters' interference has a fixed relation to the
+video timing. U1201 runs from `CAN+5V`.
 
 `PGOOD` combines the open-drain PGOOD outputs of both buck converters (U701
-and U1201) with the pull-ups R706 and R1203 (200k each) on `CAN+5V`: a
-wired-AND. It goes high once both outputs are in regulation, after the 1.5 ms
-to 2.5 ms PGOOD delay. If either rail drops out of regulation, the sync clock
-stops and both converters run unsynchronized at about 400 kHz, set by R701 and
-R1202, until `PGOOD` returns.
+and U1001) with the pull-ups R706 and R1003 (200k each) on `CAN+5V`: a
+wired-AND. It leaves the `Power Supply` sheet through the `PGOOD` sheet pin.
+It goes high once both outputs are in regulation, after the 1.5 ms to 2.5 ms
+PGOOD delay. If either rail drops out of regulation, the sync clock stops and
+both converters run unsynchronized at about 400 kHz, set by R701 and R1002,
+until `PGOOD` returns.
 
 ### Input switch
 
@@ -231,7 +256,7 @@ switched input `12V_IN_SW`, so a single signal turns them all on or off.
 
 | Net         | Connected                                                                 |
 | ----------- | ------------------------------------------------------------------------- |
-| `12V_IN`    | Input stage, 3V3 buck converter U1201 with its EN pull-up R1201, the input switch |
+| `12V_IN`    | Input stage, 3V3 buck converter U1001 with its EN pull-up R1001, the input switch |
 | `12V_IN_SW` | 5V buck converter U701 with R705, cassette buck converter U1101 with R1103, `CAN+5V` (D801 to U801), `+9V` (FB901 to U902), HF module replacement (R501) |
 
 **Circuit:**
@@ -282,9 +307,13 @@ drives `POWER_ON` high.
 the RAM and ROM controller (U1401 to U1403) are powered.
 
 - `PGOOD` is pulled up to `CAN+5V`, which is off, so it does not feed the
-  unpowered divider U1001.
-- The sync clock reaches U1201's EN/SYNC through C1205, which blocks the DC
-  on that pin from the unpowered divider U1002.
+  unpowered gate U1201 on the `System Clocks` sheet.
+- The sync clock reaches U1001's EN/SYNC through C1005, which blocks the DC
+  on that pin from the unpowered gate U1201.
+- The clock synthesizer (Y1202) runs from `+3V3` and stays powered. Its
+  outputs stay disabled (low) until the supervisor enables them, and the
+  74AHCT inputs of U1201 to U1203 tolerate 3.3 V while `CAN+5V` is off, see
+  [System clocks](#system-clocks).
 - U902 runs from `12V_IN_SW`, so `+9V` stays off as well.
 - The supervisor has no connections to the legacy chips yet. Later issues
   that add them must keep these signals from feeding unpowered chips.
@@ -295,7 +324,8 @@ the RAM and ROM controller (U1401 to U1403) are powered.
 **Side effects:**
 
 - With the rails off, `PGOOD` is low and `+3V3` runs unsynchronized at about
-  400 kHz. It locks to the colour clock once the other rails are up.
+  400 kHz. It locks to the sync clock once the other rails are up and the
+  supervisor has enabled the synthesizer's outputs.
 - The cassette motor supply U1101 is on the switched input, so it stays off
   until the supervisor starts the system. After that the 6510 controls it
   through P5, as before.
@@ -303,23 +333,19 @@ the RAM and ROM controller (U1401 to U1403) are powered.
 
 ### `CAN+5V` current budget
 
-`CAN+5V` powers the VIC-II (VCC and, since #74, VDD), the dot and colour
-clock circuit (`+Vc`, through L2 and FB19) and the colour clock divider,
-which also synchronizes both buck converters.
+`CAN+5V` powers the VIC-II (VCC and, since #74, VDD) and the three 5 V
+gates on the `System Clocks` sheet (#76): the clock buffers U1202 and U1203
+and the sync gate U1201.
 
 | Load                                        | Typical             | Maximum  | Source                                                    |
 | ------------------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
 | VIC-II 8562 (U504), VCC (pin 40)            | not specified       | 200 mA   | 6567 figure (preliminary datasheet, 3.3.7: ICC, outputs open), used as an upper bound |
 | VIC-II 8562 (U504), VDD (pin 13)            | not specified       | 50 mA    | 6567 figure (3.3.7: IDD), used as an upper bound          |
-| 74LS629 (U31), VCC and OSC VCC              | 35 mA               | 55 mA    | TI SDLS186                                                |
-| 74LS193 (U30)                               | 19 mA               | 34 mA    | TI SDLS074                                                |
-| MC4044 (U32)                                | 17 mA               | 40 mA    | Motorola MC4344/MC4044 datasheet (85 mW typical)          |
-| 74LS74A (U29)                               | 4 mA                | 8 mA     | TI SDLS119                                                |
-| R16, R53 and R27, Q7 (around the PLL)       | about 3 mA          | about 7 mA | Estimate from the circuit                               |
-| 74AHCT1G08 (U1001)                          | about 2.5 mA        | about 3.5 mA | Cpd 18 pF at 14.3 MHz, plus the change in supply current with a 3.4 V input (TI SN74AHCT1G08) |
-| 74HC4040 (U1002)                            | about 10.7 mA       | about 10.7 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 and C1205 (1 nF each) at 447 kHz (TI SN74HC4040) |
-| R706 and R1203 (PGOOD pull-ups)             | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm (two 200k in parallel)                     |
-| **Total**                                   | **about 92 mA plus the VIC-II** | **about 412 mA** |                                       |
+| 74AHCT1G125 (U1202), colour clock           | about 2 mA          | about 3 mA | Cpd 14 pF plus about 15 pF load at 14.3 MHz, plus the change in supply current (1.35 mA with a 3.4 V input) for the half of the time the input is high (TI SN74AHCT1G125) |
+| 74AHCT1G125 (U1203), dot clock              | about 2.6 mA        | about 3.5 mA | Cpd 14 pF plus about 50 pF load (C518, the VIC-II and the expansion port) at 8.2 MHz, plus the same change in supply current |
+| 74AHCT1G08 (U1201), sync clock              | about 4.5 mA        | about 5.3 mA | Charging C710 and C1005 (1 nF each) at about 445 kHz, plus the same change in supply current (TI SN74AHCT1G08) |
+| R706 and R1003 (PGOOD pull-ups)             | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm (two 200k in parallel)                     |
+| **Total**                                   | **about 9 mA plus the VIC-II** | **about 262 mA** |                                       |
 
 No 8562 datasheet figures were found, so the 6567's maximum currents are used
 as an upper bound; the HMOS-II 8562 draws considerably less in practice.
@@ -327,23 +353,18 @@ Measure the real `CAN+5V` current on the first prototype.
 
 Datasheets:
 [6567 VIC-II preliminary](https://archive.org/details/mos_6567_vic_ii_preliminary),
-[SN74LS629](https://www.ti.com/lit/ds/symlink/sn74ls629.pdf),
-[SN74LS193](https://www.ti.com/lit/ds/symlink/sn74ls193.pdf),
-[MC4344/MC4044](https://www.radioradar.net/en/datasheets_search/M/C/4/MC4344_MotorolaSemiconductor.pdf.html),
-[SN74LS74A](https://www.ti.com/lit/ds/symlink/sn74ls74a.pdf),
+[SN74AHCT1G125](https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf),
 [SN74AHCT1G08](https://www.ti.com/lit/ds/symlink/sn74ahct1g08.pdf),
-[SN74HC4040](https://www.ti.com/lit/ds/symlink/sn74hc4040.pdf),
 [L78M](https://www.st.com/resource/en/datasheet/l78m.pdf).
 
-With this budget, the L78M05 (500 mA) runs at up to about 82 % of its rating.
+With this budget, the L78M05 (500 mA) runs at up to about 52 % of its rating.
 The four M7 diodes in front of it drop about 3.2 V to 3.6 V and take part of
 the heat:
 
 | Load                       | Each diode | U801 at 12 V in | U801 at 12.6 V in |
 | -------------------------- | ---------- | --------------- | ----------------- |
 | About 200 mA               | about 0.16 W | about 0.75 W  | about 0.9 W       |
-| About 360 mA               | about 0.3 W  | about 1.2 W   | about 1.4 W       |
-| About 410 mA (worst case)  | about 0.35 W | about 1.5 W   | about 1.7 W       |
+| About 260 mA (worst case)  | about 0.22 W | about 0.9 W   | about 1.1 W       |
 
 At the lowest input voltage (about 11.2 V after the input stage) the regulator
 still gets the 2 V headroom it needs. U801's tab is ground: connect it to a
@@ -417,7 +438,7 @@ heat in a TO-220 transistor (about 0.9 W at 150 mA from 12 V) and drew about
 - **Fixed frequency:** the TPS562208 always switches at about 580 kHz, also
   at the light load of a running motor. The TPS562201 variant skips pulses at
   light load, which would make its frequency vary. The converter is not
-  synchronized to the colour clock; it only runs while the motor turns.
+  synchronized to the sync clock; it only runs while the motor turns.
 - **Motor control, as on the original board:** the 6510 drives Q1101 (BC847)
   from port bit P5 (`CASS_MOTOR`, U7 pin 24) through R1104 (1k), with R1105
   (10k) pulling its base low. With P5 high, Q1101 pulls the enable input
@@ -448,22 +469,23 @@ The `3V3 Buck` sheet makes `+3V3` for the microcontrollers that are planned
 for the board (#11, #25, #68, #12) and for other 3.3 V logic. It is a copy of the
 5 V buck converter with the values changed for 3.3 V:
 
-- **Converter:** U1201 (LM61440), fed from the 12 V DC input, with the same
-  input capacitors (C1201 to C1204), VCC and bootstrap parts and RT resistor
-  (R1202, 33k) as the 5 V buck converter.
-- **Output voltage:** R1204 (51k) and R1205 (22k) set 1.0 V x (1 + 51/22) =
-  3.32 V. TI's 100k/43.2k pair is not available as JLC basic parts. C1208
-  (10 pF) with R1206 (1k) is the feedforward network; TI gives 4.7 pF for a
+- **Converter:** U1001 (LM61440), fed from the 12 V DC input, with the same
+  input capacitors (C1001 to C1004), VCC and bootstrap parts and RT resistor
+  (R1002, 33k) as the 5 V buck converter.
+- **Output voltage:** R1004 (51k) and R1005 (22k) set 1.0 V x (1 + 51/22) =
+  3.32 V. TI's 100k/43.2k pair is not available as JLC basic parts. C1008
+  (10 pF) with R1006 (1k) is the feedforward network; TI gives 4.7 pF for a
   100k top resistor, and 10 pF keeps the same corner frequency with 51k.
-- **Inductor:** L1201 is a 10 uH FCH0650-100M, the same family and footprint
-  as the 5 V buck converter's inductor. At 447 kHz and 12 V in, its ripple
+- **Inductor:** L1001 is a 10 uH FCH0650-100M, the same family and footprint
+  as the 5 V buck converter's inductor. At about 445 kHz and 12 V in, its ripple
   current is about 0.54 A, 13 % of the LM61440's 4 A rating, within TI's
   range (at least 10 %).
-- **Output capacitors:** four 22 uF ceramic capacitors (C1209 to C1212), TI's
-  minimum for 3.3 V at about 400 kHz, plus C1213 (100 nF).
-- **Synchronization:** C1205 couples Q4 of the colour clock divider into
-  EN/SYNC, which R1201 holds at the input voltage, the same way as for the
-  5 V buck converter. U1201's PGOOD joins `PGOOD` (see above).
+- **Output capacitors:** four 22 uF ceramic capacitors (C1009 to C1012), TI's
+  minimum for 3.3 V at about 400 kHz, plus C1013 (100 nF).
+- **Synchronization:** C1005 couples the sync clock (`SYNC_CLK_IN`, from the
+  `System Clocks` sheet) into EN/SYNC, which R1001 holds at the input
+  voltage, the same way as for the 5 V buck converter. U1001's PGOOD joins
+  `PGOOD` (see above).
 
 The budget is 1 A for now: the four RP2354 microcontrollers (supervisor,
 RAM and ROM, CIA 1, CIA 2) and some 3.3 V logic, with room to spare. The LM61440 can deliver up to 4 A, but the
@@ -474,6 +496,145 @@ budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
 switches the 12 V input of all other rails, see [Input switch](#input-switch).
 
 Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
+
+## System clocks
+
+The `System Clocks` sheet (`clocks.kicad_sch`, page 12, parts in the 1200
+range) makes the VIC-II's colour clock and dot clock and the sync clock of
+the buck converters (#76). It replaces the PLL on `250407 Sheet 1`, whose
+MC4044 (U32) can no longer be bought and whose 74LS629 (U31) is barely in
+stock, and the `Color Clock Divider` sheet.
+
+| Removed | Function | Now |
+| ------- | -------- | --- |
+| Y1, U31 (74LS629) | Colour clock oscillator and dot clock VCO | Y1202 (MS5351M) with Y1201 (25 MHz) |
+| U29, U30, U32, Q7 | Divider, phase comparator and loop filter that locked the dot clock to the colour clock | not needed: one PLL makes both clocks |
+| E2, E3 | PAL/NTSC jumper | firmware setting |
+| L2, FB19, C56, C65 to C68, C74, C82, C84 | `+Vc` supply of the PLL | not needed |
+| R16, R17, R19, R26, R27, R52, R53, C70, C83, C85, C86, C107, C108 | Other parts of the PLL | not needed |
+| FB16, FB17 | Ferrite beads in the colour and dot clock | FB1203, FB1202 |
+| U1001, U1002, C1001, C1002 of the former `Color Clock Divider` sheet | `PGOOD` gate and divide by 32 for the buck converter sync | U1201 and CLK2 of Y1202 |
+
+The reference numbers U1001, U1002, C1001 and C1002 now belong to the 3.3 V
+buck converter, which moved to page 10.
+
+### Frequencies
+
+One PLL feeds all three outputs, so the clocks stay locked to each other:
+
+| | PLL | Colour clock (CLK0) | Dot clock (CLK1) | Buck converter sync (CLK2) |
+| --- | --- | --- | --- | --- |
+| NTSC | 801.818 MHz (25 MHz x (32 + 4/55)) | PLL / 56 = 14.31818 MHz | PLL / 98 = 8.181818 MHz | PLL / 224 / 8 = 447.4 kHz |
+| PAL | 851.255 MHz (25 MHz x (34 + 3137/62500)) | PLL / 48 = 17.734475 MHz | PLL / 108 = 7.881984 MHz | PLL / 240 / 8 = 443.4 kHz |
+
+- **Exact ratios:** the PLL stays within its 600 MHz to 900 MHz range, and
+  both multipliers are exact fractions, so the only frequency error is that
+  of the crystal. The dot clock is exactly 4/7 (NTSC) or 4/9 (PAL) of the
+  colour clock.
+- **Low jitter:** all output dividers are even integers, which gives the
+  lowest jitter and a 50 % duty cycle. The Si5351A datasheet gives a period
+  jitter of about 70 ps, about 0.1 degrees of hue on the colour clock.
+- **Sync clock:** outputs below about 500 kHz need the R divider after the
+  multisynth, so CLK2 divides by 224 or 240 and then by 8. That keeps the
+  sync at about 445 kHz for both standards, so the inductors, ripple and RT
+  resistors of U701 and U1001 still fit. A fixed divide by 32 would have
+  given 554 kHz on PAL.
+- **SID pitch:** it depends only on the crystal, so sound is not affected.
+
+### Circuit
+
+- **Synthesizer:** Y1202, an MS5351M (a clone of the Si5351A-B-GT with the
+  same pinout, which can be fitted instead), on `+3V3`, which is always on.
+  VDD (pin 1) and VDDO (pin 7) each have their own 100 nF capacitor (C1201,
+  C1202).
+- **Crystal:** Y1201, 25 MHz with a 10 pF load. The synthesizer's internal
+  load capacitance is set to 10 pF in its registers, so there are no external
+  load capacitors.
+- **I2C:** on the supervisor's I2C0 bus (`SDA`, `SCL`, pull-ups R1306 and
+  R1312 on the `Supervisor` sheet) at address 0x60. The controllers on that
+  bus must not use 0x60.
+- **Colour clock:** CLK0 goes through U1202, R1203 and FB1203 to `COLOR_CLK`,
+  which the root sheet connects to `COLOR_CLOCK_IN` of the VIC-II sheet
+  (U504 pin 21).
+- **Dot clock:** CLK1 goes through U1203, R1202 and FB1202 to `DOT_CLK`,
+  which the root sheet connects to `DOT_CLOCK_IN` of the VIC-II sheet
+  (U504 pin 22, with C518). Expansion port pin 6 is not connected yet; it
+  follows in a later change.
+- **Sync clock:** CLK2 goes through U1201, R1201 and FB1201 to `SYNC_CLK`,
+  which the root sheet connects to `SYNC_CLK_IN` of the `Power Supply`
+  sheet, and from there through C710 and C1005 into EN/SYNC of U701 and
+  U1001. U1201 (74AHCT1G08) gates it with `PGOOD`, so the sync only starts
+  once both buck converters are in regulation.
+- **Buffers:** U1202 and U1203 (SN74AHCT1G125, /OE on ground) and U1201 run
+  from `CAN+5V`, like the VIC-II, with C1203 to C1205 (100 nF).
+  - Their TTL-level inputs (VIH 2.0 V) accept the synthesizer's 3.3 V
+    outputs, and they give the VIC-II's clock inputs a full 5 V swing. The
+    original 74LS629 output was TTL, about 3.4 V high.
+  - Their inputs tolerate up to 5.5 V at any supply voltage, including 0 V:
+    TI specifies the input leakage at 5.5 V for VCC = 0 V to 5.5 V. An
+    unpowered buffer drives nothing, so no clock reaches the VIC-II while
+    `CAN+5V` is off. Do not fit 74HCT parts instead: their input clamp diodes
+    would feed `CAN+5V` from the 3.3 V clock.
+  - `CAN+5V` is quieter than `+5V`, which keeps supply noise off the clock
+    edges.
+- **Series resistors and ferrite beads:** R1201 to R1203 (27 Ohm) terminate
+  the buffer outputs. FB1202 and FB1203 replace FB16 and FB17. They sit
+  before the clocks branch, and together with C518 (20 pF, formerly C36) they
+  form the low-pass filter of the original dot clock. A bead can make a clock
+  line ring with C518 and the VIC-II's input capacitance, at about 65 MHz,
+  with only the 27 Ohm resistor and the bead's own losses as damping. If the
+  prototype shows ringing, replace FB1202 and FB1203 with 0 Ohm. FB1201 is
+  not needed for the sync; it only takes the high harmonics off its edges.
+- **`PHI0`:** the VIC-II's `PHI0` output now only goes to the 6510. The PLL
+  used it as feedback, which the synthesizer does not need.
+
+### Parts
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| Y1202 | MS5351M clock synthesizer | C1509083 | MSOP-10 |
+| Y1201 | 25 MHz crystal, 10 pF load, 10 ppm (YXC X322525MMB4SI) | C70582 | 3225 |
+| U1202, U1203 | SN74AHCT1G125DBVR | C7484 | SOT-23-5 |
+| U1201 | 74AHCT1G08 | C113521 | SOT-23-5 |
+| C1201 to C1205 | 100 nF 16 V X7R | C1525 | 0402 |
+| R1201 to R1203 | 27 Ohm | C25190 | 0603 |
+| FB1201 to FB1203 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
+
+The Si5351A-B-GT (C529366) is the original part with the same pinout, but
+it costs more and is hardly in stock.
+
+### Firmware (supervisor)
+
+- After power-up, and before `POWER_ON`, write the register set for NTSC (or
+  PAL) with the outputs disabled. That is about 50 register writes.
+- Keep the outputs' disable state at low (register 24 = 0x00, the Si5351
+  default), not high impedance. Otherwise the buffer inputs float while
+  `CAN+5V` comes up. If the MS5351M turns out to behave differently, add
+  10k pull-downs at the buffer inputs.
+- Enable the outputs once `CAN+5V` is up, before the controllers and the
+  6510 are released, as part of the start-up order of #48.
+- Report a failure to talk to the synthesizer: the board cannot run without
+  its clocks.
+- PAL or NTSC is a firmware setting. A PAL board still needs a PAL VIC-II.
+- The PLL multiplier is fractional, so the firmware can also trim out the
+  crystal's tolerance if needed.
+
+### To check on the prototype
+
+- **MS5351M:** its jitter, PLL range and register compatibility with the
+  Si5351A are not confirmed by an independent source. Measure both clock
+  frequencies and their jitter, and check the picture (colours, artefact
+  colours, sprites) and the sound.
+- **Clock edges:** check U504 pins 21 and 22 for ringing (see the ferrite
+  beads above), and that the 8562 runs reliably from the buffered clocks.
+- **Buck converter sync:** check that U701 and U1001 lock to CLK2 at about
+  445 kHz on both standards. U1201 gives EN/SYNC the same 5 V swing through
+  C710 and C1005 as the old divider did.
+
+Datasheets:
+[Si5351A/B/C-B](https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-sheets/Si5351-B.pdf),
+[SN74AHCT1G125](https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf),
+[SN74AHCT1G08](https://www.ti.com/lit/ds/symlink/sn74ahct1g08.pdf).
 
 ## Supervisor microcontroller
 
@@ -496,6 +657,7 @@ other functions follow in separate issues:
 | Check that all ROM images are present | uses #51 | #52 |
 | Check that the other microcontrollers run up-to-date firmware | uses #51 | #53 |
 | Status indicator (LED) | #54 | #55 |
+| Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
 
 ### Circuit
 
@@ -544,8 +706,8 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
 | GPIO29 | 37 | `SWDAT` | Bidirectional | SWD data of the CIA 2 controller |
 | GPIO30 | 38 | `RUN` | Output | High lets the CIA 2 controller run; low or not driven holds it in reset |
-| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401) and the CIA 1 and CIA 2 controllers (U1501, U1601) |
-| GPIO41 | 52 | `SCL` | Output | I2C0 clock to U1401, U1501 and U1601 |
+| GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401), the CIA 1 and CIA 2 controllers (U1501, U1601) and the clock synthesizer (Y1202, address 0x60) |
+| GPIO41 | 52 | `SCL` | Output | I2C0 clock to U1401, U1501, U1601 and Y1202 |
 | GPIO42 | 53 | `SWCLK` | Output | SWD clock of the CIA 1 controller |
 | GPIO43 | 54 | `SWDAT` | Bidirectional | SWD data of the CIA 1 controller |
 | GPIO44 | 55 | `RUN` | Output | High lets the CIA 1 controller run; low or not driven holds it in reset |
@@ -558,8 +720,9 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   the output disabled and the internal pull-down on. All three `RUN` lines
   therefore stay low and the three controllers stay in reset, see
   [Programming and start-up](#programming-and-start-up).
-- **Back-feeding:** these pins only connect to the RAM and ROM controller
-  and the CIA 1 and CIA 2 controllers, which are also on `+3V3`.
+- **Back-feeding:** these pins only connect to the RAM and ROM controller,
+  the CIA 1 and CIA 2 controllers and the clock synthesizer, which are all
+  on `+3V3`.
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -1241,8 +1404,8 @@ These parts of the original circuit stay on the `250407` sheets:
 - **Chip select:** U15 (74LS139) still decodes `~VIC` for $D000 to $D3FF.
 - **Bus arbitration:** U27 (7408) still combines `AEC`, `BA` and `~DMA` for
   the 6510.
-- **Clocks:** the dot and colour clock PLL (U29 to U32, FB16, FB17) stays on
-  `250407 Sheet 1` until #76 replaces it.
+- **Clocks:** the dot and colour clock PLL on `250407 Sheet 1` (U29 to U32,
+  FB16, FB17) stayed until #76 replaced it with the `System Clocks` sheet.
 
 ### Circuit
 
@@ -1268,8 +1431,9 @@ These parts of the original circuit stay on the `250407` sheets:
 - **Colour data:** U503 (CD4066B) connects `COLOR_D0` to `COLOR_D3` to D0 to D3
   in 6510 cycles (control inputs on `AEC`).
 - **Clocks:** `COLOR_CLOCK_IN` (pin 21) and `DOT_CLOCK_IN` (pin 22, with C518)
-  come from the PLL on `250407 Sheet 1`. `PHI0` (pin 17) leaves through FB501
-  to the 6510 and to U32 of the PLL.
+  come from the `System Clocks` sheet (#76), see
+  [System clocks](#system-clocks). `PHI0` (pin 17) leaves through FB501 to the
+  6510 only (`PHI0_IN` on `250407 Sheet 1`).
 - **Video:** luma (pin 15) through FB502 and chroma (pin 14) through FB503 go
   straight to the video output circuit on the same sheet. The luma pull-up
   R512 is 1 kOhm, the value for the 856x, see
@@ -1556,6 +1720,11 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-31 | Updated the notes for the new clock circuit: on `250407 Sheet 1`, removed notes 2 (clock circuit), 8 (dot-clock VCO) and A (PAL/NTSC jumper) and the U1, U2 and U32 entries of note B; on `250407 Sheet 2`, marked note 7 (CAS delay) as obsolete and removed the U3 to U6, U9 to U12 and U21 to U24 entries of note B, whose chips earlier changes removed; on the `Power Supply` sheet, changed the `PGOOD` note to R1003 and the sync gate U1201 on the `System Clocks` sheet |
+| 2026-10-31 | Removed the colour and dot clock PLL from `250407 Sheet 1`: Y1, U29 to U32, Q7, L2, FB16, FB17, FB19, C56, C65 to C68, C70, C74, C82 to C86, C107, C108, R16, R17, R19, R26, R27, R52, R53 and the PAL/NTSC jumpers E2 and E3, with the `+Vc` and `jumper_select` nets. Removed the hierarchical labels `CAN+5V`, `COLOR_CLOCK_OUT` and `DOT_CLOCK_OUT` and the global labels `PHI0`, `DOT_CLOCK` and `~{RESET}` from that sheet, and the matching sheet pins on `250407 Design` and the root sheet; `PHI0_IN` now only connects FB501 and the 6510. The expansion port's dot clock (CN6 pin 6) and its reset through FB4 (CN6 pin C) lost their connection with these labels and are reconnected in a later change |
+| 2026-10-31 | Removed the `Color Clock Divider` sub-sheet (U1001, U1002, C1001, C1002) from the `Power Supply` sheet. The `Power Supply` sheet now gets the sync clock through the new `SYNC_CLK_IN` sheet pin, which feeds C710 and C1005, and passes `PGOOD` out through a new `PGOOD` sheet pin; its `COLOR_CLK_IN` sheet pin is gone |
+| 2026-10-31 | Moved the `3V3 Buck` sub-sheet to page 10 and renumbered its parts from the 1200 range to the 1000 range (U1201 to U1001, L1201 to L1001, C1201 to C1213 to C1001 to C1013, R1201 to R1206 to R1001 to R1006), and moved the other sheets to make room for the `System Clocks` sheet |
+| 2026-10-31 | Added a `System Clocks` sheet (`clocks.kicad_sch`, page 12) to the root sheet that makes the VIC-II's colour and dot clocks and the buck converter sync clock with an MS5351M clock synthesizer (Y1202, C1509083) on `+3V3` and a 25 MHz crystal with a 10 pF load (Y1201, C70582), decoupled by C1201 and C1202. CLK0 and CLK1 drive `COLOR_CLK` and `DOT_CLK` through the 5 V buffers U1202 and U1203 (SN74AHCT1G125, C7484, on `CAN+5V`, /OE on ground), R1203 and R1202 (27 Ohm, C25190) and the ferrite beads FB1203 and FB1202 (120 Ohm, C14709). CLK2 drives `SYNC_CLK` through U1201 (74AHCT1G08, C113521), which gates it with `PGOOD`, R1201 and FB1201. C1203 to C1205 decouple U1201 to U1203. Connected the sheet to `CAN+5V`, `PGOOD`, the supervisor's I2C bus (`SDA`, `SCL`), `COLOR_CLOCK_IN` and `DOT_CLOCK_IN` of the VIC-II sheet, and `SYNC_CLK_IN` of the `Power Supply` sheet |
 | 2026-10-31 | Changed the socket notes of U504 and U1701 to the 8562 VIC-II and the 8580 SID, saying that the 6567 and the 6581 do not work in these sockets. Replaced the U18 and U19 entries of note B on `250407 Sheet 2` with U1701 and U504, and added the 8562 to note 8 (dot-clock VCO) on `250407 Sheet 1` |
 | 2026-10-31 | Changed the parts around the VIC-II on the `VIC-II, HF Module Replacement and AV out` sheet to SMD: C507 to C512 and C515 to C517 to 100 nF 0402 (C1525), the electrolytic capacitor C513 to 10 uF 0603 ceramic (C96446, `Device:C_Small`), C518 to 20 pF 0402 C0G (C1554), FB501 to FB505 to 120 Ohm 0603 ferrite beads (C14709, `Device:FerriteBead_Small`, with short wires to the old pin positions), U505 and U506 to SN74HCT257DR, U502 to SN74F258D, U503 to CD4066BM96 (SOIC-14) and U508 to SN74LS373DWR (SOIC-20). Added PWR_FLAG #FLG0502 and #FLG0503 on the filtered VCC and VDD of U504, and removed the `Y5U` note next to the old decoupling capacitors |
 | 2026-10-30 | Removed the original VIC-II circuit from `250407 Sheet 2`: U19 (6567), U13, U14, U16, U25, U26, FB12, FB14, FB15, FB22, FB23, C29, C30, C32, C44, C45, C53, C54, C60, C94, C101 and C203, and C36 from `250407 Sheet 1`. Replaced the global label `PHI0` between both sheets with the hierarchical labels `PHI0_IN` and `DOT_CLOCK_OUT` on `250407 Sheet 1`. On `250407 Sheet 2`, removed the hierarchical labels `CAN+5V`, `COLOR_CLOCK_IN`, `COLOR_D0` to `COLOR_D3`, `VIC_II_LUMA`, `VIC_II_CHROMA`, `~LP` and `~VA15`, and added `BA`, `~AEC`, `~VIC` and a second `AEC`. Changed the sheet pins on `250407 Design` and the root sheet to match. The `+12V` net no longer exists |
