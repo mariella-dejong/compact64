@@ -2173,12 +2173,6 @@
 		(uuid "1fdefb6f-4111-44bd-b2ce-dec07ba9b54b")
 	)
 	(junction
-		(at 203.2 71.12)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "361cb5ab-f89d-44fd-8eed-df3794deeee2")
-	)
-	(junction
 		(at 39.37 181.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2221,6 +2215,12 @@
 		(uuid "5796fb8e-18d9-40cf-8602-f9fe8fde2108")
 	)
 	(junction
+		(at 203.2 43.18)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5bed7724-59b1-4c9b-b4f3-f2544b8f3bfe")
+	)
+	(junction
 		(at 99.06 189.23)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2231,6 +2231,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "745d2801-19ad-4ce2-9657-fa23481dbe08")
+	)
+	(junction
+		(at 210.82 36.83)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "841e98d0-541b-456c-8b42-dae36dd6f3a9")
 	)
 	(junction
 		(at 77.47 76.2)
@@ -2455,6 +2461,16 @@
 			(type default)
 		)
 		(uuid "35fac5cd-968c-4e87-bd6f-4dd2f8493068")
+	)
+	(wire
+		(pts
+			(xy 210.82 36.83) (xy 218.44 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37271f44-d5cd-4393-8b0d-f697fc964796")
 	)
 	(wire
 		(pts
@@ -2725,16 +2741,6 @@
 			(type default)
 		)
 		(uuid "7ae9b173-8d0d-412d-889e-b950457509ab")
-	)
-	(wire
-		(pts
-			(xy 203.2 71.12) (xy 203.2 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "820de267-4040-4bd5-8830-74e0d91869a8")
 	)
 	(wire
 		(pts
@@ -3078,6 +3084,16 @@
 	)
 	(wire
 		(pts
+			(xy 203.2 43.18) (xy 218.44 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cded097b-d043-472d-acec-86a53d65b0fb")
+	)
+	(wire
+		(pts
 			(xy 162.56 33.02) (xy 176.53 33.02)
 		)
 		(stroke
@@ -3255,6 +3271,28 @@
 			(justify right bottom)
 		)
 		(uuid "f5018f94-2ee9-4dd0-b944-5181b0a80999")
+	)
+	(hierarchical_label "PGOOD"
+		(shape output)
+		(at 218.44 36.83 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "12cca01a-8bad-437c-a547-b042797b4efd")
+	)
+	(hierarchical_label "SYNC_CLK_IN"
+		(shape input)
+		(at 218.44 43.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "13981422-fc52-4435-98c4-6f5f46f624d4")
 	)
 	(hierarchical_label "12V_IN_SW"
 		(shape output)
