@@ -316,8 +316,8 @@ the RAM and ROM controller (U1401 to U1403) are powered.
   [System clocks](#system-clocks).
 - U902 runs from `12V_IN_SW`, so `+9V` stays off as well.
 - The supervisor's only connection to the legacy chips is `~RESET` (#70).
-  GPIO0 only ever pulls it low or leaves it alone, so it never feeds the
-  unpowered chips, see [Soft reset](#soft-reset). Later issues that add more
+  Q1301 can only pull it low, and GPIO1 reads it through R1315, so neither
+  feeds the unpowered chips, see [Soft reset](#soft-reset). Later issues that add more
   connections must keep them from feeding unpowered chips as well.
 - The RAM and ROM controller connects to the C64 buses. It keeps all its bus
   pins as inputs while the rails are off, see
@@ -704,7 +704,8 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 
 | GPIO | Pin | Net | Direction | Function |
 | ---- | --- | --- | --------- | -------- |
-| GPIO0 | 77 | `~RESET` | Open drain (in firmware) | Pulls the shared reset line low for a soft reset, and reads it, see [Soft reset](#soft-reset) |
+| GPIO0 | 77 | Gate of Q1301 through R1313 | Output | High turns on Q1301, which pulls `~RESET` low (soft reset), see [Soft reset](#soft-reset) |
+| GPIO1 | 78 | `~RESET` through R1315 | Input | Reads the shared reset line |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
@@ -723,12 +724,12 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 - **State before the firmware runs:** all assigned pins come out of reset
   with the output disabled and the internal pull-down on. All three `RUN`
   lines therefore stay low and the three controllers stay in reset, see
-  [Programming and start-up](#programming-and-start-up). GPIO0 does not
-  pull `~RESET` low: R36 (1k to `+5V`) easily overrides the internal
-  pull-down.
+  [Programming and start-up](#programming-and-start-up). GPIO0 is low as
+  well, so Q1301 stays off and the C64 is not held in reset.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
   the CIA 1 and CIA 2 controllers and the clock synthesizer, which are all
-  on `+3V3`, except GPIO0 on `~RESET`, see [Soft reset](#soft-reset).
+  on `+3V3`, except GPIO0 and GPIO1, which reach `~RESET` through Q1301 and
+  R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -742,37 +743,53 @@ pulling the shared `~RESET` line low. Until now the only way to restart the
 system was the power-on reset, so the supervisor would have had to cycle the
 rails.
 
-- **Circuit:** GPIO0 (pin 77) connects directly to `~RESET` through the
-  `~RESET` sheet pin of the `Supervisor` sheet. There are no extra parts.
+```
+GPIO0 ── R1313 1k ──┬── Q1301 gate (AO3400A)    drain: ~RESET, source: GND
+                    └── R1314 4.7k to GND
+GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
+```
+
 - **The line:** `~RESET` is wired-OR. R36 (1k) pulls it up to `+5V`, and
   gate D of U8 (7406, open collector) pulls it low for the power-on reset.
   Devices on the user port, the serial bus and the expansion port can pull
   it low as well. It goes to the 6510, the CIA 1 and CIA 2 controllers, the
   SID, the user port, the serial bus and the expansion port.
-- **Open drain in firmware:** the RP2350 has no open-drain outputs. The
-  firmware keeps the pin's output value at low and only switches its output
-  driver: on pulls `~RESET` low, off releases it. It must never drive the
-  pin high: the line is shared with open-collector drivers, and a high
-  output against one of them pulling low would be a short circuit.
-- **Levels:** GPIO0 is one of the 5 V tolerant pins (GPIO0 to GPIO39), which
-  holds while IOVDD is powered. The supervisor runs from `+3V3`, which is
-  always on, so this is always the case when `+5V` is up.
-- **Load:** pulling the line low sinks about 5 mA through R36, plus the
-  current of any pull-ups in devices on the user port, serial bus or
-  expansion port. Set the pin to 12 mA drive strength. If a setup needs more,
-  an open-drain buffer (for example a 74LVC1G07) can take over.
-- **Fail-safe:** in reset and with blank firmware, GPIO0 is an input with
-  the internal pull-down on, which R36 easily overrides, so the
-  supervisor never holds the system in reset. With `+5V` off, it is an
-  input or pulls low, so it does not feed the unpowered chips.
-- **Reading:** as an input, GPIO0 reads the line, so the firmware can also
-  see resets from other sources.
+- **Driver:** Q1301 (AO3400A, N-channel) is an open-drain driver, the same
+  as the open-collector gates already on the line. GPIO0 high turns it on and
+  pulls `~RESET` low; GPIO0 low releases it. GPIO0 is an ordinary push-pull
+  output: whatever the firmware does with it, the supervisor cannot drive
+  `~RESET` high.
+- **Gate drive:** R1313 (1k) and R1314 (4.7k) give the gate about 2.7 V,
+  above the 2.5 V at which the AO3400A's on-resistance is specified, so the
+  line goes to practically 0 V, also with extra pull-ups in disk drives or
+  cartridges. GPIO0 sees 5.7 kOhm to ground, less than the 8.2 kOhm that
+  Raspberry Pi recommends for RP2350 erratum E9: with only the internal
+  pull-down, a pin that was driven high can stay at about 2 V after a reset
+  of the supervisor, which would keep Q1301 on.
+- **Reading:** GPIO1 reads `~RESET` through R1315 (4.7k), so the firmware
+  also sees resets from other sources. GPIO1 is 5 V tolerant while IOVDD is
+  powered, which is always the case because the supervisor runs from
+  `+3V3`. R1315 limits the current to about 1 mA if GPIO1 were driven by
+  mistake.
+- **Fail-safe:** in reset and with blank firmware, GPIO0 is an input with the
+  internal pull-down on, and R1314 holds the gate low, so Q1301 is off and
+  the supervisor never holds the system in reset.
+- **Back-feeding:** with `+5V` off, Q1301 can only sink current (its body
+  diode is reverse biased), and GPIO1 is an input behind R1315, so nothing
+  feeds the unpowered chips.
 - **What is reset:** everything on `~RESET`, including disk drives on the
   serial bus and a cartridge, as with a reset button on the user port. The
   RAM and ROM controller (U1401) does not see `~RESET`, so the RAM contents
   survive a soft reset, as on the original C64.
-- **Firmware (#70):** the pulse length and what triggers a soft reset are
-  defined there.
+- **Firmware (#70):** GPIO0 is a push-pull output, high for reset. GPIO1 is
+  an input with the internal pull-up and pull-down off. The pulse length and
+  what triggers a soft reset are defined in #70.
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| Q1301 | AO3400A | C20917 | SOT-23 |
+| R1313 | 1k | C11702 | 0402 |
+| R1314, R1315 | 4.7k | C25900 | 0402 |
 
 ### Notes
 
@@ -1659,7 +1676,7 @@ Bastler).
 | Group | Parts |
 | ----- | ----- |
 | CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15, `~GAME`, `~EXROM` and `~DMA`) |
-| Reset and RESTORE | U20 (556) with C23, C24, C38, C105, R33 to R35, R41 and R50; gates of U8 (7406) for `~RESET` and `~NMI`; R36. The supervisor can also pull `~RESET` low (#70) |
+| Reset and RESTORE | U20 (556) with C23, C24, C38, C105, R33 to R35, R41 and R50; gates of U8 (7406) for `~RESET` and `~NMI`; R36. The supervisor can also pull `~RESET` low through Q1301 (#70) |
 | Bus arbitration | U27 (7408) for `RDY`, `CAEC` and `~COLORAM`; gate B of U8 with R31 for `~AEC`; R51 on `R/~W` |
 | Address decoding | U17 (PLA), U15 (74LS139) |
 | Cassette port | CN3 with FB1 to FB3, C1 and R1 |
@@ -1799,7 +1816,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
-| 2026-10-31 | Connected GPIO0 (pin 77) of the supervisor (U1301) to `~RESET` for a soft reset of the C64 (#70): replaced its no-connect flag on the `Supervisor` sheet with the hierarchical label `~{RESET}`, and wired the new `~{RESET}` sheet pin to the shared reset line on the root sheet |
+| 2026-10-31 | Added a soft reset of the C64 to the `Supervisor` sheet (#70): GPIO0 (pin 77) drives the N-channel MOSFET Q1301 (AO3400A, C20917) through R1313 (1k, C11702), with R1314 (4.7k, C25900) from gate to ground, and Q1301 pulls `~RESET` low; GPIO1 (pin 78) reads `~RESET` through R1315 (4.7k). Added the hierarchical label `~{RESET}` to the sheet and wired the new `~{RESET}` sheet pin to the shared reset line on the root sheet |
 | 2026-10-31 | Merged the note blocks of the former `250407 Sheet 1` and `250407 Sheet 2` into one note B on `250407 Design` (sockets for U7, U17, U504 and U1701), without the obsolete note 7 and its marker, and added the title block of the C64 250407 PCB Replica with its credits to `250407 Design` |
 | 2026-10-31 | Reconnected the expansion port: pin C gets `~RESET` through FB4 again, and pin 6 gets the dot clock (`DOT_CLK` from the `System Clocks` sheet) through the new `DOT_CLOCK_IN` sheet pin of `250407 Design`. #76 had left both unconnected. Changed the `~RESET` sheet pin of `250407 Design` to bidirectional |
 | 2026-10-31 | Merged `250407 Sheet 1` and `250407 Sheet 2` into the `250407 Design` sheet (`250407.kicad_sch`), which is now a single flat sheet, and removed `250407_sheet1.kicad_sch` and `250407_sheet2.kicad_sch`. All 43 parts keep their references and values. Replaced the global labels between the two sheets (`CAEC`, `RDY`, `~IRQ`, `~NMI`, `~LORAM`, `~HIRAM`, `~CHAREN`, `R/~W`, `DOT_CLOCK`, `~{RESET}`) with local connections. In the project settings, set the ERC connection grid to 25 mil and the pin-to-pin check to error |
