@@ -5614,6 +5614,52 @@
 		)
 	)
 	(sheet
+		(at 51.435 243.205)
+		(size 60.325 29.845)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "4b52abbb-3e27-44dc-ae12-3c6856102545")
+		(property "Sheetname" "PLA Replacement"
+			(at 51.435 242.4934 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "pla.kicad_sch"
+			(at 51.435 273.6346 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 52.07 145.415)
 		(size 43.18 35.56)
 		(exclude_from_sim no)

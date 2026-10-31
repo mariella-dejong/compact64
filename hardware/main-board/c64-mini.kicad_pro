@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#U156,#PWR120,#PWR127,R1535",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
@@ -1671,6 +1671,10 @@
     [
       "438ac9d3-0cfc-4b1b-990b-000900cb9742",
       "250407 Design"
+    ],
+    [
+      "4b52abbb-3e27-44dc-ae12-3c6856102545",
+      "PLA Replacement"
     ],
     [
       "99dc937e-95c0-4b75-9c55-26aa6f5c22ff",
