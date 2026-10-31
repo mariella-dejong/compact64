@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "R32,R502,U9,U18,U21-22,U28,U502-508,C34-36,C47,C55,C57,C61,C95,C102,C204,C507-518,#U175,#U187-190,#U211,#U213,#U218,#U225-232,#U244,FB13,FB18,FB24-26,FB501-505,#PWR135-137,#PWR155,#PWR158-160",
+    "used_designators": "U507",
     "variants": []
   },
   "sheets": [
