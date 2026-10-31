@@ -2124,7 +2124,7 @@
 		)
 		(uuid "678be9db-24e3-4cc4-8d4b-c7c4668e5448")
 	)
-	(text "The PGOOD outputs of the 5V and 3V3 bucks are open-drain and share\npull-ups R706 and R1203 on CAN+5V, which makes a wired-AND: no\nextra logic is needed to combine them. PGOOD goes high once both \noutputs are in regulation (1.5-2.5 ms PGOOD delay), and only then does\nU1001 pass the colour clock to the divider. If either rail drops out of\nregulation, the sync clock stops and both bucks run unsynchronized at\nabout 400 kHz until PGOOD returns."
+	(text "The PGOOD outputs of the 5V and 3V3 bucks are open-drain and share\npull-ups R706 and R1003 on CAN+5V, which makes a wired-AND: no\nextra logic is needed to combine them. PGOOD goes high once both \noutputs are in regulation (1.5-2.5 ms PGOOD delay), and only then does\nU1201 (System Clocks sheet) pass the sync clock to the bucks. If either\nrail drops out of regulation, the sync clock stops and both bucks run\nunsynchronized at about 400 kHz until PGOOD returns."
 		(exclude_from_sim no)
 		(at 247.65 67.056 0)
 		(effects
