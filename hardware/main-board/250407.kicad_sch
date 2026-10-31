@@ -4,6 +4,14 @@
 	(generator_version "10.0")
 	(uuid "a9b2c482-e396-4e3f-a004-c4c1103df20e")
 	(paper "A3")
+	(title_block
+		(title "C64 250407 PCB Replica")
+		(date "2022-08-18")
+		(rev "1.2")
+		(comment 1 "by BWACK")
+		(comment 2 "with help from Der Alte Bastler")
+		(comment 3 "Schematics V1.2 for Board V1.1")
+	)
 	(lib_symbols
 		(symbol "250407_-rescue:6510_MPU-KU-schematics-library"
 			(pin_names
@@ -5372,17 +5380,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "7"
-		(exclude_from_sim no)
-		(at 106.6546 227.0252 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "0abab4fc-eeb0-432a-b72d-9853b55cf1b6")
-	)
 	(text "RP4\n3.3K"
 		(exclude_from_sim no)
 		(at 24.765 247.65 0)
@@ -5519,10 +5516,10 @@
 		)
 		(uuid "ef8e0133-a3f2-4285-ae28-437ec3b75b99")
 	)
-	(text_box "NOTES:\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU7: MOS 6510 CPU\n"
+	(text_box "NOTES:\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU7: MOS 6510 CPU\nU17: PLA 906114-01 or a compatible replacement\nU504 (VIC-II sheet): 8562 VIC-II (NTSC). A 6567 does not work: it needs 12 V on pin 13.\nU1701 (SID sheet): 8580 SID. A 6581 does not work: it needs 12 V on VDD."
 		(exclude_from_sim no)
 		(at 27.305 18.415 0)
-		(size 121.92 15.24)
+		(size 121.92 20.32)
 		(margins 1.27 1.27 1.27 1.27)
 		(stroke
 			(width 0.254)
@@ -5538,26 +5535,6 @@
 			(justify left top)
 		)
 		(uuid "20f78cff-d730-425b-909c-b4e55d6967fe")
-	)
-	(text_box "NOTES (NTSC build; PAL values in brackets)\nNumbered notes are from Commodore schematic 251138 Rev\nB; lettered notes are for this design. Boxed markers\nshow where a note applies.\n\n7. [obsolete]\n\nB. IC sockets: these chips are not sold by LCSC, so the\nboard gets a round-pin DIP socket and the chip is\nbought separately and inserted after assembly.\nU17: PLA 906114-01 or a compatible replacement (see\n    note 7)\nU1701 (SID sheet): 8580 SID. A 6581 does not work: it\n    needs 12 V on VDD.\nU504 (VIC-II sheet): 8562 VIC-II (NTSC). A 6567 does\n    not work: it needs 12 V on pin 13."
-		(exclude_from_sim no)
-		(at 329.565 189.23 0)
-		(size 73.66 60.96)
-		(margins 1.27 1.27 1.27 1.27)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "9c7975e0-505e-4602-8de2-99032993ae67")
 	)
 	(junction
 		(at 241.935 67.945)
@@ -8115,16 +8092,6 @@
 		)
 		(uuid "69191b13-6241-46a5-bab2-7c033872c4a5")
 	)
-	(polyline
-		(pts
-			(xy 108.585 224.79) (xy 106.045 224.79)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "69c89c53-b686-479d-b9ee-26000ece6db9")
-	)
 	(bus
 		(pts
 			(xy 222.885 83.185) (xy 222.885 182.88)
@@ -8214,16 +8181,6 @@
 			(type default)
 		)
 		(uuid "6fe17b4a-45e3-44dc-a191-c6bd4360cb2b")
-	)
-	(polyline
-		(pts
-			(xy 108.585 227.33) (xy 108.585 224.79)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "6feac85b-df49-4300-b23e-899048a5c4fa")
 	)
 	(bus
 		(pts
@@ -8474,16 +8431,6 @@
 			(type default)
 		)
 		(uuid "80ec240b-1ca9-45ff-8aee-3dcc53f72410")
-	)
-	(polyline
-		(pts
-			(xy 106.045 224.79) (xy 106.045 227.33)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "828f7876-79a3-4f3b-a018-26b6fc3ff08d")
 	)
 	(wire
 		(pts
@@ -10114,16 +10061,6 @@
 			(type default)
 		)
 		(uuid "f42dd339-438c-4d5d-af1c-34981ddd52a6")
-	)
-	(polyline
-		(pts
-			(xy 106.045 227.33) (xy 108.585 227.33)
-		)
-		(stroke
-			(width 0.254)
-			(type solid)
-		)
-		(uuid "f5b26901-5d84-4caa-b567-736bca662979")
 	)
 	(wire
 		(pts
