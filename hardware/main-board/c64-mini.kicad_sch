@@ -5277,7 +5277,7 @@
 				(justify right)
 			)
 		)
-		(pin "~{RESET}" output
+		(pin "~{RESET}" bidirectional
 			(at 97.79 222.25 180)
 			(uuid "fb450cb1-85f0-4616-b8c0-beaeb4137fb4")
 			(effects
