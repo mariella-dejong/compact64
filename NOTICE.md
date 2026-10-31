@@ -48,8 +48,8 @@ Credits from the upstream project:
 ## C64 RF Modulator Replacement (HF module replacement)
 
 The HF module replacement circuit, on sheet
-[`hardware/main-board/hf_module_replacement.kicad_sch`](hardware/main-board/hf_module_replacement.kicad_sch)
-of the main board, replaces the original RF modulator with composite and
+[`hardware/main-board/vic_ii_hf_av_out.kicad_sch`](hardware/main-board/vic_ii_hf_av_out.kicad_sch)
+of the main board (formerly `hf_module_replacement.kicad_sch`), replaces the original RF modulator with composite and
 S-Video (luma/chroma) outputs. It is derived from the schematic of the
 **C64 RF Modulator Replacement** by mbarszcz-pcb:
 

@@ -25,11 +25,8 @@ are made from it on the `Power Supply` sheet. The original power brick input
 is gone (#37): the power connector CN7, the 9 V AC and `+9V_UNREG`, and the
 power switch SW1, so the board has no power switch.
 
-The SID is now an 8580 on a 9 V supply (#73), which replaced the `+12V` rail.
-The VIC-II is still the 6567, whose pin 13 (VDD, through FB12 with C53, C94
-and C54) stays on the `+12V` net, and nothing supplies that net any more. The
-schematic therefore has no working VIC-II until it moves to the 8562 on 5 V
-(#74).
+The SID is now an 8580 on a 9 V supply (#73), and the VIC-II an 8562 on 5 V
+(#74), so the board no longer needs 12 V anywhere and the `+12V` rail is gone.
 
 ## Compatibility
 
@@ -172,6 +169,22 @@ Check them before using software or hardware that depends on them.
   connectors. Modern SID replacements usually accept 9 V on VDD; check the
   specific product.
 
+### The VIC-II is an 8562
+
+- **Original C64:** the 250407 board has an NMOS 6567 VIC-II (U19) with 12 V
+  on VDD (pin 13) and a 470 Ohm luma pull-up.
+- **c64-mini:** the VIC-II socket (U504) takes the HMOS-II 8562 of the later
+  NTSC C64 boards, with 5 V on pin 13 and a 1 kOhm luma pull-up (#74), see
+  [VIC-II](#vic-ii).
+- **Affected:**
+  - Colours and luma levels differ slightly from the 6567.
+  - The 8562 shows "grey dots" when some colour registers are written at
+    certain cycles, which a few demos trigger.
+  - A 6567 does not work in this socket: it needs 12 V on pin 13.
+- **Not affected:** the video timing (65 cycles per line and 263 lines, the
+  same as the 6567R8), the registers, sprites, raster interrupts and the
+  light pen.
+
 ## Power supply
 
 The board is being converted to a single 12 V DC input (#10, #26). The rails
@@ -189,7 +202,7 @@ made from it so far are on the `Power Supply` sheet:
 
 The HF module replacement (U501, a 78L05 behind R501) also runs from the
 switched 12 V input: the `Power Supply` sheet passes `12V_IN_SW` on through a
-sheet pin of the same name to the `HF Module Replacement and AV connectors`
+sheet pin of the same name to the `VIC-II, HF Module Replacement and AV out`
 sheet. The `5V Buck` sheet's output reaches the root sheet through the `5V_OUT` sheet
 pin, where it connects to the `+5V` power symbol.
 
@@ -290,13 +303,14 @@ the RAM and ROM controller (U1401 to U1403) are powered.
 
 ### `CAN+5V` current budget
 
-`CAN+5V` powers the VIC-II, the dot and colour clock circuit (`+Vc`, through
-L2 and FB19) and the colour clock divider, which also synchronizes both buck
-converters.
+`CAN+5V` powers the VIC-II (VCC and, since #74, VDD), the dot and colour
+clock circuit (`+Vc`, through L2 and FB19) and the colour clock divider,
+which also synchronizes both buck converters.
 
 | Load                                        | Typical             | Maximum  | Source                                                    |
 | ------------------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
-| VIC-II 6567 (U19), Vcc                      | not specified       | 200 mA   | 6567 preliminary datasheet, 3.3.7: ICC, outputs open      |
+| VIC-II 8562 (U504), VCC (pin 40)            | not specified       | 200 mA   | 6567 figure (preliminary datasheet, 3.3.7: ICC, outputs open), used as an upper bound |
+| VIC-II 8562 (U504), VDD (pin 13)            | not specified       | 50 mA    | 6567 figure (3.3.7: IDD), used as an upper bound          |
 | 74LS629 (U31), VCC and OSC VCC              | 35 mA               | 55 mA    | TI SDLS186                                                |
 | 74LS193 (U30)                               | 19 mA               | 34 mA    | TI SDLS074                                                |
 | MC4044 (U32)                                | 17 mA               | 40 mA    | Motorola MC4344/MC4044 datasheet (85 mW typical)          |
@@ -305,10 +319,11 @@ converters.
 | 74AHCT1G08 (U1001)                          | about 2.5 mA        | about 3.5 mA | Cpd 18 pF at 14.3 MHz, plus the change in supply current with a 3.4 V input (TI SN74AHCT1G08) |
 | 74HC4040 (U1002)                            | about 10.7 mA       | about 10.7 mA | Cpd 88 pF at 14.3 MHz, plus charging C710 and C1205 (1 nF each) at 447 kHz (TI SN74HC4040) |
 | R706 and R1203 (PGOOD pull-ups)             | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm (two 200k in parallel)                     |
-| **Total**                                   | **about 92 mA plus the VIC-II** | **about 362 mA** |                                       |
+| **Total**                                   | **about 92 mA plus the VIC-II** | **about 412 mA** |                                       |
 
-The VIC-II datasheet only gives a maximum. Measure the real `CAN+5V` current
-on the first prototype.
+No 8562 datasheet figures were found, so the 6567's maximum currents are used
+as an upper bound; the HMOS-II 8562 draws considerably less in practice.
+Measure the real `CAN+5V` current on the first prototype.
 
 Datasheets:
 [6567 VIC-II preliminary](https://archive.org/details/mos_6567_vic_ii_preliminary),
@@ -320,14 +335,15 @@ Datasheets:
 [SN74HC4040](https://www.ti.com/lit/ds/symlink/sn74hc4040.pdf),
 [L78M](https://www.st.com/resource/en/datasheet/l78m.pdf).
 
-With this budget, the L78M05 (500 mA) runs at up to about 70 % of its rating.
+With this budget, the L78M05 (500 mA) runs at up to about 82 % of its rating.
 The four M7 diodes in front of it drop about 3.2 V to 3.6 V and take part of
 the heat:
 
 | Load                       | Each diode | U801 at 12 V in | U801 at 12.6 V in |
 | -------------------------- | ---------- | --------------- | ----------------- |
 | About 200 mA               | about 0.16 W | about 0.75 W  | about 0.9 W       |
-| About 360 mA (worst case)  | about 0.3 W  | about 1.2 W   | about 1.4 W       |
+| About 360 mA               | about 0.3 W  | about 1.2 W   | about 1.4 W       |
+| About 410 mA (worst case)  | about 0.35 W | about 1.5 W   | about 1.7 W       |
 
 At the lowest input voltage (about 11.2 V after the input stage) the regulator
 still gets the 2 V headroom it needs. U801's tab is ground: connect it to a
@@ -352,8 +368,8 @@ root sheet:
 It replaces the `+12V` rail of #36, which needed a charge pump (U901 and
 D901 to D903) because a 12 V regulator cannot run from a 12 V input. A 9 V
 regulator can, so the charge pump and its clock (`PUMP_CLK`, Q5 of the colour
-clock divider) are gone. The `+12V` net still exists for VDD of the 6567
-VIC-II (FB12, C53, C94), but has no source until #74 moves the VIC-II to 5 V.
+clock divider) are gone. Since #74 moved the VIC-II to 5 V, the `+12V` net is
+gone as well.
 
 #### `+9V` current budget
 
@@ -585,11 +601,12 @@ The address decoding stays as it was:
   6510's port at $01, cartridges (`~GAME`, `~EXROM`) and the VIC-II bank
   selected by CIA 2 work as before. The controller only answers the chip
   selects the PLA gives it, and does not need to track any of these.
-- The address multiplexers U13, U14 and U25 and the latch U26 stay. The
-  VIC-II's register select, the PLA's decoding of VIC-II cycles and the low
-  address byte in VIC-II cycles all depend on them.
-- U16 (4066) still connects the colour data lines to D0 to D3 in 6510
-  cycles.
+- The address multiplexers (now U505, U502 and U506) and the latch (now
+  U508) stay; they moved to the VIC-II sheet in #74. The VIC-II's register
+  select, the PLA's decoding of VIC-II cycles and the low address byte in
+  VIC-II cycles all depend on them.
+- U503 (4066, formerly U16) still connects the colour data lines to D0 to D3
+  in 6510 cycles.
 
 ### Circuit
 
@@ -659,7 +676,7 @@ ensures this: `+3V3` is always on, and all other rails are switched (see
 | Cycle | `AEC` | A0 to A7 | A8 to A11 | A12, A13 | A14, A15 |
 | ----- | ----- | -------- | --------- | -------- | -------- |
 | 6510 | High | `A0` to `A7` | `A8` to `A11` | `A12`, `A13` | `A14`, `A15` |
-| VIC-II | Low | `A0` to `A7` from latch U26 | `A8` to `A11` from the VIC-II | `VA4`, `VA5` while `~CAS` is low | `~VA14`, `~VA15`, inverted |
+| VIC-II | Low | `A0` to `A7` from latch U508 | `A8` to `A11` from the VIC-II | `VA4`, `VA5` while `~CAS` is low | `~VA14`, `~VA15`, inverted |
 
 In VIC-II cycles, `A12` to `A15` read high through the pull-ups RP4.
 
@@ -732,11 +749,14 @@ These timing requirements are for the firmware:
   lookup can start early. In VIC-II cycles only A12 and A13 arrive late; the
   four possible bytes can be read beforehand, and one picked when
   `~CASRAM` falls.
+- Time everything from the edges of `~CASRAM`, `~CAS` and `PHI2`, not from
+  fixed delays after `PHI0`: the `~RAS` and `~CAS` timing of the 8562 differs
+  slightly from the 6567's, and also depends on the PLA type.
 - Stop driving the data lines as soon as the select goes high.
 - Latch write data late in the cycle, not when `~CASRAM` falls: the 6510
   can take up to about 200 ns into `PHI2` to put the data on the bus. Latch
   colour RAM writes on the rising edge of `GR/~W`.
-- In 6510 cycles, U16 connects `COLOR_D0` to `COLOR_D3` to D0 to D3. When
+- In 6510 cycles, U503 connects `COLOR_D0` to `COLOR_D3` to D0 to D3. When
   the 6510 reads colour RAM, drive only the colour data lines, never D0 to
   D3 as well.
 - Turn off the internal pull-downs of the bus pins (RP2350 erratum E9), and
@@ -1003,7 +1023,7 @@ user port.
 These parts of the original circuit stay on the `250407` sheets:
 
 - **Chip select:** U15 (74LS139) still decodes `~CIA2` for $DD00 to $DDFF.
-- **VIC-II bank:** U14 (74LS258), the PLA (U17) and U1401 still take
+- **VIC-II bank:** U502 (74F258), the PLA (U17) and U1401 still take
   `~VA14` and `~VA15`.
 - **U8:** gates B, C and D (the AEC inverter, RESTORE and the power-on reset)
   are still in use. Gates A, E and F are no longer placed in the schematic,
@@ -1127,7 +1147,7 @@ other outputs are open drain against pull-ups to +5V:
 | User port lines | R1615 to R1626, R1628 (4.7k) | Devices on the user port drive them too |
 
 The firmware must never drive these lines high. `~VA14` and `~VA15` only go
-to inputs (U14, the PLA and U1401), but are open drain as well, so that they
+to inputs (U502, the PLA and U1401), but are open drain as well, so that they
 do not drive 3.3 V against the 5 V pull-ups. Their rising edge takes about
 0.1 us, short compared with a bus cycle of about 1 us.
 
@@ -1190,6 +1210,111 @@ circuit, in addition to the bus and 6526 model requirements of CIA 1 (see
 - **Pins:** turn off the internal pull-downs of the bus pins (RP2350
   erratum E9). The bus pins are in the PIO window from GPIO0; port B and the
   serial bus pins are in the window from GPIO16.
+
+## VIC-II
+
+The `VIC-II, HF Module Replacement and AV out` sheet (formerly `HF Module
+Replacement and AV connectors`, now `vic_ii_hf_av_out.kicad_sch`) holds the
+VIC-II with the parts that only serve it, next to the video output circuit
+and the audio and video connectors (#74). The VIC-II is now the 8562.
+
+| Removed | Original part | Now |
+| ------- | ------------- | --- |
+| U19 | 6567 VIC-II | U504 (8562) |
+| U13, U25 | 74LS257 address multiplexers | U505, U506 (74HCT257) |
+| U26 | 74LS373 address latch | U508 (74LS373) |
+| U14 | 74LS258 multiplexer for VA6, VA7 and the bank | U502 (74F258) |
+| U16 | 4066 colour data switch | U503 (CD4066B) |
+| FB23 | Ferrite bead in `PHI0` | FB501 |
+| FB15, FB14 | Ferrite beads in luma and chroma | FB502, FB503 |
+| FB12, C54 | VDD (pin 13) filter on `+12V` | FB504, C510 on `CAN+5V` |
+| C53, C94 | `+12V` decoupling | C512, C513 on `CAN+5V` |
+| FB22, C60, C101 | VCC (pin 40) filter | FB505, C509, C511 |
+| C36 | 20 pF load on the dot clock | C518 |
+| C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507, C508, C516, C517 |
+| C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped |
+
+These parts of the original circuit stay on the `250407` sheets:
+
+- **`~AEC`:** gate B of U8 (7406) with R31 still inverts `AEC`, for the
+  multiplexers on this sheet and for the PLA.
+- **Chip select:** U15 (74LS139) still decodes `~VIC` for $D000 to $D3FF.
+- **Bus arbitration:** U27 (7408) still combines `AEC`, `BA` and `~DMA` for
+  the 6510.
+- **Clocks:** the dot and colour clock PLL (U29 to U32, FB16, FB17) stays on
+  `250407 Sheet 1` until #76 replaces it.
+
+### Circuit
+
+- **VIC-II:** U504, an 8562 in a DIP-40 socket. VCC (pin 40) and VDD
+  (pin 13) both come from `CAN+5V`, through FB505 (with C509, C511) and FB504
+  (with C510, C512 and C513). Unlike the 6567, the 8562 needs 5 V on pin 13;
+  12 V there destroys it.
+- **Bus:** `D[0..7]`, A8 to A11 of `A[0..15]`, `R/~W`, `~VIC_SELECT` (`~VIC`
+  from U15), `~IRQ` and `BA`. `AEC` (pin 16) is high in 6510 cycles and low
+  in VIC-II cycles.
+- **Address path:**
+  - U505 and U506 (74HCT257) put the 6510's address onto `VA0` to `VA7` in
+    6510 cycles (`~OE` on `~AEC`), so that the VIC-II sees which register is
+    accessed. `~CAS` selects the low or high address byte.
+  - U508 (74LS373) latches `VA0` to `VA7` when `~RAS` falls and drives it
+    onto A0 to A7 in VIC-II cycles (`~OE` on `AEC`), for character ROM and
+    colour RAM fetches.
+  - U502 (74F258) drives `VA6` and `VA7` in VIC-II cycles (`~OE` on
+    `AEC`): the VIC-II's own A6 and A7 (`VA6'`, `VA7'`) or the bank bits
+    `~VA14`/`~VA15`, selected by `~CAS`.
+  - `~RAS` only connects U504 and U508, and `VA0` to `VA3`, `VA6` and `VA7`
+    stay on this sheet. `VA4` and `VA5` go to U1401 and the PLA.
+- **Colour data:** U503 (CD4066B) connects `COLOR_D0` to `COLOR_D3` to D0 to D3
+  in 6510 cycles (control inputs on `AEC`).
+- **Clocks:** `COLOR_CLOCK_IN` (pin 21) and `DOT_CLOCK_IN` (pin 22, with C518)
+  come from the PLL on `250407 Sheet 1`. `PHI0` (pin 17) leaves through FB501
+  to the 6510 and to U32 of the PLL.
+- **Video:** luma (pin 15) through FB502 and chroma (pin 14) through FB503 go
+  straight to the video output circuit on the same sheet. The luma pull-up
+  R512 is 1 kOhm, the value for the 856x, see
+  [HF module replacement](#hf-module-replacement).
+- **Decoupling:** C507, C508 and C515 to C517 (100 nF), one per logic chip.
+
+### Parts
+
+All parts on the sheet except the VIC-II itself are SMD. The ferrite beads
+and C513 use the KiCad symbols `Device:FerriteBead_Small` and `Device:C_Small`;
+the logic chips still use the symbols of the original design.
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| C507 to C512, C515 to C517 | 100 nF 16 V X7R | C1525 | 0402 |
+| C513 | 10 uF 25 V X5R | C96446 | 0603 |
+| C518 | 20 pF 50 V C0G | C1554 | 0402 |
+| FB501 to FB505 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
+| U502 | SN74F258D | C1499704 | SOIC-16 |
+| U503 | CD4066BM96 | C54755 | SOIC-14 |
+| U505, U506 | SN74HCT257DR | C2872319 | SOIC-16 |
+| U508 | SN74LS373DWR | C2867545 | SOIC-20 (7.5 mm) |
+| U504 | 8562 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
+
+- **Logic families:** the 74LS257 and 74LS258 are not available in SOIC, so
+  U505, U506 and U502 use other families with the same pinout and TTL input
+  levels. The 6510 and the VIC-II drive TTL levels and U1601 drives `~VA14`
+  and `~VA15` at 3.3 V, so 74HC parts, which need 3.5 V for a high input, are
+  not an option.
+  - U505 and U506 are 74HCT257. They switch about 20 ns slower than the
+    74LS257, which does not matter here: they are only on in 6510 cycles,
+    when they carry the register address to the VIC-II, which only uses it
+    later in the cycle.
+  - U502 is a 74F258, a bipolar part like the 74LS258, but faster. It is the
+    only 258 in SOIC that is stocked, and only in small numbers.
+  - U508 stays a 74LS373.
+- **Ferrite beads:** the original beads are about 50 Ohm at 100 MHz. The
+  120 Ohm beads are the nearest basic part. They are lower than the 600 Ohm
+  beads on the SID sheet on purpose: FB502 and FB503 carry luma and chroma,
+  and the larger inductance of a 600 Ohm bead would form a resonance with
+  C505 (330 pF) near the video band. The 2 A rating covers the VIC-II's
+  supply current through FB505.
+- **C513:** a 10 uF ceramic capacitor replaces the electrolytic capacitor on
+  `CAN+5V`. It keeps roughly half its capacitance at 5 V, which is enough
+  next to the bulk capacitors of the `CAN+5V` regulator.
 
 ## SID and audio output
 
@@ -1278,8 +1403,8 @@ reaches U1701 through the `~SELECT` sheet pin.
 
 ## Audio and video connectors
 
-The audio and video connectors are on the `HF Module Replacement and AV
-connectors` sheet, next to the video output circuit that drives them (#24).
+The audio and video connectors are on the `VIC-II, HF Module Replacement and AV out`
+sheet, next to the video output circuit that drives them (#24).
 They replace the original 8-pin DIN A/V connector CN5.
 
 | Connector | Contact               | Signal                                         |
@@ -1306,8 +1431,8 @@ They replace the original 8-pin DIN A/V connector CN5.
   of D502.
 - **Sheet pins:** `AUDIO_IN` and `AUDIO_OUT` connect to the
   `SID and internal audio output` sheet through the root sheet (#73).
-  `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` stay on the `HF Module Replacement
-  and AV connectors` sheet.
+  `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` stay on the `VIC-II, HF Module Replacement and AV out`
+  sheet.
 - **Signal levels:** the video output circuit is unchanged from the HF module
   replacement (#8), see [HF module replacement](#hf-module-replacement).
 
@@ -1324,8 +1449,8 @@ as permitted by section 3.4(e) of CERN-OHL v1.2.
 
 Source Location: <https://github.com/leporidae-ca/c64-mini>
 
-The HF module replacement sheet (`hf_module_replacement.kicad_sch`) is
-derived from the
+The HF module replacement circuit, on the sheet `vic_ii_hf_av_out.kicad_sch`
+(formerly `hf_module_replacement.kicad_sch`), is derived from the
 [C64 RF Modulator Replacement](https://github.com/mbarszcz-pcb/c64-rf-modulator-replacement),
 Copyright (c) 2020 mbarszcz-pcb, licensed under the
 [MIT License](../../LICENSES/MIT.txt). It is included in the design under
@@ -1375,7 +1500,7 @@ Only the files that make up the KiCad project were imported, unchanged:
 
 ### HF module replacement
 
-The circuit on the `HF Module Replacement and AV connectors` sheet replaces
+The video circuit on the `VIC-II, HF Module Replacement and AV out` sheet replaces
 the original RF modulator (M1) with composite and S-Video (luma/chroma)
 outputs, which go to the S-Video socket and the RCA jacks on the same sheet
 (see [Audio and video connectors](#audio-and-video-connectors)). It is based on the schematic of the
@@ -1402,8 +1527,9 @@ configuration:
   47 Ohm series resistor (R501) in front of the regulator takes part of the
   voltage drop, because the circuit draws about 52 mA and the SMD (SOT-89)
   regulator can dissipate less heat than the TO-92 part upstream uses.
-- The VIC-II luma pull-up is a fixed 470 Ohm resistor for the NMOS
-  6567/6569 VIC-II. Upstream selects 470 Ohm or 1 kOhm with a jumper.
+- The VIC-II luma pull-up is a fixed resistor (R512). Upstream selects
+  470 Ohm (NMOS 6567/6569) or 1 kOhm (HMOS-II 856x) with a jumper; R512 was
+  470 Ohm for the 6567 and is 1 kOhm since the move to the 8562 (#74).
 - The pinout selection jumpers for other board revisions are left out.
 - The RF modulator's audio input is not used. Audio goes directly to the
   RCA jacks.
@@ -1430,6 +1556,11 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-31 | Changed the socket notes of U504 and U1701 to the 8562 VIC-II and the 8580 SID, saying that the 6567 and the 6581 do not work in these sockets. Replaced the U18 and U19 entries of note B on `250407 Sheet 2` with U1701 and U504, and added the 8562 to note 8 (dot-clock VCO) on `250407 Sheet 1` |
+| 2026-10-31 | Changed the parts around the VIC-II on the `VIC-II, HF Module Replacement and AV out` sheet to SMD: C507 to C512 and C515 to C517 to 100 nF 0402 (C1525), the electrolytic capacitor C513 to 10 uF 0603 ceramic (C96446, `Device:C_Small`), C518 to 20 pF 0402 C0G (C1554), FB501 to FB505 to 120 Ohm 0603 ferrite beads (C14709, `Device:FerriteBead_Small`, with short wires to the old pin positions), U505 and U506 to SN74HCT257DR, U502 to SN74F258D, U503 to CD4066BM96 (SOIC-14) and U508 to SN74LS373DWR (SOIC-20). Added PWR_FLAG #FLG0502 and #FLG0503 on the filtered VCC and VDD of U504, and removed the `Y5U` note next to the old decoupling capacitors |
+| 2026-10-30 | Removed the original VIC-II circuit from `250407 Sheet 2`: U19 (6567), U13, U14, U16, U25, U26, FB12, FB14, FB15, FB22, FB23, C29, C30, C32, C44, C45, C53, C54, C60, C94, C101 and C203, and C36 from `250407 Sheet 1`. Replaced the global label `PHI0` between both sheets with the hierarchical labels `PHI0_IN` and `DOT_CLOCK_OUT` on `250407 Sheet 1`. On `250407 Sheet 2`, removed the hierarchical labels `CAN+5V`, `COLOR_CLOCK_IN`, `COLOR_D0` to `COLOR_D3`, `VIC_II_LUMA`, `VIC_II_CHROMA`, `~LP` and `~VA15`, and added `BA`, `~AEC`, `~VIC` and a second `AEC`. Changed the sheet pins on `250407 Design` and the root sheet to match. The `+12V` net no longer exists |
+| 2026-10-30 | Changed the VIC-II on the `VIC-II, HF Module Replacement and AV out` sheet from the 6567 to the 8562 (U504): VDD (pin 13) now comes from `CAN+5V` through FB504, with C510, C512 and C513, instead of from `+12V`. Changed the luma pull-up R512 from 470 Ohm to 1 kOhm (C21190), and left out the copy of C203 (82 pF on `~CAS`, PAL only) |
+| 2026-10-30 | Renamed the `HF Module Replacement and AV connectors` sheet to `VIC-II, HF Module Replacement and AV out` (file `vic_ii_hf_av_out.kicad_sch`) and added copies of the VIC-II and the parts that only serve it: U504 (VIC-II), U505 and U506 (74LS257), U508 (74LS373), U502 (74LS258), U503 (4066), FB501 to FB505, C507 to C513 and C515 to C518. Connected them through new sheet pins `D[0..7]`, `A[0..15]`, `R/~W`, `~VIC_SELECT`, `~IRQ`, `BA`, `AEC`, `~AEC`, `~CAS`, `PHI0`, `COLOR_CLOCK_IN`, `DOT_CLOCK_IN`, `COLOR_D0` to `COLOR_D3`, `VA4`, `VA5`, `~VA14`, `~VA15`, `~LP` and `CAN+5V`, and joined luma and chroma to the video circuit on the same sheet, replacing the `LUMA_IN` and `CHROMA_IN` sheet pins. Annotated the new parts in the 500 range |
 | 2026-10-30 | Removed the SID circuit from `250407 Sheet 2`: U18 (6581), C10, C11, C12, C13, C34, C37, C48, C49, C50, C51, C52, C62, C93, C205, R6, R7, R38, Q8, FB10, FB11 and FB13, and the paddle switch U28 with C47, R301 and R302 from `250407 Sheet 1`. Removed the global labels `POTX` and `POTY` between both sheets, and the hierarchical labels and sheet pins `POTAX`, `POTAY`, `POTBX`, `POTBY`, `CIA1_PA6`, `CIA1_PA7`, `AUDIO_IN` and `AUDIO_OUT` on the `250407` sheets, `250407 Design` and the root sheet. Added `~SID` as a hierarchical label on `250407 Sheet 2` and as a sheet pin on `250407 Design` and the root sheet |
 | 2026-10-30 | Changed the SID on the `SID and internal audio output` sheet from the 6581 to the 8580 (U1701): VDD and the collector of the audio buffer on `+9V`, filter capacitors C1704 and C1705 22 nF C0G (C77069). Changed its other parts to SMD: C1701, C1702, C1707, C1708 and C1715 100 nF (C307331 on `+9V`, C1525 on `+5V`), C1703 and C1706 1.8 nF C0G, C1709 1 nF C0G, C1712 220 pF, the electrolytic capacitors C1710, C1713 and C1714 to 22 uF and C1711 to 10 uF ceramic, R1701 to R1703 to 0402, FB1701 to FB1703 to 600 Ohm 0603 ferrite beads (`Device:FerriteBead_Small`), Q1701 to an MMBT3904 (SOT-23) and U1702 to a CD4066BM96 (SOIC-14) |
 | 2026-10-30 | Replaced the `12V Stabilized Rail` sub-sheet of the `Power Supply` sheet with a `9V Stabilized Rail` sub-sheet: removed the charge pump (U901, D901 to D903, C901 to C903) and its clock input `PUMP_CLK`, changed U902 from an L78M12 to a CJ78M09 (C9071) fed from `12V_IN_SW` through FB901, with C904 (22 uF) and C905 (1 uF) at its input on the net `9V_IN` (formerly `VPUMP`) and C906 and C907 at its output. Replaced the `+12V_STABILIZED` sheet pin with `+9V_STABILIZED` and the root sheet's `+12V` power symbol with `+9V`. Removed the `Q5` sheet pin of the `Color Clock Divider` sheet; U1002 pin 2 is now unconnected. The `+12V` net (VIC-II VDD through FB12, C53, C94) has no source until #74 |
