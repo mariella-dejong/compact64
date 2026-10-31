@@ -33,6 +33,10 @@ The VIC-II's colour and dot clocks now come from a clock synthesizer on the
 MC4044 can no longer be bought, and the colour clock divider that
 synchronized the buck converters.
 
+What is left of the original 250407 circuit is now on one flat sheet,
+`250407 Design` (#84), see
+[Remaining original circuit](#remaining-original-circuit).
+
 ## Compatibility
 
 These changes make the c64-mini behave differently from an original C64.
@@ -202,10 +206,6 @@ Check them before using software or hardware that depends on them.
 - **Affected:**
   - Without supervisor firmware the VIC-II gets no clocks. The board already
     needs firmware for RAM, ROM and both CIAs.
-  - For now, the expansion port gets neither the dot clock (CN6 pin 6) nor
-    the reset through FB4 (CN6 pin C). Both connections went with the PLL's
-    labels on `250407 Sheet 1` and are restored in a later change.
-    Cartridges that need either signal do not work until then.
 - **Not affected:** the video timing and the 4/7 ratio between the dot clock
   and the colour clock, which the synthesizer makes exactly. The colour
   carrier is as accurate as the 25 MHz crystal (10 ppm).
@@ -501,9 +501,9 @@ Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
 
 The `System Clocks` sheet (`clocks.kicad_sch`, page 12, parts in the 1200
 range) makes the VIC-II's colour clock and dot clock and the sync clock of
-the buck converters (#76). It replaces the PLL on `250407 Sheet 1`, whose
-MC4044 (U32) can no longer be bought and whose 74LS629 (U31) is barely in
-stock, and the `Color Clock Divider` sheet.
+the buck converters (#76). It replaces the PLL on the former
+`250407 Sheet 1`, whose MC4044 (U32) can no longer be bought and whose
+74LS629 (U31) is barely in stock, and the `Color Clock Divider` sheet.
 
 | Removed | Function | Now |
 | ------- | -------- | --- |
@@ -558,8 +558,8 @@ One PLL feeds all three outputs, so the clocks stay locked to each other:
   (U504 pin 21).
 - **Dot clock:** CLK1 goes through U1203, R1202 and FB1202 to `DOT_CLK`,
   which the root sheet connects to `DOT_CLOCK_IN` of the VIC-II sheet
-  (U504 pin 22, with C518). Expansion port pin 6 is not connected yet; it
-  follows in a later change.
+  (U504 pin 22, with C518) and to `DOT_CLOCK_IN` of the `250407 Design`
+  sheet (expansion port pin 6).
 - **Sync clock:** CLK2 goes through U1201, R1201 and FB1201 to `SYNC_CLK`,
   which the root sheet connects to `SYNC_CLK_IN` of the `Power Supply`
   sheet, and from there through C710 and C1005 into EN/SYNC of U701 and
@@ -943,7 +943,7 @@ see [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port).
 | CN8 | Control port 2 (port A) | J1502 |
 | FB18 | Ferrite bead in the +5V of both control ports | FB1501 |
 
-These parts of the original circuit stay on `250407 Sheet 1`:
+These parts of the original circuit stay on the `250407 Design` sheet:
 
 - **Chip select:** U15 (74LS139) still decodes `~CIA1` for $DC00 to $DCFF.
 - **Paddles:** a 4066 still switches the POT lines of control port 1 or 2
@@ -1183,7 +1183,7 @@ user port.
 | C96 | 0.1 uF on +5V beside the user port | C1621 |
 | RP3 | 3k3 pull-ups on `~FLAG2`, `~NMI`, `CASS_RD`, `CNT1`, `SP1`, `CNT2` and `SP2` | R1628, R1627, R1534, R1532, R1531, R1623 and R1624 (4.7k) |
 
-These parts of the original circuit stay on the `250407` sheets:
+These parts of the original circuit stay on the `250407 Design` sheet:
 
 - **Chip select:** U15 (74LS139) still decodes `~CIA2` for $DD00 to $DDFF.
 - **VIC-II bank:** U502 (74F258), the PLA (U17) and U1401 still take
@@ -1397,15 +1397,16 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507, C508, C516, C517 |
 | C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped |
 
-These parts of the original circuit stay on the `250407` sheets:
+These parts of the original circuit stay on the `250407 Design` sheet:
 
 - **`~AEC`:** gate B of U8 (7406) with R31 still inverts `AEC`, for the
   multiplexers on this sheet and for the PLA.
 - **Chip select:** U15 (74LS139) still decodes `~VIC` for $D000 to $D3FF.
 - **Bus arbitration:** U27 (7408) still combines `AEC`, `BA` and `~DMA` for
   the 6510.
-- **Clocks:** the dot and colour clock PLL on `250407 Sheet 1` (U29 to U32,
-  FB16, FB17) stayed until #76 replaced it with the `System Clocks` sheet.
+- **Clocks:** the dot and colour clock PLL on the former `250407 Sheet 1`
+  (U29 to U32, FB16, FB17) stayed until #76 replaced it with the
+  `System Clocks` sheet.
 
 ### Circuit
 
@@ -1433,7 +1434,7 @@ These parts of the original circuit stay on the `250407` sheets:
 - **Clocks:** `COLOR_CLOCK_IN` (pin 21) and `DOT_CLOCK_IN` (pin 22, with C518)
   come from the `System Clocks` sheet (#76), see
   [System clocks](#system-clocks). `PHI0` (pin 17) leaves through FB501 to the
-  6510 only (`PHI0_IN` on `250407 Sheet 1`).
+  6510 only (`PHI0_IN` on the `250407 Design` sheet).
 - **Video:** luma (pin 15) through FB502 and chroma (pin 14) through FB503 go
   straight to the video output circuit on the same sheet. The luma pull-up
   R512 is 1 kOhm, the value for the 856x, see
@@ -1484,8 +1485,9 @@ the logic chips still use the symbols of the original design.
 
 The `SID and internal audio output` sheet holds the SID, its audio output
 stage and the paddle switch (#73). It replaces the SID circuit of
-`250407 Sheet 2` and the 4066 of `250407 Sheet 1`, with the SID changed from
-the 6581 to the 8580 and the other parts changed to SMD.
+the former `250407 Sheet 2` and the 4066 of the former `250407 Sheet 1`,
+with the SID changed from the 6581 to the 8580 and the other parts changed
+to SMD.
 
 | Removed | Original part | Now |
 | ------- | ------------- | --- |
@@ -1503,8 +1505,8 @@ the 6581 to the 8580 and the other parts changed to SMD.
 | U28, C47 | Paddle switch 4066 and its decoupling capacitor | U1702 (CD4066B), C1715 |
 | R301, R302 | Pull-ups on `CIA1_PA6`, `CIA1_PA7` | R1704, R1705 |
 
-U15 (74LS139) on `250407 Sheet 2` still decodes `~SID` for $D400 to $D7FF; it
-reaches U1701 through the `~SELECT` sheet pin.
+U15 (74LS139) on the `250407 Design` sheet still decodes `~SID` for $D400 to
+$D7FF; it reaches U1701 through the `~SELECT` sheet pin.
 
 ### Circuit
 
@@ -1599,6 +1601,38 @@ They replace the original 8-pin DIN A/V connector CN5.
   sheet.
 - **Signal levels:** the video output circuit is unchanged from the HF module
   replacement (#8), see [HF module replacement](#hf-module-replacement).
+
+## Remaining original circuit
+
+The `250407 Design` sheet (`250407.kicad_sch`) holds what is left of the
+original 250407 circuit (#84). It used to contain the two sheets of the
+upstream design, `250407 Sheet 1` and `250407 Sheet 2`. They are now merged
+into this one flat sheet. It keeps the title block of the upstream design
+with its credits (C64 250407 PCB Replica by Bwack, with help from Der Alte
+Bastler).
+
+| Group | Parts |
+| ----- | ----- |
+| CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15, `~GAME`, `~EXROM` and `~DMA`) |
+| Reset and RESTORE | U20 (556) with C23, C24, C38, C105, R33 to R35, R41 and R50; gates of U8 (7406) for `~RESET` and `~NMI`; R36 |
+| Bus arbitration | U27 (7408) for `RDY`, `CAEC` and `~COLORAM`; gate B of U8 with R31 for `~AEC`; R51 on `R/~W` |
+| Address decoding | U17 (PLA), U15 (74LS139) |
+| Cassette port | CN3 with FB1 to FB3, C1 and R1 |
+| Power LED | CN10 with R39, FB20 and FB21 |
+| Expansion port | CN6 with FB4 in `~RESET` |
+| Decoupling | C9, C22, C31, C33, C39 and C46 (100 nF), C8 and C17 (10 uF) |
+
+- **Connections:** the sheet connects to the other sheets through
+  hierarchical labels and sheet pins only; the global labels between the two
+  former sheets are gone.
+- **Expansion port:** CN6 gets `~RESET` through FB4 (pin C), the dot clock
+  `DOT_CLK` from the `System Clocks` sheet through the `DOT_CLOCK_IN` sheet
+  pin (pin 6), `~ROML` and `~ROMH` from the PLA, and `~IO1` and `~IO2` from
+  U15.
+- **Sockets:** note B on the sheet lists the chips that are fitted in
+  sockets: U7, U17, and U504 and U1701 on their own sheets.
+- **Next steps:** #83 replaces U17, U15 and U27 with a CPLD. The parts still
+  use the symbols and through-hole footprints of the original design.
 
 ## Licence
 
@@ -1720,6 +1754,9 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-31 | Merged the note blocks of the former `250407 Sheet 1` and `250407 Sheet 2` into one note B on `250407 Design` (sockets for U7, U17, U504 and U1701), without the obsolete note 7 and its marker, and added the title block of the C64 250407 PCB Replica with its credits to `250407 Design` |
+| 2026-10-31 | Reconnected the expansion port: pin C gets `~RESET` through FB4 again, and pin 6 gets the dot clock (`DOT_CLK` from the `System Clocks` sheet) through the new `DOT_CLOCK_IN` sheet pin of `250407 Design`. #76 had left both unconnected. Changed the `~RESET` sheet pin of `250407 Design` to bidirectional |
+| 2026-10-31 | Merged `250407 Sheet 1` and `250407 Sheet 2` into the `250407 Design` sheet (`250407.kicad_sch`), which is now a single flat sheet, and removed `250407_sheet1.kicad_sch` and `250407_sheet2.kicad_sch`. All 43 parts keep their references and values. Replaced the global labels between the two sheets (`CAEC`, `RDY`, `~IRQ`, `~NMI`, `~LORAM`, `~HIRAM`, `~CHAREN`, `R/~W`, `DOT_CLOCK`, `~{RESET}`) with local connections. In the project settings, set the ERC connection grid to 25 mil and the pin-to-pin check to error |
 | 2026-10-31 | Updated the notes for the new clock circuit: on `250407 Sheet 1`, removed notes 2 (clock circuit), 8 (dot-clock VCO) and A (PAL/NTSC jumper) and the U1, U2 and U32 entries of note B; on `250407 Sheet 2`, marked note 7 (CAS delay) as obsolete and removed the U3 to U6, U9 to U12 and U21 to U24 entries of note B, whose chips earlier changes removed; on the `Power Supply` sheet, changed the `PGOOD` note to R1003 and the sync gate U1201 on the `System Clocks` sheet |
 | 2026-10-31 | Removed the colour and dot clock PLL from `250407 Sheet 1`: Y1, U29 to U32, Q7, L2, FB16, FB17, FB19, C56, C65 to C68, C70, C74, C82 to C86, C107, C108, R16, R17, R19, R26, R27, R52, R53 and the PAL/NTSC jumpers E2 and E3, with the `+Vc` and `jumper_select` nets. Removed the hierarchical labels `CAN+5V`, `COLOR_CLOCK_OUT` and `DOT_CLOCK_OUT` and the global labels `PHI0`, `DOT_CLOCK` and `~{RESET}` from that sheet, and the matching sheet pins on `250407 Design` and the root sheet; `PHI0_IN` now only connects FB501 and the 6510. The expansion port's dot clock (CN6 pin 6) and its reset through FB4 (CN6 pin C) lost their connection with these labels and are reconnected in a later change |
 | 2026-10-31 | Removed the `Color Clock Divider` sub-sheet (U1001, U1002, C1001, C1002) from the `Power Supply` sheet. The `Power Supply` sheet now gets the sync clock through the new `SYNC_CLK_IN` sheet pin, which feeds C710 and C1005, and passes `PGOOD` out through a new `PGOOD` sheet pin; its `COLOR_CLK_IN` sheet pin is gone |
