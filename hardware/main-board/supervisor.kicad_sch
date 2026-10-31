@@ -4193,10 +4193,6 @@
 		(uuid "53d5b219-e892-4e12-a052-83ca87dac09d")
 	)
 	(no_connect
-		(at 255.27 107.95)
-		(uuid "5c71d72b-affc-4355-9a09-3c3b701fd248")
-	)
-	(no_connect
 		(at 255.27 120.65)
 		(uuid "5ed679f2-026a-4792-9acc-22004ba7904c")
 	)
@@ -6190,6 +6186,17 @@
 			(justify left)
 		)
 		(uuid "03785068-7898-4742-9a6a-49b3c63da6a2")
+	)
+	(hierarchical_label "~{RESET}"
+		(shape bidirectional)
+		(at 255.27 107.95 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "081606cc-57de-43c7-a931-b5747109fe15")
 	)
 	(hierarchical_label "GPIO29"
 		(shape bidirectional)
