@@ -15135,7 +15135,7 @@
 				)
 			)
 		)
-		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6567 rev 8 VIC-II (NTSC) after assembly; see note B."
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert an 8562 VIC-II (HMOS-II, NTSC) after assembly; a 6567 does not work here, its pin 13 needs 12 V; see note B."
 			(at 207.01 170.815 0)
 			(hide yes)
 			(show_name no)

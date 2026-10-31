@@ -749,6 +749,9 @@ These timing requirements are for the firmware:
   lookup can start early. In VIC-II cycles only A12 and A13 arrive late; the
   four possible bytes can be read beforehand, and one picked when
   `~CASRAM` falls.
+- Time everything from the edges of `~CASRAM`, `~CAS` and `PHI2`, not from
+  fixed delays after `PHI0`: the `~RAS` and `~CAS` timing of the 8562 differs
+  slightly from the 6567's, and also depends on the PLA type.
 - Stop driving the data lines as soon as the select goes high.
 - Latch write data late in the cycle, not when `~CASRAM` falls: the 6510
   can take up to about 200 ns into `PHI2` to put the data on the bus. Latch
@@ -1553,6 +1556,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-10-31 | Changed the socket notes of U504 and U1701 to the 8562 VIC-II and the 8580 SID, saying that the 6567 and the 6581 do not work in these sockets |
 | 2026-10-31 | Changed the parts around the VIC-II on the `VIC-II, HF Module Replacement and AV out` sheet to SMD: C507 to C512 and C515 to C517 to 100 nF 0402 (C1525), the electrolytic capacitor C513 to 10 uF 0603 ceramic (C96446, `Device:C_Small`), C518 to 20 pF 0402 C0G (C1554), FB501 to FB505 to 120 Ohm 0603 ferrite beads (C14709, `Device:FerriteBead_Small`, with short wires to the old pin positions), U505 and U506 to SN74HCT257DR, U502 to SN74F258D, U503 to CD4066BM96 (SOIC-14) and U508 to SN74LS373DWR (SOIC-20). Added PWR_FLAG #FLG0502 and #FLG0503 on the filtered VCC and VDD of U504, and removed the `Y5U` note next to the old decoupling capacitors |
 | 2026-10-30 | Removed the original VIC-II circuit from `250407 Sheet 2`: U19 (6567), U13, U14, U16, U25, U26, FB12, FB14, FB15, FB22, FB23, C29, C30, C32, C44, C45, C53, C54, C60, C94, C101 and C203, and C36 from `250407 Sheet 1`. Replaced the global label `PHI0` between both sheets with the hierarchical labels `PHI0_IN` and `DOT_CLOCK_OUT` on `250407 Sheet 1`. On `250407 Sheet 2`, removed the hierarchical labels `CAN+5V`, `COLOR_CLOCK_IN`, `COLOR_D0` to `COLOR_D3`, `VIC_II_LUMA`, `VIC_II_CHROMA`, `~LP` and `~VA15`, and added `BA`, `~AEC`, `~VIC` and a second `AEC`. Changed the sheet pins on `250407 Design` and the root sheet to match. The `+12V` net no longer exists |
 | 2026-10-30 | Changed the VIC-II on the `VIC-II, HF Module Replacement and AV out` sheet from the 6567 to the 8562 (U504): VDD (pin 13) now comes from `CAN+5V` through FB504, with C510, C512 and C513, instead of from `+12V`. Changed the luma pull-up R512 from 470 Ohm to 1 kOhm (C21190), and left out the copy of C203 (82 pF on `~CAS`, PAL only) |

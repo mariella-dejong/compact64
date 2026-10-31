@@ -5798,7 +5798,7 @@
 				)
 			)
 		)
-		(property "Description" "Fitted with a 28-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6581 SID after assembly; see note B."
+		(property "Description" "Fitted with a 28-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert an 8580 SID after assembly; a 6581 does not work here, it needs 12 V on VDD; see note B."
 			(at 132.715 81.28 0)
 			(hide yes)
 			(show_name no)
