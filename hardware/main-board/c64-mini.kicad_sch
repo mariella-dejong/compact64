@@ -537,12 +537,6 @@
 		(uuid "004e5907-967e-495c-b078-4f7b3bb81c63")
 	)
 	(junction
-		(at 209.55 243.205)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "01ec4a63-123b-444d-8913-b60d7a06e149")
-	)
-	(junction
 		(at 137.16 240.665)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -553,12 +547,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2dc6ddb5-1c4e-410c-8693-82abcbf31042")
-	)
-	(junction
-		(at 200.66 220.98)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "2e4422a4-19e8-407f-96fe-4476461275ce")
 	)
 	(junction
 		(at 132.08 238.125)
@@ -601,12 +589,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4c4e795a-3a51-4d7f-9638-be000902e8dd")
-	)
-	(junction
-		(at 204.47 224.155)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "58963990-98f0-43e8-a191-a131c5ed9fda")
 	)
 	(junction
 		(at 50.8 64.77)
@@ -685,12 +667,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "be17c525-7af0-40d9-afb5-7115c6d9d6a0")
-	)
-	(junction
-		(at 202.565 224.155)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c30d31ad-f53c-4a52-841f-55e3bd0b8f43")
 	)
 	(junction
 		(at 244.475 150.495)
@@ -1084,7 +1060,7 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 224.155) (xy 213.995 224.155)
+			(xy 202.565 224.155) (xy 213.995 224.155)
 		)
 		(stroke
 			(width 0)
@@ -1401,16 +1377,6 @@
 			(type default)
 		)
 		(uuid "39467117-7bd9-48c8-9dfe-709d9018237c")
-	)
-	(wire
-		(pts
-			(xy 204.47 224.155) (xy 204.47 238.125)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "394a0ee8-a14c-4f83-bfdf-3f9da443a0b8")
 	)
 	(wire
 		(pts
@@ -1731,16 +1697,6 @@
 			(type default)
 		)
 		(uuid "606f6c25-2857-4d93-a6dd-3bffa5112041")
-	)
-	(wire
-		(pts
-			(xy 199.39 224.155) (xy 202.565 224.155)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "62074822-01dd-4064-bf1f-fc9305fbb9d9")
 	)
 	(wire
 		(pts
@@ -2414,16 +2370,6 @@
 	)
 	(wire
 		(pts
-			(xy 157.48 243.205) (xy 157.48 226.695)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b3e2707-b661-488f-99fd-a856ebf1f3f5")
-	)
-	(wire
-		(pts
 			(xy 96.52 160.655) (xy 96.52 134.62)
 		)
 		(stroke
@@ -2814,16 +2760,6 @@
 	)
 	(wire
 		(pts
-			(xy 199.39 220.98) (xy 200.66 220.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c1d963ea-20b4-4fd5-bb3e-0b01bab52e45")
-	)
-	(wire
-		(pts
 			(xy 191.77 174.625) (xy 209.55 174.625)
 		)
 		(stroke
@@ -3044,16 +2980,6 @@
 	)
 	(wire
 		(pts
-			(xy 204.47 238.125) (xy 213.995 238.125)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cf58d760-efc9-4aeb-9e27-c22088974ad6")
-	)
-	(wire
-		(pts
 			(xy 95.25 62.23) (xy 121.92 62.23)
 		)
 		(stroke
@@ -3211,16 +3137,6 @@
 			(type default)
 		)
 		(uuid "dcefb550-f2ef-4ae0-a424-3cd24b75ba26")
-	)
-	(wire
-		(pts
-			(xy 157.48 243.205) (xy 209.55 243.205)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dd075974-ebee-4956-b141-2cbf663a035f")
 	)
 	(wire
 		(pts
@@ -3471,16 +3387,6 @@
 			(type default)
 		)
 		(uuid "ed6f09a1-c482-4b4c-8435-887943e6ddcf")
-	)
-	(wire
-		(pts
-			(xy 202.565 224.155) (xy 204.47 224.155)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "edd1df94-2e75-45c0-ba49-0a6fffe1ef01")
 	)
 	(wire
 		(pts
@@ -4899,16 +4805,6 @@
 				(justify left top)
 			)
 		)
-		(pin "COLOR_CLK_IN" input
-			(at 213.995 238.125 180)
-			(uuid "0f52d3ba-8a05-407e-a257-6654e63c4c33")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "CAN+5V" output
 			(at 213.995 243.205 180)
 			(uuid "022ed49f-5fe5-44ab-b554-16dd20f165d9")
@@ -5169,26 +5065,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
-			)
-		)
-		(pin "CAN+5V" input
-			(at 157.48 226.695 270)
-			(uuid "cf7e79ae-67fb-48fb-8b80-2ef612711232")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "COLOR_CLK_OUT" output
-			(at 199.39 224.155 0)
-			(uuid "43c442b3-5f70-4c8b-bf84-8e927fbe409f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 			)
 		)
 		(pin "CASS_MOTOR" output
@@ -5454,16 +5330,6 @@
 		(pin "BA" input
 			(at 199.39 207.645 0)
 			(uuid "519ffadc-1464-4f52-b9fd-608f4af67ff2")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "DOT_CLOCK_OUT" output
-			(at 199.39 220.98 0)
-			(uuid "01e2f33b-f708-43e4-85cd-593ecfda3aca")
 			(effects
 				(font
 					(size 1.27 1.27)
