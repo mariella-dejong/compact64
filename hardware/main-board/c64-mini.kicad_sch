@@ -5637,7 +5637,7 @@
 				(justify left)
 			)
 		)
-		(pin "~{CIA1_FLAG}" input
+		(pin "~{CIA1_FLAG}" output
 			(at 177.165 188.595 90)
 			(uuid "a5fd6d2d-3c41-4e17-bca8-a7dff0adb447")
 			(effects
