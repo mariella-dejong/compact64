@@ -1689,6 +1689,145 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:+5V"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"+5V\""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -0.762 1.27) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.54) (xy 0.762 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "power:Earth"
 			(power global)
 			(pin_numbers
@@ -1842,6 +1981,12 @@
 		)
 	)
 	(junction
+		(at 181.61 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "20a29411-46e3-422e-931d-41088478b952")
+	)
+	(junction
 		(at 129.54 43.815)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1958,6 +2103,16 @@
 			(type default)
 		)
 		(uuid "0645c8cd-fa59-431a-b9a6-7b66112ea02b")
+	)
+	(wire
+		(pts
+			(xy 181.61 91.44) (xy 153.035 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f0d2569-8bf5-4a4a-a87d-b02b01a2a165")
 	)
 	(wire
 		(pts
@@ -2108,6 +2263,16 @@
 			(type default)
 		)
 		(uuid "6ae8bdd9-d8d0-4915-ba2d-3de7c416a488")
+	)
+	(wire
+		(pts
+			(xy 186.69 91.44) (xy 181.61 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e4eecde-37bf-421a-a86f-087c104f099e")
 	)
 	(wire
 		(pts
@@ -2638,7 +2803,7 @@
 	)
 	(hierarchical_label "~{AEC}"
 		(shape output)
-		(at 153.035 91.44 0)
+		(at 186.69 91.44 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3146,6 +3311,82 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
 					(reference "#PWR01011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 181.61 83.82 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2f4d9db1-8160-4076-a068-e6ee6b13373d")
+		(property "Reference" "#PWR0135"
+			(at 181.61 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 181.229 80.137 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 181.61 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 181.61 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3c5c6c2e-562c-426d-84ca-6945030998ea")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
+					(reference "#PWR0135")
 					(unit 1)
 				)
 			)
@@ -3915,6 +4156,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
 					(reference "C304")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 181.61 87.63 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "92a83589-905d-4f6b-aab8-9d99252e9a7a")
+		(property "Reference" "R303"
+			(at 180.086 84.328 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 179.324 86.868 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 183.388 87.63 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 181.61 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 181.61 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C25900"
+			(at 181.61 87.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6125a164-92e7-4cd2-a644-c04189c3ce65")
+		)
+		(pin "2"
+			(uuid "1b408be6-dcb5-4469-b96f-df1825c02d2f")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
+					(reference "R303")
 					(unit 1)
 				)
 			)

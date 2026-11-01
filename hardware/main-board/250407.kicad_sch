@@ -5327,12 +5327,6 @@
 		(uuid "1218bf35-da00-4d86-a442-d672fef642ea")
 	)
 	(junction
-		(at 59.055 109.855)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "15a7e66f-3fe4-4f5f-b53f-af094b0db51e")
-	)
-	(junction
 		(at 253.365 173.355)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5469,12 +5463,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7ea56a0e-6141-43e8-8641-a4aac8e31cad")
-	)
-	(junction
-		(at 53.34 109.855)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "8d62e084-cdf6-43c8-9342-3a872aff61b0")
 	)
 	(junction
 		(at 304.165 59.055)
@@ -6227,16 +6215,6 @@
 			(type default)
 		)
 		(uuid "0720a15c-686f-40f3-bc2e-82cdbe478ec8")
-	)
-	(wire
-		(pts
-			(xy 53.34 109.855) (xy 53.34 107.95)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "07dec8b8-1071-41d7-896b-da7166472cda")
 	)
 	(wire
 		(pts
@@ -7110,16 +7088,6 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 109.855) (xy 59.055 109.855)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "41fe2615-3485-429c-add3-e1ff90696df8")
-	)
-	(wire
-		(pts
 			(xy 182.245 207.01) (xy 116.205 207.01)
 		)
 		(stroke
@@ -7377,16 +7345,6 @@
 			(type default)
 		)
 		(uuid "4ebbb8e1-4b6e-4903-8e87-592e430e53a6")
-	)
-	(wire
-		(pts
-			(xy 59.055 109.855) (xy 59.055 214.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4ef16239-f20d-4ee0-b166-10a8791a50d0")
 	)
 	(wire
 		(pts
@@ -7907,16 +7865,6 @@
 			(type default)
 		)
 		(uuid "7b2e7502-e062-449b-9def-bf10d39d58b4")
-	)
-	(wire
-		(pts
-			(xy 59.055 214.63) (xy 97.155 214.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7b32aafa-ba21-4c14-91bd-ad7cb690dac7")
 	)
 	(wire
 		(pts
@@ -8858,16 +8806,6 @@
 		)
 		(uuid "c4b02b40-2db7-4fde-aca4-6d8f16329780")
 	)
-	(wire
-		(pts
-			(xy 48.26 109.855) (xy 53.34 109.855)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c5dc2fd9-60e2-4c9b-86af-9418e31449e9")
-	)
 	(bus
 		(pts
 			(xy 84.455 237.49) (xy 192.405 237.49)
@@ -9470,16 +9408,6 @@
 	)
 	(wire
 		(pts
-			(xy 59.055 109.855) (xy 62.865 109.855)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2387e61-7f8b-4ca9-8196-2263e2f8781a")
-	)
-	(wire
-		(pts
 			(xy 116.205 214.63) (xy 117.475 214.63)
 		)
 		(stroke
@@ -9717,16 +9645,6 @@
 			(justify left bottom)
 		)
 		(uuid "06cfcaa1-fc8c-40c1-9809-88bc1ebeb3d3")
-	)
-	(label "~{AEC}"
-		(at 59.055 191.135 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "0861689d-dbda-41dc-b9d3-b141fcf405aa")
 	)
 	(label "A14"
 		(at 240.665 175.895 0)
@@ -10993,17 +10911,6 @@
 		)
 		(uuid "b648d215-1d76-4302-9e2b-d2ee102d1b73")
 	)
-	(hierarchical_label "AEC"
-		(shape input)
-		(at 71.755 109.855 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "be6e2029-af8d-4654-ab66-7f882aa2bad2")
-	)
 	(hierarchical_label "CASS_MOTOR"
 		(shape output)
 		(at 243.205 13.335 0)
@@ -11069,17 +10976,6 @@
 			(justify left)
 		)
 		(uuid "d436debe-ce45-431d-98c2-5cf02c6e96f4")
-	)
-	(hierarchical_label "~{AEC}"
-		(shape input)
-		(at 48.26 109.855 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "e4561eee-57a5-46b9-90d9-039d21fd5ac8")
 	)
 	(hierarchical_label "~{CIA1_FLAG}"
 		(shape input)
@@ -13222,132 +13118,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:74LS06_")
-		(at 64.135 113.665 0)
-		(mirror y)
-		(unit 2)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "450d94e4-d0dd-4b19-a6ac-80c7ff024fd2")
-		(property "Reference" "U8"
-			(at 65.405 107.315 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "7406N"
-			(at 65.405 112.395 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 0.9906 0.9906)
-				)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:DIP14"
-			(at 64.135 113.665 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 64.135 113.665 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 64.135 113.665 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C21605"
-			(at 64.135 113.665 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "7"
-			(uuid "4e8f5a30-33bf-4a95-9078-1ec6095477d7")
-		)
-		(pin "10"
-			(uuid "926cf7b2-c5c2-46e9-bae6-74e929b0d131")
-		)
-		(pin "1"
-			(uuid "71f9e50d-4eee-457b-b9b2-7e75d10c243f")
-		)
-		(pin "9"
-			(uuid "0bce6e5a-5716-4b8c-bcc9-d94a51fc31fa")
-		)
-		(pin "11"
-			(uuid "49418c2d-fc32-4748-aa08-7d1883d6f973")
-		)
-		(pin "12"
-			(uuid "95d5d35f-e632-44dd-80df-9e9acf2c91f3")
-		)
-		(pin "2"
-			(uuid "bd61fb9e-d1ec-49f2-9b66-af2c3cc31a5c")
-		)
-		(pin "14"
-			(uuid "9a7bb054-931d-4feb-8434-6ed8542c3ee9")
-		)
-		(pin "3"
-			(uuid "a21bebbc-e661-4819-8c52-55035ad207a7")
-		)
-		(pin "4"
-			(uuid "653d88e0-76ec-469c-ba77-5c050ece4505")
-		)
-		(pin "5"
-			(uuid "a98375f8-f3b0-4520-b8a1-36fb41382f31")
-		)
-		(pin "6"
-			(uuid "811bf6f4-b2bf-46ea-aa3d-7f4bee9daa77")
-		)
-		(pin "8"
-			(uuid "9f153f0b-b8a1-45e6-a4a8-8d30e2420519")
-		)
-		(pin "13"
-			(uuid "0654a9c3-c9e2-4316-92a6-66ad09f2d9f4")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "U8")
-					(unit 2)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "KU-schematics-library:R_ARRAY_9WAY_US")
 		(at 248.285 178.435 270)
 		(unit 5)
@@ -14501,82 +14271,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 53.34 102.87 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7735a381-dfad-44d9-b710-56f1451254c0")
-		(property "Reference" "#PWR0134"
-			(at 53.34 106.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 52.959 99.187 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 53.34 102.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 53.34 102.87 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 53.34 102.87 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "bf05a295-d422-4558-b618-7e4fc8f32642")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#PWR0134")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "KU-schematics-library:FERRITE_NARROW")
 		(at 393.065 84.455 270)
 		(unit 1)
@@ -14815,97 +14509,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
 					(reference "#U0217")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "KU-schematics-library:R_US_CUSTOM")
-		(at 53.34 105.41 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7c1372fa-200c-4fc9-b3e4-c4b7193c36bf")
-		(property "Reference" "R31"
-			(at 48.26 104.521 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1K"
-			(at 48.0568 106.68 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:RESISTOR"
-			(at 53.34 105.41 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 53.34 105.41 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 53.34 105.41 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C57435"
-			(at 53.34 105.41 270)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "26f52dfc-f39d-45ff-9773-891c5765b677")
-		)
-		(pin "1"
-			(uuid "8893df17-c990-4f6f-9f1f-be3477d06884")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "R31")
 					(unit 1)
 				)
 			)
