@@ -13356,7 +13356,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6a9dbe30-6cd8-49fd-b523-78ad6dbce20c")
-		(property "Reference" "R"
+		(property "Reference" "R1325"
 			(at 387.35 121.285 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13429,7 +13429,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
-					(reference "R")
+					(reference "R1325")
 					(unit 1)
 				)
 			)
@@ -13866,7 +13866,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "842b1456-cbcc-48fc-872a-71daabc09467")
-		(property "Reference" "R"
+		(property "Reference" "R1326"
 			(at 387.35 139.319 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13939,7 +13939,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
-					(reference "R")
+					(reference "R1326")
 					(unit 1)
 				)
 			)
@@ -17784,7 +17784,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f13c2232-5a4a-4918-9b57-2c11299bbd16")
-		(property "Reference" "J204"
+		(property "Reference" "J1303"
 			(at 366.395 120.65 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17869,7 +17869,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
-					(reference "J204")
+					(reference "J1303")
 					(unit 1)
 				)
 			)
