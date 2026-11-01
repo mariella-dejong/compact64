@@ -10395,7 +10395,7 @@
 		)
 		(uuid "4833b1cc-9250-4360-8ad3-9d43ec8793bf")
 	)
-	(hierarchical_label "PHIO0_PROBE"
+	(hierarchical_label "PHI0_PROBE"
 		(shape output)
 		(at 154.305 194.945 180)
 		(effects

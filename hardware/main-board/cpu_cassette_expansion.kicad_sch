@@ -9847,7 +9847,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d14debb6-229c-4d06-a3d6-e6ea9564cae7")
-		(property "Reference" "R214"
+		(property "Reference" "R215"
 			(at 258.699 94.488 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9920,7 +9920,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "R214")
+					(reference "R215")
 					(unit 1)
 				)
 			)

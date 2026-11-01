@@ -6149,7 +6149,7 @@
 		(uuid "bb999d5f-b697-4ecc-a032-7557e7c11de3")
 	)
 	(junction
-		(at 301.625 102.87)
+		(at 304.8 102.87)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "c3d6e45e-b7b1-462d-bb10-bd100d7a57cb")
@@ -6508,7 +6508,7 @@
 	)
 	(wire
 		(pts
-			(xy 255.27 110.49) (xy 280.67 110.49)
+			(xy 255.27 110.49) (xy 282.575 110.49)
 		)
 		(stroke
 			(width 0)
@@ -6538,7 +6538,7 @@
 	)
 	(wire
 		(pts
-			(xy 280.67 110.49) (xy 280.67 118.745)
+			(xy 282.575 110.49) (xy 282.575 118.745)
 		)
 		(stroke
 			(width 0)
@@ -6558,7 +6558,7 @@
 	)
 	(wire
 		(pts
-			(xy 301.625 118.745) (xy 301.625 102.87)
+			(xy 304.8 118.745) (xy 304.8 102.87)
 		)
 		(stroke
 			(width 0)
@@ -7048,6 +7048,16 @@
 	)
 	(wire
 		(pts
+			(xy 288.29 113.03) (xy 285.115 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "476ece14-4853-40e5-a33d-802da7872184")
+	)
+	(wire
+		(pts
 			(xy 86.36 49.53) (xy 95.25 49.53)
 		)
 		(stroke
@@ -7168,16 +7178,6 @@
 	)
 	(wire
 		(pts
-			(xy 285.115 102.87) (xy 301.625 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "515d3f97-63ca-40f0-9a37-8b98cb50d55d")
-	)
-	(wire
-		(pts
 			(xy 306.07 58.42) (xy 306.07 57.15)
 		)
 		(stroke
@@ -7268,7 +7268,7 @@
 	)
 	(wire
 		(pts
-			(xy 280.67 118.745) (xy 286.385 118.745)
+			(xy 282.575 118.745) (xy 289.56 118.745)
 		)
 		(stroke
 			(width 0)
@@ -7668,7 +7668,7 @@
 	)
 	(wire
 		(pts
-			(xy 255.27 115.57) (xy 255.905 115.57)
+			(xy 255.27 115.57) (xy 271.145 115.57)
 		)
 		(stroke
 			(width 0)
@@ -8018,16 +8018,6 @@
 	)
 	(wire
 		(pts
-			(xy 263.525 115.57) (xy 269.24 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "98229709-8ef2-4991-877c-210ed0748231")
-	)
-	(wire
-		(pts
 			(xy 255.27 107.95) (xy 263.525 107.95)
 		)
 		(stroke
@@ -8138,7 +8128,7 @@
 	)
 	(wire
 		(pts
-			(xy 294.005 118.745) (xy 301.625 118.745)
+			(xy 297.18 118.745) (xy 304.8 118.745)
 		)
 		(stroke
 			(width 0)
@@ -8148,7 +8138,7 @@
 	)
 	(wire
 		(pts
-			(xy 301.625 102.87) (xy 304.8 102.87)
+			(xy 304.8 102.87) (xy 307.975 102.87)
 		)
 		(stroke
 			(width 0)
@@ -8928,6 +8918,16 @@
 	)
 	(wire
 		(pts
+			(xy 285.115 102.87) (xy 304.8 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e816e6b3-a30e-4131-9dce-368229ddf604")
+	)
+	(wire
+		(pts
 			(xy 128.27 83.82) (xy 128.27 86.36)
 		)
 		(stroke
@@ -9386,6 +9386,16 @@
 		)
 		(uuid "6dc5ceba-f5e2-41db-aa1c-ec4db321518e")
 	)
+	(label "PGOOD_PROBE"
+		(at 257.81 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "7208241c-62bb-4432-a38d-1f392aae5959")
+	)
 	(label "SD_DAT2"
 		(at 264.795 204.47 180)
 		(effects
@@ -9721,7 +9731,7 @@
 	)
 	(hierarchical_label "~{RESET}"
 		(shape bidirectional)
-		(at 304.8 102.87 0)
+		(at 307.975 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9765,7 +9775,7 @@
 	)
 	(hierarchical_label "PGOOD"
 		(shape input)
-		(at 269.24 115.57 0)
+		(at 278.765 115.57 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11435,10 +11445,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "26fd40c9-e394-4d67-b3ba-c31defee1372")
 		(property "Reference" "Q1301"
-			(at 288.925 106.6799 0)
+			(at 292.1 106.6799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11449,7 +11458,7 @@
 			)
 		)
 		(property "Value" "AO3400A"
-			(at 288.925 109.2199 0)
+			(at 292.1 109.2199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12107,7 +12116,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 285.115 113.03 0)
+		(at 288.29 113.03 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12118,7 +12127,7 @@
 		(fields_autoplaced yes)
 		(uuid "3a848ba8-5bf7-46af-b51c-c3189809baeb")
 		(property "Reference" "#PWR01328"
-			(at 285.115 119.38 0)
+			(at 288.29 119.38 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12129,7 +12138,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 285.115 118.11 0)
+			(at 288.29 118.11 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12140,7 +12149,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 285.115 113.03 0)
+			(at 288.29 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12151,7 +12160,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 285.115 113.03 0)
+			(at 288.29 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12162,7 +12171,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 285.115 113.03 0)
+			(at 288.29 113.03 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15166,7 +15175,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 259.715 115.57 90)
+		(at 274.955 115.57 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15176,7 +15185,7 @@
 		(dnp no)
 		(uuid "8a8d8d84-7136-4b17-9191-cec1673eb3e3")
 		(property "Reference" "R1330"
-			(at 259.334 110.744 90)
+			(at 279.908 117.856 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15186,7 +15195,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 259.334 113.284 90)
+			(at 279.908 120.396 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15196,7 +15205,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 259.715 117.348 90)
+			(at 274.955 117.348 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15207,7 +15216,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 259.715 115.57 0)
+			(at 274.955 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15218,7 +15227,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 259.715 115.57 0)
+			(at 274.955 115.57 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15229,7 +15238,7 @@
 			)
 		)
 		(property "LCSC Part #" "C11702"
-			(at 259.715 115.57 90)
+			(at 274.955 115.57 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15870,7 +15879,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 290.195 118.745 270)
+		(at 293.37 118.745 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -15880,7 +15889,7 @@
 		(dnp no)
 		(uuid "a6c78272-de9d-44e1-a975-f1a2416f23f0")
 		(property "Reference" "R1315"
-			(at 293.243 121.539 90)
+			(at 296.418 121.539 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15891,7 +15900,7 @@
 			)
 		)
 		(property "Value" "4.7k"
-			(at 292.227 123.571 90)
+			(at 295.402 123.571 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15902,7 +15911,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 290.195 116.967 90)
+			(at 293.37 116.967 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15913,7 +15922,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 290.195 118.745 0)
+			(at 293.37 118.745 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15924,7 +15933,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 290.195 118.745 0)
+			(at 293.37 118.745 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15935,7 +15944,7 @@
 			)
 		)
 		(property "LCSC Part #" "C25900"
-			(at 290.195 118.745 0)
+			(at 293.37 118.745 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
