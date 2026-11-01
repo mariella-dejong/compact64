@@ -6004,12 +6004,6 @@
 		(uuid "c3d6e45e-b7b1-462d-bb10-bd100d7a57cb")
 	)
 	(junction
-		(at 287.02 173.99)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "c49c3b86-bdea-4b3a-a61f-acb3b447efcc")
-	)
-	(junction
 		(at 227.33 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -6020,6 +6014,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d534e001-7b27-4ef2-b1c4-89d17b24b2d9")
+	)
+	(junction
+		(at 287.02 161.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "dde78a2b-112e-4d79-98cd-659a3d1b9157")
 	)
 	(junction
 		(at 273.05 214.63)
@@ -6044,6 +6044,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "e534c2be-277c-4eab-937f-f9ae176974f2")
+	)
+	(junction
+		(at 287.02 173.99)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ed23a253-86c5-451f-b209-1477b2de17a6")
 	)
 	(junction
 		(at 128.27 111.76)
@@ -6911,7 +6917,7 @@
 	)
 	(wire
 		(pts
-			(xy 295.275 161.29) (xy 255.27 161.29)
+			(xy 295.275 161.29) (xy 287.02 161.29)
 		)
 		(stroke
 			(width 0)
@@ -8111,6 +8117,16 @@
 	)
 	(wire
 		(pts
+			(xy 287.02 175.26) (xy 287.02 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b8271b28-9c8a-472f-9ca5-d42d497b708f")
+	)
+	(wire
+		(pts
 			(xy 255.27 140.97) (xy 266.7 140.97)
 		)
 		(stroke
@@ -8428,6 +8444,16 @@
 			(type default)
 		)
 		(uuid "dd477f77-a978-4654-b30e-9761daa21da6")
+	)
+	(wire
+		(pts
+			(xy 287.02 161.29) (xy 255.27 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddcc0455-3a36-4814-93b3-18ea07169b5e")
 	)
 	(wire
 		(pts
@@ -8761,7 +8787,7 @@
 	)
 	(wire
 		(pts
-			(xy 287.02 173.99) (xy 287.02 167.64)
+			(xy 287.02 173.99) (xy 287.02 168.91)
 		)
 		(stroke
 			(width 0)
@@ -11958,7 +11984,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 287.02 173.99 0)
+		(at 287.02 175.26 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11969,7 +11995,7 @@
 		(fields_autoplaced yes)
 		(uuid "4158e620-90fb-4361-9823-766f1caef84b")
 		(property "Reference" "#PWR01341"
-			(at 287.02 180.34 0)
+			(at 287.02 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11980,7 +12006,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 287.02 179.07 0)
+			(at 287.02 180.34 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11991,7 +12017,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 287.02 173.99 0)
+			(at 287.02 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12002,7 +12028,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 287.02 173.99 0)
+			(at 287.02 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12013,7 +12039,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 287.02 173.99 0)
+			(at 287.02 175.26 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14496,7 +14522,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 287.02 163.83 0)
+		(at 287.02 165.1 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14506,7 +14532,7 @@
 		(dnp no)
 		(uuid "8d99d4e3-3f41-4cf1-b955-3dc40eb8b203")
 		(property "Reference" "R1329"
-			(at 284.099 162.179 0)
+			(at 284.099 163.449 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14517,7 +14543,7 @@
 			)
 		)
 		(property "Value" "4.7k"
-			(at 283.337 164.719 0)
+			(at 283.337 165.989 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -14528,7 +14554,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 285.242 163.83 90)
+			(at 285.242 165.1 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14539,7 +14565,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 287.02 163.83 0)
+			(at 287.02 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14550,7 +14576,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 287.02 163.83 0)
+			(at 287.02 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14561,7 +14587,7 @@
 			)
 		)
 		(property "LCSC Part #" "C25900"
-			(at 287.02 163.83 0)
+			(at 287.02 165.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
