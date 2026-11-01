@@ -2592,6 +2592,28 @@
 		)
 		(uuid "b0ac12c2-543b-43da-842c-0fb80d36123b")
 	)
+	(hierarchical_label "AEC"
+		(shape input)
+		(at 122.555 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b27fcf93-f136-49c3-b11d-9dc1a97a4168")
+	)
+	(hierarchical_label "~{AEC}"
+		(shape output)
+		(at 153.035 91.44 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bdd0c775-d19d-4f0d-ad8c-4d66c1b151a3")
+	)
 	(hierarchical_label "TCK"
 		(shape bidirectional)
 		(at 153.035 124.46 0)
@@ -2613,17 +2635,6 @@
 			(justify left)
 		)
 		(uuid "c5c8d818-2fe4-4ba9-b1c2-b910dd7d07fb")
-	)
-	(hierarchical_label "~{AEC}"
-		(shape input)
-		(at 122.555 81.28 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d841f5ff-59f3-4bfd-8acf-f7d800aef380")
 	)
 	(hierarchical_label "~{SID}"
 		(shape output)
