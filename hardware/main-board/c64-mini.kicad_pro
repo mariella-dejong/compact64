@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1300,
+    "annotate_start_num": 200,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#U156,#PWR120,#PWR127,R1535",
+    "used_designators": "R2,R202-203,R303-304,R606,R1316,RP5,#U191-192,#U219-220,#PWR135,#PWR144-146,#PWR1008-1011,#PWR1329-1331,C32,C34,C303-304,C1014-1015,U16,U18,U1302",
     "variants": []
   },
   "sheets": [
@@ -1671,6 +1671,10 @@
     [
       "438ac9d3-0cfc-4b1b-990b-000900cb9742",
       "250407 Design"
+    ],
+    [
+      "4b52abbb-3e27-44dc-ae12-3c6856102545",
+      "PLA Replacement"
     ],
     [
       "99dc937e-95c0-4b75-9c55-26aa6f5c22ff",
