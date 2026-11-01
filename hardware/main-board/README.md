@@ -171,6 +171,34 @@ Check them before using software or hardware that depends on them.
   except pins 10 and 11 (see above), and `CNT` and `SP` of CIA 1 on the user
   port.
 
+### The CPU is an 8500
+
+- **Original C64:** the 250407 board has an NMOS 6510 CPU (U7).
+- **c64-mini:** the CPU socket (U201) takes the HMOS-II 8500 of the later
+  C64C boards (#75), see
+  [CPU, cassette and expansion port](#cpu-cassette-and-expansion-port). The
+  8500 is the 6510 made in the newer process: same pinout, same 5 V supply,
+  same bus timing and the same processor port, so the circuit is the same
+  for both. It also runs cooler. A 6510 works in the socket as well. This
+  README calls the CPU the 6510 when it describes its pins and bus cycles.
+- **Affected:**
+  - The unused bits 6 and 7 of the processor port ($01) keep a written value
+    for a while after the port is switched to input, until the charge leaks
+    away. This takes noticeably longer on an 8500 than on a 6510 (VICE
+    assumes about 1.5 s against about 0.35 s), and on both chips it depends
+    strongly on the chip and the temperature. A few copy protections and
+    test programs measure it.
+  - The unstable undocumented opcodes (such as ANE/XAA and LXA) use a
+    "magic constant" that differs between chips, including between 6510 and
+    8500 chips, and with temperature. Programs that rely on them may behave
+    differently, as they also do between two original C64s.
+  - Original 8500 and 6510 chips are only available second-hand.
+- **Not affected:** the documented instruction set, the bus and interrupt
+  timing, the processor port bits 0 to 5 (memory configuration and the
+  cassette lines) and their pull-ups.
+- **Not the 8502:** the 8502 is the C128's CPU and is not a drop-in
+  replacement.
+
 ### The SID is an 8580
 
 - **Original C64:** the 250407 board has a 6581 SID (U18) with 12 V on VDD
@@ -2184,16 +2212,17 @@ They replace the original 8-pin DIN A/V connector CN5.
 
 The `CPU, Cassette and Expansion Port` sheet
 (`cpu_cassette_expansion.kicad_sch`) holds what is left of the original
-250407 circuit: the 6510, the cassette port and the expansion port. It used to be the two sheets of the upstream design,
-`250407 Sheet 1` and `250407 Sheet 2`, which #84 merged into one flat sheet
-called `250407 Design`. #107 renamed it, renumbered its parts into the 200
-range, replaced the through-hole passives with SMD parts and tidied up the
-drawing. It keeps the title block of the upstream design with its credits
-(C64 250407 PCB Replica by Bwack, with help from Der Alte Bastler).
+250407 circuit: the CPU, the cassette port and the expansion port. It used
+to be the two sheets of the upstream design, `250407 Sheet 1` and `250407
+Sheet 2`, which #84 merged into one flat sheet called `250407 Design`. #107
+renamed it, renumbered its parts into the 200 range, replaced the
+through-hole passives with SMD parts and tidied up the drawing. It keeps the
+title block of the upstream design with its credits (C64 250407 PCB Replica
+by Bwack, with help from Der Alte Bastler).
 
 | Group | Parts |
 | ----- | ----- |
-| CPU | U201 (6510, DIP-40 socket), FB205 in `PHI2`, R207 to R209 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), R204 (pull-up on `R/~W`), R215 (`PHI2` tap for the supervisor's chip check, #49) |
+| CPU | U201 (8500, or a 6510, in a DIP-40 socket), FB205 in `PHI2`, R207 to R209 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), R204 (pull-up on `R/~W`), R215 (`PHI2` tap for the supervisor's chip check, #49) |
 | Bus pull-ups | R202 and R203 (`~EXROM`, `~GAME`), R205 (`~DMA`), R210 to R213 (A15 to A12). `~IRQ` is pulled up by R1533 on the CIA 1 sheet. `RDY`, `CAEC`, `~AEC` and all chip selects come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
 | Reset | R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
 | Cassette port | J202 (edge connector) with FB202 in its +5V (`CASS_5V`, with C202), FB203 in the motor supply (`CASS_POWER`), FB204 in `CASS_WRT`, and R206 (pull-up on `CASS_SENSE`) |
@@ -2210,7 +2239,7 @@ drawing. It keeps the title block of the upstream design with its credits
   (U1501) and the serial bus SRQ, as on the original board; sense (P4),
   write (P3) and motor (P5) go to the 6510's port.
 - **Sockets:** note B on the sheet lists the chips that are fitted in
-  sockets: U201, and U504 and U1701 on their own sheets.
+  sockets: U201 (8500, or a 6510), and U504 and U1701 on their own sheets.
 - **Removed so far:** #83 replaced U17, U15, U27 and gate B of U8 with a
   CPLD, and #91 removed U20 and the rest of U8 (RESTORE now comes from
   U1501). The 6510 (U201) is the only chip left on the sheet.
@@ -2226,7 +2255,7 @@ and the upstream replica:
 
 | Original | Now | Part | Change |
 | -------- | --- | ---- | ------ |
-| U7 | U201 | 6510 in a DIP-40 socket | |
+| U7 | U201 | 6510 in a DIP-40 socket | Now an 8500 (#75); a 6510 also works |
 | CN6 | J201 | Expansion port | |
 | CN3 | J202 | Cassette port (edge connector) | |
 | CN10 | (J203) | Power LED connector | Removed (#54), see [Status LEDs](#status-leds) |
@@ -2258,7 +2287,7 @@ of the VIC-II and RAM and ROM sections still use their original numbers.
 
 | Ref | Part | LCSC | Package |
 | --- | ---- | ---- | ------- |
-| U201 | 6510 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
+| U201 | 8500 (or 6510) in a DIP-40 socket | C2874018 (socket) | DIP-40 |
 | J201 | Expansion port | C5173343 | THT |
 | J202 | Cassette port (edge fingers on the PCB) | | |
 | C201, C203 | 10 uF 25 V X5R | C15850 | 0805 |
@@ -2397,6 +2426,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Changed the CPU to the 8500 (#75): U201's value is now `8500`, its description and note B on the `CPU, Cassette and Expansion Port` sheet say to fit an MOS 8500 and that a 6510 also works. No circuit change: the 8500 has the same pinout, supply, timing and processor port as the 6510. Corrected the reference in the `PHI2_PROBE` note on the same sheet (R215, formerly R214) |
 | 2026-11-01 | Added the chip and rail checks for the supervisor (#49): `PGOOD` to GPIO3 through R1330 (1k, C11702); dividers from `CAN+5V` (R1331 4.7k, C25900, and R1332 10k, C25744) to GPIO4 and from `+9V` (R1334 10k and R1333 4.7k) to GPIO5; `PHI0` from the 6510's side of FB501 to GPIO6 through R514 (1k, C21190) on the `VIC-II, HF Module Replacement and AV out` sheet; `PHI2` from the bus side of FB205 to GPIO7 through R215 (1k, C11702) on the `CPU, Cassette and Expansion Port` sheet. New sheet pins `PGOOD`, `CAN+5V`, `PHI0_PROBE` and `PHI2_PROBE` on the `Supervisor and SD card slot` sheet, `PHI0_PROBE` on the VIC-II sheet and `PHI2_PROBE` on the CPU sheet; `+9V` is a global power net |
 | 2026-11-01 | Added the status LED connector to the `Supervisor and SD card slot` sheet (#54): J1303 (2×3 pin header, C65114) for the new LED module, with R1325 (220 Ohm, C25091) from `+3V3` for the power LED, R1323 and R1324 (150 Ohm, C22808) from GPIO21 (ready) and GPIO23 (activity), R1326 (220 Ohm, C25091) from GPIO22 (error), and R1327 to R1329 (4.7k, C25900) pulling GPIO21 to GPIO23 down (RP2350 erratum E9). Removed the original power LED connector J203 with R214, FB206 and FB207 from the `CPU, Cassette and Expansion Port` sheet |
 | 2026-11-01 | Cleaned up the remaining original circuit (#107): renamed the `250407 Design` sheet to `CPU, Cassette and Expansion Port` (file `cpu_cassette_expansion.kicad_sch`) and renumbered its parts into the 200 range (U7 to U201, CN6, CN3 and CN10 to J201 to J203, FB4, FB3, FB2, FB1, FB5, FB20 and FB21 to FB201 to FB207, C17, C1, C8 and C9 to C201 to C204, R51, R1, R45, R44, R43 and R39 to R204, R206 to R209 and R214). Replaced the through-hole passives with SMD parts: 10 uF MLCCs (C15850) for the electrolytics, 100 nF 0402 (C1525), ferrite beads C1015 and, in the cassette +5V and motor supply, C14709, resistors in 0402 (R214 in 0603). Replaced the resistor array RP4 with R205 (`~DMA`) and R210 to R213 (A12 to A15); its `~IRQ` pull-up is dropped and R1533 on the CIA 1 sheet changed from 4.7k to 3k3 (C25890) instead. Labelled the cassette port's +5V `CASS_5V`, updated note B (U201), and tidied up the drawing |

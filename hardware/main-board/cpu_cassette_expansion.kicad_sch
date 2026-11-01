@@ -3665,7 +3665,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "PHI2_PROBE is used to detect that the 6510/8500 is running.\nR214 should be close to FB205."
+	(text "PHI2_PROBE is used to detect that the 6510/8500 is running.\nR215 should be close to FB205."
 		(exclude_from_sim no)
 		(at 263.144 89.916 0)
 		(effects
@@ -3711,7 +3711,7 @@
 		)
 		(uuid "a2a89b07-6fb4-43bc-8999-68a7bc7ad229")
 	)
-	(text_box "NOTES:\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU201: MOS 6510 CPU\nU504 (VIC-II sheet): 8562 VIC-II (NTSC). A 6567 does not work: it needs 12 V on pin 13.\nU1701 (SID sheet): 8580 SID. A 6581 does not work: it needs 12 V on VDD."
+	(text_box "NOTES:\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU201: MOS 8500 CPU. A 6510 also works (same pinout, supply and timing).\nU504 (VIC-II sheet): 8562 VIC-II (NTSC). A 6567 does not work: it needs 12 V on pin 13.\nU1701 (SID sheet): 8580 SID. A 6581 does not work: it needs 12 V on VDD."
 		(exclude_from_sim no)
 		(at 27.305 18.415 0)
 		(size 121.92 20.32)
@@ -8787,7 +8787,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "6510_MPU"
+		(property "Value" "8500"
 			(at 197.485 116.205 0)
 			(hide yes)
 			(show_name no)
@@ -8820,7 +8820,7 @@
 				)
 			)
 		)
-		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 6510 CPU after assembly; see note B."
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 8500 CPU (a 6510 also works) after assembly; see note B."
 			(at 202.565 73.025 0)
 			(hide yes)
 			(show_name no)
