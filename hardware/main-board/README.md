@@ -39,6 +39,10 @@ What is left of the original 250407 circuit is now on one flat sheet,
 reset timer is gone: the supervisor now resets the system at start-up
 (#89), see [Soft reset](#soft-reset).
 
+The PLA (U17), the 74LS139 (U15), the 7408 (U27) and the `~AEC` inverter of
+the original board are replaced by a CPLD on the `PLA Replacement` sheet
+(#83), see [PLA replacement](#pla-replacement).
+
 ## Compatibility
 
 These changes make the c64-mini behave differently from an original C64.
@@ -54,8 +58,7 @@ Check them before using software or hardware that depends on them.
   their own crystal, as selected by bit 7 of CRA (see
   [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks) and
   [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port)).
-  Gate A of U27 is still in place for U27's supply pins, with pin 1 on +5V,
-  pin 2 on ground and pin 3 unconnected.
+  U27 is gone as well (#83).
 - **Not affected:** software that uses the time-of-day clocks, the TOD
   alarms or the CIA timers, provided the firmware implements them.
 - **Affected:** only software that expects the TOD clocks to follow the
@@ -102,7 +105,7 @@ Check them before using software or hardware that depends on them.
     power-up pattern. The same goes for other details of DRAM behaviour,
     such as what ends up in RAM when the 6510 writes to $00 or $01.
 - **Not affected:** bank switching, cartridges and the VIC-II bank
-  selection. The PLA still decodes them as before.
+  selection. The CPLD that replaces the PLA (U301) decodes them as before.
 
 ### CIA 1 is emulated by a microcontroller, and the keyboard is USB
 
@@ -211,6 +214,27 @@ Check them before using software or hardware that depends on them.
 - **Not affected:** the video timing and the 4/7 ratio between the dot clock
   and the colour clock, which the synthesizer makes exactly. The colour
   carrier is as accurate as the 25 MHz crystal (10 ppm).
+
+### The PLA is a CPLD
+
+- **Original C64:** a 906114-01 PLA (U17) decodes the memory map, a 74LS139
+  (U15) the I/O area, and a 7408 (U27) and a 7406 gate (U8) make `RDY`,
+  `CAEC`, `~COLORAM` and `~AEC`.
+- **c64-mini:** one XC9572XL CPLD (U301) does all of this (#83), with logic
+  written from the PLA's documented equations (#93), see
+  [PLA replacement](#pla-replacement). The supervisor checks its design at
+  start-up and programs it when needed (#86).
+- **Affected:**
+  - The board does not start without the supervisor firmware, which also
+    enables the CPLD's outputs.
+  - The chip selects come out about 10 ns after the inputs change, earlier
+    than from the PLA and the 74LS139. Cartridges that are sensitive to PLA
+    timing need testing on the prototype.
+  - The chip selects on the expansion port (`~ROML`, `~ROMH`, `~I/O1`,
+    `~I/O2`) are 3.3 V signals, at TTL levels like the original ones.
+- **Not affected:** the memory map, bank switching through $01, the
+  cartridge modes set by `~GAME` and `~EXROM` (including Ultimax), the I/O
+  map and DMA through `~DMA`, provided the logic matches the PLA (#93).
 
 ## Power supply
 
@@ -663,6 +687,7 @@ other functions follow in separate issues:
 | Status indicator (LED) | #54 | #55 |
 | Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
 | Reset the C64 without switching the rails off (soft reset) | #70 | #88 |
+| Check and program the CPLD that replaces the PLA, and enable its outputs | #83 | #86, #48 |
 
 ### Circuit
 
@@ -710,6 +735,11 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO1 | 78 | `~RESET` through R1315 | Input | Reads the shared reset line |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
+| GPIO16 | 16 | `TDO` | Input | JTAG data from the CPLD (U301) |
+| GPIO17 | 17 | `TDI` | Output | JTAG data to the CPLD |
+| GPIO18 | 18 | `TCK` | Output | JTAG clock of the CPLD |
+| GPIO19 | 19 | `TMS` | Output | JTAG mode select of the CPLD, R302 (10k) pull-up on the `PLA Replacement` sheet |
+| GPIO20 | 20 | `EN_PLA` (sheet pin `EN_OUTPUT` on the `PLA Replacement` sheet) | Output | High enables the CPLD's outputs; low or not driven keeps them in high impedance (R301, 4.7k to ground), see [PLA replacement](#pla-replacement) |
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
 | GPIO29 | 37 | `SWDAT` | Bidirectional | SWD data of the CIA 2 controller |
 | GPIO30 | 38 | `RUN` | Output | High lets the CIA 2 controller run; low or not driven holds it in reset |
@@ -727,11 +757,13 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   with the output disabled and the internal pull-down on. All three `RUN`
   lines therefore stay low and the three controllers stay in reset, see
   [Programming and start-up](#programming-and-start-up). GPIO0 is low as
-  well, so Q1301 stays off and the C64 is not held in reset.
+  well, so Q1301 stays off and the C64 is not held in reset, and GPIO20 is
+  low, so the CPLD's outputs stay off. R302 holds TMS high, so the CPLD's
+  JTAG logic stays idle.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
-  the CIA 1 and CIA 2 controllers and the clock synthesizer, which are all
-  on `+3V3`, except GPIO0 and GPIO1, which reach `~RESET` through Q1301 and
-  R1315, see [Soft reset](#soft-reset).
+  the CIA 1 and CIA 2 controllers, the clock synthesizer and the CPLD, which
+  are all on `+3V3`, except GPIO0 and GPIO1, which reach `~RESET` through
+  Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -814,6 +846,169 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
 - **TVS footprint:** the H5VL10BH comes in a DFN1006-2L package and sits on
   a 0402 footprint of the same size.
 
+## PLA replacement
+
+The `PLA Replacement` sheet (`pla.kicad_sch`, page 3, parts in the 300
+range) holds a CPLD (U301, XC9572XL) that takes over the address decoding
+and the bus logic of the original board (#83). Users no longer have to find
+a 906114-01 PLA or buy a replacement PLA.
+
+| Removed | Function | Now |
+| ------- | -------- | --- |
+| U17 (906114-01 PLA) and its socket | Memory map: RAM, ROM, I/O and cartridge selects | U301 |
+| U15 (74LS139) | I/O decoding into `~VIC`, `~SID`, `~COLOR`, `~CIA1`, `~CIA2`, `~I/O1` and `~I/O2` | U301 |
+| U27 (7408) | `RDY`, `CAEC` and `~COLORAM`; gate A was unused | U301 |
+| U8 gate B (7406) with R31 (1k) | `~AEC`, the inverted `AEC` | U301, with R303 (4.7k) |
+| C31, C33, C46 | Decoupling of these chips | C301 to C304 at U301 |
+| RP4 units F and H | 3k3 pull-ups on `~GAME` and `~EXROM` | R202, R203 (3k3) on the `250407 Design` sheet |
+
+The reference numbers R301 and R302 were used before for the pull-ups on
+`CIA1_PA6` and `CIA1_PA7`, which are now R1704 and R1705 on the SID sheet.
+
+### Circuit
+
+- **CPLD:** U301, an XC9572XL-10VQG64C (72 macrocells, 52 user I/O, about
+  10 ns from pin to pin) on `+3V3`. Its I/O is 5 V tolerant, so the 5 V bus
+  signals connect directly.
+- **Supplies:** VCCINT (pins 3, 37) and VCCIO (pins 26, 55) are on `+3V3`,
+  with one 100 nF capacitor per pin (C301 to C304). The symbol shows pins 37
+  and 55 as hidden pins on top of pins 3 and 26; on the PCB each of the four
+  pins needs its own capacitor close by.
+- **Output enable:** GTS1 (pin 5) is on `EN_OUTPUT`, which the supervisor
+  drives from GPIO20 (`EN_PLA` on the `Supervisor` sheet). R301 (4.7k) pulls
+  it to ground. The design ties the output enable of every output to GTS1,
+  active high: low puts all outputs in high impedance, high enables them.
+  - In reset and with blank firmware, the supervisor's GPIO20 is an input
+    with its internal pull-down, and R301 keeps the outputs off. R301 is
+    below the 8.2 kOhm that RP2350 erratum E9 calls for.
+  - The CPLD's bus-hold (about 50 kOhm) cannot override R301; the divider
+    leaves GTS1 at about 0.3 V.
+  - GTS2 (pin 2) is not used.
+- **`~AEC`:** U301 now drives `~AEC` push-pull, so R303 (4.7k, formerly R31
+  with 1k for the open-collector gate) only holds it high while the outputs
+  are off. U505 and U506 then stay disabled. R303 goes to `+5V`, which the
+  CPLD's 5 V tolerant I/O accepts.
+- **JTAG:** TDI (pin 28), TMS (pin 29), TCK (pin 30) and TDO (pin 53) go to
+  the supervisor's GPIO17, GPIO19, GPIO18 and GPIO16, so that it can check
+  and program the CPLD (#86). R302 (10k) pulls TMS up to `+3V3`, which keeps
+  the CPLD's JTAG logic idle while the supervisor does not drive it. There is
+  no JTAG header.
+- **Global pins:** the design is combinational, so the global clock and
+  set/reset functions are not used. `~CAS` is on GCK2 in case a later design
+  wants to latch on it; `R/~W` and `VA4` are on GCK1 and GCK3, and `A15` on
+  GSR, as ordinary inputs.
+- **Pull-ups:** RP4 keeps the pull-ups on `~DMA`, `~IRQ` and A12 to A15.
+  R202 and R203 (3k3, on the `250407 Design` sheet) pull up `~EXROM` and
+  `~GAME`; RP4's units F and H are not placed.
+
+### Pins
+
+| Pin | Net | Direction | Original function |
+| --- | --- | --------- | ----------------- |
+| 7, 58, 59, 60 | `A8` to `A11` | In | U15 address inputs |
+| 61 to 64 | `A12` to `A15` | In | PLA I8, I7, I6, I5 |
+| 8 | `~VA14` | In | PLA I4 |
+| 9, 10 | `~EXROM`, `~GAME` | In | PLA I12, I13 |
+| 11, 12, 13 | `~HIRAM`, `~LORAM`, `~CHAREN` | In | PLA I2, I1, I3 |
+| 15 | `R/~W` | In | PLA I11 |
+| 16 | `~CAS` | In | PLA I0 |
+| 17, 18 | `VA4`, `VA5` | In | PLA I15, I14 (A12 and A13 in VIC-II cycles) |
+| 19 | `BA` | In | PLA I9, U27 |
+| 20 | `AEC` | In | U8 gate B and U27; the PLA's `~AEC` input (I10) is now inverted inside the CPLD |
+| 23 | `~DMA` | In | U27 |
+| 5 | `EN_OUTPUT` | In | Output enable (GTS1) from the supervisor |
+| 27 | `~CASRAM` | Out | PLA F0, to U1401 |
+| 31, 32, 33 | `~BASIC`, `~KERNAL`, `~CHAROM` | Out | PLA F1 to F3, to U1401 |
+| 34 | `GR/~W` | Out | PLA F4, to U1401 |
+| 24, 25 | `~ROML`, `~ROMH` | Out | PLA F6, F7, to the expansion port |
+| 22 | `~VIC` | Out | U15 1Y0, to U504 |
+| 35 | `~SID` | Out | U15 1Y1, to U1701 |
+| 36 | `~COLORAM` | Out | U27: `~COLOR` AND `AEC`, to U1401 |
+| 38, 39 | `~CIA1`, `~CIA2` | Out | U15 2Y0, 2Y1, to U1501 and U1601 |
+| 40, 42 | `~I/O1`, `~I/O2` | Out | U15 2Y2, 2Y3, to expansion port pins 7 and 10 |
+| 43 | `~AEC` | Out | U8 gate B, to U505 and U506 |
+| 44 | `CAEC` | Out | U27: `AEC` AND `~DMA`, to the 6510's AEC |
+| 45 | `RDY` | Out | U27: `BA` AND `~DMA`, to the 6510's RDY |
+| 28, 29, 30, 53 | `TDI`, `TMS`, `TCK`, `TDO` | JTAG | To the supervisor |
+
+- **Internal signals:** `~I/O` (PLA F5), `~COLOR` and `~CIAS` (U15 1Y2 and
+  1Y3) no longer leave the CPLD.
+- **Free pins:** 1, 2, 4, 6, 46 to 52, 56 and 57 (13 user I/O). The CPLD's
+  bus-hold keeps them at a defined level, so they are not connected.
+
+### Levels
+
+- **Inputs:** 5 V tolerant, also while the outputs are off.
+- **Outputs:** 3.3 V LVTTL, at least 2.4 V high under load and close to
+  3.3 V at the light loads on the board. That is above the 2.0 V input high
+  level of the NMOS and TTL chips, and of the HCT multiplexers U505 and U506.
+  The PLA and the 74LS139 only guaranteed about 2.7 V themselves, so
+  cartridges already had to accept TTL levels on `~ROML`, `~ROMH`, `~I/O1`
+  and `~I/O2`.
+
+### Power and back-feeding
+
+U301 is on `+3V3`, which is always on, so it is powered while the C64 chips
+are not. This lets the supervisor check and program it before the rails come
+up (#86).
+
+- **Outputs:** off (high impedance) while `EN_OUTPUT` is low. The supervisor
+  only raises it once `+5V` is up, and lowers it again before the rails go
+  off.
+- **Weak pull-ups:** the XC9500XL datasheet (DS054, table 5) gives every
+  user pin a weak pull-up of about 50 kOhm to 3.3 V while the CPLD is blank,
+  during programming and early in its power-up, and a bus-hold of the same
+  strength in normal operation. Neither depends on GTS. With `+5V` off, a
+  pin on a 5 V net can therefore feed up to about 66 uA into an unpowered
+  chip. About 30 pins are on 5 V nets, so that is about 2 mA in total at
+  worst, small enough for the rest of the `+5V` rail to absorb. This is
+  accepted.
+- **Blank or programming:** all outputs float high through these pull-ups.
+  All chip selects are active low and `GR/~W` high means read, so nothing is
+  selected. The supervisor programs the CPLD only with the rails off or with
+  `~RESET` held low (#86).
+- **Power-up:** VCCINT and VCCIO come up together with `+3V3`. Below 1 V on
+  VCCINT the pins are undefined and may drive briefly, but `+5V` is off then.
+
+### Timing
+
+The CPLD decodes in one pass of about 10 ns, where the original board took
+the PLA (about 20 to 35 ns) plus a 74LS139 stage for the I/O chip selects.
+The chip selects therefore arrive earlier; the bus timing of the 6510 and the
+VIC-II still sets the window. On the original board `~CASRAM` follows `~CAS`
+by the PLA's delay, and U1401 times its RAM accesses from `~CASRAM`. The HDL
+(#93) keeps that delay within the original range, or the U1401 firmware must
+not depend on it.
+
+### Parts
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| U301 | XC9572XL-10VQG64C | C90569 | TQFP-64 (VQ64) |
+| C301 to C304 | 100 nF | C1525 | 0402 |
+| R301, R303 | 4.7k | C25900 | 0402 |
+| R302 | 10k | C25744 | 0402 |
+| R202, R203 (`250407 Design` sheet) | 3k3 | C25890 | 0402 |
+
+### Logic and firmware
+
+- **Logic (#93):** the HDL implements the 906114-01's equations from skoe's
+  "The C64 PLA Dissected", plus U15, U27 and the `~AEC` inverter, with the
+  output enables on GTS1. It is built with Xilinx ISE 14.7, the only tool
+  for the XC9500XL. The source and the programming file go into the
+  repository, so that nobody needs ISE to build the board.
+- **Supervisor (#86):** at start-up, reads the IDCODE and the USERCODE over
+  JTAG and programs the CPLD only when the design is missing or out of date.
+  The XC9500XL keeps its design in on-chip flash (about 10,000 program
+  cycles), so it is not programmed on every start-up.
+- **Start-up order (#48, #88):** raise `EN_OUTPUT` once `+5V` is up and
+  before `~RESET` is released; lower it before the rails go off. Without the
+  CPLD's outputs the 6510 gets no `RDY` or `CAEC` and no chip is selected.
+
+Datasheets:
+[XC9500XL family (DS054)](https://docs.amd.com/v/u/en-US/ds054),
+[XC9572XL (DS057)](https://docs.amd.com/v/u/en-US/ds057).
+
 ## RAM and ROM replacement
 
 The `RAM and ROM replacement` sheet holds a microcontroller (U1401, RP2354B)
@@ -836,13 +1031,15 @@ arrays RP1 and RP2 between the multiplexed address bus and the DRAMs, the
 
 The address decoding stays as it was:
 
-- The PLA (U17) still decodes every access, so bank switching through the
-  6510's port at $01, cartridges (`~GAME`, `~EXROM`) and the VIC-II bank
-  selected by CIA 2 work as before. The controller only answers the chip
-  selects the PLA gives it, and does not need to track any of these.
+- The CPLD that replaces the PLA (U301, see
+  [PLA replacement](#pla-replacement)) decodes every access with the PLA's
+  logic, so bank switching through the 6510's port at $01, cartridges
+  (`~GAME`, `~EXROM`) and the VIC-II bank selected by CIA 2 work as before.
+  The controller only answers the chip selects the CPLD gives it, and does
+  not need to track any of these.
 - The address multiplexers (now U505, U502 and U506) and the latch (now
   U508) stay; they moved to the VIC-II sheet in #74. The VIC-II's register
-  select, the PLA's decoding of VIC-II cycles and the low address byte in
+  select, the CPLD's decoding of VIC-II cycles and the low address byte in
   VIC-II cycles all depend on them.
 - U503 (4066, formerly U16) still connects the colour data lines to D0 to D3
   in 6510 cycles.
@@ -871,13 +1068,13 @@ following Raspberry Pi's RP2350 reference design:
 | ---- | --- | --- | -------- |
 | GPIO0 to GPIO7 | 77 to 80, 1 to 4 | `D0` to `D7` | Data bus |
 | GPIO8 to GPIO23 | 6 to 9, 11 to 14, 16 to 23 | `A0` to `A15` | Address bus |
-| GPIO24 | 25 | `~CASRAM` | RAM select from the PLA, includes `~CAS` |
-| GPIO25 | 26 | `~BASIC` | BASIC ROM select from the PLA |
-| GPIO26 | 27 | `~KERNAL` | KERNAL ROM select from the PLA |
-| GPIO27 | 28 | `~CHAROM` | Character ROM select from the PLA |
-| GPIO28 | 36 | `~COLORAM` | Colour RAM select from U27 |
+| GPIO24 | 25 | `~CASRAM` | RAM select from the CPLD (U301), includes `~CAS` |
+| GPIO25 | 26 | `~BASIC` | BASIC ROM select from the CPLD |
+| GPIO26 | 27 | `~KERNAL` | KERNAL ROM select from the CPLD |
+| GPIO27 | 28 | `~CHAROM` | Character ROM select from the CPLD |
+| GPIO28 | 36 | `~COLORAM` | Colour RAM select from the CPLD |
 | GPIO29 | 37 | `R/~W` | 6510 read/write |
-| GPIO30 | 38 | `GR/~W` (sheet pin `COLORR/~W`) | Colour RAM write strobe from the PLA |
+| GPIO30 | 38 | `GR/~W` (sheet pin `COLORR/~W`) | Colour RAM write strobe from the CPLD |
 | GPIO31 | 39 | `VA4` | Multiplexed address: A4, then A12 |
 | GPIO32 | 40 | `VA5` | Multiplexed address: A5, then A13 |
 | GPIO33 | 42 | `~VA14` | VIC-II bank, inverted A14 (CIA 2 PA0) |
@@ -927,8 +1124,8 @@ In VIC-II cycles, `A12` to `A15` read high through the pull-ups RP4.
 | Character ROM | A0 to A11 | `~CHAROM` | 6510 at $D000 to $DFFF, VIC-II at $1000 to $1FFF in banks 0 and 2 |
 | Colour RAM | A0 to A9 | `~COLORAM` | Written with `GR/~W`; data on `COLOR_D0` to `COLOR_D3` |
 
-The PLA does not select RAM during the VIC-II's refresh cycles, so they need
-no handling.
+The PLA logic in the CPLD does not select RAM during the VIC-II's refresh
+cycles, so they need no handling.
 
 ### ROM images
 
@@ -990,7 +1187,8 @@ These timing requirements are for the firmware:
   `~CASRAM` falls.
 - Time everything from the edges of `~CASRAM`, `~CAS` and `PHI2`, not from
   fixed delays after `PHI0`: the `~RAS` and `~CAS` timing of the 8562 differs
-  slightly from the 6567's, and also depends on the PLA type.
+  slightly from the 6567's, and the delay from `~CAS` to `~CASRAM` is set by
+  the CPLD (#93).
 - Stop driving the data lines as soon as the select goes high.
 - Latch write data late in the cycle, not when `~CASRAM` falls: the 6510
   can take up to about 200 ns into `PHI2` to put the data on the bus. Latch
@@ -1021,7 +1219,8 @@ see [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port).
 
 These parts of the original circuit stay on the `250407 Design` sheet:
 
-- **Chip select:** U15 (74LS139) still decodes `~CIA1` for $DC00 to $DCFF.
+- **Chip select:** `~CIA1` for $DC00 to $DCFF now comes from the CPLD
+  (U301) on the `PLA Replacement` sheet, which replaced U15 (74LS139) (#83).
 - **Paddles:** a 4066 still switches the POT lines of control port 1 or 2
   to the SID. It moved to the SID sheet as U1702 (#73), see
   [SID and audio output](#sid-and-audio-output). The controller drives its
@@ -1065,7 +1264,7 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO23 | 23 | `CASS_RD` (sheet pin `~FLAG`) | ~FLAG | Cassette read and serial bus SRQ |
 | GPIO24 | 25 | `PHI2` | PH2 | 6510 clock |
 | GPIO25 | 26 | `R/~W` | R/~W | 6510 read/write |
-| GPIO26 | 27 | `~CIA1` (sheet pin `~SELECT`) | ~CS | Chip select from U15 |
+| GPIO26 | 27 | `~CIA1` (sheet pin `~SELECT`) | ~CS | Chip select from the CPLD (U301) |
 | GPIO27 | 28 | `~RESTORE_NMI` | | RESTORE, through U20A to `~NMI` |
 | GPIO28 | 36 | `CIA1_PA6` | PA6 | Paddle select for control port 1 (U1702) |
 | GPIO29 | 37 | `CIA1_PA7` | PA7 | Paddle select for control port 2 (U1702) |
@@ -1261,13 +1460,15 @@ user port.
 
 These parts of the original circuit stay on the `250407 Design` sheet:
 
-- **Chip select:** U15 (74LS139) still decodes `~CIA2` for $DD00 to $DDFF.
-- **VIC-II bank:** U502 (74F258), the PLA (U17) and U1401 still take
-  `~VA14` and `~VA15`.
-- **U8:** gates B and C (the AEC inverter and RESTORE) are still in use.
-  Gates A, E and F, and since #89 gate D (the old power-on reset), are no
-  longer placed in the schematic, so their inputs (pins 1, 9, 11 and 13) are
-  left open on the chip; their outputs are unconnected.
+- **Chip select:** `~CIA2` for $DD00 to $DDFF now comes from the CPLD
+  (U301) on the `PLA Replacement` sheet, which replaced U15 (74LS139) (#83).
+- **VIC-II bank:** U502 (74F258) and U1401 still take `~VA14` and `~VA15`,
+  and the CPLD (U301) takes `~VA14` in place of the PLA.
+- **U8:** only gate C (RESTORE) is still in use. Gates A, E and F, gate D
+  since #89 (the old power-on reset) and gate B since #83 (the `AEC`
+  inverter) are no longer placed in the schematic, so their inputs (pins 1,
+  3, 9, 11 and 13) are left open on the chip; their outputs are
+  unconnected.
 
 ### Circuit
 
@@ -1294,7 +1495,7 @@ firmware in the internal flash, and no buttons or USB.
 | GPIO23 | 23 | `~FLAG` | ~FLAG | User port pin B |
 | GPIO24 | 25 | `PHI2` | PH2 | 6510 clock |
 | GPIO25 | 26 | `R/~W` | R/~W | 6510 read/write |
-| GPIO26 | 27 | `~CIA2` (sheet pin `~SELECT`) | ~CS | Chip select from U15 |
+| GPIO26 | 27 | `~CIA2` (sheet pin `~SELECT`) | ~CS | Chip select from the CPLD (U301) |
 | GPIO27 | 28 | `PB0` | PB0 | User port pin C |
 | GPIO28 to GPIO32 | 36 to 40 | `PB1` to `PB5` | PB1 to PB5 | User port pins D, E, F, H and J |
 | GPIO33, GPIO34 | 42, 43 | `PB6`, `PB7` | PB6, PB7 | User port pins K and L |
@@ -1386,7 +1587,7 @@ other outputs are open drain against pull-ups to +5V:
 | User port lines | R1615 to R1626, R1628 (4.7k) | Devices on the user port drive them too |
 
 The firmware must never drive these lines high. `~VA14` and `~VA15` only go
-to inputs (U502, the PLA and U1401), but are open drain as well, so that they
+to inputs (U502, the CPLD and U1401), but are open drain as well, so that they
 do not drive 3.3 V against the 5 V pull-ups. Their rising edge takes about
 0.1 us, short compared with a bus cycle of about 1 us.
 
@@ -1475,11 +1676,11 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 
 These parts of the original circuit stay on the `250407 Design` sheet:
 
-- **`~AEC`:** gate B of U8 (7406) with R31 still inverts `AEC`, for the
-  multiplexers on this sheet and for the PLA.
-- **Chip select:** U15 (74LS139) still decodes `~VIC` for $D000 to $D3FF.
-- **Bus arbitration:** U27 (7408) still combines `AEC`, `BA` and `~DMA` for
-  the 6510.
+- **`~AEC`, chip select and bus arbitration:** these moved to the CPLD
+  (U301) on the `PLA Replacement` sheet (#83). It inverts `AEC` for the
+  multiplexers on this sheet (before: gate B of U8 with R31), decodes `~VIC`
+  for $D000 to $D3FF (before: U15, 74LS139), and combines `AEC`, `BA` and
+  `~DMA` for the 6510 (before: U27, 7408).
 - **Clocks:** the dot and colour clock PLL on the former `250407 Sheet 1`
   (U29 to U32, FB16, FB17) stayed until #76 replaced it with the
   `System Clocks` sheet.
@@ -1491,7 +1692,7 @@ These parts of the original circuit stay on the `250407 Design` sheet:
   (with C510, C512 and C513). Unlike the 6567, the 8562 needs 5 V on pin 13;
   12 V there destroys it.
 - **Bus:** `D[0..7]`, A8 to A11 of `A[0..15]`, `R/~W`, `~VIC_SELECT` (`~VIC`
-  from U15), `~IRQ` and `BA`. `AEC` (pin 16) is high in 6510 cycles and low
+  from U301), `~IRQ` and `BA`. `AEC` (pin 16) is high in 6510 cycles and low
   in VIC-II cycles.
 - **Address path:**
   - U505 and U506 (74HCT257) put the 6510's address onto `VA0` to `VA7` in
@@ -1504,7 +1705,7 @@ These parts of the original circuit stay on the `250407 Design` sheet:
     `AEC`): the VIC-II's own A6 and A7 (`VA6'`, `VA7'`) or the bank bits
     `~VA14`/`~VA15`, selected by `~CAS`.
   - `~RAS` only connects U504 and U508, and `VA0` to `VA3`, `VA6` and `VA7`
-    stay on this sheet. `VA4` and `VA5` go to U1401 and the PLA.
+    stay on this sheet. `VA4` and `VA5` go to U1401 and the CPLD (U301).
 - **Colour data:** U503 (CD4066B) connects `COLOR_D0` to `COLOR_D3` to D0 to D3
   in 6510 cycles (control inputs on `AEC`).
 - **Clocks:** `COLOR_CLOCK_IN` (pin 21) and `DOT_CLOCK_IN` (pin 22, with C518)
@@ -1581,8 +1782,9 @@ to SMD.
 | U28, C47 | Paddle switch 4066 and its decoupling capacitor | U1702 (CD4066B), C1715 |
 | R301, R302 | Pull-ups on `CIA1_PA6`, `CIA1_PA7` | R1704, R1705 |
 
-U15 (74LS139) on the `250407 Design` sheet still decodes `~SID` for $D400 to
-$D7FF; it reaches U1701 through the `~SELECT` sheet pin.
+The CPLD (U301) on the `PLA Replacement` sheet decodes `~SID` for $D400 to
+$D7FF, as U15 (74LS139) did before (#83); it reaches U1701 through the
+`~SELECT` sheet pin.
 
 ### Circuit
 
@@ -1689,26 +1891,27 @@ Bastler).
 
 | Group | Parts |
 | ----- | ----- |
-| CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15, `~GAME`, `~EXROM` and `~DMA`) |
+| CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15 and `~DMA`; units F and H are not placed), R202 and R203 (3k3 pull-ups on `~EXROM` and `~GAME`) |
 | Reset and RESTORE | U20 (556): half A is the RESTORE one-shot with C23, C38, R33, R35 and R41, half B is unused and tied off (#89); gate C of U8 (7406) for `~NMI`; R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
-| Bus arbitration | U27 (7408) for `RDY`, `CAEC` and `~COLORAM`; gate B of U8 with R31 for `~AEC`; R51 on `R/~W` |
-| Address decoding | U17 (PLA), U15 (74LS139) |
+| Bus | R51 on `R/~W`. `RDY`, `CAEC`, `~AEC` and all chip selects now come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
 | Cassette port | CN3 with FB1 to FB3, C1 and R1 |
 | Power LED | CN10 with R39, FB20 and FB21 |
 | Expansion port | CN6 with FB4 in `~RESET` |
-| Decoupling | C9, C22, C31, C33, C39 and C46 (100 nF), C8 and C17 (10 uF) |
+| Decoupling | C9, C22 and C39 (100 nF), C8 and C17 (10 uF) |
 
 - **Connections:** the sheet connects to the other sheets through
   hierarchical labels and sheet pins only; the global labels between the two
   former sheets are gone.
 - **Expansion port:** CN6 gets `~RESET` through FB4 (pin C), the dot clock
   `DOT_CLK` from the `System Clocks` sheet through the `DOT_CLOCK_IN` sheet
-  pin (pin 6), `~ROML` and `~ROMH` from the PLA, and `~IO1` and `~IO2` from
-  U15.
+  pin (pin 6), and `~ROML`, `~ROMH`, `~I/O1` and `~I/O2` from the CPLD
+  (U301).
 - **Sockets:** note B on the sheet lists the chips that are fitted in
-  sockets: U7, U17, and U504 and U1701 on their own sheets.
-- **Next steps:** #83 replaces U17, U15 and U27 with a CPLD. The parts still
-  use the symbols and through-hole footprints of the original design.
+  sockets: U7, and U504 and U1701 on their own sheets.
+- **Next steps:** #83 replaced U17, U15, U27 and gate B of U8 with a CPLD.
+  #91 is to remove U20 and gate C of U8, the last gate in use. The other
+  parts still use the symbols and through-hole footprints of the original
+  design.
 
 ## Licence
 
@@ -1830,6 +2033,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Replaced the PLA (U17) with a CPLD (#83): added a `PLA Replacement` sheet (page 3) to the root sheet with U301 (XC9572XL-10VQG64C, C90569) on `+3V3`, C301 to C304 (100 nF, C1525, one per VCC pin), R301 (4.7k, C25900) from GTS1 (`EN_OUTPUT`) to ground, R302 (10k, C25744) from TMS to `+3V3` and R303 (4.7k, C25900) from `~AEC` to `+5V`. U301 also takes over U15 (74LS139), U27 (7408) and gate B of U8 (7406). Removed U17 and its socket, U15, U27, R31 and the decoupling capacitors C31, C33 and C46 from `250407 Design`; gate B of U8 is no longer placed. Replaced RP4 units F and H with R202 and R203 (3k3 0402, C25890) on `~EXROM` and `~GAME`. Connected the CPLD's JTAG pins to the supervisor's GPIO16 (TDO), GPIO17 (TDI), GPIO18 (TCK) and GPIO19 (TMS), and GTS1 to GPIO20 (`EN_PLA`), through new sheet pins on the `Supervisor` sheet. Wired the PLA's signals and `~DMA`, `CAEC`, `RDY`, `~COLORAM`, `~VIC`, `~SID`, `~CIA1`, `~CIA2`, `~I/O1`, `~I/O2` and `AEC`/`~AEC` to the CPLD through hierarchical labels and sheet pins on `250407 Design` and the root sheet; the VIC-II, RAM and ROM, CIA 1, CIA 2 and SID sheets keep their existing sheet pins. Removed U17 from note B |
 | 2026-10-31 | Removed the power-on reset timer from `250407 Design` (#89): half B of U20 (556) no longer has a function, gate D of U8 (7406) is no longer placed, and R34, C24, R50 and C105 are gone; the supervisor now makes the power-on reset through Q1301. Tied off half B of U20: RST B (pin 10) and THR B (pin 12) to ground, TRIG B (pin 8) to `+5V`, OUT B, DIS B and CV B open; VCC and GND of U20 stay on unit B. Replaced the through-hole pull-up R36 (1k) on `~RESET` with R201 (1k 0402, C11702) |
 | 2026-10-31 | Added a soft reset of the C64 to the `Supervisor` sheet (#70): GPIO0 (pin 77) drives the N-channel MOSFET Q1301 (AO3400A, C20917) through R1313 (1k, C11702), with R1314 (4.7k, C25900) from gate to ground, and Q1301 pulls `~RESET` low; GPIO1 (pin 78) reads `~RESET` through R1315 (4.7k). Added the hierarchical label `~{RESET}` to the sheet and wired the new `~{RESET}` sheet pin to the shared reset line on the root sheet |
 | 2026-10-31 | Merged the note blocks of the former `250407 Sheet 1` and `250407 Sheet 2` into one note B on `250407 Design` (sockets for U7, U17, U504 and U1701), without the obsolete note 7 and its marker, and added the title block of the C64 250407 PCB Replica with its credits to `250407 Design` |
