@@ -29,6 +29,7 @@ Footprints for parts that use a standard KiCad symbol:
 | `L_Abracon_AOTA-B201610` | `Device:L` | AOTA-B201610S3R3-101-T (3.3 µH, polarity marked; RP2350/RP2354 core regulator) | C42411119 |
 | `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | `RP2354B` (this library) | RP2354B (also RP2350B) | C39843328 |
 | `USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A_Aligned` | `Connector:USB_C_Receptacle_USB2.0_16P` | HCTL HC-TYPE-C-16P-01A | C2894897 |
+| `microSD_Hroparts_TF-01A` | `Connector:Micro_SD_Card_Det1` | Korean Hroparts Elec TF-01A (push-push micro SD socket) | C91145 |
 
 Two of these footprints are modified copies of footprints from the KiCad
 library (`QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias` and
@@ -265,6 +266,64 @@ All pins are passive.
 - There is no 3D model.
 
 ![CAX AV-314 footprint](images/CAX_AV-314_footprint.png)
+
+### TF-01A micro SD socket
+
+The Korean Hroparts Elec TF-01A is a push-push micro SD (TF) socket, 1.85 mm
+high, with a card detect contact, for the SD card slot on the supervisor
+(#95). KiCad has no footprint for it; the micro SD footprints in
+`Connector_Card` are for Hirose, Molex and Würth sockets with other pad
+positions.
+
+**Symbol:** use KiCad's `Connector:Micro_SD_Card_Det1`. Its pins match the
+pad numbers of the footprint:
+
+| Pad | Drawing | Symbol pin | SD mode | SPI mode |
+| --- | ------- | ---------- | ------- | -------- |
+| 1   | 1       | DAT2       | DAT2    | (unused) |
+| 2   | 2       | DAT3/CD    | DAT3    | CS       |
+| 3   | 3       | CMD        | CMD     | MOSI     |
+| 4   | 4       | VDD        | VDD     | VDD      |
+| 5   | 5       | CLK        | CLK     | SCK      |
+| 6   | 6       | VSS        | VSS     | VSS      |
+| 7   | 7       | DAT0       | DAT0    | MISO     |
+| 8   | 8       | DAT1       | DAT1    | (unused) |
+| 9   | Cd      | DET        | Card detect | Card detect |
+| SH  | Shell (four pads) | SHIELD | Ground | Ground |
+
+The card detect contact (`Cd`) is a switch against the shell. The drawing
+does not say whether it closes or opens when a card is inserted; check this
+on a sample before the firmware relies on it.
+
+**Footprint:** `microSD_Hroparts_TF-01A`, from the PCB layout (pattern side)
+in the manufacturer's drawing
+([TF-01A](https://datasheet.lcsc.com/datasheet/pdf/7650eac21a54674b08ad4ba21e17fceb.pdf?productCode=C91145),
+Rev. A, 2014-09-29). The origin is the centre of the body (14.80 mm x
+13.79 mm), as usual for SMD footprints in KiCad; check the position against
+the assembly preview.
+
+- **Signal pads:** nine pads of 0.70 mm x 1.30 mm at 1.10 mm pitch, `Cd`
+  first and then card contacts 8 to 1, 8.80 mm from `Cd` to pin 1. Their
+  rear edge is 1.00 mm behind the back of the body.
+- **Shell pads (`SH`):** two rear pads of 1.20 mm x 1.40 mm, 1.10 mm outside
+  `Cd` and 13.58 mm from it, 1.50 mm in front of the rear edge of the signal
+  pads. Two front pads of 1.20 mm x 2.00 mm, 15.52 mm apart and 9.70 mm in
+  front of the rear shell pads.
+- **Locating pegs:** two non-plated holes of 1.00 mm for the 0.80 mm pegs,
+  8.00 mm apart, the first 2.81 mm from the centre of the left shell pads. The PCB layout does not
+  give their position from front to back; the bottom view puts them 10.49 mm
+  in front of the back of the body, 0.29 mm in front of the front shell pads.
+- **Board edge:** the card sticks out 2.65 mm past the front of the housing
+  in the locked position, and has to be pushed in to eject it. Place the
+  socket with the front of the housing at the board edge, which is marked on
+  the `Dwgs.User` layer. The card is shown dashed on the fabrication layer.
+- **Outlines:** the body on the fabrication layer, with the step in its
+  front edge. The silkscreen is 0.11 mm outside the body and stays clear of
+  the pads; a triangle behind pad 1 marks pin 1. Courtyard 0.25 mm around the
+  pads and the body.
+- There is no 3D model.
+
+![TF-01A footprint](images/TF-01A_footprint.png)
 
 ## Adding parts
 
