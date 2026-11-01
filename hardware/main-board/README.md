@@ -1497,9 +1497,9 @@ and gates #89 and #83 had already freed.
   GPIO27 follows the same rule as `~IRQ`: pull low or release, never drive
   high.
 - **Pulse:** the 6510 triggers NMI on the falling edge only. The firmware
-  (#92) pulls `~NMI` low for a few microseconds per key press and releases
-  it, however long the key is held, so that a held key does not block NMIs
-  from CIA 2 or a cartridge. If another source already holds `~NMI` low,
+  (#92) pulls `~NMI` low for about 20 us per key press and releases it,
+  however long the key is held, so that a held key does not block NMIs from
+  CIA 2 or a cartridge. If another source already holds `~NMI` low,
   RESTORE does nothing, as on the original C64.
 - **Levels:** GPIO27 is 5 V tolerant while `+3V3` is up, which is always the
   case, so it can sit on the 5 V line directly.
@@ -1564,9 +1564,9 @@ circuit:
 - **Light pen:** whenever port B bit 4 is low, from a key in the matrix or
   from an output, pull `~LP` low as well, so that the VIC-II's light pen
   latch reacts as on the original board.
-- **RESTORE (#92):** pull `~NMI` low for a few microseconds and release
-  it, once per key press, whatever the key's hold time, see
-  [RESTORE](#restore).
+- **RESTORE (#92):** pull `~NMI` low for about 20 us (the length of the
+  old one-shot pulse) and release it, once per key press, whatever the key's
+  hold time, see [RESTORE](#restore).
 - **Time of day:** count 50 Hz or 60 Hz from the crystal, as selected by bit
   7 of CRA.
 - **Pins:** turn off the internal pull-downs of the bus pins (RP2350
