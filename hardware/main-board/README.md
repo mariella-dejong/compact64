@@ -33,11 +33,13 @@ The VIC-II's colour and dot clocks now come from a clock synthesizer on the
 MC4044 can no longer be bought, and the colour clock divider that
 synchronized the buck converters.
 
-What is left of the original 250407 circuit is now on one flat sheet,
-`250407 Design` (#84), see
-[Remaining original circuit](#remaining-original-circuit). Its power-on
-reset timer is gone: the supervisor now resets the system at start-up
-(#89), see [Soft reset](#soft-reset).
+What is left of the original 250407 circuit, the 6510 with the cassette
+port, the expansion port and the power LED connector, is now on one flat
+sheet, `CPU, Cassette and Expansion Port` (#84, #107), with SMD passives and
+reference numbers in the 200 range, see
+[CPU, cassette and expansion port](#cpu-cassette-and-expansion-port). Its
+power-on reset timer is gone: the supervisor now resets the system at
+start-up (#89), see [Soft reset](#soft-reset).
 
 The PLA (U17), the 74LS139 (U15), the 7408 (U27) and the `~AEC` inverter of
 the original board are replaced by a CPLD on the `PLA Replacement` sheet
@@ -454,7 +456,7 @@ Datasheets:
 ### Cassette motor supply
 
 The `Cassette Power (6.2v)` sheet makes the supply of the Datasette motor
-(`CASS_POWER`, through FB2 to pin C of the cassette port CN3) from the 12 V
+(`CASS_POWER`, through FB203 to pin C of the cassette port J202) from the 12 V
 DC input. It replaces the original linear circuit (a 7.5 V zener and a
 Darlington pass transistor), which turned everything above about 6.2 V into
 heat in a TO-220 transistor (about 0.9 W at 150 mA from 12 V) and drew about
@@ -471,7 +473,7 @@ heat in a TO-220 transistor (about 0.9 W at 150 mA from 12 V) and drew about
   light load, which would make its frequency vary. The converter is not
   synchronized to the sync clock; it only runs while the motor turns.
 - **Motor control, as on the original board:** the 6510 drives Q1101 (BC847)
-  from port bit P5 (`CASS_MOTOR`, U7 pin 24) through R1104 (1k), with R1105
+  from port bit P5 (`CASS_MOTOR`, U201 pin 24) through R1104 (1k), with R1105
   (10k) pulling its base low. With P5 high, Q1101 pulls the enable input
   (`CASS_EN`) low and the converter is off; it then draws about 0.13 mA,
   mostly through the enable pull-up R1103 (100k). With P5 low, R1103 pulls
@@ -589,8 +591,8 @@ One PLL feeds all three outputs, so the clocks stay locked to each other:
   (U504 pin 21).
 - **Dot clock:** CLK1 goes through U1203, R1202 and FB1202 to `DOT_CLK`,
   which the root sheet connects to `DOT_CLOCK_IN` of the VIC-II sheet
-  (U504 pin 22, with C518) and to `DOT_CLOCK_IN` of the `250407 Design`
-  sheet (expansion port pin 6).
+  (U504 pin 22, with C518) and to `DOT_CLOCK_IN` of the
+  `CPU, Cassette and Expansion Port` sheet (expansion port J201 pin 6).
 - **Sync clock:** CLK2 goes through U1201, R1201 and FB1201 to `SYNC_CLK`,
   which the root sheet connects to `SYNC_CLK_IN` of the `Power Supply`
   sheet, and from there through C710 and C1005 into EN/SYNC of U701 and
@@ -798,8 +800,8 @@ GPIO0 ── R1313 1k ──┬── Q1301 gate (AO3400A)    drain: ~RESET, sou
 GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
 ```
 
-- **The line:** `~RESET` is wired-OR. R201 (1k, on the `250407 Design`
-  sheet) pulls it up to `+5V`. Q1301 is the only driver on the board;
+- **The line:** `~RESET` is wired-OR. R201 (1k, on the
+  `CPU, Cassette and Expansion Port` sheet) pulls it up to `+5V`. Q1301 is the only driver on the board;
   devices on the user port, the serial bus and the expansion port can pull
   it low as well. It goes to the 6510, the CIA 1 and CIA 2 controllers, the
   SID, the user port, the serial bus and the expansion port.
@@ -945,7 +947,7 @@ a 906114-01 PLA or buy a replacement PLA.
 | U27 (7408) | `RDY`, `CAEC` and `~COLORAM`; gate A was unused | U301 |
 | U8 gate B (7406) with R31 (1k) | `~AEC`, the inverted `AEC` | U301, with R303 (4.7k) |
 | C31, C33, C46 | Decoupling of these chips | C301 to C304 at U301 |
-| RP4 units F and H | 3k3 pull-ups on `~GAME` and `~EXROM` | R202, R203 (3k3) on the `250407 Design` sheet |
+| RP4 units F and H | 3k3 pull-ups on `~GAME` and `~EXROM` | R202, R203 (3k3) on the `CPU, Cassette and Expansion Port` sheet |
 
 The reference numbers R301 and R302 were used before for the pull-ups on
 `CIA1_PA6` and `CIA1_PA7`, which are now R1704 and R1705 on the SID sheet.
@@ -983,9 +985,10 @@ The reference numbers R301 and R302 were used before for the pull-ups on
   set/reset functions are not used. `~CAS` is on GCK2 in case a later design
   wants to latch on it; `R/~W` and `VA4` are on GCK1 and GCK3, and `A15` on
   GSR, as ordinary inputs.
-- **Pull-ups:** RP4 keeps the pull-ups on `~DMA`, `~IRQ` and A12 to A15.
-  R202 and R203 (3k3, on the `250407 Design` sheet) pull up `~EXROM` and
-  `~GAME`; RP4's units F and H are not placed.
+- **Pull-ups:** on the `CPU, Cassette and Expansion Port` sheet, R202 and
+  R203 pull up `~EXROM` and `~GAME`, R205 `~DMA` and R210 to R213 A12 to A15
+  (all 3k3; they replace the resistor array RP4, #107). R1533 (3k3) on the
+  CIA 1 sheet pulls up `~IRQ`.
 
 ### Pins
 
@@ -1074,7 +1077,7 @@ not depend on it.
 | C301 to C304 | 100 nF | C1525 | 0402 |
 | R301, R303 | 4.7k | C25900 | 0402 |
 | R302 | 10k | C25744 | 0402 |
-| R202, R203 (`250407 Design` sheet) | 3k3 | C25890 | 0402 |
+| R202, R203 (`CPU, Cassette and Expansion Port` sheet) | 3k3 | C25890 | 0402 |
 
 ### Logic and firmware
 
@@ -1202,7 +1205,8 @@ ensures this: `+3V3` is always on, and all other rails are switched (see
 | 6510 | High | `A0` to `A7` | `A8` to `A11` | `A12`, `A13` | `A14`, `A15` |
 | VIC-II | Low | `A0` to `A7` from latch U508 | `A8` to `A11` from the VIC-II | `VA4`, `VA5` while `~CAS` is low | `~VA14`, `~VA15`, inverted |
 
-In VIC-II cycles, `A12` to `A15` read high through the pull-ups RP4.
+In VIC-II cycles, `A12` to `A15` read high through the pull-ups R210 to
+R213 (3k3, formerly RP4).
 
 | Memory | Address | Select | Notes |
 | ------ | ------- | ------ | ----- |
@@ -1324,7 +1328,7 @@ see [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port).
 | U8 (7406) | Gate C drove `~NMI` from the one-shot; the other gates were already gone | U1501 (#91) |
 | C22, C39 | Decoupling of U8 and U20 | none needed |
 
-These parts of the original circuit stay on the `250407 Design` sheet:
+These parts of the original circuit stay on the `CPU, Cassette and Expansion Port` sheet:
 
 - **Chip select:** `~CIA1` for $DC00 to $DCFF now comes from the CPLD
   (U301) on the `PLA Replacement` sheet, which replaced U15 (74LS139) (#83).
@@ -1339,9 +1343,10 @@ These parts of the original circuit stay on the `250407 Design` sheet:
   an open-collector gate (gate C of U8, 7406). The controller makes the
   pulse itself now, so these parts are gone (#91), see
   [RESTORE](#restore).
-- **Pull-ups:** RP4 (3k3) on `~IRQ`. RP3, which pulled up `CASS_RD`, `CNT1`
-  and `SP1`, went with CIA 2 (#68); R1534, R1532 and R1531 (4.7k) on this
-  sheet take its place, and R1533 (4.7k) also pulls up `~IRQ`.
+- **Pull-ups:** RP4 (3k3) pulled up `~IRQ` on the original board; R1533
+  (3k3) on this sheet takes its place since #107, with the same value. RP3,
+  which pulled up `CASS_RD`, `CNT1` and `SP1`, went with CIA 2 (#68); R1534,
+  R1532 and R1531 (4.7k) on this sheet take its place.
 
 ### Circuit
 
@@ -1473,7 +1478,7 @@ open drain against pull-ups to +5V, as on the 6526:
 
 | Signal | Pull-up | Why |
 | ------ | ------- | --- |
-| `~IRQ` | RP4 (3k3), R1533 (4.7k) | Shared with the VIC-II and the expansion port |
+| `~IRQ` | R1533 (3k3) | Shared with the VIC-II and the expansion port; the only pull-up since RP4 is gone (#107) |
 | `CASS_RD` | R1534 (4.7k) | Cassette read and serial bus SRQ, driven from outside |
 | `CNT1`, `SP1` | R1532, R1531 (4.7k) | User port lines, also driven from outside |
 | `CIA1_PA6`, `CIA1_PA7` | R1704, R1705 (10k) on the SID sheet | U1702 (4066) needs at least 3.5 V to switch on |
@@ -1593,7 +1598,7 @@ user port.
 | C96 | 0.1 uF on +5V beside the user port | C1621 |
 | RP3 | 3k3 pull-ups on `~FLAG2`, `~NMI`, `CASS_RD`, `CNT1`, `SP1`, `CNT2` and `SP2` | R1628, R1627, R1534, R1532, R1531, R1623 and R1624 (4.7k) |
 
-These parts of the original circuit stay on the `250407 Design` sheet:
+These parts of the original circuit stay on the `CPU, Cassette and Expansion Port` sheet:
 
 - **Chip select:** `~CIA2` for $DD00 to $DDFF now comes from the CPLD
   (U301) on the `PLA Replacement` sheet, which replaced U15 (74LS139) (#83).
@@ -1807,7 +1812,7 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507, C508 (removed with U503), C516, C517 |
 | C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped |
 
-These parts of the original circuit stay on the `250407 Design` sheet:
+These parts of the original circuit stay on the `CPU, Cassette and Expansion Port` sheet:
 
 - **`~AEC`, chip select and bus arbitration:** these moved to the CPLD
   (U301) on the `PLA Replacement` sheet (#83). It inverts `AEC` for the
@@ -1847,7 +1852,7 @@ These parts of the original circuit stay on the `250407 Design` sheet:
 - **Clocks:** `COLOR_CLOCK_IN` (pin 21) and `DOT_CLOCK_IN` (pin 22, with C518)
   come from the `System Clocks` sheet (#76), see
   [System clocks](#system-clocks). `PHI0` (pin 17) leaves through FB501 to the
-  6510 only (`PHI0_IN` on the `250407 Design` sheet).
+  6510 only (`PHI0_IN` on the `CPU, Cassette and Expansion Port` sheet).
 - **Video:** luma (pin 15) through FB502 and chroma (pin 14) through FB503 go
   straight to the video output circuit on the same sheet. The luma pull-up
   R512 is 1 kOhm, the value for the 856x, see
@@ -2015,38 +2020,105 @@ They replace the original 8-pin DIN A/V connector CN5.
 - **Signal levels:** the video output circuit is unchanged from the HF module
   replacement (#8), see [HF module replacement](#hf-module-replacement).
 
-## Remaining original circuit
+## CPU, cassette and expansion port
 
-The `250407 Design` sheet (`250407.kicad_sch`) holds what is left of the
-original 250407 circuit (#84). It used to contain the two sheets of the
-upstream design, `250407 Sheet 1` and `250407 Sheet 2`. They are now merged
-into this one flat sheet. It keeps the title block of the upstream design
-with its credits (C64 250407 PCB Replica by Bwack, with help from Der Alte
-Bastler).
+The `CPU, Cassette and Expansion Port` sheet
+(`cpu_cassette_expansion.kicad_sch`) holds what is left of the original
+250407 circuit: the 6510, the cassette port, the expansion port and the
+power LED connector. It used to be the two sheets of the upstream design,
+`250407 Sheet 1` and `250407 Sheet 2`, which #84 merged into one flat sheet
+called `250407 Design`. #107 renamed it, renumbered its parts into the 200
+range, replaced the through-hole passives with SMD parts and tidied up the
+drawing. It keeps the title block of the upstream design with its credits
+(C64 250407 PCB Replica by Bwack, with help from Der Alte Bastler).
 
 | Group | Parts |
 | ----- | ----- |
-| CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15 and `~DMA`; units F and H are not placed), R202 and R203 (3k3 pull-ups on `~EXROM` and `~GAME`) |
+| CPU | U201 (6510, DIP-40 socket), FB205 in `PHI2`, R207 to R209 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), R204 (pull-up on `R/~W`) |
+| Bus pull-ups | R202 and R203 (`~EXROM`, `~GAME`), R205 (`~DMA`), R210 to R213 (A15 to A12). `~IRQ` is pulled up by R1533 on the CIA 1 sheet. `RDY`, `CAEC`, `~AEC` and all chip selects come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
 | Reset | R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
-| Bus | R51 on `R/~W`. `RDY`, `CAEC`, `~AEC` and all chip selects now come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
-| Cassette port | CN3 with FB1 to FB3, C1 and R1 |
-| Power LED | CN10 with R39, FB20 and FB21 |
-| Expansion port | CN6 with FB4 in `~RESET` |
-| Decoupling | C9 (100 nF), C8 and C17 (10 uF) |
+| Cassette port | J202 (edge connector) with FB202 in its +5V (`CASS_5V`, with C202), FB203 in the motor supply (`CASS_POWER`), FB204 in `CASS_WRT`, and R206 (pull-up on `CASS_SENSE`) |
+| Expansion port | J201 with FB201 in `~RESET` |
+| Power LED | J203 with R214 (390 Ohm), FB206 and FB207 |
+| Decoupling | C204 (100 nF), C201 and C203 (10 uF) on `+5V` |
 
 - **Connections:** the sheet connects to the other sheets through
-  hierarchical labels and sheet pins only; the global labels between the two
-  former sheets are gone.
-- **Expansion port:** CN6 gets `~RESET` through FB4 (pin C), the dot clock
-  `DOT_CLK` from the `System Clocks` sheet through the `DOT_CLOCK_IN` sheet
-  pin (pin 6), and `~ROML`, `~ROMH`, `~I/O1` and `~I/O2` from the CPLD
+  hierarchical labels and sheet pins only.
+- **Expansion port:** J201 gets `~RESET` through FB201 (pin C), the dot
+  clock `DOT_CLK` from the `System Clocks` sheet through the `DOT_CLOCK_IN`
+  sheet pin (pin 6), and `~ROML`, `~ROMH`, `~I/O1` and `~I/O2` from the CPLD
   (U301).
+- **Cassette port:** read (`CASS_RD`, pin D-4) goes to CIA 1's `~FLAG`
+  (U1501) and the serial bus SRQ, as on the original board; sense (P4),
+  write (P3) and motor (P5) go to the 6510's port.
 - **Sockets:** note B on the sheet lists the chips that are fitted in
-  sockets: U7, and U504 and U1701 on their own sheets.
+  sockets: U201, and U504 and U1701 on their own sheets.
 - **Removed so far:** #83 replaced U17, U15, U27 and gate B of U8 with a
   CPLD, and #91 removed U20 and the rest of U8 (RESTORE now comes from
-  U1501). The 6510 (U7) is the only chip left on the sheet. The other parts
-  still use the symbols and through-hole footprints of the original design.
+  U1501). The 6510 (U201) is the only chip left on the sheet.
+- **Symbols:** the passives use KiCad's standard symbols. The 6510, the
+  expansion port, the cassette port and the ground symbols still use the
+  symbols of the original design, and the connectors keep their original
+  footprints.
+
+### References
+
+The original references still appear in the C64 schematics, service manuals
+and the upstream replica:
+
+| Original | Now | Part | Change |
+| -------- | --- | ---- | ------ |
+| U7 | U201 | 6510 in a DIP-40 socket | |
+| CN6 | J201 | Expansion port | |
+| CN3 | J202 | Cassette port (edge connector) | |
+| CN10 | J203 | Power LED connector | |
+| FB4 | FB201 | Ferrite bead in `~RESET` to the expansion port | 100 Ohm 0805 |
+| FB3 | FB202 | Ferrite bead in the cassette port's +5V | 120 Ohm 2 A 0603 |
+| FB2 | FB203 | Ferrite bead in the cassette motor supply | 120 Ohm 2 A 0603 |
+| FB1 | FB204 | Ferrite bead in `CASS_WRT` | 100 Ohm 0805 |
+| FB5 | FB205 | Ferrite bead in `PHI2` | 100 Ohm 0805 |
+| FB20 | FB206 | Ferrite bead in the LED's ground | 100 Ohm 0805 |
+| FB21 | FB207 | Ferrite bead in the LED's supply | 100 Ohm 0805 |
+| C17 | C201 | 10 uF on `+5V` | MLCC 0805 |
+| C1 | C202 | 100 nF on the cassette port's +5V | 0402 |
+| C8 | C203 | 10 uF on `+5V` | MLCC 0805 |
+| C9 | C204 | 100 nF on `+5V` | 0402 |
+| R51 | R204 | 1.5k pull-up on `R/~W` | 0402 |
+| RP4 pin 10 | R205 | 3k3 pull-up on `~DMA` | 0402 |
+| R1 | R206 | 3k3 pull-up on `CASS_SENSE` | 0402 |
+| R45, R44, R43 | R207, R208, R209 | 3k3 pull-ups on `~LORAM`, `~HIRAM`, `~CHAREN` | 0402 |
+| RP4 pins 4, 5, 6, 8 | R210 to R213 | 3k3 pull-ups on A15, A14, A13, A12 | 0402 |
+| RP4 pin 3 | (none) | 3k3 pull-up on `~IRQ` | R1533 on the CIA 1 sheet is now 3k3 instead |
+| R39 | R214 | 390 Ohm in the power LED's supply | 0603 |
+
+R201 to R203 kept their numbers. The references C203 and C204 were used on
+the original board for the PAL-only 82 pF capacitor on `~CAS` and an
+unfitted capacitor near the DRAMs; both were dropped earlier, and the tables
+of the VIC-II and RAM and ROM sections still use their original numbers.
+
+### Parts
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| U201 | 6510 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
+| J201 | Expansion port | C5173343 | THT |
+| J202 | Cassette port (edge fingers on the PCB) | | |
+| J203 | Power LED connector | C49257 | THT |
+| C201, C203 | 10 uF 25 V X5R | C15850 | 0805 |
+| C202, C204 | 100 nF | C1525 | 0402 |
+| FB201, FB204 to FB207 | 100 Ohm at 100 MHz, 800 mA | C1015 | 0805 |
+| FB202, FB203 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
+| R201 | 1k | C11702 | 0402 |
+| R202, R203, R205 to R213 | 3k3 | C25890 | 0402 |
+| R204 | 1.5k | C25867 | 0402 |
+| R214 | 390 Ohm | C23151 | 0603 |
+
+- **Ferrite beads:** the beads in the cassette port's +5V and motor supply
+  use the 2 A part, because the Datasette motor draws a few hundred mA and
+  more when it starts, and tape adapters also run from the port's +5V. The
+  other beads carry signals or the LED current.
+- **10 uF capacitors:** MLCCs instead of electrolytics. The 0805 size keeps
+  more of its capacitance at 5 V than an 0603.
 
 ## Licence
 
@@ -2168,6 +2240,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Cleaned up the remaining original circuit (#107): renamed the `250407 Design` sheet to `CPU, Cassette and Expansion Port` (file `cpu_cassette_expansion.kicad_sch`) and renumbered its parts into the 200 range (U7 to U201, CN6, CN3 and CN10 to J201 to J203, FB4, FB3, FB2, FB1, FB5, FB20 and FB21 to FB201 to FB207, C17, C1, C8 and C9 to C201 to C204, R51, R1, R45, R44, R43 and R39 to R204, R206 to R209 and R214). Replaced the through-hole passives with SMD parts: 10 uF MLCCs (C15850) for the electrolytics, 100 nF 0402 (C1525), ferrite beads C1015 and, in the cassette +5V and motor supply, C14709, resistors in 0402 (R214 in 0603). Replaced the resistor array RP4 with R205 (`~DMA`) and R210 to R213 (A12 to A15); its `~IRQ` pull-up is dropped and R1533 on the CIA 1 sheet changed from 4.7k to 3k3 (C25890) instead. Labelled the cassette port's +5V `CASS_5V`, updated note B (U201), and tidied up the drawing |
 | 2026-11-01 | Let the CIA 1 controller drive `~NMI` for RESTORE (#91): U1501 GPIO27 now connects directly to `~NMI` through a `~NMI` sheet pin on the `CIA1, Keyboard and Joysticks` sheet, replacing `~RESTORE_NMI`. Removed the RESTORE one-shot from `250407 Design`: U20 (556, both halves) with R33, R35, R41, C23 and C38, U8 (7406, gate C was the last one in use) and the decoupling capacitors C22 and C39 |
 | 2026-11-01 | Removed the colour data switch U503 (4066, formerly U16) and its decoupling capacitor C508 from the `VIC-II, HF Module Replacement and AV out` sheet (#81); U1401 now drives the colour RAM nibble on D0 to D3 in 6510 cycles itself. Corrected the bit order of the colour data lines: renamed `COLOR_D0` to `COLOR_D3` to `COLORD0` to `COLORD3` and connected `COLORDn` (U1401 GPIO36 plus n) to the VIC-II's D(8+n), so that it carries colour bit n. The two sheets now connect through a `COLORD[0..3]` bus |
 | 2026-11-01 | Added a micro SD card slot to the `Supervisor` sheet and renamed the sheet to `Supervisor and SD card slot` (#95): J1302 (Korean Hroparts Elec TF-01A, C91145) on `+3V3` with C1322 (100 nF, C1525) and C1323, C1324 (4.7 uF, C19666). CLK, CMD and DAT0 to DAT3 go to GPIO34 to GPIO39 (CLK through R1316, 33 Ohm, C25105), card detect to GPIO33. R1317 to R1322 (10k, C25744) pull CMD, DAT0 to DAT3 and card detect up to `+3V3`. TVS arrays U1302 and U1303 (TPD4E05U06DQA, C138714) protect the card lines and the card supply at the socket |

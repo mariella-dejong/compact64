@@ -5555,7 +5555,7 @@
 			(color 0 0 0 0)
 		)
 		(uuid "438ac9d3-0cfc-4b1b-990b-000900cb9742")
-		(property "Sheetname" "250407 Design"
+		(property "Sheetname" "CPU, Cassette and Expansion Port"
 			(at 97.79 187.8834 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5566,7 +5566,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "250407.kicad_sch"
+		(property "Sheetfile" "cpu_cassette_expansion.kicad_sch"
 			(at 97.79 227.2796 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5637,7 +5637,7 @@
 				(justify left)
 			)
 		)
-		(pin "~{CIA1_FLAG}" input
+		(pin "~{CIA1_FLAG}" output
 			(at 177.165 188.595 90)
 			(uuid "a5fd6d2d-3c41-4e17-bca8-a7dff0adb447")
 			(effects

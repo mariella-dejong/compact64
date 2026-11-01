@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1300,
+    "annotate_start_num": 200,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "",
+    "used_designators": "U201,#U113,J201-203,C201-204,R204-214,R1323,R1535,#PWR124,#PWR131-132,#PWR138,#PWR1529,FB1,FB3,FB201-207,FB506,FB1301,FB1502",
     "variants": []
   },
   "sheets": [
@@ -1670,7 +1670,7 @@
     ],
     [
       "438ac9d3-0cfc-4b1b-990b-000900cb9742",
-      "250407 Design"
+      "CPU, Cassette and Expansion Port"
     ],
     [
       "4b52abbb-3e27-44dc-ae12-3c6856102545",
