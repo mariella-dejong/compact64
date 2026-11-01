@@ -687,6 +687,12 @@
 		(uuid "cdde7cd1-f72b-4139-8503-864020fd2735")
 	)
 	(junction
+		(at 165.1 158.115)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cddfa9c9-c22d-4744-ac9d-53454acf3828")
+	)
+	(junction
 		(at 33.02 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -741,6 +747,12 @@
 		(uuid "f75fc424-d5d3-4a04-ac95-a76945e08298")
 	)
 	(junction
+		(at 170.815 161.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f917bd16-f7c4-4859-bb32-0f0a02ed80b3")
+	)
+	(junction
 		(at 59.69 97.155)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -777,6 +789,16 @@
 			(type default)
 		)
 		(uuid "00e15093-8980-4d11-bc5e-422d8a72f46d")
+	)
+	(wire
+		(pts
+			(xy 170.815 172.72) (xy 170.815 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "01112d51-3e41-4724-82ba-a14a44b8b3da")
 	)
 	(wire
 		(pts
@@ -840,6 +862,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 178.435) (xy 158.75 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "059bc7b2-6135-4cee-8e0d-565438c4b9c5")
+	)
+	(wire
+		(pts
 			(xy 50.8 64.77) (xy 53.34 64.77)
 		)
 		(stroke
@@ -877,6 +909,16 @@
 			(type default)
 		)
 		(uuid "07c8854c-229a-43fd-af52-47c50e4532ce")
+	)
+	(wire
+		(pts
+			(xy 211.455 201.295) (xy 213.995 201.295)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0932ee03-3d79-48e6-8d3c-f67248cdc754")
 	)
 	(bus
 		(pts
@@ -1180,6 +1222,16 @@
 	)
 	(wire
 		(pts
+			(xy 139.065 180.34) (xy 211.455 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "239e4d47-b057-454b-a56e-06f80e16680b")
+	)
+	(wire
+		(pts
 			(xy 160.02 155.575) (xy 165.1 155.575)
 		)
 		(stroke
@@ -1438,6 +1490,16 @@
 		)
 		(uuid "35021e05-9656-4eff-a5f6-91eb75f7cab7")
 	)
+	(wire
+		(pts
+			(xy 116.205 181.61) (xy 116.205 188.595)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37d6e22e-5d0e-4d92-8e61-3b0ae62d6f7b")
+	)
 	(bus
 		(pts
 			(xy 279.4 273.05) (xy 124.46 273.05)
@@ -1467,6 +1529,26 @@
 			(type default)
 		)
 		(uuid "39467117-7bd9-48c8-9dfe-709d9018237c")
+	)
+	(wire
+		(pts
+			(xy 165.1 158.115) (xy 191.77 158.115)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a31b515-4669-416e-8890-cae492592c4b")
+	)
+	(wire
+		(pts
+			(xy 156.21 171.45) (xy 165.1 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3ab8c1fa-0f0c-42b6-bfd0-a99628ccf30d")
 	)
 	(wire
 		(pts
@@ -1500,7 +1582,7 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 161.29) (xy 160.02 161.29)
+			(xy 189.23 161.29) (xy 170.815 161.29)
 		)
 		(stroke
 			(width 0)
@@ -1617,6 +1699,16 @@
 			(type default)
 		)
 		(uuid "4a545bda-3166-4fb3-820d-8c32a67598c2")
+	)
+	(wire
+		(pts
+			(xy 139.065 173.355) (xy 156.21 173.355)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a643d36-ffe9-4ec5-8b59-d1441f7e0d21")
 	)
 	(wire
 		(pts
@@ -2090,6 +2182,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 172.72) (xy 170.815 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75e05898-7b93-4786-b13f-ebc7e519c274")
+	)
+	(wire
+		(pts
 			(xy 82.55 180.975) (xy 82.55 243.205)
 		)
 		(stroke
@@ -2107,6 +2209,16 @@
 			(type default)
 		)
 		(uuid "769970ed-9138-40e8-93ce-28b6a50707aa")
+	)
+	(wire
+		(pts
+			(xy 164.4567 160.02) (xy 190.5 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "76c2c7c8-dede-43f5-a65b-15b55d4ac410")
 	)
 	(wire
 		(pts
@@ -2427,6 +2539,16 @@
 			(type default)
 		)
 		(uuid "8a024521-418a-4718-9344-4a9c9bec08c0")
+	)
+	(wire
+		(pts
+			(xy 156.21 173.355) (xy 156.21 171.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8af5d75b-da2d-4542-b50f-cf6484f8f4b2")
 	)
 	(wire
 		(pts
@@ -3120,16 +3242,6 @@
 	)
 	(wire
 		(pts
-			(xy 164.4567 160.02) (xy 190.5 160.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c2fa0d65-75c6-42dd-ba36-e9591ed808d4")
-	)
-	(wire
-		(pts
 			(xy 70.485 99.695) (xy 170.18 99.695)
 		)
 		(stroke
@@ -3227,6 +3339,16 @@
 			(type default)
 		)
 		(uuid "c6ed2b74-e495-401b-bd3e-a8cec197ff56")
+	)
+	(wire
+		(pts
+			(xy 211.455 180.34) (xy 211.455 201.295)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6fe2099-b53a-491e-8012-b89da8a0e65d")
 	)
 	(wire
 		(pts
@@ -3450,6 +3572,16 @@
 	)
 	(wire
 		(pts
+			(xy 139.065 178.435) (xy 158.75 178.435)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d93ea435-45c0-4f52-baf1-63897db6ee09")
+	)
+	(wire
+		(pts
 			(xy 205.105 267.97) (xy 205.105 204.47)
 		)
 		(stroke
@@ -3610,13 +3742,13 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 158.115) (xy 191.77 158.115)
+			(xy 165.1 171.45) (xy 165.1 158.115)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e5681f70-4781-4f5f-beeb-cdcb2aee5000")
+		(uuid "e58c8ba8-52be-477e-a26b-4df753a93347")
 	)
 	(wire
 		(pts
@@ -3887,6 +4019,16 @@
 			(type default)
 		)
 		(uuid "f7b6527a-3896-42a3-8f67-6a3987476354")
+	)
+	(wire
+		(pts
+			(xy 170.815 161.29) (xy 160.02 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7ecd74a-3cea-4277-8252-7d3ea2eec5b1")
 	)
 	(wire
 		(pts
@@ -5827,6 +5969,16 @@
 				(justify left)
 			)
 		)
+		(pin "PHI2_PROBE" output
+			(at 116.205 188.595 90)
+			(uuid "bbc6eeaa-6701-4fe1-a960-aeb8957fc6ab")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -6911,6 +7063,46 @@
 				(justify right)
 			)
 		)
+		(pin "PGOOD" input
+			(at 139.065 178.435 0)
+			(uuid "beba62e8-267b-44db-9097-b8e15addb379")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "CAN+5V" input
+			(at 139.065 173.355 0)
+			(uuid "620773af-199c-4db7-9bdd-c8dbce4ffa0f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PHI0_PROBE" input
+			(at 139.065 180.34 0)
+			(uuid "8399af22-c190-46f5-b327-0471f93af85e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PHI2_PROBE" input
+			(at 116.205 181.61 270)
+			(uuid "0ca8eaa9-e5fd-4410-bfe1-5762f085aefc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -7451,6 +7643,16 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "PHI0_PROBE" output
+			(at 213.995 201.295 180)
+			(uuid "5eabeddb-04d0-44aa-8588-8618ae1cf5c6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances

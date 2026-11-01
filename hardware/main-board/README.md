@@ -278,9 +278,10 @@ video timing. U1201 runs from `CAN+5V`.
 and U1001) with the pull-ups R706 and R1003 (200k each) on `CAN+5V`: a
 wired-AND. It leaves the `Power Supply` sheet through the `PGOOD` sheet pin.
 It goes high once both outputs are in regulation, after the 1.5 ms to 2.5 ms
-PGOOD delay. If either rail drops out of regulation, the sync clock stops and
-both converters run unsynchronized at about 400 kHz, set by R701 and R1002,
-until `PGOOD` returns.
+PGOOD delay. The supervisor reads it on GPIO3 through R1330 (#49), see [Chip
+and rail checks](#chip-and-rail-checks). If either rail drops out of
+regulation, the sync clock stops and both converters run unsynchronized at
+about 400 kHz, set by R701 and R1002, until `PGOOD` returns.
 
 ### Input switch
 
@@ -382,6 +383,7 @@ and the sync gate U1201.
 | 74AHCT1G125 (U1203), dot clock              | about 2.6 mA        | about 3.5 mA | Cpd 14 pF plus about 50 pF load (C518, the VIC-II and the expansion port) at 8.2 MHz, plus the same change in supply current |
 | 74AHCT1G08 (U1201), sync clock              | about 4.5 mA        | about 5.3 mA | Charging C710 and C1005 (1 nF each) at about 445 kHz, plus the same change in supply current (TI SN74AHCT1G08) |
 | R706 and R1003 (PGOOD pull-ups)             | 0.05 mA             | 0.05 mA  | 5 V / 100 kOhm (two 200k in parallel)                     |
+| R1331 and R1332 (rail check divider, #49)   | 0.34 mA             | 0.34 mA  | 5 V / 14.7 kOhm                                           |
 | **Total**                                   | **about 9 mA plus the VIC-II** | **about 262 mA** |                                       |
 
 No 8562 datasheet figures were found, so the 6567's maximum currents are used
@@ -435,7 +437,8 @@ gone as well.
 | ---------------------------- | --------------------- | ------------- | --------------------------------------------------------------- |
 | SID 8580 (U1701), VDD        | below 25 mA           | below 40 mA   | 6581 figures (preliminary datasheet, October 1982, page 8) used as an upper bound; the 8580 draws less |
 | Q1701 (audio output buffer)  | about 4 mA            | about 5 mA    | Emitter follower into R1703 (1 kOhm), estimate                  |
-| **Total**                    | **below 30 mA**       | **below 45 mA** |                                                               |
+| R1333 and R1334 (rail check divider, #49) | 0.6 mA       | 0.6 mA        | 9 V / 14.7 kOhm                                                 |
+| **Total**                    | **below 30 mA**       | **below 46 mA** |                                                               |
 
 U902 also draws about 5 mA of quiescent current from its input.
 
@@ -691,7 +694,7 @@ issues:
 | Function | Hardware | Firmware |
 | -------- | -------- | -------- |
 | Keep all rails except `+3V3` off until it is safe to start | #47 | #48 |
-| Check that the legacy chips are fitted in their sockets | #49 | #50 |
+| Check the legacy chips (6510, VIC-II, SID) and their rails after a safe power-up | #49 | #50 |
 | Link to the other microcontrollers | #51 | used by #52 and #53 |
 | Check that all ROM images are present | uses #51 | #52 |
 | Check that the other microcontrollers run up-to-date firmware | uses #51 | #53 |
@@ -746,6 +749,11 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO0 | 77 | Gate of Q1301 through R1313 | Output | High turns on Q1301, which pulls `~RESET` low (soft reset), see [Soft reset](#soft-reset) |
 | GPIO1 | 78 | `~RESET` through R1315 | Input | Reads the shared reset line |
 | GPIO2 | 79 | `PREFLIGHT_OK` (supervisor sheet), `POWER_ON` (power supply sheet) | Output | High turns on all rails except `+3V3`, see [Input switch](#input-switch) |
+| GPIO3 | 80 | `PGOOD` through R1330 (1k), net `PGOOD_PROBE` | Input | Both buck converters in regulation and `CAN+5V` up, see [Chip and rail checks](#chip-and-rail-checks) |
+| GPIO4 | 1 | `CAN5V_PROBE`, divider R1331/R1332 from `CAN+5V` | Input | High while `CAN+5V` is above about 3 V |
+| GPIO5 | 2 | `9V_PROBE`, divider R1334/R1333 from `+9V` | Input | High while `+9V` is above about 6 V |
+| GPIO6 | 3 | `PHI0_PROBE`, `PHI0` through R514 (1k) | Input | Clock from the VIC-II |
+| GPIO7 | 4 | `PHI2_PROBE`, `PHI2` through R215 (1k) | Input | Clock from the 6510 |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
 | GPIO16 | 16 | `TDO` | Input | JTAG data from the CPLD (U301) |
 | GPIO17 | 17 | `TDI` | Output | JTAG data to the CPLD |
@@ -784,10 +792,13 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   JTAG logic stays idle. The 10k pull-ups of the SD card lines override the
   internal pull-downs, so `SD_DAT3` (chip select) is high and the card is
   not selected. R1327 to R1329 hold GPIO21 to GPIO23 low, so the ready,
-  activity and error LEDs stay off; only the power LED is on.
+  activity and error LEDs stay off; only the power LED is on. GPIO3 to
+  GPIO7 (chip and rail checks) are inputs; with the rails off they read
+  low.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
   the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD, the SD
-  card and the LED module, which are all on `+3V3`, except GPIO0 and GPIO1, which reach
+  card and the LED module, which are all on `+3V3`, and to the inputs of the
+  chip and rail checks (GPIO3 to GPIO7), which the firmware must never drive, except GPIO0 and GPIO1, which reach
   `~RESET` through Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
@@ -839,7 +850,8 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
   low while `+5V` rises (Q1301's gate drive comes from `+3V3`), and releases
   it once the rails are up, the clocks run and the other controllers are
   ready, after a minimum time for disk drives and cartridges (#88, #48). It
-  can also reset the system if `PGOOD` drops, which the timer could not.
+  can also reset the system if `PGOOD` drops (on GPIO3 since #49), which
+  the timer could not.
 - **Fail-safe:** in reset and with blank firmware, GPIO0 is an input with the
   internal pull-down on, and R1314 holds the gate low, so Q1301 is off and
   the supervisor never holds the system in reset. In both cases the rails
@@ -927,6 +939,79 @@ the firmware (#55).
 | R1323, R1324 | 150 Ohm | C22808 | 0603 |
 | R1325, R1326 | 220 Ohm | C25091 | 0402 |
 | R1327 to R1329 | 4.7k | C25900 | 0402 |
+
+### Chip and rail checks
+
+The supervisor checks the legacy chips in their sockets, the 6510 (U201),
+the VIC-II (U504) and the SID (U1701), and the rails that feed them (#49).
+The firmware is in #50.
+
+Detecting the chips before power-up is not practical:
+- **Signal pins:** almost every pin is shared with the controllers, the
+  CPLD and pull-ups, and an unpowered NMOS chip only adds a few pF and
+  protection diodes that conduct for negative voltages. Measuring through
+  that would need test currents into unpowered chips.
+- **Supply pins:** the decoupling capacitors hide the chip's own
+  capacitance, and an NMOS chip draws no measurable current below about
+  0.7 V.
+
+Powering up with any of the three chips missing is harmless:
+- **Without the VIC-II** there is no `PHI0`, so the 6510 and everything that
+  runs on `PHI2` stands still.
+- **Without the 6510** nothing writes on the bus, so there is no bus
+  contention.
+- **Without the SID** nothing reads its pins.
+- **Wrong type:** a 6567 in the 8562 socket gets 5 V instead of 12 V on
+  VDD, and a 6581 in the 8580 socket gets 9 V instead of 12 V. They do not
+  work properly, but are not damaged.
+
+The supervisor therefore powers up into a safe state (`~RESET` low, CPLD
+outputs off) and then checks the rails and the clocks. The real risk is a
+chip inserted the wrong way round or offset by a pin, which shorts its rail.
+The rail checks let the supervisor switch the rails off within
+milliseconds. That limits the damage, but cannot guarantee that the chip
+survives, so the sockets must make the orientation obvious: a notch, a
+pin-1 marking and an arrow in the silkscreen, and all three sockets facing
+the same way.
+
+| GPIO | Signal | Circuit | Shows |
+| ---- | ------ | ------- | ----- |
+| GPIO3 | `PGOOD` | R1330 (1k) in series | `+5V` and `+3V3` in regulation. The pull-ups R706 and R1003 run from `CAN+5V`, so it also reads low when `CAN+5V` collapses. |
+| GPIO4 | `CAN5V_PROBE` | R1331 (4.7k) from `CAN+5V`, R1332 (10k) to ground: about 3.4 V at 5 V | `CAN+5V` (VIC-II) above about 3 V |
+| GPIO5 | `9V_PROBE` | R1334 (10k) from `+9V`, R1333 (4.7k) to ground: about 2.9 V at 9 V | `+9V` (SID) above about 6 V |
+| GPIO6 | `PHI0_PROBE` | R514 (1k) from `PHI0_IN`, on the 6510's side of FB501 (VIC-II sheet) | VIC-II running |
+| GPIO7 | `PHI2_PROBE` | R215 (1k) from `PHI2`, on the bus side of FB205 (CPU sheet) | 6510 running |
+
+- **What the checks show:**
+  - a rail that does not come up, or drops, points at a chip that shorts
+    it;
+  - a dot clock without `PHI0` points at a missing or dead VIC-II;
+  - `PHI0` without `PHI2` points at a missing or dead 6510;
+  - the SID needs no hardware: the firmware tests it with a register test
+    once the CPU runs (#50).
+- **Clock taps:** the series resistors sit right at the tap, so the GPIO
+  and its trace are a short, damped stub on the clock. Keep these traces
+  short in the layout. `PHI2` reaches the controllers anyway; the
+  supervisor's own tap keeps the check independent of their firmware.
+- **Levels:** `PGOOD`, `PHI0` and `PHI2` swing to 5 V. GPIO3, GPIO6 and
+  GPIO7 are 5 V tolerant while `+3V3` is up, which is always the case. The
+  dividers keep GPIO4 and GPIO5 below 3.3 V.
+- **With the rails off:**
+  - `PGOOD` reads low through its pull-ups to the dead `CAN+5V`;
+  - the dividers pull GPIO4 and GPIO5 low (about 3 to 5 kOhm, within the
+    8.2k of RP2350 erratum E9);
+  - the clock taps go through 1k into unpowered nets.
+
+  None of these pins may ever be driven by the firmware.
+- **Load:** the dividers draw 0.34 mA from `CAN+5V` and 0.6 mA from `+9V`.
+
+| Ref | Part | LCSC | Package | Sheet |
+| --- | ---- | ---- | ------- | ----- |
+| R1330 | 1k | C11702 | 0402 | Supervisor and SD card slot |
+| R1331, R1333 | 4.7k | C25900 | 0402 | Supervisor and SD card slot |
+| R1332, R1334 | 10k | C25744 | 0402 | Supervisor and SD card slot |
+| R514 | 1k | C21190 | 0603 | VIC-II, HF Module Replacement and AV out |
+| R215 | 1k | C11702 | 0402 | CPU, Cassette and Expansion Port |
 
 ### SD card slot
 
@@ -1944,6 +2029,7 @@ the logic chips still use the symbols of the original design.
 | C507, C509 to C512, C515 to C517 | 100 nF 16 V X7R | C1525 | 0402 |
 | C513 | 10 uF 25 V X5R | C96446 | 0603 |
 | C518 | 20 pF 50 V C0G | C1554 | 0402 |
+| R514 | 1k (`PHI0` tap for the supervisor, #49) | C21190 | 0603 |
 | FB501 to FB505 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
 | U502 | SN74F258D | C1499704 | SOIC-16 |
 | U505, U506 | SN74HCT257DR | C2872319 | SOIC-16 |
@@ -2107,7 +2193,7 @@ drawing. It keeps the title block of the upstream design with its credits
 
 | Group | Parts |
 | ----- | ----- |
-| CPU | U201 (6510, DIP-40 socket), FB205 in `PHI2`, R207 to R209 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), R204 (pull-up on `R/~W`) |
+| CPU | U201 (6510, DIP-40 socket), FB205 in `PHI2`, R207 to R209 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), R204 (pull-up on `R/~W`), R215 (`PHI2` tap for the supervisor's chip check, #49) |
 | Bus pull-ups | R202 and R203 (`~EXROM`, `~GAME`), R205 (`~DMA`), R210 to R213 (A15 to A12). `~IRQ` is pulled up by R1533 on the CIA 1 sheet. `RDY`, `CAEC`, `~AEC` and all chip selects come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
 | Reset | R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
 | Cassette port | J202 (edge connector) with FB202 in its +5V (`CASS_5V`, with C202), FB203 in the motor supply (`CASS_POWER`), FB204 in `CASS_WRT`, and R206 (pull-up on `CASS_SENSE`) |
@@ -2182,6 +2268,7 @@ of the VIC-II and RAM and ROM sections still use their original numbers.
 | R201 | 1k | C11702 | 0402 |
 | R202, R203, R205 to R213 | 3k3 | C25890 | 0402 |
 | R204 | 1.5k | C25867 | 0402 |
+| R215 | 1k (`PHI2` tap for the supervisor, #49) | C11702 | 0402 |
 
 - **Ferrite beads:** the beads in the cassette port's +5V and motor supply
   use the 2 A part, because the Datasette motor draws a few hundred mA and
@@ -2310,6 +2397,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Added the chip and rail checks for the supervisor (#49): `PGOOD` to GPIO3 through R1330 (1k, C11702); dividers from `CAN+5V` (R1331 4.7k, C25900, and R1332 10k, C25744) to GPIO4 and from `+9V` (R1334 10k and R1333 4.7k) to GPIO5; `PHI0` from the 6510's side of FB501 to GPIO6 through R514 (1k, C21190) on the `VIC-II, HF Module Replacement and AV out` sheet; `PHI2` from the bus side of FB205 to GPIO7 through R215 (1k, C11702) on the `CPU, Cassette and Expansion Port` sheet. New sheet pins `PGOOD`, `CAN+5V`, `PHI0_PROBE` and `PHI2_PROBE` on the `Supervisor and SD card slot` sheet, `PHI0_PROBE` on the VIC-II sheet and `PHI2_PROBE` on the CPU sheet; `+9V` is a global power net |
 | 2026-11-01 | Added the status LED connector to the `Supervisor and SD card slot` sheet (#54): J1303 (2×3 pin header, C65114) for the new LED module, with R1325 (220 Ohm, C25091) from `+3V3` for the power LED, R1323 and R1324 (150 Ohm, C22808) from GPIO21 (ready) and GPIO23 (activity), R1326 (220 Ohm, C25091) from GPIO22 (error), and R1327 to R1329 (4.7k, C25900) pulling GPIO21 to GPIO23 down (RP2350 erratum E9). Removed the original power LED connector J203 with R214, FB206 and FB207 from the `CPU, Cassette and Expansion Port` sheet |
 | 2026-11-01 | Cleaned up the remaining original circuit (#107): renamed the `250407 Design` sheet to `CPU, Cassette and Expansion Port` (file `cpu_cassette_expansion.kicad_sch`) and renumbered its parts into the 200 range (U7 to U201, CN6, CN3 and CN10 to J201 to J203, FB4, FB3, FB2, FB1, FB5, FB20 and FB21 to FB201 to FB207, C17, C1, C8 and C9 to C201 to C204, R51, R1, R45, R44, R43 and R39 to R204, R206 to R209 and R214). Replaced the through-hole passives with SMD parts: 10 uF MLCCs (C15850) for the electrolytics, 100 nF 0402 (C1525), ferrite beads C1015 and, in the cassette +5V and motor supply, C14709, resistors in 0402 (R214 in 0603). Replaced the resistor array RP4 with R205 (`~DMA`) and R210 to R213 (A12 to A15); its `~IRQ` pull-up is dropped and R1533 on the CIA 1 sheet changed from 4.7k to 3k3 (C25890) instead. Labelled the cassette port's +5V `CASS_5V`, updated note B (U201), and tidied up the drawing |
 | 2026-11-01 | Let the CIA 1 controller drive `~NMI` for RESTORE (#91): U1501 GPIO27 now connects directly to `~NMI` through a `~NMI` sheet pin on the `CIA1, Keyboard and Joysticks` sheet, replacing `~RESTORE_NMI`. Removed the RESTORE one-shot from `250407 Design`: U20 (556, both halves) with R33, R35, R41, C23 and C38, U8 (7406, gate C was the last one in use) and the decoupling capacitors C22 and C39 |

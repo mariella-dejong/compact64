@@ -5397,6 +5397,16 @@
 		)
 		(uuid "a7593825-da58-4f79-86ec-31ff3a35ba72")
 	)
+	(text "PHI0_PROBE is used to detect if the VIC-II is healthy.\nR514 should be placed close to FB501."
+		(exclude_from_sim no)
+		(at 153.416 185.166 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d54759d5-7ebf-403f-b3e5-32fca763b1dd")
+	)
 	(junction
 		(at 281.305 42.545)
 		(diameter 0)
@@ -5540,6 +5550,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "66bb8579-0a64-490b-a316-40fc530eae4d")
+	)
+	(junction
+		(at 161.925 203.835)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6cae9d5b-d032-4a4a-b03e-70c7ac0fccef")
 	)
 	(junction
 		(at 351.155 89.535)
@@ -7303,6 +7319,16 @@
 	)
 	(wire
 		(pts
+			(xy 151.13 203.835) (xy 161.925 203.835)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ecf5525-eae1-490f-a0d3-9b78c2cf4c33")
+	)
+	(wire
+		(pts
 			(xy 330.835 102.235) (xy 330.835 104.775)
 		)
 		(stroke
@@ -8173,7 +8199,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 203.835) (xy 151.13 203.835)
+			(xy 184.15 203.835) (xy 161.925 203.835)
 		)
 		(stroke
 			(width 0)
@@ -8840,6 +8866,16 @@
 			(type default)
 		)
 		(uuid "c5583a61-bf01-4ed5-a921-557d316455c8")
+	)
+	(wire
+		(pts
+			(xy 161.925 194.945) (xy 161.925 203.835)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c56e86c3-5193-43dc-ad16-01f2b880196c")
 	)
 	(bus
 		(pts
@@ -10358,6 +10394,17 @@
 			(justify left)
 		)
 		(uuid "4833b1cc-9250-4360-8ad3-9d43ec8793bf")
+	)
+	(hierarchical_label "PHI0_PROBE"
+		(shape output)
+		(at 154.305 194.945 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4edff681-3556-44bb-a1c2-af0c3e215abe")
 	)
 	(hierarchical_label "D[0..7]"
 		(shape bidirectional)
@@ -11946,6 +11993,97 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "FB505")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 158.115 194.945 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "26991ccd-250d-4949-8108-4333b14e00da")
+		(property "Reference" "R514"
+			(at 155.448 189.3316 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "1K"
+			(at 155.448 191.643 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 158.115 196.723 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 158.115 194.945 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 158.115 194.945 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C21190"
+			(at 158.115 194.945 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "753dd2b3-9d3d-4af7-a84b-96a4dfe33790")
+		)
+		(pin "2"
+			(uuid "d22d4993-b73c-4bdb-a76a-fcb6d7847ebb")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "R514")
 					(unit 1)
 				)
 			)
