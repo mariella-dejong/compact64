@@ -2691,7 +2691,7 @@
 		)
 		(uuid "fdd54829-4ddc-46d1-a29d-4f3f15c31b15")
 	)
-	(hierarchical_label "~{COLOR}"
+	(hierarchical_label "~{COLORAM}"
 		(shape output)
 		(at 153.035 76.2 0)
 		(effects
