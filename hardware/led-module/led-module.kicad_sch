@@ -637,6 +637,121 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "power:PWR_FLAG"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(junction
 		(at 142.24 59.69)
@@ -645,10 +760,16 @@
 		(uuid "03cbd4f2-04ea-4b50-81c6-f473d60ce1dc")
 	)
 	(junction
-		(at 142.24 73.025)
+		(at 142.24 73.66)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4eb8ca3b-a1eb-4563-95a0-eee521af4151")
+	)
+	(junction
+		(at 78.74 55.88)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "504f3515-5420-4edc-8eda-97de4daeff5b")
 	)
 	(junction
 		(at 142.24 86.36)
@@ -657,12 +778,12 @@
 		(uuid "5b6956bd-3f9b-4451-990e-6b5e2fabad38")
 	)
 	(no_connect
-		(at 88.265 58.42)
+		(at 88.9 58.42)
 		(uuid "166748fd-7023-4b38-8029-024136e6deef")
 	)
 	(wire
 		(pts
-			(xy 142.24 73.025) (xy 142.24 59.69)
+			(xy 142.24 73.66) (xy 142.24 59.69)
 		)
 		(stroke
 			(width 0)
@@ -672,7 +793,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.265 60.96) (xy 88.265 86.36)
+			(xy 88.9 60.96) (xy 88.9 86.36)
 		)
 		(stroke
 			(width 0)
@@ -682,7 +803,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.965 58.42) (xy 114.3 58.42)
+			(xy 101.6 58.42) (xy 114.3 58.42)
 		)
 		(stroke
 			(width 0)
@@ -692,7 +813,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 73.025) (xy 142.24 73.025)
+			(xy 121.92 73.66) (xy 142.24 73.66)
 		)
 		(stroke
 			(width 0)
@@ -702,7 +823,7 @@
 	)
 	(wire
 		(pts
-			(xy 103.505 60.96) (xy 103.505 73.025)
+			(xy 104.14 60.96) (xy 104.14 73.66)
 		)
 		(stroke
 			(width 0)
@@ -712,7 +833,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.965 60.96) (xy 103.505 60.96)
+			(xy 101.6 60.96) (xy 104.14 60.96)
 		)
 		(stroke
 			(width 0)
@@ -722,7 +843,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.105 55.88) (xy 78.105 57.15)
+			(xy 78.74 55.88) (xy 78.74 57.15)
 		)
 		(stroke
 			(width 0)
@@ -732,7 +853,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.315 46.355) (xy 116.84 46.355)
+			(xy 107.95 46.99) (xy 116.84 46.99)
 		)
 		(stroke
 			(width 0)
@@ -742,7 +863,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 59.69) (xy 114.935 59.69)
+			(xy 114.3 59.69) (xy 115.57 59.69)
 		)
 		(stroke
 			(width 0)
@@ -752,7 +873,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.315 55.88) (xy 107.315 46.355)
+			(xy 107.95 55.88) (xy 107.95 46.99)
 		)
 		(stroke
 			(width 0)
@@ -762,7 +883,7 @@
 	)
 	(wire
 		(pts
-			(xy 103.505 73.025) (xy 114.3 73.025)
+			(xy 104.14 73.66) (xy 114.3 73.66)
 		)
 		(stroke
 			(width 0)
@@ -772,7 +893,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 46.355) (xy 142.24 59.69)
+			(xy 142.24 46.99) (xy 142.24 59.69)
 		)
 		(stroke
 			(width 0)
@@ -782,7 +903,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 46.355) (xy 142.24 46.355)
+			(xy 124.46 46.99) (xy 142.24 46.99)
 		)
 		(stroke
 			(width 0)
@@ -792,7 +913,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.965 55.88) (xy 107.315 55.88)
+			(xy 101.6 55.88) (xy 107.95 55.88)
 		)
 		(stroke
 			(width 0)
@@ -802,7 +923,7 @@
 	)
 	(wire
 		(pts
-			(xy 122.555 86.36) (xy 142.24 86.36)
+			(xy 123.19 86.36) (xy 142.24 86.36)
 		)
 		(stroke
 			(width 0)
@@ -812,7 +933,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.265 86.36) (xy 114.935 86.36)
+			(xy 88.9 86.36) (xy 115.57 86.36)
 		)
 		(stroke
 			(width 0)
@@ -822,7 +943,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 86.36) (xy 142.24 73.025)
+			(xy 142.24 86.36) (xy 142.24 73.66)
 		)
 		(stroke
 			(width 0)
@@ -842,7 +963,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 59.69) (xy 122.555 59.69)
+			(xy 142.24 59.69) (xy 123.19 59.69)
 		)
 		(stroke
 			(width 0)
@@ -852,7 +973,7 @@
 	)
 	(wire
 		(pts
-			(xy 88.265 55.88) (xy 78.105 55.88)
+			(xy 88.9 55.88) (xy 78.74 55.88)
 		)
 		(stroke
 			(width 0)
@@ -861,7 +982,7 @@
 		(uuid "f7ee5c88-522e-4e90-b667-aea990beaec1")
 	)
 	(label "ERR"
-		(at 108.585 73.025 0)
+		(at 109.22 73.66 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -891,7 +1012,7 @@
 		(uuid "7521c150-373c-4e5e-a6e2-796e4d1c0012")
 	)
 	(label "PWR"
-		(at 109.22 46.355 0)
+		(at 109.22 46.99 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -902,7 +1023,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 118.745 86.36 180)
+		(at 119.38 86.36 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -912,7 +1033,7 @@
 		(dnp no)
 		(uuid "075caebf-5e10-44a1-8f68-39679cf9cfe6")
 		(property "Reference" "D4"
-			(at 119.761 79.756 0)
+			(at 120.396 79.756 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -922,7 +1043,7 @@
 			)
 		)
 		(property "Value" "BRIGHT GREEN"
-			(at 119.761 82.296 0)
+			(at 120.396 82.296 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -932,7 +1053,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D3.0mm"
-			(at 118.745 86.36 0)
+			(at 119.38 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -943,7 +1064,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.745 86.36 0)
+			(at 119.38 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -954,7 +1075,7 @@
 			)
 		)
 		(property "Description" "Activity indicator (Blue, White or Bright Green)"
-			(at 117.602 88.9 0)
+			(at 118.237 88.9 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -964,7 +1085,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 118.745 86.36 0)
+			(at 119.38 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -975,7 +1096,7 @@
 			)
 		)
 		(property "LCSC Part #" "C2895477"
-			(at 118.745 86.36 0)
+			(at 119.38 86.36 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1002,7 +1123,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 118.745 59.69 180)
+		(at 119.38 59.69 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1012,7 +1133,7 @@
 		(dnp no)
 		(uuid "1fe68a20-e128-403f-8ef8-6e105c6ce4d7")
 		(property "Reference" "D2"
-			(at 120.3325 52.07 0)
+			(at 120.9675 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1022,7 +1143,7 @@
 			)
 		)
 		(property "Value" "WHITE"
-			(at 120.3325 54.61 0)
+			(at 120.9675 54.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1032,7 +1153,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D3.0mm"
-			(at 118.872 63.246 0)
+			(at 119.507 63.246 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1042,7 +1163,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.745 59.69 0)
+			(at 119.38 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1053,7 +1174,7 @@
 			)
 		)
 		(property "Description" "Ready indicator (white, blue or bright green)"
-			(at 118.745 59.69 0)
+			(at 119.38 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1064,7 +1185,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 118.745 59.69 0)
+			(at 119.38 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1075,7 +1196,7 @@
 			)
 		)
 		(property "LCSC Part #" "C2895459"
-			(at 118.745 59.69 0)
+			(at 119.38 59.69 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1102,7 +1223,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 118.11 73.025 180)
+		(at 118.11 73.66 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1112,7 +1233,7 @@
 		(dnp no)
 		(uuid "6e14df47-43f4-4543-991e-1bc5b56720b7")
 		(property "Reference" "D3"
-			(at 119.634 67.056 0)
+			(at 119.634 67.691 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1122,7 +1243,7 @@
 			)
 		)
 		(property "Value" "AMBER"
-			(at 119.634 69.596 0)
+			(at 119.634 70.231 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1132,7 +1253,7 @@
 			)
 		)
 		(property "Footprint" "LED_THT:LED_D3.0mm"
-			(at 118.11 73.025 0)
+			(at 118.11 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1143,7 +1264,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 73.025 0)
+			(at 118.11 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1154,7 +1275,7 @@
 			)
 		)
 		(property "Description" "Error indicator (Amber or Red)"
-			(at 118.872 75.946 0)
+			(at 118.872 76.581 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1164,7 +1285,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 118.11 73.025 0)
+			(at 118.11 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1175,7 +1296,7 @@
 			)
 		)
 		(property "LCSC Part #" "C2895473"
-			(at 118.11 73.025 0)
+			(at 118.11 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1202,7 +1323,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_02x03_Odd_Even")
-		(at 93.345 58.42 0)
+		(at 93.98 58.42 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1213,7 +1334,7 @@
 		(fields_autoplaced yes)
 		(uuid "79a3cf18-fcbc-4ba9-acfa-133c437455c9")
 		(property "Reference" "J1"
-			(at 94.615 49.53 0)
+			(at 95.25 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1223,7 +1344,7 @@
 			)
 		)
 		(property "Value" "Main Board Connector"
-			(at 94.615 52.07 0)
+			(at 95.25 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1233,7 +1354,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical"
-			(at 93.345 58.42 0)
+			(at 93.98 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1244,7 +1365,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.345 58.42 0)
+			(at 93.98 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1255,7 +1376,7 @@
 			)
 		)
 		(property "Description" "Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 93.345 58.42 0)
+			(at 93.98 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1266,7 +1387,7 @@
 			)
 		)
 		(property "LCSC Part #" "C65114"
-			(at 93.345 58.42 0)
+			(at 93.98 58.42 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1305,7 +1426,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 78.105 57.15 0)
+		(at 78.74 57.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1316,7 +1437,7 @@
 		(fields_autoplaced yes)
 		(uuid "7d4be2db-06e9-4aad-943e-891893308abc")
 		(property "Reference" "#PWR01339"
-			(at 78.105 63.5 0)
+			(at 78.74 63.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1327,7 +1448,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 78.105 62.23 0)
+			(at 78.74 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1338,7 +1459,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 78.105 57.15 0)
+			(at 78.74 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1349,7 +1470,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 78.105 57.15 0)
+			(at 78.74 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1360,7 +1481,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 78.105 57.15 0)
+			(at 78.74 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1462,8 +1583,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED")
-		(at 120.65 46.355 180)
+		(lib_id "power:PWR_FLAG")
+		(at 78.74 55.88 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -1471,9 +1592,11 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "b41d0002-83cc-425b-946c-da58227f2bcf")
-		(property "Reference" "D1"
-			(at 121.412 39.878 0)
+		(fields_autoplaced yes)
+		(uuid "b259b026-d962-4fc9-9cd0-d86f25131225")
+		(property "Reference" "#FLG01"
+			(at 78.74 53.975 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1482,8 +1605,9 @@
 				)
 			)
 		)
-		(property "Value" "RED"
-			(at 121.412 42.164 0)
+		(property "Value" "PWR_FLAG"
+			(at 78.74 50.8 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1492,8 +1616,8 @@
 				)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D3.0mm"
-			(at 120.65 46.355 0)
+		(property "Footprint" ""
+			(at 78.74 55.88 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1504,7 +1628,83 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 120.65 46.355 0)
+			(at 78.74 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 78.74 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "11c0b519-292b-47a8-8dba-948fe36ba9b1")
+		)
+		(instances
+			(project "led-module"
+				(path "/2172e8bd-630a-4c71-ac90-2976947e0475"
+					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 120.65 46.99 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "b41d0002-83cc-425b-946c-da58227f2bcf")
+		(property "Reference" "D1"
+			(at 121.412 40.513 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "RED"
+			(at 121.412 42.799 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_THT:LED_D3.0mm"
+			(at 120.65 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1515,7 +1715,7 @@
 			)
 		)
 		(property "Description" "Power indicator (red)"
-			(at 122.428 49.784 0)
+			(at 122.428 50.419 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1525,7 +1725,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 120.65 46.355 0)
+			(at 120.65 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1536,7 +1736,7 @@
 			)
 		)
 		(property "LCSC Part #" "C2895471"
-			(at 120.65 46.355 0)
+			(at 120.65 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
