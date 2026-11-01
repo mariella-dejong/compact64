@@ -1109,6 +1109,7 @@ the bus cycles of the 6510 and the VIC-II.
 | U4            | 2364 KERNAL ROM           | KERNAL ROM image in U1401        |
 | U5            | 2332 character ROM        | Character ROM image in U1401     |
 | U6            | 2114 1K x 4 static RAM    | Colour RAM in U1401              |
+| U16 (U503 since #74) | 4066 colour data switch | U1401 drives D0 to D3 and the colour data lines itself (#81) |
 
 Their support parts went with them: the decoupling capacitors C4 to C7,
 C25 to C28 and C40 to C43, the 10 uF capacitor C14, the 33 Ohm resistor
@@ -1127,8 +1128,9 @@ The address decoding stays as it was:
   U508) stay; they moved to the VIC-II sheet in #74. The VIC-II's register
   select, the CPLD's decoding of VIC-II cycles and the low address byte in
   VIC-II cycles all depend on them.
-- U503 (4066, formerly U16) still connects the colour data lines to D0 to D3
-  in 6510 cycles.
+- The colour data switch (U16, later U503, a 4066) is gone (#81). It
+  connected the colour data lines to D0 to D3 in 6510 cycles; U1401 now
+  serves both sides itself, see [Timing](#timing-1).
 
 ### Circuit
 
@@ -1166,7 +1168,7 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO33 | 42 | `~VA14` | VIC-II bank, inverted A14 (CIA 2 PA0) |
 | GPIO34 | 43 | `~VA15` | VIC-II bank, inverted A15 (CIA 2 PA1) |
 | GPIO35 | 44 | `AEC` | High: 6510 cycle; low: VIC-II cycle |
-| GPIO36 to GPIO39 | 45 to 48 | `COLOR_D0` to `COLOR_D3` | Colour RAM data |
+| GPIO36 to GPIO39 | 45 to 48 | `COLORD0` to `COLORD3` (bus `COLORD[0..3]`) | Colour RAM data to the VIC-II's D8 to D11; GPIO36 plus n carries colour bit n |
 | GPIO40 | 49 | `SDA` | I2C0 data, link to the supervisor |
 | GPIO41 | 52 | `SCL` | I2C0 clock, link to the supervisor |
 | GPIO42 | 53 | `EEPROM_SDA` | I2C1 data to the EEPROM |
@@ -1208,7 +1210,7 @@ In VIC-II cycles, `A12` to `A15` read high through the pull-ups RP4.
 | BASIC ROM ($A000 to $BFFF) | A0 to A12 | `~BASIC` | |
 | KERNAL ROM ($E000 to $FFFF) | A0 to A12 | `~KERNAL` | |
 | Character ROM | A0 to A11 | `~CHAROM` | 6510 at $D000 to $DFFF, VIC-II at $1000 to $1FFF in banks 0 and 2 |
-| Colour RAM | A0 to A9 | `~COLORAM` | Written with `GR/~W`; data on `COLOR_D0` to `COLOR_D3` |
+| Colour RAM | A0 to A9 | `~COLORAM` | Written with `GR/~W`; data on D0 to D3 for the 6510, on `COLORD0` to `COLORD3` for the VIC-II |
 
 The PLA logic in the CPLD does not select RAM during the VIC-II's refresh
 cycles, so they need no handling.
@@ -1279,9 +1281,25 @@ These timing requirements are for the firmware:
 - Latch write data late in the cycle, not when `~CASRAM` falls: the 6510
   can take up to about 200 ns into `PHI2` to put the data on the bus. Latch
   colour RAM writes on the rising edge of `GR/~W`.
-- In 6510 cycles, U503 connects `COLOR_D0` to `COLOR_D3` to D0 to D3. When
-  the 6510 reads colour RAM, drive only the colour data lines, never D0 to
-  D3 as well.
+- **Colour RAM** (#81): there is no switch between the CPU bus and the
+  VIC-II's colour data inputs any more, so U1401 serves both sides itself,
+  chosen by `AEC`:
+  - **VIC-II cycles** (`AEC` low, `~COLORAM` low): put the nibble addressed
+    by A0 to A9 on `COLORD0` to `COLORD3`. Never drive D0 to D3 for colour
+    RAM, because the RAM data is on D0 to D7 at the same time; the VIC-II
+    reads all 12 bits at once.
+  - **6510 and DMA cycles** (`AEC` high, `~COLORAM` low): on a read, drive
+    the nibble on D0 to D3 and leave D4 to D7 undriven, so the upper nibble
+    reads back as whatever is left on the bus, as on the original board. On
+    a write, latch D0 to D3 on the rising edge of `GR/~W`. A cartridge that
+    does DMA (for example an REU) accesses colour RAM the same way.
+  - `COLORD0` to `COLORD3` only go to the VIC-II's D8 to D11, which are
+    inputs, so they can stay outputs all the time.
+  - **Bit order:** `COLORDn` (GPIO36 plus n) carries colour bit n, the bit
+    the 6510 sees on Dn: `COLORD0` goes to the VIC-II's D8. Before #81 the
+    names ran the other way (`COLOR_D0` was D3 and D11), as on the replica.
+  - Before U1401 runs, its pins are inputs with pull-downs, so the VIC-II
+    reads colour 0. That is harmless, because the C64 is still in reset.
 - Turn off the internal pull-downs of the bus pins (RP2350 erratum E9), and
   set the data lines to 12 mA drive strength.
 - The RP2350 is rated for 150 MHz. Overclock it only if measurements show
@@ -1750,14 +1768,14 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | U13, U25 | 74LS257 address multiplexers | U505, U506 (74HCT257) |
 | U26 | 74LS373 address latch | U508 (74LS373) |
 | U14 | 74LS258 multiplexer for VA6, VA7 and the bank | U502 (74F258) |
-| U16 | 4066 colour data switch | U503 (CD4066B) |
+| U16 | 4066 colour data switch | U503 (CD4066B), then removed (#81): U1401 drives both sides |
 | FB23 | Ferrite bead in `PHI0` | FB501 |
 | FB15, FB14 | Ferrite beads in luma and chroma | FB502, FB503 |
 | FB12, C54 | VDD (pin 13) filter on `+12V` | FB504, C510 on `CAN+5V` |
 | C53, C94 | `+12V` decoupling | C512, C513 on `CAN+5V` |
 | FB22, C60, C101 | VCC (pin 40) filter | FB505, C509, C511 |
 | C36 | 20 pF load on the dot clock | C518 |
-| C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507, C508, C516, C517 |
+| C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507, C508 (removed with U503), C516, C517 |
 | C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped |
 
 These parts of the original circuit stay on the `250407 Design` sheet:
@@ -1792,8 +1810,11 @@ These parts of the original circuit stay on the `250407 Design` sheet:
     `~VA14`/`~VA15`, selected by `~CAS`.
   - `~RAS` only connects U504 and U508, and `VA0` to `VA3`, `VA6` and `VA7`
     stay on this sheet. `VA4` and `VA5` go to U1401 and the CPLD (U301).
-- **Colour data:** U503 (CD4066B) connects `COLOR_D0` to `COLOR_D3` to D0 to D3
-  in 6510 cycles (control inputs on `AEC`).
+- **Colour data:** D8 to D11 (pins 38 to 35) come straight from U1401
+  (`COLORD0` to `COLORD3`, bus `COLORD[0..3]`), which drives them in VIC-II
+  cycles. The 4066 U503 that connected them to D0 to D3 in 6510 cycles is
+  gone (#81); U1401 now puts colour RAM reads on D0 to D3 itself, see
+  [RAM and ROM replacement](#ram-and-rom-replacement).
 - **Clocks:** `COLOR_CLOCK_IN` (pin 21) and `DOT_CLOCK_IN` (pin 22, with C518)
   come from the `System Clocks` sheet (#76), see
   [System clocks](#system-clocks). `PHI0` (pin 17) leaves through FB501 to the
@@ -1802,7 +1823,7 @@ These parts of the original circuit stay on the `250407 Design` sheet:
   straight to the video output circuit on the same sheet. The luma pull-up
   R512 is 1 kOhm, the value for the 856x, see
   [HF module replacement](#hf-module-replacement).
-- **Decoupling:** C507, C508 and C515 to C517 (100 nF), one per logic chip.
+- **Decoupling:** C507 and C515 to C517 (100 nF), one per logic chip.
 
 ### Parts
 
@@ -1812,12 +1833,11 @@ the logic chips still use the symbols of the original design.
 
 | Ref | Part | LCSC | Package |
 | --- | ---- | ---- | ------- |
-| C507 to C512, C515 to C517 | 100 nF 16 V X7R | C1525 | 0402 |
+| C507, C509 to C512, C515 to C517 | 100 nF 16 V X7R | C1525 | 0402 |
 | C513 | 10 uF 25 V X5R | C96446 | 0603 |
 | C518 | 20 pF 50 V C0G | C1554 | 0402 |
 | FB501 to FB505 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
 | U502 | SN74F258D | C1499704 | SOIC-16 |
-| U503 | CD4066BM96 | C54755 | SOIC-14 |
 | U505, U506 | SN74HCT257DR | C2872319 | SOIC-16 |
 | U508 | SN74LS373DWR | C2867545 | SOIC-20 (7.5 mm) |
 | U504 | 8562 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
@@ -2119,6 +2139,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Removed the colour data switch U503 (4066, formerly U16) and its decoupling capacitor C508 from the `VIC-II, HF Module Replacement and AV out` sheet (#81); U1401 now drives the colour RAM nibble on D0 to D3 in 6510 cycles itself. Corrected the bit order of the colour data lines: renamed `COLOR_D0` to `COLOR_D3` to `COLORD0` to `COLORD3` and connected `COLORDn` (U1401 GPIO36 plus n) to the VIC-II's D(8+n), so that it carries colour bit n. The two sheets now connect through a `COLORD[0..3]` bus |
 | 2026-11-01 | Added a micro SD card slot to the `Supervisor` sheet and renamed the sheet to `Supervisor and SD card slot` (#95): J1302 (Korean Hroparts Elec TF-01A, C91145) on `+3V3` with C1322 (100 nF, C1525) and C1323, C1324 (4.7 uF, C19666). CLK, CMD and DAT0 to DAT3 go to GPIO34 to GPIO39 (CLK through R1316, 33 Ohm, C25105), card detect to GPIO33. R1317 to R1322 (10k, C25744) pull CMD, DAT0 to DAT3 and card detect up to `+3V3`. TVS arrays U1302 and U1303 (TPD4E05U06DQA, C138714) protect the card lines and the card supply at the socket |
 | 2026-11-01 | Added a footprint for the micro SD socket Korean Hroparts Elec TF-01A (LCSC C91145) to the component library in `hardware/components`: `microSD_Hroparts_TF-01A`, for use with KiCad's `Connector:Micro_SD_Card_Det1` symbol (#102) |
 | 2026-11-01 | Replaced the PLA (U17) with a CPLD (#83): added a `PLA Replacement` sheet (page 3) to the root sheet with U301 (XC9572XL-10VQG64C, C90569) on `+3V3`, C301 to C304 (100 nF, C1525, one per VCC pin), R301 (4.7k, C25900) from GTS1 (`EN_OUTPUT`) to ground, R302 (10k, C25744) from TMS to `+3V3` and R303 (4.7k, C25900) from `~AEC` to `+5V`. U301 also takes over U15 (74LS139), U27 (7408) and gate B of U8 (7406). Removed U17 and its socket, U15, U27, R31 and the decoupling capacitors C31, C33 and C46 from `250407 Design`; gate B of U8 is no longer placed. Replaced RP4 units F and H with R202 and R203 (3k3 0402, C25890) on `~EXROM` and `~GAME`. Connected the CPLD's JTAG pins to the supervisor's GPIO16 (TDO), GPIO17 (TDI), GPIO18 (TCK) and GPIO19 (TMS), and GTS1 to GPIO20 (`EN_PLA`), through new sheet pins on the `Supervisor` sheet. Wired the PLA's signals and `~DMA`, `CAEC`, `RDY`, `~COLORAM`, `~VIC`, `~SID`, `~CIA1`, `~CIA2`, `~I/O1`, `~I/O2` and `AEC`/`~AEC` to the CPLD through hierarchical labels and sheet pins on `250407 Design` and the root sheet; the VIC-II, RAM and ROM, CIA 1, CIA 2 and SID sheets keep their existing sheet pins. Removed U17 from note B |
