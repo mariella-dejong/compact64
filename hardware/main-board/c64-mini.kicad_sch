@@ -6933,7 +6933,7 @@
 			(color 0 0 0 0)
 		)
 		(uuid "83785ced-90f1-439c-a9f5-0f5eaac8b37d")
-		(property "Sheetname" "Supervisor"
+		(property "Sheetname" "Supervisor and SD card slot"
 			(at 102.87 145.3384 0)
 			(show_name no)
 			(do_not_autoplace no)
