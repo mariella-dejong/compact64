@@ -741,6 +741,12 @@
 		(uuid "f75fc424-d5d3-4a04-ac95-a76945e08298")
 	)
 	(junction
+		(at 170.815 161.29)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "f917bd16-f7c4-4859-bb32-0f0a02ed80b3")
+	)
+	(junction
 		(at 59.69 97.155)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -777,6 +783,16 @@
 			(type default)
 		)
 		(uuid "00e15093-8980-4d11-bc5e-422d8a72f46d")
+	)
+	(wire
+		(pts
+			(xy 170.815 172.72) (xy 170.815 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "01112d51-3e41-4724-82ba-a14a44b8b3da")
 	)
 	(wire
 		(pts
@@ -837,6 +853,16 @@
 			(type default)
 		)
 		(uuid "052e472e-cceb-4502-86d0-04421e1c23e1")
+	)
+	(wire
+		(pts
+			(xy 158.75 178.435) (xy 158.75 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "059bc7b2-6135-4cee-8e0d-565438c4b9c5")
 	)
 	(wire
 		(pts
@@ -1500,7 +1526,7 @@
 	)
 	(wire
 		(pts
-			(xy 189.23 161.29) (xy 160.02 161.29)
+			(xy 189.23 161.29) (xy 170.815 161.29)
 		)
 		(stroke
 			(width 0)
@@ -2087,6 +2113,16 @@
 			(type default)
 		)
 		(uuid "75444aed-e795-4ab5-8719-a241ee2723db")
+	)
+	(wire
+		(pts
+			(xy 158.75 172.72) (xy 170.815 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "75e05898-7b93-4786-b13f-ebc7e519c274")
 	)
 	(wire
 		(pts
@@ -3450,6 +3486,16 @@
 	)
 	(wire
 		(pts
+			(xy 139.065 178.435) (xy 158.75 178.435)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d93ea435-45c0-4f52-baf1-63897db6ee09")
+	)
+	(wire
+		(pts
 			(xy 205.105 267.97) (xy 205.105 204.47)
 		)
 		(stroke
@@ -3887,6 +3933,16 @@
 			(type default)
 		)
 		(uuid "f7b6527a-3896-42a3-8f67-6a3987476354")
+	)
+	(wire
+		(pts
+			(xy 170.815 161.29) (xy 160.02 161.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7ecd74a-3cea-4277-8252-7d3ea2eec5b1")
 	)
 	(wire
 		(pts
@@ -6904,6 +6960,16 @@
 		(pin "TMS" bidirectional
 			(at 132.715 146.05 90)
 			(uuid "dac849db-7e56-454f-8467-870783cfefb2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "PGOOD" input
+			(at 139.065 178.435 0)
+			(uuid "beba62e8-267b-44db-9097-b8e15addb379")
 			(effects
 				(font
 					(size 1.27 1.27)

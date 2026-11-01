@@ -6200,10 +6200,6 @@
 		(uuid "c315f392-637e-48e7-97db-3fa1de8d8f67")
 	)
 	(no_connect
-		(at 255.27 115.57)
-		(uuid "c47ec48e-0e82-4d49-8261-8202a116b14d")
-	)
-	(no_connect
 		(at 255.27 186.69)
 		(uuid "cda420f7-38ac-4f51-8ab9-64315896a2a1")
 	)
@@ -7457,6 +7453,16 @@
 	)
 	(wire
 		(pts
+			(xy 255.27 115.57) (xy 255.905 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "805b1ebb-2d97-4d00-ac09-8284ede3161f")
+	)
+	(wire
+		(pts
 			(xy 355.6 192.405) (xy 355.6 183.515)
 		)
 		(stroke
@@ -7764,6 +7770,16 @@
 			(type default)
 		)
 		(uuid "973c33bf-300b-4344-aa2f-c433e61defe5")
+	)
+	(wire
+		(pts
+			(xy 263.525 115.57) (xy 269.24 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98229709-8ef2-4991-877c-210ed0748231")
 	)
 	(wire
 		(pts
@@ -9399,6 +9415,17 @@
 			(justify left)
 		)
 		(uuid "567540e8-1b55-4979-a8bb-1efb1978584c")
+	)
+	(hierarchical_label "PGOOD"
+		(shape input)
+		(at 269.24 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6b9fcb3e-3580-4872-bd6f-2bcc40dcdea8")
 	)
 	(hierarchical_label "GPIO45"
 		(shape tri_state)
@@ -14515,6 +14542,96 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
 					(reference "D1305")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 259.715 115.57 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "8a8d8d84-7136-4b17-9191-cec1673eb3e3")
+		(property "Reference" "R1330"
+			(at 259.334 110.744 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 259.334 113.284 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 259.715 117.348 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 259.715 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 259.715 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C11702"
+			(at 259.715 115.57 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "48c9f068-fcb6-42b6-9c73-bceaaa6e074c")
+		)
+		(pin "1"
+			(uuid "1867028c-4db4-4e1e-97e3-1380ddec0be9")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "R1330")
 					(unit 1)
 				)
 			)
