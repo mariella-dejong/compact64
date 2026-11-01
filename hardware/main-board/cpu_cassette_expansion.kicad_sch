@@ -3750,6 +3750,12 @@
 		(uuid "1c947121-b402-4bb0-a2c6-4b2354d949a6")
 	)
 	(junction
+		(at 240.665 15.875)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2083d6b6-e144-4265-914a-cfe6c320947c")
+	)
+	(junction
 		(at 240.03 73.025)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3808,6 +3814,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4a6d433e-08e0-4f73-a1fb-7ea4f5632b8f")
+	)
+	(junction
+		(at 238.125 18.415)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5680feba-0955-4fd4-8aa7-24fb5691cf52")
 	)
 	(junction
 		(at 177.165 260.35)
@@ -5597,6 +5609,16 @@
 	)
 	(wire
 		(pts
+			(xy 240.665 15.875) (xy 243.205 15.875)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89e85b63-2ee4-4fd1-9b6d-e5fdc0685a00")
+	)
+	(wire
+		(pts
 			(xy 215.265 40.005) (xy 244.475 40.005)
 		)
 		(stroke
@@ -6464,6 +6486,16 @@
 			(type default)
 		)
 		(uuid "e78719ce-ef85-496e-b6d8-2fffb2bb6181")
+	)
+	(wire
+		(pts
+			(xy 238.125 18.415) (xy 243.205 18.415)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e8be5d28-275f-4b8a-a92f-ef02d74fd59e")
 	)
 	(bus
 		(pts
@@ -7546,6 +7578,17 @@
 		)
 		(uuid "a821e9bb-8ae7-4a18-bd7b-c05f32c03883")
 	)
+	(hierarchical_label "CASS_SENSE"
+		(shape output)
+		(at 243.205 15.875 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a8b42266-03b4-408a-a56f-996a3d45d554")
+	)
 	(hierarchical_label "~{HIRAM}"
 		(shape output)
 		(at 256.54 73.025 0)
@@ -7567,6 +7610,17 @@
 			(justify left)
 		)
 		(uuid "b648d215-1d76-4302-9e2b-d2ee102d1b73")
+	)
+	(hierarchical_label "CASS_WRITE"
+		(shape output)
+		(at 243.205 18.415 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bcce0d63-b9fb-457e-bb31-439da70e9969")
 	)
 	(hierarchical_label "CASS_MOTOR"
 		(shape output)
