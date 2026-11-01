@@ -758,7 +758,8 @@ external flash chip.
   power the board.
   - R1310 and R1311 (27 Ohm) are in series with D+ and D-.
   - R1301 and R1302 (5.1k) on CC1 and CC2 identify the board as a device.
-  - D1301 to D1305 (H5VL10BH) protect D+, D-, CC1, CC2 and VBUS against ESD.
+  - U1304 (TPD4E05U06DQA, a four-channel TVS array) protects D+, D-, CC1
+    and CC2 against ESD, and D1305 (H5VL10BH) protects VBUS (#72).
   - R1304 (4.7k) and R1305 (6.8k) divide VBUS to about 3.0 V for GPIO13
     (`VBUS_DET`), so the firmware can detect a connected host; C1305 filters
     it and C1306 decouples VBUS.
@@ -1602,21 +1603,21 @@ sockets (CONNFLY DS1037-09MNAKT74-0CC) with the original pinout. Their
 shells are on ground.
 
 - **Digital lines:** each of the ten joystick lines goes from the connector
-  through a TVS diode to ground (H5VL10BH), a 100 Ohm series resistor and a
-  10k pull-up to +5V at the GPIO:
+  through a TVS channel to ground (TPD4E05U06DQA arrays, #72), a 100 Ohm
+  series resistor and a 10k pull-up to +5V at the GPIO:
 
   | Line | Connector pin | TVS | Series | Pull-up | GPIO |
   | ---- | ------------- | --- | ------ | ------- | ---- |
-  | `JOYA0` | J1503 pin 1 | D1509 | R1530 | R1520 | GPIO39 |
-  | `JOYA1` | J1503 pin 2 | D1510 | R1528 | R1518 | GPIO37 |
-  | `JOYA2` | J1503 pin 3 | D1511 | R1527 | R1517 | GPIO36 |
-  | `JOYA3` | J1503 pin 4 | D1512 | R1526 | R1516 | GPIO35 |
-  | `JOYBTNA` | J1503 pin 6 | D1513 | R1529 | R1519 | GPIO38 (`~LP`) |
-  | `JOYB0` | J1502 pin 1 | D1504 | R1525 | R1515 | GPIO34 |
-  | `JOYB1` | J1502 pin 2 | D1505 | R1523 | R1513 | GPIO32 |
-  | `JOYB2` | J1502 pin 3 | D1506 | R1522 | R1512 | GPIO31 |
-  | `JOYB3` | J1502 pin 4 | D1507 | R1521 | R1511 | GPIO30 |
-  | `JOYBTNB` | J1502 pin 6 | D1508 | R1524 | R1514 | GPIO33 |
+  | `JOYA0` | J1503 pin 1 | U1504 | R1530 | R1520 | GPIO39 |
+  | `JOYA1` | J1503 pin 2 | U1504 | R1528 | R1518 | GPIO37 |
+  | `JOYA2` | J1503 pin 3 | U1504 | R1527 | R1517 | GPIO36 |
+  | `JOYA3` | J1503 pin 4 | U1504 | R1526 | R1516 | GPIO35 |
+  | `JOYBTNA` | J1503 pin 6 | U1507 | R1529 | R1519 | GPIO38 (`~LP`) |
+  | `JOYB0` | J1502 pin 1 | U1505 | R1525 | R1515 | GPIO34 |
+  | `JOYB1` | J1502 pin 2 | U1505 | R1523 | R1513 | GPIO32 |
+  | `JOYB2` | J1502 pin 3 | U1505 | R1522 | R1512 | GPIO31 |
+  | `JOYB3` | J1502 pin 4 | U1505 | R1521 | R1511 | GPIO30 |
+  | `JOYBTNB` | J1502 pin 6 | U1506 | R1524 | R1514 | GPIO33 |
 
   The pull-ups replace the 6526's internal pull-ups, so the lines idle at
   5 V as before. A pressed switch pulls the GPIO to about 0.05 V. The series
@@ -1626,17 +1627,25 @@ shells are on ground.
   (pin 9) behind R1529. The fire button of control port 1 still triggers
   the VIC-II's light pen latch directly, as on the original board.
 - **POT lines:** pins 5 and 9 go to the 4066 (U1702 on the SID sheet) as
-  before, without extra protection.
+  before. Since #72 they have TVS channels at the connector, so ESD cannot
+  reach the SID's POT inputs through the 4066: U1507 for `POTAX` and `POTAY`
+  (control port 1, together with `JOYBTNA`), U1506 for `POTBX` and `POTBY`
+  (control port 2, together with `JOYBTNB`). The paddles swing from 0 V to
+  5 V into the SID's 1 nF timing capacitors, so the channels' 0.5 pF do not
+  matter.
 - **Supply:** pin 7 of both ports gets +5V through FB1501 (100 Ohm at
   100 MHz, 800 mA), which replaces the through-hole ferrite bead FB18.
+  D1501 (H5VL10BH) protects pin 7 on the connector side of FB1501.
 
 ### Keyboard port
 
 J1501 is a USB-A socket (CONNFLY DS1095-WNR0). The controller's USB port
 runs as a host at full or low speed, which covers USB keyboards.
 
-- **Data:** R1507 and R1508 (27 Ohm) are in series with D+ and D-, and D1501
-  and D1502 (H5VL10BH) protect them against ESD. The host pull-downs on D+
+- **Data:** R1507 and R1508 (27 Ohm) are in series with D+ and D-, and D1504
+  (D+) and D1505 (D-) (H5VL10BH) protect them against ESD. The USB-A socket
+  sits apart from the control ports, so it keeps single diodes instead of
+  sharing an array with them. The host pull-downs on D+
   and D- are inside the RP2354.
 - **VBUS:** U1502 (TPS2051C) switches `+5V` to `VBUS`. It is rated for
   0.5 A and limits the current to 0.67 to 1.01 A, so a short in the
@@ -2196,11 +2205,25 @@ They replace the original 8-pin DIN A/V connector CN5.
   one jack is the audio output and the spare one is the audio input that
   CN5 pin 5 used to carry.
 - **Audio input protection:** the red jack is the only input on these
-  connectors. A bidirectional 5 V TVS diode (D502, SMF5.0CA) to ground at the
+  connectors. A bidirectional 5 V TVS diode (D502, H5VL10BH) to ground at the
   jack and a 150 Ohm series resistor (R513) in front of the coupling
   capacitor C1713 protect the SID against ESD. There is no DC on the jack side
   of C1713, so a line-level signal stays well below the 5 V standoff voltage
   of D502.
+- **Output protection (#72):** each output has a bidirectional H5VL10BH
+  (5 V standoff, 8 V breakdown, 5.5 pF) to ground at its jack: D503 on
+  `AUDIO_OUT`, D504 on `COMP_OUT`, D505 on `CHROMA_OUT` and D506 on
+  `LUMA_OUT`.
+  - **Video:** composite and luma stay between 0 V and about 2 V (about 1 V
+    into a 75 Ohm load), and chroma swings about ±0.3 V around its level.
+    5.5 pF is negligible at video frequencies with the low impedances of
+    these lines. A larger TVS such as the SMF5.0CA, with hundreds of pF,
+    would have softened the picture and the chroma.
+  - **Audio:** `AUDIO_OUT` is AC-coupled through C1714 and swings about
+    ±1 V. R502 (100k) to ground gives it a DC level of 0 V, so the coupling
+    capacitor's charge drains away and plugging in an amplifier does not
+    pop. At power-up the jack side briefly follows the emitter of Q1701,
+    which rises to about 4 V, still below the diode's 5 V standoff.
 - **Sheet pins:** `AUDIO_IN` and `AUDIO_OUT` connect to the
   `SID and internal audio output` sheet through the root sheet (#73).
   `LUMA_OUT`, `CHROMA_OUT` and `COMP_OUT` stay on the `VIC-II, HF Module Replacement and AV out`
@@ -2225,7 +2248,7 @@ by Bwack, with help from Der Alte Bastler).
 | CPU | U201 (8500, or a 6510, in a DIP-40 socket), FB205 in `PHI2`, R207 to R209 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), R204 (pull-up on `R/~W`), R215 (`PHI2` tap for the supervisor's chip check, #49) |
 | Bus pull-ups | R202 and R203 (`~EXROM`, `~GAME`), R205 (`~DMA`), R210 to R213 (A15 to A12). `~IRQ` is pulled up by R1533 on the CIA 1 sheet. `RDY`, `CAEC`, `~AEC` and all chip selects come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
 | Reset | R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
-| Cassette port | J202 (edge connector) with FB202 in its +5V (`CASS_5V`, with C202), FB203 in the motor supply (`CASS_POWER`), FB204 in `CASS_WRT`, and R206 (pull-up on `CASS_SENSE`) |
+| Cassette port | J202 (edge connector) with FB202 in its +5V (`CASS_5V`, with C202), FB203 in the motor supply (`CASS_POWER`), FB204 in `CASS_WRT`, and R206 (pull-up on `CASS_SENSE`). ESD protection at the connector (#72): U202 (TPD4E05U06DQA) on `CASS_SENSE`, `CASS_WRT'` and `CASS_RD`, D201 (H5VL10BH) on `CASS_5V` |
 | Expansion port | J201 with FB201 in `~RESET` |
 | Decoupling | C204 (100 nF), C201 and C203 (10 uF) on `+5V` |
 
@@ -2298,6 +2321,8 @@ of the VIC-II and RAM and ROM sections still use their original numbers.
 | R202, R203, R205 to R213 | 3k3 | C25890 | 0402 |
 | R204 | 1.5k | C25867 | 0402 |
 | R215 | 1k (`PHI2` tap for the supervisor, #49) | C11702 | 0402 |
+| U202 | TPD4E05U06DQA (cassette port ESD) | C138714 | USON-10 |
+| D201 | H5VL10BH (`CASS_5V` ESD) | C42413893 | DFN1006-2L on an 0402 footprint |
 
 - **Ferrite beads:** the beads in the cassette port's +5V and motor supply
   use the 2 A part, because the Datasette motor draws a few hundred mA and
@@ -2305,6 +2330,47 @@ of the VIC-II and RAM and ROM sections still use their original numbers.
   other beads carry signals or the LED current.
 - **10 uF capacitors:** MLCCs instead of electrolytics. The 0805 size keeps
   more of its capacitance at 5 V than an 0603.
+
+## ESD protection
+
+Every connector that a user plugs into gets ESD protection at the connector
+(#72), before any series resistor, ferrite bead or pull-up. Two parts are
+used throughout:
+
+- **TPD4E05U06DQA** (C138714): four unidirectional TVS channels to ground,
+  5.5 V working voltage, 0.5 pF, no supply pin (so it cannot back-feed a
+  rail). Used where it covers at least two signal lines of the same
+  connector. Unused channels stay unconnected.
+- **H5VL10BH** (C42413893): a single bidirectional TVS, 5 V standoff, 8 V
+  breakdown, 5.5 pF, in DFN1006-2L on an 0402 footprint. Used for single
+  lines, for signals that swing below ground (audio, chroma), and for 5 V
+  supply pins. Supply pins never share an array with signals.
+
+| Connector | Signal lines | Supply pin |
+| --------- | ------------ | ---------- |
+| J601, 12 V input | | D602 (SMAJ13A) |
+| J1301, supervisor USB-C | U1304: D+, D-, CC1, CC2 | D1305 (`VBUS`) |
+| J1302, SD card | U1302, U1303: all card lines | U1303 (card `+3V3`) |
+| J1501, USB keyboard | D1504 (D+), D1505 (D-) | D1503 (`VBUS`) |
+| J1502, control port 2 | U1505: pins 1 to 4; U1506: fire, POT X, POT Y | D1501 (pin 7, shared) |
+| J1503, control port 1 | U1504: pins 1 to 4; U1507: fire, POT X, POT Y | D1501 (pin 7, shared) |
+| J1601, serial port | U1607: SRQ, ATN, CLK, DATA; D1602: `~RESET` | |
+| J1602, user port | U1603 to U1606: all signal pins; D1601: `~RESET` | not protected (on the main `+5V` rail) |
+| J202, cassette port | U202: sense, write, read | D201 (`CASS_5V`) |
+| J501, S-Video | D506 (luma), D505 (chroma) | |
+| J502, RCA jacks | D502 (audio in), D503 (audio out), D504 (composite) | |
+
+Not protected, on purpose:
+- **Expansion port (J201):** it would take about eleven arrays on the bus
+  lines, right at the bus timing, and the original C64 had none either.
+  Cartridges must never be plugged in or pulled out while the board is
+  powered.
+- **Cassette motor supply (`CASS_POWER`, J202 pin C):** it carries up to
+  6.24 V, above the array's working voltage, and no basic or preferred TVS
+  with a 6.5 V standoff was found. The Datasette motor on the other end and
+  the converter's output capacitors (44 uF) absorb a discharge.
+- **Internal connectors** (LED module J1303 and the debug headers of #112)
+  are not touched by users.
 
 ## Licence
 
@@ -2426,6 +2492,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Reworked the ESD protection (#72). Supervisor: D1301 to D1304 replaced by the array U1304 (TPD4E05U06DQA, C138714) on D+, D-, CC1 and CC2. CIA 1: the single diodes on the control ports replaced by U1504 (port 1, pins 1 to 4), U1505 (port 2, pins 1 to 4), U1506 and U1507 (fire button and both POT lines of port 2 and port 1; the POT lines were unprotected before); the keyboard port's D+ and D- now on D1504 and D1505; D1501 (H5VL10BH, C42413893) added on the control ports' +5V. Cassette port: U202 (TPD4E05U06DQA) on `CASS_SENSE`, `CASS_WRT'` and `CASS_RD`, D201 (H5VL10BH) on `CASS_5V`. AV outputs: D502 changed from SMF5.0CA to H5VL10BH, D503 to D506 (H5VL10BH) added on `AUDIO_OUT`, `COMP_OUT`, `CHROMA_OUT` and `LUMA_OUT`, and R502 (100k, C25741) from `AUDIO_OUT` to ground |
 | 2026-11-01 | Changed the CPU to the 8500 (#75): U201's value is now `8500`, its description and note B on the `CPU, Cassette and Expansion Port` sheet say to fit an MOS 8500 and that a 6510 also works. No circuit change: the 8500 has the same pinout, supply, timing and processor port as the 6510. Corrected the reference in the `PHI2_PROBE` note on the same sheet (R215, formerly R214) |
 | 2026-11-01 | Added the chip and rail checks for the supervisor (#49): `PGOOD` to GPIO3 through R1330 (1k, C11702); dividers from `CAN+5V` (R1331 4.7k, C25900, and R1332 10k, C25744) to GPIO4 and from `+9V` (R1334 10k and R1333 4.7k) to GPIO5; `PHI0` from the 6510's side of FB501 to GPIO6 through R514 (1k, C21190) on the `VIC-II, HF Module Replacement and AV out` sheet; `PHI2` from the bus side of FB205 to GPIO7 through R215 (1k, C11702) on the `CPU, Cassette and Expansion Port` sheet. New sheet pins `PGOOD`, `CAN+5V`, `PHI0_PROBE` and `PHI2_PROBE` on the `Supervisor and SD card slot` sheet, `PHI0_PROBE` on the VIC-II sheet and `PHI2_PROBE` on the CPU sheet; `+9V` is a global power net |
 | 2026-11-01 | Added the status LED connector to the `Supervisor and SD card slot` sheet (#54): J1303 (2×3 pin header, C65114) for the new LED module, with R1325 (220 Ohm, C25091) from `+3V3` for the power LED, R1323 and R1324 (150 Ohm, C22808) from GPIO21 (ready) and GPIO23 (activity), R1326 (220 Ohm, C25091) from GPIO22 (error), and R1327 to R1329 (4.7k, C25900) pulling GPIO21 to GPIO23 down (RP2350 erratum E9). Removed the original power LED connector J203 with R214, FB206 and FB207 from the `CPU, Cassette and Expansion Port` sheet |
