@@ -5684,7 +5684,7 @@
 		(uuid "c81a237e-7193-46c6-9adb-19a003d9b37c")
 	)
 	(junction
-		(at 316.865 122.555)
+		(at 307.975 122.555)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cf78f839-8f3a-4765-923a-a1aefabec974")
@@ -5712,6 +5712,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f63194ec-d718-4e41-a12d-624927988e59")
+	)
+	(junction
+		(at 313.69 122.555)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fcd04a8f-56d8-418f-88ac-51d59ecccca0")
 	)
 	(junction
 		(at 191.77 231.775)
@@ -6713,6 +6719,16 @@
 	)
 	(wire
 		(pts
+			(xy 313.69 122.555) (xy 318.135 122.555)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1c925982-ac3a-4d22-a7a3-10b07520ef5a")
+	)
+	(wire
+		(pts
 			(xy 318.135 60.325) (xy 281.305 60.325)
 		)
 		(stroke
@@ -7213,7 +7229,7 @@
 	)
 	(wire
 		(pts
-			(xy 306.705 122.555) (xy 316.865 122.555)
+			(xy 297.815 122.555) (xy 307.975 122.555)
 		)
 		(stroke
 			(width 0)
@@ -9523,7 +9539,7 @@
 	)
 	(wire
 		(pts
-			(xy 316.865 122.555) (xy 318.135 122.555)
+			(xy 307.975 122.555) (xy 313.69 122.555)
 		)
 		(stroke
 			(width 0)
@@ -10468,7 +10484,7 @@
 	)
 	(hierarchical_label "AUDIO_OUT"
 		(shape input)
-		(at 306.705 122.555 180)
+		(at 297.815 122.555 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -11637,7 +11653,7 @@
 	)
 	(symbol
 		(lib_id "Device:D_TVS")
-		(at 316.865 126.365 270)
+		(at 307.975 126.365 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11647,7 +11663,7 @@
 		(dnp no)
 		(uuid "14a686ab-38a9-43a9-b4ea-30c6918d9b30")
 		(property "Reference" "D503"
-			(at 309.626 127.254 90)
+			(at 300.736 127.254 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11658,7 +11674,7 @@
 			)
 		)
 		(property "Value" "H5VL10BH"
-			(at 306.07 124.714 90)
+			(at 297.18 124.714 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11669,7 +11685,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 316.865 126.365 0)
+			(at 307.975 126.365 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11680,7 +11696,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 316.865 126.365 0)
+			(at 307.975 126.365 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11691,7 +11707,7 @@
 			)
 		)
 		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 316.865 126.365 0)
+			(at 307.975 126.365 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11702,7 +11718,7 @@
 			)
 		)
 		(property "LCSC Part #" "C42413893"
-			(at 316.865 126.365 0)
+			(at 307.975 126.365 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12647,7 +12663,7 @@
 		(dnp no)
 		(uuid "2f07027b-1e5e-42dc-ae5f-d81e64d5ebe4")
 		(property "Reference" "R513"
-			(at 311.785 132.715 90)
+			(at 311.658 132.842 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13925,6 +13941,99 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 313.69 126.365 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5d905007-c5f4-46cf-ae74-5c88f272a595")
+		(property "Reference" "R502"
+			(at 316.23 125.0949 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "100k"
+			(at 316.23 127.6349 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 315.468 126.365 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 313.69 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 313.69 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C25741"
+			(at 313.69 126.365 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "5d0c0a77-0ce1-451b-af63-cd6419a7e16c")
+		)
+		(pin "1"
+			(uuid "42845841-b958-4cd0-a9b4-0fb075da157d")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "R502")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 89.535 146.685 270)
 		(unit 1)
@@ -14106,7 +14215,7 @@
 	)
 	(symbol
 		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 316.865 130.175 0)
+		(at 307.975 130.175 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -14116,7 +14225,7 @@
 		(dnp no)
 		(uuid "6a938419-eeb3-46e5-b37a-5133f40e50d0")
 		(property "Reference" "#U0510"
-			(at 316.865 130.175 0)
+			(at 307.975 130.175 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14127,7 +14236,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 316.865 130.175 0)
+			(at 307.975 130.175 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14138,7 +14247,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 316.865 130.175 0)
+			(at 307.975 130.175 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14149,7 +14258,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 316.865 130.175 0)
+			(at 307.975 130.175 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14160,7 +14269,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 316.865 130.175 0)
+			(at 307.975 130.175 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17697,6 +17806,83 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C511")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 313.69 130.175 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d69e27a7-275b-421a-98b0-45678808938d")
+		(property "Reference" "#U0514"
+			(at 313.69 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 313.69 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 313.69 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 313.69 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 313.69 130.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0deb5fa1-ddce-48e7-b0b7-ab32a79b0e51")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "#U0514")
 					(unit 1)
 				)
 			)
