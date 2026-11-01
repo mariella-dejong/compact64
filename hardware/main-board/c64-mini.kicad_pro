@@ -1535,7 +1535,7 @@
     "page_layout_descr_file": ""
   },
   "schematic": {
-    "annotate_start_num": 1500,
+    "annotate_start_num": 1300,
     "annotation": {
       "method": 0,
       "sort_order": 0
@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "D201-202,D1501,#PWR1518,#PWR1524,#PWR1531,U1506-1507",
+    "used_designators": "#PWR1647-1648,R1,R1335-1337,R1646-1647",
     "variants": []
   },
   "sheets": [
