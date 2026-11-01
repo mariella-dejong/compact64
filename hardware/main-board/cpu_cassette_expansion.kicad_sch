@@ -7601,7 +7601,7 @@
 		)
 		(uuid "d210dffb-f088-4cb8-adcb-6b6827c57d4d")
 	)
-	(hierarchical_label "~{CIA1_FLAG}"
+	(hierarchical_label "~{CASS_RD}"
 		(shape output)
 		(at 168.91 20.955 180)
 		(effects
