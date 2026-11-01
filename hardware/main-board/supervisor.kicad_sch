@@ -4472,20 +4472,12 @@
 		(uuid "1af0a65b-d6d9-456c-a368-27cf02828457")
 	)
 	(no_connect
-		(at 255.27 161.29)
-		(uuid "1f128c44-1967-45b6-a08d-ed7a06d1a194")
-	)
-	(no_connect
 		(at 255.27 176.53)
 		(uuid "1f6ec205-7206-457c-97c0-d61604121ea2")
 	)
 	(no_connect
 		(at 255.27 191.77)
 		(uuid "2357220d-b329-4222-b8ff-0ba7797f7325")
-	)
-	(no_connect
-		(at 255.27 158.75)
-		(uuid "2f7568b2-29a3-4e50-aa18-57bd9998db1f")
 	)
 	(no_connect
 		(at 255.27 143.51)
@@ -4552,10 +4544,6 @@
 		(uuid "88582a52-f681-40ca-9b18-0ed15d3a9302")
 	)
 	(no_connect
-		(at 255.27 156.21)
-		(uuid "8f1a7a02-478b-4a2b-8541-672774cae05b")
-	)
-	(no_connect
 		(at 255.27 135.89)
 		(uuid "92301fd9-b2a4-4f7d-ad96-4555a6c32b88")
 	)
@@ -4588,20 +4576,8 @@
 		(uuid "c47ec48e-0e82-4d49-8261-8202a116b14d")
 	)
 	(no_connect
-		(at 255.27 151.13)
-		(uuid "cbe65662-27a5-4fdd-9ed9-1ff3c68d73f0")
-	)
-	(no_connect
 		(at 255.27 186.69)
 		(uuid "cda420f7-38ac-4f51-8ab9-64315896a2a1")
-	)
-	(no_connect
-		(at 255.27 148.59)
-		(uuid "e6238d2c-5b14-4adc-aaae-7a7c32819e47")
-	)
-	(no_connect
-		(at 255.27 153.67)
-		(uuid "ec5c9cb0-cdf1-483f-bd62-a9ea36c9058b")
 	)
 	(no_connect
 		(at 186.69 130.81)
@@ -4610,6 +4586,10 @@
 	(no_connect
 		(at 255.27 163.83)
 		(uuid "f2e71d08-0711-4b92-ad71-dca2a2930da7")
+	)
+	(no_connect
+		(at 255.27 161.29)
+		(uuid "f76423e7-39ed-4ae6-ae13-7a43276f2d6a")
 	)
 	(no_connect
 		(at 255.27 189.23)
@@ -6640,6 +6620,17 @@
 		)
 		(uuid "03785068-7898-4742-9a6a-49b3c63da6a2")
 	)
+	(hierarchical_label "TCK"
+		(shape output)
+		(at 255.27 153.67 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "103ebbd9-edb4-4ab6-a13b-ac0912297850")
+	)
 	(hierarchical_label "GPIO29"
 		(shape bidirectional)
 		(at 255.27 181.61 0)
@@ -6684,6 +6675,17 @@
 		)
 		(uuid "6c3cdfde-446b-4d48-a8bd-e1c0bade2567")
 	)
+	(hierarchical_label "EN_PLA"
+		(shape output)
+		(at 255.27 158.75 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "89d8d7ce-85a9-4553-ae92-5b91f8ccb526")
+	)
 	(hierarchical_label "GPIO46"
 		(shape tri_state)
 		(at 255.27 227.33 0)
@@ -6716,6 +6718,17 @@
 			(justify left)
 		)
 		(uuid "a0bb036b-ec6b-4e9a-80d2-592b41cd0e37")
+	)
+	(hierarchical_label "TDO"
+		(shape input)
+		(at 255.27 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a6e4c198-df52-4479-88b2-6521e2e47db3")
 	)
 	(hierarchical_label "GPIO47"
 		(shape tri_state)
@@ -6750,6 +6763,17 @@
 		)
 		(uuid "c01d810b-4fac-408c-b0d9-c6366ddf5d95")
 	)
+	(hierarchical_label "TDI"
+		(shape output)
+		(at 255.27 151.13 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d1e66b07-e868-4419-af24-cb100e568b58")
+	)
 	(hierarchical_label "GPIO42"
 		(shape bidirectional)
 		(at 255.27 217.17 0)
@@ -6771,6 +6795,17 @@
 			(justify left)
 		)
 		(uuid "e2ba2564-7b6b-4fdd-996a-2b532785675b")
+	)
+	(hierarchical_label "TMS"
+		(shape bidirectional)
+		(at 255.27 156.21 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f71b287a-f499-4d46-a4e0-a4c81a1c9d76")
 	)
 	(symbol
 		(lib_id "power:Earth")

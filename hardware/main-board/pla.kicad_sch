@@ -2505,7 +2505,7 @@
 		(uuid "ea7ca789-03e9-4ba9-ad78-f7760204d614")
 	)
 	(hierarchical_label "TDO"
-		(shape bidirectional)
+		(shape output)
 		(at 153.035 129.54 0)
 		(effects
 			(font
@@ -2593,7 +2593,7 @@
 		(uuid "2cdde7b8-5076-45fc-a976-43a1f7f0580a")
 	)
 	(hierarchical_label "TDI"
-		(shape bidirectional)
+		(shape input)
 		(at 153.035 127 0)
 		(effects
 			(font
@@ -2813,7 +2813,7 @@
 		(uuid "bdd0c775-d19d-4f0d-ad8c-4d66c1b151a3")
 	)
 	(hierarchical_label "TCK"
-		(shape bidirectional)
+		(shape input)
 		(at 153.035 124.46 0)
 		(effects
 			(font

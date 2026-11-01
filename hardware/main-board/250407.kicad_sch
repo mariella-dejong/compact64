@@ -7871,16 +7871,6 @@
 		)
 		(uuid "0022892d-654f-47d0-af93-5c362538dfda")
 	)
-	(label "~{LORAM}"
-		(at 217.805 32.385 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "018aeb25-4e46-42d7-8de9-a1c4b13d0975")
-	)
 	(label "D7"
 		(at 73.025 259.08 90)
 		(effects
@@ -7951,16 +7941,6 @@
 		)
 		(uuid "1981bf0f-16b5-4469-aeca-e7937a248c26")
 	)
-	(label "~{HIRAM}"
-		(at 245.745 73.025 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "1e22e769-2585-4ee6-98ce-766dc48ab3ee")
-	)
 	(label "D4"
 		(at 215.265 90.805 0)
 		(effects
@@ -7980,16 +7960,6 @@
 			(justify left bottom)
 		)
 		(uuid "2386b987-6e16-4475-9c68-c56824962f16")
-	)
-	(label "~{LORAM}"
-		(at 245.745 67.945 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "255c92e3-4799-40eb-9d44-186fbf678782")
 	)
 	(label "A14"
 		(at 98.425 259.08 90)
@@ -8301,16 +8271,6 @@
 		)
 		(uuid "ab1d213c-04c3-43c4-8eb2-5f12cb175737")
 	)
-	(label "~{CHAREN}"
-		(at 245.745 78.105 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "ac98c5d9-1629-440f-87e9-4d8053fc3aa4")
-	)
 	(label "A13"
 		(at 100.965 259.08 90)
 		(effects
@@ -8370,16 +8330,6 @@
 			(justify left bottom)
 		)
 		(uuid "b502ca36-3103-4801-8838-147adc4b518c")
-	)
-	(label "~{HIRAM}"
-		(at 217.805 34.925 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "b58c9040-dc96-411c-85f1-7da2ffb946af")
 	)
 	(label "A2"
 		(at 216.535 75.565 0)
@@ -8571,16 +8521,6 @@
 		)
 		(uuid "e9bb2afa-fb63-43c1-8936-0ed14d4bc515")
 	)
-	(label "~{CHAREN}"
-		(at 217.805 37.465 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "f2ce9386-fa45-4487-9a52-b0fdbb3fdda8")
-	)
 	(label "BA"
 		(at 55.245 259.08 90)
 		(effects
@@ -8664,6 +8604,17 @@
 		)
 		(uuid "1a32682d-383b-4373-a71f-c1d406863f94")
 	)
+	(hierarchical_label "~{CHAREN}"
+		(shape output)
+		(at 245.745 78.105 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1f0b51d5-5b7e-4772-a3d4-df4d1bb41f0d")
+	)
 	(hierarchical_label "~{CIA1_IRQ}"
 		(shape input)
 		(at 49.53 182.245 180)
@@ -8718,6 +8669,17 @@
 			(justify left)
 		)
 		(uuid "59c315ec-f68e-445b-9375-0ef052e9274f")
+	)
+	(hierarchical_label "~{LORAM}"
+		(shape output)
+		(at 245.745 67.945 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7637d83a-de74-47df-ae74-6a86f3bb3492")
 	)
 	(hierarchical_label "PHI2"
 		(shape input)
@@ -8840,6 +8802,17 @@
 		)
 		(uuid "a90ca932-9d63-43a9-b6b6-778f1426408f")
 	)
+	(hierarchical_label "~{HIRAM}"
+		(shape output)
+		(at 245.745 73.025 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b24d2a55-58db-40e0-aec8-43481dd5e3a4")
+	)
 	(hierarchical_label "D[0..7]"
 		(shape bidirectional)
 		(at 245.11 93.98 0)
@@ -8905,17 +8878,6 @@
 			(justify right)
 		)
 		(uuid "e50554cf-3084-4f2c-b52b-9ccfef4ac864")
-	)
-	(hierarchical_label "~{VA14}"
-		(shape input)
-		(at 24.765 199.39 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "e61615d8-a9f4-442d-9412-fc8cfa5f418b")
 	)
 	(hierarchical_label "DOT_CLOCK_IN"
 		(shape input)
@@ -11874,7 +11836,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 151.257 233.045 90)
 			(hide yes)
 			(show_name no)
@@ -13256,7 +13218,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 155.702 233.045 90)
 			(hide yes)
 			(show_name no)
