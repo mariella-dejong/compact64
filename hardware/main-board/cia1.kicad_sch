@@ -5650,12 +5650,6 @@
 		(uuid "cc256acb-d44e-4aee-b8f7-04e79e889c9d")
 	)
 	(junction
-		(at 382.27 153.035)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d56f0775-310a-491b-aadd-16888d3ab657")
-	)
-	(junction
 		(at 285.75 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5746,12 +5740,20 @@
 		(uuid "6c719e37-6399-4a1b-9faf-d5ed701349eb")
 	)
 	(no_connect
+		(at 353.06 237.49)
+		(uuid "73ae525f-97c2-4220-b881-6a2c0f775718")
+	)
+	(no_connect
 		(at 189.23 204.47)
 		(uuid "8069ff8a-91bc-4f2d-9f69-9dc7e2ecab35")
 	)
 	(no_connect
 		(at 120.65 116.84)
 		(uuid "8b319219-6662-4ab2-a06b-1cc53dcebd02")
+	)
+	(no_connect
+		(at 354.965 145.415)
+		(uuid "8cc4724b-b8a4-4abb-8035-c361ab82afee")
 	)
 	(no_connect
 		(at 189.23 133.35)
@@ -5978,6 +5980,16 @@
 			(type default)
 		)
 		(uuid "0591038f-6a09-43fc-970c-cc439d757727")
+	)
+	(wire
+		(pts
+			(xy 389.255 140.335) (xy 391.795 140.335)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "060beba4-d281-4816-a303-5a71d5734290")
 	)
 	(wire
 		(pts
@@ -6288,16 +6300,6 @@
 			(type default)
 		)
 		(uuid "1e55ec6c-ccfc-476b-9435-8baf3843aace")
-	)
-	(wire
-		(pts
-			(xy 355.6 153.035) (xy 372.11 153.035)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1fc70801-4003-4ca4-9a10-66ea54f8902b")
 	)
 	(wire
 		(pts
@@ -6681,16 +6683,6 @@
 	)
 	(wire
 		(pts
-			(xy 382.27 147.955) (xy 379.73 147.955)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "436c6985-18a5-43e2-af11-ed207e464734")
-	)
-	(wire
-		(pts
 			(xy 240.03 50.8) (xy 228.6 50.8)
 		)
 		(stroke
@@ -6698,6 +6690,16 @@
 			(type default)
 		)
 		(uuid "45cce1b6-6128-4276-8bbd-8190ec48ee0d")
+	)
+	(wire
+		(pts
+			(xy 354.965 145.415) (xy 363.855 145.415)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "45fa7056-c4ea-4666-9093-ab1fef1a6f5b")
 	)
 	(wire
 		(pts
@@ -6711,7 +6713,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 205.74) (xy 361.95 205.74)
+			(xy 350.52 202.565) (xy 363.22 202.565)
 		)
 		(stroke
 			(width 0)
@@ -6851,16 +6853,6 @@
 	)
 	(wire
 		(pts
-			(xy 382.27 153.035) (xy 382.27 147.955)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "53e10237-0b63-4fd3-81b3-b90238b1958a")
-	)
-	(wire
-		(pts
 			(xy 194.31 50.8) (xy 182.88 50.8)
 		)
 		(stroke
@@ -6918,16 +6910,6 @@
 			(type default)
 		)
 		(uuid "583887df-a4c1-4be6-a53e-e7b3da175b1c")
-	)
-	(wire
-		(pts
-			(xy 379.73 153.035) (xy 382.27 153.035)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "58a97ed3-0912-4aed-8616-b7be5704242d")
 	)
 	(wire
 		(pts
@@ -7161,13 +7143,13 @@
 	)
 	(wire
 		(pts
-			(xy 355.6 147.955) (xy 372.11 147.955)
+			(xy 354.965 140.335) (xy 363.855 140.335)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6b559657-3e0b-4636-b2fc-09ec1558c4e6")
+		(uuid "6bb98c81-d8c3-4ff5-8741-92c1f2e901ad")
 	)
 	(wire
 		(pts
@@ -7198,6 +7180,16 @@
 			(type default)
 		)
 		(uuid "6ffb151c-6143-4c60-9f7b-1d4e994c8f3a")
+	)
+	(wire
+		(pts
+			(xy 389.255 145.415) (xy 391.795 145.415)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "719a9be9-7ef4-44be-a857-a6463e55f7f0")
 	)
 	(wire
 		(pts
@@ -7441,7 +7433,7 @@
 	)
 	(wire
 		(pts
-			(xy 387.35 210.82) (xy 398.78 210.82)
+			(xy 388.62 207.645) (xy 400.05 207.645)
 		)
 		(stroke
 			(width 0)
@@ -7521,7 +7513,7 @@
 	)
 	(wire
 		(pts
-			(xy 387.35 205.74) (xy 398.78 205.74)
+			(xy 388.62 202.565) (xy 400.05 202.565)
 		)
 		(stroke
 			(width 0)
@@ -8301,6 +8293,16 @@
 	)
 	(wire
 		(pts
+			(xy 353.06 232.41) (xy 362.585 232.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d1248b5d-dbed-431e-9839-395491505ccc")
+	)
+	(wire
+		(pts
 			(xy 132.08 72.39) (xy 132.08 59.69)
 		)
 		(stroke
@@ -8448,6 +8450,16 @@
 			(type default)
 		)
 		(uuid "de4b2981-2299-48a5-8b0d-495d26716592")
+	)
+	(wire
+		(pts
+			(xy 353.06 237.49) (xy 362.585 237.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de7361a6-cb76-44d1-be4a-a16d6546ff66")
 	)
 	(wire
 		(pts
@@ -8761,7 +8773,7 @@
 	)
 	(wire
 		(pts
-			(xy 349.25 210.82) (xy 361.95 210.82)
+			(xy 350.52 207.645) (xy 363.22 207.645)
 		)
 		(stroke
 			(width 0)
@@ -8870,7 +8882,7 @@
 		(uuid "09d413f4-0cfa-46cb-a51d-4a9a55d8fac9")
 	)
 	(label "JOYA0"
-		(at 398.78 205.74 180)
+		(at 400.05 202.565 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9009,16 +9021,6 @@
 		)
 		(uuid "4ab35aa1-485d-44e4-bfc6-778fa3835d55")
 	)
-	(label "JOYBTNB"
-		(at 355.6 153.035 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "4cedbfd5-c6f1-4b32-9ba4-2e2623daab63")
-	)
 	(label "XIN"
 		(at 106.68 125.73 0)
 		(effects
@@ -9029,18 +9031,8 @@
 		)
 		(uuid "4e260c48-d984-42a0-8984-85909763f8ac")
 	)
-	(label "JOYBTNA"
-		(at 355.6 147.955 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "57410a02-0907-4e0d-b8a1-48057957e625")
-	)
 	(label "JOYA1"
-		(at 398.78 210.82 180)
+		(at 400.05 207.645 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9150,7 +9142,7 @@
 		(uuid "8b1a3738-0b57-4bda-8b75-3a04aa70c6e5")
 	)
 	(label "JOYA2"
-		(at 349.25 205.74 0)
+		(at 350.52 202.565 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9270,7 +9262,7 @@
 		(uuid "c7bff394-cfe8-4d1f-a54f-9b4f067ce14d")
 	)
 	(label "JOYA3"
-		(at 349.25 210.82 0)
+		(at 350.52 207.645 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -9308,6 +9300,26 @@
 			(justify left bottom)
 		)
 		(uuid "e64e4b37-3b17-4724-8115-05d4091e4f6b")
+	)
+	(label "JOYBTNA"
+		(at 353.06 232.41 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "e9f55e01-d028-4ddb-8e3a-8c5c0e251d6b")
+	)
+	(label "JOYBTNB"
+		(at 354.965 140.335 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f15eb4c1-79e3-4e81-afca-906887696dc7")
 	)
 	(label "+1V1"
 		(at 78.74 81.28 0)
@@ -9372,6 +9384,28 @@
 			(justify left)
 		)
 		(uuid "29bc14f1-f762-459b-8289-38a39a5733f6")
+	)
+	(hierarchical_label "POTBX"
+		(shape output)
+		(at 391.795 140.335 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "42218981-06c4-4ba9-8435-c8cf773f2717")
+	)
+	(hierarchical_label "POTAY"
+		(shape output)
+		(at 387.985 237.49 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "431e19b9-1ea6-4b28-bdca-c4da836ed9ce")
 	)
 	(hierarchical_label "D[0..7]"
 		(shape bidirectional)
@@ -9494,6 +9528,17 @@
 		)
 		(uuid "76a7a75a-e6b4-4411-b59d-f9ac7d8d6fef")
 	)
+	(hierarchical_label "POTBY"
+		(shape output)
+		(at 391.795 145.415 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7a2045ea-3108-48df-9615-8e544430ac15")
+	)
 	(hierarchical_label "SP"
 		(shape bidirectional)
 		(at 235.585 123.19 0)
@@ -9559,6 +9604,17 @@
 			(justify left)
 		)
 		(uuid "bd43f362-ad87-4d8a-be20-abc9079c682d")
+	)
+	(hierarchical_label "POTAX"
+		(shape output)
+		(at 387.985 232.41 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d487a9bf-31da-458d-8da0-057d3f06b5a0")
 	)
 	(hierarchical_label "PA7"
 		(shape output)
@@ -10091,85 +10147,6 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 382.27 153.035 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "0fe189e3-efec-45d6-8722-1b1aca02e88a")
-		(property "Reference" "#PWR01518"
-			(at 382.27 159.385 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 382.27 158.115 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 382.27 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 382.27 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 382.27 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "59d93ba7-a829-4af6-a75b-122660ce6aec")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "#PWR01518")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:Earth")
 		(at 152.4 222.25 0)
 		(unit 1)
 		(body_style 1)
@@ -10431,7 +10408,7 @@
 	)
 	(symbol
 		(lib_id "Power_Protection:TPD4E05U06DQA")
-		(at 374.65 208.28 0)
+		(at 375.92 205.105 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10442,7 +10419,7 @@
 		(fields_autoplaced yes)
 		(uuid "19dd4502-0ddb-44f7-8e3c-44e465b308d1")
 		(property "Reference" "U1504"
-			(at 374.65 195.58 0)
+			(at 375.92 192.405 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10452,7 +10429,7 @@
 			)
 		)
 		(property "Value" "TPD4E05U06DQA"
-			(at 374.65 198.12 0)
+			(at 375.92 194.945 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10462,7 +10439,7 @@
 			)
 		)
 		(property "Footprint" "Package_SON:USON-10_2.5x1.0mm_P0.5mm"
-			(at 376.555 220.345 0)
+			(at 377.825 217.17 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10475,7 +10452,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf"
-			(at 376.555 222.25 0)
+			(at 377.825 219.075 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10487,7 +10464,7 @@
 			)
 		)
 		(property "Description" "4-Channel ESD Protection for Super-Speed USB 3.0 Interface, USON-10"
-			(at 374.65 208.28 0)
+			(at 375.92 205.105 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10498,7 +10475,7 @@
 			)
 		)
 		(property "LCSC Part #" "C138714"
-			(at 374.65 208.28 0)
+			(at 375.92 205.105 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11081,6 +11058,124 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1511")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Power_Protection:TPD4E05U06DQA")
+		(at 376.555 142.875 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "292045c4-e678-431c-9ff6-64739c56d67a")
+		(property "Reference" "U1506"
+			(at 376.555 130.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TPD4E05U06DQA"
+			(at 376.555 132.715 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SON:USON-10_2.5x1.0mm_P0.5mm"
+			(at 378.46 154.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf"
+			(at 378.46 156.845 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "4-Channel ESD Protection for Super-Speed USB 3.0 Interface, USON-10"
+			(at 376.555 142.875 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C138714"
+			(at 376.555 142.875 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "10"
+			(uuid "0fc1363d-09d6-4766-a7b5-8ddb10507b59")
+		)
+		(pin "7"
+			(uuid "ab905f57-542c-4a81-895c-ad0c82cc7a6d")
+		)
+		(pin "6"
+			(uuid "b8a305b6-5900-4577-b393-498a0e6c35da")
+		)
+		(pin "9"
+			(uuid "45b2c63c-cf69-4418-b6e3-b5f36d10a5ac")
+		)
+		(pin "2"
+			(uuid "a690281b-97e3-4b2b-8382-61ba68fcbb18")
+		)
+		(pin "1"
+			(uuid "f44ddf32-c982-4256-982c-eb8e10f5fafb")
+		)
+		(pin "5"
+			(uuid "6804c376-4beb-4faf-b30b-5615913adba7")
+		)
+		(pin "4"
+			(uuid "437c5e84-5ab0-4f75-acb0-e86732672b1d")
+		)
+		(pin "3"
+			(uuid "5abea967-98a2-451c-9b25-a391837bc20e")
+		)
+		(pin "8"
+			(uuid "ed806cd2-81a4-4a58-96c0-6a48b234c4e3")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "U1506")
 					(unit 1)
 				)
 			)
@@ -11972,6 +12067,85 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "#PWR01501")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:Earth")
+		(at 375.285 247.65 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "499eb032-ed98-41d1-91ff-cba0cd176ad1")
+		(property "Reference" "#PWR01531"
+			(at 375.285 254 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 375.285 252.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 375.285 247.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 375.285 247.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 375.285 247.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "464e75af-371f-470a-ba91-ba1b74cb2b60")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "#PWR01531")
 					(unit 1)
 				)
 			)
@@ -13171,7 +13345,7 @@
 	)
 	(symbol
 		(lib_id "power:Earth")
-		(at 374.65 220.98 0)
+		(at 375.92 217.805 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13182,7 +13356,7 @@
 		(fields_autoplaced yes)
 		(uuid "64aa9e19-f3f9-4ea3-b453-c86c72abe4d8")
 		(property "Reference" "#PWR01530"
-			(at 374.65 227.33 0)
+			(at 375.92 224.155 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13193,7 +13367,7 @@
 			)
 		)
 		(property "Value" "Earth"
-			(at 374.65 226.06 0)
+			(at 375.92 222.885 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13204,7 +13378,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 374.65 220.98 0)
+			(at 375.92 217.805 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13215,7 +13389,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 374.65 220.98 0)
+			(at 375.92 217.805 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13226,7 +13400,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"Earth\""
-			(at 374.65 220.98 0)
+			(at 375.92 217.805 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15209,6 +15383,85 @@
 		)
 	)
 	(symbol
+		(lib_id "power:Earth")
+		(at 376.555 155.575 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "943234d1-0c29-4cbf-8a36-e3484e8edc88")
+		(property "Reference" "#PWR01518"
+			(at 376.555 161.925 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 376.555 160.655 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 376.555 155.575 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 376.555 155.575 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"Earth\""
+			(at 376.555 155.575 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "f7f5ac4f-de35-4b9a-af3b-240535ba653e")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "#PWR01518")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 353.695 59.69 0)
 		(unit 1)
@@ -15295,96 +15548,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "R1510")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:D_TVS")
-		(at 375.92 153.035 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "97f9f1e9-f824-47b0-bb3c-1b9b5361fb0c")
-		(property "Reference" "D1507"
-			(at 375.793 156.21 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 375.793 158.75 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 375.92 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 375.92 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 375.92 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 375.92 153.035 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0545beaa-d05f-49b6-ac45-679f0ab9f77d")
-		)
-		(pin "2"
-			(uuid "5be65648-aa5f-478a-beec-fb74f6c09f44")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1507")
 					(unit 1)
 				)
 			)
@@ -18258,97 +18421,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_TVS")
-		(at 375.92 147.955 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ed144d21-b576-435e-849b-1f2a3594421c")
-		(property "Reference" "D1506"
-			(at 375.92 142.24 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "H5VL10BH"
-			(at 375.92 144.78 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
-			(at 375.92 147.955 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
-			(at 375.92 147.955 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
-			(at 375.92 147.955 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C42413893"
-			(at 375.92 147.955 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d9961db9-e95b-43e8-83ae-7df0595c7a3a")
-		)
-		(pin "2"
-			(uuid "f00b3560-2c00-47ce-9b22-3bf3012e17b0")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
-					(reference "D1506")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 353.695 55.88 0)
 		(unit 1)
@@ -18498,6 +18570,124 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
 					(reference "#PWR01512")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Power_Protection:TPD4E05U06DQA")
+		(at 375.285 234.95 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f1c6386e-c934-4e83-8cb0-65e7c1fdc587")
+		(property "Reference" "U1507"
+			(at 375.285 222.25 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TPD4E05U06DQA"
+			(at 375.285 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_SON:USON-10_2.5x1.0mm_P0.5mm"
+			(at 377.19 247.015 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf"
+			(at 377.19 248.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" "4-Channel ESD Protection for Super-Speed USB 3.0 Interface, USON-10"
+			(at 375.285 234.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C138714"
+			(at 375.285 234.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "10"
+			(uuid "386ebfda-c68f-4d67-aa09-7f604e80997e")
+		)
+		(pin "7"
+			(uuid "8cd748b7-8060-448d-ae7c-2404b6019140")
+		)
+		(pin "6"
+			(uuid "eb40ba04-e3b4-468f-b51f-2a04c3ae7247")
+		)
+		(pin "9"
+			(uuid "e4e8a4e9-95b4-41ce-b9c9-c1eb98b69a33")
+		)
+		(pin "2"
+			(uuid "0fa2b088-5d89-47dd-9737-0a0c48438524")
+		)
+		(pin "1"
+			(uuid "39e35afd-0dfd-467f-afe5-1072c70c9dea")
+		)
+		(pin "5"
+			(uuid "290d519d-1692-424f-a443-1c5b105c07bb")
+		)
+		(pin "4"
+			(uuid "8658bff2-bea6-4c36-95ed-7151d2d157aa")
+		)
+		(pin "3"
+			(uuid "361e9e78-d4bd-414c-9cb8-635546ede96d")
+		)
+		(pin "8"
+			(uuid "88c18955-ba23-4ad6-94be-f1e477bae569")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/974b070f-b363-4f95-b525-4a1dadc7ad48"
+					(reference "U1507")
 					(unit 1)
 				)
 			)
