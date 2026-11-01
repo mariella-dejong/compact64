@@ -6331,10 +6331,6 @@
 		(uuid "9700f31a-932b-43ef-855c-aaa6a0a71fb9")
 	)
 	(no_connect
-		(at 255.27 125.73)
-		(uuid "a917b1e8-cfa7-4ce4-949e-e730512eb650")
-	)
-	(no_connect
 		(at 186.69 175.26)
 		(uuid "c315f392-637e-48e7-97db-3fa1de8d8f67")
 	)
@@ -9755,6 +9751,17 @@
 			(justify left)
 		)
 		(uuid "6a6ac499-cd00-4b58-8f06-0d77dad3ab89")
+	)
+	(hierarchical_label "PHI2_PROBE"
+		(shape input)
+		(at 255.27 125.73 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6a9f123b-8d85-419f-82bd-53307bc0e0d7")
 	)
 	(hierarchical_label "PGOOD"
 		(shape input)

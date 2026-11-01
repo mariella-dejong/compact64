@@ -1490,6 +1490,16 @@
 		)
 		(uuid "35021e05-9656-4eff-a5f6-91eb75f7cab7")
 	)
+	(wire
+		(pts
+			(xy 116.205 181.61) (xy 116.205 188.595)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "37d6e22e-5d0e-4d92-8e61-3b0ae62d6f7b")
+	)
 	(bus
 		(pts
 			(xy 279.4 273.05) (xy 124.46 273.05)
@@ -5969,6 +5979,16 @@
 				(justify left)
 			)
 		)
+		(pin "PHI2_PROBE" output
+			(at 116.205 188.595 90)
+			(uuid "bbc6eeaa-6701-4fe1-a960-aeb8957fc6ab")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
@@ -7081,6 +7101,16 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "PHI2_PROBE" input
+			(at 116.205 181.61 270)
+			(uuid "0ca8eaa9-e5fd-4410-bfe1-5762f085aefc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
