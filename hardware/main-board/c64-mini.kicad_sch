@@ -549,6 +549,12 @@
 		(uuid "42df2cd4-311d-4266-8347-ed824b706372")
 	)
 	(junction
+		(at 103.505 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "44fa77c2-e646-44ba-88a7-567be94a99e9")
+	)
+	(junction
 		(at 91.44 192.405)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1014,26 +1020,6 @@
 	)
 	(wire
 		(pts
-			(xy 67.31 99.06) (xy 67.31 104.775)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1432d73a-4d1e-4cf1-b0c0-44955e0750b2")
-	)
-	(wire
-		(pts
-			(xy 172.085 188.595) (xy 172.085 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1499a1bb-e0a8-4fa4-a91a-11ffd91a8ad5")
-	)
-	(wire
-		(pts
 			(xy 73.66 100.33) (xy 73.66 104.775)
 		)
 		(stroke
@@ -1221,6 +1207,16 @@
 			(type default)
 		)
 		(uuid "255ec282-505e-49d8-8c6e-9ed6cc1ad6a4")
+	)
+	(wire
+		(pts
+			(xy 103.505 83.82) (xy 187.96 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "25b9c728-f109-4592-a575-2ec189e003c5")
 	)
 	(wire
 		(pts
@@ -1864,6 +1860,16 @@
 	)
 	(wire
 		(pts
+			(xy 95.25 114.3) (xy 103.505 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5cefd8e4-8f07-4373-a738-1d58ff3dd9d5")
+	)
+	(wire
+		(pts
 			(xy 149.86 260.985) (xy 149.86 226.695)
 		)
 		(stroke
@@ -2011,16 +2017,6 @@
 			(type default)
 		)
 		(uuid "6d30a01f-6885-4866-80dc-e19c044c007d")
-	)
-	(wire
-		(pts
-			(xy 172.085 99.06) (xy 67.31 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6e7a6dc5-707c-4eb7-a391-fc57c1c57038")
 	)
 	(wire
 		(pts
@@ -2884,7 +2880,7 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 83.82) (xy 187.96 83.82)
+			(xy 92.71 83.82) (xy 103.505 83.82)
 		)
 		(stroke
 			(width 0)
@@ -3641,6 +3637,16 @@
 			(type default)
 		)
 		(uuid "e723b6ca-edc3-4de7-b601-05aa06e9cdab")
+	)
+	(wire
+		(pts
+			(xy 103.505 114.3) (xy 103.505 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e72c13ae-4a9e-4b1c-b07c-d1144d7cd73e")
 	)
 	(wire
 		(pts
@@ -5631,16 +5637,6 @@
 				(justify left)
 			)
 		)
-		(pin "~{RESTORE_NMI}" input
-			(at 172.085 188.595 90)
-			(uuid "c263aaa3-eb6c-48f2-a55e-190fa4d2cbf5")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "~{CIA1_FLAG}" input
 			(at 177.165 188.595 90)
 			(uuid "a5fd6d2d-3c41-4e17-bca8-a7dff0adb447")
@@ -7101,16 +7097,6 @@
 				(justify right)
 			)
 		)
-		(pin "~{RESTORE_NMI}" output
-			(at 67.31 104.775 90)
-			(uuid "5434cd1f-2492-4ad6-b3ec-00fe06a7834c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
 		(pin "PHI2" input
 			(at 52.705 121.285 180)
 			(uuid "a3676563-1ed1-4944-b2ce-b80c4bbc777c")
@@ -7189,6 +7175,16 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+		(pin "~{NMI}" output
+			(at 95.25 114.3 0)
+			(uuid "eaa8e5fd-ad2b-4879-b490-d3c7b04fac05")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances

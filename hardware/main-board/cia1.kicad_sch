@@ -8862,7 +8862,7 @@
 		)
 		(uuid "8655c8b1-8a76-4322-9f14-7b98e724f937")
 	)
-	(hierarchical_label "~{RESTORE_NMI}"
+	(hierarchical_label "~{NMI}"
 		(shape output)
 		(at 189.23 158.75 0)
 		(effects
