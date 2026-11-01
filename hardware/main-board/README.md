@@ -43,6 +43,9 @@ The PLA (U17), the 74LS139 (U15), the 7408 (U27) and the `~AEC` inverter of
 the original board are replaced by a CPLD on the `PLA Replacement` sheet
 (#83), see [PLA replacement](#pla-replacement).
 
+The supervisor has a micro SD card slot (#95), from which it will load disk
+and tape images (#13), see [SD card slot](#sd-card-slot).
+
 ## Compatibility
 
 These changes make the c64-mini behave differently from an original C64.
@@ -579,8 +582,8 @@ One PLL feeds all three outputs, so the clocks stay locked to each other:
   load capacitance is set to 10 pF in its registers, so there are no external
   load capacitors.
 - **I2C:** on the supervisor's I2C0 bus (`SDA`, `SCL`, pull-ups R1306 and
-  R1312 on the `Supervisor` sheet) at address 0x60. The controllers on that
-  bus must not use 0x60.
+  R1312 on the `Supervisor and SD card slot` sheet) at address 0x60. The
+  controllers on that bus must not use 0x60.
 - **Colour clock:** CLK0 goes through U1202, R1203 and FB1203 to `COLOR_CLK`,
   which the root sheet connects to `COLOR_CLOCK_IN` of the VIC-II sheet
   (U504 pin 21).
@@ -666,16 +669,18 @@ Datasheets:
 
 ## Supervisor microcontroller
 
-The `Supervisor` sheet holds a microcontroller (U1301, RP2354B) that will
-decide when the rest of the system may power up (#46). It runs from `+3V3`,
-the one rail that is always on. Besides its supply, clock, reset and USB it
-switches the other rails on and off (#47), and it can program, reset and talk
-to the RAM and ROM controller (#11, see
+The `Supervisor and SD card slot` sheet holds a microcontroller (U1301,
+RP2354B) that will decide when the rest of the system may power up (#46). It
+runs from `+3V3`, the one rail that is always on. Besides its supply, clock,
+reset and USB it switches the other rails on and off (#47), and it can
+program, reset and talk to the RAM and ROM controller (#11, see
 [RAM and ROM replacement](#ram-and-rom-replacement)), the CIA 1 controller
 (#25, see [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks)) and
 the CIA 2 controller (#68, see
-[CIA 2, serial port and user port](#cia-2-serial-port-and-user-port)); its
-other functions follow in separate issues:
+[CIA 2, serial port and user port](#cia-2-serial-port-and-user-port)). The
+same sheet holds the micro SD card slot (#95, see
+[SD card slot](#sd-card-slot)). Its other functions follow in separate
+issues:
 
 | Function | Hardware | Firmware |
 | -------- | -------- | -------- |
@@ -688,6 +693,7 @@ other functions follow in separate issues:
 | Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
 | Reset the C64 without switching the rails off (soft reset) | #70 | #88 |
 | Check and program the CPLD that replaces the PLA, and enable its outputs | #83 | #86, #48 |
+| Load programs, disk images and tape images from a micro SD card (#13) | #95 | #96, #97 |
 
 ### Circuit
 
@@ -743,6 +749,13 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
 | GPIO29 | 37 | `SWDAT` | Bidirectional | SWD data of the CIA 2 controller |
 | GPIO30 | 38 | `RUN` | Output | High lets the CIA 2 controller run; low or not driven holds it in reset |
+| GPIO33 | 42 | `SD_DET` | Input | Card detect switch of the SD card slot (J1302), R1322 (10k) pull-up |
+| GPIO34 | 43 | `SCLK`, through R1316 (33 Ohm) `SD_CLK` | Output | SD card clock (SPI0 SCK) |
+| GPIO35 | 44 | `SD_CMD` | Bidirectional | SD card command line; SPI0 TX (MOSI) in SPI mode |
+| GPIO36 | 45 | `SD_DAT0` | Bidirectional | SD card data 0; SPI0 RX (MISO) in SPI mode |
+| GPIO37 | 46 | `SD_DAT1` | Bidirectional | SD card data 1; not used in SPI mode |
+| GPIO38 | 47 | `SD_DAT2` | Bidirectional | SD card data 2; not used in SPI mode |
+| GPIO39 | 48 | `SD_DAT3` | Bidirectional | SD card data 3; chip select (CS) in SPI mode |
 | GPIO40 | 49 | `SDA` | Bidirectional | I2C0 data to the RAM and ROM controller (U1401), the CIA 1 and CIA 2 controllers (U1501, U1601) and the clock synthesizer (Y1202, address 0x60) |
 | GPIO41 | 52 | `SCL` | Output | I2C0 clock to U1401, U1501, U1601 and Y1202 |
 | GPIO42 | 53 | `SWCLK` | Output | SWD clock of the CIA 1 controller |
@@ -759,11 +772,13 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   [Programming and start-up](#programming-and-start-up). GPIO0 is low as
   well, so Q1301 stays off and the C64 is not held in reset, and GPIO20 is
   low, so the CPLD's outputs stay off. R302 holds TMS high, so the CPLD's
-  JTAG logic stays idle.
+  JTAG logic stays idle. The 10k pull-ups of the SD card lines override the
+  internal pull-downs, so `SD_DAT3` (chip select) is high and the card is
+  not selected.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
-  the CIA 1 and CIA 2 controllers, the clock synthesizer and the CPLD, which
-  are all on `+3V3`, except GPIO0 and GPIO1, which reach `~RESET` through
-  Q1301 and R1315, see [Soft reset](#soft-reset).
+  the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD and the SD
+  card, which are all on `+3V3`, except GPIO0 and GPIO1, which reach
+  `~RESET` through Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
 state of each assigned pin from power-up until the firmware runs, and with
@@ -837,6 +852,76 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
 | R1313 | 1k | C11702 | 0402 |
 | R1314, R1315 | 4.7k | C25900 | 0402 |
 
+### SD card slot
+
+J1302 is a micro SD card slot (#95). The supervisor will use it to load
+programs, disk images (`.d64`) and tape images (`.t64`, `.tap`) for the C64
+(#13). The firmware is in #96 and #97.
+
+- **Why the supervisor:** it runs from `+3V3`, which is always on, so it can
+  read the card, and offer it over USB (#96), while the rest of the board is
+  off. It has free GPIOs and already talks to the RAM and ROM controller.
+- **Socket:** J1302 is a Korean Hroparts Elec TF-01A (C91145), a push-push
+  socket with a card detect switch, with the footprint
+  `c64-mini:microSD_Hroparts_TF-01A` from the component library (#102). The
+  card sticks out 2.65 mm past the front of the socket, so the socket has to
+  sit at the board edge.
+- **Supply:** the card runs from `+3V3`, which is within the 2.7 V to 3.6 V
+  of the SD specification. The supervisor never asks for 1.8 V signalling
+  (UHS-I), so the card lines stay at 3.3 V. C1322 (100 nF) and C1323 and
+  C1324 (4.7 uF) decouple the socket, for the card's current peaks of up to
+  about 200 mA.
+- **Interface:** the wiring supports both SPI mode and 4-bit SD mode, so the
+  firmware can start with SPI and change to SD mode later without a new
+  board:
+  - GPIO34 to GPIO36 are the hardware SPI0 pins (SCK, TX and RX), on CLK,
+    CMD and DAT0. Chip select (DAT3, GPIO39) is driven as a plain GPIO.
+  - DAT0 to DAT3 are on four consecutive GPIOs (GPIO36 to GPIO39), and CLK
+    is two pins below DAT0, as PIO drivers for 4-bit SD mode expect. These
+    pins are above GPIO31, so that PIO block needs its GPIO window to start
+    at GPIO16.
+- **Pull-ups:** R1317 to R1321 (10k) on CMD and DAT0 to DAT3. The SD
+  specification requires them in SD mode; in SPI mode they keep the card
+  deselected while the supervisor is in reset, keep MISO defined while the
+  card does not drive it, and keep the unused DAT1 and DAT2 from floating.
+- **Clock:** R1316 (33 Ohm) in series with CLK, close to U1301, damps
+  ringing on the clock edges.
+- **Card detect:** the switch connects `SD_DET` (pin 9) to the shell, which
+  is on ground; R1322 (10k) pulls it up. The drawing does not say whether
+  the switch closes or opens when a card is inserted; check this on the
+  prototype before the firmware relies on it.
+- **ESD protection:** two TPD4E05U06DQA arrays at the socket. U1302 protects
+  DAT0 to DAT3, U1303 protects CLK (on the socket side of R1316), the card's
+  `+3V3` supply, card detect and CMD.
+- **Back-feeding:** the card and all its lines are on `+3V3`, like the
+  supervisor itself, so they cannot feed the rails that are off.
+
+| Pin | Name | Net | U1301 |
+| --- | ---- | --- | ----- |
+| 1 | DAT2 | `SD_DAT2` | GPIO38 |
+| 2 | DAT3/CD | `SD_DAT3` | GPIO39 |
+| 3 | CMD | `SD_CMD` | GPIO35 |
+| 4 | VDD | `+3V3` | |
+| 5 | CLK | `SD_CLK` | GPIO34, through R1316 |
+| 6 | VSS | GND | |
+| 7 | DAT0 | `SD_DAT0` | GPIO36 |
+| 8 | DAT1 | `SD_DAT1` | GPIO37 |
+| 9 | DET | `SD_DET` | GPIO33 |
+| SH | Shell | GND | |
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| J1302 | Korean Hroparts Elec TF-01A | C91145 | SMD |
+| U1302, U1303 | TPD4E05U06DQA | C138714 | USON-10 |
+| C1322 | 100 nF | C1525 | 0402 |
+| C1323, C1324 | 4.7 uF | C19666 | 0603 |
+| R1316 | 33 Ohm | C25105 | 0402 |
+| R1317 to R1322 | 10k | C25744 | 0402 |
+
+Datasheets:
+[TF-01A](https://datasheet.lcsc.com/datasheet/pdf/7650eac21a54674b08ad4ba21e17fceb.pdf?productCode=C91145),
+[TPD4E05U06](https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf).
+
 ### Notes
 
 - **Stock:** LCSC lists the RP2354B (C39843328) with no stock at the time of
@@ -875,9 +960,10 @@ The reference numbers R301 and R302 were used before for the pull-ups on
   and 55 as hidden pins on top of pins 3 and 26; on the PCB each of the four
   pins needs its own capacitor close by.
 - **Output enable:** GTS1 (pin 5) is on `EN_OUTPUT`, which the supervisor
-  drives from GPIO20 (`EN_PLA` on the `Supervisor` sheet). R301 (4.7k) pulls
-  it to ground. The design ties the output enable of every output to GTS1,
-  active high: low puts all outputs in high impedance, high enables them.
+  drives from GPIO20 (`EN_PLA` on the `Supervisor and SD card slot` sheet).
+  R301 (4.7k) pulls it to ground. The design ties the output enable of every
+  output to GTS1, active high: low puts all outputs in high impedance, high
+  enables them.
   - In reset and with blank firmware, the supervisor's GPIO20 is an input
     with its internal pull-down, and R301 keeps the outputs off. R301 is
     below the 8.2 kOhm that RP2350 erratum E9 calls for.
@@ -2033,6 +2119,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Added a micro SD card slot to the `Supervisor` sheet and renamed the sheet to `Supervisor and SD card slot` (#95): J1302 (Korean Hroparts Elec TF-01A, C91145) on `+3V3` with C1322 (100 nF, C1525) and C1323, C1324 (4.7 uF, C19666). CLK, CMD and DAT0 to DAT3 go to GPIO34 to GPIO39 (CLK through R1316, 33 Ohm, C25105), card detect to GPIO33. R1317 to R1322 (10k, C25744) pull CMD, DAT0 to DAT3 and card detect up to `+3V3`. TVS arrays U1302 and U1303 (TPD4E05U06DQA, C138714) protect the card lines and the card supply at the socket |
 | 2026-11-01 | Added a footprint for the micro SD socket Korean Hroparts Elec TF-01A (LCSC C91145) to the component library in `hardware/components`: `microSD_Hroparts_TF-01A`, for use with KiCad's `Connector:Micro_SD_Card_Det1` symbol (#102) |
 | 2026-11-01 | Replaced the PLA (U17) with a CPLD (#83): added a `PLA Replacement` sheet (page 3) to the root sheet with U301 (XC9572XL-10VQG64C, C90569) on `+3V3`, C301 to C304 (100 nF, C1525, one per VCC pin), R301 (4.7k, C25900) from GTS1 (`EN_OUTPUT`) to ground, R302 (10k, C25744) from TMS to `+3V3` and R303 (4.7k, C25900) from `~AEC` to `+5V`. U301 also takes over U15 (74LS139), U27 (7408) and gate B of U8 (7406). Removed U17 and its socket, U15, U27, R31 and the decoupling capacitors C31, C33 and C46 from `250407 Design`; gate B of U8 is no longer placed. Replaced RP4 units F and H with R202 and R203 (3k3 0402, C25890) on `~EXROM` and `~GAME`. Connected the CPLD's JTAG pins to the supervisor's GPIO16 (TDO), GPIO17 (TDI), GPIO18 (TCK) and GPIO19 (TMS), and GTS1 to GPIO20 (`EN_PLA`), through new sheet pins on the `Supervisor` sheet. Wired the PLA's signals and `~DMA`, `CAEC`, `RDY`, `~COLORAM`, `~VIC`, `~SID`, `~CIA1`, `~CIA2`, `~I/O1`, `~I/O2` and `AEC`/`~AEC` to the CPLD through hierarchical labels and sheet pins on `250407 Design` and the root sheet; the VIC-II, RAM and ROM, CIA 1, CIA 2 and SID sheets keep their existing sheet pins. Removed U17 from note B |
 | 2026-10-31 | Removed the power-on reset timer from `250407 Design` (#89): half B of U20 (556) no longer has a function, gate D of U8 (7406) is no longer placed, and R34, C24, R50 and C105 are gone; the supervisor now makes the power-on reset through Q1301. Tied off half B of U20: RST B (pin 10) and THR B (pin 12) to ground, TRIG B (pin 8) to `+5V`, OUT B, DIS B and CV B open; VCC and GND of U20 stay on unit B. Replaced the through-hole pull-up R36 (1k) on `~RESET` with R201 (1k 0402, C11702) |
