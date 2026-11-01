@@ -1320,6 +1320,9 @@ see [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port).
 | CN9 | Control port 1 (port B) | J1503 |
 | CN8 | Control port 2 (port A) | J1502 |
 | FB18 | Ferrite bead in the +5V of both control ports | FB1501 |
+| U20 (556) with R33, R35, R41, C23 and C38 | RESTORE one-shot (half A); half B unused since #89 | U1501 pulls `~NMI` low itself (#91) |
+| U8 (7406) | Gate C drove `~NMI` from the one-shot; the other gates were already gone | U1501 (#91) |
+| C22, C39 | Decoupling of U8 and U20 | none needed |
 
 These parts of the original circuit stay on the `250407 Design` sheet:
 
@@ -1331,9 +1334,11 @@ These parts of the original circuit stay on the `250407 Design` sheet:
   control inputs, the former keyboard columns `COL6` and `COL7`, now
   `CIA1_PA6` and `CIA1_PA7`. R1704 and R1705 (10k) pull them up to +5V,
   because the 4066 needs at least 3.5 V there.
-- **RESTORE:** R41, C38, the one-shot U20A (556) and U8 (7406) still turn a
-  falling edge on the former `~RESTORE` net, now `~RESTORE_NMI`, into a
-  pulse on `~NMI`. The controller makes the edge instead of the RESTORE key.
+- **RESTORE:** the original board turned a falling edge on `~RESTORE` into
+  a pulse of about 19 us on `~NMI`, with a one-shot (half A of U20, 556) and
+  an open-collector gate (gate C of U8, 7406). The controller makes the
+  pulse itself now, so these parts are gone (#91), see
+  [RESTORE](#restore).
 - **Pull-ups:** RP4 (3k3) on `~IRQ`. RP3, which pulled up `CASS_RD`, `CNT1`
   and `SP1`, went with CIA 2 (#68); R1534, R1532 and R1531 (4.7k) on this
   sheet take its place, and R1533 (4.7k) also pulls up `~IRQ`.
@@ -1369,7 +1374,7 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO24 | 25 | `PHI2` | PH2 | 6510 clock |
 | GPIO25 | 26 | `R/~W` | R/~W | 6510 read/write |
 | GPIO26 | 27 | `~CIA1` (sheet pin `~SELECT`) | ~CS | Chip select from the CPLD (U301) |
-| GPIO27 | 28 | `~RESTORE_NMI` | | RESTORE, through U20A to `~NMI` |
+| GPIO27 | 28 | `~NMI` | | RESTORE, open drain to the 6510's NMI |
 | GPIO28 | 36 | `CIA1_PA6` | PA6 | Paddle select for control port 1 (U1702) |
 | GPIO29 | 37 | `CIA1_PA7` | PA7 | Paddle select for control port 2 (U1702) |
 | GPIO30 | 38 | to `JOYB3` | PA3 | Control port 2, right |
@@ -1472,11 +1477,36 @@ open drain against pull-ups to +5V, as on the 6526:
 | `CASS_RD` | R1534 (4.7k) | Cassette read and serial bus SRQ, driven from outside |
 | `CNT1`, `SP1` | R1532, R1531 (4.7k) | User port lines, also driven from outside |
 | `CIA1_PA6`, `CIA1_PA7` | R1704, R1705 (10k) on the SID sheet | U1702 (4066) needs at least 3.5 V to switch on |
-| `~RESTORE_NMI` | R41 (1M) | Only the falling edge matters |
+| `~NMI` | R1627 (4.7k) on the CIA 2 sheet | Shared with CIA 2 and the expansion port |
 | Joystick lines and `~LP` | R1511 to R1520 (10k) | Switches and devices pull them to ground |
 
 The firmware must never drive these lines high: a pressed switch or another
 device on the line would short the output.
+
+### RESTORE
+
+The RESTORE key of the original C64 went to a one-shot that made a short
+pulse on `~NMI`. On the c64-mini the RESTORE key is a key on the USB
+keyboard, and U1501 drives `~NMI` directly from GPIO27 (#91). The one-shot
+(half A of U20, 556, with R33, R35, R41, C23 and C38) and gate C of U8
+(7406) are gone, and with them the rest of U20 and U8, whose other halves
+and gates #89 and #83 had already freed.
+
+- **Open drain:** `~NMI` is wired-OR with CIA 2 (U1601) and the expansion
+  port, with R1627 (4.7k, on the CIA 2 sheet) as its pull-up to +5V.
+  GPIO27 follows the same rule as `~IRQ`: pull low or release, never drive
+  high.
+- **Pulse:** the 6510 triggers NMI on the falling edge only. The firmware
+  (#92) pulls `~NMI` low for about 20 us per key press and releases it,
+  however long the key is held, so that a held key does not block NMIs from
+  CIA 2 or a cartridge. If another source already holds `~NMI` low,
+  RESTORE does nothing, as on the original C64.
+- **Levels:** GPIO27 is 5 V tolerant while `+3V3` is up, which is always the
+  case, so it can sit on the 5 V line directly.
+- **Fail-safe:** in reset and with blank firmware, GPIO27 is an input with
+  its internal pull-down, which R1627 overrides, so `~NMI` stays released.
+- **Back-feeding:** GPIO27 only pulls low or releases, so it cannot feed
+  `~NMI` while `+5V` is off.
 
 ### Programming and start-up
 
@@ -1534,8 +1564,9 @@ circuit:
 - **Light pen:** whenever port B bit 4 is low, from a key in the matrix or
   from an output, pull `~LP` low as well, so that the VIC-II's light pen
   latch reacts as on the original board.
-- **RESTORE:** pull `~RESTORE_NMI` low for a few microseconds and release
-  it. The circuit behind it makes one `~NMI` pulse per press.
+- **RESTORE (#92):** pull `~NMI` low for about 20 us (the length of the
+  old one-shot pulse) and release it, once per key press, whatever the key's
+  hold time, see [RESTORE](#restore).
 - **Time of day:** count 50 Hz or 60 Hz from the crystal, as selected by bit
   7 of CRA.
 - **Pins:** turn off the internal pull-downs of the bus pins (RP2350
@@ -1568,11 +1599,9 @@ These parts of the original circuit stay on the `250407 Design` sheet:
   (U301) on the `PLA Replacement` sheet, which replaced U15 (74LS139) (#83).
 - **VIC-II bank:** U502 (74F258) and U1401 still take `~VA14` and `~VA15`,
   and the CPLD (U301) takes `~VA14` in place of the PLA.
-- **U8:** only gate C (RESTORE) is still in use. Gates A, E and F, gate D
-  since #89 (the old power-on reset) and gate B since #83 (the `AEC`
-  inverter) are no longer placed in the schematic, so their inputs (pins 1,
-  3, 9, 11 and 13) are left open on the chip; their outputs are
-  unconnected.
+- **U8:** the 7406 is gone (#91). Gates A, E and F went with CIA 2, gate D
+  with the old power-on reset (#89), gate B with the `AEC` inverter (#83)
+  and gate C, the last one, with the RESTORE one-shot.
 
 ### Circuit
 
@@ -1685,7 +1714,7 @@ other outputs are open drain against pull-ups to +5V:
 
 | Signal | Pull-up | Why |
 | ------ | ------- | --- |
-| `~NMI` | R1627 (4.7k) | Shared with RESTORE (U8) and the expansion port |
+| `~NMI` | R1627 (4.7k) | Shared with RESTORE (U1501 GPIO27) and the expansion port |
 | `~VA14`, `~VA15` | R1629, R1630 (4.7k) | Select VIC-II bank 0 until the firmware runs, as a 6526 does after reset |
 | ATN, CLK, DATA | R1608, R1609, R1607 (1k) | Serial bus, driven through U1602 |
 | User port lines | R1615 to R1626, R1628 (4.7k) | Devices on the user port drive them too |
@@ -1998,12 +2027,12 @@ Bastler).
 | Group | Parts |
 | ----- | ----- |
 | CPU | U7 (6510), FB5 in `PHI2`, R43 to R45 (pull-ups on the port bits `~LORAM`, `~HIRAM`, `~CHAREN`), RP4 (pull-ups on `~IRQ`, A12 to A15 and `~DMA`; units F and H are not placed), R202 and R203 (3k3 pull-ups on `~EXROM` and `~GAME`) |
-| Reset and RESTORE | U20 (556): half A is the RESTORE one-shot with C23, C38, R33, R35 and R41, half B is unused and tied off (#89); gate C of U8 (7406) for `~NMI`; R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
+| Reset | R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
 | Bus | R51 on `R/~W`. `RDY`, `CAEC`, `~AEC` and all chip selects now come from the CPLD (U301, #83), see [PLA replacement](#pla-replacement) |
 | Cassette port | CN3 with FB1 to FB3, C1 and R1 |
 | Power LED | CN10 with R39, FB20 and FB21 |
 | Expansion port | CN6 with FB4 in `~RESET` |
-| Decoupling | C9, C22 and C39 (100 nF), C8 and C17 (10 uF) |
+| Decoupling | C9 (100 nF), C8 and C17 (10 uF) |
 
 - **Connections:** the sheet connects to the other sheets through
   hierarchical labels and sheet pins only; the global labels between the two
@@ -2014,10 +2043,10 @@ Bastler).
   (U301).
 - **Sockets:** note B on the sheet lists the chips that are fitted in
   sockets: U7, and U504 and U1701 on their own sheets.
-- **Next steps:** #83 replaced U17, U15, U27 and gate B of U8 with a CPLD.
-  #91 is to remove U20 and gate C of U8, the last gate in use. The other
-  parts still use the symbols and through-hole footprints of the original
-  design.
+- **Removed so far:** #83 replaced U17, U15, U27 and gate B of U8 with a
+  CPLD, and #91 removed U20 and the rest of U8 (RESTORE now comes from
+  U1501). The 6510 (U7) is the only chip left on the sheet. The other parts
+  still use the symbols and through-hole footprints of the original design.
 
 ## Licence
 
@@ -2139,6 +2168,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Let the CIA 1 controller drive `~NMI` for RESTORE (#91): U1501 GPIO27 now connects directly to `~NMI` through a `~NMI` sheet pin on the `CIA1, Keyboard and Joysticks` sheet, replacing `~RESTORE_NMI`. Removed the RESTORE one-shot from `250407 Design`: U20 (556, both halves) with R33, R35, R41, C23 and C38, U8 (7406, gate C was the last one in use) and the decoupling capacitors C22 and C39 |
 | 2026-11-01 | Removed the colour data switch U503 (4066, formerly U16) and its decoupling capacitor C508 from the `VIC-II, HF Module Replacement and AV out` sheet (#81); U1401 now drives the colour RAM nibble on D0 to D3 in 6510 cycles itself. Corrected the bit order of the colour data lines: renamed `COLOR_D0` to `COLOR_D3` to `COLORD0` to `COLORD3` and connected `COLORDn` (U1401 GPIO36 plus n) to the VIC-II's D(8+n), so that it carries colour bit n. The two sheets now connect through a `COLORD[0..3]` bus |
 | 2026-11-01 | Added a micro SD card slot to the `Supervisor` sheet and renamed the sheet to `Supervisor and SD card slot` (#95): J1302 (Korean Hroparts Elec TF-01A, C91145) on `+3V3` with C1322 (100 nF, C1525) and C1323, C1324 (4.7 uF, C19666). CLK, CMD and DAT0 to DAT3 go to GPIO34 to GPIO39 (CLK through R1316, 33 Ohm, C25105), card detect to GPIO33. R1317 to R1322 (10k, C25744) pull CMD, DAT0 to DAT3 and card detect up to `+3V3`. TVS arrays U1302 and U1303 (TPD4E05U06DQA, C138714) protect the card lines and the card supply at the socket |
 | 2026-11-01 | Added a footprint for the micro SD socket Korean Hroparts Elec TF-01A (LCSC C91145) to the component library in `hardware/components`: `microSD_Hroparts_TF-01A`, for use with KiCad's `Connector:Micro_SD_Card_Det1` symbol (#102) |
