@@ -1856,6 +1856,172 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:D_TVS"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_TVS"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Bidirectional transient-voltage-suppression diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "diode TVS thyrector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_TVS_0_1"
+				(polyline
+					(pts
+						(xy -2.54 1.27) (xy -2.54 -1.27) (xy 2.54 1.27) (xy 2.54 -1.27) (xy -2.54 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.508 1.27) (xy 0 1.27) (xy 0 -1.27) (xy -0.508 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_TVS_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "A1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:FerriteBead_Small"
 			(pin_numbers
 				(hide yes)
@@ -3566,6 +3732,12 @@
 		(uuid "20f78cff-d730-425b-909c-b4e55d6967fe")
 	)
 	(junction
+		(at 306.705 59.055)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "12b17168-667e-44e8-9fce-06cebcbf1dd0")
+	)
+	(junction
 		(at 240.03 59.055)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3720,6 +3892,10 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ffd3a15b-3267-422d-bc80-18444cc0241b")
+	)
+	(no_connect
+		(at 365.76 51.435)
+		(uuid "c520cec9-b206-47a7-8bbc-8ea7aac730d2")
 	)
 	(bus_entry
 		(at 238.125 135.89)
@@ -4371,6 +4547,16 @@
 	)
 	(wire
 		(pts
+			(xy 306.705 59.055) (xy 306.705 66.675)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12d8f532-23ad-45a3-9ce8-94bf2eb56ffa")
+	)
+	(wire
+		(pts
 			(xy 184.785 259.08) (xy 185.42 259.08)
 		)
 		(stroke
@@ -4508,16 +4694,6 @@
 			(type default)
 		)
 		(uuid "299588a3-1505-4b31-8f74-7bf0f2ee2fa7")
-	)
-	(wire
-		(pts
-			(xy 365.76 51.435) (xy 375.285 51.435)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "29f8958e-365a-4191-ab0a-4dfc3b1da263")
 	)
 	(wire
 		(pts
@@ -5091,7 +5267,7 @@
 	)
 	(wire
 		(pts
-			(xy 309.245 59.055) (xy 304.165 59.055)
+			(xy 309.245 59.055) (xy 306.705 59.055)
 		)
 		(stroke
 			(width 0)
@@ -5158,6 +5334,16 @@
 			(type default)
 		)
 		(uuid "6b5db624-e2d8-421d-9ac0-76149bc17336")
+	)
+	(wire
+		(pts
+			(xy 306.705 59.055) (xy 304.165 59.055)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d413c13-ae56-483c-b620-c6225cbf1373")
 	)
 	(wire
 		(pts
@@ -6939,16 +7125,6 @@
 		)
 		(uuid "c259e937-65af-45ed-81d4-93cae725fb1e")
 	)
-	(label "CASS_5V"
-		(at 375.285 51.435 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "c88c87c0-5882-4bd8-9cf7-52905d2ec571")
-	)
 	(label "PHI2"
 		(at 50.165 259.08 90)
 		(effects
@@ -7588,6 +7764,83 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
 					(reference "FB203")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 306.705 74.295 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "0c530fcc-09c7-47fe-a6af-d2e49dead3aa")
+		(property "Reference" "#U0126"
+			(at 306.705 74.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 306.705 74.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 306.705 74.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 306.705 74.295 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 306.705 74.295 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b11e378c-82ce-4f09-aa1b-48f57a406502")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
+					(reference "#U0126")
 					(unit 1)
 				)
 			)
@@ -11018,6 +11271,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
 					(reference "#U0123")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 306.705 70.485 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "da8072ed-e6b7-4d51-ad45-faae901514d9")
+		(property "Reference" "D"
+			(at 312.42 71.374 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "H5VL10BH"
+			(at 308.864 68.834 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_0402_1005Metric"
+			(at 306.705 70.485 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.lcsc.com/product-detail/C42413893.html"
+			(at 306.705 70.485 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional ESD protection diode, 5V Vrwm, 5.5pF, DFN1006-2L (0402). J201 VBUS ESD (#235): place at J201."
+			(at 306.705 70.485 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C42413893"
+			(at 306.705 70.485 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e0984b90-dd7f-4d9f-aba6-d0f0ffb18bd6")
+		)
+		(pin "2"
+			(uuid "6d80b470-e552-4ae6-a22a-6496145b200e")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
+					(reference "D")
 					(unit 1)
 				)
 			)
