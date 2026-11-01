@@ -5566,7 +5566,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "cpu_cassette_expanion.kicad_sch"
+		(property "Sheetfile" "cpu_cassette_expansion.kicad_sch"
 			(at 97.79 227.2796 0)
 			(show_name no)
 			(do_not_autoplace no)
