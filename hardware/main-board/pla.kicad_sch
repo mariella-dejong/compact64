@@ -2394,6 +2394,17 @@
 		)
 		(uuid "17c838de-fd71-4d52-9c00-af295c697623")
 	)
+	(hierarchical_label "RDY"
+		(shape output)
+		(at 153.035 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "19060fd0-5056-4466-b07c-3a1e3b16a8d5")
+	)
 	(hierarchical_label "~{EXROM}"
 		(shape input)
 		(at 122.555 55.88 180)
@@ -2404,6 +2415,17 @@
 			(justify right)
 		)
 		(uuid "1e64bb47-6749-4666-949c-32bce5e72de2")
+	)
+	(hierarchical_label "CAEC"
+		(shape output)
+		(at 153.035 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2cdde7b8-5076-45fc-a976-43a1f7f0580a")
 	)
 	(hierarchical_label "TDI"
 		(shape bidirectional)
@@ -2580,6 +2602,17 @@
 			(justify left)
 		)
 		(uuid "a4e09e99-e16a-4c63-8a33-0f57ccde07da")
+	)
+	(hierarchical_label "~{DMA}"
+		(shape input)
+		(at 122.555 83.82 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a883f464-f66d-40b1-8411-c69e831323c3")
 	)
 	(hierarchical_label "~{VIC}"
 		(shape output)
