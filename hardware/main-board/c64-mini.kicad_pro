@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "U201,#U113,J201-203,C201-204,R204-214,R1323,R1535,#PWR124,#PWR131-132,#PWR138,#PWR1529,FB1,FB3,FB201-207,FB506,FB1301,FB1502",
+    "used_designators": "R215,R1323-1324,#PWR1339-1340,J204",
     "variants": []
   },
   "sheets": [
