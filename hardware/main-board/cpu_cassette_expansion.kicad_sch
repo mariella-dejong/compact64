@@ -11287,7 +11287,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "da8072ed-e6b7-4d51-ad45-faae901514d9")
-		(property "Reference" "D"
+		(property "Reference" "D201"
 			(at 312.42 71.374 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11362,7 +11362,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "D")
+					(reference "D201")
 					(unit 1)
 				)
 			)
