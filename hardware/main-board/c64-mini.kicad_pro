@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "C1323-1324,#PWR1325,#PWR1338,U1302-1303,U1608-1609",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
@@ -1710,7 +1710,7 @@
     ],
     [
       "83785ced-90f1-439c-a9f5-0f5eaac8b37d",
-      "Supervisor"
+      "Supervisor and SD card slot"
     ],
     [
       "79987ffb-bc0c-45a0-96fa-cfa9ee80bf34",
