@@ -783,6 +783,11 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO5 | 2 | `9V_PROBE`, divider R1334/R1333 from `+9V` | Input | High while `+9V` is above about 6 V |
 | GPIO6 | 3 | `PHI0_PROBE`, `PHI0` through R514 (1k) | Input | Clock from the VIC-II |
 | GPIO7 | 4 | `PHI2_PROBE`, `PHI2` through R215 (1k) | Input | Clock from the 6510 |
+| GPIO8 | 6 | `ATN` through R1335 (100 Ohm) | Input | Serial bus ATN, for the virtual drive (#98), see [Serial port](#serial-port) |
+| GPIO9 | 7 | `CLK` through R1336 (100 Ohm) | Input | Serial bus CLK |
+| GPIO10 | 8 | `DATA` through R1337 (100 Ohm) | Input | Serial bus DATA |
+| GPIO11 | 9 | `SER_CLK_IN`, to U1602 gate E (pin 11) | Output | High pulls the serial bus CLK low; R1647 (10k) pulls the pin down |
+| GPIO12 | 11 | `SER_DATA_IN`, to U1602 gate F (pin 13) | Output | High pulls the serial bus DATA low; R1646 (10k) pulls the pin down |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
 | GPIO16 | 16 | `TDO` | Input | JTAG data from the CPLD (U301) |
 | GPIO17 | 17 | `TDI` | Output | JTAG data to the CPLD |
@@ -823,11 +828,15 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   not selected. R1327 to R1329 hold GPIO21 to GPIO23 low, so the ready,
   activity and error LEDs stay off; only the power LED is on. GPIO3 to
   GPIO7 (chip and rail checks) are inputs; with the rails off they read
-  low.
+  low. R1646 and R1647 hold GPIO11 and GPIO12 low, so U1602 leaves the
+  serial bus released; the firmware drives both low as its first action
+  (RP2350 erratum E9, see [Serial port](#serial-port)).
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
   the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD, the SD
-  card and the LED module, which are all on `+3V3`, and to the inputs of the
-  chip and rail checks (GPIO3 to GPIO7), which the firmware must never drive, except GPIO0 and GPIO1, which reach
+  card and the LED module, which are all on `+3V3`, to the inputs of the
+  chip and rail checks (GPIO3 to GPIO7), which the firmware must never drive,
+  and to the serial bus: GPIO8 to GPIO10 read it through 100 Ohm and GPIO11
+  and GPIO12 only drive U1602, which runs from `+3V3` and only sinks, except GPIO0 and GPIO1, which reach
   `~RESET` through Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
@@ -1878,8 +1887,32 @@ R1607) and an output of U1602 (SN74LVC06A), an inverting open-drain buffer:
 - **Pull-ups:** the 1k pull-ups are the value of the original board and of
   the drives. Higher values would slow down the rising edges, which fast
   loaders depend on.
-- **Unused gates:** gates D, E and F of U1602 have their inputs (pins 9, 11
-  and 13) on ground and their outputs (pins 8, 10 and 12) unconnected.
+- **Supervisor as a drive (#98):** the supervisor (U1301) connects to the
+  bus as an extra device, so that its firmware can act as a disk drive with
+  images from the SD card (#99). Real drives on J1601 keep working next to
+  it.
+  - **Reading:** GPIO8, GPIO9 and GPIO10 read ATN, CLK and DATA at the bus
+    nodes through R1335, R1336 and R1337 (100 Ohm, on the supervisor sheet).
+    Unlike U1601, the supervisor reads ATN: a drive has to answer it within
+    about 1 ms.
+  - **Driving:** a drive pulls CLK and DATA low and never drives ATN. GPIO11
+    drives gate E of U1602 (input pin 11, output pin 10 on CLK) and GPIO12
+    drives gate F (input pin 13, output pin 12 on DATA), wired-OR with U1601
+    and the drives. R1647 and R1646 (10k) pull the gate inputs low.
+  - **PIO window:** GPIO8 to GPIO12 are five consecutive pins in one PIO
+    window, for the cycle-exact timing of fast loaders.
+- **Erratum E9:** after a reset, an RP2350 pin that was driven high can stay
+  at about 2 V, which a 10k pull-down does not always override; Raspberry
+  Pi recommends at most 8.2k. On the inputs of U1602 that is close to its
+  2.0 V high level, so a latched pin could hold CLK, DATA or ATN low and
+  stop the bus. The firmware of U1601 and of the supervisor therefore drives
+  its U1602 inputs (U1601: GPIO36, GPIO38, GPIO39; supervisor: GPIO11,
+  GPIO12) low as the very first action after a reset. The pull-downs
+  R1610 to R1612, R1646 and R1647 stay at 10k; if the bus turns out to hang
+  after resets on the prototype, change them to 4.7k.
+- **Unused gate:** gate D of U1602 has its input (pin 9) on ground and its
+  output (pin 8) unconnected. It is reserved for the virtual Datasette
+  (#100), which needs open-drain drivers on the cassette lines.
 
 ### User port
 
@@ -2492,6 +2525,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Connected the supervisor to the serial bus as a virtual drive (#98): GPIO8, GPIO9 and GPIO10 read ATN, CLK and DATA through R1335 to R1337 (100 Ohm, C25076); GPIO11 and GPIO12 drive CLK and DATA through the previously unused gates E and F of U1602, with pull-downs R1647 and R1646 (10k, C25744). New sheet pins between the `Supervisor and SD card slot` and `CIA2, Serial Port and User Port` sheets |
 | 2026-11-01 | Reworked the ESD protection (#72). Supervisor: D1301 to D1304 replaced by the array U1304 (TPD4E05U06DQA, C138714) on D+, D-, CC1 and CC2. CIA 1: the single diodes on the control ports replaced by U1504 (port 1, pins 1 to 4), U1505 (port 2, pins 1 to 4), U1506 and U1507 (fire button and both POT lines of port 2 and port 1; the POT lines were unprotected before); the keyboard port's D+ and D- now on D1504 and D1505; D1501 (H5VL10BH, C42413893) added on the control ports' +5V. Cassette port: U202 (TPD4E05U06DQA) on `CASS_SENSE`, `CASS_WRT'` and `CASS_RD`, D201 (H5VL10BH) on `CASS_5V`. AV outputs: D502 changed from SMF5.0CA to H5VL10BH, D503 to D506 (H5VL10BH) added on `AUDIO_OUT`, `COMP_OUT`, `CHROMA_OUT` and `LUMA_OUT`, and R502 (100k, C25741) from `AUDIO_OUT` to ground |
 | 2026-11-01 | Changed the CPU to the 8500 (#75): U201's value is now `8500`, its description and note B on the `CPU, Cassette and Expansion Port` sheet say to fit an MOS 8500 and that a 6510 also works. No circuit change: the 8500 has the same pinout, supply, timing and processor port as the 6510. Corrected the reference in the `PHI2_PROBE` note on the same sheet (R215, formerly R214) |
 | 2026-11-01 | Added the chip and rail checks for the supervisor (#49): `PGOOD` to GPIO3 through R1330 (1k, C11702); dividers from `CAN+5V` (R1331 4.7k, C25900, and R1332 10k, C25744) to GPIO4 and from `+9V` (R1334 10k and R1333 4.7k) to GPIO5; `PHI0` from the 6510's side of FB501 to GPIO6 through R514 (1k, C21190) on the `VIC-II, HF Module Replacement and AV out` sheet; `PHI2` from the bus side of FB205 to GPIO7 through R215 (1k, C11702) on the `CPU, Cassette and Expansion Port` sheet. New sheet pins `PGOOD`, `CAN+5V`, `PHI0_PROBE` and `PHI2_PROBE` on the `Supervisor and SD card slot` sheet, `PHI0_PROBE` on the VIC-II sheet and `PHI2_PROBE` on the CPU sheet; `+9V` is a global power net |
