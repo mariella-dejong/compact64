@@ -5456,6 +5456,12 @@
 		(uuid "317782d0-9cb8-4aa2-9a0e-142a5cb8e08c")
 	)
 	(junction
+		(at 316.865 122.555)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "33dc31e5-4780-455a-a361-16be5eca5ffc")
+	)
+	(junction
 		(at 319.405 158.75)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5652,6 +5658,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b9015e85-0919-4f1c-93a5-e79146dca986")
+	)
+	(junction
+		(at 363.855 102.235)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b9160fae-a481-4a81-8474-ada9a7e33c9f")
 	)
 	(junction
 		(at 318.135 28.575)
@@ -6899,6 +6911,16 @@
 	)
 	(wire
 		(pts
+			(xy 316.865 122.555) (xy 318.135 122.555)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2e4d2b2f-128d-4b72-821f-04691cbeb2c0")
+	)
+	(wire
+		(pts
 			(xy 351.155 89.535) (xy 389.255 89.535)
 		)
 		(stroke
@@ -7169,7 +7191,7 @@
 	)
 	(wire
 		(pts
-			(xy 306.705 122.555) (xy 318.135 122.555)
+			(xy 306.705 122.555) (xy 316.865 122.555)
 		)
 		(stroke
 			(width 0)
@@ -7806,6 +7828,16 @@
 			(type default)
 		)
 		(uuid "795c4f32-0f4d-4039-8679-c66427a1932f")
+	)
+	(wire
+		(pts
+			(xy 363.855 102.235) (xy 365.125 102.235)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7967feb5-23ab-4633-bf08-a139d717de1b")
 	)
 	(wire
 		(pts
@@ -9029,7 +9061,7 @@
 	)
 	(wire
 		(pts
-			(xy 330.835 102.235) (xy 365.125 102.235)
+			(xy 330.835 102.235) (xy 363.855 102.235)
 		)
 		(stroke
 			(width 0)
@@ -12961,6 +12993,83 @@
 		)
 	)
 	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 363.855 109.855 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "497a01e9-5bdf-44ab-b514-59a72c29bde0")
+		(property "Reference" "#U0511"
+			(at 363.855 109.855 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 363.855 109.855 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 363.855 109.855 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 363.855 109.855 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 363.855 109.855 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3aaaf745-3425-4ecd-8b92-48eeb476f92c")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "#U0511")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "250407_-rescue:74LS257_U13-KU-schematics-library")
 		(at 83.185 128.905 0)
 		(unit 1)
@@ -13571,6 +13680,83 @@
 		)
 	)
 	(symbol
+		(lib_id "KU-schematics-library:GND_SMALL")
+		(at 316.865 130.175 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6a938419-eeb3-46e5-b37a-5133f40e50d0")
+		(property "Reference" "#U0510"
+			(at 316.865 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Earth"
+			(at 316.865 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 316.865 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 316.865 130.175 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 316.865 130.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6e18bcbd-ea96-499c-9bf1-19feed222bfe")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "#U0510")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 318.135 50.165 0)
 		(unit 1)
@@ -13656,6 +13842,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R505")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 316.865 126.365 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "709348f6-9c10-4ab9-8d19-388683a8d9af")
+		(property "Reference" "D503"
+			(at 304.927 124.841 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SMF5.0CA"
+			(at 304.927 127.381 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123F"
+			(at 316.865 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 316.865 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional transient-voltage-suppression diode"
+			(at 316.865 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C19077498"
+			(at 316.865 126.365 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "7ccfac36-5824-403a-b8fe-c689e37301de")
+		)
+		(pin "1"
+			(uuid "ca0fb08d-8b05-449f-9fbe-aa949ab2187a")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "D503")
 					(unit 1)
 				)
 			)
@@ -15202,6 +15480,98 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#U0189")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_TVS")
+		(at 363.855 106.045 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a659ad19-fe28-4f2f-9489-013bd318233f")
+		(property "Reference" "D504"
+			(at 365.506 110.998 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SMF5.0CA"
+			(at 365.506 113.538 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Diode_SMD:D_SOD-123F"
+			(at 363.855 106.045 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 363.855 106.045 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Bidirectional transient-voltage-suppression diode"
+			(at 363.855 106.045 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C19077498"
+			(at 363.855 106.045 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "98eb4a0f-d62c-4ed6-bc0f-517b900e54de")
+		)
+		(pin "1"
+			(uuid "de9e100c-9c94-4556-8cef-fa78bee64385")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
+					(reference "D504")
 					(unit 1)
 				)
 			)
