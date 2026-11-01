@@ -1700,193 +1700,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Connector_Generic:Conn_01x03"
-			(pin_names
-				(offset 1.016)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "J"
-				(at 0 5.08 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_01x03"
-				(at 0 -5.08 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_1x??_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Conn_01x03_1_1"
-				(rectangle
-					(start -1.27 3.81)
-					(end 1.27 -3.81)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(rectangle
-					(start -1.27 2.667)
-					(end 0 2.413)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin passive line
-					(at -5.08 2.54 0)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 3.81)
-					(name "Pin_3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:C_Small"
 			(pin_numbers
 				(hide yes)
@@ -2941,18 +2754,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "LED CONNECTOR"
-		(exclude_from_sim no)
-		(at 402.7678 109.093 0)
-		(effects
-			(font
-				(size 2.0066 2.0066)
-				(italic yes)
-			)
-			(justify right bottom)
-		)
-		(uuid "283d6664-8ad0-4ee4-a750-e75acc4464a6")
-	)
 	(text "Cartridge/Expansion (44 PIN FEMALE)"
 		(exclude_from_sim no)
 		(at 100.965 270.51 0)
@@ -3080,12 +2881,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5807ed36-6ed4-4ee1-af6a-352258f5f436")
-	)
-	(junction
-		(at 393.065 93.345)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "5c3d2936-7883-49a9-8a5c-557a2aa4d292")
 	)
 	(junction
 		(at 231.14 67.945)
@@ -3753,16 +3548,6 @@
 		)
 		(uuid "0bb8a967-c432-4ae0-8f4a-444abcda0d70")
 	)
-	(wire
-		(pts
-			(xy 393.065 93.345) (xy 387.985 93.345)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0ca7a42b-340b-40f9-8d7f-127397775f85")
-	)
 	(bus
 		(pts
 			(xy 75.565 252.73) (xy 78.105 252.73)
@@ -3792,16 +3577,6 @@
 			(type default)
 		)
 		(uuid "0f9b4039-84d6-4329-b0b2-254a66eac9ce")
-	)
-	(wire
-		(pts
-			(xy 390.525 86.995) (xy 390.525 94.615)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0faf153d-b0d6-4c48-902a-1e326d4a30dd")
 	)
 	(wire
 		(pts
@@ -4455,16 +4230,6 @@
 	)
 	(wire
 		(pts
-			(xy 393.065 85.09) (xy 393.065 93.345)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "60172ba0-f28a-4733-a7dd-d5e5d160a2db")
-	)
-	(wire
-		(pts
 			(xy 215.265 62.865) (xy 220.345 62.865)
 		)
 		(stroke
@@ -4835,16 +4600,6 @@
 	)
 	(wire
 		(pts
-			(xy 387.985 93.345) (xy 387.985 94.615)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "893964c1-5ad2-4189-87a5-3a3b83f8c9d0")
-	)
-	(wire
-		(pts
 			(xy 215.265 40.005) (xy 244.475 40.005)
 		)
 		(stroke
@@ -4862,16 +4617,6 @@
 			(type default)
 		)
 		(uuid "8cf8a718-2e6f-4fc3-8e9e-998b87eae5ce")
-	)
-	(wire
-		(pts
-			(xy 390.525 70.485) (xy 390.525 81.915)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8db374ca-9f62-44e5-bb1e-00f4feb6a7d0")
 	)
 	(wire
 		(pts
@@ -5275,16 +5020,6 @@
 	)
 	(wire
 		(pts
-			(xy 386.715 70.485) (xy 386.715 74.295)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bc099cf3-c49a-4990-b6af-ac2e16727330")
-	)
-	(wire
-		(pts
 			(xy 131.445 250.19) (xy 131.445 260.35)
 		)
 		(stroke
@@ -5685,16 +5420,6 @@
 	)
 	(wire
 		(pts
-			(xy 393.065 94.615) (xy 393.065 93.345)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e45b59ef-2f85-48d6-b87e-f9824c845a70")
-	)
-	(wire
-		(pts
 			(xy 238.125 53.975) (xy 262.89 53.975)
 		)
 		(stroke
@@ -5775,16 +5500,6 @@
 	)
 	(wire
 		(pts
-			(xy 390.525 70.485) (xy 386.715 70.485)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ee118aa2-f0b3-43a9-b9db-e633b021c399")
-	)
-	(wire
-		(pts
 			(xy 106.045 250.19) (xy 106.045 260.35)
 		)
 		(stroke
@@ -5862,16 +5577,6 @@
 			(type default)
 		)
 		(uuid "f97a310e-c72c-4c3e-b8cd-2edf174264c4")
-	)
-	(wire
-		(pts
-			(xy 393.065 76.835) (xy 393.065 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f9ea8f03-c5ba-468e-b48d-f82282aec77b")
 	)
 	(wire
 		(pts
@@ -6192,16 +5897,6 @@
 			(justify left bottom)
 		)
 		(uuid "793aa511-02c3-4d11-a794-a0a9989e8c94")
-	)
-	(label "LED+"
-		(at 393.065 92.075 90)
-		(effects
-			(font
-				(size 0.7874 0.7874)
-			)
-			(justify left bottom)
-		)
-		(uuid "85f12d6b-3dfc-405d-8174-b7df04d47c18")
 	)
 	(label "A5"
 		(at 121.285 259.08 90)
@@ -6552,16 +6247,6 @@
 			(justify left bottom)
 		)
 		(uuid "f6d9965f-6b3b-4fee-8f06-9726c88ec565")
-	)
-	(label "GND_LED"
-		(at 390.525 92.075 90)
-		(effects
-			(font
-				(size 0.7874 0.7874)
-			)
-			(justify left bottom)
-		)
-		(uuid "fb46b62e-1272-4ab7-a3d4-9c804218a6a6")
 	)
 	(label "A6"
 		(at 216.535 65.405 0)
@@ -7428,97 +7113,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:FerriteBead_Small")
-		(at 390.525 84.455 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "31a1db90-49c5-419f-b144-dee8a96fd64a")
-		(property "Reference" "FB206"
-			(at 384.556 84.709 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100R@100MHz"
-			(at 396.113 85.09 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Inductor_SMD:L_0805_2012Metric"
-			(at 390.525 84.455 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/2304140030_Sunlord-GZ2012D101TF_C1015.pdf"
-			(at 390.525 84.455 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Ferrite bead, 100 ohm at 100 MHz, 800 mA, 150 mohm, 0805"
-			(at 390.525 84.455 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C1015"
-			(at 390.525 84.455 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d9287715-e2ad-4fbb-9614-d837e94cf678")
-		)
-		(pin "2"
-			(uuid "d89f4092-ee48-4596-95a9-15bb54dbe2f6")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "FB206")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
 		(at 244.475 32.385 0)
 		(unit 1)
@@ -7590,83 +7184,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
 					(reference "#PWR0127")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 393.065 71.755 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3c4ffdb6-600d-4ad3-8252-296cc7ea6cd5")
-		(property "Reference" "#PWR0129"
-			(at 393.065 75.565 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+5V"
-			(at 391.795 67.945 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 393.065 71.755 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 393.065 71.755 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 393.065 71.755 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ff9c4da6-7e4b-48bb-97b4-df1ffa34bbf2")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#PWR0129")
 					(unit 1)
 				)
 			)
@@ -8031,97 +7548,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
 					(reference "FB201")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:FerriteBead_Small")
-		(at 393.065 82.55 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "51507789-0faf-4648-afdb-1087e58086e1")
-		(property "Reference" "FB207"
-			(at 399.034 82.423 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100R@100MHz"
-			(at 398.653 83.185 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Inductor_SMD:L_0805_2012Metric"
-			(at 393.065 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/2304140030_Sunlord-GZ2012D101TF_C1015.pdf"
-			(at 393.065 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Ferrite bead, 100 ohm at 100 MHz, 800 mA, 150 mohm, 0805"
-			(at 393.065 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C1015"
-			(at 393.065 82.55 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c030425c-d66a-4a4a-a041-e4f1193312e7")
-		)
-		(pin "2"
-			(uuid "972db7a5-6d64-4458-b2c1-f8f8d8ae7be2")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "FB207")
 					(unit 1)
 				)
 			)
@@ -9328,101 +8754,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x03")
-		(at 390.525 99.695 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "98d3b52c-89e4-43c0-a618-274d363b4b79")
-		(property "Reference" "J203"
-			(at 396.2654 103.8352 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 2.9972 2.9972)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_CONNECTOR"
-			(at 385.7498 95.1738 90)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:LED_CON"
-			(at 390.525 99.695 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 390.525 99.695 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 390.525 99.695 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C49257"
-			(at 390.525 99.695 270)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "dcee90e9-c4c1-47b7-af35-cfd213e93d51")
-		)
-		(pin "3"
-			(uuid "f9f082b8-99d5-46e6-a7d9-5cd87c93ba9d")
-		)
-		(pin "1"
-			(uuid "f4b01f82-8442-494e-92e4-a3b685c17b5f")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "J203")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 157.48 242.57 0)
 		(unit 1)
@@ -10280,83 +9611,6 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
-		(at 386.715 74.295 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "bad11e3a-0ec6-4c02-8b41-1fff8399db58")
-		(property "Reference" "#U0125"
-			(at 386.715 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Earth"
-			(at 386.715 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 386.715 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 386.715 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 386.715 74.295 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "c95c497c-3fb3-44ea-8e01-efb1f42e86ae")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0125")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 269.875 47.625 0)
 		(unit 1)
@@ -10765,98 +10019,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
 					(reference "#U0216")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 393.065 74.295 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e9e5e624-15e6-44a4-bad2-234f50dcdd19")
-		(property "Reference" "R214"
-			(at 394.3096 73.533 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "390"
-			(at 394.3858 75.311 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 393.065 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 393.065 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 393.065 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "LCSC Part #" "C23151"
-			(at 393.065 74.295 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "edfdea13-84cf-4909-b937-303e7cc6ec31")
-		)
-		(pin "1"
-			(uuid "2dad30e6-792a-4853-8a46-8ef8b5abaebc")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "R214")
 					(unit 1)
 				)
 			)

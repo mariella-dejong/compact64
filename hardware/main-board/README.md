@@ -34,8 +34,7 @@ MC4044 can no longer be bought, and the colour clock divider that
 synchronized the buck converters.
 
 What is left of the original 250407 circuit, the 6510 with the cassette
-port, the expansion port and the power LED connector, is now on one flat
-sheet, `CPU, Cassette and Expansion Port` (#84, #107), with SMD passives and
+port and the expansion port, is now on one flat sheet, `CPU, Cassette and Expansion Port` (#84, #107), with SMD passives and
 reference numbers in the 200 range, see
 [CPU, cassette and expansion port](#cpu-cassette-and-expansion-port). Its
 power-on reset timer is gone: the supervisor now resets the system at
@@ -47,6 +46,11 @@ the original board are replaced by a CPLD on the `PLA Replacement` sheet
 
 The supervisor has a micro SD card slot (#95), from which it will load disk
 and tape images (#13), see [SD card slot](#sd-card-slot).
+
+The status LEDs (power, ready, activity, error) sit on a separate LED module
+that connects to the supervisor with a short cable, so that they can be
+mounted in the case (#54), see [Status LEDs](#status-leds). The original
+power LED connector is gone.
 
 ## Compatibility
 
@@ -691,7 +695,7 @@ issues:
 | Link to the other microcontrollers | #51 | used by #52 and #53 |
 | Check that all ROM images are present | uses #51 | #52 |
 | Check that the other microcontrollers run up-to-date firmware | uses #51 | #53 |
-| Status indicator (LED) | #54 | #55 |
+| Status LEDs on a separate module (power, ready, activity, error) | #54 | #55 |
 | Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
 | Reset the C64 without switching the rails off (soft reset) | #70 | #88 |
 | Check and program the CPLD that replaces the PLA, and enable its outputs | #83 | #86, #48 |
@@ -748,6 +752,9 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO18 | 18 | `TCK` | Output | JTAG clock of the CPLD |
 | GPIO19 | 19 | `TMS` | Output | JTAG mode select of the CPLD, R302 (10k) pull-up on the `PLA Replacement` sheet |
 | GPIO20 | 20 | `EN_PLA` (sheet pin `EN_OUTPUT` on the `PLA Replacement` sheet) | Output | High enables the CPLD's outputs; low or not driven keeps them in high impedance (R301, 4.7k to ground), see [PLA replacement](#pla-replacement) |
+| GPIO21 | 21 | `RDY_LED` through R1323 (150 Ohm) | Output | Ready LED (white) on the LED module; R1329 (4.7k) pulls the pin down |
+| GPIO22 | 22 | `ERR_LED` through R1326 (220 Ohm) | Output | Error LED (amber) on the LED module; R1328 (4.7k) pulls the pin down |
+| GPIO23 | 23 | `ACT_LED` through R1324 (150 Ohm) | Output | Activity LED (green) on the LED module; R1327 (4.7k) pulls the pin down |
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
 | GPIO29 | 37 | `SWDAT` | Bidirectional | SWD data of the CIA 2 controller |
 | GPIO30 | 38 | `RUN` | Output | High lets the CIA 2 controller run; low or not driven holds it in reset |
@@ -776,10 +783,11 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   low, so the CPLD's outputs stay off. R302 holds TMS high, so the CPLD's
   JTAG logic stays idle. The 10k pull-ups of the SD card lines override the
   internal pull-downs, so `SD_DAT3` (chip select) is high and the card is
-  not selected.
+  not selected. R1327 to R1329 hold GPIO21 to GPIO23 low, so the ready,
+  activity and error LEDs stay off; only the power LED is on.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
-  the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD and the SD
-  card, which are all on `+3V3`, except GPIO0 and GPIO1, which reach
+  the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD, the SD
+  card and the LED module, which are all on `+3V3`, except GPIO0 and GPIO1, which reach
   `~RESET` through Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
@@ -853,6 +861,72 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
 | Q1301 | AO3400A | C20917 | SOT-23 |
 | R1313 | 1k | C11702 | 0402 |
 | R1314, R1315 | 4.7k | C25900 | 0402 |
+
+### Status LEDs
+
+The status LEDs sit on a separate LED module (`hardware/led-module`) that is
+mounted behind the front of the case and connects to J1303 with a short
+cable (#54). Through-hole LEDs on a small board can sit exactly in the holes
+of the case, independent of the main board layout. The original power LED
+connector J203 (CN10 on the original board) is gone: its LED was lit from
+`+5V`, which no longer means that the board has power.
+
+| LED | Colour | Driven by | Meaning |
+| --- | ------ | --------- | ------- |
+| PWR | Red | `+3V3` through R1325 (220 Ohm) | The board has power and the supervisor is supplied. Works without firmware. |
+| RDY | White | GPIO21 through R1323 (150 Ohm) | The checks passed, the rails are on and the C64 runs |
+| ACT | Green | GPIO23 through R1324 (150 Ohm) | Supervisor activity: SD card, the emulated disk drive and Datasette, loading programs into RAM, transfers to the other controllers, programming the CPLD. Real drives and tapes do not light it. |
+| ERR | Amber | GPIO22 through R1326 (220 Ohm) | Error or failed start-up |
+
+The patterns of RDY, ACT and ERR (steady, blinking, codes) are defined by
+the firmware (#55).
+
+- **PWR in hardware:** `+5V` only comes up after the supervisor's firmware
+  switches the rails on (#47), so a power LED on `+5V` would stay dark
+  exactly when the firmware is missing or a check fails. The PWR LED runs
+  from `+3V3` instead.
+- **Connector:** J1303 is a 2×3 pin header with 2.54 mm pitch.
+
+  | Pin | Signal |
+  | --- | ------ |
+  | 1 | GND |
+  | 2 | `PWR_LED` |
+  | 3 | Not connected (spare) |
+  | 4 | `RDY_LED` |
+  | 5 | `ACT_LED` |
+  | 6 | `ERR_LED` |
+
+  The LED module has the same header (J1), so a cable that keeps the pin
+  numbers, for example a 6-way ribbon cable with IDC sockets, connects them
+  pin for pin. The header is not keyed. A cable plugged in rotated by 180°
+  does no harm: the LED cathodes then end up on `ERR_LED` instead of ground,
+  so at most one LED lights dimly through two resistors in series, and the
+  others are reverse-biased at no more than 3.3 V (they are rated for 5 V).
+  No pin carries more than a few mA.
+- **Resistors on the main board:** the current-limiting resistors sit at
+  the supervisor, so a shorted cable cannot overload a GPIO or the rail.
+  The module only carries the LEDs and the connector.
+- **Currents:** at the low currents used here, the forward voltage of the
+  red and amber LEDs is about 2.0 V and that of the white and green LEDs
+  about 2.6 to 2.8 V. That gives about 6 mA for red and amber and about 3 to
+  5 mA for white and green, within the RP2350's GPIO limits, and bright
+  enough behind a case hole. The firmware can dim RDY, ACT and ERR with PWM
+  if they differ too much in brightness.
+- **Pull-downs:** R1327 to R1329 (4.7k) pull GPIO21 to GPIO23 to ground.
+  RP2350 erratum E9 can leave a pin that was driven high at about 2 V after
+  a reset, which would make the amber LED glow. Raspberry Pi recommends an
+  external pull-down of at most 8.2k against this. With a pin driven high,
+  each pull-down draws about 0.7 mA.
+- **Standby:** the PWR LED draws about 6 mA from `+3V3` whenever the board
+  has power. A larger resistor (330 to 470 Ohm) would halve that, if the
+  standby current matters.
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| J1303 | 2×3 pin header, 2.54 mm | C65114 | THT |
+| R1323, R1324 | 150 Ohm | C22808 | 0603 |
+| R1325, R1326 | 220 Ohm | C25091 | 0402 |
+| R1327 to R1329 | 4.7k | C25900 | 0402 |
 
 ### SD card slot
 
@@ -2024,8 +2098,7 @@ They replace the original 8-pin DIN A/V connector CN5.
 
 The `CPU, Cassette and Expansion Port` sheet
 (`cpu_cassette_expansion.kicad_sch`) holds what is left of the original
-250407 circuit: the 6510, the cassette port, the expansion port and the
-power LED connector. It used to be the two sheets of the upstream design,
+250407 circuit: the 6510, the cassette port and the expansion port. It used to be the two sheets of the upstream design,
 `250407 Sheet 1` and `250407 Sheet 2`, which #84 merged into one flat sheet
 called `250407 Design`. #107 renamed it, renumbered its parts into the 200
 range, replaced the through-hole passives with SMD parts and tidied up the
@@ -2039,7 +2112,6 @@ drawing. It keeps the title block of the upstream design with its credits
 | Reset | R201 (1k pull-up on `~RESET`). The supervisor makes the power-on reset and the soft reset through Q1301 (#70, #89) |
 | Cassette port | J202 (edge connector) with FB202 in its +5V (`CASS_5V`, with C202), FB203 in the motor supply (`CASS_POWER`), FB204 in `CASS_WRT`, and R206 (pull-up on `CASS_SENSE`) |
 | Expansion port | J201 with FB201 in `~RESET` |
-| Power LED | J203 with R214 (390 Ohm), FB206 and FB207 |
 | Decoupling | C204 (100 nF), C201 and C203 (10 uF) on `+5V` |
 
 - **Connections:** the sheet connects to the other sheets through
@@ -2071,14 +2143,14 @@ and the upstream replica:
 | U7 | U201 | 6510 in a DIP-40 socket | |
 | CN6 | J201 | Expansion port | |
 | CN3 | J202 | Cassette port (edge connector) | |
-| CN10 | J203 | Power LED connector | |
+| CN10 | (J203) | Power LED connector | Removed (#54), see [Status LEDs](#status-leds) |
 | FB4 | FB201 | Ferrite bead in `~RESET` to the expansion port | 100 Ohm 0805 |
 | FB3 | FB202 | Ferrite bead in the cassette port's +5V | 120 Ohm 2 A 0603 |
 | FB2 | FB203 | Ferrite bead in the cassette motor supply | 120 Ohm 2 A 0603 |
 | FB1 | FB204 | Ferrite bead in `CASS_WRT` | 100 Ohm 0805 |
 | FB5 | FB205 | Ferrite bead in `PHI2` | 100 Ohm 0805 |
-| FB20 | FB206 | Ferrite bead in the LED's ground | 100 Ohm 0805 |
-| FB21 | FB207 | Ferrite bead in the LED's supply | 100 Ohm 0805 |
+| FB20 | (FB206) | Ferrite bead in the LED's ground | Removed (#54) |
+| FB21 | (FB207) | Ferrite bead in the LED's supply | Removed (#54) |
 | C17 | C201 | 10 uF on `+5V` | MLCC 0805 |
 | C1 | C202 | 100 nF on the cassette port's +5V | 0402 |
 | C8 | C203 | 10 uF on `+5V` | MLCC 0805 |
@@ -2089,7 +2161,7 @@ and the upstream replica:
 | R45, R44, R43 | R207, R208, R209 | 3k3 pull-ups on `~LORAM`, `~HIRAM`, `~CHAREN` | 0402 |
 | RP4 pins 4, 5, 6, 8 | R210 to R213 | 3k3 pull-ups on A15, A14, A13, A12 | 0402 |
 | RP4 pin 3 | (none) | 3k3 pull-up on `~IRQ` | R1533 on the CIA 1 sheet is now 3k3 instead |
-| R39 | R214 | 390 Ohm in the power LED's supply | 0603 |
+| R39 | (R214) | 390 Ohm in the power LED's supply | Removed (#54) |
 
 R201 to R203 kept their numbers. The references C203 and C204 were used on
 the original board for the PAL-only 82 pF capacitor on `~CAS` and an
@@ -2103,15 +2175,13 @@ of the VIC-II and RAM and ROM sections still use their original numbers.
 | U201 | 6510 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
 | J201 | Expansion port | C5173343 | THT |
 | J202 | Cassette port (edge fingers on the PCB) | | |
-| J203 | Power LED connector | C49257 | THT |
 | C201, C203 | 10 uF 25 V X5R | C15850 | 0805 |
 | C202, C204 | 100 nF | C1525 | 0402 |
-| FB201, FB204 to FB207 | 100 Ohm at 100 MHz, 800 mA | C1015 | 0805 |
+| FB201, FB204, FB205 | 100 Ohm at 100 MHz, 800 mA | C1015 | 0805 |
 | FB202, FB203 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
 | R201 | 1k | C11702 | 0402 |
 | R202, R203, R205 to R213 | 3k3 | C25890 | 0402 |
 | R204 | 1.5k | C25867 | 0402 |
-| R214 | 390 Ohm | C23151 | 0603 |
 
 - **Ferrite beads:** the beads in the cassette port's +5V and motor supply
   use the 2 A part, because the Datasette motor draws a few hundred mA and
@@ -2240,6 +2310,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Added the status LED connector to the `Supervisor and SD card slot` sheet (#54): J1303 (2×3 pin header, C65114) for the new LED module, with R1325 (220 Ohm, C25091) from `+3V3` for the power LED, R1323 and R1324 (150 Ohm, C22808) from GPIO21 (ready) and GPIO23 (activity), R1326 (220 Ohm, C25091) from GPIO22 (error), and R1327 to R1329 (4.7k, C25900) pulling GPIO21 to GPIO23 down (RP2350 erratum E9). Removed the original power LED connector J203 with R214, FB206 and FB207 from the `CPU, Cassette and Expansion Port` sheet |
 | 2026-11-01 | Cleaned up the remaining original circuit (#107): renamed the `250407 Design` sheet to `CPU, Cassette and Expansion Port` (file `cpu_cassette_expansion.kicad_sch`) and renumbered its parts into the 200 range (U7 to U201, CN6, CN3 and CN10 to J201 to J203, FB4, FB3, FB2, FB1, FB5, FB20 and FB21 to FB201 to FB207, C17, C1, C8 and C9 to C201 to C204, R51, R1, R45, R44, R43 and R39 to R204, R206 to R209 and R214). Replaced the through-hole passives with SMD parts: 10 uF MLCCs (C15850) for the electrolytics, 100 nF 0402 (C1525), ferrite beads C1015 and, in the cassette +5V and motor supply, C14709, resistors in 0402 (R214 in 0603). Replaced the resistor array RP4 with R205 (`~DMA`) and R210 to R213 (A12 to A15); its `~IRQ` pull-up is dropped and R1533 on the CIA 1 sheet changed from 4.7k to 3k3 (C25890) instead. Labelled the cassette port's +5V `CASS_5V`, updated note B (U201), and tidied up the drawing |
 | 2026-11-01 | Let the CIA 1 controller drive `~NMI` for RESTORE (#91): U1501 GPIO27 now connects directly to `~NMI` through a `~NMI` sheet pin on the `CIA1, Keyboard and Joysticks` sheet, replacing `~RESTORE_NMI`. Removed the RESTORE one-shot from `250407 Design`: U20 (556, both halves) with R33, R35, R41, C23 and C38, U8 (7406, gate C was the last one in use) and the decoupling capacitors C22 and C39 |
 | 2026-11-01 | Removed the colour data switch U503 (4066, formerly U16) and its decoupling capacitor C508 from the `VIC-II, HF Module Replacement and AV out` sheet (#81); U1401 now drives the colour RAM nibble on D0 to D3 in 6510 cycles itself. Corrected the bit order of the colour data lines: renamed `COLOR_D0` to `COLOR_D3` to `COLORD0` to `COLORD3` and connected `COLORDn` (U1401 GPIO36 plus n) to the VIC-II's D(8+n), so that it carries colour bit n. The two sheets now connect through a `COLORD[0..3]` bus |
