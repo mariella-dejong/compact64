@@ -508,8 +508,16 @@ heat in a TO-220 transistor (about 0.9 W at 150 mA from 12 V) and drew about
   light load, which would make its frequency vary. The converter is not
   synchronized to the sync clock; it only runs while the motor turns.
 - **Motor control, as on the original board:** the 6510 drives Q1101 (BC847)
-  from port bit P5 (`CASS_MOTOR`, U201 pin 24) through R1104 (1k), with R1105
-  (10k) pulling its base low. With P5 high, Q1101 pulls the enable input
+  from port bit P5 (`CASS_MOTOR`, U201 pin 24) through R1104 (10k), with
+  R1105 (100k) pulling its base low. Until #100 these were 1k and 10k. The
+  6510's NMOS port delivers little current when high, and with 1k the base
+  current pulled P5 down to an estimated 1.2 to 1.7 V. That still switched
+  Q1101, but was too low for the supervisor, which now reads P5 to pause
+  the virtual Datasette. With 10k, P5 only delivers about 0.2 mA and stays
+  near its rated high level. Q1101 switches only the 100k pull-up R1103, so
+  about 0.1 mA of base current is still far more than it needs. With R1105
+  at 100k, it turns on from about 0.7 V on P5, and stays off with P5 low (at
+  most 0.4 V on P5 gives at most 0.36 V on the base). With P5 high, Q1101 pulls the enable input
   (`CASS_EN`) low and the converter is off; it then draws about 0.13 mA,
   mostly through the enable pull-up R1103 (100k). With P5 low, R1103 pulls
   the enable input up and the converter starts with a 1 ms soft start. During
@@ -788,6 +796,10 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO10 | 8 | `DATA` through R1337 (100 Ohm) | Input | Serial bus DATA |
 | GPIO11 | 9 | `SER_CLK_IN`, to U1602 gate E (pin 11) | Output | High pulls the serial bus CLK low; R1647 (10k) pulls the pin down |
 | GPIO12 | 11 | `SER_DATA_IN`, to U1602 gate F (pin 13) | Output | High pulls the serial bus DATA low; R1646 (10k) pulls the pin down |
+| GPIO24 | 25 | `CASS_RD` through R1338 (220 Ohm) | Open drain (firmware) | Plays tape pulses for the virtual Datasette (#100): low pulls the cassette read line low; never driven high |
+| GPIO25 | 26 | `CASS_SENSE` through R1339 (220 Ohm) | Open drain (firmware) | Low makes the PLAY key look pressed; never driven high |
+| GPIO26 | 27 | `CASS_MOTOR` through R1340 (1k) | Input | 6510 port bit P5: low means motor on |
+| GPIO27 | 28 | `CASS_WRT` through R1341 (1k) | Input | 6510 port bit P3, the cassette write signal, for recording |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
 | GPIO16 | 16 | `TDO` | Input | JTAG data from the CPLD (U301) |
 | GPIO17 | 17 | `TDI` | Output | JTAG data to the CPLD |
@@ -835,8 +847,10 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD, the SD
   card and the LED module, which are all on `+3V3`, to the inputs of the
   chip and rail checks (GPIO3 to GPIO7), which the firmware must never drive,
-  and to the serial bus: GPIO8 to GPIO10 read it through 100 Ohm and GPIO11
-  and GPIO12 only drive U1602, which runs from `+3V3` and only sinks, except GPIO0 and GPIO1, which reach
+  to the serial bus: GPIO8 to GPIO10 read it through 100 Ohm and GPIO11
+  and GPIO12 only drive U1602, which runs from `+3V3` and only sinks, and to
+  the cassette lines: GPIO24 and GPIO25 only pull low or release, and
+  GPIO26 and GPIO27 are inputs, all behind series resistors, except GPIO0 and GPIO1, which reach
   `~RESET` through Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
@@ -2294,6 +2308,40 @@ by Bwack, with help from Der Alte Bastler).
 - **Cassette port:** read (`CASS_RD`, pin D-4) goes to CIA 1's `~FLAG`
   (U1501) and the serial bus SRQ, as on the original board; sense (P4),
   write (P3) and motor (P5) go to the 6510's port.
+- **Virtual Datasette (#100):** the supervisor also connects to all four
+  cassette lines, so that its firmware can play `.tap` images from the SD
+  card (#101). A real Datasette on J202 keeps working next to it.
+
+  | Line | Supervisor | Series resistor | Use |
+  | ---- | ---------- | --------------- | --- |
+  | `CASS_RD` | GPIO24 | R1338, 220 Ohm | Pull low for each tape pulse (open drain in firmware) |
+  | `CASS_SENSE` | GPIO25 | R1339, 220 Ohm | Pull low to make PLAY look pressed (open drain in firmware) |
+  | `CASS_MOTOR` | GPIO26 | R1340, 1k | Read: low means motor on, pause playback when high |
+  | `CASS_WRT` | GPIO27 | R1341, 1k | Read: record what the C64 writes (optional) |
+
+  - **Direct GPIOs instead of buffers:** unlike the serial bus, these lines
+    have a single pull-up each (R1534 4.7k on `CASS_RD`, R206 3.3k on
+    `CASS_SENSE`), so pulling them low takes only 1 to 1.5 mA, well within
+    an RP2350 pin.
+  - **Series resistors:** 220 Ohm on the outputs keeps the low level at
+    about 0.22 V (`CASS_RD`) and 0.31 V (`CASS_SENSE`), well below the
+    0.8 V that CIA 1's `~FLAG` and the 6510's P4 need. With 1k, the lows
+    would have been 0.88 V and 1.16 V. 220 Ohm also limits the current to
+    about 15 mA if the firmware ever drove a pin high while a real
+    Datasette pulls the line low. The firmware must only pull these pins
+    low or release them, never drive them high.
+  - **Motor:** P5 is read through R1340. R1104 and R1105 were changed for
+    this, see [Cassette motor supply](#cassette-motor-supply).
+  - **Fail-safe:** in reset the GPIOs are inputs; R1534 and R206 keep the
+    read and sense lines high, so the C64 sees no tape and no key. RP2350
+    erratum E9 does not matter here, because these strong external pull-ups
+    override a latched pin.
+  - **Real Datasette:** both share the lines. Sense is pulled low by either
+    one without conflict. The 1530's read output is believed to be open
+    collector (the C64 provides the pull-up); this still has to be
+    confirmed. The firmware only switches the virtual Datasette on while no
+    real one is playing (#101).
+  - **PIO window:** GPIO24 to GPIO27 are consecutive.
 - **Sockets:** note B on the sheet lists the chips that are fitted in
   sockets: U201 (8500, or a 6510), and U504 and U1701 on their own sheets.
 - **Removed so far:** #83 replaced U17, U15, U27 and gate B of U8 with a
@@ -2525,6 +2573,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Connected the supervisor to the cassette port lines for a virtual Datasette (#100): GPIO24 and GPIO25 to `CASS_RD` and `CASS_SENSE` through R1338 and R1339 (220 Ohm, C25091), GPIO26 and GPIO27 to `CASS_MOTOR` and `CASS_WRT` through R1340 and R1341 (1k, C11702). Changed R1104 from 1k to 10k (C25744) and R1105 from 10k to 100k (C25741), so that P5's high level stays readable. Renamed the hierarchical label `~CIA1_FLAG` on the CPU sheet to `~CASS_RD` |
 | 2026-11-01 | Connected the supervisor to the serial bus as a virtual drive (#98): GPIO8, GPIO9 and GPIO10 read ATN, CLK and DATA through R1335 to R1337 (100 Ohm, C25076); GPIO11 and GPIO12 drive CLK and DATA through the previously unused gates E and F of U1602, with pull-downs R1647 and R1646 (10k, C25744). New sheet pins between the `Supervisor and SD card slot` and `CIA2, Serial Port and User Port` sheets |
 | 2026-11-01 | Reworked the ESD protection (#72). Supervisor: D1301 to D1304 replaced by the array U1304 (TPD4E05U06DQA, C138714) on D+, D-, CC1 and CC2. CIA 1: the single diodes on the control ports replaced by U1504 (port 1, pins 1 to 4), U1505 (port 2, pins 1 to 4), U1506 and U1507 (fire button and both POT lines of port 2 and port 1; the POT lines were unprotected before); the keyboard port's D+ and D- now on D1504 and D1505; D1501 (H5VL10BH, C42413893) added on the control ports' +5V. Cassette port: U202 (TPD4E05U06DQA) on `CASS_SENSE`, `CASS_WRT'` and `CASS_RD`, D201 (H5VL10BH) on `CASS_5V`. AV outputs: D502 changed from SMF5.0CA to H5VL10BH, D503 to D506 (H5VL10BH) added on `AUDIO_OUT`, `COMP_OUT`, `CHROMA_OUT` and `LUMA_OUT`, and R502 (100k, C25741) from `AUDIO_OUT` to ground |
 | 2026-11-01 | Changed the CPU to the 8500 (#75): U201's value is now `8500`, its description and note B on the `CPU, Cassette and Expansion Port` sheet say to fit an MOS 8500 and that a 6510 also works. No circuit change: the 8500 has the same pinout, supply, timing and processor port as the 6510. Corrected the reference in the `PHI2_PROBE` note on the same sheet (R215, formerly R214) |
