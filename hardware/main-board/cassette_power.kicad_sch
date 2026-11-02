@@ -2528,7 +2528,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 63.5 91.44 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2571,7 +2571,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C11702"
+		(property "LCSC Part #" "C25744"
 			(at 63.5 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -2789,7 +2789,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "100k"
 			(at 68.58 99.06 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2833,7 +2833,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C25744"
+		(property "LCSC Part #" "C25741"
 			(at 71.12 97.79 0)
 			(hide yes)
 			(show_name no)
