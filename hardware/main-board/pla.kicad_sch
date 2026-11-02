@@ -1860,6 +1860,12 @@
 		(uuid "4b4ad81e-0df5-4f13-bdc5-d15bda8e9ed8")
 	)
 	(junction
+		(at 170.18 99.06)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6bbd8c4e-f912-4a00-8716-754a9618648d")
+	)
+	(junction
 		(at 129.54 36.195)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2067,6 +2073,16 @@
 	)
 	(wire
 		(pts
+			(xy 170.18 99.06) (xy 186.69 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3d556f52-2bfc-4047-a51d-99ff95081d77")
+	)
+	(wire
+		(pts
 			(xy 117.475 111.76) (xy 122.555 111.76)
 		)
 		(stroke
@@ -2127,6 +2143,16 @@
 	)
 	(wire
 		(pts
+			(xy 170.18 90.17) (xy 170.18 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6d6ec067-f89c-4524-ad1f-f72803e09630")
+	)
+	(wire
+		(pts
 			(xy 186.69 91.44) (xy 181.61 91.44)
 		)
 		(stroke
@@ -2164,6 +2190,16 @@
 			(type default)
 		)
 		(uuid "afb52e56-437c-47db-b91f-f83689ae4796")
+	)
+	(wire
+		(pts
+			(xy 153.035 99.06) (xy 170.18 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b20e4ca9-076c-43d3-b3d9-992c132babb6")
 	)
 	(wire
 		(pts
@@ -2551,6 +2587,17 @@
 			(justify right)
 		)
 		(uuid "61ad56c3-7fcd-443d-a906-dede8c34e4a0")
+	)
+	(hierarchical_label "AEC_~{OE}"
+		(shape output)
+		(at 186.69 99.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "64fab2c0-4ac6-4afc-831f-321329910e1e")
 	)
 	(hierarchical_label "EN_OUTPUT"
 		(shape input)
@@ -3347,6 +3394,98 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 170.18 86.36 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "406a43f8-fb10-4a1b-b760-74c6fa4cda43")
+		(property "Reference" "R304"
+			(at 168.656 83.058 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "4.7k"
+			(at 167.894 85.598 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 171.958 86.36 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 170.18 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 170.18 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC Part #" "C25900"
+			(at 170.18 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ad725420-253f-4d29-a158-bf2af0412d2a")
+		)
+		(pin "2"
+			(uuid "19f58c51-bf8b-48b8-b6dd-72e77a50e5ee")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
+					(reference "R304")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "CPLD_Xilinx:XC9572XL-xxVQx64")
 		(at 137.795 91.44 0)
 		(unit 1)
@@ -3696,6 +3835,82 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
 					(reference "#PWR01329")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 170.18 82.55 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "517c052d-c4f0-4ae1-a7fb-178aa37bfba7")
+		(property "Reference" "#PWR01347"
+			(at 170.18 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 169.799 78.105 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 170.18 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 170.18 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 170.18 82.55 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0a8a151f-0e38-4e2f-a96d-29fa7fefa61b")
+		)
+		(instances
+			(project "c64-mini"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/4b52abbb-3e27-44dc-ae12-3c6856102545"
+					(reference "#PWR01347")
 					(unit 1)
 				)
 			)
