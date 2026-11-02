@@ -855,6 +855,7 @@ issues:
 | Status LEDs on a separate module (power, ready, activity, error) | #54 | #55 |
 | Program the clock synthesizer and enable its outputs | #76 | #76, #48 |
 | Reset the C64 without switching the rails off (soft reset) | #70 | #88 |
+| Reset button in the case | #109 | #88 |
 | Check and program the CPLD that replaces the PLA, and enable its outputs | #83 | #86, #48 |
 | Load programs, disk images and tape images from a micro SD card (#13) | #95 | #96, #97 |
 
@@ -919,6 +920,7 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO26 | 27 | `CASS_MOTOR` through R1340 (1k) | Input | 6510 port bit P5: low means motor on |
 | GPIO27 | 28 | `CASS_WRT` through R1341 (1k) | Input | 6510 port bit P3, the cassette write signal, for recording |
 | GPIO13 | 12 | `VBUS_DET` | Input | USB host connected |
+| GPIO15 | 14 | `RESET_REQ`, through R1344 (1k) to the reset button on J1304 | Input | High while the reset button is pressed; R1342 (4.7k) pulls it down, see [Reset button](#reset-button) |
 | GPIO16 | 16 | `TDO` | Input | JTAG data from the CPLD (U301) |
 | GPIO17 | 17 | `TDI` | Output | JTAG data to the CPLD |
 | GPIO18 | 18 | `TCK` | Output | JTAG clock of the CPLD |
@@ -960,7 +962,8 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   GPIO7 (chip and rail checks) are inputs; with the rails off they read
   low. R1646 and R1647 hold GPIO11 and GPIO12 low, so U1602 leaves the
   serial bus released; the firmware drives both low as its first action
-  (RP2350 erratum E9, see [Serial port](#serial-port)).
+  (RP2350 erratum E9, see [Serial port](#serial-port)). R1342 holds GPIO15
+  low, so the reset button reads as released.
 - **Back-feeding:** these pins only connect to the RAM and ROM controller,
   the CIA 1 and CIA 2 controllers, the clock synthesizer, the CPLD, the SD
   card and the LED module, which are all on `+3V3`, to the inputs of the
@@ -968,7 +971,8 @@ SWD pins (SWCLK, SWDIO) are not brought out.
   to the serial bus: GPIO8 to GPIO10 read it through 100 Ohm and GPIO11
   and GPIO12 only drive U1602, which runs from `+3V3` and only sinks, and to
   the cassette lines: GPIO24 and GPIO25 only pull low or release, and
-  GPIO26 and GPIO27 are inputs, all behind series resistors, except GPIO0 and GPIO1, which reach
+  GPIO26 and GPIO27 are inputs, all behind series resistors, and to the
+  reset button (GPIO15), which only switches `+3V3`, except GPIO0 and GPIO1, which reach
   `~RESET` through Q1301 and R1315, see [Soft reset](#soft-reset).
 
 The other GPIOs are not assigned yet; the follow-up issues assign them. The
@@ -1043,6 +1047,52 @@ GPIO1 ── R1315 4.7k ─── ~RESET                  (read back)
 | Q1301 | AO3400A | C20917 | SOT-23 |
 | R1313 | 1k | C11702 | 0402 |
 | R1314, R1315 | 4.7k | C25900 | 0402 |
+
+### Reset button
+
+A push button in the case (#109) asks the supervisor for a reset. It does
+not touch `~RESET` itself: the supervisor reads the button and makes the
+reset through Q1301, the same way as its other resets, see
+[Soft reset](#soft-reset).
+
+```
++3V3 ── R1343 220 ── J1304 pin 1 ── case button ── J1304 pin 2 ──┬── R1344 1k ── GPIO15 (RESET_REQ)
+                                                                 └── R1342 4.7k to GND
+```
+
+- **Levels:** released, R1342 holds GPIO15 at 0 V. Pressed, R1343 and R1342
+  give about 3.15 V at about 0.7 mA. R1342 (4.7k) is below the 8.2k that
+  Raspberry Pi recommends for RP2350 erratum E9, so the pin cannot hang at
+  about 2 V after a reset of the supervisor.
+- **Why through the supervisor:** an earlier draft pulsed `~RESET` directly
+  through a capacitor. A pulse like that is chopped up by the button's
+  contact bounce, and the last, short pieces can reset some chips and not
+  others. The supervisor debounces the button and then holds `~RESET` low
+  for a fixed time, so every press gives one clean reset in the right order
+  with the CPLD and the other controllers (#88, #48).
+- **Protection:** the button sits in the case on a cable. R1344 (1k) is in
+  series with GPIO15, so a discharge into the cable reaches the pin only
+  through 1k. R1343 limits the current to about 15 mA if the cable shorts
+  to ground.
+- **Cable:** a push button has no polarity, so the 2-pin cable can be
+  plugged in either way.
+- **Not the supervisor's own reset:** SW1302 (RESET) on the board resets
+  the supervisor itself, see [Circuit](#circuit-1); the case button only
+  resets the C64.
+- **Firmware (#88):** GPIO15 is an input with the internal pull-up and
+  pull-down off. The debounce time, the reset pulse length and what the
+  button does while the rails are off (ignore it, or switch the system on)
+  are defined in #88.
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| J1304 | 1x2 pin header, 2.54 mm, for the case button | C32713268 | THT |
+| R1342 | 4.7k | C25900 | 0402 |
+| R1343 | 220 Ohm | C25091 | 0402 |
+| R1344 | 1k | C11702 | 0402 |
+
+Any momentary push button works in the case, for example a tactile switch
+with a printed cap or a panel-mount push button.
 
 ### Status LEDs
 
@@ -2569,7 +2619,9 @@ Not protected, on purpose:
   with a 6.5 V standoff was found. The Datasette motor on the other end and
   the converter's output capacitors (44 uF) absorb a discharge.
 - **Internal connectors** (LED module J1303 and the debug headers of #112)
-  are not touched by users.
+  are not touched by users. The case switch J602 and the reset button J1304
+  are on cables inside the case and reach the board only through series
+  resistors (R607, R1344).
 
 ## Licence
 
@@ -2691,6 +2743,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Added a reset button connector to the `Supervisor and SD card slot` sheet (#109): J1304 (1x2 pin header, C32713268) for a push button in the case, switching `+3V3` through R1343 (220 Ohm, C25091) to GPIO15 (`RESET_REQ`) through R1344 (1k, C11702), with R1342 (4.7k, C25900) pulling the line down (RP2350 erratum E9). The supervisor makes the reset itself through Q1301 |
 | 2026-11-01 | Added the power switch (#109): P-channel MOSFETs Q606 and Q607 (AO3401A, C15127) between the reverse polarity protection and the rest of the board, with R606 and R607 (100k, C25741) as gate divider, C604 (47 nF, C1622) for a slow switch-on, and J602 (1x2 pin header, C32713268) for a switch in the case. Moved the TVS D602 before the power switch and added C605 (220 nF, C21120) there. Renamed the 12 V nets on the `Power Supply` sheet: `12V_IN` became `12V_PROT` (before the power switch) and `12V_MAIN` (after it); `12V_IN_SW` is unchanged |
 | 2026-11-01 | Added a backup for `+3V3` from `+5V` to the `3V3 Buck` sheet (#110): LDO U1002 (ME6211C33M5G-N, C82942) from `+5V` with C1014 and C1015 (1 uF, C52923), feeding `+3V3` through Schottky diode D1001 (SS34, C8678), so that `+3V3` never drops while `+5V` is up. Added a note about it to the sheet |
 | 2026-11-01 | Connected the supervisor to the cassette port lines for a virtual Datasette (#100): GPIO24 and GPIO25 to `CASS_RD` and `CASS_SENSE` through R1338 and R1339 (220 Ohm, C25091), GPIO26 and GPIO27 to `CASS_MOTOR` and `CASS_WRT` through R1340 and R1341 (1k, C11702). Changed R1104 from 1k to 10k (C25744) and R1105 from 10k to 100k (C25741), so that P5's high level stays readable. Renamed the hierarchical label `~CIA1_FLAG` on the CPU sheet to `~CASS_RD` |
