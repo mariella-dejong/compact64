@@ -286,7 +286,7 @@ made from it so far are on the `Power Supply` sheet:
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
 | `+9V`      | CJ78M09 linear regulator (U902) from the switched 12 V input | 500 mA (regulator) | #36, #73 |
 | `CASS_POWER` | TPS562208 synchronous buck converter (U1101), switched on and off by the 6510 | 2 A       | #41   |
-| `+3V3`     | LM61440 synchronous buck converter (U1001), synchronized to the clock synthesizer | 1 A budget (converter rated 4 A) | #44   |
+| `+3V3`     | LM61440 synchronous buck converter (U1001), synchronized to the clock synthesizer; backed up from `+5V` by U1002 (#110) | 1 A budget (converter rated 4 A) | #44, #110 |
 
 The HF module replacement (U501, a 78L05 behind R501) also runs from the
 switched 12 V input: the `Power Supply` sheet passes `12V_IN_SW` on through a
@@ -570,6 +570,53 @@ budget much further. At 1 A the rail draws about 0.3 A from the 12 V input.
 
 `+3V3` is the only rail that is always on. The supervisor (see below)
 switches the 12 V input of all other rails, see [Input switch](#input-switch).
+
+#### Backup from `+5V` (#110)
+
+The RP2354s (supervisor, RAM and ROM, CIA 1, CIA 2) and the CPLD run from
+`+3V3`, and many of their pins sit on 5 V nets: the C64 bus, `~RESET`,
+`~IRQ`, `~NMI`, the serial bus and the user port. Their 5 V tolerance only
+holds while their own supply is up. If `+3V3` dropped while `+5V` was still
+up, for example when the adapter is unplugged, those pins would see 5 V
+without supply. U1001 and the 5 V buck converter run from the same input,
+so the order in which they drop out is not guaranteed by itself.
+
+```
++5V ── U1002 (ME6211C33, 3.3 V LDO) ── D1001 (SS34) ──┬── +3V3
+        C1014 1 uF in        C1015 1 uF out            │
+U1001 (3V3 buck) ──────────────────────────────────────┘
+```
+
+- **Normal operation:** U1002 makes 3.3 V from `+5V`. After D1001 that is
+  slightly below the 3.32 V of U1001, so the diode does not conduct and
+  U1002 is idle; at most it shares a few mA with U1001 at the edges of the
+  tolerances.
+- **`+3V3` sags while `+5V` is up:** D1001 conducts and U1002 carries
+  `+3V3` from `+5V`. U1002 is rated for 500 mA, enough for the whole
+  `+3V3` load.
+- **`+5V` falls as well:** U1002 goes into dropout, and `+3V3` follows
+  `+5V` at about 0.5 V below it (dropout plus diode). A pin on a 5 V net is
+  then never more than about 0.5 V above the 3.3 V supply.
+- **`CAN+5V`:** its L78M05 sits behind four diodes and drops out at about
+  10 V input, long before the 5 V buck converter (about 5.5 V), so it is
+  always gone before `+5V`, and the backup from `+5V` covers it too. `+9V`
+  only feeds the SID's VDD.
+- **No back-feeding:**
+  - With `+5V` off, D1001 blocks, so `+3V3` does not drain into U1002.
+  - U1001's high-side MOSFET could only pass current back into its input
+    if `+3V3` were above `12V_IN`, which cannot happen, because `+3V3`
+    stays below `+5V`, which is made from that same input.
+- **What it does not give:** no hold-up time. Once `+5V` collapses,
+  `+3V3` follows within milliseconds, so the firmware must tolerate a
+  sudden loss of power (#111).
+- **Parts:** U1002 ME6211C33M5G-N (C82942, 500 mA, about 120 mV dropout
+  at 100 mA, SOT-23-5, CE tied to VIN); D1001 SS34 (C8678, 3 A, 40 V
+  Schottky, SMA); C1014 and C1015 (1 uF, C52923) on its input and output,
+  as the LDO needs for stability. U1002 draws a few tens of uA from `+5V`
+  while idle.
+- **To check on the prototype:** unplug the adapter under full and light
+  load and measure `+5V`, `CAN+5V` and `+3V3`: `+3V3` must never be more
+  than about 0.5 V below `+5V` while `+5V` is above about 3.5 V.
 
 Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
 
@@ -2573,6 +2620,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Added a backup for `+3V3` from `+5V` to the `3V3 Buck` sheet (#110): LDO U1002 (ME6211C33M5G-N, C82942) from `+5V` with C1014 and C1015 (1 uF, C52923), feeding `+3V3` through Schottky diode D1001 (SS34, C8678), so that `+3V3` never drops while `+5V` is up. Added a note about it to the sheet |
 | 2026-11-01 | Connected the supervisor to the cassette port lines for a virtual Datasette (#100): GPIO24 and GPIO25 to `CASS_RD` and `CASS_SENSE` through R1338 and R1339 (220 Ohm, C25091), GPIO26 and GPIO27 to `CASS_MOTOR` and `CASS_WRT` through R1340 and R1341 (1k, C11702). Changed R1104 from 1k to 10k (C25744) and R1105 from 10k to 100k (C25741), so that P5's high level stays readable. Renamed the hierarchical label `~CIA1_FLAG` on the CPU sheet to `~CASS_RD` |
 | 2026-11-01 | Connected the supervisor to the serial bus as a virtual drive (#98): GPIO8, GPIO9 and GPIO10 read ATN, CLK and DATA through R1335 to R1337 (100 Ohm, C25076); GPIO11 and GPIO12 drive CLK and DATA through the previously unused gates E and F of U1602, with pull-downs R1647 and R1646 (10k, C25744). New sheet pins between the `Supervisor and SD card slot` and `CIA2, Serial Port and User Port` sheets |
 | 2026-11-01 | Reworked the ESD protection (#72). Supervisor: D1301 to D1304 replaced by the array U1304 (TPD4E05U06DQA, C138714) on D+, D-, CC1 and CC2. CIA 1: the single diodes on the control ports replaced by U1504 (port 1, pins 1 to 4), U1505 (port 2, pins 1 to 4), U1506 and U1507 (fire button and both POT lines of port 2 and port 1; the POT lines were unprotected before); the keyboard port's D+ and D- now on D1504 and D1505; D1501 (H5VL10BH, C42413893) added on the control ports' +5V. Cassette port: U202 (TPD4E05U06DQA) on `CASS_SENSE`, `CASS_WRT'` and `CASS_RD`, D201 (H5VL10BH) on `CASS_5V`. AV outputs: D502 changed from SMF5.0CA to H5VL10BH, D503 to D506 (H5VL10BH) added on `AUDIO_OUT`, `COMP_OUT`, `CHROMA_OUT` and `LUMA_OUT`, and R502 (100k, C25741) from `AUDIO_OUT` to ground |
