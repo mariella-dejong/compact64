@@ -280,7 +280,8 @@ made from it so far are on the `Power Supply` sheet:
 
 | Rail       | Made by                                                     | Rated for | Issue |
 | ---------- | ----------------------------------------------------------- | --------- | ----- |
-| `+12V_IN`  | Input stage: barrel jack, polyfuse, reverse polarity and TVS protection | 2.5 A (polyfuse hold current) | #10   |
+| `12V_PROT` | Input stage: barrel jack, polyfuse, reverse polarity and TVS protection | 2.5 A (polyfuse hold current) | #10   |
+| `12V_MAIN` | Power switch (Q606, Q607), set by the power switch on the case; feeds `+3V3` and the input switch | 2.5 A | #109 |
 | `12V_IN_SW` | Input switch (Q604, Q605), turned on by the supervisor; feeds every rail below except `+3V3` | 2.5 A | #47   |
 | `+5V`      | LM61440 synchronous buck converter (U701), synchronized to the clock synthesizer | 2 A       | #28   |
 | `CAN+5V`   | L78M05 linear regulator (U801) behind four M7 diodes        | 500 mA    | #34   |
@@ -311,21 +312,91 @@ and rail checks](#chip-and-rail-checks). If either rail drops out of
 regulation, the sync clock stops and both converters run unsynchronized at
 about 400 kHz, set by R701 and R1002, until `PGOOD` returns.
 
+### 12 V path
+
+The 12 V input passes three stages, and each stage has its own net name:
+
+```
+J601 ── F601 ── Q601/Q602 ── 12V_PROT ── Q606/Q607 ── 12V_MAIN ── Q604/Q605 ── 12V_IN_SW
+ jack   fuse    reverse         TVS D602   power switch   U1001 (+3V3)  input switch  all other rails
+                polarity        C605       (case switch)                (supervisor)
+```
+
+| Net | Connected |
+| --- | --------- |
+| `12V_PROT` | After the reverse polarity protection: TVS D602, C605 (220 nF), the zener D601 of Q601/Q602, the power switch Q606/Q607 with R606 and C604 |
+| `12V_MAIN` | After the power switch: C601, C602, 3V3 buck converter U1001 with its input capacitors and EN pull-up R1001, the input switch Q604/Q605 with R605 and C603 |
+| `12V_IN_SW` | After the input switch: 5V buck converter U701 with R705, cassette buck converter U1101 with R1103, `CAN+5V` (D801 to U801), `+9V` (FB901 to U902), HF module replacement (R501) |
+
+The converter sheets call their input `VIN`. That hierarchical label always
+means "the input of this converter" and connects to `12V_MAIN` or
+`12V_IN_SW` on the `Power Supply` sheet.
+
+### Power switch
+
+The power switch (#109) turns the whole board on and off, including
+`+3V3` and the supervisor. A small switch in the case (on J602) steers a
+P-channel MOSFET pair, so the switch itself only carries microamps.
+
+```
+12V_PROT ──┬───────────── Q606/Q607 (2x AO3401A, source on 12V_PROT) ── 12V_MAIN
+           │                   │ gate (PWR_SW_GATE)
+           ├── R606 100k ──────┤
+           └── C604 47 nF ─────┤
+                               └── R607 100k ── J602 pin 2 ── case switch ── J602 pin 1 ── GND
+```
+
+- **Off (switch open):** R606 holds the gate at the source, so Q606 and
+  Q607 are off. They are mounted the other way round from Q601/Q602
+  (source on the input side), so their body diodes block, and the board
+  draws nothing.
+- **On (switch closed):** R606 and R607 divide the gate to about half the
+  input voltage: about -6 V gate-source at 12 V, and about -10.75 V at the
+  21.5 V clamping voltage of D602, within the AO3401A's +/-12 V limit. Two
+  in parallel carry the full 2.5 A at about 0.17 W, like the input switch.
+- **Why a second pair:** Q601/Q602 (reverse polarity protection) cannot be
+  reused. Their body diodes conduct in the normal direction, so the board
+  would keep running through them while they are off.
+- **C604 (47 nF):** slows the switch-on (time constant about 2.4 ms), so
+  that C601, C602 and the converters' input capacitors charge gently, and
+  keeps the gate at the source when the adapter is plugged in with the
+  switch off.
+- **ESD:** the switch sits in the case on a cable. R607 is on the gate side
+  of J602, so a discharge into the cable reaches the gate only through
+  100k, where C604 absorbs it. D602 and C605 sit before the switch, so the
+  input stays protected while it is off.
+- **Power-off order:** switching off looks exactly like unplugging the
+  adapter. `+3V3` is backed up from `+5V` (#110), so it never drops while
+  `+5V` is still up, see [Backup from `+5V`](#backup-from-5v-110).
+- **Consequences:** with the switch off, the supervisor is off too, so the
+  SD card cannot be reached over USB, and a firmware update cannot delay
+  the switch-off; the firmware tolerates a sudden power loss (#111).
+- **Reverse polarity:** Q601/Q602 still block a reversed input, and Q606
+  and Q607 stay off.
+
+| Ref | Part | LCSC | Package |
+| --- | ---- | ---- | ------- |
+| Q606, Q607 | AO3401A | C15127 | SOT-23 |
+| R606, R607 | 100k | C25741 | 0402 |
+| C604 | 47 nF | C1622 | 0603 |
+| C605 | 220 nF | C21120 | 0603 |
+| J602 | 1x2 pin header, 2.54 mm, for the case switch | C32713268 | THT |
+
+The case switch itself is not on the board. Any small latching switch
+works, for example a KCD11 mini rocker switch that snaps into a 10 x 15 mm
+cut-out.
+
 ### Input switch
 
 The supervisor (U1301) decides when the system may start (#47). It does this
 with one switch in the 12 V input: every rail except `+3V3` runs from the
 switched input `12V_IN_SW`, so a single signal turns them all on or off.
-`+3V3` stays on the unswitched `12V_IN`, because it powers the supervisor.
-
-| Net         | Connected                                                                 |
-| ----------- | ------------------------------------------------------------------------- |
-| `12V_IN`    | Input stage, 3V3 buck converter U1001 with its EN pull-up R1001, the input switch |
-| `12V_IN_SW` | 5V buck converter U701 with R705, cassette buck converter U1101 with R1103, `CAN+5V` (D801 to U801), `+9V` (FB901 to U902), HF module replacement (R501) |
+`+3V3` stays on `12V_MAIN`, before the input switch, because it powers the
+supervisor.
 
 **Circuit:**
 
-- Q604 and Q605 (AO3401A, P-channel) in parallel, sources on `12V_IN`,
+- Q604 and Q605 (AO3401A, P-channel) in parallel, sources on `12V_MAIN`,
   drains on `12V_IN_SW`. Two in parallel halve the on-resistance to about
   28 mOhm, so they dissipate about 0.17 W at 2.5 A.
 - R605 (100k) pulls their gates to the source, so they are off by default.
@@ -336,7 +407,7 @@ switched input `12V_IN_SW`, so a single signal turns them all on or off.
   limit.
 - Q603's gate is driven by `POWER_ON` through R602 (10k), with R603 (200k)
   to ground.
-- C603 (47 nF) between the gates and `12V_IN` does two things. It keeps
+- C603 (47 nF) between the gates and `12V_MAIN` does two things. It keeps
   the gates at the source voltage when the adapter is plugged in, so the
   MOSFETs' gate-drain capacitance cannot turn them on briefly. And it slows
   down switching: the gates move with a time constant of about 2.4 ms when
@@ -604,7 +675,7 @@ U1001 (3V3 buck) ─────────────────────
 - **No back-feeding:**
   - With `+5V` off, D1001 blocks, so `+3V3` does not drain into U1002.
   - U1001's high-side MOSFET could only pass current back into its input
-    if `+3V3` were above `12V_IN`, which cannot happen, because `+3V3`
+    if `+3V3` were above `12V_MAIN`, which cannot happen, because `+3V3`
     stays below `+5V`, which is made from that same input.
 - **What it does not give:** no hold-up time. Once `+5V` collapses,
   `+3V3` follows within milliseconds, so the firmware must tolerate a
@@ -2620,6 +2691,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-01 | Added the power switch (#109): P-channel MOSFETs Q606 and Q607 (AO3401A, C15127) between the reverse polarity protection and the rest of the board, with R606 and R607 (100k, C25741) as gate divider, C604 (47 nF, C1622) for a slow switch-on, and J602 (1x2 pin header, C32713268) for a switch in the case. Moved the TVS D602 before the power switch and added C605 (220 nF, C21120) there. Renamed the 12 V nets on the `Power Supply` sheet: `12V_IN` became `12V_PROT` (before the power switch) and `12V_MAIN` (after it); `12V_IN_SW` is unchanged |
 | 2026-11-01 | Added a backup for `+3V3` from `+5V` to the `3V3 Buck` sheet (#110): LDO U1002 (ME6211C33M5G-N, C82942) from `+5V` with C1014 and C1015 (1 uF, C52923), feeding `+3V3` through Schottky diode D1001 (SS34, C8678), so that `+3V3` never drops while `+5V` is up. Added a note about it to the sheet |
 | 2026-11-01 | Connected the supervisor to the cassette port lines for a virtual Datasette (#100): GPIO24 and GPIO25 to `CASS_RD` and `CASS_SENSE` through R1338 and R1339 (220 Ohm, C25091), GPIO26 and GPIO27 to `CASS_MOTOR` and `CASS_WRT` through R1340 and R1341 (1k, C11702). Changed R1104 from 1k to 10k (C25744) and R1105 from 10k to 100k (C25741), so that P5's high level stays readable. Renamed the hierarchical label `~CIA1_FLAG` on the CPU sheet to `~CASS_RD` |
 | 2026-11-01 | Connected the supervisor to the serial bus as a virtual drive (#98): GPIO8, GPIO9 and GPIO10 read ATN, CLK and DATA through R1335 to R1337 (100 Ohm, C25076); GPIO11 and GPIO12 drive CLK and DATA through the previously unused gates E and F of U1602, with pull-downs R1647 and R1646 (10k, C25744). New sheet pins between the `Supervisor and SD card slot` and `CIA2, Serial Port and User Port` sheets |
