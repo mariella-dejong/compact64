@@ -5557,6 +5557,12 @@
 		(uuid "b9015e85-0919-4f1c-93a5-e79146dca986")
 	)
 	(junction
+		(at 177.8 141.605)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c5496183-bc14-4c2b-aea1-2797fc1703a6")
+	)
+	(junction
 		(at 318.135 28.575)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8040,7 +8046,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 141.605) (xy 154.94 141.605)
+			(xy 177.8 141.605) (xy 154.94 141.605)
 		)
 		(stroke
 			(width 0)
@@ -8430,6 +8436,16 @@
 	)
 	(wire
 		(pts
+			(xy 177.8 141.605) (xy 179.07 141.605)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "abbb8a6c-cc46-449f-85f9-ddb427461e42")
+	)
+	(wire
+		(pts
 			(xy 318.135 42.545) (xy 318.135 46.355)
 		)
 		(stroke
@@ -8620,7 +8636,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 201.295) (xy 194.31 201.295)
+			(xy 177.8 201.295) (xy 194.31 201.295)
 		)
 		(stroke
 			(width 0)
@@ -8780,7 +8796,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 201.295) (xy 179.07 141.605)
+			(xy 177.8 201.295) (xy 177.8 141.605)
 		)
 		(stroke
 			(width 0)
@@ -9849,7 +9865,7 @@
 		(uuid "b0c260ff-31b1-4e8c-81e0-527dac67a972")
 	)
 	(label "~{CAS}"
-		(at 158.75 141.605 0)
+		(at 157.48 141.605 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -10292,6 +10308,17 @@
 		)
 		(uuid "90ac810e-e01e-49c8-a21b-616ab8ebc109")
 	)
+	(hierarchical_label "~{CAS}"
+		(shape output)
+		(at 179.07 141.605 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a5d2fe0e-5c37-4617-bd53-f68f7463af07")
+	)
 	(hierarchical_label "~{VA14}"
 		(shape input)
 		(at 180.34 126.365 0)
@@ -10302,17 +10329,6 @@
 			(justify left)
 		)
 		(uuid "aba903e4-fe8f-42ed-95c3-34e08105d1eb")
-	)
-	(hierarchical_label "~{CAS}"
-		(shape input)
-		(at 179.07 141.605 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "c5d74b0d-6f7e-4b72-b079-ef73b1c786d2")
 	)
 	(hierarchical_label "DOT_CLOCK_IN"
 		(shape input)

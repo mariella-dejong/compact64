@@ -7947,7 +7947,7 @@
 				(justify left)
 			)
 		)
-		(pin "~{CAS}" input
+		(pin "~{CAS}" output
 			(at 260.985 210.82 0)
 			(uuid "96f0849e-2a71-478c-bb1d-091a8f50337c")
 			(effects
