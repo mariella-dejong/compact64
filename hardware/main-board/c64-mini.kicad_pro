@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#U176,C515-516,#PWR1017-1020,#PWR1303-1304,#PWR1346,U507,U1305-1307",
+    "used_designators": "C517,#PWR1307,#U176-177,U1305",
     "variants": []
   },
   "sheets": [
