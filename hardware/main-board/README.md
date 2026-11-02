@@ -644,9 +644,10 @@ switches the 12 V input of all other rails, see [Input switch](#input-switch).
 
 #### Backup from `+5V` (#110)
 
-The RP2354s (supervisor, RAM and ROM, CIA 1, CIA 2), the CPLD and the
-address multiplexers U505 and U506 run from `+3V3`, and many of their pins sit on 5 V nets: the C64 bus, `~RESET`,
-`~IRQ`, `~NMI`, the serial bus and the user port. Their 5 V tolerance only
+The RP2354s (supervisor, RAM and ROM, CIA 1, CIA 2), the CPLD, the address
+multiplexers U505 and U506 and the address latch U508 run from `+3V3`, and
+many of their pins sit on 5 V nets: the C64 bus, `~RESET`, `~IRQ`, `~NMI`,
+the serial bus and the user port. Their 5 V tolerance only
 holds while their own supply is up. If `+3V3` dropped while `+5V` was still
 up, for example when the adapter is unplugged, those pins would see 5 V
 without supply. U1001 and the 5 V buck converter run from the same input,
@@ -1356,6 +1357,13 @@ The reference numbers R301 and R302 were used before for the pull-ups on
   are off. U505 and U506 then stay disabled. R303 goes to `+3V3` (#133):
   U505 and U506 run from `+3V3` and are powered while `+5V` is off, so a
   pull-up to `+5V` would let `~AEC` read low then and turn them on.
+- **`AEC_~{OE}`:** U301 passes `AEC` through on pin 46 to the output enable
+  of the address latch U508 (#135). R304 (4.7k) pulls it up to `+3V3`, so
+  U508 stays off while the CPLD's outputs are off. U508 runs from `+3V3` and
+  is powered while `+5V` is off. With its output enable on `AEC` directly,
+  the unpowered VIC-II would hold `AEC` low and turn U508 on, and a pull-up
+  on `AEC` itself would feed current into the VIC-II. The CPLD adds about
+  10 ns to the enable, see [VIC-II](#vic-ii).
 - **JTAG:** TDI (pin 28), TMS (pin 29), TCK (pin 30) and TDO (pin 53) go to
   the supervisor's GPIO17, GPIO19, GPIO18 and GPIO16, so that it can check
   and program the CPLD (#86). R302 (10k) pulls TMS up to `+3V3`, which keeps
@@ -1398,11 +1406,12 @@ The reference numbers R301 and R302 were used before for the pull-ups on
 | 43 | `~AEC` | Out | U8 gate B, to U505 and U506 |
 | 44 | `CAEC` | Out | U27: `AEC` AND `~DMA`, to the 6510's AEC |
 | 45 | `RDY` | Out | U27: `BA` AND `~DMA`, to the 6510's RDY |
+| 46 | `AEC_~{OE}` | Out | None (#135): `AEC` passed through, to U508's `~OE` |
 | 28, 29, 30, 53 | `TDI`, `TMS`, `TCK`, `TDO` | JTAG | To the supervisor |
 
 - **Internal signals:** `~I/O` (PLA F5), `~COLOR` and `~CIAS` (U15 1Y2 and
   1Y3) no longer leave the CPLD.
-- **Free pins:** 1, 2, 4, 6, 46 to 52, 56 and 57 (13 user I/O). The CPLD's
+- **Free pins:** 1, 2, 4, 6, 47 to 52, 56 and 57 (12 user I/O). The CPLD's
   bus-hold keeps them at a defined level, so they are not connected.
 
 ### Levels
@@ -1434,7 +1443,7 @@ up (#86).
   accepted.
 - **Blank or programming:** all outputs float high through these pull-ups.
   All chip selects are active low and `GR/~W` high means read, so nothing is
-  selected. The supervisor programs the CPLD only with the rails off or with
+  selected, and `~AEC` and `AEC_~{OE}` high keep U505, U506 and U508 off. The supervisor programs the CPLD only with the rails off or with
   `~RESET` held low (#86).
 - **Power-up:** VCCINT and VCCIO come up together with `+3V3`. Below 1 V on
   VCCINT the pins are undefined and may drive briefly, but `+5V` is off then.
@@ -1455,15 +1464,15 @@ not depend on it.
 | --- | ---- | ---- | ------- |
 | U301 | XC9572XL-10VQG64C | C90569 | TQFP-64 (VQ64) |
 | C301 to C304 | 100 nF | C1525 | 0402 |
-| R301, R303 | 4.7k | C25900 | 0402 |
+| R301, R303, R304 | 4.7k | C25900 | 0402 |
 | R302 | 10k | C25744 | 0402 |
 | R202, R203 (`CPU, Cassette and Expansion Port` sheet) | 3k3 | C25890 | 0402 |
 
 ### Logic and firmware
 
 - **Logic (#93):** the HDL implements the 906114-01's equations from skoe's
-  "The C64 PLA Dissected", plus U15, U27 and the `~AEC` inverter, with the
-  output enables on GTS1. It is built with Xilinx ISE 14.7, the only tool
+  "The C64 PLA Dissected", plus U15, U27, the `~AEC` inverter and
+  `AEC_~{OE}` (`AEC` passed through), with the output enables on GTS1. It is built with Xilinx ISE 14.7, the only tool
   for the XC9500XL. The source and the programming file go into the
   repository, so that nobody needs ISE to build the board.
 - **Supervisor (#86):** at start-up, reads the IDCODE and the USERCODE over
@@ -2212,7 +2221,7 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | ------- | ------------- | --- |
 | U19 | 6567 VIC-II | U504 (8562) |
 | U13, U25 | 74LS257 address multiplexers | U505, U506 (74LVC257A, on `+3V3`) |
-| U26 | 74LS373 address latch | U508 (74LS373) |
+| U26 | 74LS373 address latch | U508 (74LVC373A, on `+3V3`) |
 | U14 | 74LS258 multiplexer for VA6, VA7 and the bank | U502 (74F258) |
 | U16 | 4066 colour data switch | U503 (CD4066B), then removed (#81): U1401 drives both sides |
 | FB23 | Ferrite bead in `PHI0` | FB501 |
@@ -2248,9 +2257,10 @@ These parts of the original circuit stay on the `CPU, Cassette and Expansion Por
   - U505 and U506 (74LVC257A) put the 6510's address onto `VA0` to `VA7` in
     6510 cycles (`~OE` on `~AEC`), so that the VIC-II sees which register is
     accessed. `~CAS` selects the low or high address byte.
-  - U508 (74LS373) latches `VA0` to `VA7` when `~RAS` falls and drives it
-    onto A0 to A7 in VIC-II cycles (`~OE` on `AEC`), for character ROM and
-    colour RAM fetches.
+  - U508 (74LVC373A) latches `VA0` to `VA7` when `~RAS` falls and drives it
+    onto A0 to A7 in VIC-II cycles, for character ROM and colour RAM
+    fetches. Its `~OE` is on `AEC_~{OE}`, which the CPLD (U301) passes
+    through from `AEC`.
   - U502 (74F258) drives `VA6` and `VA7` in VIC-II cycles (`~OE` on
     `AEC`): the VIC-II's own A6 and A7 (`VA6'`, `VA7'`) or the bank bits
     `~VA14`/`~VA15`, selected by `~CAS`.
@@ -2270,14 +2280,15 @@ These parts of the original circuit stay on the `CPU, Cassette and Expansion Por
   R512 is 1 kOhm, the value for the 856x, see
   [HF module replacement](#hf-module-replacement).
 - **Decoupling:** C507 and C515 to C517 (100 nF), one per logic chip. C515
-  and C516 (U505, U506) are on `+3V3`, the others on `+5V`.
+  to C517 (U505, U506, U508) are on `+3V3`, C507 (U502) on `+5V`.
 
 ### Parts
 
 All parts on the sheet except the VIC-II itself are SMD. The ferrite beads
 and C513 use the KiCad symbols `Device:FerriteBead_Small` and `Device:C_Small`.
-U505 and U506 use the KiCad symbol `74xx:74LS257`, which has the same pinout
-as the 74LVC257A; the other logic chips still use the symbols of the original
+U505 and U506 use the KiCad symbol `74xx:74LS257` and U508 uses
+`74xx:74LS373`, which have the same pinouts as the 74LVC257A and the
+74LVC373A; the other logic chips still use the symbols of the original
 design.
 
 | Ref | Part | LCSC | Package |
@@ -2289,14 +2300,14 @@ design.
 | FB501 to FB505 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
 | U502 | SN74F258D | C1499704 | SOIC-16 |
 | U505, U506 | Nexperia 74LVC257ABQ,115 | C548514 | DHVQFN-16 (2.5 x 3.5 mm) |
-| U508 | SN74LS373DWR | C2867545 | SOIC-20 (7.5 mm) |
+| U508 | Nexperia 74LVC373AD,118 | C5916208 | SOIC-20 (7.5 mm) |
 | U504 | 8562 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
 
 - **Logic families:** the 74LS257 and 74LS258 are not available in SOIC, so
   U505, U506 and U502 use other families with the same pinout and TTL input
   levels. The 6510 and the VIC-II drive TTL levels and U1601 drives `~VA14`
   and `~VA15` at 3.3 V, so 74HC parts, which need 3.5 V for a high input, are
-  not an option. #116 tracks the choice for U502 and U508.
+  not an option. #116 tracks the choice for U502.
   - U505 and U506 are Nexperia 74LVC257A on `+3V3` (#133). The SN74HCT257DR
     was the only 257 with TTL inputs that JLCPCB stocked, in small numbers.
     Only the DHVQFN-16 version is well stocked; the SOIC-16 version
@@ -2321,7 +2332,26 @@ design.
     stay off, see [PLA replacement](#pla-replacement).
   - U502 is a 74F258, a bipolar part like the 74LS258, but faster. It is the
     only 258 in SOIC that is stocked, and only in small numbers.
-  - U508 stays a 74LS373.
+  - U508 is a Nexperia 74LVC373A on `+3V3` (#135), with the same pinout and
+    footprint as the 74LS373. Like U505 and U506, it must tolerate 5 V on
+    its outputs while they are off: in 6510 cycles the 6510 drives A0 to A7,
+    and during DMA a cartridge. Nexperia's datasheet states 5 V tolerant
+    inputs and outputs and IOFF; check any other maker's part for that
+    before substituting it. The Nexperia 74LVC573APW (C6096, TSSOP-20) is
+    the same latch with a flow-through pinout, if the 373 runs out.
+    - **Levels:** the 74LS373 only drove highs of about 3.4 V typical, and
+      A0 to A7 have no pull-ups, so every receiver on A0 to A7 already reads
+      TTL levels. The 3.3 V highs of the 74LVC373A are at least as high.
+    - **Timing:** set-up 2.0 ns and hold 1.5 ns to the falling `~RAS`, D or
+      LE to Q at most 7.2 ns (3.0 V to 3.6 V), all shorter than for the
+      74LS373. The output enable goes through the CPLD (about 10 ns) and
+      then takes at most 7.7 ns to enable and 6.1 ns to disable, so U508
+      still drives and releases A0 to A7 sooner than the 74LS373 did.
+    - **Power:** `AEC` comes from the VIC-II, which is unpowered while
+      `+5V` is off and would hold `AEC` low, enabling U508. The CPLD passes
+      `AEC` through as `AEC_~{OE}` instead, and R304 holds it high on
+      `+3V3` while the CPLD does not drive it, see
+      [PLA replacement](#pla-replacement).
 - **Ferrite beads:** the original beads are about 50 Ohm at 100 MHz. The
   120 Ohm beads are the nearest basic part. They are lower than the 600 Ohm
   beads on the SID sheet on purpose: FB502 and FB503 carry luma and chroma,
@@ -2765,6 +2795,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Replaced the address latch U508 on the `VIC-II, HF Module Replacement and AV out` sheet (#135): SN74LS373DWR became the Nexperia 74LVC373AD,118 (C5916208, same footprint, KiCad symbol `74xx:74LS373`), on `+3V3` instead of `+5V`, with its decoupling capacitor C517. Moved its `~OE` from `AEC` to the new net `AEC_~{OE}`, driven by U301 pin 46 on the `PLA Replacement` sheet, with R304 (4.7k, C25900) from `AEC_~{OE}` to `+3V3`. New sheet pins `AEC_~{OE}` on the `PLA Replacement` and `VIC-II, HF Module Replacement and AV out` sheets |
 | 2026-11-02 | Replaced the address multiplexers U505 and U506 on the `VIC-II, HF Module Replacement and AV out` sheet (#133): SN74HCT257DR became the Nexperia 74LVC257ABQ,115 (C548514, DHVQFN-16, footprint `Package_DFN_QFN:DHVQFN-16-1EP_2.5x3.5mm_P0.5mm_EP1x2mm`, KiCad symbol `74xx:74LS257`), on `+3V3` instead of `+5V`, with their decoupling capacitors C515 and C516. Moved the `~AEC` pull-up R303 on the `PLA Replacement` sheet from `+5V` to `+3V3` |
 | 2026-11-02 | Added a reset button connector to the `Supervisor and SD card slot` sheet (#109): J1304 (1x2 pin header, C32713268) for a push button in the case, switching `+3V3` through R1343 (220 Ohm, C25091) to GPIO15 (`RESET_REQ`) through R1344 (1k, C11702), with R1342 (4.7k, C25900) pulling the line down (RP2350 erratum E9). The supervisor makes the reset itself through Q1301 |
 | 2026-11-01 | Added the power switch (#109): P-channel MOSFETs Q606 and Q607 (AO3401A, C15127) between the reverse polarity protection and the rest of the board, with R606 and R607 (100k, C25741) as gate divider, C604 (47 nF, C1622) for a slow switch-on, and J602 (1x2 pin header, C32713268) for a switch in the case. Moved the TVS D602 before the power switch and added C605 (220 nF, C21120) there. Renamed the 12 V nets on the `Power Supply` sheet: `12V_IN` became `12V_PROT` (before the power switch) and `12V_MAIN` (after it); `12V_IN_SW` is unchanged |
