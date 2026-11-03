@@ -13,6 +13,121 @@
 		(comment 3 "Schematics V1.2 for Board V1.1")
 	)
 	(lib_symbols
+		(symbol "power:GND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "c64-mini:6510"
 			(pin_names
 				(offset 1.016)
@@ -2713,130 +2828,6 @@
 						)
 					)
 					(number "F,6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "KU-schematics-library:GND_SMALL"
-			(power global)
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "GND_SMALL"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "GND_SMALL_1_1"
-				(polyline
-					(pts
-						(xy -0.635 -0.635) (xy 0.635 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.127 -1.27) (xy 0.127 -1.27)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin power_in line
-					(at 0 0 270)
-					(length 0)
-					(hide yes)
-					(name "Earth"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -7891,7 +7882,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 306.705 74.295 0)
 		(unit 1)
 		(body_style 1)
@@ -7901,7 +7892,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "0c530fcc-09c7-47fe-a6af-d2e49dead3aa")
-		(property "Reference" "#U0126"
+		(property "Reference" "#PWR0128"
 			(at 306.705 74.295 0)
 			(hide yes)
 			(show_name no)
@@ -7912,7 +7903,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 306.705 74.295 0)
 			(hide yes)
 			(show_name no)
@@ -7961,7 +7952,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0126")
+					(reference "#PWR0128")
 					(unit 1)
 				)
 			)
@@ -8186,7 +8177,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 353.06 61.595 0)
 		(unit 1)
 		(body_style 1)
@@ -8196,7 +8187,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "20d9abd9-f8c9-4058-a7b6-b645384726ed")
-		(property "Reference" "#U0125"
+		(property "Reference" "#PWR0125"
 			(at 353.06 61.595 0)
 			(hide yes)
 			(show_name no)
@@ -8207,7 +8198,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 353.06 61.595 0)
 			(hide yes)
 			(show_name no)
@@ -8256,7 +8247,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0125")
+					(reference "#PWR0125")
 					(unit 1)
 				)
 			)
@@ -9170,7 +9161,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 187.96 34.29 0)
 		(unit 1)
 		(body_style 1)
@@ -9180,7 +9171,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "60246ff4-7d05-440a-b3a2-c6c32fa47ffe")
-		(property "Reference" "#U0113"
+		(property "Reference" "#PWR0113"
 			(at 187.96 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -9191,7 +9182,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 187.96 34.29 0)
 			(hide yes)
 			(show_name no)
@@ -9240,7 +9231,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0113")
+					(reference "#PWR0113")
 					(unit 1)
 				)
 			)
@@ -9507,7 +9498,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 309.245 64.135 0)
 		(unit 1)
 		(body_style 1)
@@ -9517,7 +9508,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6ae924b9-cbc7-4878-ab8b-3c20b3f2298e")
-		(property "Reference" "#U0124"
+		(property "Reference" "#PWR0129"
 			(at 309.245 64.135 0)
 			(hide yes)
 			(show_name no)
@@ -9528,7 +9519,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 309.245 64.135 0)
 			(hide yes)
 			(show_name no)
@@ -9577,7 +9568,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0124")
+					(reference "#PWR0129")
 					(unit 1)
 				)
 			)
@@ -9676,7 +9667,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 184.785 254 0)
 		(unit 1)
 		(body_style 1)
@@ -9686,7 +9677,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7b3dd914-0ce4-40af-af7c-42d81f16760e")
-		(property "Reference" "#U0217"
+		(property "Reference" "#PWR0217"
 			(at 184.785 254 0)
 			(hide yes)
 			(show_name no)
@@ -9697,7 +9688,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 184.785 254 0)
 			(hide yes)
 			(show_name no)
@@ -9746,7 +9737,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0217")
+					(reference "#PWR0217")
 					(unit 1)
 				)
 			)
@@ -9935,7 +9926,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 202.565 117.475 0)
 		(unit 1)
 		(body_style 1)
@@ -9945,7 +9936,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8c78b01a-0bf3-411c-960a-791fc3d52fdf")
-		(property "Reference" "#U0112"
+		(property "Reference" "#PWR0112"
 			(at 202.565 117.475 0)
 			(hide yes)
 			(show_name no)
@@ -9956,7 +9947,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 202.565 117.475 0)
 			(hide yes)
 			(show_name no)
@@ -10005,7 +9996,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0112")
+					(reference "#PWR0112")
 					(unit 1)
 				)
 			)
@@ -11323,7 +11314,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 304.165 64.135 0)
 		(unit 1)
 		(body_style 1)
@@ -11333,7 +11324,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d9736bfd-0e98-4b7e-89d4-85077107be9e")
-		(property "Reference" "#U0123"
+		(property "Reference" "#PWR0123"
 			(at 304.165 64.135 0)
 			(hide yes)
 			(show_name no)
@@ -11344,7 +11335,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 304.165 64.135 0)
 			(hide yes)
 			(show_name no)
@@ -11393,7 +11384,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0123")
+					(reference "#PWR0123")
 					(unit 1)
 				)
 			)
@@ -11583,7 +11574,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:GND_SMALL")
+		(lib_id "power:GND")
 		(at 168.91 259.715 0)
 		(unit 1)
 		(body_style 1)
@@ -11593,7 +11584,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e4e7705a-7fb6-419a-b33b-024e3f124eff")
-		(property "Reference" "#U0216"
+		(property "Reference" "#PWR0216"
 			(at 168.91 259.715 0)
 			(hide yes)
 			(show_name no)
@@ -11604,7 +11595,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 168.91 259.715 0)
 			(hide yes)
 			(show_name no)
@@ -11653,7 +11644,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/438ac9d3-0cfc-4b1b-990b-000900cb9742"
-					(reference "#U0216")
+					(reference "#PWR0216")
 					(unit 1)
 				)
 			)
