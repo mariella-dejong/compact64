@@ -5,6 +5,121 @@
 	(uuid "37c82010-28fb-48f4-9ab5-3fd80e9e68a0")
 	(paper "A3")
 	(lib_symbols
+		(symbol "power:GND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "global power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Connector:Conn_01x02_Pin"
 			(pin_names
 				(offset 1.016)
@@ -5642,157 +5757,6 @@
 			(symbol "+9V_1_1"
 				(pin power_in line
 					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "power:Earth"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -6.35 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Earth"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"Earth\""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "global ground gnd"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "Earth_0_1"
-				(polyline
-					(pts
-						(xy -0.635 -1.905) (xy 0.635 -1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.127 -2.54) (xy 0.127 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.27) (xy 0 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 -1.27) (xy -1.27 -1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Earth_1_1"
-				(pin power_in line
-					(at 0 0 270)
 					(length 0)
 					(name ""
 						(effects
@@ -11835,7 +11799,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 281.305 92.71 0)
 		(unit 1)
 		(body_style 1)
@@ -11857,7 +11821,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 281.305 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -11990,7 +11954,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 158.75 121.92 0)
 		(unit 1)
 		(body_style 1)
@@ -12012,7 +11976,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 158.75 127 0)
 			(hide yes)
 			(show_name no)
@@ -12487,7 +12451,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 79.375 103.505 0)
 		(unit 1)
 		(body_style 1)
@@ -12509,7 +12473,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 79.375 108.585 0)
 			(hide yes)
 			(show_name no)
@@ -12824,7 +12788,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 288.29 113.03 0)
 		(unit 1)
 		(body_style 1)
@@ -12846,7 +12810,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 288.29 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -13361,7 +13325,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 287.02 175.26 0)
 		(unit 1)
 		(body_style 1)
@@ -13383,7 +13347,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 287.02 180.34 0)
 			(hide yes)
 			(show_name no)
@@ -13440,7 +13404,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 387.35 183.515 0)
 		(unit 1)
 		(body_style 1)
@@ -13462,7 +13426,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 387.35 188.595 0)
 			(hide yes)
 			(show_name no)
@@ -13611,7 +13575,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 128.27 114.3 0)
 		(unit 1)
 		(body_style 1)
@@ -13633,7 +13597,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 128.27 119.38 0)
 			(hide yes)
 			(show_name no)
@@ -13963,7 +13927,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 154.94 60.96 0)
 		(unit 1)
 		(body_style 1)
@@ -13985,7 +13949,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 154.94 66.04 0)
 			(hide yes)
 			(show_name no)
@@ -14135,7 +14099,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 173.99 96.52 0)
 		(unit 1)
 		(body_style 1)
@@ -14157,7 +14121,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 173.99 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -15048,7 +15012,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 349.885 191.135 0)
 		(unit 1)
 		(body_style 1)
@@ -15070,7 +15034,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 349.885 196.215 0)
 			(hide yes)
 			(show_name no)
@@ -15661,7 +15625,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 161.29 49.53 0)
 		(unit 1)
 		(body_style 1)
@@ -15683,7 +15647,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 161.29 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -15740,7 +15704,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 218.44 240.03 0)
 		(unit 1)
 		(body_style 1)
@@ -15762,7 +15726,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 218.44 245.11 0)
 			(hide yes)
 			(show_name no)
@@ -16169,7 +16133,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 158.75 138.43 0)
 		(unit 1)
 		(body_style 1)
@@ -16191,7 +16155,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 158.75 143.51 0)
 			(hide yes)
 			(show_name no)
@@ -16614,7 +16578,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 102.87 233.68 0)
 		(unit 1)
 		(body_style 1)
@@ -16636,7 +16600,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 102.87 238.76 0)
 			(hide yes)
 			(show_name no)
@@ -16966,7 +16930,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 43.18 80.01 0)
 		(unit 1)
 		(body_style 1)
@@ -16988,7 +16952,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 43.18 85.09 0)
 			(hide yes)
 			(show_name no)
@@ -17541,7 +17505,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 275.59 153.67 0)
 		(unit 1)
 		(body_style 1)
@@ -17563,7 +17527,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 275.59 158.75 0)
 			(hide yes)
 			(show_name no)
@@ -17620,7 +17584,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 163.83 69.85 0)
 		(unit 1)
 		(body_style 1)
@@ -17642,7 +17606,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 163.83 74.93 0)
 			(hide yes)
 			(show_name no)
@@ -17699,7 +17663,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 314.96 128.27 0)
 		(unit 1)
 		(body_style 1)
@@ -17721,7 +17685,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 314.96 133.35 0)
 			(hide yes)
 			(show_name no)
@@ -17960,7 +17924,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 340.36 71.12 0)
 		(unit 1)
 		(body_style 1)
@@ -17982,7 +17946,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 340.36 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -18039,7 +18003,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 339.725 134.62 0)
 		(unit 1)
 		(body_style 1)
@@ -18061,7 +18025,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 339.725 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -19131,7 +19095,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 143.51 62.23 0)
 		(unit 1)
 		(body_style 1)
@@ -19153,7 +19117,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 143.51 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -19302,7 +19266,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 400.05 223.52 0)
 		(unit 1)
 		(body_style 1)
@@ -19324,7 +19288,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 400.05 228.6 0)
 			(hide yes)
 			(show_name no)
@@ -19562,7 +19526,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 351.155 225.425 0)
 		(unit 1)
 		(body_style 1)
@@ -19584,7 +19548,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 351.155 230.505 0)
 			(hide yes)
 			(show_name no)
@@ -20002,7 +19966,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 314.96 139.065 0)
 		(unit 1)
 		(body_style 1)
@@ -20024,7 +19988,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 314.96 144.145 0)
 			(hide yes)
 			(show_name no)
@@ -20081,7 +20045,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 347.98 182.88 0)
 		(unit 1)
 		(body_style 1)
@@ -20103,7 +20067,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 347.98 187.96 0)
 			(hide yes)
 			(show_name no)
@@ -20460,7 +20424,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 90.17 67.31 0)
 		(unit 1)
 		(body_style 1)
@@ -20482,7 +20446,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 90.17 72.39 0)
 			(hide yes)
 			(show_name no)
@@ -20629,7 +20593,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 118.11 226.06 0)
 		(unit 1)
 		(body_style 1)
@@ -20651,7 +20615,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 118.11 231.14 0)
 			(hide yes)
 			(show_name no)
@@ -21530,7 +21494,7 @@
 		)
 	)
 	(symbol
-		(lib_id "power:Earth")
+		(lib_id "power:GND")
 		(at 128.27 49.53 0)
 		(unit 1)
 		(body_style 1)
@@ -21552,7 +21516,7 @@
 				)
 			)
 		)
-		(property "Value" "Earth"
+		(property "Value" "GND"
 			(at 128.27 54.61 0)
 			(hide yes)
 			(show_name no)
