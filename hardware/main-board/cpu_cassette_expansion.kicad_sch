@@ -993,7 +993,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "KU-14194HB-RevB-KiCad:EXPANSION_PORT"
+			(property "Footprint" "c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1037,7 +1037,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "*EXPANSION*"
+			(property "ki_fp_filters" "EdgeSlot*2x22*P2.54mm*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -7991,7 +7991,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:EXPANSION_PORT"
+		(property "Footprint" "c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal"
 			(at 84.455 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8002,7 +8002,7 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/8938b5ff731313daaf9cf20a8acd91ae.pdf?productCode=C5173343"
 			(at 84.455 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)

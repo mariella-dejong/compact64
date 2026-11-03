@@ -2549,7 +2549,11 @@ by Bwack, with help from Der Alte Bastler).
 - **Expansion port:** J201 gets `~RESET` through FB201 (pin C), the dot
   clock `DOT_CLK` from the `System Clocks` sheet through the `DOT_CLOCK_IN`
   sheet pin (pin 6), and `~ROML`, `~ROMH`, `~I/O1` and `~I/O2` from the CPLD
-  (U301).
+  (U301). The slot is a WingTAT ER44BGFBK (C5173343), a right-angle 2 x 22
+  card-edge slot that takes C64 cartridges, on the footprint
+  `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` (#148). Its
+  front face marks the board edge; the board must end there, as at the
+  original board's cut-out, so that a cartridge's case clears it.
 - **Cassette port:** read (`CASS_RD`, pin D-4) goes to CIA 1's `~FLAG`
   (U1501) and the serial bus SRQ, as on the original board; sense (P4),
   write (P3) and motor (P5) go to the 6510's port.
@@ -2596,9 +2600,10 @@ by Bwack, with help from Der Alte Bastler).
   `c64-mini:6510` from the project library (#139). The expansion port and
   the cassette port use `c64-mini:C64_Expansion_Port` and
   `c64-mini:C64_Cassette_Port` (#115), with the pin positions of the
-  original symbols. The cassette port's edge fingers use
-  `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` (#146); the expansion port
-  keeps its original footprint.
+  original symbols. The expansion port uses
+  `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` (#148) and
+  the cassette port's edge fingers use
+  `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` (#146).
   Ground uses KiCad's `power:GND` on every sheet (#115).
 
 ### References
@@ -2829,6 +2834,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Moved the footprint of the expansion port J201 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#148): `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal`, from the recommended PCB layout of its part, the WingTAT ER44BGFBK (C5173343). Same pad positions and numbers as the upstream `EXPANSION_PORT`, 1.0 mm instead of 1.1 mm holes as in the datasheet, and the front face of the slot marked as the board edge. Checked that the slot takes C64 cartridges. Added the datasheet link to J201. The PCB is not updated |
 | 2026-11-03 | Changed the serial port J1601 to the Minlenda MLD-DS-6-03-08 6-pin DIN socket (C53056242, was C54573054, CAX DIN-603-H) with the new footprint `c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` from its datasheet (#147). The upstream footprint `SERIAL_CON_DIN6` did not match either part: pins 2 to 5 were in other holes. Updated the datasheet link. The PCB is not updated |
 | 2026-11-03 | Moved the footprints of the cassette port J202 and the user port J1602 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#146): `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` and `c64-mini:C64_User_Port_Edge_2x12_P3.96mm`, redrawn from the upstream footprints and the original board outline. They include the tab and its key slots on `Edge.Cuts`, are excluded from the BOM and position files, and have 2.2 mm instead of 2.41 mm wide fingers to keep clear of the key slots. The PCB is not updated |
 | 2026-11-02 | Removed the legacy symbol libraries `KU-schematics-library` and `250407_-rescue` from `sym-lib-table`, and deleted `KU-schematics-library.lib`/`.dcm` and the unused `c64-mini-rescue.lib`/`.dcm` (#115). No symbol on any sheet uses them any more |
