@@ -3769,7 +3769,7 @@
 		)
 		(uuid "a2a89b07-6fb4-43bc-8999-68a7bc7ad229")
 	)
-	(text_box "NOTES:\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU201: MOS 8500 CPU. A 6510 also works (same pinout, supply and timing).\nU504 (VIC-II sheet): 8562 VIC-II (NTSC). A 6567 does not work: it needs 12 V on pin 13.\nU1701 (SID sheet): 8580 SID. A 6581 does not work: it needs 12 V on VDD."
+	(text_box "NOTES:\n\nB. IC sockets: these chips are not sold by LCSC, so the board gets a round-pin DIP socket\nand the chip is bought separately and inserted after assembly.\nU201: MOS 8500 CPU. A 6510 also works (same pinout, supply and timing).\nU504 (VIC-II sheet): 8565 VIC-II (PAL). An 8562 (NTSC) also works with the NTSC clock setting.\nA 6567 or 6569 does not work: they need 12 V on pin 13.\nU1701 (SID sheet): 8580 SID. A 6581 does not work: it needs 12 V on VDD."
 		(exclude_from_sim no)
 		(at 27.305 18.415 0)
 		(size 121.92 20.32)

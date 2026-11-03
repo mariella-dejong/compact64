@@ -13118,7 +13118,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "8562 VIC"
+		(property "Value" "8565 VIC"
 			(at 209.55 117.475 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13151,7 +13151,7 @@
 				)
 			)
 		)
-		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert an 8562 VIC-II (HMOS-II, NTSC) after assembly; a 6567 does not work here, its pin 13 needs 12 V; see note B."
+		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert an 8565 VIC-II (HMOS-II, PAL) after assembly. An 8562 (HMOS-II, NTSC) also works with the NTSC clock setting in the supervisor firmware. A 6567 or 6569 does not work here: they need 12 V on pin 13; see note B."
 			(at 207.01 170.815 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -21,7 +21,7 @@ under `hardware/` can register it the same way.
 | `MD-40SM`           | `Mini-DIN-4_CUI_MD-40SM_Horizontal`        | C6224745    | S-Video socket; stock `Connector:Mini-DIN-4` plus a shield pin |
 | `CAX-AV-314-RWY-PHP` | `Jack_RCA_x3_CAX_AV-314-RWY_Horizontal` | C55072367 | Triple RCA jack (red, white, yellow); one unit per jack |
 | `6510`              | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6510 CPU (also 8500); LCSC part is the DIP-40 socket |
-| `VIC-II`            | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6567/8562 VIC-II; LCSC part is the DIP-40 socket |
+| `VIC-II`            | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS VIC-II, fitted with an 8565 (6567/6569/8562 share the symbol); LCSC part is the DIP-40 socket |
 | `SID`               | `Package_DIP:DIP-28_W15.24mm_Socket`       | C2874016    | MOS 6581/8580 SID; LCSC part is the DIP-28 socket |
 | `C64_Expansion_Port` | `EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` | C5173343 | C64 expansion (cartridge) port, 2x22 contacts |
 | `C64_Cassette_Port` | `C64_Cassette_Port_Edge_2x06_P3.96mm`      |             | C64 cassette port, 2x6 edge fingers on the board |
