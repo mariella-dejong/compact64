@@ -2782,7 +2782,10 @@ Only the files that make up the KiCad project were imported, unchanged:
 The two symbol libraries, `KU-schematics-library` and `250407_-rescue`, were
 removed again in #115, once their symbols had been replaced with symbols from
 KiCad's libraries and the project library (`hardware/components`). The
-footprint library `KU-14194HB-RevB-KiCad.pretty/` is still in use.
+footprint library `KU-14194HB-RevB-KiCad.pretty/` was removed in #153, after
+#146, #147 and #148 had given its last schematic parts project footprints.
+The PCB still holds copies of its footprints, because KiCad embeds them in
+the board file. `3D-models/` stays as long as the current PCB uses it.
 
 ### What was left out
 
@@ -2865,6 +2868,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Removed the footprint library `KU-14194HB-RevB-KiCad` from `fp-lib-table` and deleted `KU-14194HB-RevB-KiCad.pretty` (#153). No schematic part uses it any more; the PCB keeps its embedded copies of the footprints. `3D-models/` is kept, because the PCB still references it |
 | 2026-11-03 | Changed the VIC-II U504 from the NTSC 8562 to the PAL 8565 (#152): Value `8565 VIC`, and the description and note B on the `CPU, Cassette and Expansion Port` sheet say that an 8562 also works with the NTSC clock setting and that a 6567 or 6569 does not. No circuit change: the 8565 has the 8562's pinout, 5 V on pin 13 and the 1 kOhm luma pull-up. C203 and C204 of the original PAL configuration are not added back. The PCB is not updated |
 | 2026-11-03 | Moved the footprint of the expansion port J201 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#148): `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal`, from the recommended PCB layout of its part, the WingTAT ER44BGFBK (C5173343). Same pad positions and numbers as the upstream `EXPANSION_PORT`, 1.0 mm instead of 1.1 mm holes as in the datasheet, and the front face of the slot marked as the board edge. Checked that the slot takes C64 cartridges. Added the datasheet link to J201. The PCB is not updated |
 | 2026-11-03 | Changed the serial port J1601 to the Minlenda MLD-DS-6-03-08 6-pin DIN socket (C53056242, was C54573054, CAX DIN-603-H) with the new footprint `c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` from its datasheet (#147). The upstream footprint `SERIAL_CON_DIN6` did not match either part: pins 2 to 5 were in other holes. Updated the datasheet link. The PCB is not updated |
