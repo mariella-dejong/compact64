@@ -25,8 +25,10 @@ are made from it on the `Power Supply` sheet. The original power brick input
 is gone (#37): the power connector CN7, the 9 V AC and `+9V_UNREG`, and the
 power switch SW1, so the board has no power switch.
 
-The SID is now an 8580 on a 9 V supply (#73), and the VIC-II an 8562 on 5 V
-(#74), so the board no longer needs 12 V anywhere and the `+12V` rail is gone.
+The SID is now an 8580 on a 9 V supply (#73), and the VIC-II an HMOS-II part
+on 5 V (#74), so the board no longer needs 12 V anywhere and the `+12V` rail
+is gone. The VIC-II is the PAL 8565 (#152), because the NTSC 8562 can hardly
+be bought any more; an 8562 still works with the NTSC clock setting.
 
 The VIC-II's colour and dot clocks now come from a clock synthesizer on the
 `System Clocks` sheet (#76). It replaces the PLL of the original board, whose
@@ -220,21 +222,28 @@ Check them before using software or hardware that depends on them.
   connectors. Modern SID replacements usually accept 9 V on VDD; check the
   specific product.
 
-### The VIC-II is an 8562
+### The VIC-II is a PAL 8565
 
-- **Original C64:** the 250407 board has an NMOS 6567 VIC-II (U19) with 12 V
-  on VDD (pin 13) and a 470 Ohm luma pull-up.
-- **c64-mini:** the VIC-II socket (U504) takes the HMOS-II 8562 of the later
-  NTSC C64 boards, with 5 V on pin 13 and a 1 kOhm luma pull-up (#74), see
-  [VIC-II](#vic-ii).
+- **Original C64:** the 250407 board has an NMOS 6567 VIC-II (U19, NTSC) with
+  12 V on VDD (pin 13) and a 470 Ohm luma pull-up; PAL boards have the 6569.
+- **c64-mini:** the VIC-II socket (U504) takes the HMOS-II 8565 of the later
+  PAL C64 boards (#152), with 5 V on pin 13 and a 1 kOhm luma pull-up (#74),
+  see [VIC-II](#vic-ii). The NTSC 8562 has the same pinout and supply and
+  also works, with the NTSC clock setting in the supervisor firmware; the
+  board was built around it first, but it can hardly be bought any more.
 - **Affected:**
-  - Colours and luma levels differ slightly from the 6567.
-  - The 8562 shows "grey dots" when some colour registers are written at
+  - The video timing is PAL: 63 cycles per line and 312 lines (50 Hz), with
+    the CPU at 0.985 MHz, the same as a PAL C64 with a 6569 or 8565.
+    Software written for PAL machines runs as on a PAL C64; NTSC-only
+    software that depends on 65 cycles and 263 lines may not.
+  - The SID runs from the PAL `PHI2`, so music plays at the pitch of a PAL
+    C64.
+  - Colours and luma levels differ slightly from the NMOS 6567 and 6569.
+  - The 8565 shows "grey dots" when some colour registers are written at
     certain cycles, which a few demos trigger.
-  - A 6567 does not work in this socket: it needs 12 V on pin 13.
-- **Not affected:** the video timing (65 cycles per line and 263 lines, the
-  same as the 6567R8), the registers, sprites, raster interrupts and the
-  light pen.
+  - A 6567 or 6569 does not work in this socket: they need 12 V on pin 13.
+- **Not affected:** the registers, sprites, raster interrupts and the light
+  pen.
 
 ### The video clocks come from a clock synthesizer
 
@@ -244,12 +253,14 @@ Check them before using software or hardware that depends on them.
 - **c64-mini:** an MS5351M clock synthesizer (Y1202) makes both clocks from
   one PLL and a 25 MHz crystal (#76), see [System clocks](#system-clocks).
   The supervisor programs it over I2C, so PAL or NTSC becomes a firmware
-  setting; a PAL board still needs a PAL VIC-II.
+  setting. PAL is the default, for the 8565 (#152); NTSC is only for a board
+  with an 8562. The setting must match the fitted VIC-II.
 - **Affected:**
   - Without supervisor firmware the VIC-II gets no clocks. The board already
     needs firmware for RAM, ROM and both CIAs.
-- **Not affected:** the video timing and the 4/7 ratio between the dot clock
-  and the colour clock, which the synthesizer makes exactly. The colour
+- **Not affected:** the video timing and the ratio between the dot clock
+  and the colour clock (4/9 on PAL, 4/7 on NTSC), which the synthesizer makes
+  exactly. The colour
   carrier is as accurate as the 25 MHz crystal (10 ppm).
 
 ### The PLA is a CPLD
@@ -476,8 +487,8 @@ and the sync gate U1201.
 
 | Load                                        | Typical             | Maximum  | Source                                                    |
 | ------------------------------------------- | ------------------- | -------- | --------------------------------------------------------- |
-| VIC-II 8562 (U504), VCC (pin 40)            | not specified       | 200 mA   | 6567 figure (preliminary datasheet, 3.3.7: ICC, outputs open), used as an upper bound |
-| VIC-II 8562 (U504), VDD (pin 13)            | not specified       | 50 mA    | 6567 figure (3.3.7: IDD), used as an upper bound          |
+| VIC-II 8565 (U504), VCC (pin 40)            | not specified       | 200 mA   | 6567 figure (preliminary datasheet, 3.3.7: ICC, outputs open), used as an upper bound |
+| VIC-II 8565 (U504), VDD (pin 13)            | not specified       | 50 mA    | 6567 figure (3.3.7: IDD), used as an upper bound          |
 | 74AHCT1G125 (U1202), colour clock           | about 2 mA          | about 3 mA | Cpd 14 pF plus about 15 pF load at 14.3 MHz, plus the change in supply current (1.35 mA with a 3.4 V input) for the half of the time the input is high (TI SN74AHCT1G125) |
 | 74AHCT1G125 (U1203), dot clock              | about 2.6 mA        | about 3.5 mA | Cpd 14 pF plus about 50 pF load (C518, the VIC-II and the expansion port) at 8.2 MHz, plus the same change in supply current |
 | 74AHCT1G08 (U1201), sync clock              | about 4.5 mA        | about 5.3 mA | Charging C710 and C1005 (1 nF each) at about 445 kHz, plus the same change in supply current (TI SN74AHCT1G08) |
@@ -485,8 +496,9 @@ and the sync gate U1201.
 | R1331 and R1332 (rail check divider, #49)   | 0.34 mA             | 0.34 mA  | 5 V / 14.7 kOhm                                           |
 | **Total**                                   | **about 9 mA plus the VIC-II** | **about 262 mA** |                                       |
 
-No 8562 datasheet figures were found, so the 6567's maximum currents are used
-as an upper bound; the HMOS-II 8562 draws considerably less in practice.
+No 8565 or 8562 datasheet figures were found, so the 6567's maximum currents
+are used as an upper bound; the HMOS-II 856x draws considerably less in
+practice.
 Measure the real `CAN+5V` current on the first prototype.
 
 Datasheets:
@@ -800,8 +812,9 @@ it costs more and is hardly in stock.
 
 ### Firmware (supervisor)
 
-- After power-up, and before `POWER_ON`, write the register set for NTSC (or
-  PAL) with the outputs disabled. That is about 50 register writes.
+- After power-up, and before `POWER_ON`, write the register set for PAL (or
+  NTSC, on a board with an 8562) with the outputs disabled. That is about
+  50 register writes.
 - Keep the outputs' disable state at low (register 24 = 0x00, the Si5351
   default), not high impedance. Otherwise the buffer inputs float while
   `CAN+5V` comes up. If the MS5351M turns out to behave differently, add
@@ -810,7 +823,8 @@ it costs more and is hardly in stock.
   6510 are released, as part of the start-up order of #48.
 - Report a failure to talk to the synthesizer: the board cannot run without
   its clocks.
-- PAL or NTSC is a firmware setting. A PAL board still needs a PAL VIC-II.
+- PAL or NTSC is a firmware setting, and PAL is the default (#152). The
+  setting must match the fitted VIC-II: PAL for an 8565, NTSC for an 8562.
 - The PLL multiplier is fractional, so the firmware can also trim out the
   crystal's tolerance if needed.
 
@@ -821,7 +835,7 @@ it costs more and is hardly in stock.
   frequencies and their jitter, and check the picture (colours, artefact
   colours, sprites) and the sound.
 - **Clock edges:** check U504 pins 21 and 22 for ringing (see the ferrite
-  beads above), and that the 8562 runs reliably from the buffered clocks.
+  beads above), and that the 8565 runs reliably from the buffered clocks.
 - **Buck converter sync:** check that U701 and U1001 lock to CLK2 at about
   445 kHz on both standards. U1201 gives EN/SYNC the same 5 V swing through
   C710 and C1005 as the old divider did.
@@ -1182,9 +1196,9 @@ Powering up with any of the three chips missing is harmless:
 - **Without the 6510** nothing writes on the bus, so there is no bus
   contention.
 - **Without the SID** nothing reads its pins.
-- **Wrong type:** a 6567 in the 8562 socket gets 5 V instead of 12 V on
-  VDD, and a 6581 in the 8580 socket gets 9 V instead of 12 V. They do not
-  work properly, but are not damaged.
+- **Wrong type:** a 6567 or 6569 in the 8565 socket gets 5 V instead of
+  12 V on VDD, and a 6581 in the 8580 socket gets 9 V instead of 12 V. They
+  do not work properly, but are not damaged.
 
 The supervisor therefore powers up into a safe state (`~RESET` low, CPLD
 outputs off) and then checks the rails and the clocks. The real risk is a
@@ -1668,9 +1682,17 @@ These timing requirements are for the firmware:
   four possible bytes can be read beforehand, and one picked when
   `~CASRAM` falls.
 - Time everything from the edges of `~CASRAM`, `~CAS` and `PHI2`, not from
-  fixed delays after `PHI0`: the `~RAS` and `~CAS` timing of the 8562 differs
-  slightly from the 6567's, and the delay from `~CAS` to `~CASRAM` is set by
-  the CPLD (#93).
+  fixed delays after `PHI0`: the `~RAS` and `~CAS` timing of the 856x differs
+  slightly from the NMOS chips', and the delay from `~CAS` to `~CASRAM` is set
+  by the CPLD (#93).
+- In VIC-II cycles, take the column address (`VA0` to `VA7`) late enough
+  after `~CASRAM` falls. The original PAL board slowed `CAS` at the DRAMs
+  with C203 (82 pF on `~CAS`) and C204 (on `~CASRAM`, behind R42), probably
+  because the PAL VIC-II's column address comes later relative to `~CAS`.
+  Those parts are gone; the HDL's delay (#93) and the sampling point here
+  take their place (#152). Check the setup time with an 8565 on the
+  prototype. A PAL cycle is 3.8 % longer than an NTSC one (1015 ns instead
+  of 978 ns), so all other deadlines have a little more margin on PAL.
 - Stop driving the data lines as soon as the select goes high.
 - Latch write data late in the cycle, not when `~CASRAM` falls: the 6510
   can take up to about 200 ns into `PHI2` to put the data on the bus. Latch
@@ -2223,11 +2245,12 @@ circuit, in addition to the bus and 6526 model requirements of CIA 1 (see
 The `VIC-II, HF Module Replacement and AV out` sheet (formerly `HF Module
 Replacement and AV connectors`, now `vic_ii_hf_av_out.kicad_sch`) holds the
 VIC-II with the parts that only serve it, next to the video output circuit
-and the audio and video connectors (#74). The VIC-II is now the 8562.
+and the audio and video connectors (#74). The VIC-II is now the 8565 (#152);
+it was the 8562 until then.
 
 | Removed | Original part | Now |
 | ------- | ------------- | --- |
-| U19 | 6567 VIC-II | U504 (8562) |
+| U19 | 6567 VIC-II | U504 (8565; 8562 until #152) |
 | U13, U25 | 74LS257 address multiplexers | U505, U506 (74LVC257A, on `+3V3`) |
 | U26 | 74LS373 address latch | U508 (74LVC373A, on `+3V3`) |
 | U14 | 74LS258 multiplexer for VA6, VA7 and the bank | U502 (74F258), then removed (#137): the VIC-II's A6 and A7 connect to `VA6` and `VA7` directly |
@@ -2239,7 +2262,7 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | FB22, C60, C101 | VCC (pin 40) filter | FB505, C509, C511 |
 | C36 | 20 pF load on the dot clock | C518 |
 | C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507 (removed with U502), C508 (removed with U503), C516, C517 |
-| C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped |
+| C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped; the CPLD's `~CASRAM` delay and U1401's sampling point take its place on PAL (#152) |
 
 These parts of the original circuit stay on the `CPU, Cassette and Expansion Port` sheet:
 
@@ -2254,9 +2277,10 @@ These parts of the original circuit stay on the `CPU, Cassette and Expansion Por
 
 ### Circuit
 
-- **VIC-II:** U504, an 8562 in a DIP-40 socket. VCC (pin 40) and VDD
-  (pin 13) both come from `CAN+5V`, through FB505 (with C509, C511) and FB504
-  (with C510, C512 and C513). Unlike the 6567, the 8562 needs 5 V on pin 13;
+- **VIC-II:** U504, an 8565 (PAL) in a DIP-40 socket; an 8562 (NTSC) fits
+  as well, with the NTSC clock setting. VCC (pin 40) and VDD (pin 13) both
+  come from `CAN+5V`, through FB505 (with C509, C511) and FB504 (with C510,
+  C512 and C513). Unlike the 6567 and 6569, the 856x needs 5 V on pin 13;
   12 V there destroys it.
 - **Bus:** `D[0..7]`, A8 to A11 of `A[0..15]`, `R/~W`, `~VIC_SELECT` (`~VIC`
   from U301), `~IRQ` and `BA`. `AEC` (pin 16) is high in 6510 cycles and low
@@ -2313,7 +2337,7 @@ U505 and U506 use the KiCad symbol `74xx:74LS257` and U508 uses
 | FB501 to FB505 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
 | U505, U506 | Nexperia 74LVC257ABQ,115 | C548514 | DHVQFN-16 (2.5 x 3.5 mm) |
 | U508 | Nexperia 74LVC373AD,118 | C5916208 | SOIC-20 (7.5 mm) |
-| U504 | 8562 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
+| U504 | 8565 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
 
 - **Logic families:** the 74LS257 is not available in SOIC, so U505 and
   U506 use another family with the same pinout and TTL input levels. The
@@ -2807,7 +2831,14 @@ configuration:
   regulator can dissipate less heat than the TO-92 part upstream uses.
 - The VIC-II luma pull-up is a fixed resistor (R512). Upstream selects
   470 Ohm (NMOS 6567/6569) or 1 kOhm (HMOS-II 856x) with a jumper; R512 was
-  470 Ohm for the 6567 and is 1 kOhm since the move to the 8562 (#74).
+  470 Ohm for the 6567 and is 1 kOhm since the move to the 8562 (#74); the
+  8565 uses the same value.
+- The circuit works with PAL and NTSC VIC-IIs, as upstream states, with the
+  same values. Chroma reaches the composite output through C506 (68 pF), so
+  its level rises with frequency: at the PAL subcarrier (4.43 MHz) it is
+  about 24 % (1.9 dB) stronger than at the NTSC one (3.58 MHz). Check the
+  colour saturation of the composite output on the prototype; the S-Video
+  levels are set with RV501 and RV502.
 - The pinout selection jumpers for other board revisions are left out.
 - The RF modulator's audio input is not used. Audio goes directly to the
   RCA jacks.
@@ -2834,6 +2865,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Changed the VIC-II U504 from the NTSC 8562 to the PAL 8565 (#152): Value `8565 VIC`, and the description and note B on the `CPU, Cassette and Expansion Port` sheet say that an 8562 also works with the NTSC clock setting and that a 6567 or 6569 does not. No circuit change: the 8565 has the 8562's pinout, 5 V on pin 13 and the 1 kOhm luma pull-up. C203 and C204 of the original PAL configuration are not added back. The PCB is not updated |
 | 2026-11-03 | Moved the footprint of the expansion port J201 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#148): `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal`, from the recommended PCB layout of its part, the WingTAT ER44BGFBK (C5173343). Same pad positions and numbers as the upstream `EXPANSION_PORT`, 1.0 mm instead of 1.1 mm holes as in the datasheet, and the front face of the slot marked as the board edge. Checked that the slot takes C64 cartridges. Added the datasheet link to J201. The PCB is not updated |
 | 2026-11-03 | Changed the serial port J1601 to the Minlenda MLD-DS-6-03-08 6-pin DIN socket (C53056242, was C54573054, CAX DIN-603-H) with the new footprint `c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` from its datasheet (#147). The upstream footprint `SERIAL_CON_DIN6` did not match either part: pins 2 to 5 were in other holes. Updated the datasheet link. The PCB is not updated |
 | 2026-11-03 | Moved the footprints of the cassette port J202 and the user port J1602 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#146): `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` and `c64-mini:C64_User_Port_Edge_2x12_P3.96mm`, redrawn from the upstream footprints and the original board outline. They include the tab and its key slots on `Edge.Cuts`, are excluded from the BOM and position files, and have 2.2 mm instead of 2.41 mm wide fingers to keep clear of the key slots. The PCB is not updated |

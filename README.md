@@ -56,7 +56,7 @@ The work is tracked in the issue tracker. In broad strokes:
 - Replace the keyboard connector with a USB keyboard to keyboard-matrix
   bridge (#12); the USB keyboard port is on the CIA1 controller (#25)
 - Move to the chip set of the later C64 boards: the 8580 SID (#73), the 8562
-  VIC-II (#74) and the 8500 CPU (#75)
+  VIC-II (#74), later the PAL 8565 (#152), and the 8500 CPU (#75)
 
 **Phase 3 - Firmware and software**
 
