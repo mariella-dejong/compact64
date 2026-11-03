@@ -20,6 +20,9 @@ under `hardware/` can register it the same way.
 | `RP2354B`           | `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | C39843328 | Supervisor microcontroller; pin layout differs from KiCad's stock symbol |
 | `MD-40SM`           | `Mini-DIN-4_CUI_MD-40SM_Horizontal`        | C6224745    | S-Video socket; stock `Connector:Mini-DIN-4` plus a shield pin |
 | `CAX-AV-314-RWY-PHP` | `Jack_RCA_x3_CAX_AV-314-RWY_Horizontal` | C55072367 | Triple RCA jack (red, white, yellow); one unit per jack |
+| `6510`              | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6510 CPU (also 8500); LCSC part is the DIP-40 socket |
+| `VIC-II`            | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6567/8562 VIC-II; LCSC part is the DIP-40 socket |
+| `SID`               | `Package_DIP:DIP-28_W15.24mm_Socket`       | C2874016    | MOS 6581/8580 SID; LCSC part is the DIP-28 socket |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -324,6 +327,44 @@ the assembly preview.
 - There is no 3D model.
 
 ![TF-01A footprint](images/TF-01A_footprint.png)
+
+### 6510, VIC-II and SID
+
+Symbols for the three MOS chips of the C64 that KiCad does not have: the CPU
+(`6510`), the video controller (`VIC-II`) and the sound chip (`SID`). They
+replace the symbols of the original design (the `KU-schematics-library` of
+the upstream replica) on the main board (#139).
+
+- **Pin positions:** the same as the upstream symbols, so that the main
+  board's sheets kept their wiring. The pins are on a 1.27 mm grid, not
+  KiCad's usual 2.54 mm, for the same reason.
+- **Pin names:** from the MOS datasheets
+  ([6510](http://www.6502.org/documents/datasheets/mos/mos_6510_mpu.pdf),
+  [6567 VIC-II](http://www.6502.org/documents/datasheets/mos/mos_6567_vic_ii_preliminary.pdf),
+  [6581 SID](http://www.6502.org/documents/datasheets/mos/mos_6581_sid.pdf)),
+  with overbars for active-low signals and `PHI` for the clocks.
+- **Pin types:**
+  - 6510: A0 to A15 and R/~W are tri-state outputs (AEC turns them off), D0
+    to D7 and P0 to P5 bidirectional, PHI2 an output, the rest inputs.
+  - VIC-II: D0 to D7 and the multiplexed A0/A8 to A5/A13 are bidirectional
+    (the 6510 selects a register on A0 to A5), D8 to D11 inputs (colour
+    data), A6 to A11 tri-state outputs. `~IRQ` and SYNC/LUM are open drain
+    and COLOR is open source, as in the datasheet; `BA`, `AEC`, PHI0, `~RAS`
+    and `~CAS` are outputs.
+  - SID: D0 to D7 and POTX/POTY are bidirectional, CAP1A to CAP2B passive,
+    AUDIO_OUT open source (it needs an external load to ground), the rest
+    inputs.
+- **Variants:** the same pinouts fit the later HMOS-II parts: the 8500 for
+  the 6510, the 8562 (NTSC) and 8565 (PAL) for the VIC-II, the 8580 for the
+  SID. Only the supply on the VIC-II's VDD (pin 13: 12 V on the 6567/6569,
+  5 V on the 8562/8565) and the SID's VDD (pin 28: 12 V on the 6581, 9 V on
+  the 8580) differs; the Value field names the fitted part.
+- **Footprint:** KiCad's DIP socket footprints. The LCSC numbers are those of
+  the round-pin sockets; the chips themselves come from elsewhere.
+
+![6510 symbol](images/6510_symbol.png)
+![VIC-II symbol](images/VIC-II_symbol.png)
+![SID symbol](images/SID_symbol.png)
 
 ## Adding parts
 

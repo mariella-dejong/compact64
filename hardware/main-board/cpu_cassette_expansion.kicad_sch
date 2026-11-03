@@ -13,7 +13,7 @@
 		(comment 3 "Schematics V1.2 for Board V1.1")
 	)
 	(lib_symbols
-		(symbol "250407_-rescue:6510_MPU-KU-schematics-library"
+		(symbol "c64-mini:6510"
 			(pin_names
 				(offset 1.016)
 			)
@@ -23,27 +23,28 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
-				(at -3.6322 3.8608 0)
+				(at -10.16 -43.18 0)
 				(show_name no)
 				(do_not_autoplace no)
-				(effects
-					(font
-						(size 2.0066 2.0066)
-					)
-				)
-			)
-			(property "Value" "6510_MPU-KU-schematics-library"
-				(at -5.08 -43.18 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Value" "6510"
+				(at 2.54 -43.18 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_DIP:DIP-40_W15.24mm_Socket"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -54,7 +55,7 @@
 					)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "http://www.6502.org/documents/datasheets/mos/mos_6510_mpu.pdf"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -65,7 +66,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "MOS 6510 8-bit microprocessor with 6-bit I/O port (P0 to P5), DIP-40; also fits the 8500 (HMOS-II) of later C64 boards"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -76,40 +77,57 @@
 					)
 				)
 			)
-			(symbol "6510_MPU-KU-schematics-library_0_0"
-				(text "6510A"
-					(at -1.27 1.27 0)
-					(effects
-						(font
-							(size 2.0066 2.0066)
-						)
-					)
-				)
-				(text "MPU"
-					(at -1.1684 -1.6002 0)
-					(effects
-						(font
-							(size 2.0066 2.0066)
-						)
+			(property "LCSC Part #" "C2874018"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
 			)
-			(symbol "6510_MPU-KU-schematics-library_1_1"
+			(property "ki_keywords" "6510 8500 6502 CPU MPU MOS Commodore C64"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "DIP*W15.24mm*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "6510_0_1"
 				(rectangle
 					(start -10.16 45.72)
 					(end 10.16 -41.91)
 					(stroke
-						(width 0.3048)
-						(type solid)
+						(width 0.254)
+						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
+			)
+			(symbol "6510_1_1"
 				(pin input line
 					(at 12.7 -35.56 180)
 					(length 2.54)
-					(name "PH0IN"
+					(name "PHI0"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -160,7 +178,7 @@
 						)
 					)
 				)
-				(pin input inverted
+				(pin input line
 					(at -12.7 -39.37 0)
 					(length 2.54)
 					(name "~{NMI}"
@@ -181,7 +199,7 @@
 				(pin input line
 					(at 12.7 43.18 180)
 					(length 2.54)
-					(name "~{AEC}"
+					(name "AEC"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -214,7 +232,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 -7.62 180)
 					(length 2.54)
 					(name "A0"
@@ -232,7 +250,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 -5.08 180)
 					(length 2.54)
 					(name "A1"
@@ -250,7 +268,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 -2.54 180)
 					(length 2.54)
 					(name "A2"
@@ -268,7 +286,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 0 180)
 					(length 2.54)
 					(name "A3"
@@ -286,7 +304,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 2.54 180)
 					(length 2.54)
 					(name "A4"
@@ -304,7 +322,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 5.08 180)
 					(length 2.54)
 					(name "A5"
@@ -322,7 +340,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 7.62 180)
 					(length 2.54)
 					(name "A6"
@@ -340,7 +358,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 10.16 180)
 					(length 2.54)
 					(name "A7"
@@ -358,7 +376,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 12.7 180)
 					(length 2.54)
 					(name "A8"
@@ -376,7 +394,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 15.24 180)
 					(length 2.54)
 					(name "A9"
@@ -394,7 +412,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 17.78 180)
 					(length 2.54)
 					(name "A10"
@@ -412,7 +430,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 20.32 180)
 					(length 2.54)
 					(name "A11"
@@ -430,7 +448,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 22.86 180)
 					(length 2.54)
 					(name "A12"
@@ -448,7 +466,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 25.4 180)
 					(length 2.54)
 					(name "A13"
@@ -466,7 +484,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin power_in line
 					(at 0 -44.45 90)
 					(length 2.54)
 					(name "GND"
@@ -484,7 +502,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 27.94 180)
 					(length 2.54)
 					(name "A14"
@@ -502,7 +520,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 30.48 180)
 					(length 2.54)
 					(name "A15"
@@ -520,7 +538,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at -2.54 48.26 270)
 					(length 2.54)
 					(name "P5"
@@ -538,7 +556,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at -5.08 48.26 270)
 					(length 2.54)
 					(name "P4"
@@ -556,7 +574,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at -7.62 48.26 270)
 					(length 2.54)
 					(name "P3"
@@ -574,7 +592,7 @@
 						)
 					)
 				)
-				(pin input inverted
+				(pin bidirectional line
 					(at 12.7 35.56 180)
 					(length 2.54)
 					(name "P2"
@@ -592,7 +610,7 @@
 						)
 					)
 				)
-				(pin input inverted
+				(pin bidirectional line
 					(at 12.7 38.1 180)
 					(length 2.54)
 					(name "P1"
@@ -610,7 +628,7 @@
 						)
 					)
 				)
-				(pin input inverted
+				(pin bidirectional line
 					(at 12.7 40.64 180)
 					(length 2.54)
 					(name "P0"
@@ -628,7 +646,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -10.16 180)
 					(length 2.54)
 					(name "D7"
@@ -646,7 +664,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -12.7 180)
 					(length 2.54)
 					(name "D6"
@@ -664,7 +682,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -15.24 180)
 					(length 2.54)
 					(name "D5"
@@ -682,7 +700,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -17.78 180)
 					(length 2.54)
 					(name "D4"
@@ -700,7 +718,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -20.32 180)
 					(length 2.54)
 					(name "D3"
@@ -718,7 +736,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -22.86 180)
 					(length 2.54)
 					(name "D2"
@@ -736,7 +754,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -25.4 180)
 					(length 2.54)
 					(name "D1"
@@ -754,7 +772,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -27.94 180)
 					(length 2.54)
 					(name "D0"
@@ -772,7 +790,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin tri_state line
 					(at 12.7 -33.02 180)
 					(length 2.54)
 					(name "R/~{W}"
@@ -790,7 +808,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin output line
 					(at 12.7 -30.48 180)
 					(length 2.54)
 					(name "PHI2"
@@ -8820,7 +8838,7 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:6510_MPU-KU-schematics-library")
+		(lib_id "c64-mini:6510")
 		(at 202.565 73.025 0)
 		(unit 1)
 		(body_style 1)
@@ -8831,32 +8849,32 @@
 		(dnp no)
 		(uuid "562b26b7-3e4a-453d-9f2f-180fcf77f755")
 		(property "Reference" "U201"
-			(at 203.5556 68.9102 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 2.0066 2.0066)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "8500"
-			(at 197.485 116.205 0)
-			(hide yes)
+			(at 192.405 116.205 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
+			)
+		)
+		(property "Value" "8500"
+			(at 205.105 116.205 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-40_W15.24mm_Socket"
 			(at 202.565 73.025 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8865,9 +8883,9 @@
 		)
 		(property "Datasheet" ""
 			(at 202.565 73.025 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8876,9 +8894,9 @@
 		)
 		(property "Description" "Fitted with a 40-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert the MOS 8500 CPU (a 6510 also works) after assembly; see note B."
 			(at 202.565 73.025 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8887,9 +8905,9 @@
 		)
 		(property "LCSC Part #" "C2874018"
 			(at 202.565 73.025 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
