@@ -2110,7 +2110,8 @@ R1607) and an output of U1602 (SN74LVC06A), an inverting open-drain buffer:
 
 ### User port
 
-J1602 is the user port edge connector with the original pinout. Pins 1, 12,
+J1602 is the user port edge connector with the original pinout, on the
+footprint `c64-mini:C64_User_Port_Edge_2x12_P3.96mm` (#146). Pins 1, 12,
 A and N are ground, pin 2 is +5V with C1621, and pins 10 and 11 are not
 connected (#37). Every signal line has a TVS diode at the connector, then a
 100 Ohm series resistor, then a 4.7k pull-up to +5V at the GPIO. The TVS
@@ -2590,7 +2591,9 @@ by Bwack, with help from Der Alte Bastler).
   `c64-mini:6510` from the project library (#139). The expansion port and
   the cassette port use `c64-mini:C64_Expansion_Port` and
   `c64-mini:C64_Cassette_Port` (#115), with the pin positions of the
-  original symbols, and the connectors keep their original footprints.
+  original symbols. The cassette port's edge fingers use
+  `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` (#146); the expansion port
+  keeps its original footprint.
   Ground uses KiCad's `power:GND` on every sheet (#115).
 
 ### References
@@ -2821,6 +2824,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Moved the footprints of the cassette port J202 and the user port J1602 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#146): `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` and `c64-mini:C64_User_Port_Edge_2x12_P3.96mm`, redrawn from the upstream footprints and the original board outline. They include the tab and its key slots on `Edge.Cuts`, are excluded from the BOM and position files, and have 2.2 mm instead of 2.41 mm wide fingers to keep clear of the key slots. The PCB is not updated |
 | 2026-11-02 | Removed the legacy symbol libraries `KU-schematics-library` and `250407_-rescue` from `sym-lib-table`, and deleted `KU-schematics-library.lib`/`.dcm` and the unused `c64-mini-rescue.lib`/`.dcm` (#115). No symbol on any sheet uses them any more |
 | 2026-11-02 | Replaced the symbol of U1702 (CD4066B) on the `SID and internal audio output` sheet, `4066_U28` from the legacy `250407_-rescue` library, with KiCad's `4xxx:4066` (#115): four switch units and a power unit instead of one block. Redrew the paddle switch: the units sit next to each other with the SID's POTX and POTY wired to them, `CIA1_PA6` and `CIA1_PA7` on labels, the `POTAX`, `POTAY`, `POTBX` and `POTBY` hierarchical labels moved to the switches, and C1715 moved to the power unit. Connections are unchanged |
 | 2026-11-02 | Replaced every ground symbol with KiCad's `power:GND` (#115): the `power:Earth` symbols on all sheets and the `GND_SMALL` symbols from the legacy `KU-schematics-library` on the `CPU, Cassette and Expansion Port`, `VIC-II, HF Module Replacement and AV out` and `SID and internal audio output` sheets (195 symbols). The ground net is now called `GND` instead of `Earth`; its connections are unchanged. The former `GND_SMALL` symbols got `#PWR` references instead of `#U` |
