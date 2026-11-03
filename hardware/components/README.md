@@ -23,7 +23,7 @@ under `hardware/` can register it the same way.
 | `6510`              | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6510 CPU (also 8500); LCSC part is the DIP-40 socket |
 | `VIC-II`            | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6567/8562 VIC-II; LCSC part is the DIP-40 socket |
 | `SID`               | `Package_DIP:DIP-28_W15.24mm_Socket`       | C2874016    | MOS 6581/8580 SID; LCSC part is the DIP-28 socket |
-| `C64_Expansion_Port` | `KU-14194HB-RevB-KiCad:EXPANSION_PORT`    |             | C64 expansion (cartridge) port, 2x22 contacts |
+| `C64_Expansion_Port` | `EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` | C5173343 | C64 expansion (cartridge) port, 2x22 contacts |
 | `C64_Cassette_Port` | `C64_Cassette_Port_Edge_2x06_P3.96mm`      |             | C64 cassette port, 2x6 edge fingers on the board |
 | `C64_User_Port`     | `C64_User_Port_Edge_2x12_P3.96mm`          |             | C64 user port, 2x12 edge fingers on the board |
 
@@ -462,6 +462,44 @@ They replace `EDGE_CON_12P_TAPE` and `EDGE_CON_24P` from the upstream
 
 ![C64 user port footprint](images/C64_User_Port_Edge_footprint.png)
 ![C64 cassette port footprint](images/C64_Cassette_Port_Edge_footprint.png)
+
+### Expansion port slot
+
+The expansion port (J201) is a WingTAT ER44BGFBK (C5173343,
+[datasheet](https://datasheet.lcsc.com/datasheet/pdf/8938b5ff731313daaf9cf20a8acd91ae.pdf?productCode=C5173343)),
+a right-angle, through-hole card-edge slot with 2 x 22 contacts at 2.54 mm
+pitch (#148). KiCad has no footprint for it (`Connector_PCBEdge` has
+card-edge slots for other buses only), so it is
+`EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` here. It replaces
+`EXPANSION_PORT` from the upstream `KU-14194HB-RevB-KiCad.pretty`, which has
+the same pad positions.
+
+**C64 cartridges:**
+- Pitch 2.54 mm and 44 contacts (2 x 22), as on the C64.
+- Cards 1.57 mm (±0.15 mm) thick; C64 cartridges use 1.6 mm boards.
+- Recommended card width 58.72 mm (±0.2 mm). C64 cartridge boards are about
+  58.4 mm (2.3 in) wide at the contacts (for example 58.42 mm on the
+  open-source OpenC64Cart), so they fit with the contacts centred.
+- No key, like the C64's expansion port.
+- The slot is 9 mm deep.
+- The upper contacts lead to the rear row of legs, the lower contacts to the
+  front row (datasheet side view). With the board below the slot, the rear
+  row is the top of the cartridge, pins 1 to 22, and the front row the
+  bottom, A to Z, as on the C64 and in the upstream footprint.
+
+**Footprint:**
+- Pins 1 to 22 in the rear row, A to Z (without G, I, O and Q) in the front
+  row, 5.08 mm in front of it; pin 1 is the origin. 1.0 mm holes, as in the
+  datasheet (1.0 ± 0.15 mm), with 1.7 mm pads.
+- The front face of the slot is 15.2 mm in front of the front row and is
+  marked as the board edge on `Dwgs.User`. The board has to end there (or
+  have a cut-out), as on the C64, so that the cartridge's case clears it.
+- Fabrication layer: the housing, 62.17 mm long and about 15.5 mm deep. The
+  housing covers the front row of legs, so the silkscreen only shows its
+  sides. Courtyard 0.5 mm around the housing and the pads.
+- There is no 3D model.
+
+![Expansion port footprint](images/ER44BGFBK_footprint.png)
 
 ## Adding parts
 
