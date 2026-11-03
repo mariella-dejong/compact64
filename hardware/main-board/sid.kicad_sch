@@ -349,7 +349,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "250407_-rescue:SID-KU-schematics-library"
+		(symbol "c64-mini:SID"
 			(pin_names
 				(offset 1.016)
 			)
@@ -359,48 +359,28 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
-				(at -2.54 0 0)
+				(at -10.16 29.21 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
-						(size 0.9906 0.9906)
+						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" "SID-KU-schematics-library"
-				(at -2.54 -2.54 0)
+			(property "Value" "SID"
+				(at 2.54 29.21 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
-						(size 0.9906 0.9906)
+						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
-				(at -2.54 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 0.9906 0.9906)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at -2.54 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 0.9906 0.9906)
-					)
-				)
-			)
-			(property "Description" ""
+			(property "Footprint" "Package_DIP:DIP-28_W15.24mm_Socket"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -411,20 +391,75 @@
 					)
 				)
 			)
-			(symbol "SID-KU-schematics-library_0_1"
+			(property "Datasheet" "http://www.6502.org/documents/datasheets/mos/mos_6581_sid.pdf"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "MOS SID sound interface device, DIP-28: pinout of the 6581 and 8580; VDD (pin 28) is 12 V on the 6581 and 9 V on the 8580"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC Part #" "C2874016"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "SID 6581 8580 sound audio MOS Commodore C64"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "DIP*W15.24mm*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SID_0_1"
 				(rectangle
 					(start -10.16 27.94)
 					(end 10.16 -33.02)
 					(stroke
-						(width 0.3048)
-						(type solid)
+						(width 0.254)
+						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
 			)
-			(symbol "SID-KU-schematics-library_1_1"
+			(symbol "SID_1_1"
 				(pin passive line
 					(at 12.7 -10.16 180)
 					(length 2.54)
@@ -497,7 +532,7 @@
 						)
 					)
 				)
-				(pin input inverted
+				(pin input line
 					(at -12.7 -17.78 0)
 					(length 2.54)
 					(name "~{RES}"
@@ -551,7 +586,7 @@
 						)
 					)
 				)
-				(pin input inverted
+				(pin input line
 					(at -12.7 -20.32 0)
 					(length 2.54)
 					(name "~{CS}"
@@ -821,7 +856,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -27.94 180)
 					(length 2.54)
 					(name "POTY"
@@ -839,7 +874,7 @@
 						)
 					)
 				)
-				(pin input line
+				(pin bidirectional line
 					(at 12.7 -25.4 180)
 					(length 2.54)
 					(name "POTX"
@@ -893,10 +928,10 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin open_emitter line
 					(at 12.7 0 180)
 					(length 2.54)
-					(name "AUDIO"
+					(name "AUDIO_OUT"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2380,12 +2415,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "889e7e09-40ad-4db8-9484-b05298a2d1a6")
-	)
-	(junction
-		(at 148.59 81.28)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "992ab004-54c5-4b4a-9be3-40db39cae062")
 	)
 	(junction
 		(at 159.385 55.88)
@@ -5746,7 +5775,7 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:SID-KU-schematics-library")
+		(lib_id "c64-mini:SID")
 		(at 132.715 81.28 0)
 		(unit 1)
 		(body_style 1)
@@ -5757,52 +5786,54 @@
 		(dnp no)
 		(uuid "98f6543c-9588-494e-938d-002c0617b959")
 		(property "Reference" "U1701"
-			(at 132.715 58.42 0)
+			(at 122.555 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 2.9972 2.9972)
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "8580"
-			(at 132.715 62.23 0)
+			(at 135.255 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 2.9972 2.9972)
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Package_DIP:DIP-28_W15.24mm_Socket"
 			(at 132.715 81.28 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
-					(size 0.9906 0.9906)
+					(size 1.27 1.27)
 				)
 			)
 		)
 		(property "Datasheet" ""
 			(at 132.715 81.28 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
-					(size 0.9906 0.9906)
+					(size 1.27 1.27)
 				)
 			)
 		)
 		(property "Description" "Fitted with a 28-pin round-pin DIP IC socket (the LCSC part number is for the socket). Insert an 8580 SID after assembly; a 6581 does not work here, it needs 12 V on VDD; see note B."
 			(at 132.715 81.28 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5811,9 +5842,9 @@
 		)
 		(property "LCSC Part #" "C2874016"
 			(at 132.715 81.28 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7152,85 +7183,6 @@
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/445f1d0b-059c-41c2-ab63-8bf80c392f35"
 					(reference "C1709")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:PWR_FLAG")
-		(at 148.59 81.28 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "db7145c4-e0eb-4f87-ba90-6664fba7d782")
-		(property "Reference" "#FLG01703"
-			(at 148.59 79.375 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "PWR_FLAG"
-			(at 148.59 76.2 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 148.59 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 148.59 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Special symbol for telling ERC where power comes from"
-			(at 148.59 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d353d518-a08c-4a81-a022-112dbf5e5219")
-		)
-		(instances
-			(project "c64-mini"
-				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/445f1d0b-059c-41c2-ab63-8bf80c392f35"
-					(reference "#FLG01703")
 					(unit 1)
 				)
 			)

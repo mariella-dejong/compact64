@@ -2295,8 +2295,8 @@ All parts on the sheet except the VIC-II itself are SMD. The ferrite beads
 and C513 use the KiCad symbols `Device:FerriteBead_Small` and `Device:C_Small`.
 U505 and U506 use the KiCad symbol `74xx:74LS257` and U508 uses
 `74xx:74LS373`, which have the same pinouts as the 74LVC257A and the
-74LVC373A; the other logic chips still use the symbols of the original
-design.
+74LVC373A. The VIC-II uses `c64-mini:VIC-II` from the project library
+(#139).
 
 | Ref | Part | LCSC | Package |
 | --- | ---- | ---- | ------- |
@@ -2580,10 +2580,10 @@ by Bwack, with help from Der Alte Bastler).
 - **Removed so far:** #83 replaced U17, U15, U27 and gate B of U8 with a
   CPLD, and #91 removed U20 and the rest of U8 (RESTORE now comes from
   U1501). The 6510 (U201) is the only chip left on the sheet.
-- **Symbols:** the passives use KiCad's standard symbols. The 6510, the
-  expansion port, the cassette port and the ground symbols still use the
-  symbols of the original design, and the connectors keep their original
-  footprints.
+- **Symbols:** the passives use KiCad's standard symbols, and the 6510 uses
+  `c64-mini:6510` from the project library (#139). The expansion port, the
+  cassette port and the ground symbols still use the symbols of the original
+  design, and the connectors keep their original footprints.
 
 ### References
 
@@ -2808,6 +2808,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Replaced the symbols of U201 (6510), U504 (VIC-II) and U1701 (SID) from the legacy `250407_-rescue` library with the new symbols `c64-mini:6510`, `c64-mini:VIC-II` and `c64-mini:SID` (#139), with the same pin positions, datasheet pin names and electrical types, and standard fonts and fill. Set the fields of U201, U504 and U1701 to 1.27 mm and placed Reference and Value next to the body. Removed the PWR_FLAG #FLG01703 and its junction from the SID's AUDIO OUT net on the `SID and internal audio output` sheet, which the new open-emitter pin type no longer needs |
 | 2026-11-02 | Removed the multiplexer U502 (SN74F258D) and its decoupling capacitor C507 from the `VIC-II, HF Module Replacement and AV out` sheet (#137), and connected the VIC-II's A6 and A7 (U504 pins 30 and 31) directly to `VA6` and `VA7`. Removed the nets `VA6'` and `VA7'` and the `~VA14` and `~VA15` hierarchical labels and sheet pins of the VIC-II sheet |
 | 2026-11-02 | Replaced the address latch U508 on the `VIC-II, HF Module Replacement and AV out` sheet (#135): SN74LS373DWR became the Nexperia 74LVC373AD,118 (C5916208, same footprint, KiCad symbol `74xx:74LS373`), on `+3V3` instead of `+5V`, with its decoupling capacitor C517. Moved its `~OE` from `AEC` to the new net `AEC_~{OE}`, driven by U301 pin 46 on the `PLA Replacement` sheet, with R304 (4.7k, C25900) from `AEC_~{OE}` to `+3V3`. New sheet pins `AEC_~{OE}` on the `PLA Replacement` and `VIC-II, HF Module Replacement and AV out` sheets |
 | 2026-11-02 | Replaced the address multiplexers U505 and U506 on the `VIC-II, HF Module Replacement and AV out` sheet (#133): SN74HCT257DR became the Nexperia 74LVC257ABQ,115 (C548514, DHVQFN-16, footprint `Package_DFN_QFN:DHVQFN-16-1EP_2.5x3.5mm_P0.5mm_EP1x2mm`, KiCad symbol `74xx:74LS257`), on `+3V3` instead of `+5V`, with their decoupling capacitors C515 and C516. Moved the `~AEC` pull-up R303 on the `PLA Replacement` sheet from `+5V` to `+3V3` |
