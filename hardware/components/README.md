@@ -23,6 +23,9 @@ under `hardware/` can register it the same way.
 | `6510`              | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6510 CPU (also 8500); LCSC part is the DIP-40 socket |
 | `VIC-II`            | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6567/8562 VIC-II; LCSC part is the DIP-40 socket |
 | `SID`               | `Package_DIP:DIP-28_W15.24mm_Socket`       | C2874016    | MOS 6581/8580 SID; LCSC part is the DIP-28 socket |
+| `C64_Expansion_Port` | `KU-14194HB-RevB-KiCad:EXPANSION_PORT`    |             | C64 expansion (cartridge) port, 2x22 contacts |
+| `C64_Cassette_Port` | `KU-14194HB-RevB-KiCad:EDGE_CON_12P_TAPE`  |             | C64 cassette port, 2x6 edge contacts |
+| `C64_User_Port`     | `KU-14194HB-RevB-KiCad:EDGE_CON_24P`       |             | C64 user port, 2x12 edge contacts |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -365,6 +368,28 @@ the upstream replica) on the main board (#139).
 ![6510 symbol](images/6510_symbol.png)
 ![VIC-II symbol](images/VIC-II_symbol.png)
 ![SID symbol](images/SID_symbol.png)
+
+### C64 expansion, cassette and user port
+
+Symbols for the three C64 ports on the main board: `C64_Expansion_Port`
+(J201), `C64_Cassette_Port` (J202) and `C64_User_Port` (J1602). They replace
+the symbols of the original design (the `KU-schematics-library` of the
+upstream replica) (#115).
+
+- **Pin positions and numbers:** the same as the upstream symbols, so the
+  main board's sheets kept their wiring; like the upstream symbols, they are
+  on a 1.27 mm grid. The pin numbers match the upstream footprints in
+  `KU-14194HB-RevB-KiCad.pretty`: 1 to 22 and A to Z on the expansion port,
+  1 to 12 and A to N on the user port, and `A,1` to `F,6` on the cassette
+  port, whose top and bottom contacts are joined.
+- **Pin names:** the C64 signal names of each contact, with overbars for
+  active-low signals. On the user port, pins 10 and 11 carry 9 V AC on a C64
+  and are named NC, because the c64-mini leaves them unconnected (#37).
+- **Pin types:** passive, as usual for connectors.
+
+![C64 expansion port symbol](images/C64_Expansion_Port_symbol.png)
+![C64 cassette port symbol](images/C64_Cassette_Port_symbol.png)
+![C64 user port symbol](images/C64_User_Port_symbol.png)
 
 ## Adding parts
 

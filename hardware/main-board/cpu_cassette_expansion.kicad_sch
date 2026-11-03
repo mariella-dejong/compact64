@@ -847,7 +847,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "250407_-rescue:EXPANSION_PORT-KU-schematics-library"
+		(symbol "c64-mini:C64_Expansion_Port"
 			(pin_names
 				(offset 1.016)
 			)
@@ -856,49 +856,29 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "CN"
-				(at 8.89 -2.54 0)
+			(property "Reference" "J"
+				(at -55.88 -11.43 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
-						(size 0.9906 0.9906)
+						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" "EXPANSION_PORT-KU-schematics-library"
-				(at 0 -2.54 0)
+			(property "Value" "C64_Expansion_Port"
+				(at -48.26 -11.43 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
-						(size 0.9906 0.9906)
+						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
-				(at 0 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 0.9906 0.9906)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 0.9906 0.9906)
-					)
-				)
-			)
-			(property "Description" ""
+			(property "Footprint" "KU-14194HB-RevB-KiCad:EXPANSION_PORT"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -909,24 +889,68 @@
 					)
 				)
 			)
-			(symbol "EXPANSION_PORT-KU-schematics-library_0_1"
-				(rectangle
-					(start -55.88 2.54)
-					(end 203.2 0)
-					(stroke
-						(width 0.3048)
-						(type solid)
-					)
-					(fill
-						(type none)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
 				)
 			)
-			(symbol "EXPANSION_PORT-KU-schematics-library_1_1"
-				(pin input line
+			(property "Description" "Commodore 64 expansion (cartridge) port, 2x22 contacts at 2.54 mm: pins 1 to 22 on the top side, A to Z on the bottom side"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "C64 Commodore expansion cartridge port edge connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*EXPANSION*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C64_Expansion_Port_0_1"
+				(rectangle
+					(start -55.88 2.54)
+					(end 203.2 -10.16)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "C64_Expansion_Port_1_1"
+				(pin passive line
 					(at 80.01 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -941,10 +965,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 92.71 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "+5V"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -959,10 +983,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 90.17 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "+5V"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -977,10 +1001,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -31.75 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{IRQ}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -995,10 +1019,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -39.37 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "R/~{W}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1013,10 +1037,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 200.66 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "DOT_CLK"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1031,10 +1055,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 154.94 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{I/O1}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1049,10 +1073,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 64.77 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{GAME}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1067,10 +1091,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 62.23 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{EXROM}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1085,244 +1109,10 @@
 						)
 					)
 				)
-				(pin input line
-					(at 152.4 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "10"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 100.33 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "11"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -29.21 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -19.05 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "13"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -11.43 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "14"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "15"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -6.35 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "16"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -3.81 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "17"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -1.27 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "18"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 1.27 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "19"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 3.81 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "20"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 6.35 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "21"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 77.47 5.08 270)
-					(length 2.54)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "22"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
+				(pin passive line
 					(at 74.93 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1337,10 +1127,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 97.79 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{ROMH}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1355,10 +1145,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -36.83 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{RESET}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1373,10 +1163,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -53.34 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "~{NMI}"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1391,10 +1181,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -34.29 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "PHI2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1409,10 +1199,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 11.43 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A15"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1427,10 +1217,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 13.97 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A14"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1445,10 +1235,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 16.51 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A13"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1463,10 +1253,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 19.05 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A12"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1481,10 +1271,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 21.59 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A11"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1499,10 +1289,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 24.13 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A10"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1517,10 +1307,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 26.67 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A9"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1535,10 +1325,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 29.21 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A8"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1553,10 +1343,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 31.75 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A7"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1571,10 +1361,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 34.29 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1589,10 +1379,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 36.83 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1607,10 +1397,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 39.37 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1625,10 +1415,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 41.91 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1643,10 +1433,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 44.45 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1661,10 +1451,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 46.99 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1679,10 +1469,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 49.53 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "A0"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1697,10 +1487,10 @@
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at 72.39 5.08 270)
 					(length 2.54)
-					(name ""
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1708,6 +1498,240 @@
 						)
 					)
 					(number "Z"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 152.4 5.08 270)
+					(length 2.54)
+					(name "~{I/O2}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 100.33 5.08 270)
+					(length 2.54)
+					(name "~{ROML}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -29.21 5.08 270)
+					(length 2.54)
+					(name "BA"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -19.05 5.08 270)
+					(length 2.54)
+					(name "~{DMA}"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 5.08 270)
+					(length 2.54)
+					(name "D7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -8.89 5.08 270)
+					(length 2.54)
+					(name "D6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -6.35 5.08 270)
+					(length 2.54)
+					(name "D5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -3.81 5.08 270)
+					(length 2.54)
+					(name "D4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -1.27 5.08 270)
+					(length 2.54)
+					(name "D3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 1.27 5.08 270)
+					(length 2.54)
+					(name "D2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 5.08 270)
+					(length 2.54)
+					(name "D1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 6.35 5.08 270)
+					(length 2.54)
+					(name "D0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 77.47 5.08 270)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "22"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2488,7 +2512,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "KU-schematics-library:CASSETTE_PORT_CON"
+		(symbol "c64-mini:C64_Cassette_Port"
 			(pin_names
 				(offset 1.016)
 			)
@@ -2497,28 +2521,29 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "CN"
-				(at -3.81 -16.51 0)
+			(property "Reference" "J"
+				(at -5.08 8.89 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Value" "CASSETTE_PORT_CON"
-				(at -3.175 -17.78 0)
+			(property "Value" "C64_Cassette_Port"
+				(at -5.08 -16.51 0)
 				(show_name no)
 				(do_not_autoplace no)
-				(hide yes)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "KU-14194HB-RevB-KiCad:EDGE_CON_12P_TAPE"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2529,7 +2554,7 @@
 					)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "~"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2540,7 +2565,7 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "Commodore 64 cassette (Datasette) port, 2x6 edge contacts at 3.96 mm; the top (A to F) and bottom (1 to 6) contacts of each position are joined"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2551,22 +2576,46 @@
 					)
 				)
 			)
-			(symbol "CASSETTE_PORT_CON_1_1"
+			(property "ki_keywords" "C64 Commodore cassette Datasette tape port edge connector"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "*EDGE*CON*12P*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C64_Cassette_Port_0_1"
 				(rectangle
 					(start -5.08 7.62)
-					(end -2.54 -15.24)
+					(end 5.08 -15.24)
 					(stroke
-						(width 0.3048)
-						(type solid)
+						(width 0.254)
+						(type default)
 					)
 					(fill
-						(type none)
+						(type background)
 					)
 				)
-				(pin input line
+			)
+			(symbol "C64_Cassette_Port_1_1"
+				(pin passive line
 					(at -7.62 -13.97 0)
 					(length 2.54)
-					(name ""
+					(name "GND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2576,15 +2625,15 @@
 					(number "A,1"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 -11.43 0)
 					(length 2.54)
-					(name ""
+					(name "+5V"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2594,15 +2643,15 @@
 					(number "B,2"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 5.08 0)
 					(length 2.54)
-					(name ""
+					(name "MOTOR"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2612,15 +2661,15 @@
 					(number "C,3"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 -8.89 0)
 					(length 2.54)
-					(name ""
+					(name "READ"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2630,15 +2679,15 @@
 					(number "D,4"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 -6.35 0)
 					(length 2.54)
-					(name ""
+					(name "WRITE"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2648,15 +2697,15 @@
 					(number "E,5"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
 				)
-				(pin input line
+				(pin passive line
 					(at -7.62 -3.81 0)
 					(length 2.54)
-					(name ""
+					(name "SENSE"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2666,7 +2715,7 @@
 					(number "F,6"
 						(effects
 							(font
-								(size 1.016 1.016)
+								(size 1.27 1.27)
 							)
 						)
 					)
@@ -3695,7 +3744,7 @@
 	)
 	(text "Cartridge/Expansion (44 PIN FEMALE)"
 		(exclude_from_sim no)
-		(at 100.965 270.51 0)
+		(at 100.965 280.035 0)
 		(effects
 			(font
 				(size 2.9972 2.9972)
@@ -3707,7 +3756,7 @@
 	)
 	(text "(6-PIN MALE EDGE)"
 		(exclude_from_sim no)
-		(at 323.215 66.675 90)
+		(at 320.04 73.66 0)
 		(effects
 			(font
 				(size 2.0066 2.0066)
@@ -3719,7 +3768,7 @@
 	)
 	(text "CASSETTE"
 		(exclude_from_sim no)
-		(at 319.405 60.325 90)
+		(at 320.04 69.85 0)
 		(effects
 			(font
 				(size 2.0066 2.0066)
@@ -7919,7 +7968,7 @@
 		)
 	)
 	(symbol
-		(lib_id "250407_-rescue:EXPANSION_PORT-KU-schematics-library")
+		(lib_id "c64-mini:C64_Expansion_Port")
 		(at 84.455 265.43 0)
 		(unit 1)
 		(body_style 1)
@@ -7930,46 +7979,46 @@
 		(dnp no)
 		(uuid "15cf2a1f-8301-456a-887b-41923bcfb3da")
 		(property "Reference" "J201"
-			(at 196.2404 268.478 0)
+			(at 28.575 276.86 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 2.9972 2.9972)
-					(italic yes)
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Value" "EXPANSION_PORT"
-			(at 129.54 268.986 0)
-			(hide yes)
+			(at 36.195 276.86 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 0.9906 0.9906)
+					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "KU-14194HB-RevB-KiCad:EXPANSION_PORT"
-			(at 84.455 267.97 0)
-			(hide yes)
+			(at 84.455 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
-					(size 0.9906 0.9906)
+					(size 1.27 1.27)
 				)
 			)
 		)
 		(property "Datasheet" ""
-			(at 84.455 267.97 0)
-			(hide yes)
+			(at 84.455 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
-					(size 0.9906 0.9906)
+					(size 1.27 1.27)
 				)
 			)
 		)
@@ -7977,6 +8026,7 @@
 			(at 84.455 265.43 0)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7985,9 +8035,9 @@
 		)
 		(property "LCSC Part #" "C5173343"
 			(at 84.455 265.43 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10392,7 +10442,7 @@
 		)
 	)
 	(symbol
-		(lib_id "KU-schematics-library:CASSETTE_PORT_CON")
+		(lib_id "c64-mini:C64_Cassette_Port")
 		(at 316.865 47.625 0)
 		(unit 1)
 		(body_style 1)
@@ -10403,32 +10453,32 @@
 		(dnp no)
 		(uuid "ad20d53a-0416-4caa-b5ff-8a1f47f4247f")
 		(property "Reference" "J202"
-			(at 325.755 56.515 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 2.9972 2.9972)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CASSETTE_PORT_CON"
-			(at 313.69 65.405 0)
-			(hide yes)
+			(at 311.785 38.735 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
+			)
+		)
+		(property "Value" "CASSETTE_PORT_CON"
+			(at 311.785 64.135 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(property "Footprint" "KU-14194HB-RevB-KiCad:EDGE_CON_12P_TAPE"
 			(at 316.865 47.625 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10437,9 +10487,9 @@
 		)
 		(property "Datasheet" ""
 			(at 316.865 47.625 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10450,6 +10500,7 @@
 			(at 316.865 47.625 0)
 			(show_name no)
 			(do_not_autoplace no)
+			(hide yes)
 			(effects
 				(font
 					(size 1.27 1.27)
