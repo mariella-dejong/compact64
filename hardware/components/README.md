@@ -24,8 +24,8 @@ under `hardware/` can register it the same way.
 | `VIC-II`            | `Package_DIP:DIP-40_W15.24mm_Socket`       | C2874018    | MOS 6567/8562 VIC-II; LCSC part is the DIP-40 socket |
 | `SID`               | `Package_DIP:DIP-28_W15.24mm_Socket`       | C2874016    | MOS 6581/8580 SID; LCSC part is the DIP-28 socket |
 | `C64_Expansion_Port` | `KU-14194HB-RevB-KiCad:EXPANSION_PORT`    |             | C64 expansion (cartridge) port, 2x22 contacts |
-| `C64_Cassette_Port` | `KU-14194HB-RevB-KiCad:EDGE_CON_12P_TAPE`  |             | C64 cassette port, 2x6 edge contacts |
-| `C64_User_Port`     | `KU-14194HB-RevB-KiCad:EDGE_CON_24P`       |             | C64 user port, 2x12 edge contacts |
+| `C64_Cassette_Port` | `C64_Cassette_Port_Edge_2x06_P3.96mm`      |             | C64 cassette port, 2x6 edge fingers on the board |
+| `C64_User_Port`     | `C64_User_Port_Edge_2x12_P3.96mm`          |             | C64 user port, 2x12 edge fingers on the board |
 
 Footprints for parts that use a standard KiCad symbol:
 
@@ -378,10 +378,10 @@ upstream replica) (#115).
 
 - **Pin positions and numbers:** the same as the upstream symbols, so the
   main board's sheets kept their wiring; like the upstream symbols, they are
-  on a 1.27 mm grid. The pin numbers match the upstream footprints in
-  `KU-14194HB-RevB-KiCad.pretty`: 1 to 22 and A to Z on the expansion port,
-  1 to 12 and A to N on the user port, and `A,1` to `F,6` on the cassette
-  port, whose top and bottom contacts are joined.
+  on a 1.27 mm grid. The pin numbers match the pad numbers of the
+  footprints: 1 to 22 and A to Z on the expansion port, 1 to 12 and A to N
+  on the user port, and `A,1` to `F,6` on the cassette port, whose top and
+  bottom contacts are joined.
 - **Pin names:** the C64 signal names of each contact, with overbars for
   active-low signals. On the user port, pins 10 and 11 carry 9 V AC on a C64
   and are named NC, because the c64-mini leaves them unconnected (#37).
@@ -390,6 +390,45 @@ upstream replica) (#115).
 ![C64 expansion port symbol](images/C64_Expansion_Port_symbol.png)
 ![C64 cassette port symbol](images/C64_Cassette_Port_symbol.png)
 ![C64 user port symbol](images/C64_User_Port_symbol.png)
+
+### C64 cassette and user port edge fingers
+
+The cassette port (J202) and the user port (J1602) are not parts but edge
+fingers on the main board itself, at 3.96 mm (0.156 in) pitch, as on the C64
+(#146). KiCad has no footprint for them, so there are two here:
+`C64_Cassette_Port_Edge_2x06_P3.96mm` and `C64_User_Port_Edge_2x12_P3.96mm`.
+They replace `EDGE_CON_12P_TAPE` and `EDGE_CON_24P` from the upstream
+`KU-14194HB-RevB-KiCad.pretty`.
+
+- **Source:** the upstream footprints and the board outline of the original
+  layout (`hardware/main-board/c64-mini.kicad_pcb`), which the KU-14194HB
+  replica traced from the C64 board. The values were rounded to a clean
+  grid, which moved the outline by less than 0.1 mm.
+- **Fingers:** 8.76 mm long, starting 0.70 mm from the board edge, with
+  rounded ends. User port: 1 to 12 on top and A to N on the bottom. Cassette
+  port: `A,1` to `F,6` on both sides, as the C64 joins the top and bottom
+  contacts. The origin is pin 12 (user port) or pin 6 (cassette port), as in
+  the upstream footprints, so the PCB can swap them in place.
+- **Finger width:** 2.2 mm instead of the upstream 2.41 mm. With 2.41 mm,
+  the fingers next to a key slot are only 0.11 mm to 0.17 mm from its sides,
+  below the board's copper-to-edge clearance of 0.15 mm and the usual limits
+  of PCB makers. With 2.2 mm they are 0.245 mm (user port) and 0.31 mm
+  (cassette port) away.
+- **Tab and key slots:** on `Edge.Cuts`, as in KiCad's own card-edge
+  footprints. The tab is 11.75 mm long, 50.8 mm wide (user port) or
+  27.15 mm wide (cassette port), with 1 mm chamfers on its outer corners. The
+  key slots are 10.19 mm deep with 0.9 mm chamfers at the entry: 1.27 mm wide
+  between 1 and 2 and between 10 and 11 on the user port, 1.14 mm wide
+  between 2 and 3 on the cassette port. The outline is open at the base of
+  the tab; the board outline has to meet it at the two corners there.
+- **Other layers:** solder mask open over the whole finger area on both
+  sides, the tab on the fabrication layer, a courtyard 0.5 mm around the tab.
+  The footprints are excluded from the BOM and the position files.
+- **Fabrication:** the board must be 1.6 mm thick. Hard gold and a bevelled
+  edge are options of the PCB maker, chosen when the board is ordered.
+
+![C64 user port footprint](images/C64_User_Port_Edge_footprint.png)
+![C64 cassette port footprint](images/C64_Cassette_Port_Edge_footprint.png)
 
 ## Adding parts
 

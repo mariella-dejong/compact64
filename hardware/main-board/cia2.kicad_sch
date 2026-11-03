@@ -151,7 +151,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "KU-14194HB-RevB-KiCad:EDGE_CON_24P"
+			(property "Footprint" "c64-mini:C64_User_Port_Edge_2x12_P3.96mm"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -195,7 +195,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "*EDGE*CON*24P*"
+			(property "ki_fp_filters" "C64_User_Port_Edge*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -17140,7 +17140,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:EDGE_CON_24P"
+		(property "Footprint" "c64-mini:C64_User_Port_Edge_2x12_P3.96mm"
 			(at 281.305 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)

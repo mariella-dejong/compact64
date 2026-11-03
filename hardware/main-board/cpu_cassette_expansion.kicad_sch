@@ -2658,7 +2658,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "KU-14194HB-RevB-KiCad:EDGE_CON_12P_TAPE"
+			(property "Footprint" "c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2702,7 +2702,7 @@
 					)
 				)
 			)
-			(property "ki_fp_filters" "*EDGE*CON*12P*"
+			(property "ki_fp_filters" "C64_Cassette_Port_Edge*"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -10465,7 +10465,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:EDGE_CON_12P_TAPE"
+		(property "Footprint" "c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm"
 			(at 316.865 47.625 0)
 			(show_name no)
 			(do_not_autoplace no)
