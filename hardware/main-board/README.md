@@ -2432,6 +2432,12 @@ $D7FF, as U15 (74LS139) did before (#83); it reaches U1701 through the
   +5V, because the 4066B needs at least 3.5 V on its control inputs. C1703 and
   C1706 (1.8 nF C0G) are the timing capacitors the SID measures; C0G keeps the
   paddle readings stable. C1715 decouples U1702.
+  - U1702 uses KiCad's `4xxx:4066` symbol (#115): one unit per switch
+    (U1702A to U1702D) and a power unit (U1702E). Switches A and B (control
+    pins 13 and 5) switch control port 2 on `CIA1_PA7`, C and D (pins 6 and
+    12) switch control port 1 on `CIA1_PA6`. The control inputs are connected
+    with labels to the `CIA1_PA6` and `CIA1_PA7` hierarchical labels, and the
+    POT lines with wires to the SID.
 
 ### Parts
 
@@ -2810,6 +2816,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Replaced the symbol of U1702 (CD4066B) on the `SID and internal audio output` sheet, `4066_U28` from the legacy `250407_-rescue` library, with KiCad's `4xxx:4066` (#115): four switch units and a power unit instead of one block. Redrew the paddle switch: the units sit next to each other with the SID's POTX and POTY wired to them, `CIA1_PA6` and `CIA1_PA7` on labels, the `POTAX`, `POTAY`, `POTBX` and `POTBY` hierarchical labels moved to the switches, and C1715 moved to the power unit. Connections are unchanged |
 | 2026-11-02 | Replaced every ground symbol with KiCad's `power:GND` (#115): the `power:Earth` symbols on all sheets and the `GND_SMALL` symbols from the legacy `KU-schematics-library` on the `CPU, Cassette and Expansion Port`, `VIC-II, HF Module Replacement and AV out` and `SID and internal audio output` sheets (195 symbols). The ground net is now called `GND` instead of `Earth`; its connections are unchanged. The former `GND_SMALL` symbols got `#PWR` references instead of `#U` |
 | 2026-11-02 | Replaced the symbols of the expansion port (J201), the cassette port (J202) and the user port (J1602), `EXPANSION_PORT` and `USER_PORT_CON` from the legacy `250407_-rescue` library and `CASSETTE_PORT_CON` from `KU-schematics-library`, with the new symbols `c64-mini:C64_Expansion_Port`, `c64-mini:C64_Cassette_Port` and `c64-mini:C64_User_Port` (#115): same pin positions and footprints, with signal names on the pins, passive pin types and standard fonts and fill. Set the fields of J201, J202 and J1602 to 1.27 mm next to the body. Moved the notes `Cartridge/Expansion (44 PIN FEMALE)` and `CASSETTE (6-PIN MALE EDGE)` clear of the larger bodies, and merged `USER PORT` and `(24-PIN MALE EDGE)` into one note inside the user port's body |
 | 2026-11-02 | Corrected the Description of U902 (CJ78M09) on the `9V Stabilized Rail` sheet, which still said 12 V from KiCad's `LM78M05_TO252` symbol (#115) |
