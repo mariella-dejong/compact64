@@ -12453,7 +12453,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "KU-14194HB-RevB-KiCad:SERIAL_CON_DIN6"
+		(property "Footprint" "c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal"
 			(at 360.045 48.895 0)
 			(hide yes)
 			(show_name no)
@@ -12464,7 +12464,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf"
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/83857c2ae8e46b673d2bd5467c14fb47.pdf?productCode=C53056242"
 			(at 360.045 48.895 0)
 			(hide yes)
 			(show_name no)
@@ -12486,7 +12486,7 @@
 				)
 			)
 		)
-		(property "LCSC Part #" "C54573054"
+		(property "LCSC Part #" "C53056242"
 			(at 360.045 48.895 0)
 			(hide yes)
 			(show_name no)

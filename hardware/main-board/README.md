@@ -2050,8 +2050,13 @@ whole port, for example for parallel cables to disk drives.
 
 ### Serial port
 
-J1601 is the 6-pin DIN socket of the original board (same part and
-footprint as CN4) with the original pinout:
+J1601 is a full-size 6-pin DIN socket (240°, with a centre pin, as CN4 on
+the original board) with the original pinout. The part is a Minlenda
+MLD-DS-6-03-08 (C53056242); the CAX DIN-603-H (C54573054) has the same
+layout and also fits. The footprint
+`c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` (#147) follows their
+datasheet; the original footprint assigned four of the pins differently.
+The socket's two front legs are on pin 2, ground.
 
 | Pin | Signal | TVS | Then |
 | --- | ------ | --- | ---- |
@@ -2824,6 +2829,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Changed the serial port J1601 to the Minlenda MLD-DS-6-03-08 6-pin DIN socket (C53056242, was C54573054, CAX DIN-603-H) with the new footprint `c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` from its datasheet (#147). The upstream footprint `SERIAL_CON_DIN6` did not match either part: pins 2 to 5 were in other holes. Updated the datasheet link. The PCB is not updated |
 | 2026-11-03 | Moved the footprints of the cassette port J202 and the user port J1602 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#146): `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` and `c64-mini:C64_User_Port_Edge_2x12_P3.96mm`, redrawn from the upstream footprints and the original board outline. They include the tab and its key slots on `Edge.Cuts`, are excluded from the BOM and position files, and have 2.2 mm instead of 2.41 mm wide fingers to keep clear of the key slots. The PCB is not updated |
 | 2026-11-02 | Removed the legacy symbol libraries `KU-schematics-library` and `250407_-rescue` from `sym-lib-table`, and deleted `KU-schematics-library.lib`/`.dcm` and the unused `c64-mini-rescue.lib`/`.dcm` (#115). No symbol on any sheet uses them any more |
 | 2026-11-02 | Replaced the symbol of U1702 (CD4066B) on the `SID and internal audio output` sheet, `4066_U28` from the legacy `250407_-rescue` library, with KiCad's `4xxx:4066` (#115): four switch units and a power unit instead of one block. Redrew the paddle switch: the units sit next to each other with the SID's POTX and POTY wired to them, `CIA1_PA6` and `CIA1_PA7` on labels, the `POTAX`, `POTAY`, `POTBX` and `POTBY` hierarchical labels moved to the switches, and C1715 moved to the power unit. Connections are unchanged |

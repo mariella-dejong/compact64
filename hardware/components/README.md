@@ -36,6 +36,7 @@ Footprints for parts that use a standard KiCad symbol:
 | `QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm` | `RP2354B` (this library) | RP2354B (also RP2350B) | C39843328 |
 | `USB_C_Receptacle_HCTL_HC-TYPE-C-16P-01A_Aligned` | `Connector:USB_C_Receptacle_USB2.0_16P` | HCTL HC-TYPE-C-16P-01A | C2894897 |
 | `microSD_Hroparts_TF-01A` | `Connector:Micro_SD_Card_Det1` | Korean Hroparts Elec TF-01A (push-push micro SD socket) | C91145 |
+| `DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` | `Connector:DIN-6` | Minlenda MLD-DS-6-03-08 (6-pin DIN socket, right angle; also CAX DIN-603-H) | C53056242 |
 
 Two of these footprints are modified copies of footprints from the KiCad
 library (`QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias` and
@@ -229,6 +230,38 @@ shield legs) and does not fit this footprint. The origin is pad 1.
 - There is no 3D model.
 
 ![MD-40SM footprint](images/MD-40SM_footprint.png)
+
+### DIN-6 socket
+
+The serial port (J1601) uses a full-size 6-pin DIN socket with the 240° pin
+layout of DIN 45322 and a centre pin, right angle and through hole (#147).
+KiCad has no footprint for a full-size DIN socket (`Connector_DIN` only has
+DIN 41612 connectors). The footprint
+`DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` is for the Minlenda
+MLD-DS-6-03-08 (C53056242,
+[datasheet](https://datasheet.lcsc.com/datasheet/pdf/83857c2ae8e46b673d2bd5467c14fb47.pdf?productCode=C53056242),
+drawing MLD-2509031032 rev. A/0). The CAX DIN-603-H (C54573054) has the same
+drawing and fits too. The other right-angle 6-pin "DIN" sockets at LCSC
+(checked November 2026) are mini-DIN.
+
+- **Source:** the recommended PCB layout ("PCB板安装孔图"), seen from the
+  component side with the front of the socket at the bottom. This matches
+  the front view: pin 3 top left, 1 top right, 5 and 4 below them, 2 at the
+  bottom and 6 in the centre, the standard DIN numbering.
+- **Contacts:** pins 3, 2 and 1 in a row 15 mm wide, 12 mm behind the front
+  face; 5 and 4 10 mm apart, 14.5 mm behind it; 6 in the centre, 17.1 mm
+  behind it. The origin is pin 1.
+- **Front legs:** 10 mm apart, 2.5 mm behind the front face. They are the
+  socket's ground contact, so they are numbered 2, the DIN ground pin, as in
+  the upstream footprint. KiCad's `Connector:DIN-6` symbol then needs no
+  extra pin.
+- **Holes:** 1.5 mm, as in the datasheet, with 2.5 mm pads.
+- **Other layers:** the front face sits on the board edge, marked on
+  `Dwgs.User`. Fabrication layer: the body (21 mm x 18.8 mm with the 1.8 mm
+  front plate) and the pin numbers. Courtyard 0.5 mm around the body.
+- There is no 3D model.
+
+![DIN-6 footprint](images/DIN-6_MLD-DS-6-03-08_footprint.png)
 
 ### Triple RCA jack
 
