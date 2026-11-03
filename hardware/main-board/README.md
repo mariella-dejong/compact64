@@ -1516,10 +1516,11 @@ The address decoding stays as it was:
   (`~GAME`, `~EXROM`) and the VIC-II bank selected by CIA 2 work as before.
   The controller only answers the chip selects the CPLD gives it, and does
   not need to track any of these.
-- The address multiplexers (now U505, U502 and U506) and the latch (now
-  U508) stay; they moved to the VIC-II sheet in #74. The VIC-II's register
-  select, the CPLD's decoding of VIC-II cycles and the low address byte in
-  VIC-II cycles all depend on them.
+- The address multiplexers (now U505 and U506) and the latch (now U508)
+  stay; they moved to the VIC-II sheet in #74. The multiplexer for the bank
+  bits (U14, later U502) is gone (#137). The VIC-II's register select, the
+  CPLD's decoding of VIC-II cycles and the low address byte in VIC-II cycles
+  all depend on them.
 - The colour data switch (U16, later U503, a 4066) is gone (#81). It
   connected the colour data lines to D0 to D3 in 6510 cycles; U1401 now
   serves both sides itself, see [Timing](#timing-1).
@@ -1999,8 +2000,9 @@ These parts of the original circuit stay on the `CPU, Cassette and Expansion Por
 
 - **Chip select:** `~CIA2` for $DD00 to $DDFF now comes from the CPLD
   (U301) on the `PLA Replacement` sheet, which replaced U15 (74LS139) (#83).
-- **VIC-II bank:** U502 (74F258) and U1401 still take `~VA14` and `~VA15`,
-  and the CPLD (U301) takes `~VA14` in place of the PLA.
+- **VIC-II bank:** U1401 takes `~VA14` and `~VA15`, and the CPLD (U301)
+  takes `~VA14` in place of the PLA. U502, which put the bank bits on `VA6`
+  and `VA7` for the DRAM, is gone (#137).
 - **U8:** the 7406 is gone (#91). Gates A, E and F went with CIA 2, gate D
   with the old power-on reset (#89), gate B with the `AEC` inverter (#83)
   and gate C, the last one, with the RESTORE one-shot.
@@ -2146,7 +2148,7 @@ other outputs are open drain against pull-ups to +5V:
 | User port lines | R1615 to R1626, R1628 (4.7k) | Devices on the user port drive them too |
 
 The firmware must never drive these lines high. `~VA14` and `~VA15` only go
-to inputs (U502, the CPLD and U1401), but are open drain as well, so that they
+to inputs (the CPLD and U1401), but are open drain as well, so that they
 do not drive 3.3 V against the 5 V pull-ups. Their rising edge takes about
 0.1 us, short compared with a bus cycle of about 1 us.
 
@@ -2222,7 +2224,7 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | U19 | 6567 VIC-II | U504 (8562) |
 | U13, U25 | 74LS257 address multiplexers | U505, U506 (74LVC257A, on `+3V3`) |
 | U26 | 74LS373 address latch | U508 (74LVC373A, on `+3V3`) |
-| U14 | 74LS258 multiplexer for VA6, VA7 and the bank | U502 (74F258) |
+| U14 | 74LS258 multiplexer for VA6, VA7 and the bank | U502 (74F258), then removed (#137): the VIC-II's A6 and A7 connect to `VA6` and `VA7` directly |
 | U16 | 4066 colour data switch | U503 (CD4066B), then removed (#81): U1401 drives both sides |
 | FB23 | Ferrite bead in `PHI0` | FB501 |
 | FB15, FB14 | Ferrite beads in luma and chroma | FB502, FB503 |
@@ -2230,7 +2232,7 @@ and the audio and video connectors (#74). The VIC-II is now the 8562.
 | C53, C94 | `+12V` decoupling | C512, C513 on `CAN+5V` |
 | FB22, C60, C101 | VCC (pin 40) filter | FB505, C509, C511 |
 | C36 | 20 pF load on the dot clock | C518 |
-| C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507, C508 (removed with U503), C516, C517 |
+| C29, C30, C32, C44, C45 | Decoupling of U13, U14, U16, U25, U26 | C515, C507 (removed with U502), C508 (removed with U503), C516, C517 |
 | C203 | 82 pF on `~CAS`, PAL only, not fitted on NTSC | dropped |
 
 These parts of the original circuit stay on the `CPU, Cassette and Expansion Port` sheet:
@@ -2261,9 +2263,14 @@ These parts of the original circuit stay on the `CPU, Cassette and Expansion Por
     onto A0 to A7 in VIC-II cycles, for character ROM and colour RAM
     fetches. Its `~OE` is on `AEC_~{OE}`, which the CPLD (U301) passes
     through from `AEC`.
-  - U502 (74F258) drives `VA6` and `VA7` in VIC-II cycles (`~OE` on
-    `AEC`): the VIC-II's own A6 and A7 (`VA6'`, `VA7'`) or the bank bits
-    `~VA14`/`~VA15`, selected by `~CAS`.
+  - The VIC-II's A6 and A7 (pins 30 and 31) are not multiplexed and connect
+    to `VA6` and `VA7` directly (#137). Like pins 24 to 29, they are off
+    while `AEC` is high, and U505 drives `VA6` and `VA7` in 6510 cycles.
+    The original board had a 74LS258 (U14, later U502) here, which also put
+    the bank bits A14 and A15 on `VA6` and `VA7` while `~CAS` was low, for
+    the DRAM's column address. Without DRAM nothing reads them: U508 has
+    already latched A6 and A7 when `~RAS` fell, and U1401 takes A14 and A15
+    from `~VA14` and `~VA15`.
   - `~RAS` only connects U504 and U508, and `VA0` to `VA3`, `VA6` and `VA7`
     stay on this sheet. `VA4` and `VA5` go to U1401 and the CPLD (U301).
 - **Colour data:** D8 to D11 (pins 38 to 35) come straight from U1401
@@ -2279,8 +2286,8 @@ These parts of the original circuit stay on the `CPU, Cassette and Expansion Por
   straight to the video output circuit on the same sheet. The luma pull-up
   R512 is 1 kOhm, the value for the 856x, see
   [HF module replacement](#hf-module-replacement).
-- **Decoupling:** C507 and C515 to C517 (100 nF), one per logic chip. C515
-  to C517 (U505, U506, U508) are on `+3V3`, C507 (U502) on `+5V`.
+- **Decoupling:** C515 to C517 (100 nF) on `+3V3`, one each for U505, U506
+  and U508.
 
 ### Parts
 
@@ -2293,21 +2300,19 @@ design.
 
 | Ref | Part | LCSC | Package |
 | --- | ---- | ---- | ------- |
-| C507, C509 to C512, C515 to C517 | 100 nF 16 V X7R | C1525 | 0402 |
+| C509 to C512, C515 to C517 | 100 nF 16 V X7R | C1525 | 0402 |
 | C513 | 10 uF 25 V X5R | C96446 | 0603 |
 | C518 | 20 pF 50 V C0G | C1554 | 0402 |
 | R514 | 1k (`PHI0` tap for the supervisor, #49) | C21190 | 0603 |
 | FB501 to FB505 | 120 Ohm at 100 MHz, 2 A | C14709 | 0603 |
-| U502 | SN74F258D | C1499704 | SOIC-16 |
 | U505, U506 | Nexperia 74LVC257ABQ,115 | C548514 | DHVQFN-16 (2.5 x 3.5 mm) |
 | U508 | Nexperia 74LVC373AD,118 | C5916208 | SOIC-20 (7.5 mm) |
 | U504 | 8562 in a DIP-40 socket | C2874018 (socket) | DIP-40 |
 
-- **Logic families:** the 74LS257 and 74LS258 are not available in SOIC, so
-  U505, U506 and U502 use other families with the same pinout and TTL input
-  levels. The 6510 and the VIC-II drive TTL levels and U1601 drives `~VA14`
-  and `~VA15` at 3.3 V, so 74HC parts, which need 3.5 V for a high input, are
-  not an option. #116 tracks the choice for U502.
+- **Logic families:** the 74LS257 is not available in SOIC, so U505 and
+  U506 use another family with the same pinout and TTL input levels. The
+  6510 and the VIC-II drive TTL levels, so 74HC parts, which need 3.5 V for
+  a high input, are not an option (#116).
   - U505 and U506 are Nexperia 74LVC257A on `+3V3` (#133). The SN74HCT257DR
     was the only 257 with TTL inputs that JLCPCB stocked, in small numbers.
     Only the DHVQFN-16 version is well stocked; the SOIC-16 version
@@ -2316,10 +2321,10 @@ design.
   - **Not TI's SN74LVC257A:** only its inputs tolerate 5 V. Nexperia's part
     also tolerates up to 5.5 V on its outputs while they are off, and has
     IOFF. That matters here: in VIC-II cycles the outputs are off and the
-    VIC-II (on `CAN+5V`) and U502 drive `VA0` to `VA7` with 5 V levels.
+    VIC-II (on `CAN+5V`) drives `VA0` to `VA7` with 5 V levels.
   - **Levels:** the inputs (A0 to A15, `~CAS`, `~AEC`) read 2.0 V as high
     and accept up to 5.5 V. The outputs drive 3.3 V highs (at least 2.4 V at
-    12 mA) into the VIC-II, U508, U502, U1401 and the CPLD, which all read
+    12 mA) into the VIC-II, U508, U1401 and the CPLD, which all read
     2.0 V as high.
   - **Timing:** at most 4.6 ns from I to Y and 6.4 ns from S to Y (3.0 V to
     3.6 V), against about 30 ns for the 74HCT257. They are only on in 6510
@@ -2330,8 +2335,9 @@ design.
     U505 and U506 are powered while the C64 chips are not. R303 holds
     `~AEC` high on `+3V3` while the CPLD does not drive it, so their outputs
     stay off, see [PLA replacement](#pla-replacement).
-  - U502 is a 74F258, a bipolar part like the 74LS258, but faster. It is the
-    only 258 in SOIC that is stocked, and only in small numbers.
+  - U502 (74F258) is gone (#137). It was the only 258 with TTL inputs that
+    JLCPCB stocked, in small numbers, and its bank multiplexing only served
+    the DRAM.
   - U508 is a Nexperia 74LVC373A on `+3V3` (#135), with the same pinout and
     footprint as the 74LS373. Like U505 and U506, it must tolerate 5 V on
     its outputs while they are off: in 6510 cycles the 6510 drives A0 to A7,
@@ -2361,6 +2367,13 @@ design.
 - **C513:** a 10 uF ceramic capacitor replaces the electrolytic capacitor on
   `CAN+5V`. It keeps roughly half its capacitance at 5 V, which is enough
   next to the bulk capacitors of the `CAN+5V` regulator.
+
+### To check on the prototype
+
+- **VIC-II A6 and A7:** scope U504 pins 30 and 31 and confirm that they are
+  high impedance while `AEC` is high, so that they do not fight U505 in
+  6510 cycles (#137). The VIC-II article by Christian Bauer states this for
+  all of the VIC-II's address drivers.
 
 ## SID and audio output
 
@@ -2795,6 +2808,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Removed the multiplexer U502 (SN74F258D) and its decoupling capacitor C507 from the `VIC-II, HF Module Replacement and AV out` sheet (#137), and connected the VIC-II's A6 and A7 (U504 pins 30 and 31) directly to `VA6` and `VA7`. Removed the nets `VA6'` and `VA7'` and the `~VA14` and `~VA15` hierarchical labels and sheet pins of the VIC-II sheet |
 | 2026-11-02 | Replaced the address latch U508 on the `VIC-II, HF Module Replacement and AV out` sheet (#135): SN74LS373DWR became the Nexperia 74LVC373AD,118 (C5916208, same footprint, KiCad symbol `74xx:74LS373`), on `+3V3` instead of `+5V`, with its decoupling capacitor C517. Moved its `~OE` from `AEC` to the new net `AEC_~{OE}`, driven by U301 pin 46 on the `PLA Replacement` sheet, with R304 (4.7k, C25900) from `AEC_~{OE}` to `+3V3`. New sheet pins `AEC_~{OE}` on the `PLA Replacement` and `VIC-II, HF Module Replacement and AV out` sheets |
 | 2026-11-02 | Replaced the address multiplexers U505 and U506 on the `VIC-II, HF Module Replacement and AV out` sheet (#133): SN74HCT257DR became the Nexperia 74LVC257ABQ,115 (C548514, DHVQFN-16, footprint `Package_DFN_QFN:DHVQFN-16-1EP_2.5x3.5mm_P0.5mm_EP1x2mm`, KiCad symbol `74xx:74LS257`), on `+3V3` instead of `+5V`, with their decoupling capacitors C515 and C516. Moved the `~AEC` pull-up R303 on the `PLA Replacement` sheet from `+5V` to `+3V3` |
 | 2026-11-02 | Added a reset button connector to the `Supervisor and SD card slot` sheet (#109): J1304 (1x2 pin header, C32713268) for a push button in the case, switching `+3V3` through R1343 (220 Ohm, C25091) to GPIO15 (`RESET_REQ`) through R1344 (1k, C11702), with R1342 (4.7k, C25900) pulling the line down (RP2350 erratum E9). The supervisor makes the reset itself through Q1301 |
