@@ -2581,8 +2581,10 @@ by Bwack, with help from Der Alte Bastler).
   CPLD, and #91 removed U20 and the rest of U8 (RESTORE now comes from
   U1501). The 6510 (U201) is the only chip left on the sheet.
 - **Symbols:** the passives use KiCad's standard symbols, and the 6510 uses
-  `c64-mini:6510` from the project library (#139). The expansion port, the
-  cassette port and the ground symbols still use the symbols of the original
+  `c64-mini:6510` from the project library (#139). The expansion port and
+  the cassette port use `c64-mini:C64_Expansion_Port` and
+  `c64-mini:C64_Cassette_Port` (#115), with the pin positions of the
+  original symbols. The ground symbols still use the symbols of the original
   design, and the connectors keep their original footprints.
 
 ### References
@@ -2808,6 +2810,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Replaced the symbols of the expansion port (J201), the cassette port (J202) and the user port (J1602), `EXPANSION_PORT` and `USER_PORT_CON` from the legacy `250407_-rescue` library and `CASSETTE_PORT_CON` from `KU-schematics-library`, with the new symbols `c64-mini:C64_Expansion_Port`, `c64-mini:C64_Cassette_Port` and `c64-mini:C64_User_Port` (#115): same pin positions and footprints, with signal names on the pins, passive pin types and standard fonts and fill. Set the fields of J201, J202 and J1602 to 1.27 mm next to the body. Moved the notes `Cartridge/Expansion (44 PIN FEMALE)` and `CASSETTE (6-PIN MALE EDGE)` clear of the larger bodies, and merged `USER PORT` and `(24-PIN MALE EDGE)` into one note inside the user port's body |
 | 2026-11-02 | Corrected the Description of U902 (CJ78M09) on the `9V Stabilized Rail` sheet, which still said 12 V from KiCad's `LM78M05_TO252` symbol (#115) |
 | 2026-11-02 | Replaced the symbols of U201 (6510), U504 (VIC-II) and U1701 (SID) from the legacy `250407_-rescue` library with the new symbols `c64-mini:6510`, `c64-mini:VIC-II` and `c64-mini:SID` (#139), with the same pin positions, datasheet pin names and electrical types, and standard fonts and fill. Set the fields of U201, U504 and U1701 to 1.27 mm and placed Reference and Value next to the body. Removed the PWR_FLAG #FLG01703 and its junction from the SID's AUDIO OUT net on the `SID and internal audio output` sheet, which the new open-emitter pin type no longer needs |
 | 2026-11-02 | Removed the multiplexer U502 (SN74F258D) and its decoupling capacitor C507 from the `VIC-II, HF Module Replacement and AV out` sheet (#137), and connected the VIC-II's A6 and A7 (U504 pins 30 and 31) directly to `VA6` and `VA7`. Removed the nets `VA6'` and `VA7'` and the `~VA14` and `~VA15` hierarchical labels and sheet pins of the VIC-II sheet |
