@@ -1444,7 +1444,7 @@
 				)
 			)
 		)
-		(property "Description" "Positive 500mA 35V Linear Regulator, Fixed Output 12V, TO-252 (D-PAK)"
+		(property "Description" "Positive 500mA 35V Linear Regulator, Fixed Output 9V, TO-252 (D-PAK); CJ78M09"
 			(at 113.665 62.23 0)
 			(hide yes)
 			(show_name no)
