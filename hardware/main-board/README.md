@@ -2742,6 +2742,11 @@ Only the files that make up the KiCad project were imported, unchanged:
   `KU-schematics-library.lib`/`.dcm`, `250407_-rescue.lib`/`.dcm`
 - 3D models referenced by the PCB: `3D-models/`
 
+The two symbol libraries, `KU-schematics-library` and `250407_-rescue`, were
+removed again in #115, once their symbols had been replaced with symbols from
+KiCad's libraries and the project library (`hardware/components`). The
+footprint library `KU-14194HB-RevB-KiCad.pretty/` is still in use.
+
 ### What was left out
 
 - Fabrication outputs and exports: Gerbers and drill files, the schematic
@@ -2816,6 +2821,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-02 | Removed the legacy symbol libraries `KU-schematics-library` and `250407_-rescue` from `sym-lib-table`, and deleted `KU-schematics-library.lib`/`.dcm` and the unused `c64-mini-rescue.lib`/`.dcm` (#115). No symbol on any sheet uses them any more |
 | 2026-11-02 | Replaced the symbol of U1702 (CD4066B) on the `SID and internal audio output` sheet, `4066_U28` from the legacy `250407_-rescue` library, with KiCad's `4xxx:4066` (#115): four switch units and a power unit instead of one block. Redrew the paddle switch: the units sit next to each other with the SID's POTX and POTY wired to them, `CIA1_PA6` and `CIA1_PA7` on labels, the `POTAX`, `POTAY`, `POTBX` and `POTBY` hierarchical labels moved to the switches, and C1715 moved to the power unit. Connections are unchanged |
 | 2026-11-02 | Replaced every ground symbol with KiCad's `power:GND` (#115): the `power:Earth` symbols on all sheets and the `GND_SMALL` symbols from the legacy `KU-schematics-library` on the `CPU, Cassette and Expansion Port`, `VIC-II, HF Module Replacement and AV out` and `SID and internal audio output` sheets (195 symbols). The ground net is now called `GND` instead of `Earth`; its connections are unchanged. The former `GND_SMALL` symbols got `#PWR` references instead of `#U` |
 | 2026-11-02 | Replaced the symbols of the expansion port (J201), the cassette port (J202) and the user port (J1602), `EXPANSION_PORT` and `USER_PORT_CON` from the legacy `250407_-rescue` library and `CASSETTE_PORT_CON` from `KU-schematics-library`, with the new symbols `c64-mini:C64_Expansion_Port`, `c64-mini:C64_Cassette_Port` and `c64-mini:C64_User_Port` (#115): same pin positions and footprints, with signal names on the pins, passive pin types and standard fonts and fill. Set the fields of J201, J202 and J1602 to 1.27 mm next to the body. Moved the notes `Cartridge/Expansion (44 PIN FEMALE)` and `CASSETTE (6-PIN MALE EDGE)` clear of the larger bodies, and merged `USER PORT` and `(24-PIN MALE EDGE)` into one note inside the user port's body |
