@@ -591,12 +591,6 @@
 		(uuid "5bb96f97-83c4-406d-a466-ec11af40b5ca")
 	)
 	(junction
-		(at 39.37 240.665)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "62483c89-d7d0-4787-82a7-7b66a37f5b99")
-	)
-	(junction
 		(at 29.21 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -649,12 +643,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9c365e49-f7b5-4a8f-b999-8abe7b162a21")
-	)
-	(junction
-		(at 38.1 149.225)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9f8ee1be-b9a7-4727-b134-b9450f44cc83")
 	)
 	(junction
 		(at 29.21 57.15)
@@ -844,16 +832,6 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 254) (xy 39.37 240.665)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "03698cd2-e393-4506-a3ac-738bf0ba361f")
-	)
-	(wire
-		(pts
 			(xy 95.25 58.42) (xy 140.335 58.42)
 		)
 		(stroke
@@ -994,16 +972,6 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 269.24) (xy 273.05 269.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0bd78f3c-2ac3-44a9-8ea7-0955cdc4698f")
-	)
-	(wire
-		(pts
 			(xy 30.48 35.56) (xy 244.475 35.56)
 		)
 		(stroke
@@ -1071,16 +1039,6 @@
 			(type default)
 		)
 		(uuid "0eacf54a-2ecd-464f-b138-03da793451c7")
-	)
-	(wire
-		(pts
-			(xy 273.05 212.725) (xy 260.985 212.725)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0f2b2309-c99d-4a1c-a777-76ce59114fa0")
 	)
 	(wire
 		(pts
@@ -1414,7 +1372,7 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 151.765) (xy 39.37 240.665)
+			(xy 39.37 151.765) (xy 39.37 254)
 		)
 		(stroke
 			(width 0)
@@ -1864,16 +1822,6 @@
 	)
 	(wire
 		(pts
-			(xy 271.78 214.63) (xy 271.78 268.605)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4fa83ffb-6dc5-4ae5-a5be-f3dc7659786a")
-	)
-	(wire
-		(pts
 			(xy 130.81 136.525) (xy 130.81 146.05)
 		)
 		(stroke
@@ -1994,16 +1942,6 @@
 	)
 	(wire
 		(pts
-			(xy 273.05 269.24) (xy 273.05 212.725)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "556114ad-485f-4603-b672-0995061af48f")
-	)
-	(wire
-		(pts
 			(xy 275.59 270.51) (xy 275.59 208.915)
 		)
 		(stroke
@@ -2061,16 +1999,6 @@
 			(type default)
 		)
 		(uuid "584f4b03-79c1-4bea-a1a8-4d908d1e24f5")
-	)
-	(wire
-		(pts
-			(xy 39.37 240.665) (xy 137.16 240.665)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "58896e12-c2c1-4b83-b2a2-d3166bbdae18")
 	)
 	(wire
 		(pts
@@ -2864,26 +2792,6 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 268.605) (xy 139.7 241.935)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "93c6b5e9-95b5-44d0-8860-8d6e7edd3113")
-	)
-	(wire
-		(pts
-			(xy 139.7 241.935) (xy 38.1 241.935)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "94054f47-95ab-4aad-af68-868a5e0bef3b")
-	)
-	(wire
-		(pts
 			(xy 52.07 151.765) (xy 39.37 151.765)
 		)
 		(stroke
@@ -2981,16 +2889,6 @@
 			(type default)
 		)
 		(uuid "98c4f5de-06ea-4630-bfb7-eb3075bd79dd")
-	)
-	(wire
-		(pts
-			(xy 260.985 214.63) (xy 271.78 214.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "990fcc70-87a5-4b4b-a9cf-3bb1fa1f1300")
 	)
 	(wire
 		(pts
@@ -4154,16 +4052,6 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 241.935) (xy 38.1 149.225)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ec972daf-8992-47b9-ae46-d16f4df53c19")
-	)
-	(wire
-		(pts
 			(xy 95.25 73.66) (xy 100.965 73.66)
 		)
 		(stroke
@@ -4191,16 +4079,6 @@
 			(type default)
 		)
 		(uuid "ed485e03-1088-41e9-8498-33666357bf4c")
-	)
-	(wire
-		(pts
-			(xy 137.16 240.665) (xy 137.16 269.24)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ed6f09a1-c482-4b4c-8435-887943e6ddcf")
 	)
 	(wire
 		(pts
@@ -4421,16 +4299,6 @@
 			(type default)
 		)
 		(uuid "ff38254e-6d01-40b4-a380-4a601b0d4c26")
-	)
-	(wire
-		(pts
-			(xy 271.78 268.605) (xy 139.7 268.605)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ff4f1d87-6279-4ee3-9067-10eed8ee7b68")
 	)
 	(wire
 		(pts
@@ -8020,26 +7888,6 @@
 		(pin "~{LP}" bidirectional
 			(at 218.44 188.595 90)
 			(uuid "890b30b0-9016-4845-8b02-5c771bbe07c9")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "~{VA14}" input
-			(at 260.985 212.725 0)
-			(uuid "84ea1dd9-b79f-4486-9147-00b26a92e01e")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "~{VA15}" input
-			(at 260.985 214.63 0)
-			(uuid "d3ce6550-f38f-4393-a155-877a741e8fc8")
 			(effects
 				(font
 					(size 1.27 1.27)
