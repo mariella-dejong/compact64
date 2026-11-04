@@ -6,11 +6,10 @@
 	(paper "A3")
 	(title_block
 		(title "Compact 64 main board")
-		(date "2025-06-09")
-		(rev "1.3")
-		(comment 1 "by BWACK")
-		(comment 2 "with help from Der Alte Bastler")
-		(comment 3 "Schematics V1.2 for Board V1.1")
+		(company "Copyright (c) 2026 Mariella de Jong and contributors")
+		(comment 1 "Licensed under the CERN-OHL-S-2.0")
+		(comment 2 "started by Der Alte Bastler; see NOTICE.md for all credits")
+		(comment 3 "Based on the C64 250407 Replica by Bwack (CERN-OHL-1.2),")
 	)
 	(lib_symbols
 		(symbol "Mechanical:MountingHole"
