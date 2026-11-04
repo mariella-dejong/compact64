@@ -22690,6 +22690,678 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 62.23 182.88 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "f33f075d-4e9f-4069-9941-a7bc2702c700")
+		(property "Reference" "J1307"
+			(at 60.96 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "RAILS ON"
+			(at 60.96 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 62.23 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 62.23 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Bring-up override (DNP): a jumper pulls POWER_ON high through R1346, which turns on all rails without supervisor firmware"
+			(at 62.23 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "5920810a-5823-4063-ac77-661f5ab84003")
+		)
+		(pin "2"
+			(uuid "e1af99ca-f740-4bdc-9d39-74379ae464a0")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "J1307")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 82.55 182.88 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8a86b220-a4a1-4601-abfb-980025a768d7")
+		(property "Reference" "R1346"
+			(at 82.55 178.689 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 82.55 180.721 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 82.55 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 82.55 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C11702"
+			(at 82.55 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "176adae4-5286-49a0-8e81-6240030550d0")
+		)
+		(pin "2"
+			(uuid "7d43e729-b5ab-4cbd-b724-ee59b676dc83")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "R1346")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 67.31 182.88) (xy 80.01 182.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43536bfb-3242-4c2f-b1ac-c004037c947e")
+	)
+	(label "PREFLIGHT_OK"
+		(at 85.09 182.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c4faaa14-f8bd-4b71-be83-3ec1aca94baa")
+	)
+	(wire
+		(pts
+			(xy 67.31 185.42) (xy 72.39 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4e9673c-0cf5-45ad-8b67-4b6c98a34009")
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 72.39 185.42 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "52766c8d-cd6a-4f89-b354-dbbdbad2214e")
+		(property "Reference" "#PWR01809"
+			(at 72.39 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 75.39 185.42 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 72.39 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "341c8b0d-ac21-4b7e-a2b0-040f92ec7ca5")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "#PWR01809")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(text "Bring-up overrides (DNP, close with a jumper):"
+		(exclude_from_sim no)
+		(at 59.69 176.53 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "26cccf92-8555-45e5-91f8-1017efe2159f")
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 62.23 195.58 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "26275076-40b6-425c-9d02-c3ed2541b9f4")
+		(property "Reference" "J1308"
+			(at 60.96 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "CPLD OUTPUTS ON"
+			(at 60.96 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 62.23 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 62.23 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Bring-up override (DNP): a jumper pulls EN_PLA high through R1347, which enables the CPLD outputs; only with a programmed CPLD"
+			(at 62.23 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a98c9a69-1389-49e6-ba7c-898808ab8124")
+		)
+		(pin "2"
+			(uuid "f93293c3-e4b4-4499-8f88-0e39615a37f9")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "J1308")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 82.55 195.58 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0dbdfe24-cb8c-4c0c-8322-fd7fbbd6f76f")
+		(property "Reference" "R1347"
+			(at 82.55 191.389 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 82.55 193.421 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 82.55 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 82.55 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC Part #" "C11702"
+			(at 82.55 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "78e1a668-21f6-4edd-984a-226a84c91c3e")
+		)
+		(pin "2"
+			(uuid "20596ddb-4153-41b9-acd9-857bad1c2ed4")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "R1347")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 67.31 195.58) (xy 80.01 195.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "232c1e97-4045-4c9a-95d2-2b9c928ea4d5")
+	)
+	(label "EN_PLA"
+		(at 85.09 195.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c5b3ce21-534b-4051-be2f-45bb89b05349")
+	)
+	(wire
+		(pts
+			(xy 67.31 198.12) (xy 72.39 198.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2c6287f1-41cb-4b04-affb-d7d661f4f489")
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 72.39 198.12 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "84087f47-73d3-4df8-9bb0-b154b49a5cef")
+		(property "Reference" "#PWR01810"
+			(at 72.39 198.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 75.39 198.12 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 198.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 198.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 72.39 198.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "94bb18d3-7e21-4411-ac98-f67d88639d7d")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "#PWR01810")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 62.23 208.28 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files no)
+		(dnp yes)
+		(fields_autoplaced yes)
+		(uuid "10095b9e-e174-45b5-8258-273ae8f0b573")
+		(property "Reference" "J1309"
+			(at 60.96 205.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "HOLD C64 RESET"
+			(at 60.96 213.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 62.23 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 62.23 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Bring-up override (DNP): a jumper holds the C64 in reset; R201 limits the current"
+			(at 62.23 208.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ac57e65c-0ef2-4797-bc09-becced98c6a0")
+		)
+		(pin "2"
+			(uuid "50ba59dc-0a4b-4889-a6d3-924dbb6a0ed8")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "J1309")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(label "~{RESET}"
+		(at 67.31 208.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "a8b96763-a046-4cc7-92f4-8c491bbb5fee")
+	)
+	(wire
+		(pts
+			(xy 67.31 210.82) (xy 72.39 210.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ffa82bcd-d612-47fb-8dbd-74b06cbb2f84")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 72.39 210.82 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4fea3b6a-a6c8-4670-9986-f8abaa3e673e")
+		(property "Reference" "#PWR01811"
+			(at 72.39 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 75.69 210.82 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 72.39 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 72.39 210.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "84584019-4f30-4a34-889d-1e3434e933a9")
+		)
+		(instances
+			(project "compact64"
+				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/83785ced-90f1-439c-a9f5-0f5eaac8b37d"
+					(reference "#PWR01811")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x04_Pin")
 		(at 300.99 226.06 0)
 		(unit 1)
