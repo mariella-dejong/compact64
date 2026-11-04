@@ -74,15 +74,21 @@ The work is tracked in the issue tracker. In broad strokes:
 | `LICENSES/`           | Full texts of all licences used in this repository              |
 | `LICENSE.md`          | Which licence applies to which part of the repository           |
 | `NOTICE.md`           | Credits, third-party attributions and trademark notices         |
+| `CONTRIBUTING.md`     | How to contribute, and the conventions for issues and pull requests |
 
 Firmware and software will get their own top-level directories once that work
 starts.
 
 ## Tools
 
-The hardware is designed in [KiCad](https://www.kicad.org/). The imported
-replica was last saved with KiCad 9.0; the design will be moved to KiCad 10
-(#2).
+The hardware is designed in [KiCad](https://www.kicad.org/) 10 (#2). The
+imported replica was last saved with KiCad 9.0.
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to
+get started, the conventions for issues and pull requests, and the licensing
+of contributions.
 
 ## Credits
 
