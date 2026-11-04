@@ -9868,7 +9868,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(uuid "73855e10-7352-4c8b-b285-f831bef03915")
 		(property "Reference" "TP201"
 			(at 244.475 99.314 0)

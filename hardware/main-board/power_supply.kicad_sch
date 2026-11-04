@@ -7113,7 +7113,7 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(uuid "b7aeb20d-01f1-4589-aef6-1743b8fb4ab1")
 		(property "Reference" "TP614"
 			(at 222.25 46.609 0)

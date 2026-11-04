@@ -9603,9 +9603,9 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(uuid "00d87e76-be62-49b3-9343-b6fa23422576")
-		(property "Reference" "TP401"
+		(property "Reference" "TP501"
 			(at 159.385 212.344 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9667,7 +9667,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "TP401")
+					(reference "TP501")
 					(unit 1)
 				)
 			)
@@ -13378,9 +13378,9 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(uuid "7ad25a8e-7913-425f-8f0d-5b353cd7abb4")
-		(property "Reference" "TP403"
+		(property "Reference" "TP503"
 			(at 178.435 243.586 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13442,7 +13442,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "TP403")
+					(reference "TP503")
 					(unit 1)
 				)
 			)
@@ -16459,9 +16459,9 @@
 		(in_bom no)
 		(on_board yes)
 		(in_pos_files no)
-		(dnp no)
+		(dnp yes)
 		(uuid "d5c8dfc9-7650-4d7e-b363-cf8d82be52af")
-		(property "Reference" "TP402"
+		(property "Reference" "TP502"
 			(at 178.435 228.346 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16523,7 +16523,7 @@
 		(instances
 			(project "c64-mini"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
-					(reference "TP402")
+					(reference "TP502")
 					(unit 1)
 				)
 			)
