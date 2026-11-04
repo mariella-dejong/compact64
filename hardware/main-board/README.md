@@ -982,8 +982,30 @@ external flash chip.
 
 The supervisor is programmed through the USB-C connector with the RP2354's
 built-in USB bootloader: hold BOOTSEL, press and release RESET, then release
-BOOTSEL. The board then shows up as a USB drive that accepts a UF2 file. The
-SWD pins (SWCLK, SWDIO) are not brought out.
+BOOTSEL. The board then shows up as a USB drive that accepts a UF2 file.
+
+**SWD headers (#169):** each RP2354B also has an unfitted (DNP) 1x3 pin header
+(2.54 mm) for a debug probe, such as the Raspberry Pi Debug Probe with its
+cable to 2.54 mm sockets. Pin 1 is SWCLK, pin 2 GND and pin 3 SWDIO. The
+headers are excluded from the BOM and the position files.
+
+| Header | Controller | Connects to |
+| ------ | ---------- | ----------- |
+| J1305 | Supervisor (U1301) | SWCLK (pin 33) and SWDIO (pin 34), which are not used otherwise |
+| J1401 | RAM and ROM controller (U1401) | `SWCLK` and `SWDAT` on the `RAM and ROM replacement` sheet, the supervisor's side of R1405 and R1406 |
+| J1504 | CIA 1 controller (U1501) | `SWCLK` and `SWDAT` on the `CIA1, Keyboard and Joysticks` sheet, the supervisor's side of R1505 and R1506 |
+| J1603 | CIA 2 controller (U1601) | `SWCLK` and `SWDAT` on the `CIA2, Serial Port and User Port` sheet, the supervisor's side of R1605 and R1606 |
+
+- **Series resistors:** on U1401, U1501 and U1601 the probe reaches the
+  controller through the existing 33 Ohm resistors, which do no harm at
+  SWD speeds. The resistors sit right against the controllers' pins, so a
+  header on their other side would only clutter the sheets.
+- **Supervisor:** it keeps its SWD pins to the controllers as inputs in reset
+  and with blank firmware. With its own firmware running, it must leave them
+  as inputs while an external probe is used.
+- **RUN:** U1401, U1501 and U1601 only run while the supervisor drives their
+  `RUN` high, so without supervisor firmware a probe cannot reach them. The
+  RUN override jumpers are #172.
 
 ### Pins
 
@@ -2997,6 +3019,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-04 | Added SWD headers for the four RP2354Bs (#169): J1305 on the supervisor's SWCLK and SWDIO (pins 33 and 34, no longer marked not connected), and J1401, J1504 and J1603 on the `SWCLK` and `SWDAT` lines of U1401, U1501 and U1601, each a 1x3 pin header (`Connector:Conn_01x03_Pin`, `PinHeader_1x03_P2.54mm_Vertical`) with SWCLK, GND and SWDIO, DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-04 | Added the CPLD JTAG header J301 to the `PLA Replacement` sheet (#170): a 1x6 pin header (`Connector:Conn_01x06_Pin`, `PinHeader_1x06_P2.54mm_Vertical`) with `+3V3` (VREF), GND, `TCK`, `TDO`, `TDI` and `TMS`, in parallel with the supervisor's JTAG lines, DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-04 | Added the I2C header J1306 to the `Supervisor and SD card slot` sheet (#171): a 1x4 pin header (`Connector:Conn_01x04_Pin`, `PinHeader_1x04_P2.54mm_Vertical`) with `+3V3`, GND, `SDA` and `SCL`, DNP and excluded from the BOM and the position files, for an external I2C master while the supervisor has no firmware. The PCB is not updated |
 | 2026-11-03 | Added a heartbeat LED to every controller (#131): D1301 with R1345 on supervisor GPIO32, D1401 with R1409 on U1401 GPIO45, D1502 with R1535 on U1501 GPIO45, D1603 with R1648 on U1601 GPIO47, and D301 with R305 on CPLD pin 57. 220 Ohm resistors (C25091), fitted; 3 mm through-hole LEDs (`Device:LED_Small`, `LED_THT:LED_D3.0mm`), DNP and excluded from the BOM and the position files. The PCB is not updated |
