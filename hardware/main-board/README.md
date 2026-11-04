@@ -1017,6 +1017,7 @@ SWD pins (SWCLK, SWDIO) are not brought out.
 | GPIO28 | 36 | `SWCLK` | Output | SWD clock of the CIA 2 controller |
 | GPIO29 | 37 | `SWDAT` | Bidirectional | SWD data of the CIA 2 controller |
 | GPIO30 | 38 | `RUN` | Output | High lets the CIA 2 controller run; low or not driven holds it in reset |
+| GPIO32 | 40 | Heartbeat LED D1301 through R1345 (220 Ohm) | Output | Debug LED, fitted on bring-up boards only, see [Heartbeat LEDs](#heartbeat-leds) |
 | GPIO33 | 42 | `SD_DET` | Input | Card detect switch of the SD card slot (J1302), R1322 (10k) pull-up |
 | GPIO34 | 43 | `SCLK`, through R1316 (33 Ohm) `SD_CLK` | Output | SD card clock (SPI0 SCK) |
 | GPIO35 | 44 | `SD_CMD` | Bidirectional | SD card command line; SPI0 TX (MOSI) in SPI mode |
@@ -1244,6 +1245,37 @@ the firmware (#55).
 | R1323, R1324 | 150 Ohm | C22808 | 0603 |
 | R1325, R1326 | 220 Ohm | C25091 | 0402 |
 | R1327 to R1329 | 4.7k | C25900 | 0402 |
+
+### Heartbeat LEDs
+
+Each controller has its own LED on the main board (#131), so that a bring-up
+board shows at a glance which firmware runs and which has crashed, also
+without the LED module. The firmware blinks them (#132); the CPLD can blink
+its LED from a divided `PHI2`, which shows that it is programmed and that
+the clock runs.
+
+| Controller | Pin | Resistor | LED |
+| ---------- | --- | -------- | --- |
+| Supervisor (U1301) | GPIO32 (pin 40) | R1345 | D1301 |
+| RAM and ROM controller (U1401) | GPIO45 (pin 56) | R1409 | D1401 |
+| CIA 1 controller (U1501) | GPIO45 (pin 56) | R1535 | D1502 |
+| CIA 2 controller (U1601) | GPIO47 (pin 58) | R1648 | D1603 |
+| CPLD (U301) | I/O pin 57 | R305 | D301 |
+
+- **Circuit:** the pin drives the LED's anode through 220 Ohm, active high,
+  with the cathode on ground. With a red LED (about 1.9 V) that gives about
+  6 mA, depending on the pin's drive strength; a green or blue LED with
+  about 3 V forward voltage gets about 1 mA. Use a larger resistor, or a
+  lower drive strength in the firmware, if the LED is too bright.
+- **Fitted parts:** the resistors are fitted (C25091). The LEDs are 3 mm
+  through-hole LEDs, marked DNP and excluded from the BOM and the position
+  files, so that only the LED needs to be soldered in on a bring-up board.
+- **Before the firmware runs:** the pins come out of reset as inputs with
+  the internal pull-down. RP2350 erratum E9 can leave a pin at about 2 V
+  after a reset, which makes the LED glow dimly; that does no harm on a
+  debug LED. U1401's GPIO44 stays free for a trigger pad (#112).
+- **Layout:** place each LED next to its controller and mark it in the
+  silkscreen, for example `HB U1401`.
 
 ### Chip and rail checks
 
@@ -1495,7 +1527,10 @@ The reference numbers R301 and R302 were used before for the pull-ups on
 
 - **Internal signals:** `~I/O` (PLA F5), `~COLOR` and `~CIAS` (U15 1Y2 and
   1Y3) no longer leave the CPLD.
-- **Free pins:** 1, 2, 4, 6, 47 to 52, 56 and 57 (12 user I/O). The CPLD's
+- **Heartbeat LED:** pin 57 drives D301 through R305 (220 Ohm), see
+  [Heartbeat LEDs](#heartbeat-leds). The design (#93) can blink it from a
+  divided `PHI2`; it is not on GTS1, so it also lights while `EN_PLA` is low.
+- **Free pins:** 1, 2, 4, 6, 47 to 52 and 56 (11 user I/O). The CPLD's
   bus-hold keeps them at a defined level, so they are not connected.
 
 ### Levels
@@ -1650,10 +1685,11 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO41 | 52 | `SCL` | I2C0 clock, link to the supervisor |
 | GPIO42 | 53 | `EEPROM_SDA` | I2C1 data to the EEPROM |
 | GPIO43 | 54 | `EEPROM_SCL` | I2C1 clock to the EEPROM |
+| GPIO45 | 56 | Heartbeat LED D1401 through R1409 | Debug LED, see [Heartbeat LEDs](#heartbeat-leds) |
 | GPIO46 | 57 | `PHI2` through U1402 | 6510 clock |
 | GPIO47 | 58 | `~CAS` through U1402 | Column address strobe from the VIC-II |
 
-GPIO44 and GPIO45 (pins 55, 56) are not used.
+GPIO44 (pin 55) is not used; it is kept for a trigger pad (#112).
 
 ### Level shifting
 
@@ -1876,11 +1912,12 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO39 | 48 | to `JOYA0` | PB0 | Control port 1, up |
 | GPIO40 | 49 | `SDA` | | I2C0 data, link to the supervisor |
 | GPIO41 | 52 | `SCL` | | I2C0 clock, link to the supervisor |
+| GPIO45 | 56 | Heartbeat LED D1502 through R1535 | | Debug LED, see [Heartbeat LEDs](#heartbeat-leds) |
 | GPIO46 | 57 | `USB_EN` | | Keyboard port power on |
 | GPIO47 | 58 | `USB_FLT` | | Keyboard port overcurrent |
 | USB_DP, USB_DM | 67, 66 | `USB_D+`, `USB_D-` through 27 Ohm | | USB keyboard |
 
-GPIO14 to GPIO20 and GPIO42 to GPIO45 are not used. The joystick lines are
+GPIO14 to GPIO20 and GPIO42 to GPIO44 are not used. The joystick lines are
 not in bit order on the GPIOs, so the firmware has to map them to port bits.
 `~PC` and the TOD input of the 6526 have no counterpart: `~PC` was not
 connected, and the controller makes the TOD reference itself.
@@ -2135,8 +2172,9 @@ firmware in the internal flash, and no buttons or USB.
 | GPIO39 | 48 | `ATN_OUT` | PA3 | Serial bus ATN out, through U1602 |
 | GPIO40 | 49 | `SDA` | | I2C0 data, link to the supervisor |
 | GPIO41 | 52 | `SCL` | | I2C0 clock, link to the supervisor |
+| GPIO47 | 58 | Heartbeat LED D1603 through R1648 | | Debug LED, see [Heartbeat LEDs](#heartbeat-leds) |
 
-GPIO18 to GPIO20, GPIO42 to GPIO47 and the USB port are not used. PB0 to PB7
+GPIO18 to GPIO20, GPIO42 to GPIO46 and the USB port are not used. PB0 to PB7
 are on eight consecutive GPIOs, so one PIO program can read and drive the
 whole port, for example for parallel cables to disk drives.
 
@@ -2938,6 +2976,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Added a heartbeat LED to every controller (#131): D1301 with R1345 on supervisor GPIO32, D1401 with R1409 on U1401 GPIO45, D1502 with R1535 on U1501 GPIO45, D1603 with R1648 on U1601 GPIO47, and D301 with R305 on CPLD pin 57. 220 Ohm resistors (C25091), fitted; 3 mm through-hole LEDs (`Device:LED_Small`, `LED_THT:LED_D3.0mm`), DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-03 | Added the project URL (<https://github.com/mariella-dejong/compact64>) to the title blocks of the main board sheets, the PCB drawing sheet and the LED module (#165), now that the repository is public. The PCB silkscreen follows when the board is laid out |
 | 2026-11-03 | Renamed the project from c64-mini to Compact 64 (#162): the project files to `compact64.kicad_pro`, `.kicad_sch` and `.kicad_pcb` (with the project name in each sheet's instance data), the project libraries to `compact64.kicad_sym` and `compact64.pretty` with the nickname `compact64` in `sym-lib-table`, `fp-lib-table` and every symbol and footprint reference, and the title blocks of the main board, the PCB and the LED module. The main board title blocks no longer carry the upstream schematic version, date and author lines; they now give the project's copyright and licence, and credit the C64 250407 Replica by Bwack and Der Alte Bastler with a pointer to NOTICE.md. The source location is now <https://github.com/mariella-dejong/compact64>. Connections and parts are unchanged. The rows below keep the names as they were at the time |
 | 2026-11-03 | Added unfitted clock test headers (#128), each a `Connector:TestPoint_2Pole` with `PinHeader_1x02_P2.54mm_Vertical`, the clock on pin 1 and GND on pin 2, DNP and excluded from the BOM and the position files: TP501 (`PHI0_IN`), TP502 (`COLOR_CLK`) and TP503 (`DOT_CLOCK_IN`) on the `VIC-II, HF Module Replacement and AV out` sheet, TP201 (`PHI2`) on the `CPU, Cassette and Expansion Port` sheet, and TP614 (`SYNC_CLK_IN`) on the `Power Supply` sheet. The PCB is not updated |
