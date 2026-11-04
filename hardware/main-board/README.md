@@ -845,6 +845,41 @@ One PLL feeds all three outputs, so the clocks stay locked to each other:
 The Si5351A-B-GT (C529366) is the original part with the same pinout, but
 it costs more and is hardly in stock.
 
+### Clock test headers
+
+Each clock has an unfitted 1x2 pin header (2.54 mm) with ground on the pin
+next to the signal (#128), so that a scope probe or logic analyser lead can be
+clipped on with a short ground lead. A long ground lead adds ringing that is
+not on the board. They use `Connector:TestPoint_2Pole` with
+`Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical`, are marked DNP
+and are excluded from the BOM and the position files. Solder in a header when
+needed.
+
+| Ref | Sheet | Net (pin 1) | PAL | NTSC |
+| --- | ----- | ----------- | --- | ---- |
+| TP502 | `VIC-II, HF Module Replacement and AV out` | `COLOR_CLK`, at U504 pin 21 | 17.734475 MHz | 14.31818 MHz |
+| TP503 | `VIC-II, HF Module Replacement and AV out` | `DOT_CLOCK_IN`, at U504 pin 22 | 7.881984 MHz | 8.181818 MHz |
+| TP501 | `VIC-II, HF Module Replacement and AV out` | `PHI0_IN`, the 6510 side of FB501 | 985.248 kHz | 1.022727 MHz |
+| TP201 | `CPU, Cassette and Expansion Port` | `PHI2`, the 6510's clock output to the bus | 985.248 kHz | 1.022727 MHz |
+| TP614 | `Power Supply` | `SYNC_CLK_IN`, the buck converter sync after FB1201 | 443.4 kHz | 447.4 kHz |
+
+Pin 2 of each header is GND.
+
+- **Layout:**
+  - Put the pad right on the clock trace, near the receiving pin, so that
+    the stub stays below about 5 mm.
+  - No series resistor: it would distort the edges that are measured.
+- **Loading:** an unfitted footprint adds only its pad capacitance, and a
+  fitted header about 1 pF. A 10:1 probe adds 10 to 15 pF, which is fine at
+  these frequencies.
+- **Left out on purpose:**
+  - **The buck converters' switch nodes:** fast, high-current edges, and a
+    header there radiates. Probe at the inductor pad if needed.
+  - **The crystal pins (Y1201, Y1301):** a probe's capacitance pulls the
+    crystal.
+  - **The synthesizer outputs before the buffers U1201 to U1203:** measure
+    after them, at the headers above.
+
 ### Firmware (supervisor)
 
 - After power-up, and before `POWER_ON`, write the register set for PAL (or
@@ -2903,6 +2938,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Added unfitted clock test headers (#128), each a `Connector:TestPoint_2Pole` with `PinHeader_1x02_P2.54mm_Vertical`, the clock on pin 1 and GND on pin 2, DNP and excluded from the BOM and the position files: TP501 (`PHI0_IN`), TP502 (`COLOR_CLK`) and TP503 (`DOT_CLOCK_IN`) on the `VIC-II, HF Module Replacement and AV out` sheet, TP201 (`PHI2`) on the `CPU, Cassette and Expansion Port` sheet, and TP614 (`SYNC_CLK_IN`) on the `Power Supply` sheet. The PCB is not updated |
 | 2026-11-03 | Added test points to the `Power Supply` sheet (#127): TP601 to TP609 (`TestPoint:TestPoint_Pad_D2.0mm`) on `12V_PROT`, `12V_MAIN`, `12V_IN_SW`, `CASS_POWER`, `+9V`, `CAN+5V`, `+5V`, `+3V3` and `PGOOD`, and TP610 to TP613 (`TestPoint:TestPoint_Pad_3.0x3.0mm`) on GND, all `Connector:TestPoint_Probe`, excluded from the BOM and the position files. `POWER_ON` gets none; it can be probed at the supervisor. The PCB is not updated |
 | 2026-11-03 | Removed the footprint library `KU-14194HB-RevB-KiCad` from `fp-lib-table` and deleted `KU-14194HB-RevB-KiCad.pretty` (#153). No schematic part uses it any more; the PCB keeps its embedded copies of the footprints. `3D-models/` is kept, because the PCB still references it |
 | 2026-11-03 | Changed the VIC-II U504 from the NTSC 8562 to the PAL 8565 (#152): Value `8565 VIC`, and the description and note B on the `CPU, Cassette and Expansion Port` sheet say that an 8562 also works with the NTSC clock setting and that a 6567 or 6569 does not. No circuit change: the 8565 has the 8562's pinout, 5 V on pin 13 and the 1 kOhm luma pull-up. C203 and C204 of the original PAL configuration are not added back. The PCB is not updated |
