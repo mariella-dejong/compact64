@@ -1660,7 +1660,7 @@
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
-    "used_designators": "#PWR602,TP602-613,TP1301",
+    "used_designators": "#PWR114,#PWR178-180,#PWR609,TP202,TP402-403,TP615,TP1301",
     "variants": []
   },
   "sheets": [
