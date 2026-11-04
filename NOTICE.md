@@ -1,8 +1,8 @@
 # Notices and attributions
 
-c64-mini
+Compact 64
 Copyright (c) 2026 Mariella de Jong and contributors.
-<https://github.com/leporidae-ca/c64-mini>
+<https://github.com/mariella-dejong/compact64>
 
 This file lists the people and projects whose work this project builds on,
 the licences of third-party material included in this repository, and

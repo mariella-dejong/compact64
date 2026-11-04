@@ -1,12 +1,12 @@
 # Main board
 
-KiCad project of the c64-mini main board. Open `c64-mini.kicad_pro` in KiCad.
+KiCad project of the Compact 64 main board. Open `compact64.kicad_pro` in KiCad.
 
 The design starts as an unmodified copy of the
 [C64 250407 Replica](https://github.com/bwack/C64-250407-Replica-KiCad) by
 Bwack: a reverse-engineered replica of the Commodore 64 assembly 250407
 motherboard (PCB KU-14194HB). It will be modified step by step into the
-c64-mini main board; see the [project README](../../README.md) for the
+Compact 64 main board; see the [project README](../../README.md) for the
 roadmap.
 
 ## Status
@@ -56,7 +56,7 @@ power LED connector is gone.
 
 ## Compatibility
 
-These changes make the c64-mini behave differently from an original C64.
+These changes make the Compact 64 behave differently from an original C64.
 Check them before using software or hardware that depends on them.
 
 ### CIA time-of-day clocks run from a crystal
@@ -64,7 +64,7 @@ Check them before using software or hardware that depends on them.
 - **Original C64:** both CIAs (U1 and U2) get a 50 Hz or 60 Hz signal on
   their TOD input (pin 19). It is derived from the 9 V AC of the power brick
   and buffered by gate A of U27, so the clocks follow the mains frequency.
-- **c64-mini:** there is no 9 V AC (#37). Both CIAs are replaced by
+- **Compact 64:** there is no 9 V AC (#37). Both CIAs are replaced by
   microcontrollers (#25, #68) that make the 50 Hz or 60 Hz reference from
   their own crystal, as selected by bit 7 of CRA (see
   [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks) and
@@ -80,7 +80,7 @@ Check them before using software or hardware that depends on them.
 
 - **Original C64:** pins 10 and 11 of the user port (CN2) carry the 9 V AC of
   the power brick, one side through fuse F1.
-- **c64-mini:** both pins are unconnected, and not grounded (#37). The user
+- **Compact 64:** both pins are unconnected, and not grounded (#37). The user
   port is now J1602 on the `CIA2, Serial Port and User Port` sheet (#68).
 - **Affected:** devices that take their power from these pins, such as some
   RS-232 interfaces and EPROM programmers. They need their own supply.
@@ -92,7 +92,7 @@ Check them before using software or hardware that depends on them.
 - **Original C64:** the A/V connector (CN5) is an 8-pin DIN socket with luma
   (pin 1), ground (pin 2), audio out (pin 3), composite video (pin 4), audio
   in (pin 5) and chroma (pin 6).
-- **c64-mini:** CN5 is removed (#24). The same signals are on a 4-pin
+- **Compact 64:** CN5 is removed (#24). The same signals are on a 4-pin
   mini-DIN S-Video socket (J501) and three RCA jacks (J502), see
   [Audio and video connectors](#audio-and-video-connectors).
 - **Affected:** C64 A/V cables with a DIN plug, such as DIN to RCA, DIN to
@@ -103,7 +103,7 @@ Check them before using software or hardware that depends on them.
 
 - **Original C64:** eight 4164 DRAMs, the BASIC, KERNAL and character ROMs,
   and a 2114 colour RAM.
-- **c64-mini:** a microcontroller (U1401) serves all of them from its own
+- **Compact 64:** a microcontroller (U1401) serves all of them from its own
   memory (#11), see [RAM and ROM replacement](#ram-and-rom-replacement). It
   loads the ROM images from an EEPROM. The ROM images are not part of this
   project.
@@ -122,7 +122,7 @@ Check them before using software or hardware that depends on them.
 
 - **Original C64:** a 6526 CIA (U1) at $DC00 scans the keyboard matrix on
   connector CN1 and reads the two control ports (CN8, CN9).
-- **c64-mini:** a microcontroller (U1501) takes the place of CIA 1 (#25),
+- **Compact 64:** a microcontroller (U1501) takes the place of CIA 1 (#25),
   see [CIA 1, keyboard and joysticks](#cia-1-keyboard-and-joysticks). The
   keyboard is a USB keyboard on a USB-A socket (J1501), and the firmware
   presents it to the 6510 as the C64 keyboard matrix. RESTORE is a key on
@@ -150,7 +150,7 @@ Check them before using software or hardware that depends on them.
 - **Original C64:** a 6526 CIA (U2) at $DD00 selects the VIC-II bank, drives
   and reads the serial bus through U8 (7406), and serves the user port
   (CN2).
-- **c64-mini:** a microcontroller (U1601) takes the place of CIA 2 (#68), see
+- **Compact 64:** a microcontroller (U1601) takes the place of CIA 2 (#68), see
   [CIA 2, serial port and user port](#cia-2-serial-port-and-user-port). The
   serial port (J1601) and the user port (J1602) keep their original pinout.
 - **Affected:**
@@ -176,7 +176,7 @@ Check them before using software or hardware that depends on them.
 ### The CPU is an 8500
 
 - **Original C64:** the 250407 board has an NMOS 6510 CPU (U7).
-- **c64-mini:** the CPU socket (U201) takes the HMOS-II 8500 of the later
+- **Compact 64:** the CPU socket (U201) takes the HMOS-II 8500 of the later
   C64C boards (#75), see
   [CPU, cassette and expansion port](#cpu-cassette-and-expansion-port). The
   8500 is the 6510 made in the newer process: same pinout, same 5 V supply,
@@ -205,7 +205,7 @@ Check them before using software or hardware that depends on them.
 
 - **Original C64:** the 250407 board has a 6581 SID (U18) with 12 V on VDD
   and 470 pF filter capacitors.
-- **c64-mini:** the SID socket (U1701) takes the 8580 of the later C64
+- **Compact 64:** the SID socket (U1701) takes the 8580 of the later C64
   boards, with 9 V on VDD and 22 nF filter capacitors (#73), see
   [SID and audio output](#sid-and-audio-output).
 - **Affected:**
@@ -226,7 +226,7 @@ Check them before using software or hardware that depends on them.
 
 - **Original C64:** the 250407 board has an NMOS 6567 VIC-II (U19, NTSC) with
   12 V on VDD (pin 13) and a 470 Ohm luma pull-up; PAL boards have the 6569.
-- **c64-mini:** the VIC-II socket (U504) takes the HMOS-II 8565 of the later
+- **Compact 64:** the VIC-II socket (U504) takes the HMOS-II 8565 of the later
   PAL C64 boards (#152), with 5 V on pin 13 and a 1 kOhm luma pull-up (#74),
   see [VIC-II](#vic-ii). The NTSC 8562 has the same pinout and supply and
   also works, with the NTSC clock setting in the supervisor firmware; the
@@ -250,7 +250,7 @@ Check them before using software or hardware that depends on them.
 - **Original C64:** a PLL on the 250407 board (Y1, U29 to U32) makes the
   colour clock from a 14.31818 MHz crystal and locks the dot clock to it.
   PAL or NTSC is set with the crystal, some component values and a jumper.
-- **c64-mini:** an MS5351M clock synthesizer (Y1202) makes both clocks from
+- **Compact 64:** an MS5351M clock synthesizer (Y1202) makes both clocks from
   one PLL and a 25 MHz crystal (#76), see [System clocks](#system-clocks).
   The supervisor programs it over I2C, so PAL or NTSC becomes a firmware
   setting. PAL is the default, for the 8565 (#152); NTSC is only for a board
@@ -268,7 +268,7 @@ Check them before using software or hardware that depends on them.
 - **Original C64:** a 906114-01 PLA (U17) decodes the memory map, a 74LS139
   (U15) the I/O area, and a 7408 (U27) and a 7406 gate (U8) make `RDY`,
   `CAEC`, `~COLORAM` and `~AEC`.
-- **c64-mini:** one XC9572XL CPLD (U301) does all of this (#83), with logic
+- **Compact 64:** one XC9572XL CPLD (U301) does all of this (#83), with logic
   written from the PLA's documented equations (#93), see
   [PLA replacement](#pla-replacement). The supervisor checks its design at
   start-up and programs it when needed (#86).
@@ -1329,7 +1329,7 @@ programs, disk images (`.d64`) and tape images (`.t64`, `.tap`) for the C64
   off. It has free GPIOs and already talks to the RAM and ROM controller.
 - **Socket:** J1302 is a Korean Hroparts Elec TF-01A (C91145), a push-push
   socket with a card detect switch, with the footprint
-  `c64-mini:microSD_Hroparts_TF-01A` from the component library (#102). The
+  `compact64:microSD_Hroparts_TF-01A` from the component library (#102). The
   card sticks out 2.65 mm past the front of the socket, so the socket has to
   sit at the board edge.
 - **Supply:** the card runs from `+3V3`, which is within the 2.7 V to 3.6 V
@@ -1981,7 +1981,7 @@ device on the line would short the output.
 ### RESTORE
 
 The RESTORE key of the original C64 went to a one-shot that made a short
-pulse on `~NMI`. On the c64-mini the RESTORE key is a key on the USB
+pulse on `~NMI`. On the Compact 64 the RESTORE key is a key on the USB
 keyboard, and U1501 drives `~NMI` directly from GPIO27 (#91). The one-shot
 (half A of U20, 556, with R33, R35, R41, C23 and C38) and gate C of U8
 (7406) are gone, and with them the rest of U20 and U8, whose other halves
@@ -2146,7 +2146,7 @@ J1601 is a full-size 6-pin DIN socket (240°, with a centre pin, as CN4 on
 the original board) with the original pinout. The part is a Minlenda
 MLD-DS-6-03-08 (C53056242); the CAX DIN-603-H (C54573054) has the same
 layout and also fits. The footprint
-`c64-mini:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` (#147) follows their
+`compact64:DIN-6_Minlenda_MLD-DS-6-03-08_Horizontal` (#147) follows their
 datasheet; the original footprint assigned four of the pins differently.
 The socket's two front legs are on pin 2, ground.
 
@@ -2208,7 +2208,7 @@ R1607) and an output of U1602 (SN74LVC06A), an inverting open-drain buffer:
 ### User port
 
 J1602 is the user port edge connector with the original pinout, on the
-footprint `c64-mini:C64_User_Port_Edge_2x12_P3.96mm` (#146). Pins 1, 12,
+footprint `compact64:C64_User_Port_Edge_2x12_P3.96mm` (#146). Pins 1, 12,
 A and N are ground, pin 2 is +5V with C1621, and pins 10 and 11 are not
 connected (#37). Every signal line has a TVS diode at the connector, then a
 100 Ohm series resistor, then a 4.7k pull-up to +5V at the GPIO. The TVS
@@ -2272,7 +2272,7 @@ lead to the C64 as inputs until the rails are up, and never turn on their
 internal pull-ups. The pull-downs R1610 to R1612 keep the serial bus
 released in that time.
 
-A drive that is switched on while the c64-mini is unpowered pulls its bus
+A drive that is switched on while the Compact 64 is unpowered pulls its bus
 lines to 5 V through its own pull-ups. U1602's outputs and the 100 Ohm
 resistors in front of GPIO35 and GPIO37 limit what reaches U1601 then.
 
@@ -2395,7 +2395,7 @@ All parts on the sheet except the VIC-II itself are SMD. The ferrite beads
 and C513 use the KiCad symbols `Device:FerriteBead_Small` and `Device:C_Small`.
 U505 and U506 use the KiCad symbol `74xx:74LS257` and U508 uses
 `74xx:74LS373`, which have the same pinouts as the 74LVC257A and the
-74LVC373A. The VIC-II uses `c64-mini:VIC-II` from the project library
+74LVC373A. The VIC-II uses `compact64:VIC-II` from the project library
 (#139).
 
 | Ref | Part | LCSC | Package |
@@ -2645,7 +2645,7 @@ by Bwack, with help from Der Alte Bastler).
   sheet pin (pin 6), and `~ROML`, `~ROMH`, `~I/O1` and `~I/O2` from the CPLD
   (U301). The slot is a WingTAT ER44BGFBK (C5173343), a right-angle 2 x 22
   card-edge slot that takes C64 cartridges, on the footprint
-  `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` (#148). Its
+  `compact64:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` (#148). Its
   front face marks the board edge; the board must end there, as at the
   original board's cut-out, so that a cartridge's case clears it.
 - **Cassette port:** read (`CASS_RD`, pin D-4) goes to CIA 1's `~FLAG`
@@ -2691,13 +2691,13 @@ by Bwack, with help from Der Alte Bastler).
   CPLD, and #91 removed U20 and the rest of U8 (RESTORE now comes from
   U1501). The 6510 (U201) is the only chip left on the sheet.
 - **Symbols:** the passives use KiCad's standard symbols, and the 6510 uses
-  `c64-mini:6510` from the project library (#139). The expansion port and
-  the cassette port use `c64-mini:C64_Expansion_Port` and
-  `c64-mini:C64_Cassette_Port` (#115), with the pin positions of the
+  `compact64:6510` from the project library (#139). The expansion port and
+  the cassette port use `compact64:C64_Expansion_Port` and
+  `compact64:C64_Cassette_Port` (#115), with the pin positions of the
   original symbols. The expansion port uses
-  `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` (#148) and
+  `compact64:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal` (#148) and
   the cassette port's edge fingers use
-  `c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm` (#146).
+  `compact64:C64_Cassette_Port_Edge_2x06_P3.96mm` (#146).
   Ground uses KiCad's `power:GND` on every sheet (#115).
 
 ### References
@@ -2814,7 +2814,7 @@ modified design is licensed under the
 [CERN Open Hardware Licence Version 2 - Strongly Reciprocal](../../LICENSES/CERN-OHL-S-2.0.txt),
 as permitted by section 3.4(e) of CERN-OHL v1.2.
 
-Source Location: <https://github.com/leporidae-ca/c64-mini>
+Source Location: <https://github.com/mariella-dejong/compact64>
 
 The HF module replacement circuit, on the sheet `vic_ii_hf_av_out.kicad_sch`
 (formerly `hf_module_replacement.kicad_sch`), is derived from the
@@ -2938,6 +2938,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Renamed the project from c64-mini to Compact 64 (#162): the project files to `compact64.kicad_pro`, `.kicad_sch` and `.kicad_pcb` (with the project name in each sheet's instance data), the project libraries to `compact64.kicad_sym` and `compact64.pretty` with the nickname `compact64` in `sym-lib-table`, `fp-lib-table` and every symbol and footprint reference, and the title blocks of the main board, the PCB and the LED module. The source location is now <https://github.com/mariella-dejong/compact64>. Connections and parts are unchanged. The rows below keep the names as they were at the time |
 | 2026-11-03 | Added unfitted clock test headers (#128), each a `Connector:TestPoint_2Pole` with `PinHeader_1x02_P2.54mm_Vertical`, the clock on pin 1 and GND on pin 2, DNP and excluded from the BOM and the position files: TP501 (`PHI0_IN`), TP502 (`COLOR_CLK`) and TP503 (`DOT_CLOCK_IN`) on the `VIC-II, HF Module Replacement and AV out` sheet, TP201 (`PHI2`) on the `CPU, Cassette and Expansion Port` sheet, and TP614 (`SYNC_CLK_IN`) on the `Power Supply` sheet. The PCB is not updated |
 | 2026-11-03 | Added test points to the `Power Supply` sheet (#127): TP601 to TP609 (`TestPoint:TestPoint_Pad_D2.0mm`) on `12V_PROT`, `12V_MAIN`, `12V_IN_SW`, `CASS_POWER`, `+9V`, `CAN+5V`, `+5V`, `+3V3` and `PGOOD`, and TP610 to TP613 (`TestPoint:TestPoint_Pad_3.0x3.0mm`) on GND, all `Connector:TestPoint_Probe`, excluded from the BOM and the position files. `POWER_ON` gets none; it can be probed at the supervisor. The PCB is not updated |
 | 2026-11-03 | Removed the footprint library `KU-14194HB-RevB-KiCad` from `fp-lib-table` and deleted `KU-14194HB-RevB-KiCad.pretty` (#153). No schematic part uses it any more; the PCB keeps its embedded copies of the footprints. `3D-models/` is kept, because the PCB still references it |

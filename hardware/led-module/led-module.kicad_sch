@@ -5,7 +5,7 @@
 	(uuid "2172e8bd-630a-4c71-ac90-2976947e0475")
 	(paper "A5")
 	(title_block
-		(title "c64-mini LED module")
+		(title "Compact 64 LED module")
 		(rev "v1.0.0")
 		(company "Copyright (c) 2026 Mariella de Jong and contributors")
 		(comment 1 "Licensed under the CERN Open Hardware Licence Version 2 - Strongly Reciprocal (CERN-OHL-S-2.0)")

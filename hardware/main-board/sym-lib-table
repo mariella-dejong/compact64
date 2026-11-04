@@ -1,3 +1,3 @@
 (sym_lib_table
-  (lib (name c64-mini)(type KiCad)(uri ${KIPRJMOD}/../components/c64-mini.kicad_sym)(options "")(descr "c64-mini project components"))
+  (lib (name compact64)(type KiCad)(uri ${KIPRJMOD}/../components/compact64.kicad_sym)(options "")(descr "Compact 64 project components"))
 )
