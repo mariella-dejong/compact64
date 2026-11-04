@@ -704,6 +704,41 @@ U1001 (3V3 buck) ─────────────────────
 
 Datasheet: [LM61440](https://www.ti.com/lit/ds/symlink/lm61440.pdf).
 
+### Test points
+
+The `Power Supply` sheet has a test point on every rail and on `PGOOD`, for
+a quick check with a multimeter or scope probe (#127). They use
+`Connector:TestPoint_Probe` and are excluded from the BOM and the position
+files, so JLCPCB does not try to place a part.
+
+| Ref | Net | Expected | Notes |
+| --- | --- | -------- | ----- |
+| TP601 | `12V_PROT` | adapter voltage, about 12 V | Present whenever the adapter is plugged in |
+| TP602 | `12V_MAIN` | about 12 V | Only with the power switch on |
+| TP603 | `12V_IN_SW` | about 12 V | Only once the supervisor has set `POWER_ON` |
+| TP604 | `CASS_POWER` | 6.12 V (6.0 V to 6.24 V) | Only while the 6510 runs the cassette motor |
+| TP605 | `+9V` | 9 V | Behind the input switch |
+| TP606 | `CAN+5V` | 5 V | Behind the input switch |
+| TP607 | `+5V` | 5 V | Behind the input switch |
+| TP608 | `+3V3` | 3.3 V | With the power switch on, also before `POWER_ON` |
+| TP609 | `PGOOD` | high (`CAN+5V`) once both bucks regulate, otherwise low | Pulled up by 100k in total, so a 10 MOhm meter or a 10:1 probe reads it correctly; a 1 MOhm input reads about 10 % low |
+| TP610 to TP613 | GND | 0 V | Four square pads |
+
+- **Footprints:** the rails use `TestPoint:TestPoint_Pad_D2.0mm`, a round
+  SMD pad for a probe tip. The ground points use
+  `TestPoint:TestPoint_Pad_3.0x3.0mm`, square and larger.
+- **Layout:**
+  - Put the ground points at the board edge, where they are a piece of the
+    ground plane without solder mask, so that an alligator clip can grip
+    the edge or a probe's ground clip can reach them.
+  - Put each rail's point near its regulator's output.
+  - Keep the 12 V points away from the 3.3 V and 5 V points and from ground,
+    so that a slipping probe cannot short 12 V into a low-voltage rail.
+  - Print the net name next to each point on the silkscreen.
+- **`POWER_ON`** has no test point: the supervisor drives it from GPIO2 and
+  reports it, and it can be probed at the supervisor or seen as
+  `12V_IN_SW` coming up.
+
 ## System clocks
 
 The `System Clocks` sheet (`clocks.kicad_sch`, page 12, parts in the 1200
@@ -2868,6 +2903,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-03 | Added test points to the `Power Supply` sheet (#127): TP601 to TP609 (`TestPoint:TestPoint_Pad_D2.0mm`) on `12V_PROT`, `12V_MAIN`, `12V_IN_SW`, `CASS_POWER`, `+9V`, `CAN+5V`, `+5V`, `+3V3` and `PGOOD`, and TP610 to TP613 (`TestPoint:TestPoint_Pad_3.0x3.0mm`) on GND, all `Connector:TestPoint_Probe`, excluded from the BOM and the position files. `POWER_ON` gets none; it can be probed at the supervisor. The PCB is not updated |
 | 2026-11-03 | Removed the footprint library `KU-14194HB-RevB-KiCad` from `fp-lib-table` and deleted `KU-14194HB-RevB-KiCad.pretty` (#153). No schematic part uses it any more; the PCB keeps its embedded copies of the footprints. `3D-models/` is kept, because the PCB still references it |
 | 2026-11-03 | Changed the VIC-II U504 from the NTSC 8562 to the PAL 8565 (#152): Value `8565 VIC`, and the description and note B on the `CPU, Cassette and Expansion Port` sheet say that an 8562 also works with the NTSC clock setting and that a 6567 or 6569 does not. No circuit change: the 8565 has the 8562's pinout, 5 V on pin 13 and the 1 kOhm luma pull-up. C203 and C204 of the original PAL configuration are not added back. The PCB is not updated |
 | 2026-11-03 | Moved the footprint of the expansion port J201 from `KU-14194HB-RevB-KiCad.pretty` to the project library (#148): `c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal`, from the recommended PCB layout of its part, the WingTAT ER44BGFBK (C5173343). Same pad positions and numbers as the upstream `EXPANSION_PORT`, 1.0 mm instead of 1.1 mm holes as in the datasheet, and the front face of the slot marked as the board edge. Checked that the slot takes C64 cartridges. Added the datasheet link to J201. The PCB is not updated |
