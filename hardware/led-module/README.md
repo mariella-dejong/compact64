@@ -58,4 +58,5 @@ apply to this repository.
 
 | Date       | Description |
 | ---------- | ----------- |
+| 2026-11-03 | Renamed the title to "Compact 64 LED module" and shortened the licence line (#162), and added the project URL to the title block (#165) |
 | 2026-11-01 | New design: four status LEDs (D1 to D4), the cable connector J1 and four mounting holes (#54) |

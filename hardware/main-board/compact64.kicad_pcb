@@ -10,9 +10,10 @@
 	(title_block
 		(title "Compact 64 main board")
 		(company "Copyright (c) 2026 Mariella de Jong and contributors")
-		(comment 1 "Licensed under the CERN-OHL-S-2.0")
-		(comment 2 "started by Der Alte Bastler; see NOTICE.md for all credits")
-		(comment 3 "Based on the C64 250407 Replica by Bwack (CERN-OHL-1.2),")
+		(comment 1 "https://github.com/mariella-dejong/compact64")
+		(comment 2 "Licensed under the CERN-OHL-S-2.0")
+		(comment 3 "started by Der Alte Bastler; see NOTICE.md for all credits")
+		(comment 4 "Based on the C64 250407 Replica by Bwack (CERN-OHL-1.2),")
 	)
 	(layers
 		(0 "F.Cu" signal)
