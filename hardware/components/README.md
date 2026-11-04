@@ -1,12 +1,12 @@
 # Components
 
-KiCad library with the symbols and footprints of the c64-mini that are not in
+KiCad library with the symbols and footprints of the Compact 64 that are not in
 the standard KiCad libraries. It uses the current KiCad file formats (KiCad
-10): `c64-mini.kicad_sym` for the symbols and `c64-mini.pretty/` for the
+10): `compact64.kicad_sym` for the symbols and `compact64.pretty/` for the
 footprints.
 
 The main board project (`hardware/main-board`) has the library registered in
-its symbol and footprint library tables under the nickname `c64-mini`, with a
+its symbol and footprint library tables under the nickname `compact64`, with a
 path relative to the project (`${KIPRJMOD}/../components/`). Other projects
 under `hardware/` can register it the same way.
 
@@ -417,7 +417,7 @@ upstream replica) (#115).
   bottom contacts are joined.
 - **Pin names:** the C64 signal names of each contact, with overbars for
   active-low signals. On the user port, pins 10 and 11 carry 9 V AC on a C64
-  and are named NC, because the c64-mini leaves them unconnected (#37).
+  and are named NC, because the Compact 64 leaves them unconnected (#37).
 - **Pin types:** passive, as usual for connectors.
 
 ![C64 expansion port symbol](images/C64_Expansion_Port_symbol.png)
@@ -434,7 +434,7 @@ They replace `EDGE_CON_12P_TAPE` and `EDGE_CON_24P` from the upstream
 `KU-14194HB-RevB-KiCad.pretty`.
 
 - **Source:** the upstream footprints and the board outline of the original
-  layout (`hardware/main-board/c64-mini.kicad_pcb`), which the KU-14194HB
+  layout (`hardware/main-board/compact64.kicad_pcb`), which the KU-14194HB
   replica traced from the C64 board. The values were rounded to a clean
   grid, which moved the outline by less than 0.1 mm.
 - **Fingers:** 8.76 mm long, starting 0.70 mm from the board edge, with

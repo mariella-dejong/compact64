@@ -491,7 +491,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "c64-mini.kicad_pro",
+    "filename": "compact64.kicad_pro",
     "version": 3
   },
   "net_settings": {
@@ -1655,8 +1655,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "c64-mini.kicad_sch",
-        "name": "c64-mini",
+        "filename": "compact64.kicad_sch",
+        "name": "compact64",
         "uuid": "01e2bfaf-4d9e-453f-884b-2ddc31de1b57"
       }
     ],
@@ -1666,7 +1666,7 @@
   "sheets": [
     [
       "01e2bfaf-4d9e-453f-884b-2ddc31de1b57",
-      "c64-mini"
+      "compact64"
     ],
     [
       "438ac9d3-0cfc-4b1b-990b-000900cb9742",

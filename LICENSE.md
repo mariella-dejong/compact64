@@ -22,7 +22,7 @@ precedence over this table.
 Everything under `hardware/` is licensed under the
 [CERN Open Hardware Licence Version 2 - Strongly Reciprocal](LICENSES/CERN-OHL-S-2.0.txt).
 
-**Source Location:** <https://github.com/leporidae-ca/c64-mini>
+**Source Location:** <https://github.com/mariella-dejong/compact64>
 
 In plain words (this summary is not a substitute for the licence text):
 
@@ -82,7 +82,7 @@ code is licensed under
 When you redistribute this work or something based on it, please credit it
 like this:
 
-> Based on c64-mini by Mariella de Jong (<https://github.com/leporidae-ca/c64-mini>),
+> Based on Compact 64 by Mariella de Jong (<https://github.com/mariella-dejong/compact64>),
 > which is derived from the C64 250407 Replica by Bwack
 > (<https://github.com/bwack/C64-250407-Replica-KiCad>) and includes a circuit
 > derived from the C64 RF Modulator Replacement by mbarszcz-pcb

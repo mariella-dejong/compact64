@@ -2875,7 +2875,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "c64-mini:CAX-AV-314-RWY-PHP"
+		(symbol "compact64:CAX-AV-314-RWY-PHP"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -2906,7 +2906,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "c64-mini:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
+			(property "Footprint" "compact64:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
 				(at 0 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3179,7 +3179,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "c64-mini:MD-40SM"
+		(symbol "compact64:MD-40SM"
 			(pin_names
 				(offset 1.016)
 				(hide yes)
@@ -3210,7 +3210,7 @@
 					(justify left)
 				)
 			)
-			(property "Footprint" "c64-mini:Mini-DIN-4_CUI_MD-40SM_Horizontal"
+			(property "Footprint" "compact64:Mini-DIN-4_CUI_MD-40SM_Horizontal"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3547,7 +3547,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "c64-mini:VIC-II"
+		(symbol "compact64:VIC-II"
 			(pin_names
 				(offset 1.016)
 			)
@@ -4784,7 +4784,7 @@
 		)
 		(uuid "67fc1b40-e0a9-43a3-81e9-9ec037595d52")
 	)
-	(text "Derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb\nhttps://github.com/mbarszcz-pcb/c64-rf-modulator-replacement\nCopyright (c) 2020 mbarszcz-pcb. MIT License, see LICENSES/MIT.txt.\nModified for c64-mini, see NOTICE.md and hardware/main-board/README.md."
+	(text "Derived from the C64 RF Modulator Replacement Rev D by mbarszcz-pcb\nhttps://github.com/mbarszcz-pcb/c64-rf-modulator-replacement\nCopyright (c) 2020 mbarszcz-pcb. MIT License, see LICENSES/MIT.txt.\nModified for Compact 64, see NOTICE.md and hardware/main-board/README.md."
 		(exclude_from_sim no)
 		(at 306.705 186.69 0)
 		(effects
@@ -9665,7 +9665,7 @@
 			(uuid "0f044f74-ae39-4afc-a8a6-b08141999dfe")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "TP501")
 					(unit 1)
@@ -9754,7 +9754,7 @@
 			(uuid "a956596c-00ff-410b-b6de-8030edab9160")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C509")
 					(unit 1)
@@ -9831,7 +9831,7 @@
 			(uuid "960565b8-9831-419e-bd5b-c9d4e5d4d860")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0504")
 					(unit 1)
@@ -9922,7 +9922,7 @@
 			(uuid "718a99b1-98f6-48ed-be4a-ef9fb3ef3722")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C506")
 					(unit 1)
@@ -10013,7 +10013,7 @@
 			(uuid "4a4d8f23-b8c0-49ee-883b-1e5c3db2e3e7")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R508")
 					(unit 1)
@@ -10090,7 +10090,7 @@
 			(uuid "d3c4a86b-8fb4-4903-a0b1-3b1c8da31d0f")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0513")
 					(unit 1)
@@ -10181,7 +10181,7 @@
 			(uuid "ccaf18ad-64d3-4898-9c91-b39dc8c76804")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "FB502")
 					(unit 1)
@@ -10270,7 +10270,7 @@
 			(uuid "ae4b6364-93c3-4d02-9c71-60fb4a8b6df9")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "D501")
 					(unit 1)
@@ -10362,7 +10362,7 @@
 			(uuid "7bad548a-7490-4f6e-af51-33f7bee605a7")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "D503")
 					(unit 1)
@@ -10453,7 +10453,7 @@
 			(uuid "f85d5234-45e8-4625-b195-f7a793727cb4")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R510")
 					(unit 1)
@@ -10531,7 +10531,7 @@
 			(uuid "908afb02-e483-4353-a5a0-48503a5a691f")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "JP503")
 					(unit 1)
@@ -10623,7 +10623,7 @@
 			(uuid "bddff604-2513-4d45-beeb-f4acd60516a1")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "D504")
 					(unit 1)
@@ -10700,7 +10700,7 @@
 			(uuid "459361d1-5b16-4fa7-8aad-a083414fc2da")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0178")
 					(unit 1)
@@ -10777,7 +10777,7 @@
 			(uuid "8b82b251-0fad-492b-9e81-3e61ea99a397")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0503")
 					(unit 1)
@@ -10856,7 +10856,7 @@
 			(uuid "6d0ec126-7701-4d74-80cf-5f7c7409c732")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01307")
 					(unit 1)
@@ -10947,7 +10947,7 @@
 			(uuid "8255ac0c-aeac-44ac-9452-400e5fc18e74")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "FB505")
 					(unit 1)
@@ -11038,7 +11038,7 @@
 			(uuid "d22d4993-b73c-4bdb-a76a-fcb6d7847ebb")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R514")
 					(unit 1)
@@ -11127,7 +11127,7 @@
 			(uuid "d8b693ca-00f2-41c9-bc70-df3d2b26e027")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C505")
 					(unit 1)
@@ -11219,7 +11219,7 @@
 			(uuid "a75d365e-b86b-44a3-9f01-26471b786470")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "RV502")
 					(unit 1)
@@ -11308,7 +11308,7 @@
 			(uuid "83bbac1b-4256-4234-ab60-2c4c72101029")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R513")
 					(unit 1)
@@ -11397,7 +11397,7 @@
 			(uuid "9320fdf2-d969-4650-97db-a477eaabf6a0")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C515")
 					(unit 1)
@@ -11488,7 +11488,7 @@
 			(uuid "9221ac02-a4f7-46fb-b465-a61181e6122e")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R501")
 					(unit 1)
@@ -11497,7 +11497,7 @@
 		)
 	)
 	(symbol
-		(lib_id "c64-mini:MD-40SM")
+		(lib_id "compact64:MD-40SM")
 		(at 379.095 74.295 0)
 		(unit 1)
 		(body_style 1)
@@ -11528,7 +11528,7 @@
 				)
 			)
 		)
-		(property "Footprint" "c64-mini:Mini-DIN-4_CUI_MD-40SM_Horizontal"
+		(property "Footprint" "compact64:Mini-DIN-4_CUI_MD-40SM_Horizontal"
 			(at 379.095 74.295 0)
 			(hide yes)
 			(show_name no)
@@ -11588,7 +11588,7 @@
 			(uuid "db5362da-bc2c-497e-8ac3-af9ab80edab4")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "J501")
 					(unit 1)
@@ -11680,7 +11680,7 @@
 			(uuid "5b2b2bb6-ff37-4848-b921-125cf9dbde85")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C504")
 					(unit 1)
@@ -11757,7 +11757,7 @@
 			(uuid "47691a10-4c3e-4624-99a7-005c6a2ec983")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0508")
 					(unit 1)
@@ -11849,7 +11849,7 @@
 			(uuid "3fbe3cb5-7d2e-4c3d-a803-fe199607ff7f")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "D506")
 					(unit 1)
@@ -11927,7 +11927,7 @@
 			(uuid "0a8d942c-ce12-4844-aa02-00e8846a3536")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01303")
 					(unit 1)
@@ -12016,7 +12016,7 @@
 			(uuid "c834b319-aa98-4872-a83e-c2174d58f519")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C516")
 					(unit 1)
@@ -12105,7 +12105,7 @@
 			(uuid "154bf80a-4bc0-4309-9a4a-bf1df7fbf721")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C512")
 					(unit 1)
@@ -12182,7 +12182,7 @@
 			(uuid "3aaaf745-3425-4ecd-8b92-48eeb476f92c")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0511")
 					(unit 1)
@@ -12259,7 +12259,7 @@
 			(uuid "d86da618-fe32-4d7d-9591-cbf2ec222673")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0501")
 					(unit 1)
@@ -12336,7 +12336,7 @@
 			(uuid "aff8c155-1ab9-4e6b-8280-1ce59f1de936")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0505")
 					(unit 1)
@@ -12429,7 +12429,7 @@
 			(uuid "42845841-b958-4cd0-a9b4-0fb075da157d")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R502")
 					(unit 1)
@@ -12506,7 +12506,7 @@
 			(uuid "4af8fd95-0038-484b-b60b-7844f2792bdd")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0180")
 					(unit 1)
@@ -12583,7 +12583,7 @@
 			(uuid "406c6d1b-6f19-46f3-bed5-a7416f427451")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0179")
 					(unit 1)
@@ -12674,7 +12674,7 @@
 			(uuid "6be32bae-b6ed-437a-9825-9100688935f3")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R504")
 					(unit 1)
@@ -12751,7 +12751,7 @@
 			(uuid "6e18bcbd-ea96-499c-9bf1-19feed222bfe")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0510")
 					(unit 1)
@@ -12842,7 +12842,7 @@
 			(uuid "960641bf-8a97-452a-b137-5545766cbf03")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R505")
 					(unit 1)
@@ -12921,7 +12921,7 @@
 			(uuid "70fc80a8-b87b-4aa7-8390-fed5f89dc9ed")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01017")
 					(unit 1)
@@ -12998,7 +12998,7 @@
 			(uuid "98fbe681-0b39-4d44-90bc-e3f291e50a60")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0512")
 					(unit 1)
@@ -13087,7 +13087,7 @@
 			(uuid "0c426d9d-5fac-48de-94c5-d319204b9859")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C517")
 					(unit 1)
@@ -13164,7 +13164,7 @@
 			(uuid "280c712c-c5c8-4e42-8dc8-899742f65d70")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0507")
 					(unit 1)
@@ -13173,7 +13173,7 @@
 		)
 	)
 	(symbol
-		(lib_id "c64-mini:CAX-AV-314-RWY-PHP")
+		(lib_id "compact64:CAX-AV-314-RWY-PHP")
 		(at 323.215 122.555 0)
 		(unit 2)
 		(body_style 1)
@@ -13206,7 +13206,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
+		(property "Footprint" "compact64:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
 			(at 323.215 130.175 0)
 			(hide yes)
 			(show_name no)
@@ -13269,7 +13269,7 @@
 			(uuid "e644536b-ee74-4e5d-a168-8c6936de752b")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "J502")
 					(unit 2)
@@ -13361,7 +13361,7 @@
 			(uuid "db0f904a-558e-43ac-b534-7f8afd9bbfcf")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "FB501")
 					(unit 1)
@@ -13440,7 +13440,7 @@
 			(uuid "3496e659-e58b-44b6-b0e9-4ba0cfc9d08d")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "TP503")
 					(unit 1)
@@ -13517,7 +13517,7 @@
 			(uuid "ec4adbb0-436c-41d3-bdc1-d0d40dac70f0")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0175")
 					(unit 1)
@@ -13594,7 +13594,7 @@
 			(uuid "d42b9084-a8c5-47e2-8827-04a8c06f5c80")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0506")
 					(unit 1)
@@ -13671,7 +13671,7 @@
 			(uuid "19f33972-a7ed-4b3f-97ca-584a7a37b7f8")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0509")
 					(unit 1)
@@ -13762,7 +13762,7 @@
 			(uuid "1aba6ff0-4c50-4e1c-8e26-f45210f5a80e")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C503")
 					(unit 1)
@@ -13771,7 +13771,7 @@
 		)
 	)
 	(symbol
-		(lib_id "c64-mini:VIC-II")
+		(lib_id "compact64:VIC-II")
 		(at 207.01 170.815 0)
 		(unit 1)
 		(body_style 1)
@@ -13968,7 +13968,7 @@
 			(uuid "0ed1282a-3a92-4cfb-b929-7b6586a990ea")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "U504")
 					(unit 1)
@@ -13977,7 +13977,7 @@
 		)
 	)
 	(symbol
-		(lib_id "c64-mini:CAX-AV-314-RWY-PHP")
+		(lib_id "compact64:CAX-AV-314-RWY-PHP")
 		(at 370.205 102.235 0)
 		(unit 3)
 		(body_style 1)
@@ -14009,7 +14009,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
+		(property "Footprint" "compact64:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
 			(at 370.205 109.855 0)
 			(hide yes)
 			(show_name no)
@@ -14072,7 +14072,7 @@
 			(uuid "cfaa6f70-475e-472e-a949-e87f63186cf7")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "J502")
 					(unit 3)
@@ -14163,7 +14163,7 @@
 			(uuid "d2438c64-4368-49f9-96c1-1b22969bd76b")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R511")
 					(unit 1)
@@ -14240,7 +14240,7 @@
 			(uuid "64d47887-d2f0-4329-8020-f2c8b3064994")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0231")
 					(unit 1)
@@ -14329,7 +14329,7 @@
 			(uuid "dabaec63-64f9-4809-8304-092b3fca3a44")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R512")
 					(unit 1)
@@ -14406,7 +14406,7 @@
 			(uuid "475bba46-9863-4cbc-9ea1-26fded1c060c")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0229")
 					(unit 1)
@@ -14483,7 +14483,7 @@
 			(uuid "103a8391-f0e5-4e90-b31e-185f403220d4")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0502")
 					(unit 1)
@@ -14560,7 +14560,7 @@
 			(uuid "c5b1dab1-eeb6-45e5-b6b3-1600b26181a6")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01304")
 					(unit 1)
@@ -14652,7 +14652,7 @@
 			(uuid "0c2f59e0-43a3-4401-8839-1fc625254b31")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "D505")
 					(unit 1)
@@ -14744,7 +14744,7 @@
 			(uuid "6145357c-30dd-452d-a9e6-4bf13d645d54")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "D502")
 					(unit 1)
@@ -14864,7 +14864,7 @@
 			(uuid "d8c76dba-24a0-4ff1-860d-b1d2ef215b47")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "Q502")
 					(unit 1)
@@ -14953,7 +14953,7 @@
 			(uuid "7b447fed-1752-4504-bdf8-b46a89a5278a")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C518")
 					(unit 1)
@@ -15030,7 +15030,7 @@
 			(uuid "8facd193-b290-4bdc-b1aa-6d4297cae3ea")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0177")
 					(unit 1)
@@ -15109,7 +15109,7 @@
 			(uuid "f68b0f30-ca81-4741-a838-06692fcc6a58")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01019")
 					(unit 1)
@@ -15188,7 +15188,7 @@
 			(uuid "77495c11-8cec-498e-bd31-4258b597318f")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#FLG0503")
 					(unit 1)
@@ -15280,7 +15280,7 @@
 			(uuid "f5c2f825-15f2-47ac-b106-632732b80db8")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C513")
 					(unit 1)
@@ -15374,7 +15374,7 @@
 			(uuid "9be41dbb-e4cc-4ab0-9047-0e715fdc94e1")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "U501")
 					(unit 1)
@@ -15453,7 +15453,7 @@
 			(uuid "185fff90-a344-4d40-93e0-15e2a59fc31b")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#FLG0501")
 					(unit 1)
@@ -15462,7 +15462,7 @@
 		)
 	)
 	(symbol
-		(lib_id "c64-mini:CAX-AV-314-RWY-PHP")
+		(lib_id "compact64:CAX-AV-314-RWY-PHP")
 		(at 323.215 135.255 0)
 		(unit 1)
 		(body_style 1)
@@ -15495,7 +15495,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
+		(property "Footprint" "compact64:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
 			(at 323.215 142.875 0)
 			(hide yes)
 			(show_name no)
@@ -15558,7 +15558,7 @@
 			(uuid "fa392248-ad1b-402e-998b-1f52712a0473")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "J502")
 					(unit 1)
@@ -15647,7 +15647,7 @@
 			(uuid "b1c67251-8b33-454e-93ce-deda53040ff8")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C510")
 					(unit 1)
@@ -15739,7 +15739,7 @@
 			(uuid "bc786795-ac79-46aa-a528-efd065b026ba")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "RV501")
 					(unit 1)
@@ -15828,7 +15828,7 @@
 			(uuid "2acc1874-1026-44cd-a543-30599af949fb")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R507")
 					(unit 1)
@@ -15973,7 +15973,7 @@
 			(uuid "f4bf44d0-9a50-47ae-a547-c55f9190df6f")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "U508")
 					(unit 1)
@@ -16064,7 +16064,7 @@
 			(uuid "a80fb754-5223-4321-9e77-10cc4bca2b1b")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C502")
 					(unit 1)
@@ -16199,7 +16199,7 @@
 			(uuid "7cb7363b-9888-4125-857e-cca18b66cc47")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "U505")
 					(unit 1)
@@ -16276,7 +16276,7 @@
 			(uuid "caf951bf-79ba-4150-9967-9a3bcb108a23")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0226")
 					(unit 1)
@@ -16353,7 +16353,7 @@
 			(uuid "08c3946a-2050-4914-b641-c86ddb2b22b9")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0227")
 					(unit 1)
@@ -16442,7 +16442,7 @@
 			(uuid "6ac9a294-78b9-4f0d-b721-a56b7de4cabd")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C511")
 					(unit 1)
@@ -16521,7 +16521,7 @@
 			(uuid "e9401337-9b6b-402e-b53f-07f85be453d5")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "TP502")
 					(unit 1)
@@ -16598,7 +16598,7 @@
 			(uuid "0deb5fa1-ddce-48e7-b0b7-ab32a79b0e51")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0514")
 					(unit 1)
@@ -16733,7 +16733,7 @@
 			(uuid "a5e082c7-aa63-4c94-ba6d-1dfe22a7ea88")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "U506")
 					(unit 1)
@@ -16812,7 +16812,7 @@
 			(uuid "181da92a-580f-450a-b307-e35aeee263ef")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#FLG0502")
 					(unit 1)
@@ -16890,7 +16890,7 @@
 			(uuid "07eb679e-87b1-4220-b6ff-513ce7a9f5ed")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "JP502")
 					(unit 1)
@@ -16981,7 +16981,7 @@
 			(uuid "aba0d69c-c1c2-44b6-96c8-a6a536fd985a")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "FB504")
 					(unit 1)
@@ -17058,7 +17058,7 @@
 			(uuid "c8aca838-73a4-4451-814d-9d6c039e39d9")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0230")
 					(unit 1)
@@ -17149,7 +17149,7 @@
 			(uuid "465b7172-0abe-4587-a278-e239b30fc8e2")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "FB503")
 					(unit 1)
@@ -17226,7 +17226,7 @@
 			(uuid "71c8c4a9-d012-4f5d-87e1-cf47d7914533")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0228")
 					(unit 1)
@@ -17317,7 +17317,7 @@
 			(uuid "01e66ebf-eeb1-4380-9f56-6c0ea4cdfada")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "L501")
 					(unit 1)
@@ -17396,7 +17396,7 @@
 			(uuid "0a624cdc-e218-4655-b566-327ab2cc7ef6")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01018")
 					(unit 1)
@@ -17488,7 +17488,7 @@
 			(uuid "a8cf76f3-2e73-421c-8c62-f42514ab397b")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "C501")
 					(unit 1)
@@ -17608,7 +17608,7 @@
 			(uuid "2420c51e-f769-46c1-b5cf-aa2618e7605e")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "Q501")
 					(unit 1)
@@ -17687,7 +17687,7 @@
 			(uuid "936f19dc-f6df-4d43-8062-8ca9e8b807c3")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR01020")
 					(unit 1)
@@ -17764,7 +17764,7 @@
 			(uuid "223c73ed-f134-4266-976b-562336ec1411")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "#PWR0176")
 					(unit 1)
@@ -17855,7 +17855,7 @@
 			(uuid "6be8d085-59bd-47d7-9dd8-88d385a774aa")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R503")
 					(unit 1)
@@ -17944,7 +17944,7 @@
 			(uuid "9f7e8e97-22d9-4571-a052-024bf559fb08")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R506")
 					(unit 1)
@@ -18033,7 +18033,7 @@
 			(uuid "f685abcc-3e09-4b7e-8b01-1276bde424e3")
 		)
 		(instances
-			(project "c64-mini"
+			(project "compact64"
 				(path "/01e2bfaf-4d9e-453f-884b-2ddc31de1b57/99dc937e-95c0-4b75-9c55-26aa6f5c22ff"
 					(reference "R509")
 					(unit 1)

@@ -1,6 +1,6 @@
 # LED module
 
-KiCad project of the c64-mini status LED module (#54). The module carries
+KiCad project of the Compact 64 status LED module (#54). The module carries
 four 3 mm through-hole LEDs that sit in holes in the front of the case, and
 connects to the main board's supervisor with a short cable. Open
 `led-module.kicad_pro` in KiCad.

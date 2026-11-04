@@ -33,7 +33,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
+		(property "Footprint" "compact64:Jack_RCA_x3_CAX_AV-314-RWY_Horizontal"
 			(at 0 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -332,7 +332,7 @@
 				)
 			)
 		)
-		(property "Footprint" "c64-mini:Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A"
+		(property "Footprint" "compact64:Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A"
 			(at 0 -20.32 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -698,7 +698,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:Mini-DIN-4_CUI_MD-40SM_Horizontal"
+		(property "Footprint" "compact64:Mini-DIN-4_CUI_MD-40SM_Horizontal"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1064,7 +1064,7 @@
 				)
 			)
 		)
-		(property "Footprint" "c64-mini:QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm"
+		(property "Footprint" "compact64:QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm_ThermalVias_0.3mm"
 			(at -19.05 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2844,7 +2844,7 @@
 				)
 			)
 		)
-		(property "Footprint" "c64-mini:Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A"
+		(property "Footprint" "compact64:Texas_VQFN-HR-14_4x3.5mm_P0.5mm_RJR0014A"
 			(at 0 -20.32 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5229,7 +5229,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal"
+		(property "Footprint" "compact64:EdgeSlot_WingTAT_ER44BGFBK_2x22_P2.54mm_Horizontal"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6124,7 +6124,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:C64_Cassette_Port_Edge_2x06_P3.96mm"
+		(property "Footprint" "compact64:C64_Cassette_Port_Edge_2x06_P3.96mm"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6335,7 +6335,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "c64-mini:C64_User_Port_Edge_2x12_P3.96mm"
+		(property "Footprint" "compact64:C64_User_Port_Edge_2x12_P3.96mm"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6357,7 +6357,7 @@
 				)
 			)
 		)
-		(property "Description" "Commodore 64 user port, 2x12 edge contacts at 3.96 mm; pins 10 and 11 (9 V AC on the C64) are not connected on the c64-mini"
+		(property "Description" "Commodore 64 user port, 2x12 edge contacts at 3.96 mm; pins 10 and 11 (9 V AC on the C64) are not connected on the Compact 64"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)

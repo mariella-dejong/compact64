@@ -1,4 +1,4 @@
-# c64-mini
+# Compact 64
 
 A smaller form-factor Commodore 64 that is built around the **original MOS
 6510 CPU, VIC-II and SID chips**.
