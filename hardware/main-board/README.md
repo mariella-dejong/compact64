@@ -1311,6 +1311,34 @@ the clock runs.
 - **Layout:** place each LED next to its controller and mark it in the
   silkscreen, for example `HB U1401`.
 
+### Bring-up override headers
+
+Unfitted (DNP) 1x2 pin headers (2.54 mm) that override the supervisor's
+control signals during bring-up, before its firmware exists (#172). A jumper
+closes them. Without a jumper nothing changes, so the fail-safe defaults
+stay. The headers are excluded from the BOM and the position files; the two
+series resistors are fitted.
+
+| Header | Sheet | Jumper connects | Series resistor |
+| ------ | ----- | --------------- | --------------- |
+| J1307 (rails on) | Supervisor | `POWER_ON` (`PREFLIGHT_OK` on this sheet) to `+3V3` | R1346, 1k (C11702): GPIO2 drives `POWER_ON` directly, so firmware driving it low costs at most 3.3 mA |
+| J1308 (CPLD outputs on) | Supervisor | `EN_PLA` to `+3V3` | R1347, 1k (C11702): GPIO20 drives `EN_PLA` directly |
+| J1309 (hold C64 reset) | Supervisor | `~RESET` to GND | None: `~RESET` is open drain, and R201 (1k to `+5V`) limits the current to 5 mA |
+| J1402 (U1401 runs) | RAM and ROM replacement | `RUN` of U1401, the controller side of R1404, to `+3V3` | None: R1404 (1k) limits the current to 3.3 mA if the supervisor drives `RUN` low |
+| J1505 (U1501 runs) | CIA1, Keyboard and Joysticks | `RUN` of U1501, the controller side of R1502, to `+3V3` | None: R1502 (1k), as above |
+| J1604 (U1601 runs) | CIA2, Serial Port and User Port | `RUN` of U1601, the controller side of R1602, to `+3V3` | None: R1602 (1k), as above |
+
+- **Rails without a power-on reset:** the power-on reset comes from the
+  supervisor (#89). With the rails forced on and no supervisor firmware,
+  close J1309 first, and open it once the rails and clocks run.
+- **CPLD outputs:** close J1308 only with a programmed CPLD.
+- **Clocks:** the clock synthesizer stays off until it is programmed over
+  I2C. Without supervisor firmware, an external master can do it through the
+  I2C header (#171).
+- **Controllers:** with their `RUN` jumper closed, U1401, U1501 and U1601 run
+  from their own flash, and a debug probe can reach them through their SWD
+  headers (#169).
+
 ### Chip and rail checks
 
 The supervisor checks the legacy chips in their sockets, the 6510 (U201),
@@ -3019,6 +3047,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-04 | Added bring-up override headers (#172), each a 1x2 pin header (`Connector:Conn_01x02_Pin`, `PinHeader_1x02_P2.54mm_Vertical`), DNP and excluded from the BOM and the position files: J1307 (`POWER_ON` to `+3V3` through R1346, 1k) and J1308 (`EN_PLA` to `+3V3` through R1347, 1k) and J1309 (`~RESET` to GND) on the `Supervisor and SD card slot` sheet, and J1402, J1505 and J1604 (`RUN` of U1401, U1501 and U1601 to `+3V3`, on the controller side of R1404, R1502 and R1602). R1346 and R1347 are fitted (C11702). The PCB is not updated |
 | 2026-11-04 | Added SWD headers for the four RP2354Bs (#169): J1305 on the supervisor's SWCLK and SWDIO (pins 33 and 34, no longer marked not connected), and J1401, J1504 and J1603 on the `SWCLK` and `SWDAT` lines of U1401, U1501 and U1601, each a 1x3 pin header (`Connector:Conn_01x03_Pin`, `PinHeader_1x03_P2.54mm_Vertical`) with SWCLK, GND and SWDIO, DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-04 | Added the CPLD JTAG header J301 to the `PLA Replacement` sheet (#170): a 1x6 pin header (`Connector:Conn_01x06_Pin`, `PinHeader_1x06_P2.54mm_Vertical`) with `+3V3` (VREF), GND, `TCK`, `TDO`, `TDI` and `TMS`, in parallel with the supervisor's JTAG lines, DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-04 | Added the I2C header J1306 to the `Supervisor and SD card slot` sheet (#171): a 1x4 pin header (`Connector:Conn_01x04_Pin`, `PinHeader_1x04_P2.54mm_Vertical`) with `+3V3`, GND, `SDA` and `SCL`, DNP and excluded from the BOM and the position files, for an external I2C master while the supervisor has no firmware. The PCB is not updated |
