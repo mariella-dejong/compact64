@@ -1542,6 +1542,15 @@ The reference numbers R301 and R302 were used before for the pull-ups on
 - **Heartbeat LED:** pin 57 drives D301 through R305 (220 Ohm), see
   [Heartbeat LEDs](#heartbeat-leds). The design (#93) can blink it from a
   divided `PHI2`; it is not on GTS1, so it also lights while `EN_PLA` is low.
+- **JTAG header (#170):** J301, an unfitted (DNP) 1x6 pin header (2.54 mm)
+  in parallel with the supervisor's JTAG lines, excluded from the BOM and
+  the position files. Its pin order is VREF (`+3V3`), GND, TCK, TDO, TDI,
+  TMS, the order of the flying leads of common Xilinx JTAG cables.
+  - **Use:** an external JTAG cable can program and test U301 before the
+    supervisor firmware for it (#86) exists.
+  - **Supervisor:** hold it in reset (SW1302), or run firmware that leaves
+    GPIO16 to GPIO19 as inputs, while a cable is connected.
+  - **TMS:** R302 keeps it high while nothing drives it.
 - **Free pins:** 1, 2, 4, 6, 47 to 52 and 56 (11 user I/O). The CPLD's
   bus-hold keeps them at a defined level, so they are not connected.
 
@@ -2988,6 +2997,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-04 | Added the CPLD JTAG header J301 to the `PLA Replacement` sheet (#170): a 1x6 pin header (`Connector:Conn_01x06_Pin`, `PinHeader_1x06_P2.54mm_Vertical`) with `+3V3` (VREF), GND, `TCK`, `TDO`, `TDI` and `TMS`, in parallel with the supervisor's JTAG lines, DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-04 | Added the I2C header J1306 to the `Supervisor and SD card slot` sheet (#171): a 1x4 pin header (`Connector:Conn_01x04_Pin`, `PinHeader_1x04_P2.54mm_Vertical`) with `+3V3`, GND, `SDA` and `SCL`, DNP and excluded from the BOM and the position files, for an external I2C master while the supervisor has no firmware. The PCB is not updated |
 | 2026-11-03 | Added a heartbeat LED to every controller (#131): D1301 with R1345 on supervisor GPIO32, D1401 with R1409 on U1401 GPIO45, D1502 with R1535 on U1501 GPIO45, D1603 with R1648 on U1601 GPIO47, and D301 with R305 on CPLD pin 57. 220 Ohm resistors (C25091), fitted; 3 mm through-hole LEDs (`Device:LED_Small`, `LED_THT:LED_D3.0mm`), DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-03 | Added the project URL (<https://github.com/mariella-dejong/compact64>) to the title blocks of the main board sheets, the PCB drawing sheet and the LED module (#165), now that the repository is public. The PCB silkscreen follows when the board is laid out |
