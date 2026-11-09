@@ -71,18 +71,21 @@ The work is tracked in the issue tracker. In broad strokes:
 | `hardware/main-board` | KiCad project of the main board (starts as the 250407 replica)  |
 | `hardware/components` | KiCad symbols and footprints that KiCad's own libraries lack    |
 | `hardware/led-module` | KiCad project of the status LED module, cabled to the main board |
+| `firmware/`           | Firmware for the microcontrollers, and the U1401 bench test (#159) |
+| `tools/`              | Host tools, such as the bench test driver and its simulation    |
 | `LICENSES/`           | Full texts of all licences used in this repository              |
 | `LICENSE.md`          | Which licence applies to which part of the repository           |
 | `NOTICE.md`           | Credits, third-party attributions and trademark notices         |
 | `CONTRIBUTING.md`     | How to contribute, and the conventions for issues and pull requests |
 
-Firmware and software will get their own top-level directories once that work
-starts.
-
 ## Tools
 
 The hardware is designed in [KiCad](https://www.kicad.org/) 10 (#2). The
 imported replica was last saved with KiCad 9.0.
+
+The firmware is written in C against the Pico SDK and built with
+`arduino-cli` and the arduino-pico core, see
+[firmware/README.md](firmware/README.md).
 
 ## Contributing
 
