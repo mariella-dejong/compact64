@@ -106,6 +106,12 @@ void loop() {
 void setup1() {
     while (!bus_ready) {
     }
+    // Bench: the I2C pins (GPIO40 to GPIO43) are unused; inputs without
+    // pulls, so that a straight cable to the exerciser does not load them.
+    for (uint gpio = C64_GPIO_SDA; gpio <= C64_GPIO_EE_SCL; gpio++) {
+        gpio_init(gpio);
+        gpio_disable_pulls(gpio);
+    }
     bus_init_pins();
     bus_set_sync_bypass(false);
 }

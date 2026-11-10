@@ -85,8 +85,9 @@ static void handle_command(char *line) {
     }
     const char *cmd = argv[0];
     if (!strcmp(cmd, "info")) {
-        Serial.printf("info firmware=exerciser sys_hz=%lu pattern_seed=%lu next_seed=%lu\n",
-                      (unsigned long)ex_sys_hz(), (unsigned long)pattern_seed, (unsigned long)next_seed);
+        Serial.printf("info firmware=exerciser sys_hz=%lu pattern_seed=%lu next_seed=%lu mark=%s\n",
+                      (unsigned long)ex_sys_hz(), (unsigned long)pattern_seed, (unsigned long)next_seed,
+                      ex_mark_enabled() ? "on" : "off");
     } else if (!strcmp(cmd, "get")) {
         print_params();
     } else if (!strcmp(cmd, "set") && argc == 3) {
@@ -97,6 +98,9 @@ static void handle_command(char *line) {
     } else if (!strcmp(cmd, "ntsc")) {
         ex_params_default_pal();
         ex_params_ntsc();
+        Serial.println("ok");
+    } else if (!strcmp(cmd, "mark") && argc == 2) {
+        ex_set_mark(!strcmp(argv[1], "on"));
         Serial.println("ok");
     } else if (!strcmp(cmd, "fill")) {
         pattern_seed = argc > 1 ? strtoul(argv[1], nullptr, 0) : 1;
@@ -112,7 +116,7 @@ static void handle_command(char *line) {
                   strtol(argv[4], nullptr, 0), argc > 5 ? strtoul(argv[5], nullptr, 0) : 64);
     } else {
         Serial.println("error commands: info get set <name> <value> pal ntsc fill [seed] "
-                       "run [batches] [seed] cal <out> <in> <from> <to> [reps]");
+                       "run [batches] [seed] cal <out> <in> <from> <to> [reps] mark on|off");
     }
 }
 

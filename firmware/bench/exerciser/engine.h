@@ -7,7 +7,8 @@
 //   PIO0 (GPIO base 0)   SM0 wave24   GPIO8 to GPIO31: A0-A15, selects, R/~W, GR/~W, VA4
 //                        SM1 data8    GPIO0 to GPIO7: D0-D7, values and directions
 //                        SM2 sample16 reads GPIO0 to GPIO15
-//   PIO1 (GPIO base 16)  SM0 wave16   GPIO32 to GPIO47: VA5, ~VA14, ~VA15, AEC, MARK, PHI2, ~CAS
+//   PIO1 (GPIO base 16)  SM0 wave16   GPIO32 to GPIO47: VA5, ~VA14, ~VA15, AEC, PHI2, ~CAS,
+//                                     and MARK when enabled
 //                        SM1 sample16 reads GPIO32 to GPIO47: COLORD, sense wires, DUT trigger
 
 #ifndef EXERCISER_ENGINE_H
@@ -23,11 +24,12 @@ extern "C" {
 // Exerciser-only pins (the firmware under test leaves these free on the bench).
 #define EX_GPIO_SENSE_D0 42  // D0 on the DUT side of its series resistor
 #define EX_GPIO_SENSE_D7 43  // D7 on the DUT side of its series resistor
-#define EX_GPIO_MARK     45  // marks every batch, for a logic analyser
+#define EX_GPIO_MARK     45  // high during each batch, for a logic analyser; off by default,
+                             // because the DUT drives its heartbeat LED on GPIO45
 
 // Outputs driven by wave16 (PIO1), as GPIO_HI bits.
 #define EX_W1_OUTPUTS ((1u << (35 - 32)) | (1u << (34 - 32)) | (1u << (33 - 32)) | (1u << (32 - 32)) | \
-                       (1u << (EX_GPIO_MARK - 32)) | (1u << (46 - 32)) | (1u << (47 - 32)))
+                       (1u << (46 - 32)) | (1u << (47 - 32)))
 
 // List capacities, in words.
 #define EX_W0_WORDS 16384
@@ -54,6 +56,10 @@ typedef struct {
 } ex_run_result_t;
 
 void ex_engine_init(void);
+// Drives MARK (GPIO45) or leaves it an input. Only enable it when GPIO45 is
+// not connected to the DUT.
+void ex_set_mark(bool on);
+bool ex_mark_enabled(void);
 uint32_t ex_sys_hz(void);
 // Sets all exerciser outputs to an idle state: `pins` holds the values for
 // GPIO0 to GPIO47, D0 to D7 are inputs.

@@ -11,7 +11,7 @@ The exerciser plays the bus; the DUT runs the U1401 firmware. Both print
       --set sample_mode=1 --batches 20 --csv sweep.csv
   bench.py shmoo --ex /dev/ttyACM0 --dut /dev/ttyACM1 --speeds 100:200:10 \\
       --offsets 40:200:8 --batches 10 --csv shmoo.csv
-  bench.py cal 45 0 -4 12 --ex /dev/ttyACM0
+  bench.py cal 47 0 -4 12 --ex /dev/ttyACM0
 
 Requires pyserial.
 """

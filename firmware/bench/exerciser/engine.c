@@ -29,6 +29,7 @@ enum { SM_W1 = 0, SM_S1 = 1 };            // on PIO1
 #define D_PINS  0x00000000000000FFull                    // GPIO0 to GPIO7
 
 static uint off_w24, off_d8, off_s0, off_w16, off_s1;
+static bool mark_on = false;
 static int ch_w0, ch_d, ch_s0, ch_w1, ch_s1, ch_rx0, ch_rx1;
 
 uint32_t ex_sys_hz(void) {
@@ -73,6 +74,24 @@ static void dma_rx_config(int ch, PIO p, uint sm) {
     dma_channel_set_read_addr((uint)ch, &p->rxf[sm], false);
 }
 
+bool ex_mark_enabled(void) {
+    return mark_on;
+}
+
+void ex_set_mark(bool on) {
+    const uint64_t bit = 1ull << EX_GPIO_MARK;
+    if (on) {
+        pio_sm_set_pins_with_mask64(P1, SM_W1, 0, bit);
+        pio_sm_set_pindirs_with_mask64(P1, SM_W1, bit, bit);
+        pio_gpio_init(P1, EX_GPIO_MARK);
+    } else {
+        pio_sm_set_pindirs_with_mask64(P1, SM_W1, 0, bit);
+        gpio_init(EX_GPIO_MARK);  // input
+    }
+    gpio_disable_pulls(EX_GPIO_MARK);
+    mark_on = on;
+}
+
 void ex_engine_init(void) {
     pio_set_gpio_base(P1, 16);
 
@@ -91,7 +110,7 @@ void ex_engine_init(void) {
         } else if (W1_PINS & bit) {
             pio_gpio_init(P1, g);
         } else {
-            gpio_init(g);  // input: COLORD, I2C, sense wires, DUT trigger
+            gpio_init(g);  // input: COLORD, I2C, sense wires, DUT trigger, MARK
         }
         gpio_disable_pulls(g);  // RP2350 erratum E9
         gpio_set_input_enabled(g, true);

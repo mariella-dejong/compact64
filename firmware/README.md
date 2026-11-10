@@ -31,16 +31,22 @@ Then, from the repository root:
 ```sh
 firmware/build.sh u1401                    # compile
 firmware/build.sh exerciser /dev/ttyACM0   # compile and upload
+BOARD=weact firmware/build.sh u1401        # for a WeAct RP2350B board
 ```
 
-Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. The script builds
-for the WeAct Studio RP2350B core board (`rp2040:rp2040:weact_rp2350b`):
-U1401 at 150 MHz, the RP2350's rated speed; the exerciser at 250 MHz, for
-4 ns steps.
+Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. U1401 runs at
+150 MHz, the RP2350's rated speed; the exerciser at 250 MHz, for 4 ns steps.
+`BOARD` selects the board:
+
+| `BOARD` | Board | FQBN |
+| ------- | ----- | ---- |
+| `rp2354b` (default) | An RP2354B board, as U1401 | `rp2040:rp2040:generic_rp2350:variantchip=RP2350B,flash=2097152_0` |
+| `weact` | WeAct Studio RP2350B core board | `rp2040:rp2040:weact_rp2350b:flash=16777216_0` |
 
 In the Arduino IDE, link or copy `libraries/Compact64Bus` into the
-`libraries` folder of your sketchbook, select "WeAct Studio RP2350B Core
-Board" and the CPU speed above, and open the sketch.
+`libraries` folder of your sketchbook. For an RP2354B board select "Generic
+RP2350" with chip variant RP2350B and 2 MB flash; then the CPU speed above,
+and open the sketch.
 
 The exerciser's PIO programs are in `exerciser.pio`; the Arduino tools do not
 assemble them, so the generated `exerciser.pio.h` is in the repository.

@@ -14,13 +14,22 @@ register (#113).
 
 ## Boards
 
-Both boards need all 48 GPIOs on headers, USB on the board, and no PSRAM:
-the RP2350's PSRAM chip select can only be GPIO0, GPIO8, GPIO19 or GPIO47,
-and U1401 uses all four. The sketches are built for the WeAct Studio RP2350B
-core board. On that board:
+Both boards need an RP2354B or RP2350B with:
 
-- the LED is on GP25 (`~BASIC`), which only adds a small load;
-- the user button is on GP23 (`A15`): do not press it during a test.
+- all 48 GPIOs on headers, ideally in GPIO order with ground pins in
+  between, so that one straight ribbon cable connects the two boards;
+- USB and a 12 MHz crystal, for uploads and the serial commands. A blank
+  RP2354B starts the USB bootloader by itself; a BOOTSEL button or pads
+  recover a board whose firmware hangs, and a RUN button or pad resets it;
+- no PSRAM: the RP2350's PSRAM chip select can only be GPIO0, GPIO8, GPIO19
+  or GPIO47, and U1401 uses all four;
+- nothing else on the GPIOs, such as LEDs or buttons.
+
+`firmware/build.sh` builds for an RP2354B board by default (`BOARD=rp2354b`:
+the generic RP2350 target with the RP2350B and 2 MB of flash, as U1401).
+`BOARD=weact` builds for the WeAct Studio RP2350B core board instead; on that
+board the LED is on GP25 (`~BASIC`, a small load) and the user button on GP23
+(`A15`, do not press it during a test).
 
 A Raspberry Pi Pico 2 does not work: its RP2350A has 30 GPIOs, and only 26
 reach the headers. A spare Pico 2 can run a logic analyser firmware, for
@@ -28,8 +37,10 @@ example [LogicAnalyzer](https://github.com/gusmanb/logicanalyzer).
 
 ## Wiring
 
-Every signal runs from GPIOn on one board to GPIOn on the other. Keep the
-jumpers short (under 10 cm) and add at least six ground wires. Power each
+Every signal runs from GPIOn on one board to GPIOn on the other; there is no
+cross wiring. All 48 GPIOs may be connected straight through, so with the
+same header order on both boards one ribbon cable does it. Keep the cable or
+jumpers short (under 10 cm) and connect at least six grounds. Power each
 board from its own USB port; do not connect `3V3` or `VBUS` between them.
 
 | GPIO | Signal | Direction | Notes |
@@ -42,21 +53,25 @@ board from its own USB port; do not connect `3V3` or `VBUS` between them.
 | 33, 34 | `~VA14`, `~VA15` | exerciser to DUT | |
 | 35 | `AEC` | exerciser to DUT | |
 | 36 to 39 | `COLORD0` to `COLORD3` | DUT to exerciser | 330 Ohm in series |
+| 40 to 43 | | | Unused: inputs without pulls on both boards. On the exerciser, GPIO42 and GPIO43 are the sense inputs of the release check |
 | 44 | Trigger | DUT to exerciser | Optional; the DUT toggles it on a late answer |
+| 45 | | | DUT heartbeat output. The exerciser leaves it an input unless `mark on` |
 | 46, 47 | `PHI2`, `~CAS` | exerciser to DUT | |
-| 40 to 43, 45 | | | Not connected between the boards |
 
 The 330 Ohm resistors keep both boards safe if both drive a data line at
-once. They slow the edges by a few nanoseconds.
+once. They slow the edges by a few nanoseconds. With a ribbon cable, put
+them on a small interposer between two cables, at the exerciser end.
 
 **Release check (optional):** connect the DUT side of the D0 resistor to
 exerciser GPIO42 and the DUT side of the D7 resistor to exerciser GPIO43,
 then set `w_release` above 0. After each such read the exerciser drives the
 inverse data right after the select rises, and these two wires show whether
-the DUT still holds the bus.
+the DUT still holds the bus. On an interposer, take GPIO42 and GPIO43 from
+the exerciser's cable to these taps only, not on to the DUT.
 
-Exerciser GPIO45 is high during each batch, as a trigger for a logic
-analyser.
+**Logic analyser trigger:** `mark on` makes exerciser GPIO45 high during
+each batch. Only use it when GPIO45 is not connected to the DUT, whose
+heartbeat LED output is on that pin.
 
 ## Running
 
@@ -64,11 +79,12 @@ analyser.
    `firmware/build.sh u1401 <DUT port>` and
    `firmware/build.sh exerciser <exerciser port>`.
 2. **Calibrate the exerciser** with the DUT disconnected. Jumper exerciser
-   GPIO45 to GPIO0 and to GPIO36, then:
+   GPIO47 (`~CAS`, an output of PIO1) to GPIO0 (read by PIO0) and to GPIO36
+   (read by PIO1), then:
 
    ```sh
-   tools/bench/bench.py cal 45 0 -4 12 --ex <port>
-   tools/bench/bench.py cal 45 36 -4 12 --ex <port>
+   tools/bench/bench.py cal 47 0 -4 12 --ex <port>
+   tools/bench/bench.py cal 47 36 -4 12 --ex <port>
    ```
 
    The first offset with `high` equal to `reps` is the delay from an output
@@ -114,6 +130,7 @@ synchronizer and `vicdelay` takes the VIC-II address later.
 | `fill [seed]` | Reset the memory model to a test pattern (also send it to the DUT) |
 | `run [batches] [seed]` | Run batches; prints `result`, a `check` line per check, up to eight `fail` lines, and `end` |
 | `cal <out> <in> <from> <to> [reps]` | Calibration, DUT disconnected |
+| `mark on\|off` | GPIO45 high during each batch, for a logic analyser; off by default |
 
 `result` reports `moved` and `max_move_ns`: one list cannot change its pins
 more often than every three clocks (12 ns), so when two edges of different

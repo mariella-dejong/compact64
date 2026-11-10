@@ -766,7 +766,8 @@ void ex_run_batches(uint32_t batches, uint32_t seed, ex_stats_t *st) {
 uint32_t ex_calibrate(uint32_t out_gpio, uint32_t in_gpio, int32_t offset, uint32_t reps, bool *ok) {
     const bool out_d = out_gpio < 8;
     const bool out_w = (out_gpio >= 8 && out_gpio < 32) ||
-                       (out_gpio >= 32 && out_gpio < 48 && ((EX_W1_OUTPUTS >> (out_gpio - 32)) & 1u));
+                       (out_gpio >= 32 && out_gpio < 48 && ((EX_W1_OUTPUTS >> (out_gpio - 32)) & 1u)) ||
+                       (out_gpio == EX_GPIO_MARK && ex_mark_enabled());
     const bool in_ok = in_gpio < 16 || (in_gpio >= 32 && in_gpio < 48);
     *ok = (out_d || out_w) && in_ok && offset >= -20 && offset <= 40 && reps > 0 && reps <= 1024;
     if (!*ok) {

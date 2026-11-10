@@ -43,6 +43,14 @@ uint32_t ex_sys_hz(void) {
 void ex_engine_init(void) {
 }
 
+void ex_set_mark(bool on) {
+    (void)on;
+}
+
+bool ex_mark_enabled(void) {
+    return false;
+}
+
 void ex_set_idle(uint64_t pins) {
     (void)pins;
 }
