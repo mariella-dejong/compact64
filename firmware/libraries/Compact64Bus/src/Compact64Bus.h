@@ -6,5 +6,6 @@
 
 #include "c64bus_pins.h"
 #include "c64bus_bench.h"
+#include "c64bus_clock.h"
 
 #endif

@@ -17,6 +17,9 @@
 #include "hardware/structs/sio.h"
 #include "hardware/gpio.h"
 #include "hardware/pio.h"
+#include "hardware/vreg.h"
+
+C64BUS_CORE_VOLTAGE()
 
 static volatile bool bus_ready = false;
 static uint32_t pattern_seed = 1;
@@ -34,8 +37,8 @@ static void print_stats() {
 }
 
 static void print_info() {
-    Serial.printf("info firmware=u1401-bench sys_hz=%lu seed=%lu aecsettle=%lu trace_pins=%d\n",
-                  (unsigned long)rp2040.f_cpu(), (unsigned long)pattern_seed,
+    Serial.printf("info firmware=u1401-bench sys_hz=%lu vreg=%u seed=%lu aecsettle=%lu trace_pins=%d\n",
+                  (unsigned long)rp2040.f_cpu(), (unsigned)vreg_get_voltage(), (unsigned long)pattern_seed,
                   (unsigned long)bus_aec_settle, BUS_TRACE_PINS);
 }
 

@@ -39,7 +39,9 @@ builds U1401 with trace pins for the bench test's trace (bench/README.md).
 The port may be a link such as `/dev/serial/by-id/...`. U1401 runs at
 150 MHz, the RP2350's rated speed, unless `FREQ` (in MHz) says otherwise;
 the bench needs about 300 (bench/README.md). The exerciser runs at
-250 MHz, for 4 ns steps.
+250 MHz, for 4 ns steps. Above 150 MHz both raise the core voltage from
+1.10 to 1.20 V before they switch the clock (`c64bus_clock.h`): at 300 MHz
+and 1.10 V, U1401 failed 5 to 17 % of its starts.
 `BOARD` selects the board:
 
 | `BOARD` | Board | FQBN |

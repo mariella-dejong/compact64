@@ -153,7 +153,9 @@ synchronizer.
    latch point (sample mode 0) for each of `--speeds`. U1401 needs about
    300 MHz to pass everything at the latch point
    (`FREQ=300 firmware/build.sh u1401 <port>`); at the rated 150 MHz the
-   VIC-II and the reads the CPU serves are too slow.
+   VIC-II and the reads the CPU serves are too slow. Above 150 MHz the
+   firmware runs the core at 1.20 V; `info` shows the setting as `vreg`
+   (11 is 1.10 V, 13 is 1.20 V).
 
 ## Exerciser commands
 
