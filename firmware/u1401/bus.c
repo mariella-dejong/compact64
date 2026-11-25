@@ -73,10 +73,11 @@ volatile uint32_t bus_aec_settle = 2;
 #define DRIVE_D03 0x0F00u  // cpu_drive: drive D0 to D3
 
 // vic_tab: one word per bank (~VA15, ~VA14 as on the pins, so 3 - bank) and
-// A0 to A11; byte A13 + 2 * A12 of it is RAM at that address.
+// A0 to A11; byte A12 + 2 * A13 of it is RAM at that address, the number
+// ram_drive reads from VA4 and VA5.
 static inline __attribute__((always_inline)) uint8_t *vic_byte(uint32_t a) {
     const uint32_t word = ((3u - (a >> 14)) << 12) | (a & 0x0FFFu);
-    return (uint8_t *)&vic_tab[word] + (((a >> 13) & 1u) | (((a >> 12) & 1u) << 1));
+    return (uint8_t *)&vic_tab[word] + ((a >> 12) & 3u);
 }
 
 void bus_rebuild_tables(void) {

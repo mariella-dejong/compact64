@@ -4,10 +4,10 @@
 // PIO and DMA engine of the bus exerciser. Five state machines play four
 // lists, all started on the same clock:
 //
-//   PIO0 (GPIO base 0)   SM0 wave24   GPIO8 to GPIO31: A0-A15, selects, R/~W, GR/~W, VA4
+//   PIO0 (GPIO base 0)   SM0 wave24   GPIO8 to GPIO31: A0-A15, selects, R/~W, VA4, VA5
 //                        SM1 data8    GPIO0 to GPIO7: D0-D7, values and directions
 //                        SM2 sample16 reads GPIO0 to GPIO15
-//   PIO1 (GPIO base 16)  SM0 wave16   GPIO32 to GPIO47: VA5, ~VA14, ~VA15, AEC, PHI2, ~CAS,
+//   PIO1 (GPIO base 16)  SM0 wave16   GPIO32 to GPIO47: GR/~W, ~VA14, ~VA15, AEC, PHI2, ~CAS,
 //                                     and MARK when enabled
 //                        SM1 sample16 reads GPIO32 to GPIO47: COLORD, sense wires, DUT trigger
 

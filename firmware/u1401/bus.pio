@@ -21,8 +21,8 @@
 ; PIO0: drivers. All have D0 to D7 as OUT pins.
 
 ; ~CASRAM, for the VIC-II and the 6510. IN base GPIO28, IN_COUNT 4: ~COLORAM,
-; R/~W, VA5, VA4. RX register 0: the four VIC-II candidates for A12 and A13
-; (byte A13 + 2 * A12); register 1: the 6510 byte.
+; R/~W, VA4, VA5. RX register 0: the four VIC-II candidates for A12 and A13
+; (byte A12 + 2 * A13); register 1: the 6510 byte.
 ; VIC-II cycles (~COLORAM low): pick the candidate by VA4 and VA5 (kept in
 ; the ISR), twice, since the candidates may arrive after the fall; then hold
 ; until ~CASRAM rises. A loop that watched ~CASRAM instead would let go up
@@ -42,7 +42,7 @@ top:
     jmp !x done             ; a write: leave D alone
     jmp pin cpu             ; ~COLORAM again; low: a VIC-II cycle after all
 vic:
-    out isr, 2              ; candidate: VA5 + 2 * VA4
+    out isr, 2              ; candidate: VA4 + 2 * VA5
     set x, 1                ; two passes
 pick:
     mov osr, rxfifo[0]

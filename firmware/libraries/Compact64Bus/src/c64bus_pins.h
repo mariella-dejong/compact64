@@ -20,8 +20,8 @@
 #define C64_GPIO_CHAROM    27  // ~CHAROM
 #define C64_GPIO_COLORAM   28  // ~COLORAM, low in every VIC-II cycle
 #define C64_GPIO_RW        29  // R/~W
-#define C64_GPIO_VA5       30  // A5, then A13 while ~CAS is low
-#define C64_GPIO_VA4       31  // A4, then A12 while ~CAS is low
+#define C64_GPIO_VA4       30  // A4, then A12 while ~CAS is low
+#define C64_GPIO_VA5       31  // A5, then A13 while ~CAS is low
 #define C64_GPIO_GRW       32  // GR/~W, colour RAM write strobe
 #define C64_GPIO_VA14N     33  // ~VA14 (bank, inverted A14)
 #define C64_GPIO_VA15N     34  // ~VA15 (bank, inverted A15)
@@ -45,8 +45,8 @@
 #define C64_LO_CHAROM   (1u << C64_GPIO_CHAROM)
 #define C64_LO_COLORAM  (1u << C64_GPIO_COLORAM)
 #define C64_LO_RW       (1u << C64_GPIO_RW)
-#define C64_LO_VA5      (1u << C64_GPIO_VA5)
 #define C64_LO_VA4      (1u << C64_GPIO_VA4)
+#define C64_LO_VA5      (1u << C64_GPIO_VA5)
 #define C64_LO_SELECTS  (C64_LO_CASRAM | C64_LO_BASIC | C64_LO_KERNAL | C64_LO_CHAROM | C64_LO_COLORAM)
 #define C64_LO_ROMS     (C64_LO_BASIC | C64_LO_KERNAL | C64_LO_CHAROM)
 

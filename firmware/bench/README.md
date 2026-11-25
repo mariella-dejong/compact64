@@ -49,7 +49,7 @@ board from its own USB port; do not connect `3V3` or `VBUS` between them.
 | 8 to 23 | A0 to A15 | exerciser to DUT | |
 | 24 to 28 | `~CASRAM`, `~BASIC`, `~KERNAL`, `~CHAROM`, `~COLORAM` | exerciser to DUT | |
 | 29 | `R/~W` | exerciser to DUT | |
-| 30, 31 | `VA5`, `VA4` | exerciser to DUT | |
+| 30, 31 | `VA4`, `VA5` | exerciser to DUT | |
 | 32 | `GR/~W` | exerciser to DUT | |
 | 33, 34 | `~VA14`, `~VA15` | exerciser to DUT | |
 | 35 | `AEC` | exerciser to DUT | |
