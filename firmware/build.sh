@@ -20,7 +20,12 @@
 # TRACE_PINS=1 builds U1401 with the trace pins (BUS_TRACE_PINS in
 # u1401/bus.h): GPIO44 and GPIO45 show where the bus loop is.
 #
-# Set ARDUINO_CLI to use an arduino-cli that is not on PATH.
+# CLEAN=1 rebuilds from scratch (arduino-cli --clean): arduino-cli keeps a copy
+# of the sketch in a build cache, where a deleted source file would still be
+# compiled. The pipeline (azure-pipelines.yml) always sets it.
+#
+# Set ARDUINO_CLI to use an arduino-cli that is not on PATH. The sketches are
+# built with arduino-pico 6.3.2 (README.md).
 
 set -euo pipefail
 
@@ -62,12 +67,15 @@ if [ "$1" = u1401 ] && [ "${FREQ:-150}" != 150 ]; then
     out=$out-${FREQ}mhz
 fi
 extra=()
+if [ "${CLEAN:-0}" = 1 ]; then
+    extra+=(--clean)
+fi
 if [ "${TRACE_PINS:-0}" = 1 ]; then
     out=$out-trace
-    extra=(--build-property "compiler.c.extra_flags=-DBUS_TRACE_PINS=1"
-           --build-property "compiler.cpp.extra_flags=-DBUS_TRACE_PINS=1")
+    extra+=(--build-property "compiler.c.extra_flags=-DBUS_TRACE_PINS=1"
+            --build-property "compiler.cpp.extra_flags=-DBUS_TRACE_PINS=1")
 fi
-"$cli" compile --fqbn "$fqbn" --warnings all "${extra[@]}" \
+"$cli" compile --fqbn "$fqbn" --warnings all ${extra[@]+"${extra[@]}"} \
     --library "$here/libraries/Compact64Bus" \
     --output-dir "$out" "$sketch"
 

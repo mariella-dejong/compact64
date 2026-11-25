@@ -70,6 +70,12 @@ goals and the status.
   changed area.
 - **Merging:** pull requests are reviewed and squash-merged into `main`. Keep
   your branch up to date with `main` and resolve conflicts by rebasing.
+- **Builds:** pull requests from forks are not built automatically. The
+  firmware pipeline runs on the maintainers' own build machines, and a pull
+  request from a fork would run the fork's version of the pipeline there.
+  After review, a maintainer builds your change from a branch in this
+  repository. Build and test firmware changes locally first, see
+  [firmware/README.md](firmware/README.md).
 
 ## Licensing of contributions
 

@@ -1,0 +1,188 @@
+# Compact 64 firmware: builds every sketch under firmware/ for both bench
+# boards and publishes the images as pipeline artifacts:
+#
+#   u1401-firmware       U1401 (bench build) at 150 and 300 MHz, RP2354B and WeAct
+#   exerciser-firmware   the bus exerciser of the U1401 bench test, at 250 MHz
+#
+# In Azure DevOps: New pipeline → GitHub → mariella-dejong/compact64 →
+# Existing Azure Pipelines YAML file → path: firmware/azure-pipelines.yml
+#
+# Pull requests from forks must never build: the repository is public, and a
+# fork's pull request runs the fork's version of this file and of build.sh on
+# our self-hosted agents. Turn fork builds off in Azure DevOps (see
+# firmware/README.md, Continuous integration); a file in the repository cannot
+# enforce that. The condition on the stage below only catches a setting that
+# was turned on by mistake.
+#
+# Requires agents on pool `linux-x64` with `arduino-cli` on PATH.
+
+name: $(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - firmware/**
+
+pr:
+  branches:
+    include:
+      - '*'
+  paths:
+    include:
+      - firmware/**
+
+pool:
+  name: linux-x64
+
+variables:
+  - name: BOARD_MANAGER_URL
+    value: 'https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json'
+  # Same version as the other RP2350 pipelines on these agents, so that the
+  # builds don't reinstall the agents' core back and forth. firmware/README.md
+  # documents the same version for local builds.
+  - name: CORE_VERSION
+    value: '6.3.2'
+  - name: OUT_DIR
+    value: '$(Build.ArtifactStagingDirectory)/compact64-firmware'
+
+stages:
+  - stage: Firmware
+    displayName: Build firmware
+    # Second line of defence against fork builds; see the header.
+    condition: ne(variables['System.PullRequest.IsFork'], 'True')
+    jobs:
+      - job: build
+        displayName: Compile and publish firmware images
+        steps:
+          - checkout: self
+            displayName: Checkout repository
+            clean: true
+
+          - bash: |
+              set -euo pipefail
+              arduino-cli version
+
+              CONFIG_FILE="${ARDUINO_CLI_CONFIG_FILE:-${HOME}/.arduino15/arduino-cli.yaml}"
+              if [ ! -f "${CONFIG_FILE}" ]; then
+                echo "Creating arduino-cli config at ${CONFIG_FILE}"
+                arduino-cli config init
+              fi
+              if ! arduino-cli config dump | grep -Fq "${BOARD_MANAGER_URL}"; then
+                echo "Adding board manager URL ${BOARD_MANAGER_URL}"
+                arduino-cli config add board_manager.additional_urls "${BOARD_MANAGER_URL}"
+              fi
+
+              INSTALLED_CORE=$(arduino-cli core list | awk '$1 == "rp2040:rp2040" { print $2; exit }')
+              if [ "${INSTALLED_CORE}" = "${CORE_VERSION}" ]; then
+                echo "rp2040:rp2040@${CORE_VERSION} already installed, skipping install"
+              else
+                echo "Installing rp2040:rp2040@${CORE_VERSION} (installed: ${INSTALLED_CORE:-none})"
+                arduino-cli core update-index
+                arduino-cli core install "rp2040:rp2040@${CORE_VERSION}"
+              fi
+            displayName: Install Arduino-Pico $(CORE_VERSION)
+
+          - bash: |
+              set -euo pipefail
+              # The Arduino tools don't run pioasm, so the generated headers are
+              # in the repository. Check that they match their .pio sources.
+              DATA_DIR=$(arduino-cli config get directories.data 2>/dev/null || echo "${HOME}/.arduino15")
+              PIOASM=$(find "${DATA_DIR}/packages/rp2040/tools/pqt-pioasm" -type f -name pioasm | sort -V | tail -n 1)
+              test -x "${PIOASM}"
+              STALE=0
+              for pio in firmware/u1401/bus.pio firmware/bench/exerciser/exerciser.pio; do
+                "${PIOASM}" -v 1 -o c-sdk "${pio}" "$(Agent.TempDirectory)/check.pio.h"
+                if ! diff -u "${pio}.h" "$(Agent.TempDirectory)/check.pio.h"; then
+                  echo "${pio}.h is out of date: regenerate it (firmware/README.md)" >&2
+                  STALE=1
+                fi
+              done
+              exit "${STALE}"
+            displayName: Check the generated PIO headers
+
+          - bash: |
+              set -euo pipefail
+              LOG="$(Agent.TempDirectory)/compile.log"
+              : > "${LOG}"
+              # sketch:board:clock in MHz (empty: the sketch's own)
+              BUILDS=(u1401:rp2354b:150 u1401:rp2354b:300 u1401:weact:150 u1401:weact:300
+                      exerciser:rp2354b: exerciser:weact:)
+              for b in "${BUILDS[@]}"; do
+                IFS=: read -r SKETCH BOARD FREQ <<< "${b}"
+                echo "##[group]${SKETCH} for ${BOARD}${FREQ:+ at ${FREQ} MHz}"
+                CLEAN=1 BOARD="${BOARD}" FREQ="${FREQ}" firmware/build.sh "${SKETCH}" < /dev/null 2>&1 | tee -a "${LOG}"
+                echo "##[endgroup]"
+              done
+              # arduino-cli doesn't fail on warnings; we do.
+              if grep -E ': warning:' "${LOG}"; then
+                echo "Compiler warnings (see above)" >&2
+                exit 1
+              fi
+            displayName: Compile all sketches
+
+          - bash: |
+              set -euo pipefail
+              V="$(Build.BuildNumber)"
+              rm -rf "$(OUT_DIR)"
+              # build.sh output folder:sketch:artifact:file name
+              IMAGES=(rp2354b/u1401:u1401:u1401-firmware:u1401-rp2354b-150mhz
+                      rp2354b/u1401-300mhz:u1401:u1401-firmware:u1401-rp2354b-300mhz
+                      weact/u1401:u1401:u1401-firmware:u1401-weact-150mhz
+                      weact/u1401-300mhz:u1401:u1401-firmware:u1401-weact-300mhz
+                      rp2354b/exerciser:exerciser:exerciser-firmware:exerciser-rp2354b-250mhz
+                      weact/exerciser:exerciser:exerciser-firmware:exerciser-weact-250mhz)
+              for i in "${IMAGES[@]}"; do
+                IFS=: read -r FROM SKETCH ARTIFACT NAME <<< "${i}"
+                mkdir -p "$(OUT_DIR)/${ARTIFACT}"
+                for ext in uf2 elf; do
+                  # arduino-cli names its outputs after the sketch folder.
+                  SRC="firmware/build/${FROM}/${SKETCH}.ino.${ext}"
+                  if [ ! -s "${SRC}" ]; then
+                    echo "Expected ${SRC}" >&2
+                    ls -la "firmware/build/${FROM}" >&2 || true
+                    exit 1
+                  fi
+                  cp "${SRC}" "$(OUT_DIR)/${ARTIFACT}/${NAME}-${V}.${ext}"
+                done
+              done
+              for d in u1401-firmware exerciser-firmware; do
+                (
+                  cd "$(OUT_DIR)/${d}"
+                  {
+                    echo "Compact 64 ${d} ${V}"
+                    echo "commit $(Build.SourceVersion), branch $(Build.SourceBranch), build $(Build.BuildId)"
+                    echo "Arduino-Pico ${CORE_VERSION}"
+                    echo
+                    echo "Flash a .uf2: hold BOOTSEL while plugging in the board, then copy the file"
+                    echo "to the RP2350 drive. firmware/README.md and firmware/bench/README.md describe"
+                    echo "the boards and the bench setup."
+                  } > BUILD_INFO.txt
+                  sha256sum ./*.uf2 ./*.elf > SHA256SUMS
+                  ls -la
+                )
+              done
+            displayName: Collect and rename firmware images
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish u1401-firmware
+            inputs:
+              targetPath: '$(OUT_DIR)/u1401-firmware'
+              artifact: u1401-firmware
+              publishLocation: pipeline
+
+          - task: PublishPipelineArtifact@1
+            displayName: Publish exerciser-firmware
+            inputs:
+              targetPath: '$(OUT_DIR)/exerciser-firmware'
+              artifact: exerciser-firmware
+              publishLocation: pipeline
+
+          - bash: |
+              set -euo pipefail
+              rm -rf "$(OUT_DIR)" firmware/build
+              echo "Removed $(OUT_DIR) and firmware/build"
+            displayName: Clean up build folders
+            condition: always()
