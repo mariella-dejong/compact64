@@ -1745,9 +1745,9 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO27 | 28 | `~CHAROM` | Character ROM select from the CPLD |
 | GPIO28 | 36 | `~COLORAM` | Colour RAM select from the CPLD |
 | GPIO29 | 37 | `R/~W` | 6510 read/write |
-| GPIO30 | 38 | `GR/~W` (sheet pin `COLORR/~W`) | Colour RAM write strobe from the CPLD |
-| GPIO31 | 39 | `VA4` | Multiplexed address: A4, then A12 |
-| GPIO32 | 40 | `VA5` | Multiplexed address: A5, then A13 |
+| GPIO30 | 38 | `VA4` | Multiplexed address: A4, then A12 |
+| GPIO31 | 39 | `VA5` | Multiplexed address: A5, then A13 |
+| GPIO32 | 40 | `GR/~W` (sheet pin `COLORR/~W`) | Colour RAM write strobe from the CPLD |
 | GPIO33 | 42 | `~VA14` | VIC-II bank, inverted A14 (CIA 2 PA0) |
 | GPIO34 | 43 | `~VA15` | VIC-II bank, inverted A15 (CIA 2 PA1) |
 | GPIO35 | 44 | `AEC` | High: 6510 cycle; low: VIC-II cycle |
@@ -1761,6 +1761,10 @@ following Raspberry Pi's RP2350 reference design:
 | GPIO47 | 58 | `~CAS` through U1402 | Column address strobe from the VIC-II |
 
 GPIO44 (pin 55) is not used; it is kept for a trigger pad (#112).
+
+Keep GPIO28 to GPIO31 together and in this order. The firmware serves
+`~CASRAM` reads from a PIO state machine that reads `~COLORAM`, `R/~W`,
+`VA4` and `VA5` in one go, and that can only reach GPIO0 to GPIO31 (#178).
 
 ### Level shifting
 
@@ -3047,6 +3051,7 @@ Add an entry here for every change to the design files, newest first.
 
 | Date       | Description                                                   |
 | ---------- | ------------------------------------------------------------- |
+| 2026-11-25 | Moved U1401's `VA4`, `VA5` and `GR/~W` (#178): `VA4` from GPIO31 (pin 39) to GPIO30 (pin 38), `VA5` from GPIO32 (pin 40) to GPIO31 (pin 39), and `GR/~W` from GPIO30 (pin 38) to GPIO32 (pin 40), so that the firmware's PIO reads `~COLORAM`, `R/~W`, `VA4` and `VA5` together on GPIO28 to GPIO31. The PCB is not updated |
 | 2026-11-04 | Added bring-up override headers (#172), each a 1x2 pin header (`Connector:Conn_01x02_Pin`, `PinHeader_1x02_P2.54mm_Vertical`), DNP and excluded from the BOM and the position files: J1307 (`POWER_ON` to `+3V3` through R1346, 1k) and J1308 (`EN_PLA` to `+3V3` through R1347, 1k) and J1309 (`~RESET` to GND) on the `Supervisor and SD card slot` sheet, and J1402, J1505 and J1604 (`RUN` of U1401, U1501 and U1601 to `+3V3`, on the controller side of R1404, R1502 and R1602). R1346 and R1347 are fitted (C11702). The PCB is not updated |
 | 2026-11-04 | Added SWD headers for the four RP2354Bs (#169): J1305 on the supervisor's SWCLK and SWDIO (pins 33 and 34, no longer marked not connected), and J1401, J1504 and J1603 on the `SWCLK` and `SWDAT` lines of U1401, U1501 and U1601, each a 1x3 pin header (`Connector:Conn_01x03_Pin`, `PinHeader_1x03_P2.54mm_Vertical`) with SWCLK, GND and SWDIO, DNP and excluded from the BOM and the position files. The PCB is not updated |
 | 2026-11-04 | Added the CPLD JTAG header J301 to the `PLA Replacement` sheet (#170): a 1x6 pin header (`Connector:Conn_01x06_Pin`, `PinHeader_1x06_P2.54mm_Vertical`) with `+3V3` (VREF), GND, `TCK`, `TDO`, `TDI` and `TMS`, in parallel with the supervisor's JTAG lines, DNP and excluded from the BOM and the position files. The PCB is not updated |
