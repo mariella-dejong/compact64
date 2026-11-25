@@ -309,11 +309,15 @@ static void va_set(uint32_t t, uint32_t va4, uint32_t va5) {
     w_set(t, M_VA4 | M_VA5, ((va4 & 1u) ? M_VA4 : 0) | ((va5 & 1u) ? M_VA5 : 0));
 }
 
-// Sets the bits `bits` of D0 to D7: values and directions (1 = drive).
+// Sets the bits `bits` of D0 to D7: values and directions (1 = drive). A
+// released bit keeps its last value: data8 runs `out pins` one clock before
+// `out pindirs`, so a new value would be driven for that clock and left on
+// the bus as its charge.
 static void d_set(uint32_t t, uint32_t vals, uint32_t dirs, uint32_t bits) {
     bits &= 0xFFu;
-    ev_t e = {.tick = t, .type = EV_D, .mask = bits | (bits << 8),
-              .val = (vals & bits) | ((dirs & bits) << 8)};
+    const uint32_t driven = bits & dirs;
+    ev_t e = {.tick = t, .type = EV_D, .mask = driven | (bits << 8),
+              .val = (vals & driven) | ((dirs & bits) << 8)};
     q_add(&e);
     if ((int32_t)(t - d_end) > 0) {
         d_end = t;

@@ -9,7 +9,8 @@
 //
 //   - an ideal firmware passes every check at every speed in sample mode 0;
 //   - a slow firmware fails, and the sample point sweep finds its latency;
-//   - the release check sees a firmware that lets go of D0 to D7 too late.
+//   - the release check sees a firmware that lets go of D0 to D7 too late;
+//   - with a firmware that never drives D, every read sees the precharge.
 //
 // Build and run: make -C tools/bench/sim
 
@@ -35,6 +36,7 @@ uint32_t ex_rx1[EX_S_WORDS];
 
 static const uint32_t sys_hz = 250000000u;
 static uint32_t latency = 2;  // DUT latency in exerciser clocks
+static bool dut_silent;       // the DUT never drives D0 to D7
 
 uint32_t ex_sys_hz(void) {
     return sys_hz;
@@ -164,13 +166,17 @@ void ex_run(const ex_lists_t *l, uint64_t first, ex_run_result_t *r) {
     if (t != l->total_ticks - 1) {
         printf("  W1 list lasts %u clocks, expected %u\n", t, l->total_ticks - 1);
     }
+    // data8 runs `out pins` one clock before `out pindirs`: for that clock
+    // the new values go out with the old directions.
     t = 0;
+    uint8_t dirs = 0;
     for (uint32_t i = 0; i < l->n_d; i++) {
         const uint32_t dur = (ex_d[i] >> 16) + 4u;
         for (uint32_t k = t; k < t + dur && k < n; k++) {
             dv[k] = (uint8_t)ex_d[i];
-            dd[k] = (uint8_t)(ex_d[i] >> 8);
+            dd[k] = k == t ? dirs : (uint8_t)(ex_d[i] >> 8);
         }
+        dirs = (uint8_t)(ex_d[i] >> 8);
         t += dur;
     }
     if (t != l->total_ticks - 1) {
@@ -184,6 +190,9 @@ void ex_run(const ex_lists_t *l, uint64_t first, ex_run_result_t *r) {
         uint8_t oe = 0, val = 0;
         const uint32_t kin = k >= latency ? k - latency : 0;
         dut_step(out[kin], bus[kin], &dut, &oe, &val, &dut_colord);
+        if (dut_silent) {
+            oe = 0;
+        }
         uint8_t b = (uint8_t)((prev & ~(oe | dd[k])) | (val & oe & ~dd[k]) | (dv[k] & dd[k]));
         bus[k] = b;
         dside[k] = (uint8_t)((val & oe) | (b & ~oe));
@@ -322,6 +331,25 @@ int main(void) {
         print_stats("120 ns DUT at 200 %", &st);
         expect(st.err[CK_RAM_R] > 0, "fails at double speed");
     }
+
+    // 6. A DUT that never drives D: every read fails and sees the inverse of
+    // the expected data, which the precharge left on the bus.
+    reset_all();
+    latency = 2;
+    dut_silent = true;
+    ex_params.speed = 100;
+    {
+        const ex_stats_t st = run(4, 6);
+        print_stats("silent DUT", &st);
+        bool inverse = ex_failure_count > 0;
+        for (unsigned i = 0; i < ex_failure_count; i++) {
+            const ex_failure_t *f = &ex_failures[i];
+            inverse &= ((f->got_d ^ (uint8_t)~f->exp_d) & f->mask_d) == 0;
+        }
+        expect(st.err[CK_RAM_R] == st.n[CK_RAM_R] && st.n[CK_RAM_R] > 0, "every RAM read fails");
+        expect(inverse, "the bus holds the inverse of the expected data");
+    }
+    dut_silent = false;
 
     printf("%s (%d failed)\n", failures ? "FAILED" : "all passed", failures);
     return failures ? 1 : 0;
