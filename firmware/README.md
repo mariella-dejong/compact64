@@ -11,19 +11,20 @@ contains the Pico SDK.
 | `bench/exerciser/` | Bus exerciser for the U1401 bench test (#159), see [bench/README.md](bench/README.md) |
 | `libraries/Compact64Bus/` | Header-only library shared by the sketches: U1401's pin map and the test patterns |
 | `build.sh` | Builds and uploads a sketch with `arduino-cli` |
+| `azure-pipelines.yml` | Azure Pipeline: builds every sketch and publishes the images, see [Continuous integration](#continuous-integration) |
 
 The host side of the bench test is in [`tools/bench`](../tools/bench).
 
 ## Building
 
-You need `arduino-cli` (it is also inside the Arduino IDE 2) and the
-arduino-pico core:
+You need `arduino-cli` (it is also inside the Arduino IDE 2) and version
+6.3.2 of the arduino-pico core, the one the pipeline uses:
 
 ```sh
 arduino-cli config add board_manager.additional_urls \
     https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
 arduino-cli core update-index
-arduino-cli core install rp2040:rp2040
+arduino-cli core install rp2040:rp2040@6.3.2
 ```
 
 Then, from the repository root:
@@ -34,7 +35,8 @@ firmware/build.sh exerciser /dev/ttyACM0   # compile and upload
 BOARD=weact firmware/build.sh u1401        # for a WeAct RP2350B board
 ```
 
-Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. `TRACE_PINS=1`
+Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. `CLEAN=1` builds
+from scratch instead of reusing `arduino-cli`'s build cache. `TRACE_PINS=1`
 builds U1401 with trace pins for the bench test's trace (bench/README.md).
 The port may be a link such as `/dev/serial/by-id/...`. U1401 runs at
 150 MHz, the RP2350's rated speed, unless `FREQ` (in MHz) says otherwise;
@@ -64,6 +66,41 @@ pioasm=$(echo ~/.arduino15/packages/rp2040/tools/pqt-pioasm/*/pioasm)
 $pioasm -v 1 -o c-sdk firmware/u1401/bus.pio firmware/u1401/bus.pio.h
 $pioasm -v 1 -o c-sdk firmware/bench/exerciser/exerciser.pio firmware/bench/exerciser/exerciser.pio.h
 ```
+
+## Continuous integration
+
+[`azure-pipelines.yml`](azure-pipelines.yml) builds every sketch on pushes to
+`main` and on pull requests that change `firmware/`, on the self-hosted
+`linux-x64` agents, with arduino-pico 6.3.2. It:
+
+- checks that the generated `.pio.h` files match their `.pio` sources;
+- builds U1401 at 150 and 300 MHz and the exerciser at 250 MHz, each for the
+  RP2354B board and the WeAct board, with `CLEAN=1 build.sh`, and fails on any
+  compiler warning;
+- publishes two pipeline artifacts, `u1401-firmware` and
+  `exerciser-firmware`: the `.uf2` and `.elf` files named after the board,
+  the clock and the build number (for example
+  `u1401-weact-300mhz-20261125.1.uf2`), a `BUILD_INFO.txt` with the commit,
+  and `SHA256SUMS`.
+
+### Setting it up in Azure DevOps
+
+1. **New pipeline:** GitHub, repository `mariella-dejong/compact64` (service
+   connection `mariella-dejong`), existing Azure Pipelines YAML file,
+   path `firmware/azure-pipelines.yml`.
+2. **No builds from forks.** The repository is public, and a pull request
+   from a fork runs the fork's version of `azure-pipelines.yml` and
+   `build.sh` on our agents. Nothing in the repository can prevent that, so
+   it is switched off in Azure DevOps:
+   - in the pipeline: Edit, the "..." menu, Triggers, Pull request
+     validation: clear "Build pull requests from forks of this repository";
+   - for the whole project as well: Project settings, Pipelines, Settings,
+     "Limit building pull requests from forked GitHub repositories": "Do not
+     build pull requests from forks".
+
+   As a second line, the pipeline skips its stage when
+   `System.PullRequest.IsFork` is true. A maintainer builds a fork's change
+   after review by pushing it to a branch of this repository.
 
 ## Licence
 
