@@ -218,10 +218,12 @@ void bus_init_pins(void) {
         gpio_disable_pulls(gpio);  // RP2350 erratum E9
         gpio_set_input_enabled(gpio, true);
     }
-    // D and COLORD at 2 mA with slow edges: faster ones glitched the address
-    // lines that the watchers sample (0.03 to 4 % wrong VIC-II bytes on the
-    // bench); these cost no measurable time. They only drive U1402's inputs
-    // on the board. `drive` changes them for tests.
+    // D and COLORD at 2 mA with slow edges, for the bench: faster ones
+    // glitched the address lines that the watchers sample (0.03 to 4 % wrong
+    // VIC-II bytes over the ribbon cable), and the light load there makes
+    // these cost no measurable time. On the board, D0 to D7 drive the C64
+    // data bus directly and COLORD0 to COLORD3 the VIC-II, a much larger
+    // load: set the strength from the prototype. `drive` changes it for tests.
     for (uint gpio = C64_GPIO_D0; gpio < C64_GPIO_D0 + 8; gpio++) {
         gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_2MA);
         gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_SLOW);

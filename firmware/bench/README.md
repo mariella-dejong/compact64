@@ -237,9 +237,15 @@ the character ROM (`watch16`) therefore samples again when the address
 changes and looks up that second sample, about 17 ns later. This costs no
 measurable time at 300 MHz.
 
-PIO0's 32 instructions are all but used (31), and so are PIO1's (31). The state machines in a PIO
-block share the pin directions, so each lets go as soon as its select
-rises.
+The 2 mA suits the bench, where D only drives the ribbon cable and the
+exerciser. On the board, D0 to D7 drive the C64 data bus directly, with
+the 6510, the VIC-II, the SID, the CIAs and the expansion port on it, and
+COLORD0 to COLORD3 drive the VIC-II: the strength for those loads, and
+whether the glitches come back with it, can only be set on the prototype.
+
+PIO0's 32 instructions are all but used (31), and so are PIO1's (31). The
+state machines in a PIO block share the pin directions, so each lets go as
+soon as its select rises.
 
 ## Simulation
 
@@ -251,6 +257,11 @@ finds its latency, and that the release check works.
 ## Not covered
 
 - U1402 and the 5 V side of the bus: everything here runs at 3.3 V.
+- The load of the real data bus, and the drive strength it needs (see the
+  firmware's design above).
+- The 6510's real write data hold time: the exerciser holds write data
+  30 ns after `PHI2` falls (`t_dhold`), and U1401 keeps the last sample
+  taken while it still sees `PHI2` high, through U1402 on the board.
 - The real timing of the 6510, the VIC-II and the CPLD; the margins measured
   here say how much of it the firmware can absorb.
 - The EEPROM and the I2C link to the supervisor.
