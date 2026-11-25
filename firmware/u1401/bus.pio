@@ -92,6 +92,9 @@ release:
 ; the last one. Shift left, no autopush.
 
 ; A0 to A15 (IN base GPIO8) into a 64 KB table; OSR: its upper half.
+; On a change it samples again and pushes that sample: a glitch on the
+; address lines, such as the DUT's own D edges couple in, then only repeats
+; the lookup of the right address.
 .program watch16
 .wrap_target
 top:
@@ -99,11 +102,14 @@ top:
     in osr, 16
     in pins, 16
     mov x, isr
-    jmp x!=y push_it
+    jmp x!=y again
 .wrap
-push_it:
+again:
+    mov isr, null
+    in osr, 16
+    in pins, 16
+    mov y, isr
     push noblock
-    mov y, x
     jmp top
 
 ; A0 to A9 (IN base GPIO8) into a 1 KB table; OSR: its upper 22 bits.

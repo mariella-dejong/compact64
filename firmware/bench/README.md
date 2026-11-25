@@ -229,8 +229,15 @@ machines fed by DMA (`firmware/u1401/bus.pio`):
 D and COLORD drive 2 mA with slow edges: at 12 mA with fast edges the
 DUT's own D edges glitched the address lines that the watchers sample, and
 0.03 to 4 % of the VIC-II reads got the byte of an address one bit away.
+At 2 mA, about 2 in 100,000 character ROM reads still did, when the DUT
+drove six or more D lines from 0 to 1 at once, mostly with A2 read as 1:
+`char_drive` keeps D fed from its register until the select rises, so a
+late lookup of a glitched address shows. The watcher for the 6510 RAM and
+the character ROM (`watch16`) therefore samples again when the address
+changes and looks up that second sample, about 17 ns later. This costs no
+measurable time at 300 MHz.
 
-PIO0's 32 instructions are all but used (31). The state machines in a PIO
+PIO0's 32 instructions are all but used (31), and so are PIO1's (31). The state machines in a PIO
 block share the pin directions, so each lets go as soon as its select
 rises.
 

@@ -156,15 +156,18 @@ static __pio_const uint16_t watch16_program_instructions[] = {
     0xa026, //  3: mov    x, isr
     0x00a5, //  4: jmp    x != y, 5
             //     .wrap
-    0x8000, //  5: push   noblock
-    0xa041, //  6: mov    y, x
-    0x0000, //  7: jmp    0
+    0xa0c3, //  5: mov    isr, null
+    0x40f0, //  6: in     osr, 16
+    0x4010, //  7: in     pins, 16
+    0xa046, //  8: mov    y, isr
+    0x8000, //  9: push   noblock
+    0x0000, // 10: jmp    0
 };
 
 #if !PICO_NO_HARDWARE
 static __pio_const struct pio_program watch16_program = {
     .instructions = watch16_program_instructions,
-    .length = 8,
+    .length = 11,
     .origin = -1,
     .pio_version = watch16_pio_version,
 #if PICO_PIO_VERSION > 0
