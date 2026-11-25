@@ -14,6 +14,9 @@
 #            target with the 48-GPIO RP2350B and the 2 MB of stacked flash
 #   weact    the WeAct Studio RP2350B core board
 #
+# TRACE_PINS=1 builds U1401 with the trace pins (BUS_TRACE_PINS in
+# u1401/bus.h): GPIO44 and GPIO45 show where the bus loop is.
+#
 # Set ARDUINO_CLI to use an arduino-cli that is not on PATH.
 
 set -euo pipefail
@@ -52,7 +55,13 @@ case ${1:-} in
 esac
 
 out=$here/build/${BOARD:-rp2354b}/$1
-"$cli" compile --fqbn "$fqbn" --warnings all \
+extra=()
+if [ "${TRACE_PINS:-0}" = 1 ]; then
+    out=$out-trace
+    extra=(--build-property "compiler.c.extra_flags=-DBUS_TRACE_PINS=1"
+           --build-property "compiler.cpp.extra_flags=-DBUS_TRACE_PINS=1")
+fi
+"$cli" compile --fqbn "$fqbn" --warnings all "${extra[@]}" \
     --library "$here/libraries/Compact64Bus" \
     --output-dir "$out" "$sketch"
 

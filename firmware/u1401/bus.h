@@ -42,6 +42,14 @@ extern uint8_t bus_rom[];
 extern volatile uint32_t bus_vic_sample_delay;
 extern volatile uint32_t bus_aec_settle;
 
+// Debug build (BUS_TRACE_PINS=1, firmware/build.sh TRACE_PINS=1): GPIO44 is
+// high while the loop is in a VIC-II phase, GPIO45 while it handles a 6510
+// access, from seeing the select to letting go of the bus. The exerciser's
+// trace shows both. The heartbeat and the late trigger are off in this build.
+#ifndef BUS_TRACE_PINS
+#define BUS_TRACE_PINS 0
+#endif
+
 void bus_init_pins(void);
 void bus_set_sync_bypass(bool on);
 void bus_run(void);  // never returns

@@ -114,6 +114,26 @@ heartbeat LED output is on that pin.
    The goal is no errors up to about 125 % speed at the real latch points.
 6. **Soak:** `run --batches 100000`, at PAL and with `--ntsc`.
 
+7. **Trace,** to see where the time goes:
+
+   ```sh
+   TRACE_PINS=1 firmware/build.sh u1401 <DUT port>
+   tools/bench/bench.py trace --ex <port> --dut <port> --cycles 8
+   ```
+
+   The exerciser samples its inputs (GPIO0 to GPIO15 and GPIO32 to
+   GPIO47) every 6 clocks (24 ns) during the first cycles of a batch, on
+   top of the checked samples, which keep their timing. `bench.py` prints
+   one row each time a signal changes, with the exerciser's outputs shifted
+   by the calibration offset (`--skew`, 3 clocks), and then, for each
+   read, when the select fell and rose, when D first held the expected
+   value, and when the DUT's GPIO44 and GPIO45 were first high. In the
+   `TRACE_PINS=1` build GPIO44 is high while the bus loop is in a VIC-II
+   phase and GPIO45 while it handles a 6510 access, so the heartbeat and
+   the late trigger are off. `--passes 6` replays the batch with the sample
+   point shifted by one clock per pass, for 4 ns steps; this only lines up
+   where the DUT answers the same way every time.
+
 Other parameters to sweep: `d_casram` (`~CAS` to `~CASRAM`, 20 to 35 ns from
 the CPLD, #93), `t_col` (column address after `~CAS`, #152), `t_dv` and
 `t_dhold` (6510 write data). On the DUT, `sync bypass` skips the input
@@ -130,6 +150,7 @@ synchronizer and `vicdelay` takes the VIC-II address later.
 | `fill [seed]` | Reset the memory model to a test pattern (also send it to the DUT) |
 | `run [batches] [seed]` | Run batches; prints `result`, a `check` line per check, up to eight `fail` lines, and `end` |
 | `cal <out> <in> <from> <to> [reps]` | Calibration, DUT disconnected |
+| `trace [cycles] [step] [phase] [seed]` | One batch with extra samples every `step` clocks (default 6; less stalls the DMA) from `phase` on, during its first `cycles` cycles; prints the run report and a `trace` line per sample |
 | `mark on\|off` | GPIO45 high during each batch, for a logic analyser; off by default |
 
 `result` reports `moved` and `max_move_ns`: one list cannot change its pins

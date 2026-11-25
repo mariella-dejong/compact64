@@ -34,7 +34,9 @@ firmware/build.sh exerciser /dev/ttyACM0   # compile and upload
 BOARD=weact firmware/build.sh u1401        # for a WeAct RP2350B board
 ```
 
-Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. U1401 runs at
+Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. `TRACE_PINS=1`
+builds U1401 with trace pins for the bench test's trace (bench/README.md).
+The port may be a link such as `/dev/serial/by-id/...`. U1401 runs at
 150 MHz, the RP2350's rated speed; the exerciser at 250 MHz, for 4 ns steps.
 `BOARD` selects the board:
 

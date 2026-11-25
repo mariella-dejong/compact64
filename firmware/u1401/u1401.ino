@@ -34,9 +34,9 @@ static void print_stats() {
 }
 
 static void print_info() {
-    Serial.printf("info firmware=u1401-bench sys_hz=%lu seed=%lu vicdelay=%lu aecsettle=%lu\n",
+    Serial.printf("info firmware=u1401-bench sys_hz=%lu seed=%lu vicdelay=%lu aecsettle=%lu trace_pins=%d\n",
                   (unsigned long)rp2040.f_cpu(), (unsigned long)pattern_seed,
-                  (unsigned long)bus_vic_sample_delay, (unsigned long)bus_aec_settle);
+                  (unsigned long)bus_vic_sample_delay, (unsigned long)bus_aec_settle, BUS_TRACE_PINS);
 }
 
 static void handle_command(char *line) {
@@ -97,7 +97,7 @@ void loop() {
             line[len++] = (char)c;
         }
     }
-    if (millis() - last_beat >= 500) {
+    if (!BUS_TRACE_PINS && millis() - last_beat >= 500) {
         last_beat = millis();
         sio_hw->gpio_hi_togl = C64_HI_HEARTBEAT;
     }

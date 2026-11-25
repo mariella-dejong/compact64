@@ -91,6 +91,20 @@ static inline __attribute__((always_inline)) uint32_t vic_address(uint32_t lo, u
          | (((hi ^ (C64_HI_VA14N | C64_HI_VA15N)) & 7u) << 13);
 }
 
+#if BUS_TRACE_PINS
+#define TP_VIC_ON()  (sio->gpio_hi_set = C64_HI_TRIG)
+#define TP_VIC_OFF() (sio->gpio_hi_clr = C64_HI_TRIG)
+#define TP_CPU_ON()  (sio->gpio_hi_set = C64_HI_HEARTBEAT)
+#define TP_CPU_OFF() (sio->gpio_hi_clr = C64_HI_HEARTBEAT)
+#define TP_LATE()    ((void)0)
+#else
+#define TP_VIC_ON()  ((void)0)
+#define TP_VIC_OFF() ((void)0)
+#define TP_CPU_ON()  ((void)0)
+#define TP_CPU_OFF() ((void)0)
+#define TP_LATE()    (sio->gpio_hi_togl = C64_HI_TRIG)
+#endif
+
 void __not_in_flash_func(bus_run)(void) {
     sio_hw_t *const sio = sio_hw;
     uint8_t *const ram = bus_ram;
@@ -112,13 +126,15 @@ void __not_in_flash_func(bus_run)(void) {
             // 6510 RAM read. ~COLORAM high means AEC is high.
             sio->gpio_out = ram[(lo >> C64_GPIO_A0) & 0xFFFFu];
             sio->gpio_oe_set = C64_LO_D;
+            TP_CPU_ON();
             if (sio->gpio_in & C64_LO_CASRAM) {
                 bus_stats.late++;
-                sio->gpio_hi_togl = C64_HI_TRIG;
+                TP_LATE();
             }
             while (!(sio->gpio_in & C64_LO_CASRAM)) {
             }
             sio->gpio_oe_clr = C64_LO_D;
+            TP_CPU_OFF();
             bus_stats.ram_read++;
             continue;
         }
@@ -126,6 +142,7 @@ void __not_in_flash_func(bus_run)(void) {
         if (!(lo & C64_LO_COLORAM)) {
             uint32_t hi = sio->gpio_hi_in;
             if (hi & C64_HI_AEC) {
+                TP_CPU_ON();
                 // 6510 colour RAM access, A0 to A9.
                 const uint32_t a = (lo >> C64_GPIO_A0) & (C64_COLOR_SIZE - 1u);
                 if (lo & C64_LO_RW) {
@@ -160,10 +177,12 @@ void __not_in_flash_func(bus_run)(void) {
                     while (!(sio->gpio_in & C64_LO_COLORAM) && (sio->gpio_hi_in & C64_HI_AEC)) {
                     }
                 }
+                TP_CPU_OFF();
                 continue;
             }
 
             // VIC-II phase: runs until AEC rises.
+            TP_VIC_ON();
             const uint32_t vdelay = bus_vic_sample_delay;
             for (;;) {
                 lo = sio->gpio_in;
@@ -198,6 +217,7 @@ void __not_in_flash_func(bus_run)(void) {
                 sio->gpio_oe_clr = C64_LO_D;
             }
             // AEC is high again; let a stale ~COLORAM from the CPLD settle.
+            TP_VIC_OFF();
             delay_loops(bus_aec_settle);
             continue;
         }
@@ -205,6 +225,7 @@ void __not_in_flash_func(bus_run)(void) {
         if (!(lo & C64_LO_CASRAM)) {
             // 6510 RAM write: keep the last sample of D0 to D7 taken while
             // ~CASRAM is low and PHI2 is still high.
+            TP_CPU_ON();
             const uint32_t a = (lo >> C64_GPIO_A0) & 0xFFFFu;
             uint32_t d = lo;
             for (;;) {
@@ -218,6 +239,7 @@ void __not_in_flash_func(bus_run)(void) {
             ram[a] = (uint8_t)d;
             while (!(sio->gpio_in & C64_LO_CASRAM)) {
             }
+            TP_CPU_OFF();
             bus_stats.ram_write++;
             continue;
         }
@@ -240,17 +262,20 @@ void __not_in_flash_func(bus_run)(void) {
         if (lo & C64_LO_RW) {
             sio->gpio_out = v;
             sio->gpio_oe_set = C64_LO_D;
+            TP_CPU_ON();
             if (sio->gpio_in & sel) {
                 bus_stats.late++;
-                sio->gpio_hi_togl = C64_HI_TRIG;
+                TP_LATE();
             }
             while (!(sio->gpio_in & sel)) {
             }
             sio->gpio_oe_clr = C64_LO_D;
             bus_stats.rom_read++;
         } else {
+            TP_CPU_ON();
             while (!(sio->gpio_in & sel)) {
             }
         }
+        TP_CPU_OFF();
     }
 }
