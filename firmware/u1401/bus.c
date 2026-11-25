@@ -218,14 +218,18 @@ void bus_init_pins(void) {
         gpio_disable_pulls(gpio);  // RP2350 erratum E9
         gpio_set_input_enabled(gpio, true);
     }
+    // D and COLORD at 2 mA with slow edges: faster ones glitched the address
+    // lines that the watchers sample (0.03 to 4 % wrong VIC-II bytes on the
+    // bench); these cost no measurable time. They only drive U1402's inputs
+    // on the board. `drive` changes them for tests.
     for (uint gpio = C64_GPIO_D0; gpio < C64_GPIO_D0 + 8; gpio++) {
-        gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_12MA);
-        gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_FAST);
+        gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_2MA);
+        gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_SLOW);
         pio_gpio_init(pio0, gpio);
     }
     for (uint gpio = C64_GPIO_COLORD0; gpio < C64_GPIO_COLORD0 + 4; gpio++) {
-        gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_12MA);
-        gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_FAST);
+        gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_2MA);
+        gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_SLOW);
     }
     const uint inputs[] = {C64_GPIO_PHI2, C64_GPIO_CAS};
     for (uint i = 0; i < 2; i++) {

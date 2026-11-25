@@ -15,6 +15,7 @@
 
 #include "bus.h"
 #include "hardware/structs/sio.h"
+#include "hardware/gpio.h"
 #include "hardware/pio.h"
 
 static volatile bool bus_ready = false;
@@ -63,6 +64,22 @@ static void handle_command(char *line) {
         const uint32_t a = strtoul(arg, nullptr, 0) & 0xFFFFu;
         Serial.printf("peek addr=0x%04lx ram=0x%02x color=0x%x\n", (unsigned long)a, bus_ram[a],
                       bus_color[a & (C64_COLOR_SIZE - 1u)]);
+    } else if (!strcmp(cmd, "drive") && arg) {
+        // Drive strength (mA) and slew of D0 to D7 and COLORD0 to COLORD3.
+        const char *slew = strtok(nullptr, " \t");
+        const unsigned ma = strtoul(arg, nullptr, 0);
+        const enum gpio_drive_strength s = ma >= 12 ? GPIO_DRIVE_STRENGTH_12MA
+                                         : ma >= 8 ? GPIO_DRIVE_STRENGTH_8MA
+                                         : ma >= 4 ? GPIO_DRIVE_STRENGTH_4MA
+                                                   : GPIO_DRIVE_STRENGTH_2MA;
+        const bool fast = !slew || strcmp(slew, "slow");
+        for (uint g = 0; g < 40; g++) {
+            if (g < 8 || g >= C64_GPIO_COLORD0) {
+                gpio_set_drive_strength(g, s);
+                gpio_set_slew_rate(g, fast ? GPIO_SLEW_RATE_FAST : GPIO_SLEW_RATE_SLOW);
+            }
+        }
+        Serial.println("ok");
     } else if (!strcmp(cmd, "regs")) {
         for (uint sm = 0; sm < 3; sm++) {
             Serial.printf("regs pio0 sm%u exec=%08lx shift=%08lx pin=%08lx pc=%lu\n", sm,
@@ -73,7 +90,7 @@ static void handle_command(char *line) {
     } else if (!strcmp(cmd, "info")) {
         print_info();
     } else {
-        Serial.println("error commands: info stats clear fill [seed] sync bypass|normal aecsettle n peek addr regs");
+        Serial.println("error commands: info stats clear fill [seed] sync bypass|normal aecsettle n drive mA fast|slow peek addr regs");
     }
 }
 

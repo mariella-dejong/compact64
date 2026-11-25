@@ -205,7 +205,8 @@ README timing notes, to be replaced by measurements on the prototype (#158).
 ## Board under test commands
 
 `info`, `stats`, `clear`, `fill [seed]`, `sync bypass|normal`,
-`aecsettle <loops>`, `peek <addr>`, `regs` (PIO0 state machine registers).
+`aecsettle <loops>`, `drive <mA> fast|slow` (D and COLORD outputs; 2 mA
+slow by default), `peek <addr>`, `regs` (PIO0 state machine registers).
 
 ## Board under test firmware
 
@@ -222,6 +223,10 @@ machines fed by DMA (`firmware/u1401/bus.pio`):
   drives COLORD0 to COLORD3 from colour RAM.
 - The CPU serves BASIC, KERNAL and colour RAM reads (through `cpu_drive`)
   and all writes, which it also copies into the VIC-II table.
+
+D and COLORD drive 2 mA with slow edges: at 12 mA with fast edges the
+DUT's own D edges glitched the address lines that the watchers sample, and
+0.03 to 4 % of the VIC-II reads got the byte of an address one bit away.
 
 PIO0's 32 instructions are all but used (31). The state machines in a PIO
 block share the pin directions, so each lets go as soon as its select
