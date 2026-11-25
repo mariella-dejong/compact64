@@ -57,5 +57,7 @@ out=$here/build/${BOARD:-rp2354b}/$1
     --output-dir "$out" "$sketch"
 
 if [ -n "${2:-}" ]; then
-    "$cli" upload --fqbn "$fqbn" --port "$2" --input-dir "$out" "$sketch"
+    # arduino-cli does not follow links such as /dev/serial/by-id/...
+    port=$(readlink -f "$2")
+    "$cli" upload --fqbn "$fqbn" --port "$port" --input-dir "$out" "$sketch"
 fi
