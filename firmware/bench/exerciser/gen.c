@@ -248,6 +248,13 @@ static uint64_t pins;      // exerciser outputs on GPIO8 to GPIO47
 static uint32_t dstate;    // D0 to D7: values | directions << 8
 static uint32_t d_end;     // latest D event so far
 
+// Trace (ex_trace_batch): extra samples every trace_step clocks in the
+// first trace_cycles cycles; off while trace_step is 0.
+static uint32_t trace_step, trace_cycles, trace_phase;
+static uint16_t trace_rec[EX_TRACE_MAX];  // index into recs of each entry
+ex_trace_t ex_trace[EX_TRACE_MAX];
+unsigned ex_trace_n;
+
 static void q_add(const ev_t *e) {
     if (qn >= QCAP) {
         full = true;
@@ -259,6 +266,20 @@ static void q_add(const ev_t *e) {
         i--;
     }
     q[i] = *e;
+}
+
+// An extra trace sample is left out where it would move a checked sample:
+// the sampler needs three clocks between two samples.
+static bool trace_fits(unsigned i, uint32_t tick) {
+    if (s_n && (int32_t)(tick - (s_start + 2)) < 0) {
+        return false;
+    }
+    for (unsigned k = i + 1; k < qn && (int32_t)(q[k].tick - (tick + 3)) < 0; k++) {
+        if (q[k].type == EV_S && q[k].rec.check != EX_TRACE_EXTRA) {
+            return false;
+        }
+    }
+    return true;
 }
 
 // Applies every event before `limit`.
@@ -277,6 +298,17 @@ static void q_flush(uint32_t limit) {
             lst_change(&l_d, e->tick, dstate);
             break;
         default:
+            if (e->rec.check == EX_TRACE_EXTRA && !trace_fits(i, e->tick)) {
+                break;
+            }
+            if (trace_step && e->rec.cycle < trace_cycles && ex_trace_n < EX_TRACE_MAX &&
+                n_recs < EX_S_WORDS) {
+                trace_rec[ex_trace_n] = (uint16_t)n_recs;
+                ex_trace[ex_trace_n++] = (ex_trace_t){
+                    .tick = e->tick, .out = pins, .d = (uint16_t)dstate, .kind = e->rec.check,
+                    .exp_d = e->rec.exp_d, .exp_c = e->rec.exp_c, .addr = e->rec.addr,
+                    .cycle = e->rec.cycle};
+            }
             if (n_recs < EX_S_WORDS) {
                 recs[n_recs++] = e->rec;
             }
@@ -687,6 +719,12 @@ static uint32_t build_batch(uint32_t seed, ex_lists_t *l, uint64_t *first) {
         } else {
             gen_cpu_half(s1, s2, kc, c);
         }
+        if (trace_step && c < trace_cycles) {
+            const rec_t tr = {.check = EX_TRACE_EXTRA, .cycle = c};
+            for (uint32_t t = s0 + trace_phase; (int32_t)(t - s2) < 0; t += trace_step) {
+                sample(t, &tr);
+            }
+        }
         q_flush(s1);  // no later half places an edge before s1
     }
     uint32_t t_end = t0 + (uint32_t)lroundf((float)(2 * c) * half) + DL(0, 300);
@@ -700,8 +738,15 @@ static uint32_t build_batch(uint32_t seed, ex_lists_t *l, uint64_t *first) {
 }
 
 static void check_batch(uint32_t batch, ex_stats_t *st) {
+    for (unsigned k = 0; k < ex_trace_n; k++) {
+        ex_trace[k].rx0 = ex_rx0[trace_rec[k]];
+        ex_trace[k].rx1 = ex_rx1[trace_rec[k]];
+    }
     for (uint32_t i = 0; i < n_recs; i++) {
         const rec_t *r = &recs[i];
+        if (r->check == EX_TRACE_EXTRA) {
+            continue;
+        }
         const uint8_t got_d = (uint8_t)(ex_rx0[i] & 0xFFu);
         const uint8_t got_c = (uint8_t)((ex_rx1[i] >> (C64_GPIO_COLORD0 - 32)) & 0x0Fu);
         const uint8_t got_s = (uint8_t)(((ex_rx1[i] >> (EX_GPIO_SENSE_D0 - 32)) & 1u) |
@@ -762,6 +807,15 @@ void ex_run_batches(uint32_t batches, uint32_t seed, ex_stats_t *st) {
         }
     }
     ex_set_idle(idle_pins());
+}
+
+void ex_trace_batch(uint32_t seed, uint32_t step, uint32_t cycles, uint32_t phase, ex_stats_t *st) {
+    ex_trace_n = 0;
+    trace_step = step < 3 ? 3 : step;
+    trace_cycles = cycles;
+    trace_phase = phase % trace_step;
+    ex_run_batches(1, seed, st);
+    trace_step = 0;
 }
 
 // ---------------------------------------------------------------------------

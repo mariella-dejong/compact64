@@ -12,11 +12,13 @@ The exerciser plays the bus; the DUT runs the U1401 firmware. Both print
   bench.py shmoo --ex /dev/ttyACM0 --dut /dev/ttyACM1 --speeds 100:200:10 \\
       --offsets 40:200:8 --batches 10 --csv shmoo.csv
   bench.py cal 47 0 -4 12 --ex /dev/ttyACM0
+  bench.py trace --ex /dev/ttyACM0 --dut /dev/ttyACM1 --cycles 4
 
 Requires pyserial.
 """
 
 import argparse
+import bisect
 import csv
 import sys
 import time
@@ -183,6 +185,140 @@ def cmd_cal(args):
         print(line)
 
 
+# Trace columns: name, GPIO, active low. Exerciser outputs come from `out`,
+# the DUT's pins from the samples (rx0: GPIO0 to 15, rx1: GPIO32 to 47).
+TRACE_OUT = [("PHI2", 46, False), ("AEC", 35, False), ("~CAS", 47, True), ("~CASRAM", 24, True),
+             ("~BASIC", 25, True), ("~KERNAL", 26, True), ("~CHAROM", 27, True),
+             ("~COLORAM", 28, True), ("R/~W", 29, False), ("GR/~W", 30, False)]
+SELECT_OF = {"ram_read": 24, "ram_readback": 24, "release": 24, "vic_ram": 24, "cacc_ram": 24,
+             "basic": 25, "kernal": 26, "char": 27, "vic_char": 27,
+             "color_read": 28, "color_readback": 28}
+D_MASK = {"color_read": 0x0F, "color_readback": 0x0F}
+
+
+def parse_trace(lines):
+    rows = []
+    for line in lines:
+        f = fields(line)
+        if f["_"] != "trace":
+            continue
+        rows.append({"tick": int(f["tick"]), "cycle": int(f["cycle"]), "out": int(f["out"], 16),
+                     "d": int(f["d"], 16), "rx0": int(f["rx0"], 16), "rx1": int(f["rx1"], 16),
+                     "kind": f["kind"], "addr": int(f["addr"], 16), "exp_d": int(f["exp_d"], 16),
+                     "exp_c": int(f["exp_c"], 16)})
+    return rows
+
+
+def answer_times(rows, skew, hold=2):
+    """For each checked read: when its select fell and rose (as the pins saw
+    them, `skew` clocks after the exerciser set them), when D first held the
+    expected value for `hold` entries in a row while the select was low or
+    just after, and when the DUT's GPIO44 and GPIO45 were first high."""
+    out = []
+    for i, r in enumerate(rows):
+        gpio = SELECT_OF.get(r["kind"])
+        if gpio is None:
+            continue
+        kf = None
+        for k in range(i, 0, -1):
+            if not (rows[k]["out"] >> gpio) & 1 and (rows[k - 1]["out"] >> gpio) & 1:
+                kf = k
+                break
+        if kf is None:
+            continue
+        kr = next((k for k in range(kf, len(rows)) if (rows[k]["out"] >> gpio) & 1), len(rows) - 1)
+        fall, rise = rows[kf]["tick"] + skew, rows[kr]["tick"] + skew
+        mask = D_MASK.get(r["kind"], 0xFF)
+        window = [k for k in range(kf, len(rows)) if rows[k]["tick"] >= fall and rows[k]["tick"] <= rise + 2 * skew]
+        answer = None
+        for n, k in enumerate(window):
+            if all(not ((rows[m]["rx0"] ^ r["exp_d"]) & mask) for m in window[n:n + hold]):
+                answer = rows[k]["tick"]
+                break
+        first = lambda bit: next((rows[k]["tick"] for k in window if (rows[k]["rx1"] >> bit) & 1), None)
+        out.append({"cycle": r["cycle"], "kind": r["kind"], "addr": r["addr"], "fall": fall, "rise": rise,
+                    "sample": r["tick"], "answer": answer, "g44": first(12), "g45": first(13),
+                    "ok": not ((r["rx0"] ^ r["exp_d"]) & mask)})
+    return out
+
+
+def cmd_trace(args):
+    ex, dut = prepare(args)
+    hz = int(fields(ex.command("info", until=("info",))[-1])["sys_hz"])
+    ns = 1e9 / hz
+    if dut:
+        print(dut.command("info", until=("info",))[-1])
+    # The same batch with the sample phase shifted by one clock per pass;
+    # merged, the passes give one sample per clock.
+    passes = args.passes if args.passes else args.step
+    rows, bad = [], 0
+    for phase in range(passes):
+        lines = ex.command(f"trace {args.cycles} {args.step} {phase % args.step} {args.seed_run}")
+        for line in lines:
+            f = fields(line)
+            if f["_"] == "result" and not valid(f):
+                bad += 1
+                print(line)
+            if f["_"] == "fail" and phase == 0:
+                print(line)
+        rows += parse_trace(lines)
+    if bad:
+        print(f"{bad} of {passes} passes stalled; their samples are not valid")
+    rows.sort(key=lambda r: r["tick"])
+    dedup = []
+    for r in rows:
+        if dedup and dedup[-1]["tick"] == r["tick"]:
+            if r["kind"] != "-":
+                dedup[-1] = r  # a checked sample is the same in every pass
+            continue
+        dedup.append(r)
+    rows = dedup
+    if not rows:
+        print("no trace entries (stall or timeout?)")
+        return 1
+    t0 = rows[0]["tick"]
+    if args.csv:
+        write_csv(args.csv, [dict(r, ns=round((r["tick"] - t0) * ns, 1)) for r in rows])
+
+    # Exerciser outputs are shown `skew` clocks late, as the pins see them.
+    ticks = [r["tick"] for r in rows]
+    names = [n for n, _, _ in TRACE_OUT]
+    head = f"{'ns':>7} {'cyc':>3} " + " ".join(f"{n:>{max(len(n), 1)}}" for n in names)
+    head += "   exD  dir |  D  COL G44 G45 | sample"
+    print(head)
+    last = None
+    for r in rows:
+        k = bisect.bisect_right(ticks, r["tick"] - args.skew) - 1
+        o = rows[k] if k >= 0 else rows[0]
+        outs = [(o["out"] >> g) & 1 for _, g, _ in TRACE_OUT]
+        exd, exdir = o["d"] & 0xFF, o["d"] >> 8
+        din, col = r["rx0"] & 0xFF, (r["rx1"] >> 4) & 0xF
+        g44, g45 = (r["rx1"] >> 12) & 1, (r["rx1"] >> 13) & 1
+        state = (tuple(outs), exd if exdir else None, exdir, din, col, g44, g45)
+        checked = r["kind"] != "-"
+        if not args.all and state == last and not checked:
+            continue
+        last = state
+        line = f"{(r['tick'] - t0) * ns:7.0f} {r['cycle']:3} "
+        line += " ".join(f"{v:>{len(n)}}" for v, n in zip(outs, names))
+        line += f"   {exd:02x}   {exdir:02x} | {din:02x}  {col:x}   {g44}   {g45} |"
+        if checked:
+            mask = D_MASK.get(r["kind"], 0xFF)
+            good = not ((din ^ r["exp_d"]) & mask)
+            line += f" {r['kind']} {r['addr']:04x} exp {r['exp_d']:02x} {'ok' if good else 'BAD'}"
+        print(line)
+
+    print()
+    print("reads, in ns after the select fell at the pins (- = not seen while it was low):")
+    print(f"  {'cycle':>5} {'check':<15} {'addr':4} {'low for':>7} {'answer':>6} {'gpio44':>6} {'gpio45':>6} "
+          f"{'sample':>6}")
+    fmt = lambda t, a: f"{(t - a['fall']) * ns:6.0f}" if t is not None else f"{'-':>6}"
+    for a in answer_times(rows, args.skew):
+        print(f"  {a['cycle']:5} {a['kind']:<15} {a['addr']:04x} {(a['rise'] - a['fall']) * ns:7.0f} "
+              f"{fmt(a['answer'], a)} {fmt(a['g44'], a)} {fmt(a['g45'], a)} {fmt(a['sample'], a)} "
+              f"{'ok' if a['ok'] else 'BAD'}")
+
+
 def write_csv(path, rows):
     if not path or not rows:
         return
@@ -224,8 +360,16 @@ def main():
     cp.add_argument("start", type=int)
     cp.add_argument("stop", type=int)
     cp.add_argument("--reps", type=int, default=64)
+    tp = sub.add_parser("trace", parents=[common])
+    tp.add_argument("--cycles", type=int, default=4, help="cycles to trace")
+    tp.add_argument("--step", type=int, default=6, help="exerciser clocks between samples in one pass (6 or more)")
+    tp.add_argument("--passes", type=int, default=0, help="passes with shifted phase (default: step, one sample per clock)")
+    tp.add_argument("--seed-run", type=int, default=1, help="batch seed")
+    tp.add_argument("--skew", type=int, default=3, help="calibration offset in exerciser clocks")
+    tp.add_argument("--all", action="store_true", help="print every sample, not only changes")
     args = ap.parse_args()
-    handler = {"info": cmd_info, "run": cmd_run, "sweep": cmd_sweep, "shmoo": cmd_shmoo, "cal": cmd_cal}
+    handler = {"info": cmd_info, "run": cmd_run, "sweep": cmd_sweep, "shmoo": cmd_shmoo, "cal": cmd_cal,
+               "trace": cmd_trace}
     return handler[args.cmd](args) or 0
 
 

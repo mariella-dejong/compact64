@@ -114,6 +114,34 @@ void ex_go_idle(void);
 // Builds, runs and checks `batches` batches, adding to `stats`.
 void ex_run_batches(uint32_t batches, uint32_t seed, ex_stats_t *stats);
 
+// Trace: one batch with extra samples every `step` clocks, starting `phase`
+// clocks into the batch, during its first `cycles` cycles, as a logic
+// analyser on the exerciser's inputs. The DMA keeps up with a step of 6
+// clocks; replaying the same seed with phases 0 to step - 1 fills in the
+// clocks between (equivalent-time sampling). Every
+// sample in that window, extra or checked, becomes an entry with the
+// exerciser's outputs at that tick. Extra samples give way to checked ones,
+// so the checks see the same timing as in `run`.
+typedef struct {
+    uint32_t tick;   // exerciser clocks from the start of the batch
+    uint64_t out;    // exerciser outputs (GPIO8 to GPIO47) as set at `tick`
+    uint16_t d;      // exerciser D0 to D7: values | directions << 8
+    uint8_t kind;    // a CK_* value for a checked sample, EX_TRACE_EXTRA otherwise
+    uint8_t exp_d, exp_c;
+    uint16_t addr;
+    uint32_t cycle;
+    uint32_t rx0;    // GPIO0 to GPIO15 as sampled
+    uint32_t rx1;    // GPIO32 to GPIO47 as sampled
+} ex_trace_t;
+
+#define EX_TRACE_EXTRA 0xFF
+#define EX_TRACE_MAX   1024
+extern ex_trace_t ex_trace[EX_TRACE_MAX];
+extern unsigned ex_trace_n;
+
+// Runs one batch with the trace on; `stats` as for ex_run_batches.
+void ex_trace_batch(uint32_t seed, uint32_t step, uint32_t cycles, uint32_t phase, ex_stats_t *stats);
+
 // Calibration with the DUT disconnected and a jumper from `out_gpio` to
 // `in_gpio`: drives a rising edge and samples `offset` clocks later. Returns
 // how many of `reps` samples read high.

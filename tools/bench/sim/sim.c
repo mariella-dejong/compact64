@@ -10,7 +10,8 @@
 //   - an ideal firmware passes every check at every speed in sample mode 0;
 //   - a slow firmware fails, and the sample point sweep finds its latency;
 //   - the release check sees a firmware that lets go of D0 to D7 too late;
-//   - with a firmware that never drives D, every read sees the precharge.
+//   - with a firmware that never drives D, every read sees the precharge;
+//   - the trace adds samples without moving the checked ones.
 //
 // Build and run: make -C tools/bench/sim
 
@@ -350,6 +351,31 @@ int main(void) {
         expect(inverse, "the bus holds the inverse of the expected data");
     }
     dut_silent = false;
+
+    // 7. The trace adds samples without moving the checked ones: one batch
+    // with and without it gives the same checks, and the entries are in time
+    // order.
+    reset_all();
+    latency = 2;
+    ex_params.sample_mode = 0;
+    {
+        const ex_stats_t plain = run(1, 7);
+        reset_all();
+        ex_stats_t st;
+        memset(&st, 0, sizeof(st));
+        ex_failure_count = 0;
+        ex_trace_batch(7, 3, 4, 0, &st);
+        print_stats("trace, 4 cycles every 3 clocks", &st);
+        bool ordered = true, checked = false;
+        for (unsigned i = 1; i < ex_trace_n; i++) {
+            ordered &= (int32_t)(ex_trace[i].tick - ex_trace[i - 1].tick) >= 3;
+            checked |= ex_trace[i].kind != EX_TRACE_EXTRA;
+        }
+        printf("    %u entries\n", ex_trace_n);
+        expect(st.errors == 0 && st.samples == plain.samples && st.moved == plain.moved,
+               "checks as without the trace");
+        expect(ex_trace_n > 250 && ordered && checked, "entries in time order, with the checked samples");
+    }
 
     printf("%s (%d failed)\n", failures ? "FAILED" : "all passed", failures);
     return failures ? 1 : 0;

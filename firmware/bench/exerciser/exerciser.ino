@@ -31,11 +31,7 @@ static bool set_param(const char *name, const char *value) {
     return false;
 }
 
-static void run(uint32_t batches, uint32_t seed) {
-    ex_stats_t st;
-    memset(&st, 0, sizeof(st));
-    ex_failure_count = 0;
-    ex_run_batches(batches, seed, &st);
+static void report(const ex_stats_t &st, uint32_t seed) {
     Serial.printf("result batches=%lu cycles=%lu samples=%lu errors=%lu moved=%lu max_move_ns=%lu overflow=%lu "
                   "tx_stall=%lu rx_stall=%lu timeout=%lu speed=%ld sample_mode=%ld sample_off=%ld seed=%lu\n",
                   (unsigned long)st.batches, (unsigned long)st.cycles, (unsigned long)st.samples,
@@ -57,6 +53,33 @@ static void run(uint32_t batches, uint32_t seed) {
                       (unsigned long)f->batch, (unsigned long)f->cycle, ex_check_names[f->check], f->addr,
                       f->exp_d, f->got_d, f->mask_d, f->exp_c, f->got_c, f->mask_c, f->exp_s, f->got_s,
                       f->mask_s);
+    }
+}
+
+static void run(uint32_t batches, uint32_t seed) {
+    ex_stats_t st;
+    memset(&st, 0, sizeof(st));
+    ex_failure_count = 0;
+    ex_run_batches(batches, seed, &st);
+    report(st, seed);
+    Serial.println("end");
+}
+
+// One batch with the trace on: the run report, then a `trace` line per
+// sample in the first `cycles` cycles.
+static void trace(uint32_t cycles, uint32_t step, uint32_t phase, uint32_t seed) {
+    ex_stats_t st;
+    memset(&st, 0, sizeof(st));
+    ex_failure_count = 0;
+    ex_trace_batch(seed, step, cycles, phase, &st);
+    report(st, seed);
+    for (unsigned i = 0; i < ex_trace_n; i++) {
+        const ex_trace_t *t = &ex_trace[i];
+        Serial.printf("trace tick=%lu cycle=%lu out=%010llx d=%04x rx0=%04lx rx1=%04lx kind=%s addr=%04x "
+                      "exp_d=%02x exp_c=%x\n",
+                      (unsigned long)t->tick, (unsigned long)t->cycle, (unsigned long long)t->out, t->d,
+                      (unsigned long)t->rx0, (unsigned long)t->rx1,
+                      t->kind == EX_TRACE_EXTRA ? "-" : ex_check_names[t->kind], t->addr, t->exp_d, t->exp_c);
     }
     Serial.println("end");
 }
@@ -111,12 +134,19 @@ static void handle_command(char *line) {
         const uint32_t seed = argc > 2 ? strtoul(argv[2], nullptr, 0) : next_seed;
         next_seed = seed + batches;
         run(batches, seed);
+    } else if (!strcmp(cmd, "trace")) {
+        const uint32_t cycles = argc > 1 ? strtoul(argv[1], nullptr, 0) : 4;
+        const uint32_t step = argc > 2 ? strtoul(argv[2], nullptr, 0) : 6;
+        const uint32_t phase = argc > 3 ? strtoul(argv[3], nullptr, 0) : 0;
+        const uint32_t seed = argc > 4 ? strtoul(argv[4], nullptr, 0) : next_seed++;
+        trace(cycles, step, phase, seed);
     } else if (!strcmp(cmd, "cal") && argc >= 5) {
         calibrate(strtoul(argv[1], nullptr, 0), strtoul(argv[2], nullptr, 0), strtol(argv[3], nullptr, 0),
                   strtol(argv[4], nullptr, 0), argc > 5 ? strtoul(argv[5], nullptr, 0) : 64);
     } else {
         Serial.println("error commands: info get set <name> <value> pal ntsc fill [seed] "
-                       "run [batches] [seed] cal <out> <in> <from> <to> [reps] mark on|off");
+                       "run [batches] [seed] trace [cycles] [step] [phase] [seed] cal <out> <in> <from> <to> [reps] "
+                       "mark on|off");
     }
 }
 
