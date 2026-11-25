@@ -19,7 +19,7 @@
 // --------- //
 
 #define ram_drive_wrap_target 0
-#define ram_drive_wrap 21
+#define ram_drive_wrap 18
 #define ram_drive_pio_version 1
 
 static __pio_const uint16_t ram_drive_program_instructions[] = {
@@ -27,26 +27,26 @@ static __pio_const uint16_t ram_drive_program_instructions[] = {
     0x2018, //  0: wait   0 gpio, 24
     0xa0e0, //  1: mov    osr, pins
     0x6041, //  2: out    y, 1
-    0x0069, //  3: jmp    !y, 9
-    0x6041, //  4: out    y, 1
-    0x0074, //  5: jmp    !y, 20
-    0xe020, //  6: set    x, 0
-    0x8099, //  7: mov    osr, rxfifo[1]
-    0x0011, //  8: jmp    17
-    0x6061, //  9: out    null, 1
-    0x60c2, // 10: out    isr, 2
-    0xe021, // 11: set    x, 1
-    0x8098, // 12: mov    osr, rxfifo[0]
-    0xa046, // 13: mov    y, isr
-    0x0071, // 14: jmp    !y, 17
-    0x6068, // 15: out    null, 8
-    0x008e, // 16: jmp    y--, 14
-    0x6008, // 17: out    pins, 8
-    0xa06b, // 18: mov    pindirs, ~null
-    0x004c, // 19: jmp    x--, 12
-    0x2098, // 20: wait   1 gpio, 24
-    0xa063, // 21: mov    pindirs, null
+    0x6021, //  3: out    x, 1
+    0x0067, //  4: jmp    !y, 7
+    0x0031, //  5: jmp    !x, 17
+    0x00d3, //  6: jmp    pin, 19
+    0x60c2, //  7: out    isr, 2
+    0xe021, //  8: set    x, 1
+    0x8098, //  9: mov    osr, rxfifo[0]
+    0xa046, // 10: mov    y, isr
+    0x006e, // 11: jmp    !y, 14
+    0x6068, // 12: out    null, 8
+    0x008b, // 13: jmp    y--, 11
+    0x6008, // 14: out    pins, 8
+    0xa06b, // 15: mov    pindirs, ~null
+    0x0049, // 16: jmp    x--, 9
+    0x2098, // 17: wait   1 gpio, 24
+    0xa063, // 18: mov    pindirs, null
             //     .wrap
+    0xe020, // 19: set    x, 0
+    0x8099, // 20: mov    osr, rxfifo[1]
+    0x000e, // 21: jmp    14
 };
 
 #if !PICO_NO_HARDWARE
@@ -178,45 +178,6 @@ static __pio_const struct pio_program watch16_program = {
 static inline pio_sm_config watch16_program_get_default_config(uint offset) {
     pio_sm_config c = pio_get_default_sm_config();
     sm_config_set_wrap(&c, offset + watch16_wrap_target, offset + watch16_wrap);
-    return c;
-}
-#endif
-
-// ------- //
-// watch10 //
-// ------- //
-
-#define watch10_wrap_target 0
-#define watch10_wrap 4
-#define watch10_pio_version 1
-
-static __pio_const uint16_t watch10_program_instructions[] = {
-            //     .wrap_target
-    0xa0c3, //  0: mov    isr, null
-    0x40f6, //  1: in     osr, 22
-    0x400a, //  2: in     pins, 10
-    0xa026, //  3: mov    x, isr
-    0x00a5, //  4: jmp    x != y, 5
-            //     .wrap
-    0x8000, //  5: push   noblock
-    0xa041, //  6: mov    y, x
-    0x0000, //  7: jmp    0
-};
-
-#if !PICO_NO_HARDWARE
-static __pio_const struct pio_program watch10_program = {
-    .instructions = watch10_program_instructions,
-    .length = 8,
-    .origin = -1,
-    .pio_version = watch10_pio_version,
-#if PICO_PIO_VERSION > 0
-    .used_gpio_ranges = 0x0
-#endif
-};
-
-static inline pio_sm_config watch10_program_get_default_config(uint offset) {
-    pio_sm_config c = pio_get_default_sm_config();
-    sm_config_set_wrap(&c, offset + watch10_wrap_target, offset + watch10_wrap);
     return c;
 }
 #endif

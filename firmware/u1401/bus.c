@@ -17,6 +17,11 @@
 // | Character ROM, both       | ~CHAROM    | char_tab[A0..A15] (A0..A11 repeated) | char_drive |
 // | Colour for the VIC-II     | always     | bus_color[A0..A9]         | colord_out |
 //
+// The RAM, character and colour watchers run the same program, which looks
+// up a changed address only after a second sample: the DUT's own D edges
+// can glitch the address lines. The colour watcher reads A0 to A9 only
+// (IN_COUNT 10, the other bits read 0), so colour RAM starts a 64 KB block.
+//
 // The CPU serves the rest: 6510 reads of the BASIC and KERNAL ROMs and of
 // colour RAM (through cpu_drive), and all writes, which it also copies into
 // vic_tab.
@@ -43,8 +48,12 @@ volatile bus_stats_t bus_stats;
 uint8_t bus_ram[C64_RAM_SIZE] __attribute__((aligned(0x10000)));
 static uint32_t vic_tab[4 * 4096] __attribute__((aligned(0x10000)));
 static uint8_t char_tab[0x10000] __attribute__((aligned(0x10000)));
-uint8_t bus_color[C64_COLOR_SIZE] __attribute__((aligned(C64_COLOR_SIZE)));
-uint8_t bus_rom[C64_ROM_SIZE] __attribute__((aligned(4)));
+static struct {
+    uint8_t color[C64_COLOR_SIZE];  // first: the colour watcher's table
+    uint8_t rom[C64_ROM_SIZE];
+} color_rom __attribute__((aligned(0x10000)));
+uint8_t *const bus_color = color_rom.color;
+uint8_t *const bus_rom = color_rom.rom;
 volatile uint32_t bus_aec_settle = 2;
 
 // Bus inputs in GPIO_HI_IN.
@@ -124,7 +133,7 @@ static void init_pio_dma(void) {
     sm_config_set_in_shift(&c, false, false, 32);
     sm_config_set_out_pins(&c, C64_GPIO_D0, 8);
     sm_config_set_out_shift(&c, true, false, 32);
-    sm_config_set_jmp_pin(&c, C64_GPIO_CASRAM);
+    sm_config_set_jmp_pin(&c, C64_GPIO_COLORAM);
     init_sm(pio0, SM_RAM_DRIVE, off, &c);
 
     off = pio_add_program(pio0, &char_drive_program);
@@ -144,7 +153,6 @@ static void init_pio_dma(void) {
     // PIO1: watchers on A0 to A15.
     pio_claim_sm_mask(pio1, 0xFu);
     const uint w16 = pio_add_program(pio1, &watch16_program);
-    const uint w10 = pio_add_program(pio1, &watch10_program);
     const uint wv = pio_add_program(pio1, &vic_watch_program);
     const struct {
         uint sm, offset;
@@ -153,12 +161,15 @@ static void init_pio_dma(void) {
     } w[] = {
         {SM_W_RAM, w16, watch16_program_get_default_config(w16), (uint32_t)(uintptr_t)bus_ram >> 16},
         {SM_W_CHAR, w16, watch16_program_get_default_config(w16), (uint32_t)(uintptr_t)char_tab >> 16},
-        {SM_W_COLOR, w10, watch10_program_get_default_config(w10), (uint32_t)(uintptr_t)bus_color >> 10},
+        {SM_W_COLOR, w16, watch16_program_get_default_config(w16), (uint32_t)(uintptr_t)bus_color >> 16},
         {SM_W_VIC, wv, vic_watch_program_get_default_config(wv), 0},
     };
     for (unsigned i = 0; i < 4; i++) {
         pio_sm_config cc = w[i].c;
         sm_config_set_in_pins(&cc, C64_GPIO_A0);
+        if (w[i].sm == SM_W_COLOR) {
+            sm_config_set_in_pin_count(&cc, 10);  // A0 to A9; A10 to A15 read 0
+        }
         sm_config_set_in_shift(&cc, false, false, 32);
         sm_config_set_out_shift(&cc, true, false, 32);
         init_sm(pio1, w[i].sm, w[i].offset, &cc);

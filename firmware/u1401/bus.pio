@@ -28,7 +28,8 @@
 ; until ~CASRAM rises. A loop that watched ~CASRAM instead would let go up
 ; to a pass (about 15 clocks) late, and take D away from the next driver:
 ; the state machines share the pin directions. 6510 cycles: drive the 6510
-; byte if R/~W is high.
+; byte if R/~W is high, and if ~COLORAM (jmp_pin) is still high a few clocks
+; later: COLORD edges can glitch it high in a VIC-II cycle.
 .program ram_drive
 .fifo txget
 .wrap_target
@@ -36,14 +37,11 @@ top:
     wait 0 gpio 24
     mov osr, pins
     out y, 1                ; ~COLORAM
+    out x, 1                ; R/~W
     jmp !y vic
-    out y, 1                ; R/~W
-    jmp !y done             ; a write: leave D alone
-    set x, 0                ; one pass
-    mov osr, rxfifo[1]
-    jmp put
+    jmp !x done             ; a write: leave D alone
+    jmp pin cpu             ; ~COLORAM again; low: a VIC-II cycle after all
 vic:
-    out null, 1
     out isr, 2              ; candidate: VA5 + 2 * VA4
     set x, 1                ; two passes
 pick:
@@ -61,6 +59,10 @@ done:
     wait 1 gpio 24
     mov pindirs, null
 .wrap
+cpu:
+    set x, 0                ; one pass
+    mov osr, rxfifo[1]
+    jmp put
 
 ; ~CHAROM, for the VIC-II and the 6510: the character ROM byte for A0 to
 ; A11 (RX register 0), kept fresh, and D kept enabled, until the select
@@ -91,7 +93,8 @@ release:
 ; PIO1: address watchers. Each pushes a pointer whenever it changes; Y holds
 ; the last one. Shift left, no autopush.
 
-; A0 to A15 (IN base GPIO8) into a 64 KB table; OSR: its upper half.
+; A0 to A15 (IN base GPIO8) into a 64 KB table; OSR: its upper half. With
+; IN_COUNT below 16 the upper address bits read 0 (the colour watcher).
 ; On a change it samples again and pushes that sample: a glitch on the
 ; address lines, such as the DUT's own D edges couple in, then only repeats
 ; the lookup of the right address.
@@ -110,21 +113,6 @@ again:
     in pins, 16
     mov y, isr
     push noblock
-    jmp top
-
-; A0 to A9 (IN base GPIO8) into a 1 KB table; OSR: its upper 22 bits.
-.program watch10
-.wrap_target
-top:
-    mov isr, null
-    in osr, 22
-    in pins, 10
-    mov x, isr
-    jmp x!=y push_it
-.wrap
-push_it:
-    push noblock
-    mov y, x
     jmp top
 
 ; A0 to A11 (IN base GPIO8) into the VIC-II table of 32-bit words, one per

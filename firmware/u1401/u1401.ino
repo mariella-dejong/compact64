@@ -76,8 +76,13 @@ static void handle_command(char *line) {
                                          : ma >= 4 ? GPIO_DRIVE_STRENGTH_4MA
                                                    : GPIO_DRIVE_STRENGTH_2MA;
         const bool fast = !slew || strcmp(slew, "slow");
+        // Optional mask: bits 0 to 7 for D0 to D7, 8 to 11 for COLORD0 to
+        // COLORD3; default all twelve.
+        const char *m = strtok(nullptr, " \t");
+        const uint32_t bits = m ? strtoul(m, nullptr, 0) & 0xFFFu : 0xFFFu;
+        const uint64_t mask = (bits & 0xFFull) | ((uint64_t)(bits >> 8) << C64_GPIO_COLORD0);
         for (uint g = 0; g < 40; g++) {
-            if (g < 8 || g >= C64_GPIO_COLORD0) {
+            if (mask & (1ull << g)) {
                 gpio_set_drive_strength(g, s);
                 gpio_set_slew_rate(g, fast ? GPIO_SLEW_RATE_FAST : GPIO_SLEW_RATE_SLOW);
             }
@@ -93,7 +98,7 @@ static void handle_command(char *line) {
     } else if (!strcmp(cmd, "info")) {
         print_info();
     } else {
-        Serial.println("error commands: info stats clear fill [seed] sync bypass|normal aecsettle n drive mA fast|slow peek addr regs");
+        Serial.println("error commands: info stats clear fill [seed] sync bypass|normal aecsettle n drive mA fast|slow [mask] peek addr regs");
     }
 }
 

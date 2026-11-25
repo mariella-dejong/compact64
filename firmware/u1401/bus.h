@@ -28,8 +28,8 @@ extern volatile bus_stats_t bus_stats;
 
 // Memory served on the bus (layout in c64bus_pins.h).
 extern uint8_t bus_ram[];
-extern uint8_t bus_color[];
-extern uint8_t bus_rom[];
+extern uint8_t *const bus_color;
+extern uint8_t *const bus_rom;
 
 // aec_settle: delay loops (about 3 clocks each) after AEC is seen high
 // before a low ~COLORAM counts as a 6510 colour RAM access, so that the

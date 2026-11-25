@@ -207,8 +207,10 @@ README timing notes, to be replaced by measurements on the prototype (#158).
 ## Board under test commands
 
 `info`, `stats`, `clear`, `fill [seed]`, `sync bypass|normal`,
-`aecsettle <loops>`, `drive <mA> fast|slow` (D and COLORD outputs; 2 mA
-slow by default), `peek <addr>`, `regs` (PIO0 state machine registers).
+`aecsettle <loops>`, `drive <mA> fast|slow [mask]` (D and COLORD outputs,
+2 mA slow by default; the mask picks pins, bits 0 to 7 for D0 to D7 and 8 to
+11 for COLORD0 to COLORD3), `peek <addr>`, `regs` (PIO0 state machine
+registers).
 
 ## Board under test firmware
 
@@ -226,25 +228,37 @@ machines fed by DMA (`firmware/u1401/bus.pio`):
 - The CPU serves BASIC, KERNAL and colour RAM reads (through `cpu_drive`)
   and all writes, which it also copies into the VIC-II table.
 
-D and COLORD drive 2 mA with slow edges: at 12 mA with fast edges the
-DUT's own D edges glitched the address lines that the watchers sample, and
-0.03 to 4 % of the VIC-II reads got the byte of an address one bit away.
-At 2 mA, about 2 in 100,000 character ROM reads still did, when the DUT
-drove six or more D lines from 0 to 1 at once, mostly with A2 read as 1:
-`char_drive` keeps D fed from its register until the select rises, so a
-late lookup of a glitched address shows. The watcher for the 6510 RAM and
-the character ROM (`watch16`) therefore samples again when the address
-changes and looks up that second sample, about 17 ns later. This costs no
-measurable time at 300 MHz.
+**Glitches.** The DUT's own D and COLORD edges couple into its inputs
+through the flat cables. On a 2x10 header the cable alternates between the
+rows, so its wires run GPIO0, GPIO10, GPIO1, GPIO11 and so on: A2 to A9
+each lie between two D lines, and `~COLORAM` (GPIO28) and `R/~W` (GPIO29)
+between COLORD lines. Rising edges then make an input at 0 read as 1 for
+a moment. The number of ground wires in the cable made no difference. With
+D and COLORD at 12 mA and fast edges:
 
-The 2 mA suits the bench, where D only drives the ribbon cable and the
-exerciser. On the board, D0 to D7 drive the C64 data bus directly, with
-the 6510, the VIC-II, the SID, the CIAs and the expansion port on it, and
-COLORD0 to COLORD3 drive the VIC-II: the strength for those loads, and
-whether the glitches come back with it, can only be set on the prototype.
+- a glitched address made the watchers look up a wrong byte, which
+  `char_drive` and `colord_out` drive as long as the select (or, for
+  COLORD, the cycle) lasts: 4 % of the VIC-II character reads and 0.8 % of
+  the colour nibbles were wrong;
+- a glitched `~COLORAM` made `ram_drive` take a VIC-II cycle for a 6510
+  cycle and drive the 6510 byte: about 0.05 % of the VIC-II RAM reads.
 
-PIO0's 32 instructions are all but used (31), and so are PIO1's (31). The
-state machines in a PIO block share the pin directions, so each lets go as
+The firmware now tolerates this: the RAM, character and colour watchers
+run one program (`watch16`), which looks up a changed address only after a
+second sample, about 17 ns later; and `ram_drive` checks `~COLORAM` again
+before it takes the 6510 path. With those, every access type the PIO
+serves reads clean even at 12 mA with fast edges. The reads and writes
+that core 1 serves can still fail there (about 1 in 10,000), so the bench
+drives 2 mA with slow edges, at which it reads clean.
+
+On the board, D0 to D7 drive the C64 data bus directly, with the 6510,
+the VIC-II, the SID, the CIAs and the expansion port on it, and COLORD0 to
+COLORD3 drive the VIC-II: the strength for those loads comes from the
+prototype. Its layout should keep D and COLORD away from the address and
+select lines, which the flat cables here do not.
+
+PIO0's 32 instructions are all but used (31); PIO1 uses 23. The state
+machines in a PIO block share the pin directions, so each lets go as
 soon as its select rises.
 
 ## Simulation
