@@ -14,6 +14,9 @@
 #            target with the 48-GPIO RP2350B and the 2 MB of stacked flash
 #   weact    the WeAct Studio RP2350B core board
 #
+# FREQ sets U1401's clock in MHz (default 150, the RP2350's rating; the
+# Arduino core offers overclocks up to 300).
+#
 # TRACE_PINS=1 builds U1401 with the trace pins (BUS_TRACE_PINS in
 # u1401/bus.h): GPIO44 and GPIO45 show where the bus loop is.
 #
@@ -41,7 +44,7 @@ case ${1:-} in
     u1401)
         # U1401 runs at the RP2350's rated 150 MHz (README, Timing).
         sketch=$here/u1401
-        fqbn=$board,freq=150
+        fqbn=$board,freq=${FREQ:-150}
         ;;
     exerciser)
         # 250 MHz gives the exerciser 4 ns steps.
@@ -55,6 +58,9 @@ case ${1:-} in
 esac
 
 out=$here/build/${BOARD:-rp2354b}/$1
+if [ "$1" = u1401 ] && [ "${FREQ:-150}" != 150 ]; then
+    out=$out-${FREQ}mhz
+fi
 extra=()
 if [ "${TRACE_PINS:-0}" = 1 ]; then
     out=$out-trace

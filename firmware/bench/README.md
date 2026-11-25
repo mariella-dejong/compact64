@@ -48,13 +48,14 @@ board from its own USB port; do not connect `3V3` or `VBUS` between them.
 | 0 to 7 | D0 to D7 | both | 330 Ohm in series |
 | 8 to 23 | A0 to A15 | exerciser to DUT | |
 | 24 to 28 | `~CASRAM`, `~BASIC`, `~KERNAL`, `~CHAROM`, `~COLORAM` | exerciser to DUT | |
-| 29, 30 | `R/~W`, `GR/~W` | exerciser to DUT | |
-| 31, 32 | `VA4`, `VA5` | exerciser to DUT | |
+| 29 | `R/~W` | exerciser to DUT | |
+| 30, 31 | `VA5`, `VA4` | exerciser to DUT | |
+| 32 | `GR/~W` | exerciser to DUT | |
 | 33, 34 | `~VA14`, `~VA15` | exerciser to DUT | |
 | 35 | `AEC` | exerciser to DUT | |
 | 36 to 39 | `COLORD0` to `COLORD3` | DUT to exerciser | 330 Ohm in series |
 | 40 to 43 | | | Unused: inputs without pulls on both boards. On the exerciser, GPIO42 and GPIO43 are the sense inputs of the release check |
-| 44 | Trigger | DUT to exerciser | Optional; the DUT toggles it on a late answer |
+| 44 | | | Unused: an input on both boards |
 | 45 | | | DUT heartbeat output. The exerciser leaves it an input unless `mark on` |
 | 46, 47 | `PHI2`, `~CAS` | exerciser to DUT | |
 
@@ -128,16 +129,31 @@ heartbeat LED output is on that pin.
    by the calibration offset (`--skew`, 3 clocks), and then, for each
    read, when the select fell and rose, when D first held the expected
    value, and when the DUT's GPIO44 and GPIO45 were first high. In the
-   `TRACE_PINS=1` build GPIO44 is high while the bus loop is in a VIC-II
-   phase and GPIO45 while it handles a 6510 access, so the heartbeat and
-   the late trigger are off. `--passes 6` replays the batch with the sample
+   `TRACE_PINS=1` build GPIO45 is high while the DUT's CPU serves an
+   access, so the heartbeat is off. `--passes 6` replays the batch with the sample
    point shifted by one clock per pass, for 4 ns steps; this only lines up
    where the DUT answers the same way every time.
 
 Other parameters to sweep: `d_casram` (`~CAS` to `~CASRAM`, 20 to 35 ns from
 the CPLD, #93), `t_col` (column address after `~CAS`, #152), `t_dv` and
 `t_dhold` (6510 write data). On the DUT, `sync bypass` skips the input
-synchronizer and `vicdelay` takes the VIC-II address later.
+synchronizer.
+
+8. **Timings of every access type:**
+
+   ```sh
+   tools/bench/bench.py timings --ex <port> --dut <port> --batches 3 --csv timings.csv
+   ```
+
+   For each access type the exerciser makes only that access (with refresh
+   and idle halves in between) and sweeps the sample point after the
+   select. It prints the window in which fewer than `--max-rate` (0.5 %) of
+   the reads fail, in ns after the select minus the calibration
+   (`--cal-ns`, 12), the errors within that window, and the result at the
+   latch point (sample mode 0) for each of `--speeds`. U1401 needs about
+   300 MHz to pass everything at the latch point
+   (`FREQ=300 firmware/build.sh u1401 <port>`); at the rated 150 MHz the
+   VIC-II and the reads the CPU serves are too slow.
 
 ## Exerciser commands
 
@@ -189,7 +205,27 @@ README timing notes, to be replaced by measurements on the prototype (#158).
 ## Board under test commands
 
 `info`, `stats`, `clear`, `fill [seed]`, `sync bypass|normal`,
-`vicdelay <loops>`, `aecsettle <loops>`, `peek <addr>`.
+`aecsettle <loops>`, `peek <addr>`, `regs` (PIO0 state machine registers).
+
+## Board under test firmware
+
+The CPU is too slow to sit between the address and the data: every SIO or
+PIO register access costs it several clocks. So the reads run in PIO state
+machines fed by DMA (`firmware/u1401/bus.pio`):
+
+- PIO1 watches the address bus and hands pointers into tables to DMA,
+  which copies the entries into registers of the state machines in PIO0
+  that drive D0 to D7: `ram_drive` for `~CASRAM` (the 6510 byte, or one of
+  four VIC-II candidates for A12 and A13 picked by `VA4` and `VA5` when
+  `~CASRAM` falls) and `char_drive` for `~CHAROM`.
+- PIO2 watches the VIC-II bank (`~VA14`, `~VA15`) for the VIC-II table and
+  drives COLORD0 to COLORD3 from colour RAM.
+- The CPU serves BASIC, KERNAL and colour RAM reads (through `cpu_drive`)
+  and all writes, which it also copies into the VIC-II table.
+
+PIO0's 32 instructions are all but used (31). The state machines in a PIO
+block share the pin directions, so each lets go as soon as its select
+rises.
 
 ## Simulation
 

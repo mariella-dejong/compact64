@@ -37,7 +37,9 @@ BOARD=weact firmware/build.sh u1401        # for a WeAct RP2350B board
 Set `ARDUINO_CLI` if `arduino-cli` is not on your `PATH`. `TRACE_PINS=1`
 builds U1401 with trace pins for the bench test's trace (bench/README.md).
 The port may be a link such as `/dev/serial/by-id/...`. U1401 runs at
-150 MHz, the RP2350's rated speed; the exerciser at 250 MHz, for 4 ns steps.
+150 MHz, the RP2350's rated speed, unless `FREQ` (in MHz) says otherwise;
+the bench needs about 300 (bench/README.md). The exerciser runs at
+250 MHz, for 4 ns steps.
 `BOARD` selects the board:
 
 | `BOARD` | Board | FQBN |
@@ -50,13 +52,15 @@ In the Arduino IDE, link or copy `libraries/Compact64Bus` into the
 RP2350" with chip variant RP2350B and 2 MB flash; then the CPU speed above,
 and open the sketch.
 
-The exerciser's PIO programs are in `exerciser.pio`; the Arduino tools do not
-assemble them, so the generated `exerciser.pio.h` is in the repository.
-After changing the programs, run the `pioasm` that comes with the core:
+The PIO programs are in `u1401/bus.pio` and `bench/exerciser/exerciser.pio`;
+the Arduino tools do not assemble them, so the generated `.pio.h` files are
+in the repository. After changing a program, run the `pioasm` that comes
+with the core:
 
 ```sh
-~/.arduino15/packages/rp2040/tools/pqt-pioasm/*/pioasm -v 1 -o c-sdk \
-    firmware/bench/exerciser/exerciser.pio firmware/bench/exerciser/exerciser.pio.h
+pioasm=$(echo ~/.arduino15/packages/rp2040/tools/pqt-pioasm/*/pioasm)
+$pioasm -v 1 -o c-sdk firmware/u1401/bus.pio firmware/u1401/bus.pio.h
+$pioasm -v 1 -o c-sdk firmware/bench/exerciser/exerciser.pio firmware/bench/exerciser/exerciser.pio.h
 ```
 
 ## Licence

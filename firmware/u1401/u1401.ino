@@ -15,28 +15,27 @@
 
 #include "bus.h"
 #include "hardware/structs/sio.h"
+#include "hardware/pio.h"
 
 static volatile bool bus_ready = false;
 static uint32_t pattern_seed = 1;
 
 static void fill_memory(uint32_t seed) {
     c64bench_fill(seed, bus_ram, bus_color, bus_rom);
+    bus_rebuild_tables();
     pattern_seed = seed;
 }
 
 static void print_stats() {
-    Serial.printf("stats ram_read=%lu ram_write=%lu rom_read=%lu color_read=%lu color_write=%lu "
-                  "vic_ram=%lu vic_char=%lu late=%lu\n",
-                  (unsigned long)bus_stats.ram_read, (unsigned long)bus_stats.ram_write,
-                  (unsigned long)bus_stats.rom_read, (unsigned long)bus_stats.color_read,
-                  (unsigned long)bus_stats.color_write, (unsigned long)bus_stats.vic_ram,
-                  (unsigned long)bus_stats.vic_char, (unsigned long)bus_stats.late);
+    Serial.printf("stats ram_write=%lu rom_read=%lu color_read=%lu color_write=%lu\n",
+                  (unsigned long)bus_stats.ram_write, (unsigned long)bus_stats.rom_read,
+                  (unsigned long)bus_stats.color_read, (unsigned long)bus_stats.color_write);
 }
 
 static void print_info() {
-    Serial.printf("info firmware=u1401-bench sys_hz=%lu seed=%lu vicdelay=%lu aecsettle=%lu trace_pins=%d\n",
+    Serial.printf("info firmware=u1401-bench sys_hz=%lu seed=%lu aecsettle=%lu trace_pins=%d\n",
                   (unsigned long)rp2040.f_cpu(), (unsigned long)pattern_seed,
-                  (unsigned long)bus_vic_sample_delay, (unsigned long)bus_aec_settle, BUS_TRACE_PINS);
+                  (unsigned long)bus_aec_settle, BUS_TRACE_PINS);
 }
 
 static void handle_command(char *line) {
@@ -57,9 +56,6 @@ static void handle_command(char *line) {
     } else if (!strcmp(cmd, "sync")) {
         bus_set_sync_bypass(arg && !strcmp(arg, "bypass"));
         Serial.println("ok");
-    } else if (!strcmp(cmd, "vicdelay") && arg) {
-        bus_vic_sample_delay = strtoul(arg, nullptr, 0);
-        Serial.println("ok");
     } else if (!strcmp(cmd, "aecsettle") && arg) {
         bus_aec_settle = strtoul(arg, nullptr, 0);
         Serial.println("ok");
@@ -67,10 +63,17 @@ static void handle_command(char *line) {
         const uint32_t a = strtoul(arg, nullptr, 0) & 0xFFFFu;
         Serial.printf("peek addr=0x%04lx ram=0x%02x color=0x%x\n", (unsigned long)a, bus_ram[a],
                       bus_color[a & (C64_COLOR_SIZE - 1u)]);
+    } else if (!strcmp(cmd, "regs")) {
+        for (uint sm = 0; sm < 3; sm++) {
+            Serial.printf("regs pio0 sm%u exec=%08lx shift=%08lx pin=%08lx pc=%lu\n", sm,
+                          (unsigned long)pio0->sm[sm].execctrl, (unsigned long)pio0->sm[sm].shiftctrl,
+                          (unsigned long)pio0->sm[sm].pinctrl, (unsigned long)pio0->sm[sm].addr);
+        }
+        Serial.println("ok");
     } else if (!strcmp(cmd, "info")) {
         print_info();
     } else {
-        Serial.println("error commands: info stats clear fill [seed] sync bypass|normal vicdelay n aecsettle n peek addr");
+        Serial.println("error commands: info stats clear fill [seed] sync bypass|normal aecsettle n peek addr regs");
     }
 }
 

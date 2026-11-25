@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2026 Compact 64 contributors
 //
-// Bus loop of the RAM and ROM controller (U1401). Runs on core 1 with
-// interrupts off and answers every access of the 6510 and the VIC-II.
+// Bus loop of the RAM and ROM controller (U1401). The reads run in PIO
+// state machines fed by DMA (bus.pio); core 1 runs with interrupts off and
+// serves the rest of the accesses of the 6510 and the VIC-II (bus.c).
 
 #ifndef U1401_BUS_H
 #define U1401_BUS_H
@@ -14,17 +15,13 @@
 extern "C" {
 #endif
 
-// Counters, written by core 1 only. `late` counts reads whose select had
-// already gone high again by the time the data was on the bus.
+// Counters of the accesses core 1 serves, written by core 1 only. Reads
+// served by the state machines are not counted.
 typedef struct {
-    uint32_t ram_read;
     uint32_t ram_write;
-    uint32_t rom_read;
+    uint32_t rom_read;     // BASIC and KERNAL
     uint32_t color_read;
     uint32_t color_write;
-    uint32_t vic_ram;
-    uint32_t vic_char;
-    uint32_t late;
 } bus_stats_t;
 
 extern volatile bus_stats_t bus_stats;
@@ -34,21 +31,23 @@ extern uint8_t bus_ram[];
 extern uint8_t bus_color[];
 extern uint8_t bus_rom[];
 
-// Tuning, read by core 1 at the start of every VIC-II phase.
-// vic_sample_delay: delay loops (about 3 clocks each) between seeing
-//   ~CASRAM fall in a VIC-II cycle and taking the column address (#152).
-// aec_settle: delay loops after AEC rises before a low ~COLORAM counts as a
-//   6510 colour RAM access, so the CPLD's late ~COLORAM is not mistaken.
-extern volatile uint32_t bus_vic_sample_delay;
+// aec_settle: delay loops (about 3 clocks each) after AEC is seen high
+// before a low ~COLORAM counts as a 6510 colour RAM access, so that the
+// CPLD's ~COLORAM of the VIC-II cycle, which rises after AEC, is not taken
+// for one.
 extern volatile uint32_t bus_aec_settle;
 
-// Debug build (BUS_TRACE_PINS=1, firmware/build.sh TRACE_PINS=1): GPIO44 is
-// high while the loop is in a VIC-II phase, GPIO45 while it handles a 6510
-// access, from seeing the select to letting go of the bus. The exerciser's
-// trace shows both. The heartbeat and the late trigger are off in this build.
+// Debug build (BUS_TRACE_PINS=1, firmware/build.sh TRACE_PINS=1): GPIO45 is
+// high while core 1 serves an access, from seeing the select to letting go
+// of the bus. The exerciser's trace shows it. The heartbeat is off in this
+// build.
 #ifndef BUS_TRACE_PINS
 #define BUS_TRACE_PINS 0
 #endif
+
+// Rebuilds the tables derived from bus_ram and bus_rom (the VIC-II's view
+// of RAM, the character ROM table), after `fill`.
+void bus_rebuild_tables(void);
 
 void bus_init_pins(void);
 void bus_set_sync_bypass(bool on);

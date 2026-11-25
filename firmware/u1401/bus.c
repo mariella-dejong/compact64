@@ -2,23 +2,31 @@
 // SPDX-FileCopyrightText: 2026 Compact 64 contributors
 //
 // Bus loop of the RAM and ROM controller (U1401), following the timing notes
-// in hardware/main-board/README.md (RAM and ROM replacement, Timing):
+// in hardware/main-board/README.md (RAM and ROM replacement, Timing).
 //
-// - 6510 cycles (AEC high): the address is valid before the select falls.
-//   Reads drive D0 to D7 until the select rises. Writes take the last sample
-//   of D0 to D7 taken while PHI2 is still high, not the value at ~CASRAM.
-// - VIC-II cycles (AEC low, ~COLORAM low throughout): A12 and A13 arrive on
-//   VA4 and VA5 after ~CAS, so the address is taken when ~CASRAM falls (plus
-//   bus_vic_sample_delay). The colour nibble for A0 to A9 goes out on COLORD0
-//   to COLORD3 while ~CASRAM or ~CHAROM is low, so c-accesses get 12 bits.
-// - Colour RAM in 6510 cycles: reads drive D0 to D3 only, writes take D0 to
-//   D3 while GR/~W is low.
+// The CPU is too slow to sit between the address and the data: every SIO
+// or PIO register access costs it several clocks (#159). So reads run
+// without the CPU (bus.pio): PIO1 watches the address bus and hands
+// pointers to DMA, which copies table entries into the RX registers of the
+// PIO0 drivers, or to PIO2 for COLORD:
 //
-// Everything is timed from the select edges, never from fixed delays.
+// | Access                    | Select     | Table, from               | Driver     |
+// | ------------------------- | ---------- | ------------------------- | ---------- |
+// | 6510 RAM read             | ~CASRAM    | bus_ram[A0..A15]          | ram_drive  |
+// | VIC-II RAM read           | ~CASRAM    | vic_tab[bank][A0..A11]: 4 candidates, picked by VA4, VA5 | ram_drive |
+// | Character ROM, both       | ~CHAROM    | char_tab[A0..A15] (A0..A11 repeated) | char_drive |
+// | Colour for the VIC-II     | always     | bus_color[A0..A9]         | colord_out |
+//
+// The CPU serves the rest: 6510 reads of the BASIC and KERNAL ROMs and of
+// colour RAM (through cpu_drive), and all writes, which it also copies into
+// vic_tab.
 
 #include "bus.h"
 
+#include "bus.pio.h"
+#include "hardware/dma.h"
 #include "hardware/gpio.h"
+#include "hardware/pio.h"
 #include "hardware/structs/busctrl.h"
 #include "hardware/structs/sio.h"
 #include "hardware/structs/syscfg.h"
@@ -30,14 +38,179 @@
 #pragma GCC optimize("O3")
 
 volatile bus_stats_t bus_stats;
-uint8_t bus_ram[C64_RAM_SIZE] __attribute__((aligned(4)));
-uint8_t bus_color[C64_COLOR_SIZE] __attribute__((aligned(4)));
+// The watchers build pointers from the upper bits, so the tables are aligned
+// to their size.
+uint8_t bus_ram[C64_RAM_SIZE] __attribute__((aligned(0x10000)));
+static uint32_t vic_tab[4 * 4096] __attribute__((aligned(0x10000)));
+static uint8_t char_tab[0x10000] __attribute__((aligned(0x10000)));
+uint8_t bus_color[C64_COLOR_SIZE] __attribute__((aligned(C64_COLOR_SIZE)));
 uint8_t bus_rom[C64_ROM_SIZE] __attribute__((aligned(4)));
-volatile uint32_t bus_vic_sample_delay = 0;
 volatile uint32_t bus_aec_settle = 2;
 
 // Bus inputs in GPIO_HI_IN.
-#define HI_INPUTS (C64_HI_VA5 | C64_HI_VA14N | C64_HI_VA15N | C64_HI_AEC | C64_HI_PHI2 | C64_HI_CAS)
+#define HI_INPUTS (C64_HI_GRW | C64_HI_VA14N | C64_HI_VA15N | C64_HI_AEC | C64_HI_PHI2 | C64_HI_CAS)
+
+// State machines.
+#define SM_RAM_DRIVE  0u  // PIO0
+#define SM_CHAR_DRIVE 1u
+#define SM_CPU_DRIVE  2u
+#define SM_W_RAM      0u  // PIO1
+#define SM_W_CHAR     1u
+#define SM_W_COLOR    2u
+#define SM_W_VIC      3u
+#define SM_BANK       0u  // PIO2
+#define SM_COLORD     1u
+#define DRIVE_D   0xFF00u  // cpu_drive: drive D0 to D7
+#define DRIVE_D03 0x0F00u  // cpu_drive: drive D0 to D3
+
+// vic_tab: one word per bank (~VA15, ~VA14 as on the pins, so 3 - bank) and
+// A0 to A11; byte A13 + 2 * A12 of it is RAM at that address.
+static inline __attribute__((always_inline)) uint8_t *vic_byte(uint32_t a) {
+    const uint32_t word = ((3u - (a >> 14)) << 12) | (a & 0x0FFFu);
+    return (uint8_t *)&vic_tab[word] + (((a >> 13) & 1u) | (((a >> 12) & 1u) << 1));
+}
+
+void bus_rebuild_tables(void) {
+    for (uint32_t a = 0; a < C64_RAM_SIZE; a++) {
+        *vic_byte(a) = bus_ram[a];
+        char_tab[a] = bus_rom[C64_ROM_CHAR + (a & 0x0FFFu)];
+    }
+}
+
+// Loads `value` into the OSR (and Y, if `y`) of a state machine.
+static void sm_load(PIO pio, uint sm, uint32_t value, bool y) {
+    pio_sm_put_blocking(pio, sm, value);
+    pio_sm_exec(pio, sm, pio_encode_pull(false, true));
+    if (y) {
+        pio_sm_exec(pio, sm, pio_encode_mov(pio_y, pio_osr));
+    }
+}
+
+static void init_sm(PIO pio, uint sm, uint offset, pio_sm_config *c) {
+    sm_config_set_clkdiv_int_frac8(c, 1, 0);
+    pio_sm_init(pio, sm, offset, c);
+}
+
+// A watcher's pointer goes from its RX FIFO to `ch_data`'s read trigger;
+// `ch_data` copies one `size` entry to `dest`. `high`: DMA high priority,
+// for the lookups that race the selects.
+static void lookup_chain(PIO pio, uint sm, volatile void *dest, enum dma_channel_transfer_size size, bool high) {
+    const uint ch_data = (uint)dma_claim_unused_channel(true);
+    const uint ch_ptr = (uint)dma_claim_unused_channel(true);
+    dma_channel_config d = dma_channel_get_default_config(ch_data);
+    channel_config_set_transfer_data_size(&d, size);
+    channel_config_set_read_increment(&d, false);
+    channel_config_set_write_increment(&d, false);
+    channel_config_set_dreq(&d, DREQ_FORCE);
+    channel_config_set_high_priority(&d, high);
+    dma_channel_configure(ch_data, &d, dest, bus_ram, 1, false);
+    dma_channel_config p = dma_channel_get_default_config(ch_ptr);
+    channel_config_set_transfer_data_size(&p, DMA_SIZE_32);
+    channel_config_set_read_increment(&p, false);
+    channel_config_set_write_increment(&p, false);
+    channel_config_set_dreq(&p, pio_get_dreq(pio, sm, false));
+    channel_config_set_high_priority(&p, high);
+    dma_channel_configure(ch_ptr, &p, &dma_hw->ch[ch_data].al3_read_addr_trig, &pio->rxf[sm],
+                          dma_encode_endless_transfer_count(), true);
+}
+
+static void init_pio_dma(void) {
+    // PIO0: drivers on D0 to D7.
+    pio_claim_sm_mask(pio0, (1u << SM_RAM_DRIVE) | (1u << SM_CHAR_DRIVE) | (1u << SM_CPU_DRIVE));
+    uint off = pio_add_program(pio0, &ram_drive_program);
+    pio_sm_config c = ram_drive_program_get_default_config(off);
+    sm_config_set_in_pins(&c, C64_GPIO_COLORAM);
+    sm_config_set_in_pin_count(&c, 4);
+    sm_config_set_in_shift(&c, false, false, 32);
+    sm_config_set_out_pins(&c, C64_GPIO_D0, 8);
+    sm_config_set_out_shift(&c, true, false, 32);
+    sm_config_set_jmp_pin(&c, C64_GPIO_CASRAM);
+    init_sm(pio0, SM_RAM_DRIVE, off, &c);
+
+    off = pio_add_program(pio0, &char_drive_program);
+    c = char_drive_program_get_default_config(off);
+    sm_config_set_out_pins(&c, C64_GPIO_D0, 8);
+    sm_config_set_out_shift(&c, true, false, 32);
+    sm_config_set_jmp_pin(&c, C64_GPIO_CHAROM);
+    init_sm(pio0, SM_CHAR_DRIVE, off, &c);
+
+    off = pio_add_program(pio0, &cpu_drive_program);
+    c = cpu_drive_program_get_default_config(off);
+    sm_config_set_out_pins(&c, C64_GPIO_D0, 8);
+    sm_config_set_out_shift(&c, true, true, 16);
+    init_sm(pio0, SM_CPU_DRIVE, off, &c);
+    pio_sm_set_pindirs_with_mask(pio0, SM_CPU_DRIVE, 0, C64_LO_D);
+
+    // PIO1: watchers on A0 to A15.
+    pio_claim_sm_mask(pio1, 0xFu);
+    const uint w16 = pio_add_program(pio1, &watch16_program);
+    const uint w10 = pio_add_program(pio1, &watch10_program);
+    const uint wv = pio_add_program(pio1, &vic_watch_program);
+    const struct {
+        uint sm, offset;
+        pio_sm_config c;
+        uint32_t osr;
+    } w[] = {
+        {SM_W_RAM, w16, watch16_program_get_default_config(w16), (uint32_t)(uintptr_t)bus_ram >> 16},
+        {SM_W_CHAR, w16, watch16_program_get_default_config(w16), (uint32_t)(uintptr_t)char_tab >> 16},
+        {SM_W_COLOR, w10, watch10_program_get_default_config(w10), (uint32_t)(uintptr_t)bus_color >> 10},
+        {SM_W_VIC, wv, vic_watch_program_get_default_config(wv), 0},
+    };
+    for (unsigned i = 0; i < 4; i++) {
+        pio_sm_config cc = w[i].c;
+        sm_config_set_in_pins(&cc, C64_GPIO_A0);
+        sm_config_set_in_shift(&cc, false, false, 32);
+        sm_config_set_out_shift(&cc, true, false, 32);
+        init_sm(pio1, w[i].sm, w[i].offset, &cc);
+        pio_sm_exec(pio1, w[i].sm, pio_encode_mov_not(pio_y, pio_null));
+        if (w[i].sm != SM_W_VIC) {
+            sm_load(pio1, w[i].sm, w[i].osr, false);
+        }
+    }
+    // vic_watch starts with bank 3 (~VA14, ~VA15 low) in X, until bank_watch
+    // sends the real one.
+    sm_load(pio1, SM_W_VIC, ((uint32_t)(uintptr_t)vic_tab >> 16) << 2, false);
+    pio_sm_exec(pio1, SM_W_VIC, pio_encode_mov(pio_x, pio_osr));
+
+    // PIO2 (GPIO16 to GPIO47): the VIC-II bank, COLORD.
+    pio_set_gpio_base(pio2, 16);
+    pio_claim_sm_mask(pio2, (1u << SM_BANK) | (1u << SM_COLORD));
+    off = pio_add_program(pio2, &bank_watch_program);
+    c = bank_watch_program_get_default_config(off);
+    sm_config_set_in_pins(&c, C64_GPIO_VA14N);
+    sm_config_set_in_shift(&c, false, false, 32);
+    init_sm(pio2, SM_BANK, off, &c);
+    pio_sm_exec(pio2, SM_BANK, pio_encode_mov_not(pio_y, pio_null));
+    sm_load(pio2, SM_BANK, (uint32_t)(uintptr_t)vic_tab >> 16, false);
+    off = pio_add_program(pio2, &colord_out_program);
+    c = colord_out_program_get_default_config(off);
+    sm_config_set_out_pins(&c, C64_GPIO_COLORD0, 4);
+    sm_config_set_out_shift(&c, true, false, 32);
+    init_sm(pio2, SM_COLORD, off, &c);
+    for (uint gpio = C64_GPIO_COLORD0; gpio < C64_GPIO_COLORD0 + 4; gpio++) {
+        pio_gpio_init(pio2, gpio);
+    }
+    pio_sm_set_consecutive_pindirs(pio2, SM_COLORD, C64_GPIO_COLORD0, 4, true);
+
+    // Lookups: pointers from PIO1 to the tables, entries to the drivers.
+    lookup_chain(pio1, SM_W_RAM, &pio0->rxf_putget[SM_RAM_DRIVE][1], DMA_SIZE_8, true);
+    lookup_chain(pio1, SM_W_VIC, &pio0->rxf_putget[SM_RAM_DRIVE][0], DMA_SIZE_32, true);
+    lookup_chain(pio1, SM_W_CHAR, &pio0->rxf_putget[SM_CHAR_DRIVE][0], DMA_SIZE_8, false);
+    lookup_chain(pio1, SM_W_COLOR, &pio2->txf[SM_COLORD], DMA_SIZE_8, false);
+    // The bank watcher's words go straight to vic_watch.
+    const uint ch_bank = (uint)dma_claim_unused_channel(true);
+    dma_channel_config b = dma_channel_get_default_config(ch_bank);
+    channel_config_set_transfer_data_size(&b, DMA_SIZE_32);
+    channel_config_set_read_increment(&b, false);
+    channel_config_set_write_increment(&b, false);
+    channel_config_set_dreq(&b, pio_get_dreq(pio2, SM_BANK, false));
+    dma_channel_configure(ch_bank, &b, &pio1->txf[SM_W_VIC], &pio2->rxf[SM_BANK],
+                          dma_encode_endless_transfer_count(), true);
+
+    pio_set_sm_mask_enabled(pio2, (1u << SM_BANK) | (1u << SM_COLORD), true);
+    pio_set_sm_mask_enabled(pio1, 0xFu, true);
+    pio_set_sm_mask_enabled(pio0, (1u << SM_RAM_DRIVE) | (1u << SM_CHAR_DRIVE) | (1u << SM_CPU_DRIVE), true);
+}
 
 void bus_init_pins(void) {
     for (uint gpio = 0; gpio <= C64_GPIO_COLORD0 + 3; gpio++) {
@@ -48,11 +221,11 @@ void bus_init_pins(void) {
     for (uint gpio = C64_GPIO_D0; gpio < C64_GPIO_D0 + 8; gpio++) {
         gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_12MA);
         gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_FAST);
+        pio_gpio_init(pio0, gpio);
     }
     for (uint gpio = C64_GPIO_COLORD0; gpio < C64_GPIO_COLORD0 + 4; gpio++) {
         gpio_set_drive_strength(gpio, GPIO_DRIVE_STRENGTH_12MA);
         gpio_set_slew_rate(gpio, GPIO_SLEW_RATE_FAST);
-        gpio_set_dir(gpio, GPIO_OUT);  // only to the VIC-II's D8 to D11
     }
     const uint inputs[] = {C64_GPIO_PHI2, C64_GPIO_CAS};
     for (uint i = 0; i < 2; i++) {
@@ -65,15 +238,22 @@ void bus_init_pins(void) {
         gpio_disable_pulls(outputs[i]);
         gpio_set_dir(outputs[i], GPIO_OUT);
     }
-    // The bus loop gets the bus fabric first when both cores want SRAM.
-    busctrl_hw->priority = BUSCTRL_BUS_PRIORITY_PROC1_BITS;
+    bus_rebuild_tables();
+    init_pio_dma();
+    // The DMA lookups get the bus fabric first, then the bus loop.
+    busctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_R_BITS | BUSCTRL_BUS_PRIORITY_DMA_W_BITS |
+                           BUSCTRL_BUS_PRIORITY_PROC1_BITS;
 }
 
-// Skips the two-flip-flop synchronizer on the bus inputs: saves about two
-// clocks per access, at the risk of a metastable read on an edge.
+// Skips the two-flip-flop synchronizer on the bus inputs, for the CPU and
+// the PIO blocks: saves about two clocks per access, at the risk of a
+// metastable read on an edge.
 void bus_set_sync_bypass(bool on) {
     syscfg_hw->proc_in_sync_bypass = on ? 0xFFFFFFFFu : 0u;
     syscfg_hw->proc_in_sync_bypass_hi = on ? HI_INPUTS : 0u;
+    pio0->input_sync_bypass = on ? 0xFFFFFF00u : 0u;
+    pio1->input_sync_bypass = on ? 0xFFFFFF00u : 0u;
+    pio2->input_sync_bypass = on ? (3u << (C64_GPIO_VA14N - 16)) : 0u;
 }
 
 // About three clocks per loop.
@@ -83,199 +263,125 @@ static inline __attribute__((always_inline)) void delay_loops(uint32_t n) {
     }
 }
 
-// Address of a VIC-II access: A0 to A11 from the bus, A12 and A13 from VA4
-// and VA5, A14 and A15 from the inverted bank bits ~VA14 and ~VA15.
-static inline __attribute__((always_inline)) uint32_t vic_address(uint32_t lo, uint32_t hi) {
-    return ((lo >> C64_GPIO_A0) & 0x0FFFu)
-         | ((lo >> (C64_GPIO_VA4 - 12)) & 0x1000u)
-         | (((hi ^ (C64_HI_VA14N | C64_HI_VA15N)) & 7u) << 13);
-}
-
 #if BUS_TRACE_PINS
-#define TP_VIC_ON()  (sio->gpio_hi_set = C64_HI_TRIG)
-#define TP_VIC_OFF() (sio->gpio_hi_clr = C64_HI_TRIG)
 #define TP_CPU_ON()  (sio->gpio_hi_set = C64_HI_HEARTBEAT)
 #define TP_CPU_OFF() (sio->gpio_hi_clr = C64_HI_HEARTBEAT)
-#define TP_LATE()    ((void)0)
 #else
-#define TP_VIC_ON()  ((void)0)
-#define TP_VIC_OFF() ((void)0)
 #define TP_CPU_ON()  ((void)0)
 #define TP_CPU_OFF() ((void)0)
-#define TP_LATE()    (sio->gpio_hi_togl = C64_HI_TRIG)
 #endif
 
 void __not_in_flash_func(bus_run)(void) {
     sio_hw_t *const sio = sio_hw;
+    pio_hw_t *const pio = pio0_hw;
     uint8_t *const ram = bus_ram;
     uint8_t *const color = bus_color;
     const uint8_t *const rom = bus_rom;
-    uint32_t cd = 0;  // nibble on COLORD0 to COLORD3
 
-    sio->gpio_hi_out = sio->gpio_hi_out & ~C64_HI_COLORD;
     (void)save_and_disable_interrupts();
 
     for (;;) {
         uint32_t lo;
-        // Wait for any select. ~COLORAM is low throughout VIC-II cycles.
         do {
             lo = sio->gpio_in;
         } while ((lo & C64_LO_SELECTS) == C64_LO_SELECTS);
 
-        if ((lo & (C64_LO_CASRAM | C64_LO_COLORAM | C64_LO_RW)) == (C64_LO_COLORAM | C64_LO_RW)) {
-            // 6510 RAM read. ~COLORAM high means AEC is high.
-            sio->gpio_out = ram[(lo >> C64_GPIO_A0) & 0xFFFFu];
-            sio->gpio_oe_set = C64_LO_D;
-            TP_CPU_ON();
-            if (sio->gpio_in & C64_LO_CASRAM) {
-                bus_stats.late++;
-                TP_LATE();
+        if (!(lo & C64_LO_CASRAM)) {
+            if ((lo & C64_LO_COLORAM) && !(lo & C64_LO_RW)) {
+                // 6510 RAM write: keep the last sample of D0 to D7 taken
+                // while ~CASRAM is low and PHI2 is still high.
+                TP_CPU_ON();
+                const uint32_t a = (lo >> C64_GPIO_A0) & 0xFFFFu;
+                uint32_t d = lo;
+                for (;;) {
+                    const uint32_t x = sio->gpio_in;
+                    const uint32_t h = sio->gpio_hi_in;
+                    if ((x & C64_LO_CASRAM) || !(h & C64_HI_PHI2)) {
+                        break;
+                    }
+                    d = x;
+                }
+                ram[a] = (uint8_t)d;
+                *vic_byte(a) = (uint8_t)d;
+                bus_stats.ram_write++;
+                TP_CPU_OFF();
             }
+            // Reads: ram_drive.
             while (!(sio->gpio_in & C64_LO_CASRAM)) {
             }
-            sio->gpio_oe_clr = C64_LO_D;
+            continue;
+        }
+
+        if (!(lo & (C64_LO_BASIC | C64_LO_KERNAL))) {
+            continue;  // both low: a glitch
+        }
+        if ((lo & (C64_LO_BASIC | C64_LO_KERNAL)) != (C64_LO_BASIC | C64_LO_KERNAL)) {
+            // 6510 BASIC or KERNAL read (the CPLD selects ROMs for reads only).
+            TP_CPU_ON();
+            const uint32_t a = (lo >> C64_GPIO_A0) & 0x1FFFu;
+            const uint32_t sel = ~lo & (C64_LO_BASIC | C64_LO_KERNAL);
+            pio->txf[SM_CPU_DRIVE] = rom[(sel & C64_LO_BASIC ? C64_ROM_BASIC : C64_ROM_KERNAL) + a] | DRIVE_D;
+            while (!(sio->gpio_in & sel)) {
+            }
+            pio->txf[SM_CPU_DRIVE] = 0;
+            bus_stats.rom_read++;
             TP_CPU_OFF();
-            bus_stats.ram_read++;
             continue;
         }
 
         if (!(lo & C64_LO_COLORAM)) {
             uint32_t hi = sio->gpio_hi_in;
-            if (hi & C64_HI_AEC) {
-                TP_CPU_ON();
-                // 6510 colour RAM access, A0 to A9.
-                const uint32_t a = (lo >> C64_GPIO_A0) & (C64_COLOR_SIZE - 1u);
-                if (lo & C64_LO_RW) {
-                    sio->gpio_out = color[a];
-                    sio->gpio_oe_set = 0x0Fu;  // D4 to D7 stay undriven
-                    do {
-                        lo = sio->gpio_in;
-                        hi = sio->gpio_hi_in;
-                    } while (!(lo & C64_LO_COLORAM) && (hi & C64_HI_AEC));
-                    sio->gpio_oe_clr = 0x0Fu;
-                    bus_stats.color_read++;
-                } else {
-                    uint32_t d = 0;
-                    bool seen = false;
-                    for (;;) {
-                        lo = sio->gpio_in;
-                        hi = sio->gpio_hi_in;
-                        if ((lo & C64_LO_COLORAM) || !(hi & C64_HI_AEC)) {
-                            break;
-                        }
-                        if (!(lo & C64_LO_GRW) && (hi & C64_HI_PHI2)) {
-                            d = lo;
-                            seen = true;
-                        } else if (seen) {
-                            break;  // GR/~W rose: d is the last sample before
-                        }
-                    }
-                    if (seen) {
-                        color[a] = (uint8_t)(d & 0x0Fu);
-                        bus_stats.color_write++;
-                    }
-                    while (!(sio->gpio_in & C64_LO_COLORAM) && (sio->gpio_hi_in & C64_HI_AEC)) {
-                    }
-                }
-                TP_CPU_OFF();
+            if (!(hi & C64_HI_AEC)) {
+                continue;  // VIC-II cycle: ~COLORAM is low throughout
+            }
+            // AEC rises before the CPLD's ~COLORAM of the VIC-II cycle does:
+            // only a ~COLORAM still low after bus_aec_settle is the 6510's.
+            delay_loops(bus_aec_settle);
+            lo = sio->gpio_in;
+            if (lo & C64_LO_COLORAM) {
                 continue;
             }
-
-            // VIC-II phase: runs until AEC rises.
-            TP_VIC_ON();
-            const uint32_t vdelay = bus_vic_sample_delay;
-            for (;;) {
-                lo = sio->gpio_in;
-                hi = sio->gpio_hi_in;
-                uint32_t sel;
-                if (!(lo & C64_LO_CASRAM)) {
-                    if (vdelay) {
-                        delay_loops(vdelay);
-                        lo = sio->gpio_in;
-                        hi = sio->gpio_hi_in;
-                    }
-                    sio->gpio_out = ram[vic_address(lo, hi)];
-                    sel = C64_LO_CASRAM;
-                    bus_stats.vic_ram++;
-                } else if (!(lo & C64_LO_CHAROM)) {
-                    sio->gpio_out = rom[C64_ROM_CHAR + ((lo >> C64_GPIO_A0) & 0x0FFFu)];
-                    sel = C64_LO_CHAROM;
-                    bus_stats.vic_char++;
-                } else if (hi & C64_HI_AEC) {
-                    break;
-                } else {
-                    continue;
-                }
-                sio->gpio_oe_set = C64_LO_D;
-                // Colour for c-accesses, from A0 to A9, while the select is low.
+            // 6510 colour RAM access, A0 to A9.
+            TP_CPU_ON();
+            const uint32_t a = (lo >> C64_GPIO_A0) & (C64_COLOR_SIZE - 1u);
+            if (lo & C64_LO_RW) {
+                pio->txf[SM_CPU_DRIVE] = color[a] | DRIVE_D03;  // D4 to D7 stay undriven
                 do {
                     lo = sio->gpio_in;
-                    const uint32_t c = color[(lo >> C64_GPIO_A0) & (C64_COLOR_SIZE - 1u)];
-                    sio->gpio_hi_togl = (c ^ cd) << (C64_GPIO_COLORD0 - 32);
-                    cd = c;
-                } while (!(lo & sel));
-                sio->gpio_oe_clr = C64_LO_D;
-            }
-            // AEC is high again; let a stale ~COLORAM from the CPLD settle.
-            TP_VIC_OFF();
-            delay_loops(bus_aec_settle);
-            continue;
-        }
-
-        if (!(lo & C64_LO_CASRAM)) {
-            // 6510 RAM write: keep the last sample of D0 to D7 taken while
-            // ~CASRAM is low and PHI2 is still high.
-            TP_CPU_ON();
-            const uint32_t a = (lo >> C64_GPIO_A0) & 0xFFFFu;
-            uint32_t d = lo;
-            for (;;) {
-                const uint32_t x = sio->gpio_in;
-                const uint32_t h = sio->gpio_hi_in;
-                if ((x & C64_LO_CASRAM) || !(h & C64_HI_PHI2)) {
-                    break;
+                    hi = sio->gpio_hi_in;
+                } while (!(lo & C64_LO_COLORAM) && (hi & C64_HI_AEC));
+                pio->txf[SM_CPU_DRIVE] = 0;
+                bus_stats.color_read++;
+            } else {
+                // Write: D0 to D3 while GR/~W is low.
+                uint32_t d = 0;
+                bool seen = false;
+                for (;;) {
+                    const uint32_t x = sio->gpio_in;
+                    const uint32_t h = sio->gpio_hi_in;
+                    if ((x & C64_LO_COLORAM) || !(h & C64_HI_AEC)) {
+                        break;
+                    }
+                    if (!(h & C64_HI_GRW) && (h & C64_HI_PHI2)) {
+                        d = x;
+                        seen = true;
+                    } else if (seen) {
+                        break;  // GR/~W rose: d is the last sample before
+                    }
                 }
-                d = x;
-            }
-            ram[a] = (uint8_t)d;
-            while (!(sio->gpio_in & C64_LO_CASRAM)) {
+                if (seen) {
+                    color[a] = (uint8_t)(d & 0x0Fu);
+                    bus_stats.color_write++;
+                }
+                while (!(sio->gpio_in & C64_LO_COLORAM) && (sio->gpio_hi_in & C64_HI_AEC)) {
+                }
             }
             TP_CPU_OFF();
-            bus_stats.ram_write++;
             continue;
         }
 
-        // ROM read by the 6510 (writes to ROM addresses go to RAM, so a ROM
-        // select with R/~W low is never driven).
-        uint32_t sel;
-        uint32_t v;
-        const uint32_t a = lo >> C64_GPIO_A0;
-        if (!(lo & C64_LO_KERNAL)) {
-            sel = C64_LO_KERNAL;
-            v = rom[C64_ROM_KERNAL + (a & 0x1FFFu)];
-        } else if (!(lo & C64_LO_BASIC)) {
-            sel = C64_LO_BASIC;
-            v = rom[C64_ROM_BASIC + (a & 0x1FFFu)];
-        } else {
-            sel = C64_LO_CHAROM;
-            v = rom[C64_ROM_CHAR + (a & 0x0FFFu)];
+        // ~CHAROM: char_drive.
+        while (!(sio->gpio_in & C64_LO_CHAROM)) {
         }
-        if (lo & C64_LO_RW) {
-            sio->gpio_out = v;
-            sio->gpio_oe_set = C64_LO_D;
-            TP_CPU_ON();
-            if (sio->gpio_in & sel) {
-                bus_stats.late++;
-                TP_LATE();
-            }
-            while (!(sio->gpio_in & sel)) {
-            }
-            sio->gpio_oe_clr = C64_LO_D;
-            bus_stats.rom_read++;
-        } else {
-            TP_CPU_ON();
-            while (!(sio->gpio_in & sel)) {
-            }
-        }
-        TP_CPU_OFF();
     }
 }

@@ -13,6 +13,7 @@ The exerciser plays the bus; the DUT runs the U1401 firmware. Both print
       --offsets 40:200:8 --batches 10 --csv shmoo.csv
   bench.py cal 47 0 -4 12 --ex /dev/ttyACM0
   bench.py trace --ex /dev/ttyACM0 --dut /dev/ttyACM1 --cycles 4
+  bench.py timings --ex /dev/ttyACM0 --dut /dev/ttyACM1 --batches 2 --csv timings.csv
 
 Requires pyserial.
 """
@@ -189,7 +190,7 @@ def cmd_cal(args):
 # the DUT's pins from the samples (rx0: GPIO0 to 15, rx1: GPIO32 to 47).
 TRACE_OUT = [("PHI2", 46, False), ("AEC", 35, False), ("~CAS", 47, True), ("~CASRAM", 24, True),
              ("~BASIC", 25, True), ("~KERNAL", 26, True), ("~CHAROM", 27, True),
-             ("~COLORAM", 28, True), ("R/~W", 29, False), ("GR/~W", 30, False)]
+             ("~COLORAM", 28, True), ("R/~W", 29, False), ("GR/~W", 32, False)]
 SELECT_OF = {"ram_read": 24, "ram_readback": 24, "release": 24, "vic_ram": 24, "cacc_ram": 24,
              "basic": 25, "kernal": 26, "char": 27, "vic_char": 27,
              "color_read": 28, "color_readback": 28}
@@ -319,6 +320,92 @@ def cmd_trace(args):
               f"{'ok' if a['ok'] else 'BAD'}")
 
 
+# Access types for `timings`: the check, and the half-cycle kinds that make
+# it (refresh and idle halves fill the rest).
+TIMING_KINDS = [
+    ("ram_read", {"w_ram_r": 4}),
+    ("ram_readback", {"w_ram_w": 2, "w_readback": 2}),
+    ("basic", {"w_basic": 4}),
+    ("kernal", {"w_kernal": 4}),
+    ("char", {"w_char": 4}),
+    ("color_read", {"w_col_r": 4}),
+    ("color_readback", {"w_col_w": 2, "w_readback": 2}),
+    ("vic_ram", {"w_v_ram": 4}),
+    ("vic_char", {"w_v_char": 4}),
+    ("cacc_ram", {"w_cacc": 4}),
+    ("cacc_color", {"w_cacc": 4}),
+]
+WEIGHTS = ["w_v_refresh", "w_v_ram", "w_v_char", "w_ram_r", "w_ram_w", "w_basic", "w_kernal", "w_char",
+           "w_col_r", "w_col_w", "w_idle", "w_release", "w_readback", "w_cacc"]
+
+
+def cmd_timings(args):
+    """Per access type: the sample offset after the select from which reads
+    pass (minus the calibration), and pass or fail at the latch point."""
+    ex, dut = prepare(args)
+    offsets = span(args.offsets)
+    speeds = span(args.speeds)
+    rows = []
+
+    def run_check(check, batches):
+        _, checks, _, _ = run_step(ex, dut, batches)
+        return checks.get(check, (0, 0))
+
+    for check, weights in TIMING_KINDS:
+        if args.only and check not in args.only.split(","):
+            continue
+        ex.command("ntsc" if args.ntsc else "pal")
+        apply_sets(ex, args.set)
+        for w in WEIGHTS:
+            ex.command(f"set {w} {weights.get(w, 1 if w in ('w_v_refresh', 'w_idle') else 0)}")
+        if check == "vic_char":
+            ex.command("set bank 0")  # the character ROM is in banks 0 and 2
+        ex.command("set sample_mode 1")
+        results = []
+        for off in offsets:
+            ex.command(f"set sample_off {off}")
+            n, err = run_check(check, args.batches)
+            if n:
+                results.append((off, n, err))
+        # The first window with fewer errors than --max-rate: reads pass from
+        # its start until the DUT lets go after the select rises.
+        ok = lambda n, e: e <= n * args.max_rate
+        first_ok = next((o for o, n, e in results if ok(n, e)), None)
+        last_err = max((o for o, n, e in results if not ok(n, e) and (first_ok is None or o < first_ok)),
+                       default=None)
+        ok_until, win_n, win_err = None, 0, 0
+        if first_ok is not None:
+            for o, n, e in results:
+                if o >= first_ok:
+                    if not ok(n, e):
+                        break
+                    ok_until, win_n, win_err = o, win_n + n, win_err + e
+        ex.command("set sample_mode 0")
+        latch = []
+        for sp in speeds:
+            ex.command(f"set speed {sp}")
+            n, err = run_check(check, args.batches)
+            latch.append((sp, n, err))
+        ex.command("set speed 100")
+        cal = args.cal_ns
+        row = {"check": check,
+               "errors_until": None if last_err is None else last_err - cal,
+               "ok_from": None if first_ok is None else first_ok - cal,
+               "ok_until": None if ok_until is None else ok_until - cal,
+               "window_errors": f"{win_err}/{win_n}"}
+        for sp, n, err in latch:
+            row[f"latch_{sp}"] = f"{err}/{n}"
+        rows.append(row)
+        print(f"{check:<15} last error {fmt_ns(row['errors_until'])}  error free {fmt_ns(row['ok_from'])} "
+              f"to {fmt_ns(row['ok_until'])} ({win_err}/{win_n})  "
+              + "  ".join(f"{sp}%:{err}/{n}" for sp, n, err in latch), flush=True)
+    write_csv(args.csv, rows)
+
+
+def fmt_ns(v):
+    return f"{v:4d} ns" if v is not None else "   - ns"
+
+
 def write_csv(path, rows):
     if not path or not rows:
         return
@@ -360,6 +447,12 @@ def main():
     cp.add_argument("start", type=int)
     cp.add_argument("stop", type=int)
     cp.add_argument("--reps", type=int, default=64)
+    tm = sub.add_parser("timings", parents=[common])
+    tm.add_argument("--offsets", default="0:400:8", help="from:to:step, ns after the select")
+    tm.add_argument("--speeds", default="100:150:25", help="from:to:step, percent, at the latch point")
+    tm.add_argument("--cal-ns", type=int, default=12, help="calibration offset in ns, subtracted")
+    tm.add_argument("--only", help="comma-separated checks")
+    tm.add_argument("--max-rate", type=float, default=0.005, help="error rate that still counts as passing")
     tp = sub.add_parser("trace", parents=[common])
     tp.add_argument("--cycles", type=int, default=4, help="cycles to trace")
     tp.add_argument("--step", type=int, default=6, help="exerciser clocks between samples in one pass (6 or more)")
@@ -369,7 +462,7 @@ def main():
     tp.add_argument("--all", action="store_true", help="print every sample, not only changes")
     args = ap.parse_args()
     handler = {"info": cmd_info, "run": cmd_run, "sweep": cmd_sweep, "shmoo": cmd_shmoo, "cal": cmd_cal,
-               "trace": cmd_trace}
+               "trace": cmd_trace, "timings": cmd_timings}
     return handler[args.cmd](args) or 0
 
 
