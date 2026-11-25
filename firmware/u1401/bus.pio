@@ -1,0 +1,164 @@
+; SPDX-License-Identifier: Apache-2.0
+; SPDX-FileCopyrightText: 2026 Compact 64 contributors
+;
+; State machines of the U1401 bus loop (bus.c). Reads run without the CPU,
+; except 6510 reads of the BASIC and KERNAL ROMs and of colour RAM:
+;
+;   PIO1 watchers --pointer--> DMA reads the table --> PIO0 drivers (D0 to D7)
+;                                                 \--> PIO2 colord_out
+;   PIO2 bank_watch --table base--> DMA --> PIO1 vic_watch
+;
+; The drivers read their bytes from their RX FIFOs used as registers
+; (FJOIN_RX_GET), which the DMA overwrites: always the newest byte, never a
+; queue. 8-bit DMA writes reach them replicated over the word.
+;
+; Generated header: pioasm -v 1 -o c-sdk bus.pio bus.pio.h (the Arduino
+; tools do not run pioasm; see firmware/README.md).
+
+.pio_version 1
+
+; ---------------------------------------------------------------------------
+; PIO0: drivers. All have D0 to D7 as OUT pins.
+
+; ~CASRAM, for the VIC-II and the 6510. IN base GPIO28, IN_COUNT 4: ~COLORAM,
+; R/~W, VA4, VA5. RX register 0: the four VIC-II candidates for A12 and A13
+; (byte A12 + 2 * A13); register 1: the 6510 byte.
+; VIC-II cycles (~COLORAM low): pick the candidate by VA4 and VA5 (kept in
+; the ISR), twice, since the candidates may arrive after the fall; then hold
+; until ~CASRAM rises. A loop that watched ~CASRAM instead would let go up
+; to a pass (about 15 clocks) late, and take D away from the next driver:
+; the state machines share the pin directions. 6510 cycles: drive the 6510
+; byte if R/~W is high, and if ~COLORAM (jmp_pin) is still high a few clocks
+; later: COLORD edges can glitch it high in a VIC-II cycle.
+.program ram_drive
+.fifo txget
+.wrap_target
+top:
+    wait 0 gpio 24
+    mov osr, pins
+    out y, 1                ; ~COLORAM
+    out x, 1                ; R/~W
+    jmp !y vic
+    jmp !x done             ; a write: leave D alone
+    jmp pin cpu             ; ~COLORAM again; low: a VIC-II cycle after all
+vic:
+    out isr, 2              ; candidate: VA4 + 2 * VA5
+    set x, 1                ; two passes
+pick:
+    mov osr, rxfifo[0]
+    mov y, isr
+shift:
+    jmp !y put
+    out null, 8
+    jmp y-- shift
+put:
+    out pins, 8
+    mov pindirs, ~null
+    jmp x-- pick
+done:
+    wait 1 gpio 24
+    mov pindirs, null
+.wrap
+cpu:
+    set x, 0                ; one pass
+    mov osr, rxfifo[1]
+    jmp put
+
+; ~CHAROM, for the VIC-II and the 6510: the character ROM byte for A0 to
+; A11 (RX register 0), kept fresh, and D kept enabled, until the select
+; rises. jmp_pin ~CHAROM.
+.program char_drive
+.fifo txget
+.wrap_target
+    wait 0 gpio 27
+hold:
+    mov osr, rxfifo[0]
+    out pins, 8
+    mov pindirs, ~null
+    jmp pin release
+    jmp hold
+release:
+    mov pindirs, null
+.wrap
+
+; D as the CPU says: D0 to D7 values in bits 0 to 7, the pins to drive in
+; bits 8 to 15. Autopull at 16 bits.
+.program cpu_drive
+.wrap_target
+    out pins, 8
+    out pindirs, 8
+.wrap
+
+; ---------------------------------------------------------------------------
+; PIO1: address watchers. Each pushes a pointer whenever it changes; Y holds
+; the last one. Shift left, no autopush.
+
+; A0 to A15 (IN base GPIO8) into a 64 KB table; OSR: its upper half. With
+; IN_COUNT below 16 the upper address bits read 0 (the colour watcher).
+; On a change it samples again and pushes that sample: a glitch on the
+; address lines, such as the DUT's own D edges couple in, then only repeats
+; the lookup of the right address.
+.program watch16
+.wrap_target
+top:
+    mov isr, null
+    in osr, 16
+    in pins, 16
+    mov x, isr
+    jmp x!=y again
+.wrap
+again:
+    mov isr, null
+    in osr, 16
+    in pins, 16
+    mov y, isr
+    push noblock
+    jmp top
+
+; A0 to A11 (IN base GPIO8) into the VIC-II table of 32-bit words, one per
+; bank and A0 to A11. The upper 18 bits, table and bank, come from
+; bank_watch through the TX FIFO; X keeps them for pull noblock.
+.program vic_watch
+.wrap_target
+top:
+    pull noblock
+    mov isr, null
+    in osr, 18
+    in pins, 12
+    in null, 2
+    mov x, isr
+    jmp x!=y push_it
+    mov x, osr
+.wrap
+push_it:
+    push noblock
+    mov y, x
+    mov x, osr
+    jmp top
+
+; ---------------------------------------------------------------------------
+; PIO2 (GPIO base 16).
+
+; ~VA14 and ~VA15 (IN base GPIO33): pushes the upper 18 bits of vic_watch's
+; pointers, the table's upper half from the OSR and the two bank bits, when
+; they change.
+.program bank_watch
+.wrap_target
+top:
+    mov isr, null
+    in osr, 16
+    in pins, 2
+    mov x, isr
+    jmp x!=y push_it
+.wrap
+push_it:
+    push noblock
+    mov y, x
+    jmp top
+
+; COLORD0 to COLORD3 (OUT pins): the colour nibble for A0 to A9, always.
+.program colord_out
+.wrap_target
+    pull block
+    out pins, 4
+.wrap

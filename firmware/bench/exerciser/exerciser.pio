@@ -1,0 +1,48 @@
+; SPDX-License-Identifier: Apache-2.0
+; SPDX-FileCopyrightText: 2026 Compact 64 contributors
+;
+; PIO programs of the bus exerciser (#159). Every state machine plays a list
+; of words from DMA. All of them start on the same clock and run at the system
+; clock, so the time of every edge is the sum of the hold times before it.
+; Assemble with pioasm -o c-sdk exerciser.pio exerciser.pio.h.
+
+; 24 output pins (GPIO8 to GPIO31). Word: bits 0-23 pin values,
+; bits 24-31 hold time minus 3, in clocks.
+.program wave24
+.wrap_target
+    out pins, 24
+    out x, 8
+hold:
+    jmp x-- hold
+.wrap
+
+; 16 output pins (GPIO32 to GPIO47). Word: bits 0-15 pin values,
+; bits 16-31 hold time minus 3.
+.program wave16
+.wrap_target
+    out pins, 16
+    out x, 16
+hold:
+    jmp x-- hold
+.wrap
+
+; Data bus D0 to D7 (GPIO0 to GPIO7). Word: bits 0-7 values,
+; bits 8-15 directions (1 = drive), bits 16-31 hold time minus 4.
+.program data8
+.wrap_target
+    out pins, 8
+    out pindirs, 8
+    out x, 16
+hold:
+    jmp x-- hold
+.wrap
+
+; Sampler. Word: x. Waits x + 2 clocks after taking the word, then samples
+; 16 input pins and pushes them, so a block lasts x + 3 clocks.
+.program sample16
+.wrap_target
+    out x, 32
+hold:
+    jmp x-- hold
+    in pins, 16
+.wrap
