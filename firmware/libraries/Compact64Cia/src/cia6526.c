@@ -24,6 +24,16 @@
 
 #include <string.h>
 
+// On the RP2350 the model runs in the bus loop, once per cycle, so it has to
+// run from SRAM; on the host this does nothing.
+#if defined(PICO_RP2350) || defined(ARDUINO_ARCH_RP2040)
+#include "pico.h"
+#pragma GCC optimize("O3")
+#define CIA_FN(name) __not_in_flash_func(name)
+#else
+#define CIA_FN(name) name
+#endif
+
 // Control register bits.
 #define CR_START 0x01
 #define CR_PBON 0x02
@@ -43,6 +53,11 @@
 #define P_LOAD1 0x08
 #define P_ONESHOT0 0x10
 #define P_RELOAD 0x20
+
+// Four TOD bytes; plain code, not memcmp/memcpy, which live in flash.
+static inline bool tod_equal(const uint8_t *a, const uint8_t *b) {
+    return a[0] == b[0] && a[1] == b[1] && a[2] == b[2] && a[3] == b[3];
+}
 
 static void timer_reset(cia_timer_t *t) {
     t->counter = 0xFFFF;
@@ -77,7 +92,7 @@ void cia_reset(cia_t *cia) {
     cia->sp_out = true;
 }
 
-uint8_t cia_pb_out(const cia_t *cia) {
+uint8_t CIA_FN(cia_pb_out)(const cia_t *cia) {
     uint8_t v = (uint8_t)(cia->prb | (uint8_t)~cia->ddrb);
     if (cia->ta.cr & CR_PBON) {
         const bool b = (cia->ta.cr & CR_OUTMODE) ? cia->ta.toggle : cia->ta.underflow;
@@ -90,7 +105,7 @@ uint8_t cia_pb_out(const cia_t *cia) {
     return v;
 }
 
-uint8_t cia_pb_dir(const cia_t *cia) {
+uint8_t CIA_FN(cia_pb_dir)(const cia_t *cia) {
     uint8_t d = cia->ddrb;
     if (cia->ta.cr & CR_PBON) {
         d |= 0x40;
@@ -101,7 +116,7 @@ uint8_t cia_pb_dir(const cia_t *cia) {
     return d;
 }
 
-uint8_t cia_peek(const cia_t *cia, unsigned reg) {
+uint8_t CIA_FN(cia_peek)(const cia_t *cia, unsigned reg) {
     switch (reg & 0xF) {
     case CIA_PRA:
         return cia->pa_pins;
@@ -137,7 +152,7 @@ uint8_t cia_peek(const cia_t *cia, unsigned reg) {
     }
 }
 
-void cia_read_effects(cia_t *cia, unsigned reg) {
+void CIA_FN(cia_read_effects)(cia_t *cia, unsigned reg) {
     switch (reg & 0xF) {
     case CIA_PRB:
         cia->pc_next = true;
@@ -147,7 +162,9 @@ void cia_read_effects(cia_t *cia, unsigned reg) {
         break;
     case CIA_TODHR:
         if (!cia->tod_latched) {
-            memcpy(cia->tod_latch, cia->tod, sizeof(cia->tod));
+            for (unsigned i = 0; i < 4; i++) {
+                cia->tod_latch[i] = cia->tod[i];
+            }
             cia->tod_latched = true;
         }
         break;
@@ -161,7 +178,7 @@ void cia_read_effects(cia_t *cia, unsigned reg) {
     }
 }
 
-static void write_cr(cia_timer_t *t, uint8_t value) {
+static void CIA_FN(write_cr)(cia_timer_t *t, uint8_t value) {
     if (!(t->cr & CR_START) && (value & CR_START)) {
         t->toggle = true;  // a rising edge of START sets the PB toggle
     }
@@ -171,7 +188,7 @@ static void write_cr(cia_timer_t *t, uint8_t value) {
     t->cr = (uint8_t)(value & ~CR_LOAD);
 }
 
-static void write_tod(cia_t *cia, unsigned i, uint8_t value) {
+static void CIA_FN(write_tod)(cia_t *cia, unsigned i, uint8_t value) {
     static const uint8_t masks[4] = {0x0F, 0x7F, 0x7F, 0x9F};
     value &= masks[i];
     if (cia->tb.cr & CRB_ALARM) {
@@ -189,14 +206,14 @@ static void write_tod(cia_t *cia, unsigned i, uint8_t value) {
         }
         cia->tod[i] = value;
     }
-    const bool match = memcmp(cia->tod, cia->alarm, sizeof(cia->tod)) == 0;
+    const bool match = tod_equal(cia->tod, cia->alarm);
     if (match && !cia->tod_match) {
         cia->icr |= CIA_INT_ALARM;
     }
     cia->tod_match = match;
 }
 
-void cia_write(cia_t *cia, unsigned reg, uint8_t value) {
+void CIA_FN(cia_write)(cia_t *cia, unsigned reg, uint8_t value) {
     switch (reg & 0xF) {
     case CIA_PRA:
         cia->pra = value;
@@ -263,7 +280,7 @@ void cia_write(cia_t *cia, unsigned reg, uint8_t value) {
     }
 }
 
-static uint8_t bcd_inc(uint8_t v) {
+static uint8_t CIA_FN(bcd_inc)(uint8_t v) {
     v++;
     if ((v & 0x0F) == 0x0A) {
         v = (uint8_t)((v & 0xF0) + 0x10);
@@ -271,7 +288,7 @@ static uint8_t bcd_inc(uint8_t v) {
     return v;
 }
 
-void cia_tod_tick(cia_t *cia) {
+void CIA_FN(cia_tod_tick)(cia_t *cia) {
     if (cia->tod_stopped) {
         return;
     }
@@ -299,7 +316,7 @@ void cia_tod_tick(cia_t *cia) {
             }
         }
     }
-    const bool match = memcmp(cia->tod, cia->alarm, sizeof(cia->tod)) == 0;
+    const bool match = tod_equal(cia->tod, cia->alarm);
     if (match && !cia->tod_match) {
         cia->icr |= CIA_INT_ALARM;
     }
@@ -308,8 +325,14 @@ void cia_tod_tick(cia_t *cia) {
 
 // One cycle of a timer. phi2: counts PHI2; step: a CNT edge or timer A
 // underflow to count in this cycle.
-static void timer_clock(cia_timer_t *t, bool phi2, bool step) {
+static inline __attribute__((always_inline)) void timer_clock(cia_timer_t *t, bool phi2, bool step) {
     const uint8_t pipe = t->pipe;
+    if (!(t->cr & CR_START) && !(pipe & (P_COUNT2 | P_COUNT3 | P_FLOAD | P_LOAD1 | P_RELOAD))) {
+        // Stopped, nothing in the pipeline: the fast path, same result.
+        t->pipe = (t->cr & CR_ONESHOT) ? P_ONESHOT0 : 0;
+        t->underflow = false;
+        return;
+    }
     if ((pipe & P_COUNT3) && t->counter) {
         t->counter--;
     }
@@ -350,7 +373,7 @@ static void timer_clock(cia_timer_t *t, bool phi2, bool step) {
     t->pipe = next;
 }
 
-void cia_clock(cia_t *cia) {
+void CIA_FN(cia_clock)(cia_t *cia) {
     const bool cnt_rise = cia->cnt_in && !cia->cnt_prev;
     cia->cnt_prev = cia->cnt_in;
 

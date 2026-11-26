@@ -56,6 +56,13 @@ typedef struct {
 } ex_run_result_t;
 
 void ex_engine_init(void);
+// CIA mode (#182): only A0 to A3, CNT, SP, the bench TOD pin (GPIO18),
+// ~RESET, ~FLAG, PHI2, R/~W and ~CS are outputs (plus D0 to D7 as the lists
+// say); every other pin is an input with its pull-up, as the CIA
+// controller's lines are open drain; the second sampler reads GPIO16 to
+// GPIO31 instead of GPIO32 to GPIO47. Off: the U1401 set-up of #159.
+void ex_engine_set_cia(bool on);
+bool ex_engine_cia(void);
 // Drives MARK (GPIO45) or leaves it an input. Only enable it when GPIO45 is
 // not connected to the DUT.
 void ex_set_mark(bool on);
