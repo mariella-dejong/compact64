@@ -8,8 +8,9 @@ contains the Pico SDK.
 | Path | Contents |
 | ---- | -------- |
 | `u1401/` | RAM and ROM controller (U1401, #11). For now the bench build of #159 |
-| `bench/exerciser/` | Bus exerciser for the U1401 bench test (#159), see [bench/README.md](bench/README.md) |
+| `bench/exerciser/` | Bus exerciser for the bench tests of U1401 (#159) and the CIA controllers (#182), see [bench/README.md](bench/README.md) |
 | `libraries/Compact64Bus/` | Header-only library shared by the sketches: U1401's pin map and the test patterns |
+| `libraries/Compact64Cia/` | The 6526 model of the CIA controllers (#182), also used by the exerciser; host tests in [`tools/cia`](../tools/cia/README.md) |
 | `build.sh` | Builds and uploads a sketch with `arduino-cli` |
 | `azure-pipelines.yml` | Azure Pipeline: builds every sketch and publishes the images, see [Continuous integration](#continuous-integration) |
 
@@ -51,10 +52,10 @@ and 1.10 V, U1401 failed 5 to 17 % of its starts.
 | `rp2354b` (default) | An RP2354B board, as U1401 | `rp2040:rp2040:generic_rp2350:variantchip=RP2350B,flash=2097152_0` |
 | `weact` | WeAct Studio RP2350B core board | `rp2040:rp2040:weact_rp2350b:flash=16777216_0` |
 
-In the Arduino IDE, link or copy `libraries/Compact64Bus` into the
-`libraries` folder of your sketchbook. For an RP2354B board select "Generic
-RP2350" with chip variant RP2350B and 2 MB flash; then the CPU speed above,
-and open the sketch.
+In the Arduino IDE, link or copy `libraries/Compact64Bus` and
+`libraries/Compact64Cia` into the `libraries` folder of your sketchbook. For
+an RP2354B board select "Generic RP2350" with chip variant RP2350B and 2 MB
+flash; then the CPU speed above, and open the sketch.
 
 The PIO programs are in `u1401/bus.pio` and `bench/exerciser/exerciser.pio`;
 the Arduino tools do not assemble them, so the generated `.pio.h` files are

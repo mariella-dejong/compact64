@@ -12,6 +12,10 @@ register (#113).
 - **Host:** [`tools/bench/bench.py`](../../tools/bench/bench.py) runs the
   tests and sweeps over USB serial.
 
+The same exerciser also tests the CIA controllers (U1501, U1601, #182) in
+its CIA mode: see [CIA mode](#cia-mode) below. The rest of this page, up to
+that section, is about U1401.
+
 ## Boards
 
 Both boards need an RP2354B or RP2350B with:
@@ -170,6 +174,7 @@ synchronizer.
 | `cal <out> <in> <from> <to> [reps]` | Calibration, DUT disconnected |
 | `trace [cycles] [step] [phase] [seed]` | One batch with extra samples every `step` clocks (default 6; less stalls the DMA) from `phase` on, during its first `cycles` cycles; prints the run report and a `trace` line per sample |
 | `mark on\|off` | GPIO45 high during each batch, for a logic analyser; off by default |
+| `mode u1401\|cia` | Bus and checks for U1401 (the default) or a CIA controller, see [CIA mode](#cia-mode); `trace` and `cal` work in U1401 mode only |
 
 `result` reports `moved` and `max_move_ns`: one list cannot change its pins
 more often than every three clocks (12 ns), so when two edges of different
@@ -203,6 +208,7 @@ README timing notes, to be replaced by measurements on the prototype (#158).
 | `cycles` | 512 | Cycles per batch |
 | `bank` | 4 | VIC-II bank 0 to 3; 4 picks one per batch |
 | `w_*` | | Weights of the half-cycle kinds (`gen.h`) |
+| `cia_*` | | CIA mode only, see [CIA mode](#cia-mode) |
 
 ## Board under test commands
 
@@ -261,6 +267,83 @@ PIO0's 32 instructions are all but used (31); PIO1 uses 23. The state
 machines in a PIO block share the pin directions, so each lets go as
 soon as its select rises.
 
+## CIA mode
+
+`mode cia` turns the exerciser into the 6510 for a CIA controller (#182):
+U1501 (CIA 1) or U1601 (CIA 2), which share the bus pins. The board under
+test runs the controller's bench build. The checks come from the 6526 model
+in [`libraries/Compact64Cia`](../libraries/Compact64Cia), the one the
+controllers run; the exerciser keeps its own copy and steps it with the
+same accesses and inputs as the DUT, in the same order. So the checks
+find faults in the DUT's bus interface and timing, not in the model: the
+model itself is tested on the host against Wolfgang Lorenz's test suite
+([`tools/cia`](../../tools/cia/README.md)).
+
+**Wiring:** the same straight cable, GPIOn to GPIOn. In CIA mode the
+exerciser drives only:
+
+| GPIO | Signal | Notes |
+| ---- | ------ | ----- |
+| 0 to 7 | D0 to D7 | in phi2 of a write; before a read, a precharge to the inverse of the expected value in phi1 |
+| 8 to 11 | A0 to A3 (RS0 to RS3) | |
+| 12, 13 | `CNT`, `SP` | |
+| 18 | TOD | bench only: one pulse per `cia_tod` cycles, instead of the controller's crystal |
+| 21 | `~RESET` | low for the first three cycles of a batch |
+| 23 | `~FLAG` | |
+| 24 to 26 | `PHI2`, `R/~W`, `~CS` | |
+
+Every other pin is an input with its pull-up, since the controllers' port
+lines are open drain. The second sampler reads GPIO16 to GPIO31 instead of
+GPIO32 to GPIO47, for `~IRQ` (GPIO22; CIA 2 drives `~NMI` there). The
+pull-up is too slow for `~IRQ` at full speed, so the bench build of the
+controller drives it push-pull.
+
+**What a batch does:** each cycle is an idle cycle, a read of a random
+register or a write of a random value to a random register (weights
+`cia_w_idle`, `cia_w_read`, `cia_w_write`). Timer latch writes are mostly
+small values, so the timers underflow often. The exerciser checks D at the
+6510's latch point for each read (or at `sample_off` ns after `PHI2` rises
+in sample mode 1), and `~IRQ` in every cycle. The read checks are grouped:
+
+| Check | Registers |
+| ----- | --------- |
+| `cia_port` | PRA, PRB (only with `cia_ports 1`) |
+| `cia_timer` | TA, TB |
+| `cia_tod` | TOD |
+| `cia_icr` | ICR |
+| `cia_reg` | the rest: DDRA, DDRB, SDR, CRA, CRB |
+| `cia_irq` | `~IRQ`, every cycle |
+
+| Parameter | Default | Meaning |
+| --------- | ------- | ------- |
+| `cia_w_idle`, `cia_w_read`, `cia_w_write` | 2, 4, 2 | Weights of the cycle kinds |
+| `cia_ports` | 0 | 1: check reads of PRA and PRB. Leave it at 0 on this bench: the port pins only have the RP2350's pull-ups, too slow for a port that was just released |
+| `cia_tod` | 23 | Cycles between TOD pulses, 0 for none |
+| `cia_flag` | 97 | Cycles between `~FLAG` pulses, 0 for none |
+| `cia_cnt` | 0 | Cycles between `CNT` edges, 0 for none |
+| `cia_model` | 0 | 0: 6526, 1: 8521; set the DUT to the same |
+
+`half_ns`, `t_addr`, `t_pla`, `t_dv`, `t_dhold`, `t_setup`, `t_pre_start`,
+`t_pre_end`, `speed`, `cycles` and the sample mode work as in U1401 mode.
+
+**Running:** give `bench.py` `--mode cia`:
+
+```sh
+tools/bench/bench.py run --mode cia --ex <port> --dut <port> --batches 20 --set speed=40
+tools/bench/bench.py speeds --mode cia --ex <port> --dut <port> --speeds 25,40,60,100
+tools/bench/bench.py shmoo --mode cia --ex <port> --dut <port> --speeds 40:100:20 --offsets 100:500:50
+```
+
+`speeds` runs the batches at each speed and prints the errors of each check
+and the DUT's counters: `overruns` (cycles it lost) and its loop's clocks
+per cycle (`loop_avg`, `loop_max`). `shmoo` takes its sample point from the
+rise of `PHI2` in CIA mode. `cal`, `trace` and `timings` are U1401 only.
+
+**Not covered** in CIA mode: the port pins (see `cia_ports`); `CNT` and
+`SP` as outputs of the CIA, so the serial port in output mode and the
+timers' `CNT` output; the controller's own TOD clock from its crystal;
+`~IRQ` as an open-drain output with the board's pull-up.
+
 ## Simulation
 
 `make -C tools/bench/sim` runs the exerciser's generator and checker against
@@ -269,6 +352,8 @@ checks that an ideal firmware passes, that a slow one fails, that the sweep
 finds its latency, and that the release check works.
 
 ## Not covered
+
+In U1401 mode:
 
 - U1402 and the 5 V side of the bus: everything here runs at 3.3 V.
 - The load of the real data bus, and the drive strength it needs (see the

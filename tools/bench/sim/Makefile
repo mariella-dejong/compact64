@@ -11,7 +11,7 @@ CPPFLAGS += -I$(EX) -I$(LIB)
 
 all: run
 
-sim: sim.c $(EX)/gen.c $(EX)/gen.h $(EX)/engine.h $(LIB)/c64bus_bench.h $(LIB)/c64bus_pins.h
+sim: sim.c $(EX)/gen.c $(EX)/gen.h $(EX)/gen_int.h $(EX)/engine.h $(LIB)/c64bus_bench.h $(LIB)/c64bus_pins.h
 	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ sim.c $(EX)/gen.c -lm
 
 run: sim
