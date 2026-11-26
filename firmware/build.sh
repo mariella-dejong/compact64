@@ -18,8 +18,7 @@
 #   weact    the WeAct Studio RP2350B core board
 #
 # FREQ sets the clock of U1401 and the CIA controllers in MHz (default 150,
-# the RP2350's rating; the
-# Arduino core offers overclocks up to 300).
+# the RP2350's rating; the Arduino core offers overclocks up to 300).
 #
 # TRACE_PINS=1 builds U1401 with the trace pins (BUS_TRACE_PINS in
 # u1401/bus.h): GPIO44 and GPIO45 show where the bus loop is.
