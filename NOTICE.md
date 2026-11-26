@@ -115,6 +115,22 @@ Other 3D models referenced by the board (`${KISYS3DMOD}` paths) come from
 the KiCad libraries installed with KiCad and are not included in this
 repository.
 
+## Test tools for the CIA model
+
+The host tests of the 6526 model in [`tools/cia/test`](tools/cia/test)
+use two pieces of third-party test material, in
+[`tools/cia/third_party`](tools/cia/third_party). Neither is built into the
+firmware.
+
+- **m6502.h** from the [chips](https://github.com/floooh/chips) project:
+  Copyright (c) 2018 Andre Weissflog, licensed under the zlib licence
+  ([`LICENSES/Zlib.txt`](LICENSES/Zlib.txt)). Unmodified; the licence notice
+  is in the file.
+- **C64 Emulator Test Suite 2.15** by Wolfgang Lorenz
+  (<https://6502.org/tools/emu/>): "Public Domain, no Copyright". Only the
+  CIA programs, their sources and their descriptions are included,
+  unmodified.
+
 ## Original Commodore design
 
 The C64 motherboard (assembly 250407, PCB KU-14194HB) was originally designed
