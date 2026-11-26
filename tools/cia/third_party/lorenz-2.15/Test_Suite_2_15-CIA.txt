@@ -1,0 +1,156 @@
+C64 Emulator Test Suite - Public Domain, no Copyright
+
+The purpose of the C64 Emulator Test Suite is
+- to help C64 emulator authors improve the compatibility
+- ensure that updated emulators have no new bugs in old code parts
+
+The suite are a few hundred C64 programs which check the details of the C64 they are running on. The suite runs automated and stops only if it has detected an error. That the suite doesn't stop on my C64-I/PAL proves that the suite has no bugs. That the same suite doesn't stop on an emulator proves that this particular emulator is compatible to my C64 regarding every tested detail. Of course, the emulator may still have bugs in parts which are not tested by the suite. There may also be a difference between your C64 and my C64.
+
+While the Test Suite is running, the Datasette should be disconnected. Needs about 80 min to complete.
+
+The source code has been developed with MACRO(SS)ASS+ by Wolfram Roemhild. The file TEMPLATE.ASM provides a starting point for adding new tests to the suite.
+
+
+[...] Only the descriptions of the CIA programs included in this repository follow; the rest of the document is omitted.
+
+///////////////////////////////////////////////////////////////////////////////
+Programs CIA1TB123 and CIA2TB123 - CIA timer B 1-3 cycles after writing CRB
+
+The cycles 1-3 after STA DD0F cannot be measured with LDA DD06 because it takes 3 cycles to decode the LDAa. Executing the STA DD0F at DD03 lets the CPU read DD06 within one cycle.
+
+#1 #2  DD06 sequence 1/2/3 (4)
+---------------------------------
+00 01  keep   keep   count  count
+00 10  keep   load   keep   keep
+00 11  keep   load   keep   count
+01 11  count  load   keep   count
+01 10  count  load   keep   keep
+01 00  count  count  keep   keep
+
+#1, #2 = values written to DD0F
+
+
+///////////////////////////////////////////////////////////////////////////////
+Programs CIA1PB6 to CIA2PB7 - CIA timer output to PB6 and PB7
+
+Checks 128 combinations of CRA/B in One Shot mode:
+  old CRx bit 0 Start
+      CRx bit 1 PBxOut
+      CRx bit 2 PBxToggle
+  new CRx bit 0 Start
+      CRx bit 1 PBxOut
+      CRx bit 2 PBxToggle
+      CRx bit 4 Force Load
+
+The resulting PB6/7 bit is:
+  0 if new PBxToggle is 0
+  1 if new PBxToggle is 1
+  - (undetermined) if PBxOut is 0
+
+Old values do not influence the result. Start and Force Load don't either.
+
+Next, the programs test if PBx is toggled to 0 on the first underflow and that neither writing CRx except bit 0 nor Timer Hi/Lo will set it back to 1. The only source which is able to reset the toggle line is a rising edge on the Start bit 0 of CRx.
+
+Another test verifies that the toggle line is independent from PBxOut and PBxToggle. Changing these two bits will have no effect on switching the toggle flip flop when the timer underflows.
+
+The last test checks for the correct timing in Pulse and Toggle Mode.
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program CIA1TAB - TA, TB, PB67 and ICR in cascaded mode
+
+Both latches are set to 2. TA counts system clocks, TB counts TA underflows (cascaded). PB6 is high for one cycle when TA underflows, PB7 is toggled when TB underflows. IMR is $02.
+
+TA  01 02 02 01 02 02 01 02 02 01 02 02
+TB  02 02 02 01 01 01 00 00 02 02 02 02
+PB  80 C0 80 80 C0 80 80 C0 00 00 40 00
+ICR 00 01 01 01 01 01 01 01 03 83 83 83
+
+If one of the registers doesn't match this table, the program displays the wrong values with red color.
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program LOADTH - Load timer high byte
+
+Writing to the high byte of the latch may load the counter only when it is not running.
+
+writing    counter  load
+------------------------
+high byte  stopped  yes
+high byte  running  no
+low byte   stopped  no
+low byte   running  no
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program CNTO2 - Switches between CNT and o2 input
+
+When the timer input is switched from o2 to CNT or from CNT back to o2, there must be a two clock delay until the switch is recognized.
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program ICR01 - Reads ICR around an underflow
+
+Reads ICR when an underflow occurs and checks if the NMI is executed.
+
+time  ICR  NMI
+--------------
+t-1   00   yes
+t     01   no
+t+1   81   yes
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program IMR - Interrupt mask register
+
+When a condition in the ICR is true, setting the corresponding bit in the IMR must also set the interrupt. Clearing the bit in the IMR may not clear the interrupt. Only reading the ICR may clear the interrupt.
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program FLIPOS - Flip one shot
+
+Sets and clears the one shot bit when an underflow occurs at t. Set must take effect at t-1, clear at t-2.
+
+time  set    clear
+------------------
+t-2   stop   count
+t-1   stop   stop
+t     count  stop
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program ONESHOT - Checks for start bit cleared
+
+Reads CRA in one shot mode with an underflow at t.
+
+time  CRA
+---------
+t-1   $09
+t     $08
+
+
+///////////////////////////////////////////////////////////////////////////////
+Program CNTDEF - CNT default
+
+CNT must be high by default. This is tested with timer B cascaded mode CRB = $61.
+
+
+
+
+
+
+*******************************************
+**  U N D E R   C O N S T R U C T I O N  **
+*******************************************
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+Programs CIA1TA to CIA2TB - CIA timers in sysclock mode
+
+PC64Win 2.15 bug:
+  before 05/02/01/00
+  after  xx
+  cr     11/19
+  after  xx
+timer low doesn't match
