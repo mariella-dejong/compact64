@@ -41,7 +41,10 @@ enum {
 // Checks, as reported.
 enum {
     CK_RAM_R, CK_RAM_RB, CK_BASIC, CK_KERNAL, CK_CHAR, CK_COL_R, CK_COL_RB,
-    CK_VIC_RAM, CK_VIC_CHAR, CK_CACC_RAM, CK_CACC_COL, CK_RELEASE, CK_COUNT
+    CK_VIC_RAM, CK_VIC_CHAR, CK_CACC_RAM, CK_CACC_COL, CK_RELEASE,
+    // CIA mode (gen_cia.c): reads by register group, and ~IRQ every cycle.
+    CK_CIA_PORT, CK_CIA_REG, CK_CIA_TIMER, CK_CIA_TOD, CK_CIA_ICR, CK_CIA_IRQ,
+    CK_COUNT
 };
 extern const char *const ex_check_names[CK_COUNT];
 
@@ -69,6 +72,15 @@ typedef struct {
     int32_t cycles;       // cycles per batch
     int32_t bank;         // VIC-II bank 0 to 3, or 4 for a random bank per batch
     int32_t weight[K_COUNT];
+    // CIA mode (gen_cia.c).
+    int32_t cia_w_idle;   // weights: cycle without an access to the CIA,
+    int32_t cia_w_read;   //   a read of a random register,
+    int32_t cia_w_write;  //   a write of a random value to a random register
+    int32_t cia_ports;    // 1: check reads of PRA and PRB (pins on the bench, see README)
+    int32_t cia_tod;      // cycles between TOD edges on GPIO18, 0 for none
+    int32_t cia_flag;     // cycles between ~FLAG pulses, 0 for none
+    int32_t cia_cnt;      // cycles between CNT edges, 0 for none
+    int32_t cia_model;    // 0: 6526, 1: 8521 (set the DUT to the same)
 } ex_params_t;
 
 typedef struct {
@@ -113,6 +125,11 @@ void ex_go_idle(void);
 
 // Builds, runs and checks `batches` batches, adding to `stats`.
 void ex_run_batches(uint32_t batches, uint32_t seed, ex_stats_t *stats);
+
+// CIA mode (gen_cia.c): the exerciser plays the 6510 towards a CIA
+// controller and checks it against its own copy of the 6526 model.
+void ex_cia_go_idle(void);
+void ex_cia_run_batches(uint32_t batches, uint32_t seed, ex_stats_t *stats);
 
 // Trace: one batch with extra samples every `step` clocks, starting `phase`
 // clocks into the batch, during its first `cycles` cycles, as a logic

@@ -30,6 +30,11 @@ enum { SM_W1 = 0, SM_S1 = 1 };            // on PIO1
 
 static uint off_w24, off_d8, off_s0, off_w16, off_s1;
 static bool mark_on = false;
+static bool cia_mode = false;
+
+// CIA mode outputs on GPIO8 to GPIO31 (see engine.h).
+#define W0_CIA ((0xFull << 8) | (1ull << 12) | (1ull << 13) | (1ull << 18) | (1ull << 21) | \
+                (1ull << 23) | (1ull << 24) | (1ull << 25) | (1ull << 26))
 static int ch_w0, ch_d, ch_s0, ch_w1, ch_s1, ch_rx0, ch_rx1;
 
 uint32_t ex_sys_hz(void) {
@@ -90,6 +95,34 @@ void ex_set_mark(bool on) {
     }
     gpio_disable_pulls(EX_GPIO_MARK);
     mark_on = on;
+}
+
+static void stop_all(void);
+
+bool ex_engine_cia(void) {
+    return cia_mode;
+}
+
+void ex_engine_set_cia(bool on) {
+    stop_all();
+    const uint64_t w0_out = on ? W0_CIA : W0_PINS;
+    const uint64_t w1_out = on ? 0 : W1_PINS;
+    pio_sm_set_pindirs_with_mask64(P0, SM_W0, w0_out, W0_PINS);
+    pio_sm_set_pindirs_with_mask64(P1, SM_W1, w1_out, W1_PINS);
+    if (mark_on) {
+        ex_set_mark(true);
+    }
+    for (uint g = 8; g < 48; g++) {
+        const uint64_t bit = 1ull << g;
+        if (on && !((w0_out | w1_out) & bit) && !(mark_on && g == EX_GPIO_MARK)) {
+            gpio_pull_up(g);
+        } else {
+            gpio_disable_pulls(g);
+        }
+    }
+    pio_sm_set_in_pins(P1, SM_S1, on ? 16 : 32);
+    P1->input_sync_bypass = on ? 0x0000FFFFu : 0x1FFu << (36 - 16);
+    cia_mode = on;
 }
 
 void ex_engine_init(void) {
