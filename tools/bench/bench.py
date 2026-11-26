@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 Compact 64 contributors
-"""Drives the U1401 bench test (#159) over USB serial.
+"""Drives the bench tests over USB serial: U1401 (#159) and, with
+`--mode cia`, the CIA controllers (#182).
 
-The exerciser plays the bus; the DUT runs the U1401 firmware. Both print
-`key=value` lines (firmware/bench/README.md). Examples:
+The exerciser plays the bus; the DUT runs the U1401 firmware or a CIA
+controller's bench build. Both print `key=value` lines
+(firmware/bench/README.md). Examples:
 
   bench.py run --ex /dev/ttyACM0 --dut /dev/ttyACM1 --batches 100
   bench.py sweep sample_off 40 200 4 --ex /dev/ttyACM0 --dut /dev/ttyACM1 \\
@@ -14,6 +16,7 @@ The exerciser plays the bus; the DUT runs the U1401 firmware. Both print
   bench.py cal 47 0 -4 12 --ex /dev/ttyACM0
   bench.py trace --ex /dev/ttyACM0 --dut /dev/ttyACM1 --cycles 4
   bench.py timings --ex /dev/ttyACM0 --dut /dev/ttyACM1 --batches 2 --csv timings.csv
+  bench.py speeds --mode cia --ex /dev/ttyACM0 --dut /dev/ttyACM1 --speeds 25,40,60,100
 
 Requires pyserial.
 """
@@ -66,7 +69,8 @@ def fields(line):
 
 def run_step(ex, dut, batches):
     """Runs `batches` batches; returns the summary, per-check counts,
-    failures and the DUT's late count for this step."""
+    failures and the DUT's `stats` fields for this step (None without a
+    DUT)."""
     if dut:
         dut.command("clear")
     lines = ex.command(f"run {batches}")
@@ -79,11 +83,23 @@ def run_step(ex, dut, batches):
             checks[f["name"]] = (int(f["n"]), int(f["err"]))
         elif f["_"] == "fail":
             fails.append(line)
-    late = None
+    stats = None
     if dut:
         stats = fields(dut.command("stats", until=("stats",))[-1])
-        late = int(stats.get("late", 0))
-    return summary, checks, fails, late
+    return summary, checks, fails, stats
+
+
+# DUT `stats` fields worth a column, per mode: a CIA controller counts its
+# lost cycle samples and the loop's clocks per cycle; U1401 has no such
+# counters.
+DUT_FIELDS = {"u1401": (), "cia": ("overruns", "loop_avg", "loop_max")}
+
+
+def dut_columns(args, stats):
+    """The DUT's counters of this mode, as `dut_<name>` columns."""
+    if stats is None:
+        return {}
+    return {f"dut_{k}": int(stats[k]) for k in DUT_FIELDS[args.mode] if k in stats}
 
 
 def valid(summary):
@@ -99,12 +115,19 @@ def apply_sets(ex, sets):
 def prepare(args):
     ex = Port(args.ex)
     dut = Port(args.dut) if args.dut else None
+    ex.command(f"mode {args.mode}")
     ex.command("ntsc" if args.ntsc else "pal")
-    ex.command(f"fill {args.seed}")
-    if dut:
-        dut.command(f"fill {args.seed}")
+    if args.mode == "u1401":  # the memory model; a CIA has none
+        ex.command(f"fill {args.seed}")
+        if dut:
+            dut.command(f"fill {args.seed}")
     apply_sets(ex, args.set)
     return ex, dut
+
+
+def u1401_only(args):
+    if args.mode != "u1401":
+        sys.exit(f"bench.py {args.cmd}: U1401 mode only")
 
 
 def span(text):
@@ -122,14 +145,15 @@ def cmd_info(args):
 
 def cmd_run(args):
     ex, dut = prepare(args)
-    summary, checks, fails, late = run_step(ex, dut, args.batches)
+    summary, checks, fails, stats = run_step(ex, dut, args.batches)
     print(" ".join(f"{k}={v}" for k, v in summary.items() if k != "_"))
     for name, (n, err) in checks.items():
         print(f"  {name:15} n={n:<8} err={err}")
     for line in fails:
         print("  " + line)
-    if late is not None:
-        print(f"  dut late={late}")
+    cols = dut_columns(args, stats)
+    if cols:
+        print("  " + " ".join(f"{k}={v}" for k, v in cols.items()))
     return 0 if valid(summary) and summary.get("errors") == "0" else 1
 
 
@@ -138,8 +162,8 @@ def cmd_sweep(args):
     rows = []
     for value in range(args.start, args.stop + 1, args.step):
         ex.command(f"set {args.param} {value}")
-        summary, checks, _, late = run_step(ex, dut, args.batches)
-        row = {args.param: value, "valid": int(valid(summary)), "dut_late": late}
+        summary, checks, _, stats = run_step(ex, dut, args.batches)
+        row = {args.param: value, "valid": int(valid(summary)), **dut_columns(args, stats)}
         for name, (n, err) in checks.items():
             row[f"{name}_n"] = n
             row[f"{name}_err"] = err
@@ -155,20 +179,21 @@ def cmd_shmoo(args):
     ex, dut = prepare(args)
     ex.command("set sample_mode 1")
     speeds, offsets = span(args.speeds), span(args.offsets)
-    wanted = args.checks.split(",")
+    wanted = (args.checks or SHMOO_CHECKS[args.mode]).split(",")
     rows, grid = [], {}
     for speed in speeds:
         ex.command(f"set speed {speed}")
         for off in offsets:
             ex.command(f"set sample_off {off}")
-            summary, checks, _, late = run_step(ex, dut, args.batches)
+            summary, checks, _, stats = run_step(ex, dut, args.batches)
             n = sum(checks.get(c, (0, 0))[0] for c in wanted)
             err = sum(checks.get(c, (0, 0))[1] for c in wanted)
             rate = err / n if n and valid(summary) else None
             grid[speed, off] = rate
             rows.append({"speed": speed, "sample_off": off, "n": n, "err": err,
-                         "valid": int(valid(summary)), "dut_late": late})
-    print(f"error rate of {args.checks}: rows speed %, columns ns after the select")
+                         "valid": int(valid(summary)), **dut_columns(args, stats)})
+    after = "the select" if args.mode == "u1401" else "PHI2 rises"
+    print(f"error rate of {','.join(wanted)}: rows speed %, columns ns after {after}")
     print("speed " + "".join(f"{o:>5}" for o in offsets))
     for speed in speeds:
         cells = []
@@ -180,10 +205,38 @@ def cmd_shmoo(args):
     write_csv(args.csv, rows)
 
 
+def cmd_speeds(args):
+    """Errors per check and the DUT's counters at each speed, sampled at the
+    latch point (sample mode 0)."""
+    ex, dut = prepare(args)
+    rows = []
+    for speed in [int(x) for x in args.speeds.split(",")]:
+        ex.command(f"set speed {speed}")
+        summary, checks, _, stats = run_step(ex, dut, args.batches)
+        row = {"speed": speed, "valid": int(valid(summary)), "cycles": int(summary.get("cycles", 0)),
+               "errors": int(summary.get("errors", 0)), **dut_columns(args, stats)}
+        for name, (n, err) in checks.items():
+            row[f"{name}_n"] = n
+            row[f"{name}_err"] = err
+        rows.append(row)
+        bad = {k: f"{v[1]}/{v[0]}" for k, v in checks.items() if v[1]}
+        dut_text = " ".join(f"{k[4:]}={v}" for k, v in dut_columns(args, stats).items())
+        print(f"speed={speed:<4} valid={row['valid']} cycles={row['cycles']} errors={row['errors']} "
+              f"{dut_text} {bad or ''}".rstrip(), flush=True)
+    write_csv(args.csv, rows)
+    return 0 if all(r["valid"] and not r["errors"] for r in rows) else 1
+
+
 def cmd_cal(args):
+    u1401_only(args)
     ex = Port(args.ex)
     for line in ex.command(f"cal {args.out} {args.inp} {args.start} {args.stop} {args.reps}")[:-1]:
         print(line)
+
+
+# Default checks of `shmoo`, per mode.
+SHMOO_CHECKS = {"u1401": "ram_read,ram_readback,vic_ram,cacc_ram",
+                "cia": "cia_reg,cia_timer,cia_tod,cia_icr"}
 
 
 # Trace columns: name, GPIO, active low. Exerciser outputs come from `out`,
@@ -244,6 +297,7 @@ def answer_times(rows, skew, hold=2):
 
 
 def cmd_trace(args):
+    u1401_only(args)
     ex, dut = prepare(args)
     hz = int(fields(ex.command("info", until=("info",))[-1])["sys_hz"])
     ns = 1e9 / hz
@@ -342,6 +396,7 @@ WEIGHTS = ["w_v_refresh", "w_v_ram", "w_v_char", "w_ram_r", "w_ram_w", "w_basic"
 def cmd_timings(args):
     """Per access type: the sample offset after the select from which reads
     pass (minus the calibration), and pass or fail at the latch point."""
+    u1401_only(args)
     ex, dut = prepare(args)
     offsets = span(args.offsets)
     speeds = span(args.speeds)
@@ -423,6 +478,8 @@ def main():
     common = argparse.ArgumentParser(add_help=False)
     common.add_argument("--ex", required=True, help="serial port of the exerciser")
     common.add_argument("--dut", help="serial port of the board under test")
+    common.add_argument("--mode", choices=("u1401", "cia"), default="u1401",
+                        help="exerciser mode: U1401 (#159) or a CIA controller (#182)")
     common.add_argument("--seed", type=int, default=1, help="test pattern seed (fill)")
     common.add_argument("--ntsc", action="store_true", help="NTSC timing instead of PAL")
     common.add_argument("--set", action="append", metavar="NAME=VALUE", help="exerciser parameter")
@@ -440,7 +497,8 @@ def main():
     sh = sub.add_parser("shmoo", parents=[common])
     sh.add_argument("--speeds", default="100:200:10", help="from:to:step, percent")
     sh.add_argument("--offsets", default="40:200:8", help="from:to:step, ns after the select")
-    sh.add_argument("--checks", default="ram_read,ram_readback,vic_ram,cacc_ram")
+    sh.add_argument("--checks", help="comma-separated checks (default: " +
+                    "; ".join(f"{m}: {c}" for m, c in SHMOO_CHECKS.items()) + ")")
     cp = sub.add_parser("cal", parents=[common])
     cp.add_argument("out", type=int)
     cp.add_argument("inp", type=int)
@@ -453,6 +511,8 @@ def main():
     tm.add_argument("--cal-ns", type=int, default=12, help="calibration offset in ns, subtracted")
     tm.add_argument("--only", help="comma-separated checks")
     tm.add_argument("--max-rate", type=float, default=0.005, help="error rate that still counts as passing")
+    sd = sub.add_parser("speeds", parents=[common])
+    sd.add_argument("--speeds", default="25,40,60,80,100,110", help="comma-separated, percent")
     tp = sub.add_parser("trace", parents=[common])
     tp.add_argument("--cycles", type=int, default=4, help="cycles to trace")
     tp.add_argument("--step", type=int, default=6, help="exerciser clocks between samples in one pass (6 or more)")
@@ -462,7 +522,7 @@ def main():
     tp.add_argument("--all", action="store_true", help="print every sample, not only changes")
     args = ap.parse_args()
     handler = {"info": cmd_info, "run": cmd_run, "sweep": cmd_sweep, "shmoo": cmd_shmoo, "cal": cmd_cal,
-               "trace": cmd_trace, "timings": cmd_timings}
+               "trace": cmd_trace, "timings": cmd_timings, "speeds": cmd_speeds}
     return handler[args.cmd](args) or 0
 
 

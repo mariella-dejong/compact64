@@ -2,6 +2,7 @@
 // SPDX-FileCopyrightText: 2026 Compact 64 contributors
 
 #include "gen.h"
+#include "gen_int.h"
 
 #include <math.h>
 #include <string.h>
@@ -41,6 +42,7 @@ ex_params_t ex_params;
 const char *const ex_check_names[CK_COUNT] = {
     "ram_read", "ram_readback", "basic", "kernal", "char", "color_read", "color_readback",
     "vic_ram", "vic_char", "cacc_ram", "cacc_color", "release",
+    "cia_port", "cia_reg", "cia_timer", "cia_tod", "cia_icr", "cia_irq",
 };
 
 #define P(name) {#name, &ex_params.name}
@@ -54,6 +56,8 @@ const ex_param_ref_t ex_param_refs[] = {
     W(ram_r, K_C_RAM_R), W(ram_w, K_C_RAM_W), W(basic, K_C_BASIC), W(kernal, K_C_KERNAL),
     W(char, K_C_CHAR), W(col_r, K_C_COL_R), W(col_w, K_C_COL_W), W(idle, K_C_IDLE),
     W(release, K_C_RELEASE), W(readback, K_C_READBACK), W(cacc, K_B_CACC),
+    P(cia_w_idle), P(cia_w_read), P(cia_w_write), P(cia_ports), P(cia_tod), P(cia_flag),
+    P(cia_cnt), P(cia_model),
 };
 const unsigned ex_param_count = sizeof(ex_param_refs) / sizeof(ex_param_refs[0]);
 
@@ -89,6 +93,14 @@ void ex_params_default_pal(void) {
         [K_C_READBACK] = 2, [K_B_CACC] = 2,
     };
     memcpy(ex_params.weight, w, sizeof(w));
+    ex_params.cia_w_idle = 2;
+    ex_params.cia_w_read = 4;
+    ex_params.cia_w_write = 2;
+    ex_params.cia_ports = 0;
+    ex_params.cia_tod = 23;
+    ex_params.cia_flag = 97;
+    ex_params.cia_cnt = 0;
+    ex_params.cia_model = 0;
 }
 
 // NTSC (8562, 1.023 MHz).
@@ -128,32 +140,16 @@ static unsigned wq_ram_n, wq_col_n, wq_ram_i, wq_col_i;
 // ---------------------------------------------------------------------------
 // Random numbers (xorshift32).
 
-static uint32_t rng = 1;
-
-static inline uint32_t rnd(void) {
-    rng ^= rng << 13;
-    rng ^= rng >> 17;
-    rng ^= rng << 5;
-    return rng;
-}
+uint32_t rng = 1;
 
 // ---------------------------------------------------------------------------
 // Lists. A list word holds a state and how long it lasts; words are written
 // when the next change is known.
 
-typedef struct {
-    uint32_t *buf;
-    uint32_t cap, n;
-    uint32_t last;   // tick at which `state` started
-    uint32_t state;  // pending state
-    uint32_t mask, min, max, bias;
-    uint8_t shift;
-} lst_t;
-
-static lst_t l_w0, l_w1, l_d;
-static uint32_t s_n, s_start;  // sampler list
-static uint32_t moved, max_move;  // edges moved to keep a list's minimum hold
-static bool full;
+lst_t l_w0, l_w1, l_d;
+uint32_t s_n, s_start;  // sampler list
+uint32_t moved, max_move;  // edges moved to keep a list's minimum hold
+bool full;
 
 static void note_move(uint32_t ticks) {
     moved++;
@@ -223,30 +219,13 @@ static void sampler_add(uint32_t tick) {
 // ---------------------------------------------------------------------------
 // Events, sorted by time.
 
-typedef struct {
-    uint16_t addr;
-    uint8_t check;
-    uint8_t exp_d, mask_d, exp_c, mask_c, exp_s, mask_s;
-    uint32_t cycle;
-} rec_t;
-
-enum { EV_W, EV_D, EV_S };
-
-typedef struct {
-    uint32_t tick;
-    uint8_t type;
-    uint64_t mask, val;
-    rec_t rec;
-} ev_t;
-
-#define QCAP 256
-static ev_t q[QCAP];
-static unsigned qn;
-static rec_t recs[EX_S_WORDS];
-static uint32_t n_recs;
-static uint64_t pins;      // exerciser outputs on GPIO8 to GPIO47
-static uint32_t dstate;    // D0 to D7: values | directions << 8
-static uint32_t d_end;     // latest D event so far
+ev_t q[QCAP];
+unsigned qn;
+rec_t recs[EX_S_WORDS];
+uint32_t n_recs;
+uint64_t pins;      // exerciser outputs on GPIO8 to GPIO47
+uint32_t dstate;    // D0 to D7: values | directions << 8
+uint32_t d_end;     // latest D event so far
 
 // Trace (ex_trace_batch): extra samples every trace_step clocks in the
 // first trace_cycles cycles; off while trace_step is 0.
@@ -283,7 +262,7 @@ static bool trace_fits(unsigned i, uint32_t tick) {
 }
 
 // Applies every event before `limit`.
-static void q_flush(uint32_t limit) {
+void q_flush(uint32_t limit) {
     unsigned i = 0;
     for (; i < qn && (int32_t)(q[i].tick - limit) < 0; i++) {
         const ev_t *e = &q[i];
@@ -320,16 +299,16 @@ static void q_flush(uint32_t limit) {
     qn -= i;
 }
 
-static void w_set(uint32_t t, uint64_t mask, uint64_t val) {
+void w_set(uint32_t t, uint64_t mask, uint64_t val) {
     ev_t e = {.tick = t, .type = EV_W, .mask = mask, .val = val};
     q_add(&e);
 }
 
-static void w_low(uint32_t t, uint64_t mask) {
+void w_low(uint32_t t, uint64_t mask) {
     w_set(t, mask, 0);
 }
 
-static void w_high(uint32_t t, uint64_t mask) {
+void w_high(uint32_t t, uint64_t mask) {
     w_set(t, mask, mask);
 }
 
@@ -345,7 +324,7 @@ static void va_set(uint32_t t, uint32_t va4, uint32_t va5) {
 // released bit keeps its last value: data8 runs `out pins` one clock before
 // `out pindirs`, so a new value would be driven for that clock and left on
 // the bus as its charge.
-static void d_set(uint32_t t, uint32_t vals, uint32_t dirs, uint32_t bits) {
+void d_set(uint32_t t, uint32_t vals, uint32_t dirs, uint32_t bits) {
     bits &= 0xFFu;
     const uint32_t driven = bits & dirs;
     ev_t e = {.tick = t, .type = EV_D, .mask = driven | (bits << 8),
@@ -356,7 +335,7 @@ static void d_set(uint32_t t, uint32_t vals, uint32_t dirs, uint32_t bits) {
     }
 }
 
-static void sample(uint32_t t, const rec_t *r) {
+void sample(uint32_t t, const rec_t *r) {
     ev_t e = {.tick = t, .type = EV_S, .rec = *r};
     q_add(&e);
 }
@@ -364,15 +343,8 @@ static void sample(uint32_t t, const rec_t *r) {
 // ---------------------------------------------------------------------------
 // Timing.
 
-static float ks, kd;  // ticks per ns: cycle times (scaled), chip delays
+float ks, kd;  // ticks per ns: cycle times (scaled), chip delays
 static uint32_t bank;
-#define p (&ex_params)
-
-static inline uint32_t at(uint32_t base, int32_t ns, float k) {
-    return (uint32_t)((int32_t)base + (int32_t)lroundf((float)ns * k));
-}
-#define SC(base, ns) at((base), (ns), ks)
-#define DL(base, ns) at((base), (ns), kd)
 
 static uint32_t sample_tick(uint32_t end, uint32_t fall) {
     return p->sample_mode ? DL(fall, p->sample_off) : SC(end, -p->t_setup);
@@ -625,7 +597,7 @@ void ex_go_idle(void) {
     ex_set_idle(idle_pins());
 }
 
-static void lists_begin(uint32_t seed, uint64_t first) {
+void lists_begin(uint32_t seed, uint64_t first) {
     rng = c64bench_hash32(seed) | 1u;
     moved = 0;
     max_move = 0;
@@ -650,7 +622,7 @@ static void lists_begin(uint32_t seed, uint64_t first) {
 
 // Flushes all events, holds every list to a common end and pads it, so that
 // a stall flag can be read before any list runs out (engine.c).
-static void lists_end(uint32_t t_end, ex_lists_t *l) {
+void lists_end(uint32_t t_end, ex_lists_t *l) {
     q_flush(t_end + 1u);
     uint32_t last = t_end;
     if ((int32_t)(l_w0.last - last) > 0) last = l_w0.last;

@@ -77,6 +77,7 @@ if [ "${TRACE_PINS:-0}" = 1 ]; then
 fi
 "$cli" compile --fqbn "$fqbn" --warnings all ${extra[@]+"${extra[@]}"} \
     --library "$here/libraries/Compact64Bus" \
+    --library "$here/libraries/Compact64Cia" \
     --output-dir "$out" "$sketch"
 
 if [ -n "${2:-}" ]; then

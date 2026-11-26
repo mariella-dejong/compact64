@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: Apache-2.0
 // SPDX-FileCopyrightText: 2026 Compact 64 contributors
 //
-// Bus exerciser for the U1401 bench test (#159). Plays the 6510, the VIC-II
-// and the CPLD towards a board running the U1401 firmware, with every jumper
-// from GPIOn to GPIOn, and checks the data it returns. Line commands over USB
-// serial; tools/bench/bench.py drives the sweeps.
+// Bus exerciser for the bench tests: U1401 (#159), where it plays the 6510,
+// the VIC-II and the CPLD towards the RAM and ROM controller, and the CIA
+// controllers (#182, `mode cia`), where it plays the 6510 towards a CIA and
+// checks it against its own 6526 model. Every jumper runs from GPIOn to
+// GPIOn. Line commands over USB serial; tools/bench/bench.py drives them.
 
 #include <Compact64Bus.h>
 
@@ -63,7 +64,11 @@ static void run(uint32_t batches, uint32_t seed) {
     ex_stats_t st;
     memset(&st, 0, sizeof(st));
     ex_failure_count = 0;
-    ex_run_batches(batches, seed, &st);
+    if (ex_engine_cia()) {
+        ex_cia_run_batches(batches, seed, &st);
+    } else {
+        ex_run_batches(batches, seed, &st);
+    }
     report(st, seed);
     Serial.println("end");
 }
@@ -111,10 +116,18 @@ static void handle_command(char *line) {
     }
     const char *cmd = argv[0];
     if (!strcmp(cmd, "info")) {
-        Serial.printf("info firmware=exerciser sys_hz=%lu vreg=%u pattern_seed=%lu next_seed=%lu mark=%s\n",
+        Serial.printf("info firmware=exerciser sys_hz=%lu vreg=%u pattern_seed=%lu next_seed=%lu mark=%s mode=%s\n",
                       (unsigned long)ex_sys_hz(), (unsigned)vreg_get_voltage(), (unsigned long)pattern_seed,
-                      (unsigned long)next_seed,
-                      ex_mark_enabled() ? "on" : "off");
+                      (unsigned long)next_seed, ex_mark_enabled() ? "on" : "off",
+                      ex_engine_cia() ? "cia" : "u1401");
+    } else if (!strcmp(cmd, "mode") && argc == 2 && (!strcmp(argv[1], "cia") || !strcmp(argv[1], "u1401"))) {
+        ex_engine_set_cia(!strcmp(argv[1], "cia"));
+        if (ex_engine_cia()) {
+            ex_cia_go_idle();
+        } else {
+            ex_go_idle();
+        }
+        Serial.println("ok");
     } else if (!strcmp(cmd, "get")) {
         print_params();
     } else if (!strcmp(cmd, "set") && argc == 3) {
@@ -138,19 +151,19 @@ static void handle_command(char *line) {
         const uint32_t seed = argc > 2 ? strtoul(argv[2], nullptr, 0) : next_seed;
         next_seed = seed + batches;
         run(batches, seed);
-    } else if (!strcmp(cmd, "trace")) {
+    } else if (!strcmp(cmd, "trace") && !ex_engine_cia()) {
         const uint32_t cycles = argc > 1 ? strtoul(argv[1], nullptr, 0) : 4;
         const uint32_t step = argc > 2 ? strtoul(argv[2], nullptr, 0) : 6;
         const uint32_t phase = argc > 3 ? strtoul(argv[3], nullptr, 0) : 0;
         const uint32_t seed = argc > 4 ? strtoul(argv[4], nullptr, 0) : next_seed++;
         trace(cycles, step, phase, seed);
-    } else if (!strcmp(cmd, "cal") && argc >= 5) {
+    } else if (!strcmp(cmd, "cal") && argc >= 5 && !ex_engine_cia()) {
         calibrate(strtoul(argv[1], nullptr, 0), strtoul(argv[2], nullptr, 0), strtol(argv[3], nullptr, 0),
                   strtol(argv[4], nullptr, 0), argc > 5 ? strtoul(argv[5], nullptr, 0) : 64);
     } else {
         Serial.println("error commands: info get set <name> <value> pal ntsc fill [seed] "
                        "run [batches] [seed] trace [cycles] [step] [phase] [seed] cal <out> <in> <from> <to> [reps] "
-                       "mark on|off");
+                       "mark on|off mode u1401|cia (trace and cal: u1401 only)");
     }
 }
 
