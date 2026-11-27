@@ -24,6 +24,12 @@
 
 #include <string.h>
 
+// CIA_FAST_PATHS 0 builds the model without its fast paths (quiet cycles
+// and the usual timer cases), as the reference for tools/cia/test/quiet.c.
+#ifndef CIA_FAST_PATHS
+#define CIA_FAST_PATHS 1
+#endif
+
 // On the RP2350 the model runs in the bus loop, once per cycle, so it has to
 // run from SRAM; on the host this does nothing.
 #if defined(PICO_RP2350) || defined(ARDUINO_ARCH_RP2040)
@@ -59,7 +65,7 @@ static inline bool tod_equal(const uint8_t *a, const uint8_t *b) {
     return a[0] == b[0] && a[1] == b[1] && a[2] == b[2] && a[3] == b[3];
 }
 
-static void timer_reset(cia_timer_t *t) {
+static void CIA_FN(timer_reset)(cia_timer_t *t) {
     t->counter = 0xFFFF;
     t->latch = 0xFFFF;
     t->cr = 0;
@@ -74,9 +80,9 @@ void cia_init(cia_t *cia, cia_model_t model) {
     cia_reset(cia);
 }
 
-void cia_reset(cia_t *cia) {
+void CIA_FN(cia_reset)(cia_t *cia) {
     const cia_model_t model = cia->model;
-    memset(cia, 0, sizeof(*cia));
+    memset(cia, 0, sizeof(*cia));  // padding too: tools/cia/test/quiet.c compares whole states
     cia->model = model;
     timer_reset(&cia->ta);
     timer_reset(&cia->tb);
@@ -209,6 +215,7 @@ static void CIA_FN(write_tod)(cia_t *cia, unsigned i, uint8_t value) {
     const bool match = tod_equal(cia->tod, cia->alarm);
     if (match && !cia->tod_match) {
         cia->icr |= CIA_INT_ALARM;
+        cia->quiet = 0;
     }
     cia->tod_match = match;
 }
@@ -235,6 +242,7 @@ void CIA_FN(cia_write)(cia_t *cia, unsigned reg, uint8_t value) {
         cia->ta.latch = (uint16_t)((cia->ta.latch & 0x00FF) | (value << 8));
         if (!(cia->ta.cr & CR_START)) {
             cia->ta.pipe |= P_LOAD1;
+            cia->quiet = 0;
         }
         break;
     case CIA_TBLO:
@@ -244,6 +252,7 @@ void CIA_FN(cia_write)(cia_t *cia, unsigned reg, uint8_t value) {
         cia->tb.latch = (uint16_t)((cia->tb.latch & 0x00FF) | (value << 8));
         if (!(cia->tb.cr & CR_START)) {
             cia->tb.pipe |= P_LOAD1;
+            cia->quiet = 0;
         }
         break;
     case CIA_TOD10:
@@ -256,6 +265,7 @@ void CIA_FN(cia_write)(cia_t *cia, unsigned reg, uint8_t value) {
         cia->sdr = value;
         if (cia->ta.cr & CRA_SPMODE) {
             cia->sdr_full = true;
+            cia->quiet = 0;
         }
         break;
     case CIA_ICR:
@@ -264,8 +274,10 @@ void CIA_FN(cia_write)(cia_t *cia, unsigned reg, uint8_t value) {
         } else {
             cia->imr &= (uint8_t)~value;
         }
+        cia->quiet = 0;
         break;
     case CIA_CRA:
+        cia->quiet = 0;
         if ((value ^ cia->ta.cr) & CRA_SPMODE) {
             // Switching the serial port direction ends a transfer.
             cia->sr_count = 0;
@@ -275,6 +287,7 @@ void CIA_FN(cia_write)(cia_t *cia, unsigned reg, uint8_t value) {
         write_cr(&cia->ta, value);
         break;
     default:
+        cia->quiet = 0;
         write_cr(&cia->tb, value);
         break;
     }
@@ -319,25 +332,46 @@ void CIA_FN(cia_tod_tick)(cia_t *cia) {
     const bool match = tod_equal(cia->tod, cia->alarm);
     if (match && !cia->tod_match) {
         cia->icr |= CIA_INT_ALARM;
+        cia->quiet = 0;
     }
     cia->tod_match = match;
 }
 
+// Timer steps for quiet cycles (see below): what timer_clock() found.
+enum { T_BUSY, T_STEADY, T_COUNTING };
+
 // One cycle of a timer. phi2: counts PHI2; step: a CNT edge or timer A
-// underflow to count in this cycle.
-static inline __attribute__((always_inline)) void timer_clock(cia_timer_t *t, bool phi2, bool step) {
+// underflow to count in this cycle. The three usual cases come first and
+// give the same result as the general path: counting PHI2 at least 2 away
+// from an underflow, stopped with nothing in the pipeline, and started but
+// counting events with none in this cycle. Returns T_COUNTING if the timer
+// is counting PHI2 and still at least 2 away from an underflow, T_STEADY if
+// nothing changes in the next cycle without an event, else T_BUSY.
+static inline __attribute__((always_inline)) unsigned timer_clock(cia_timer_t *t, bool phi2, bool step) {
+    const uint8_t cr = t->cr;
     const uint8_t pipe = t->pipe;
-    if (!(t->cr & CR_START) && !(pipe & (P_COUNT2 | P_COUNT3 | P_FLOAD | P_LOAD1 | P_RELOAD))) {
-        // Stopped, nothing in the pipeline: the fast path, same result.
-        t->pipe = (t->cr & CR_ONESHOT) ? P_ONESHOT0 : 0;
+    const uint8_t one = (cr & CR_ONESHOT) ? P_ONESHOT0 : 0;
+#if CIA_FAST_PATHS
+    if (cr & CR_START) {
+        if (phi2 && pipe == (P_COUNT2 | P_COUNT3 | one) && t->counter >= 2) {
+            t->underflow = false;
+            return --t->counter >= 2 ? T_COUNTING : T_BUSY;
+        }
+        if (!phi2 && !step && pipe == one) {
+            t->underflow = false;
+            return T_STEADY;
+        }
+    } else if (!(pipe & (P_COUNT2 | P_COUNT3 | P_FLOAD | P_LOAD1 | P_RELOAD))) {
+        t->pipe = one;
         t->underflow = false;
-        return;
+        return T_STEADY;
     }
+#endif
     if ((pipe & P_COUNT3) && t->counter) {
         t->counter--;
     }
-    const bool start = t->cr & CR_START;
-    uint8_t next = 0;
+    const bool start = cr & CR_START;
+    uint8_t next = one;
     if (start && phi2) {
         next |= P_COUNT2;
     }
@@ -346,9 +380,6 @@ static inline __attribute__((always_inline)) void timer_clock(cia_timer_t *t, bo
     }
     if (pipe & P_FLOAD) {
         next |= P_LOAD1;
-    }
-    if (t->cr & CR_ONESHOT) {
-        next |= P_ONESHOT0;
     }
     bool load = pipe & P_LOAD1;
     if (pipe & P_RELOAD) {
@@ -361,8 +392,8 @@ static inline __attribute__((always_inline)) void timer_clock(cia_timer_t *t, bo
         t->toggle = !t->toggle;
         load = true;
         next |= P_RELOAD;
-        if ((t->cr & CR_ONESHOT) || (pipe & P_ONESHOT0)) {
-            t->cr &= (uint8_t)~CR_START;
+        if ((cr & CR_ONESHOT) || (pipe & P_ONESHOT0)) {
+            t->cr = (uint8_t)(cr & ~CR_START);
             next &= (uint8_t)~P_COUNT2;
         }
     }
@@ -371,15 +402,26 @@ static inline __attribute__((always_inline)) void timer_clock(cia_timer_t *t, bo
         next &= (uint8_t)~P_COUNT3;
     }
     t->pipe = next;
+    return T_BUSY;
 }
 
-void CIA_FN(cia_clock)(cia_t *cia) {
-    const bool cnt_rise = cia->cnt_in && !cia->cnt_prev;
-    cia->cnt_prev = cia->cnt_in;
+// Quiet cycles. After a full cycle, the next ones are quiet while nothing
+// can change but the counters of timers that count PHI2 and are at least 2
+// away from an underflow: no reload, load or underflow in a pipeline, no
+// interrupt about to start, the serial port idle in output mode. What
+// could end that early zeroes cia->quiet: writes to CRA, CRB, ICR, TAHI or
+// TBHI of a stopped timer and SDR in output mode, and an alarm match. CNT
+// and ~FLAG edges end it in cia_clock_quiet(). Reads, and writes of the
+// ports, the latches and TOD, keep it: the fast path does what the full one
+// does with them (~PC, ~IRQ after an ICR read).
+void CIA_FN(cia_clock_full)(cia_t *cia) {
+    const bool cnt_in = cia->cnt_in;
+    const bool cnt_rise = cnt_in && !cia->cnt_prev;
+    cia->cnt_prev = cnt_in;
 
     // Timer A: PHI2 or CNT.
     const bool ta_cnt = cia->ta.cr & CRA_INMODE;
-    timer_clock(&cia->ta, !ta_cnt, ta_cnt && cnt_rise);
+    const unsigned qa = timer_clock(&cia->ta, !ta_cnt, ta_cnt && cnt_rise);
 
     // Timer B: PHI2, CNT, timer A underflows, or those while CNT is high.
     bool tb_phi2 = false, tb_step = false;
@@ -394,10 +436,10 @@ void CIA_FN(cia_clock)(cia_t *cia) {
         tb_step = cia->ta_underflow_prev;
         break;
     default:
-        tb_step = cia->ta_underflow_prev && cia->cnt_in;
+        tb_step = cia->ta_underflow_prev && cnt_in;
         break;
     }
-    timer_clock(&cia->tb, tb_phi2, tb_step);
+    const unsigned qb = timer_clock(&cia->tb, tb_phi2, tb_step);
     cia->ta_underflow_prev = cia->ta.underflow;
 
     if (cia->ta.underflow) {
@@ -459,4 +501,26 @@ void CIA_FN(cia_clock)(cia_t *cia) {
 
     cia->pc = cia->pc_next;
     cia->pc_next = false;
+
+    cia->quiet = 0;
+#if !CIA_FAST_PATHS
+    (void)qa;
+    (void)qb;
+#else
+    // An enabled source that is pending has set irq_pipe (6526) or irq_out
+    // (8521) above, so irq_pipe is all there is to check.
+    if (qa != T_BUSY && qb != T_BUSY && !cia->irq_pipe &&
+        (!(cia->ta.cr & CRA_SPMODE) || (!cia->sr_count && !cia->sdr_full))) {
+        unsigned quiet = 0xFFFF;
+        cia->quiet_dec_a = qa == T_COUNTING;
+        cia->quiet_dec_b = qb == T_COUNTING;
+        if (qa == T_COUNTING) {
+            quiet = cia->ta.counter - 1u;
+        }
+        if (qb == T_COUNTING && cia->tb.counter - 1u < quiet) {
+            quiet = cia->tb.counter - 1u;
+        }
+        cia->quiet = (uint16_t)quiet;
+    }
+#endif
 }

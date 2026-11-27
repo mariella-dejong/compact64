@@ -58,6 +58,8 @@ case ${1:-} in
         # 250 MHz gives the exerciser 4 ns steps.
         sketch=$here/bench/exerciser
         fqbn=$board,freq=250
+        # cia_cpu.c runs m6502.h, which the host tests also use.
+        include="-I$here/../tools/cia/third_party/chips"
         ;;
     cia1|cia2)
         # CIA controllers (#182): one sketch, the controller set by CIA_UNIT.
@@ -76,7 +78,7 @@ if [ "$1" != exerciser ] && [ "${FREQ:-150}" != 150 ]; then
     out=$out-${FREQ}mhz
 fi
 extra=()
-flags=""
+flags="${include:-}"
 if [ -n "${unit:-}" ]; then
     flags="-DCIA_UNIT=$unit"
 fi

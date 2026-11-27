@@ -5,6 +5,11 @@
 // (firmware/cia, bench build) and checks it, cycle by cycle, against its own
 // copy of the 6526 model (Compact64Cia).
 //
+// The accesses come from a 6502 core running random programs (cia_cpu.c,
+// `cia_cpu 1`, the default), so that they follow what a real 6510 can do,
+// or, as a stress test, are random in every cycle (`cia_cpu 0`): reads
+// straight after writes, which no 6510 makes.
+//
 // A cycle is PHI2 low (phi1), then PHI2 high (phi2). In phi1 the exerciser
 // sets A0 to A3 and R/~W, then ~CS for an access, and precharges D to the
 // inverse of the expected value before a read; in phi2 it drives D for a
@@ -18,6 +23,8 @@
 // access (a write, or the side effects of a read), the TOD edge, the clock.
 
 #include "gen_int.h"
+
+#include "cia_cpu.h"
 
 #include <string.h>
 
@@ -42,6 +49,10 @@
 #define RESET_CYCLES 3
 
 static cia_t model;
+
+// The 6502 core and its 64 KB of memory (cia_cpu.c).
+static uint32_t cpu_mem[CIA_CPU_BYTES / 4u];
+static cia_cpu_t *const cpu = (cia_cpu_t *)cpu_mem;
 
 static uint64_t cia_idle_pins(void) {
     return CM_CNT | CM_SP | CM_RESET | CM_FLAG | CM_RW | CM_CS;  // PHI2 low
@@ -126,10 +137,26 @@ static void gen_cycle(uint32_t s0, uint32_t s1, uint32_t s2, uint32_t c) {
     // ~CS and the address: released shortly after the previous cycle,
     // then set for this one.
     w_set(DL(s0, 10), CM_CS, CM_CS);
-    const int acc = in_reset ? A_IDLE : pick_access();
-    const unsigned reg = rnd() & 0xFu;
+    int acc;
+    unsigned reg;
+    uint8_t wvalue = 0;
+    bool rw = true;
+    if (p->cia_cpu) {
+        // The core's cycle: A0 to A3 and R/~W from its address bus while it
+        // has the bus, ~CS where it addresses the CIA.
+        const cia_cpu_bus_t b = cia_cpu_cycle(cpu);
+        reg = b.addr & 0xFu;
+        rw = !b.aec || b.rw;
+        acc = (b.cia && !in_reset) ? (b.rw ? A_READ : A_WRITE) : A_IDLE;
+        wvalue = b.data;
+    } else {
+        acc = in_reset ? A_IDLE : pick_access();
+        reg = rnd() & 0xFu;
+        rw = acc != A_WRITE;
+        wvalue = write_value(reg);
+    }
     const uint32_t t_a = SC(s0, p->t_addr);
-    w_set(t_a, CM_A | CM_RW, ((uint64_t)reg << CIA_GPIO_A0) | (acc == A_WRITE ? 0 : CM_RW));
+    w_set(t_a, CM_A | CM_RW, ((uint64_t)reg << CIA_GPIO_A0) | (rw ? CM_RW : 0));
     if (acc != A_IDLE) {
         w_set(DL(t_a, p->t_pla), CM_CS, 0);
     }
@@ -140,6 +167,9 @@ static void gen_cycle(uint32_t s0, uint32_t s1, uint32_t s2, uint32_t c) {
     model.flag_in = !flag_low;
     if (in_reset) {
         cia_reset(&model);
+        if (p->cia_cpu) {
+            cia_cpu_set_irq(cpu, false);
+        }
         return;  // no checks while ~RESET is low
     }
     r.exp_c = cia_irq(&model) ? 0 : 1;  // ~IRQ: low while active
@@ -147,6 +177,9 @@ static void gen_cycle(uint32_t s0, uint32_t s1, uint32_t s2, uint32_t c) {
 
     if (acc == A_READ) {
         const uint8_t v = cia_peek(&model, reg);
+        if (p->cia_cpu) {
+            cia_cpu_read_data(cpu, v);
+        }
         r.check = check_of(reg);
         r.exp_d = v;
         r.mask_d = (r.check == CK_CIA_PORT && !p->cia_ports) ? 0 : 0xFF;
@@ -159,7 +192,7 @@ static void gen_cycle(uint32_t s0, uint32_t s1, uint32_t s2, uint32_t c) {
         }
         cia_read_effects(&model, reg);
     } else if (acc == A_WRITE) {
-        const uint8_t v = write_value(reg);
+        const uint8_t v = wvalue;
         d_set(SC(s1, p->t_dv), v, 0xFF, 0xFF);
         d_set(DL(s2, p->t_dhold), 0, 0, 0xFF);
         cia_write(&model, reg, v);
@@ -170,6 +203,9 @@ static void gen_cycle(uint32_t s0, uint32_t s1, uint32_t s2, uint32_t c) {
         cia_tod_tick(&model);
     }
     cia_clock(&model);
+    if (p->cia_cpu) {
+        cia_cpu_set_irq(cpu, cia_irq(&model));
+    }
 
     const uint32_t t_s = p->sample_mode ? DL(s1, p->sample_off) : SC(s2, -p->t_setup);
     sample(t_s, &r);
@@ -181,6 +217,12 @@ static uint32_t build_cia_batch(uint32_t seed, ex_lists_t *l, uint64_t *first) {
     lists_begin(seed, *first);
     rng = c64bench_hash32(seed) | 1u;
     cia_init(&model, p->cia_model ? CIA_MODEL_8521 : CIA_MODEL_6526);
+    if (p->cia_cpu) {
+        const cia_cpu_cfg_t cfg = {.unit = p->cia_unit == 2 ? 2u : 1u,
+                                   .cia_pct = (unsigned)(p->cia_cpu_pct < 0 ? 0 : p->cia_cpu_pct),
+                                   .badlines = p->cia_rdy != 0, .sprites = p->cia_rdy != 0};
+        cia_cpu_init(cpu, &cfg, seed);
+    }
 
     const uint32_t t0 = DL(0, 2000);
     const float half = (float)p->half_ns * ks;

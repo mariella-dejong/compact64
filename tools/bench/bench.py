@@ -92,7 +92,7 @@ def run_step(ex, dut, batches):
 # DUT `stats` fields worth a column, per mode: a CIA controller counts its
 # lost cycle samples and the loop's clocks per cycle; U1401 has no such
 # counters.
-DUT_FIELDS = {"u1401": (), "cia": ("overruns", "loop_avg", "loop_max")}
+DUT_FIELDS = {"u1401": (), "cia": ("overruns", "lagging", "ready_avg", "ready_max", "loop_avg", "loop_max")}
 
 
 def dut_columns(args, stats):

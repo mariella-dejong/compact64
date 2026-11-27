@@ -11,9 +11,19 @@
 //                       just before PHI2 falls
 //
 // Per cycle, core 1 takes the sample, applies a write or the side effects of
-// a read, steps the model, lets the controller set its pins (board->ports)
-// and writes the register image for the next cycle. All of that has to be
-// done before PHI2 rises again, about half a cycle later.
+// a read, steps the model, works out what PRA and PRB read (board->inputs),
+// writes the register image for the next cycle and sets the ready flag.
+// That part has to be done before the 6510 latches the data of a read in
+// the next cycle. Then, where the model's outputs may have changed, it sets
+// the port pins (board->outputs). The model's quiet cycles (cia6526.h) and
+// an image in which only the changed words are written keep the usual cycle
+// short; in a quiet stretch (cia_bus.c) the loop only counts.
+//
+// The bus loop may finish a pass after the next PHI2 fall, and catch up in
+// the cycles after: a 6510 never reads a CIA sooner than 4 cycles after it
+// wrote one (tools/cia/test/busrules.c), so a write cycle's pass can take
+// longer. Code run from the CIA's own registers and DMA from the expansion
+// port can do so, and are not covered (firmware/bench/README.md).
 
 #ifndef CIA_BUS_H
 #define CIA_BUS_H
@@ -44,14 +54,25 @@ extern "C" {
 static inline unsigned cia_s_reg(uint32_t s) { return (s >> CIA_GPIO_A0) & 0xFu; }
 
 typedef struct {
-    // Called once per cycle, after the model has stepped. Sets the
-    // controller's output pins from the model (ports, ~PC, extra lines) and
-    // cia->pa_pins and cia->pb_pins to what reads of PRA and PRB return in
-    // the next cycle. sample: the bus pins of the cycle that just ended.
-    void (*ports)(cia_t *cia, uint32_t sample);
+    // Sets cia->pa_pins and cia->pb_pins to what reads of PRA and PRB return
+    // in the next cycle: the pins, and 0 where the port drives 0, as the pin
+    // will be once outputs() has set it. Called after the model has stepped
+    // and before the ready flag, in every cycle but a quiet stretch's (the
+    // bus loop then compares the pins itself). in, in_hi: GPIO0 to GPIO31
+    // and GPIO32 to GPIO47, masked with in_mask and in_mask_hi; levels: the
+    // port's output levels may have changed (else the board may keep the
+    // last ones). Returns true if PRA or PRB changed.
+    bool (*inputs)(cia_t *cia, bool levels, uint32_t in, uint32_t in_hi);
+    // Sets the controller's output pins from the model (ports, ~PC, extra
+    // lines). Called after the ready flag, in a cycle in which they may have
+    // changed (a write, a port B access, a full model cycle with a timer on
+    // PB6 or PB7) and in the cycle after.
+    void (*outputs)(cia_t *cia);
     // Called once when ~RESET is low, after the model has been reset:
     // release every output.
     void (*reset)(cia_t *cia);
+    // The input pins inputs() reads.
+    uint32_t in_mask, in_mask_hi;
 } cia_board_t;
 
 typedef struct {
@@ -59,12 +80,21 @@ typedef struct {
     uint32_t reads;
     uint32_t writes;
     uint32_t resets;
-    uint32_t overruns;  // a cycle sample was lost: the loop was too slow
-    uint32_t max_lag;   // most samples waiting at once
+    uint32_t overruns;  // checks that found cycle samples lost: the loop was too slow
+    uint32_t quiet;     // cycles in which the model took its fast path
+    uint32_t lagging;   // passes that began with their sample already waiting
+    uint32_t ready_max; // longest time from taking a sample to the ready flag, in clocks
+    uint64_t ready_sum; // sum of those, for the average
     uint32_t loop_max;  // longest pass of the loop, in clocks, from taking a sample
     uint64_t loop_sum;  // sum of all passes, for the average
+    // Passes by kind: no access, read, write; each with a quiet or a full
+    // model cycle (index access * 2 + full); 6: quiet stretch. Only with
+    // CIA_BUS_KINDS.
+    uint32_t kind_n[7], kind_max[7];
+    uint64_t kind_sum[7];
 } cia_bus_stats_t;
 
+// Core 1 adds its counts every 256 cycles.
 extern volatile cia_bus_stats_t cia_bus_stats;
 
 // TOD pin edges (50 or 60 Hz) to apply: core 0 increments it, core 1

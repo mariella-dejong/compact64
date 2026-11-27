@@ -51,13 +51,114 @@ static void print_info() {
 
 static void print_stats() {
     const uint32_t n = cia_bus_stats.cycles;
-    Serial.printf("stats cycles=%lu reads=%lu writes=%lu resets=%lu overruns=%lu max_lag=%lu "
-                  "loop_max=%lu loop_avg=%lu\n",
+    Serial.printf("stats cycles=%lu reads=%lu writes=%lu resets=%lu quiet=%lu overruns=%lu lagging=%lu "
+                  "ready_max=%lu ready_avg=%lu loop_max=%lu loop_avg=%lu\n",
                   (unsigned long)n, (unsigned long)cia_bus_stats.reads,
                   (unsigned long)cia_bus_stats.writes, (unsigned long)cia_bus_stats.resets,
-                  (unsigned long)cia_bus_stats.overruns, (unsigned long)cia_bus_stats.max_lag,
+                  (unsigned long)cia_bus_stats.quiet, (unsigned long)cia_bus_stats.overruns,
+                  (unsigned long)cia_bus_stats.lagging,
+                  (unsigned long)cia_bus_stats.ready_max,
+                  (unsigned long)(n ? cia_bus_stats.ready_sum / n : 0),
                   (unsigned long)cia_bus_stats.loop_max,
                   (unsigned long)(n ? cia_bus_stats.loop_sum / n : 0));
+}
+
+// `prof`: clocks per call of the parts of the bus loop, on core 0 with
+// interrupts off, on copies of the model (core 1 keeps running). For
+// finding where the loop's time goes; not for the board.
+#define DEMCR (*(volatile uint32_t *)0xE000EDFCu)
+#define DWT_CTRL (*(volatile uint32_t *)0xE0001000u)
+#define DWT_CYCCNT (*(volatile uint32_t *)0xE0001004u)
+
+static cia_t prof_cia;
+static uint32_t prof_img[4];
+static void __not_in_flash_func(p_none)(void) {}
+static void __not_in_flash_func(p_clock)(void) { cia_clock_full(&prof_cia); }
+static void __not_in_flash_func(p_clock_q)(void) { cia_clock(&prof_cia); }
+static void __not_in_flash_func(p_image)(void) { cia_bus_image(&prof_cia, prof_img); }
+static void __not_in_flash_func(p_inputs)(void) {
+    (void)board.inputs(&prof_cia, true, sio_hw->gpio_in & board.in_mask, sio_hw->gpio_hi_in & board.in_mask_hi);
+}
+static void __not_in_flash_func(p_write)(void) { cia_write(&prof_cia, CIA_TALO, 0x10); }
+static void __not_in_flash_func(p_read_icr)(void) { cia_read_effects(&prof_cia, CIA_ICR); }
+static void __not_in_flash_func(p_sio)(void) { (void)sio_hw->gpio_in; }
+// 64 ALU instructions, and 32 load/add pairs, from SRAM and from flash.
+#define ALU8 "adds r0, #1\n adds r1, #1\n adds r2, #1\n adds r3, #1\n adds r0, #1\n adds r1, #1\n adds r2, #1\n adds r3, #1\n"
+#define LD4 "ldr r1, [%0]\n adds r0, r1\n ldr r2, [%0, #4]\n adds r0, r2\n ldr r3, [%0, #8]\n adds r0, r3\n ldr r1, [%0, #12]\n adds r0, r1\n"
+static void __not_in_flash_func(p_alu_ram)(void) {
+    asm volatile(ALU8 ALU8 ALU8 ALU8 ALU8 ALU8 ALU8 ALU8 ::: "r0", "r1", "r2", "r3", "cc");
+}
+static void p_alu_flash(void) {
+    asm volatile(ALU8 ALU8 ALU8 ALU8 ALU8 ALU8 ALU8 ALU8 ::: "r0", "r1", "r2", "r3", "cc");
+}
+#define BR4 "b 1f\n 1: b 2f\n 2: b 3f\n 3: b 4f\n 4:\n"
+static void __not_in_flash_func(p_br_ram)(void) { asm volatile(BR4 BR4 BR4 BR4 BR4 BR4 BR4 BR4); }
+static void p_br_flash(void) { asm volatile(BR4 BR4 BR4 BR4 BR4 BR4 BR4 BR4); }
+static void __scratch_y("prof") p_br_scy(void) { asm volatile(BR4 BR4 BR4 BR4 BR4 BR4 BR4 BR4); }
+#define LS4 "ldrb r1, [%0]\n strb r1, [%0, #1]\n ldrb r2, [%0, #2]\n strb r2, [%0, #3]\n"
+static void __not_in_flash_func(p_ls_ram)(void) {
+    asm volatile(LS4 LS4 LS4 LS4 LS4 LS4 LS4 LS4 ::"r"(prof_img) : "r1", "r2", "memory");
+}
+static void __not_in_flash_func(p_ld_ram)(void) {
+    asm volatile(LD4 LD4 LD4 LD4 LD4 LD4 LD4 LD4 ::"r"(prof_img) : "r0", "r1", "r2", "r3", "cc", "memory");
+}
+static void p_ld_flash(void) {
+    asm volatile(LD4 LD4 LD4 LD4 LD4 LD4 LD4 LD4 ::"r"(prof_img) : "r0", "r1", "r2", "r3", "cc", "memory");
+}
+
+static uint32_t __not_in_flash_func(prof_time)(void (*fn)(void), unsigned n) {
+    uint32_t total = 0;
+    for (unsigned i = 0; i < n; i++) {
+        const uint32_t t0 = DWT_CYCCNT;
+        fn();
+        total += DWT_CYCCNT - t0;
+    }
+    return total;
+}
+
+static void prof() {
+    DEMCR |= 1u << 24;
+    DWT_CTRL |= 1u;
+    struct {
+        const char *name;
+        void (*fn)(void);
+        uint8_t cra, crb;  // control registers to start from (0x11: load and start)
+        bool live;         // start from a copy of the live model
+    } const cases[] = {
+        {"none", p_none, 0, 0, false},         {"clock_idle", p_clock, 0, 0, false},
+        {"clock_ta", p_clock, 0x11, 0, false}, {"clock_ta_tb", p_clock, 0x11, 0x11, false},
+        {"clock_live", p_clock, 0, 0, true},   {"clock_q_ta_tb", p_clock_q, 0x11, 0x11, false},   {"image", p_image, 0, 0, true},
+        {"inputs_live", p_inputs, 0, 0, true},   {"write_talo", p_write, 0, 0, false},
+        {"read_icr", p_read_icr, 0x11, 0, false}, {"sio_in", p_sio, 0, 0, false},
+        {"alu64_ram", p_alu_ram, 0, 0, false}, {"alu64_flash", p_alu_flash, 0, 0, false},
+        {"ld32_ram", p_ld_ram, 0, 0, false},   {"ld32_flash", p_ld_flash, 0, 0, false},
+        {"br32_ram", p_br_ram, 0, 0, false},   {"br32_flash", p_br_flash, 0, 0, false},
+        {"br32_scratch_y", p_br_scy, 0, 0, false}, {"ldst32_ram", p_ls_ram, 0, 0, false},
+    };
+    const unsigned n = 1000;
+    for (const auto &c : cases) {
+        if (c.live) {
+            memcpy(&prof_cia, &cia, sizeof(cia));
+        } else {
+            cia_init(&prof_cia, model);
+            cia_write(&prof_cia, CIA_TALO, 0x00);
+            cia_write(&prof_cia, CIA_TAHI, 0x10);
+            cia_write(&prof_cia, CIA_TBLO, 0x00);
+            cia_write(&prof_cia, CIA_TBHI, 0x10);
+            cia_write(&prof_cia, CIA_ICR, 0x83);
+            cia_write(&prof_cia, CIA_CRA, c.cra);
+            cia_write(&prof_cia, CIA_CRB, c.crb);
+            for (unsigned i = 0; i < 4; i++) {
+                cia_clock(&prof_cia);
+            }
+        }
+        const uint32_t irq = save_and_disable_interrupts();
+        const uint32_t t = prof_time(c.fn, n);
+        restore_interrupts(irq);
+        Serial.printf("prof %s clocks=%lu.%02lu\n", c.name, (unsigned long)(t / n),
+                      (unsigned long)((t % n) / 10));
+    }
+    Serial.println("end");
 }
 
 static void handle_command(char *line) {
@@ -74,6 +175,18 @@ static void handle_command(char *line) {
         // Core 1 may count while this runs; the bench clears between runs.
         memset((void *)&cia_bus_stats, 0, sizeof(cia_bus_stats));
         Serial.println("ok");
+    } else if (!strcmp(cmd, "kinds")) {
+        static const char *const names[7] = {"idle", "idle_full", "read", "read_full", "write", "write_full",
+                                             "stretch"};
+        for (unsigned k = 0; k < 7; k++) {
+            const uint32_t n = cia_bus_stats.kind_n[k];
+            Serial.printf("kind %s n=%lu avg=%lu max=%lu\n", names[k], (unsigned long)n,
+                          (unsigned long)(n ? cia_bus_stats.kind_sum[k] / n : 0),
+                          (unsigned long)cia_bus_stats.kind_max[k]);
+        }
+        Serial.println("end");
+    } else if (!strcmp(cmd, "prof")) {
+        prof();
     } else if (!strcmp(cmd, "regs")) {
         // A snapshot taken while core 1 runs: for debugging only.
         Serial.print("regs");

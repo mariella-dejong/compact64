@@ -81,6 +81,10 @@ typedef struct {
     int32_t cia_flag;     // cycles between ~FLAG pulses, 0 for none
     int32_t cia_cnt;      // cycles between CNT edges, 0 for none
     int32_t cia_model;    // 0: 6526, 1: 8521 (set the DUT to the same)
+    int32_t cia_cpu;      // 1: 6510 traffic from a 6502 core (cia_cpu.c); 0: random accesses (stress)
+    int32_t cia_cpu_pct;  // 6510 traffic: percent of memory operands aimed at the CIA
+    int32_t cia_rdy;      // 6510 traffic: 1 for badline and sprite RDY stalls
+    int32_t cia_unit;     // 6510 traffic: the CIA's interrupt on ~IRQ (1) or ~NMI (2)
 } ex_params_t;
 
 typedef struct {
