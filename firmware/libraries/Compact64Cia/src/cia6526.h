@@ -75,9 +75,11 @@ typedef struct {
     cia_model_t model;
 
     // Ports. pa_pins/pb_pins are the levels on the pins, set by the caller;
-    // a read of PRA/PRB returns them.
-    uint8_t pra, prb, ddra, ddrb;
-    uint8_t pa_pins, pb_pins;
+    // a read of PRA/PRB returns them. The first four are in the order of
+    // registers 0 to 3, word aligned, for the bus interface's register image.
+    _Alignas(4) uint8_t pa_pins;
+    uint8_t pb_pins, ddra, ddrb;
+    uint8_t pra, prb;
 
     cia_timer_t ta, tb;
     bool ta_underflow_prev;  // timer B sees A's underflows one cycle later
@@ -90,8 +92,9 @@ typedef struct {
     bool irq_prev;     // bit 7 at the end of the previous cycle
     bool irq_pin;      // interrupt output, one cycle after bit 7
 
-    // Time of day, BCD: tenths, seconds, minutes, hours (bit 7 PM).
-    uint8_t tod[4];
+    // Time of day, BCD: tenths, seconds, minutes, hours (bit 7 PM). Word
+    // aligned, as above.
+    _Alignas(4) uint8_t tod[4];
     uint8_t alarm[4];
     uint8_t tod_latch[4];
     bool tod_latched;
@@ -117,6 +120,11 @@ typedef struct {
     // ~PC is low for the cycle after a port B access.
     bool pc;
     bool pc_next;
+
+    // Quiet cycles (cia6526.c): how many of the next cycles cia_clock() may
+    // take the fast path, and what it subtracts from each counter in them.
+    uint16_t quiet;
+    uint8_t quiet_dec_a, quiet_dec_b;
 } cia_t;
 
 void cia_init(cia_t *cia, cia_model_t model);
@@ -136,8 +144,34 @@ static inline uint8_t cia_read(cia_t *cia, unsigned reg) {
 // One TOD pin edge (50 or 60 Hz).
 void cia_tod_tick(cia_t *cia);
 
-// End of the cycle.
-void cia_clock(cia_t *cia);
+// End of the cycle: cia_clock_quiet() if it applies, else cia_clock_full().
+// The fast path does nothing the full one would not do; tools/cia/test
+// (quiet.c) checks that cycle by cycle.
+void cia_clock_full(cia_t *cia);
+
+// A quiet cycle: no timer reloads, underflows or pipeline changes, no
+// interrupt or serial port activity and no CNT or ~FLAG edge, so only the
+// running counters, ~IRQ's delay stage and ~PC move. Returns false, and
+// changes nothing, if this cycle is not one.
+static inline bool cia_clock_quiet(cia_t *cia) {
+    if (!cia->quiet || cia->cnt_in != cia->cnt_prev || cia->flag_in != cia->flag_prev) {
+        return false;
+    }
+    cia->quiet--;
+    cia->ta.counter = (uint16_t)(cia->ta.counter - cia->quiet_dec_a);
+    cia->tb.counter = (uint16_t)(cia->tb.counter - cia->quiet_dec_b);
+    cia->irq_pin = cia->irq_prev;
+    cia->irq_prev = cia->irq_out;
+    cia->pc = cia->pc_next;
+    cia->pc_next = false;
+    return true;
+}
+
+static inline void cia_clock(cia_t *cia) {
+    if (!cia_clock_quiet(cia)) {
+        cia_clock_full(cia);
+    }
+}
 
 // Outputs.
 static inline bool cia_irq(const cia_t *cia) { return cia->irq_pin; }

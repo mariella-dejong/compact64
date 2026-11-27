@@ -5,17 +5,20 @@
 # Builds, and optionally uploads, one of the firmware sketches with arduino-cli
 # and the arduino-pico core.
 #
-#   firmware/build.sh u1401|exerciser            compile
-#   firmware/build.sh u1401|exerciser <port>     compile and upload, for
-#                                                example /dev/ttyACM0
+#   firmware/build.sh u1401|exerciser|cia1|cia2          compile
+#   firmware/build.sh u1401|exerciser|cia1|cia2 <port>   compile and upload, for
+#                                                        example /dev/ttyACM0
+#
+# cia1 and cia2 build the CIA controller firmware (firmware/cia) for U1501
+# or U1601 (#182).
 #
 # BOARD selects the target board:
 #   rp2354b  (default) an RP2354B board, as U1401 itself: the generic RP2350
 #            target with the 48-GPIO RP2350B and the 2 MB of stacked flash
 #   weact    the WeAct Studio RP2350B core board
 #
-# FREQ sets U1401's clock in MHz (default 150, the RP2350's rating; the
-# Arduino core offers overclocks up to 300).
+# FREQ sets the clock of U1401 and the CIA controllers in MHz (default 150,
+# the RP2350's rating; the Arduino core offers overclocks up to 300).
 #
 # TRACE_PINS=1 builds U1401 with the trace pins (BUS_TRACE_PINS in
 # u1401/bus.h): GPIO44 and GPIO45 show where the bus loop is.
@@ -55,25 +58,40 @@ case ${1:-} in
         # 250 MHz gives the exerciser 4 ns steps.
         sketch=$here/bench/exerciser
         fqbn=$board,freq=250
+        # cia_cpu.c runs m6502.h, which the host tests also use.
+        include="-I$here/../tools/cia/third_party/chips"
+        ;;
+    cia1|cia2)
+        # CIA controllers (#182): one sketch, the controller set by CIA_UNIT.
+        sketch=$here/cia
+        fqbn=$board,freq=${FREQ:-150}
+        unit=${1#cia}
         ;;
     *)
-        echo "usage: [BOARD=rp2354b|weact] $0 u1401|exerciser [port]" >&2
+        echo "usage: [BOARD=rp2354b|weact] $0 u1401|exerciser|cia1|cia2 [port]" >&2
         exit 2
         ;;
 esac
 
 out=$here/build/${BOARD:-rp2354b}/$1
-if [ "$1" = u1401 ] && [ "${FREQ:-150}" != 150 ]; then
+if [ "$1" != exerciser ] && [ "${FREQ:-150}" != 150 ]; then
     out=$out-${FREQ}mhz
 fi
 extra=()
+flags="${include:-}"
+if [ -n "${unit:-}" ]; then
+    flags="-DCIA_UNIT=$unit"
+fi
 if [ "${CLEAN:-0}" = 1 ]; then
     extra+=(--clean)
 fi
 if [ "${TRACE_PINS:-0}" = 1 ]; then
     out=$out-trace
-    extra+=(--build-property "compiler.c.extra_flags=-DBUS_TRACE_PINS=1"
-            --build-property "compiler.cpp.extra_flags=-DBUS_TRACE_PINS=1")
+    flags="$flags -DBUS_TRACE_PINS=1"
+fi
+if [ -n "$flags" ]; then
+    extra+=(--build-property "compiler.c.extra_flags=$flags"
+            --build-property "compiler.cpp.extra_flags=$flags")
 fi
 "$cli" compile --fqbn "$fqbn" --warnings all ${extra[@]+"${extra[@]}"} \
     --library "$here/libraries/Compact64Bus" \

@@ -57,7 +57,7 @@ const ex_param_ref_t ex_param_refs[] = {
     W(char, K_C_CHAR), W(col_r, K_C_COL_R), W(col_w, K_C_COL_W), W(idle, K_C_IDLE),
     W(release, K_C_RELEASE), W(readback, K_C_READBACK), W(cacc, K_B_CACC),
     P(cia_w_idle), P(cia_w_read), P(cia_w_write), P(cia_ports), P(cia_tod), P(cia_flag),
-    P(cia_cnt), P(cia_model),
+    P(cia_cnt), P(cia_model), P(cia_cpu), P(cia_cpu_pct), P(cia_rdy), P(cia_unit),
 };
 const unsigned ex_param_count = sizeof(ex_param_refs) / sizeof(ex_param_refs[0]);
 
@@ -101,6 +101,10 @@ void ex_params_default_pal(void) {
     ex_params.cia_flag = 97;
     ex_params.cia_cnt = 0;
     ex_params.cia_model = 0;
+    ex_params.cia_cpu = 1;
+    ex_params.cia_cpu_pct = 50;
+    ex_params.cia_rdy = 1;
+    ex_params.cia_unit = 1;
 }
 
 // NTSC (8562, 1.023 MHz).

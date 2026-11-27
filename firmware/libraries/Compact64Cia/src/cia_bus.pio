@@ -1,0 +1,62 @@
+; SPDX-License-Identifier: Apache-2.0
+; SPDX-FileCopyrightText: 2026 Compact 64 contributors
+;
+; Bus interface of the CIA controllers (cia_bus.c). PIO0, GPIO base 0.
+;
+; Generated header: pioasm -v 1 -o c-sdk cia_bus.pio cia_bus.pio.h (the
+; Arduino tools do not run pioasm; see firmware/README.md).
+
+.pio_version 1
+
+; Read driver. The RX FIFO, used as four registers, holds the 16 CIA
+; registers as the CPU prepared them for this cycle: entry n holds registers
+; 4n to 4n + 3, register 4n in bits 0 to 7. IN base GPIO8, IN_COUNT 19:
+; A0 to A3 in bits 0 to 3, R/~W in bit 17, ~CS in bit 18. OUT pins D0 to D7.
+; When PHI2 rises with ~CS low and R/~W high, drive the register that A0 to
+; A3 select until PHI2 falls. The CPU writes the image after the previous
+; cycle and then sets interrupt flag 0 (CIA_PIO_IRQ_READY); a read waits for
+; it, so the image only has to be ready by the 6510's data setup time, not
+; when PHI2 rises. The flag is cleared when PHI2 falls.
+.program cia_read
+.fifo txget
+.wrap_target
+    wait 1 gpio 24
+    mov osr, pins
+    out isr, 2              ; A1, A0: byte in the entry
+    out y, 2                ; A3, A2: entry
+    out null, 13
+    out x, 2                ; R/~W + 2 * ~CS; 1 is a selected read
+    jmp x-- not_write
+    jmp done                ; 0: a selected write
+not_write:
+    jmp !x read
+    jmp done                ; 2, 3: not selected
+read:
+    wait 1 irq 0            ; the image of this cycle is written
+    mov osr, rxfifo[y]
+    mov y, isr
+shift:
+    jmp !y put
+    out null, 8
+    jmp y-- shift
+put:
+    out pins, 8
+    mov pindirs, ~null
+done:
+    wait 0 gpio 24
+    mov pindirs, null
+    irq clear 0
+.wrap
+
+; Cycle sampler. While PHI2 is high, samples GPIO0 to GPIO26 (IN_COUNT 27)
+; again and again; when PHI2 falls, pushes the last sample: D0 to D7, A0 to
+; A3, CNT, SP, ~RESET, ~FLAG, R/~W and ~CS as they were at the end of the
+; cycle. One word per cycle; jmp_pin PHI2.
+.program cia_cycle
+.wrap_target
+    wait 1 gpio 24
+hold:
+    mov isr, pins
+    jmp pin hold
+    push noblock
+.wrap
